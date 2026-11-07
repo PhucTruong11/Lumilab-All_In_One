@@ -18,7 +18,7 @@
 | Lò xo tắt dần | Kéo khối nặng gắn pít-tông giảm chấn để đặt li độ thả | Chọn khối nặng; trái/phải chỉnh li độ `±0,02 m` |
 | Newton | Kéo xe, mũi tên lực, quả cân; xem mốc quãng đường theo giây | Trái/phải chỉnh lực; Enter thêm quả cân |
 | Mặt phẳng nghiêng | Kéo tay nắm tròn ở đầu dốc; bật/tắt phân tích lực `P, N, P∥, Fms` | Lên/xuống chỉnh từng độ |
-| Ròng rọc & Pa-lăng | Kéo khối tải lên hoặc kéo lực kế xuống để nâng tải (1 / 2 / 4 nhánh dây) | Chọn tải hoặc lực kế; lên/xuống chỉnh `0,05 m` |
+| Ròng rọc & Pa-lăng | Kéo khối tải, lực kế hoặc đoạn dây treo lên/xuống; độ cao và số đo đổi ngay trong lúc kéo (1 / 2 / 4 nhánh dây) | Chọn tải hoặc lực kế; lên/xuống chỉnh `0,05 m` |
 | Mạch điện / Mạng R / RC | Lắp nhiều bóng/điện trở cùng loại vào 3 ô mạch nối tiếp; kéo vật đã lắp sang ô khác hoặc vào khay tháo; kéo `R₁` hoán đổi `R₂`; thả tụ phụ `+100 µF` | Chọn vật bằng Enter rồi chọn ô, hoặc chỉnh từng ô bằng select; đóng/mở khóa K trực tiếp |
 | Na/K với nước & ngọn lửa | Chạm lọ mẫu `Na/K`, chạm kẹp thả vào chậu nước hoặc đưa dây Pt vào ngọn lửa | Tab đến dụng cụ trên bàn, dùng Enter/Space |
 | Cu–HNO₃ | Chạm lọ `HNO₃` loãng/đặc, chạm nút bông ở miệng ống để thử tiếp xúc `O₂` | Tab đến lọ/nút bông hoặc nút mở quan sát, dùng Enter/Space |
@@ -28,9 +28,9 @@
 
 Lực cản của **con lắc** là minh họa giao diện cũ, chưa có trong engine/API. Web ghi rõ phạm vi và khóa nút ghi số đo khi đang minh họa có cản. Tính lại trên máy chủ vẫn dùng con lắc lý tưởng. Lò xo tắt dần là một runtime riêng đã có, không dùng công thức minh họa con lắc này.
 
-Tốc độ phát, chế độ tập trung và các nút bật/tắt vectơ/cơ năng là tùy chọn xem trên giao diện, không nằm trong tệp phiên. Bản lưu phiên vẫn dùng schema hiện tại. Chưa bổ sung cấu hình ngoài phạm vi mô hình như thay g, nhiệt độ, nồng độ/khối lượng trong các lab Hóa định tính.
+Tốc độ phát, chế độ tập trung và các nút bật/tắt vectơ/cơ năng là tùy chọn xem trên giao diện, không nằm trong dữ liệu tự lưu. Số đo và tham số được tự lưu trên trình duyệt; thanh quản lý phiên và các nút lưu/nhập/xuất/khôi phục đã bỏ khỏi giao diện. Dữ liệu đã lưu vẫn dùng schema hiện tại. Chưa bổ sung cấu hình ngoài phạm vi mô hình như thay g, nhiệt độ, nồng độ/khối lượng trong các lab Hóa định tính.
 
-Mạch nối tiếp dùng `ideal-series-circuit-ts-v2`: ngoài điện trở phụ 20 Ω và bóng 10 Ω có điện trở 10 Ω, cho phép lặp bóng/điện trở trong ba ô, tối đa một công tắc. `bulbPower_W` là tổng công suất trên các bóng. File phiên mạch v1 hợp lệ được nhập, tính lại và xuất thành v2. API chỉ trả preview/draft; mô hình chưa có mạch phân nhánh hoặc lắp dây tùy ý. Xem [đặc tả thao tác](../specs/007-tactile-labs/spec.md).
+Mạch nối tiếp dùng `ideal-series-circuit-ts-v2`: ngoài điện trở phụ 20 Ω và bóng 10 Ω có điện trở 10 Ω, cho phép lặp bóng/điện trở trong ba ô, tối đa một công tắc. `bulbPower_W` là tổng công suất trên các bóng. Dữ liệu mạch v1 hợp lệ đã lưu trên trình duyệt được khôi phục, tính lại và tự lưu thành v2. API chỉ trả preview/draft; mô hình chưa có mạch phân nhánh hoặc lắp dây tùy ý. Xem [đặc tả thao tác](../specs/007-tactile-labs/spec.md).
 
 ## Kiểm tại B
 

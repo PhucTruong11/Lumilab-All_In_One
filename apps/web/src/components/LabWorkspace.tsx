@@ -1,12 +1,12 @@
 import { lazy, Suspense, useState } from 'react';
 import { ExperimentTools } from './ExperimentTools';
 import { LabServerPreview } from './LabServerPreview';
-import { PhysicsTaskPanel } from './PhysicsTaskPanel';
+import { LabTaskPanel } from './PhysicsTaskPanel';
 import { AppBoundary } from './AppBoundary';
 import { PendulumLab } from './PendulumLab';
 import { ChemistryLab } from './ChemistryLab';
 import { CircuitLab } from './CircuitLab';
-import { LabSessionTools, LearningJourney, useLabClock } from './LabSessionTools';
+import { LabSessionPersistence, LearningJourney, useLabClock } from './LabSessionTools';
 import { labDefinitions, type LabId } from '@lumilab/lab-engine';
 import { practiceGroups, practiceIds, practiceInfo } from '../data/practice';
 export type { LabId } from '@lumilab/lab-engine';
@@ -117,10 +117,10 @@ export function LabWorkspace({
           <Renderer />
         </Suspense>
       </AppBoundary>
-      {lab.subject === 'physics' && <PhysicsTaskPanel key={'tasks-' + labId} id={labId} selectedId={taskId} onSelect={onTaskSelect} />}
+      <LabTaskPanel key={'tasks-' + labId} id={labId} selectedId={taskId} onSelect={onTaskSelect} />
       <ExperimentTools key={`tools-${labId}`} id={labId} speed={speed} onSpeed={setSpeed} focused={focused} onFocus={() => setFocused(value => !value)}/>
       <div className="lab-support">
-        <LabSessionTools key={labId} id={labId} />
+        <LabSessionPersistence key={labId} id={labId} />
         <LabServerPreview key={'preview-' + labId} id={labId} />
         <LearningJourney key={`journey-${labId}`} id={labId} onLesson={onLesson} onLumi={onLumi} />
       </div>
