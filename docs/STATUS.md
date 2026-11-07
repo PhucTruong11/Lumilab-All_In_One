@@ -8,6 +8,8 @@ PR Dataset #13 đã merge tại `02d92f2`. Nhánh runbook đã sync main và b�
 
 ## Lịch sử tích hợp
 
+Nhánh `feat/docker-release-capabilities` bổ sung metadata web/API và manifest chung cho 9 bài/12 mode, giữ nguyên scope ba pilot Tutor. CI có job Docker dùng PostgreSQL tmpfs riêng, kiểm proxy/owned-run/Tutor template và nạp/recreate image từ archive. Kiểm local trước commit: **645 pytest đạt, 2 skip Chroma/Pint**, **96 unit TypeScript đạt**, Ruff và check:web đạt; smoke Docker và run tồn tại sau recreate đạt. Lượt local dùng `--allow-dirty` nên bundle chỉ dùng phát triển; bản release cần checkout sạch và CI trên SHA cuối. [Hướng dẫn release](DOCKER-RELEASE.md)
+
 Mốc M02 đang tích hợp trên nhánh `feat/full-web-engine-api` (Issue #5). Web, engine, contracts, API, knowledge draft và bộ test liên quan đã được đưa vào B. Xem Issue #5 và PR của nhánh để biết trạng thái tích hợp mới nhất.
 
 | Thành phần | Trạng thái tại B |

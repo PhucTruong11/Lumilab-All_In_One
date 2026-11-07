@@ -6,6 +6,7 @@ from pathlib import Path
 from lumilab_api.data_pipeline import Registry
 from lumilab_api.recompute import RecomputeInput
 from lumilab_api.retrieval import Corpus, RetrievalResponse
+from lumilab_api.system_info import PracticeMap, SystemInfo, WebBuildInfo
 from lumilab_api.tutor_context import TutorOutput, TutorTask
 from lumilab_api.tutor_routes import TutorRequest, TutorResponse
 from lumilab_api.verifier import VerificationResult
@@ -13,7 +14,8 @@ from lumilab_api.verifier import VerificationResult
 ROOT = Path(__file__).resolve().parents[1]
 MODELS = {"source-registry": Registry, "tutor-request": TutorRequest, "tutor-response": TutorResponse, "recompute-input": RecomputeInput, "verification-result": VerificationResult,
           "retrieval-corpus": Corpus, "retrieval-response": RetrievalResponse,
-          "tutor-task": TutorTask, "tutor-output": TutorOutput}
+          "tutor-task": TutorTask, "tutor-output": TutorOutput,
+          "practice-map": PracticeMap, "system-info": SystemInfo, "web-build-info": WebBuildInfo}
 
 
 def main():

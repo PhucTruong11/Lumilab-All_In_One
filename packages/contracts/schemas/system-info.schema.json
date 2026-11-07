@@ -1,0 +1,222 @@
+{
+  "$defs": {
+    "Practice": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "minLength": 1,
+          "title": "Id",
+          "type": "string"
+        },
+        "primary": {
+          "minLength": 1,
+          "title": "Primary",
+          "type": "string"
+        },
+        "title": {
+          "minLength": 1,
+          "title": "Title",
+          "type": "string"
+        },
+        "runtime_ids": {
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Runtime Ids",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "primary",
+        "title",
+        "runtime_ids"
+      ],
+      "title": "Practice",
+      "type": "object"
+    },
+    "PracticeMap": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "const": "practice-map-1.0",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "revision": {
+          "minLength": 1,
+          "title": "Revision",
+          "type": "string"
+        },
+        "practices": {
+          "items": {
+            "$ref": "#/$defs/Practice"
+          },
+          "minItems": 1,
+          "title": "Practices",
+          "type": "array"
+        },
+        "tutor_pilot_runtime_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Tutor Pilot Runtime Ids",
+          "type": "array"
+        }
+      },
+      "required": [
+        "schema_version",
+        "revision",
+        "practices",
+        "tutor_pilot_runtime_ids"
+      ],
+      "title": "PracticeMap",
+      "type": "object"
+    },
+    "RetrievalVersion": {
+      "properties": {
+        "available": {
+          "title": "Available",
+          "type": "boolean"
+        },
+        "fingerprint": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Fingerprint"
+        },
+        "corpus_revision": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Corpus Revision"
+        },
+        "embedding_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Embedding Id"
+        },
+        "matches_corpus": {
+          "title": "Matches Corpus",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "available",
+        "fingerprint",
+        "corpus_revision",
+        "embedding_id",
+        "matches_corpus"
+      ],
+      "title": "RetrievalVersion",
+      "type": "object"
+    },
+    "RuntimeVersion": {
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "lifecycle": {
+          "enum": [
+            "active",
+            "archived"
+          ],
+          "title": "Lifecycle",
+          "type": "string"
+        },
+        "model_version": {
+          "title": "Model Version",
+          "type": "string"
+        },
+        "dataset_version": {
+          "title": "Dataset Version",
+          "type": "string"
+        },
+        "tutor_pilot": {
+          "title": "Tutor Pilot",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "id",
+        "lifecycle",
+        "model_version",
+        "dataset_version",
+        "tutor_pilot"
+      ],
+      "title": "RuntimeVersion",
+      "type": "object"
+    }
+  },
+  "properties": {
+    "schema_version": {
+      "const": "system-info-1.0",
+      "default": "system-info-1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "git_sha": {
+      "title": "Git Sha",
+      "type": "string"
+    },
+    "mapping": {
+      "$ref": "#/$defs/PracticeMap"
+    },
+    "mapping_fingerprint": {
+      "title": "Mapping Fingerprint",
+      "type": "string"
+    },
+    "runtime_fingerprint": {
+      "title": "Runtime Fingerprint",
+      "type": "string"
+    },
+    "runtimes": {
+      "items": {
+        "$ref": "#/$defs/RuntimeVersion"
+      },
+      "title": "Runtimes",
+      "type": "array"
+    },
+    "corpus_revision": {
+      "title": "Corpus Revision",
+      "type": "string"
+    },
+    "registry_revision": {
+      "title": "Registry Revision",
+      "type": "string"
+    },
+    "retrieval": {
+      "$ref": "#/$defs/RetrievalVersion"
+    }
+  },
+  "required": [
+    "git_sha",
+    "mapping",
+    "mapping_fingerprint",
+    "runtime_fingerprint",
+    "runtimes",
+    "corpus_revision",
+    "registry_revision",
+    "retrieval"
+  ],
+  "title": "SystemInfo",
+  "type": "object"
+}

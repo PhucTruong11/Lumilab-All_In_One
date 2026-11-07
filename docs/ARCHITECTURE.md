@@ -1,5 +1,7 @@
 # Kiến trúc LLM và Lumi Tutor
 
+Đóng gói hiện hành bổ sung [Docker CI, metadata phiên bản và mapping chung](DOCKER-RELEASE.md). Nhóm bài trên web và scope Tutor đọc `packages/contracts/practice-map.json`; cờ pilot không mở live hoặc cấp trạng thái khoa học. API `/api/v1/system` và web `/build-info.json` cho phép so SHA/mapping/runtime, rồi đối chiếu index fingerprint với release manifest.
+
 Sơ đồ được chuyển và cập nhật từ [kiến trúc repo A tại `f5f233f`](https://github.com/PhucTruong11/lumilab/blob/f5f233f8dc2ee21934e6b77c740e7959fecb102a/docs/ARCHITECTURE.md). Các bước dưới đây mô tả code đang có ở B. [Contract API](CONTRACT.md)
 
 ```mermaid

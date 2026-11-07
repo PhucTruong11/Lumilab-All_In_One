@@ -102,6 +102,8 @@ Khởi động Uvicorn trong **cùng terminal** đã đặt `LUMILAB_DATABASE_UR
 
 ## Kiểm tra trước PR
 
+CI còn kiểm image cuối qua Nginx, owned-run/Tutor offline và recreate từ archive đã giữ. [Docker CI, phiên bản và rollback bundle](docs/DOCKER-RELEASE.md) mô tả lệnh local, metadata và artifact giữ 14 ngày.
+
 ```powershell
 npm run check:web
 npm run test:unit

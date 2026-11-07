@@ -1,0 +1,51 @@
+# Standalone isolated stack: no developer .env, named volumes, keys or host DB/API ports.
+services:
+  db:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_DB: lumilab_ci
+      POSTGRES_USER: lumilab_ci
+      POSTGRES_PASSWORD: ci_only_not_a_secret
+    tmpfs:
+      - /var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "lumilab_ci", "-d", "lumilab_ci"]
+      interval: 2s
+      timeout: 3s
+      retries: 30
+  api:
+    image: lumilab-b-api:${LUMILAB_BUILD_SHA:?Full Git SHA required}
+    build:
+      context: ..
+      dockerfile: docker/api.Dockerfile
+      args:
+        BUILD_SHA: ${LUMILAB_BUILD_SHA:?Full Git SHA required}
+    environment:
+      LUMILAB_DATABASE_URL: postgresql+psycopg://lumilab_ci:ci_only_not_a_secret@db:5432/lumilab_ci
+      LUMILAB_LLM_ENABLED: "false"
+      LUMILAB_LLM_EVENT_CAP: "0"
+      LUMILAB_RAG_ENABLED: "false"
+    depends_on:
+      db: {condition: service_healthy}
+    command: ["sh", "-c", "python -m lumilab_api.run_schema && exec python -m uvicorn lumilab_api.main:app --host 0.0.0.0 --port 8000 --no-access-log"]
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/ready', timeout=5)"]
+      interval: 3s
+      timeout: 6s
+      retries: 30
+  web:
+    image: lumilab-b-web:${LUMILAB_BUILD_SHA:?Full Git SHA required}
+    build:
+      context: ..
+      dockerfile: docker/web.Dockerfile
+      args:
+        BUILD_SHA: ${LUMILAB_BUILD_SHA:?Full Git SHA required}
+    ports:
+      - "127.0.0.1:${LUMILAB_CI_WEB_PORT:?Test port required}:80"
+    depends_on:
+      api: {condition: service_healthy}
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://127.0.0.1/healthz"]
+      interval: 3s
+      timeout: 5s
+      retries: 30
