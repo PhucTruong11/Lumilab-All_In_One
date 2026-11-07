@@ -1,5 +1,6 @@
 import { lazy, Suspense } from 'react';
 import { LabServerPreview } from './LabServerPreview';
+import { PhysicsTaskPanel } from './PhysicsTaskPanel';
 import { AppBoundary } from './AppBoundary';
 import { PendulumLab } from './PendulumLab';
 import { ChemistryLab } from './ChemistryLab';
@@ -47,13 +48,17 @@ const renderers: Record<LabId, React.ComponentType> = {
 
 export function LabWorkspace({
   labId,
+  taskId,
   onSelect,
+  onTaskSelect,
   onCatalog,
   onLesson,
   onLumi,
 }: {
   labId: LabId;
+  taskId?: string;
   onSelect: (id: LabId) => void;
+  onTaskSelect: (id?: string) => void;
   onCatalog: () => void;
   onLesson: () => void;
   onLumi: () => void;
@@ -113,6 +118,7 @@ export function LabWorkspace({
         {group.modes.map(id => <button key={id} className="secondary-button" aria-pressed={labId === id}
           onClick={() => onSelect(id)}>{labDefinitions[id].title}</button>)}
       </nav>}
+      {lab.subject === 'physics' && <PhysicsTaskPanel key={'tasks-' + labId} id={labId} selectedId={taskId} onSelect={onTaskSelect} />}
       <LabSessionTools key={labId} id={labId} />
       <AppBoundary key={`renderer-${labId}`}>
         <Suspense fallback={<div className="lab-opening" role="status">Đang mở bàn thực hành…</div>}>

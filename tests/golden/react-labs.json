@@ -14,12 +14,14 @@
     ]
   },
   "circuit": {
-    "model_version": "ideal-series-circuit-ts-v1",
+    "model_version": "ideal-series-circuit-ts-v2",
     "evidence": "OpenStax University Physics 2 10.2/10.4; independently solve I=U/Rtotal, UV=IRmain, P=UI.",
     "cases": [
       { "id": "main-only", "slots": [null, null, null], "current_A": 0.3, "resistorVoltage_V": 6, "power_W": 1.8 },
       { "id": "series-extra", "slots": ["extraResistor", null, null], "current_A": 0.15, "resistorVoltage_V": 3, "power_W": 0.9 },
-      { "id": "series-both", "slots": ["bulb", "extraResistor", "switchInstalled"], "current_A": 0.12, "resistorVoltage_V": 2.4, "power_W": 0.72 }
+      { "id": "series-both", "slots": ["bulb", "extraResistor", "switchInstalled"], "current_A": 0.12, "resistorVoltage_V": 2.4, "power_W": 0.72 },
+      { "id": "two-bulbs", "slots": ["bulb", "bulb", null], "current_A": 0.15, "resistorVoltage_V": 3, "power_W": 0.9 },
+      { "id": "two-resistor-values", "slots": ["resistor10", "extraResistor", null], "current_A": 0.12, "resistorVoltage_V": 2.4, "power_W": 0.72 }
     ],
     "tolerance": 0.0000000001
   }

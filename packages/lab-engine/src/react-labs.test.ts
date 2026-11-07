@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import golden from '../../../tests/golden/react-labs.json';
 import { acids, bases, defaultTitration, titrationReading, titrationCurve } from './titration';
-import { defaultCircuit, circuitReading, circuitCurve, placeCircuitPart, removeCircuitPart, type CircuitPart } from './circuit';
+import { defaultCircuit, circuitReading, circuitCurve, placeCircuitPart, moveCircuitPart, removeCircuitPart, removeCircuitSlot, type CircuitPart } from './circuit';
 
 describe('ideal strong titration — shared analytic cases', () => {
   for (const row of golden.titration.cases) it(row.id, () => {
@@ -42,11 +42,16 @@ describe('ideal circuit — independent Ohm/power checks', () => {
     expect(result.power_W).toBeCloseTo(result.current_A! ** 2 * result.totalResistance_ohm, 12);
   });
   it('places any part into any slot, swaps occupied slots, replaces and removes', () => {
-    for (const part of ['bulb', 'switchInstalled', 'extraResistor'] as const) for (let index = 0; index < 3; index++) expect(placeCircuitPart(defaultCircuit, part, index).slots[index]).toBe(part);
-    let p = placeCircuitPart(defaultCircuit, 'bulb', 0); p = placeCircuitPart(p, 'extraResistor', 1); p = placeCircuitPart(p, 'bulb', 1);
+    for (const part of ['bulb', 'switchInstalled', 'extraResistor', 'resistor10'] as const) for (let index = 0; index < 3; index++) expect(placeCircuitPart(defaultCircuit, part, index).slots[index]).toBe(part);
+    let p = placeCircuitPart(defaultCircuit, 'bulb', 0); p = placeCircuitPart(p, 'extraResistor', 1); p = moveCircuitPart(p, 0, 1);
     expect(p.slots).toEqual(['extraResistor', 'bulb', null]);
     p = placeCircuitPart(p, 'switchInstalled', 1); expect(p.slots).toEqual(['extraResistor', 'switchInstalled', null]);
     p = removeCircuitPart(p, 'switchInstalled'); expect(p.slots).toEqual(['extraResistor', null, null]);
+    p = placeCircuitPart(p, 'extraResistor', 1);
+    expect(p.slots).toEqual(['extraResistor', 'extraResistor', null]);
+    p = removeCircuitSlot(p, 1); expect(p.slots).toEqual(['extraResistor', null, null]);
+    p = placeCircuitPart(p, 'resistor10', 2); expect(circuitReading(p).totalResistance_ohm).toBe(50);
+    expect(() => moveCircuitPart(p, 2, 3)).toThrow();
   });
   it('open switch yields zero; wrong meter connections suppress measurements and curve', () => {
     const opened = { ...placeCircuitPart(defaultCircuit, 'switchInstalled', 0), switchClosed: false };
@@ -56,9 +61,12 @@ describe('ideal circuit — independent Ohm/power checks', () => {
     }
     expect(circuitCurve(defaultCircuit).at(-1)?.current).toBe(.6);
   });
-  it('rejects bad numeric and duplicate-layout inputs', () => {
+  it('rejects bad numeric and duplicate switches', () => {
     expect(() => circuitReading({ ...defaultCircuit, voltage_V: Infinity })).toThrow();
     expect(() => circuitReading({ ...defaultCircuit, resistance_ohm: 0 })).toThrow();
-    expect(() => circuitReading({ ...defaultCircuit, slots: ['bulb', 'bulb', null] })).toThrow();
+    expect(() => circuitReading({ ...defaultCircuit, slots: ['switchInstalled', 'switchInstalled', null] })).toThrow();
+    const twoBulbs = circuitReading({ ...defaultCircuit, slots: ['bulb', 'bulb', null] });
+    expect(twoBulbs.current_A).toBeCloseTo(.15);
+    expect(twoBulbs.bulbPower_W).toBeCloseTo(.45);
   });
 });
