@@ -1,5 +1,5 @@
 # Skill runtime của Lumi
 
-Ba draft dưới đây chưa được backend tải hoặc gọi model. T4 triển khai allowlisted router theo mode; chỉ nạp skill phù hợp cùng owned server facts và evidence được duyệt. Coding tools không tự truyền skill vào Gemini API.
+Ba skill `progressive-hint`, `experiment-guide` và `grounded-feedback` được gateway chọn theo danh sách cho phép. Luồng live yêu cầu context hợp lệ và bằng chứng đã duyệt. Cấu hình mặc định dùng đường template với live tắt.
 
-Skill không có quyền thực thi shell. Bộ eval cần kiểm hint không lộ đáp án sớm, số liệu không bị sửa, source IDs có thật, unknown evidence bị từ chối, prompt injection không đổi policy. Version skill/prompt phải vào cache key và tutor event. Xem `docs/DEPLOYMENT.md` trước bật provider.
+Kiểm hint, số đo, source IDs, bằng chứng thiếu và prompt injection khi thay đổi skill. Xem [luồng RAG/Tutor](../../docs/DATA-RAG-TUTOR.md) và [điều kiện LLM](../../docs/LLM-DATA-REVIEW.md).
