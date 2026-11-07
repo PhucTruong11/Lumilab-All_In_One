@@ -1,0 +1,4 @@
+# Preserve bytes used by vendor hashes and Spec Kit manifests across checkouts.
+.agents/skills/** -text whitespace=-blank-at-eol
+.claude/skills/** -text whitespace=-blank-at-eol
+.specify/** -text whitespace=cr-at-eol
