@@ -86,7 +86,7 @@ def recompute(
         return result
     if lab_id == "circuit":
         parts = [part for part in parameters["slots"] if part is not None]
-        if len(parts) != len(set(parts)):
+        if parts.count("switchInstalled") > 1:
             result.status, result.code, result.layer = "INVALID", "INVALID_MODEL_PARAMETERS", "input"
             result.fields = ["slots"]
             return result

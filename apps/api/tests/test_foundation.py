@@ -188,7 +188,7 @@ def test_recompute_rejects_stale_forged_and_invalid_inputs(settings):
         stale = client.post(route, json=payload | {"dataset_version": "old"}).json()
         assert stale["code"] == "REVISION_MISMATCH" and stale["preview"] is None
         assert client.post(route, json=payload | {"facts": {"current_A": 42}}).status_code == 422
-        invalid = runtime_payload("circuit", {"slots": ["bulb", "bulb", None]})
+        invalid = runtime_payload("circuit", {"slots": ["switchInstalled", "switchInstalled", None]})
         result = client.post(route, json=invalid).json()
         assert result["status"] == "INVALID" and result["preview"] is None
         missing = client.post(route, json=payload | {"parameters": {}}).json()

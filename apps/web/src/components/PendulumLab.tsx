@@ -2,12 +2,13 @@ import { ChartBoundary } from './AppBoundary';
 import { lazy, Suspense, useCallback, useState } from 'react';
 import { pendulumAngleAtTime, type PendulumParameters } from '@lumilab/lab-engine';
 import { PendulumCanvas, type PendulumVisualOptions } from './PendulumCanvas';
-import { useLab } from '../labSession';
+import { useLab, useLabSpeed } from '../labSession';
 
 const Chart = lazy(() => import('./PendulumChart').then(module => ({ default: module.PendulumChart })));
 
 export function PendulumLab() {
   const { engine, state } = useLab('pendulum');
+  const [speedMultiplier, setSpeedMultiplier] = useLabSpeed('pendulum');
   const { parameters, reading, elapsed_s: time, presentation, records } = state;
   const running = state.phase === 'running';
   const { side, material } = presentation;
@@ -117,6 +118,11 @@ export function PendulumLab() {
             />
             <div className="stage-clock" aria-label="Thời gian mô phỏng">
               <span>t</span> <output>{time.toFixed(1)}</output> s
+              {speedMultiplier < 1 && (
+                <span className="slow-badge" title="Đang ở chế độ tua chậm">
+                  🐢 {speedMultiplier}x Slow
+                </span>
+              )}
             </div>
           </div>
 
@@ -131,6 +137,33 @@ export function PendulumLab() {
             <button className="secondary-button" onClick={reset}>
               ↺ Đặt lại
             </button>
+
+            <div className="playback-speed-controls" role="group" aria-label="Tốc độ dao động">
+              <span className="speed-label">Tốc độ:</span>
+              <button
+                type="button"
+                className={`speed-chip ${speedMultiplier === 1 ? 'active' : ''}`}
+                onClick={() => setSpeedMultiplier(1)}
+              >
+                1x Chuẩn
+              </button>
+              <button
+                type="button"
+                className={`speed-chip ${speedMultiplier === 0.5 ? 'active' : ''}`}
+                onClick={() => setSpeedMultiplier(0.5)}
+              >
+                0.5x
+              </button>
+              <button
+                type="button"
+                className={`speed-chip slow-mo ${speedMultiplier === 0.25 ? 'active' : ''}`}
+                onClick={() => setSpeedMultiplier(0.25)}
+                title="Tua chậm 0.25x để quan sát kỹ góc lệch, vận tốc và cơ năng"
+              >
+                🐢 Slow motion
+              </button>
+            </div>
+
             <button className="record-button" onClick={record}>
               ＋ Ghi số đo
             </button>
@@ -263,19 +296,6 @@ export function PendulumLab() {
                 ))}
               </div>
             </label>
-
-            <fieldset className="materials">
-              <legend>Quả nặng</legend>
-              {([['steel', 'Thép'], ['copper', 'Đồng'], ['wood', 'Gỗ']] as const).map(([key, label]) => (
-                <button
-                  key={key}
-                  type="button"
-                  aria-label={label}
-                  aria-pressed={material === key}
-                  onClick={() => engine.setPresentation({ material: key })}
-                ><i className={`material-dot ${key}`}/>{label}</button>
-              ))}
-            </fieldset>
 
             <div className="damping-control-card">
               <div className="damping-header">

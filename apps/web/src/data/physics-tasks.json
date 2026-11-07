@@ -1,0 +1,251 @@
+{
+  "source_revision": "nine-lab-learning-draft-01",
+  "tasks": [
+    {
+      "id": "VL-CONLAC-01-A-1",
+      "title": "So sánh thời điểm có và không có dao động",
+      "runtime_id": "pendulum",
+      "initial_state": "Đặt lại, giữ L = 1 m, m = 0,2 kg và g = 9,81 m/s².",
+      "actions": "Đặt góc 0°, ghi trạng thái; đặt góc 90°, thả và ghi chu kỳ.",
+      "expected_result": "Hai lượt chỉ khác góc; nhận ra 0° đứng yên và chu kỳ ở 90° khoảng 2,368 s.",
+      "feedback_on_failure": "Khôi phục L và g, ghi lại hai ca. Ô chu kỳ ở 0° để trống.",
+      "cases": [
+        {
+          "parameters": {
+            "angle_deg": 0
+          },
+          "elapsed_s": 0
+        },
+        {
+          "parameters": {
+            "angle_deg": 90
+          },
+          "elapsed_s": 0
+        }
+      ]
+    },
+    {
+      "id": "VL-LOXO-01-A-1",
+      "title": "Khảo sát lò xo lý tưởng",
+      "runtime_id": "spring",
+      "initial_state": "Thả từ nghỉ với m = 1 kg, k = 25 N/m.",
+      "actions": "So li độ thả 0,2 m với 0 m; ghi chu kỳ và năng lượng.",
+      "expected_result": "Nêu được vai trò điều kiện đầu và đối chiếu hai ca.",
+      "feedback_on_failure": "Đặt lại và kéo vật lệch cân bằng trước khi khảo sát chu kỳ.",
+      "cases": [
+        {
+          "parameters": {
+            "mass_kg": 1,
+            "stiffness_N_m": 25,
+            "displacement_m": 0.2
+          },
+          "elapsed_s": 0.3141592653589793
+        },
+        {
+          "parameters": {
+            "displacement_m": 0
+          },
+          "elapsed_s": 1
+        }
+      ]
+    },
+    {
+      "id": "VL-LOXO-01-A-2",
+      "title": "So sánh không cản và có cản",
+      "runtime_id": "spring-damped",
+      "initial_state": "Giữ m = 2 kg, k = 8 N/m, x₀ = 0,2 m.",
+      "actions": "Ghi ca ζ = 0 và ζ = 0,6. Xem đường bao và chu kỳ trên đồ thị; các số đọc fixture gắn với thời điểm riêng.",
+      "expected_result": "Nêu đường bao giảm và chu kỳ tăng trong hai ca; đối chiếu các ca chuẩn.",
+      "feedback_on_failure": "Chọn cùng thời điểm khi so đồ thị; nếu đọc ca chuẩn, giữ đúng thời điểm trong fixture.",
+      "cases": [
+        {
+          "parameters": {
+            "mass_kg": 2,
+            "stiffness_N_m": 8,
+            "displacement_m": 0.2,
+            "damping_ratio": 0
+          },
+          "elapsed_s": 0.7853981633974483
+        },
+        {
+          "parameters": {
+            "mass_kg": 2,
+            "stiffness_N_m": 8,
+            "displacement_m": 0.2,
+            "damping_ratio": 0.6
+          },
+          "elapsed_s": 0.5776226504666211
+        }
+      ]
+    },
+    {
+      "id": "VL-MATPHANGNGHIENG-01-A-1",
+      "title": "Đọc gia tốc có dấu",
+      "runtime_id": "mechanics",
+      "initial_state": "Chọn chiều dương và khối lượng 2 kg, vận tốc đầu +2 m/s.",
+      "actions": "Đặt hợp lực −4 N, chạy tới mốc 3 s trong ca chuẩn rồi đọc gia tốc và vận tốc.",
+      "expected_result": "Ghi được a = −2 m/s² và v = −4 m/s tại 3 s.",
+      "feedback_on_failure": "Ghi rõ chiều dương trước khi áp dụng Newton II.",
+      "cases": [
+        {
+          "parameters": {
+            "mass_kg": 2,
+            "force_N": -4,
+            "initialVelocity_m_s": 2
+          },
+          "elapsed_s": 3
+        }
+      ]
+    },
+    {
+      "id": "VL-MATPHANGNGHIENG-01-A-2",
+      "title": "Tìm hai ca đứng yên và trượt",
+      "runtime_id": "inclined-plane",
+      "initial_state": "Thả từ nghỉ, giữ 2 kg và góc 30°.",
+      "actions": "Đặt μₛ = 0 và 0,7 lần lượt, đọc trạng thái và gia tốc ở mốc 1 s.",
+      "expected_result": "Ca μₛ = 0 trượt với 4,905 m/s²; ca 0,7 đứng yên với a = 0.",
+      "feedback_on_failure": "Đưa hệ số về [0,1], giữ góc rồi chạy lại.",
+      "cases": [
+        {
+          "parameters": {
+            "mass_kg": 2,
+            "angle_deg": 30,
+            "static_friction": 0
+          },
+          "elapsed_s": 1
+        },
+        {
+          "parameters": {
+            "mass_kg": 2,
+            "angle_deg": 30,
+            "static_friction": 0.7
+          },
+          "elapsed_s": 1
+        }
+      ]
+    },
+    {
+      "id": "VL-RONGROC-01-A-1",
+      "title": "Đo sự đánh đổi khi đổi nhánh đỡ",
+      "runtime_id": "pulley",
+      "initial_state": "Cụm tải 10 kg, nâng 1 m, dây lý tưởng.",
+      "actions": "Chọn 1 nhánh rồi 4 nhánh, ghi lực kéo, chiều dài dây và công.",
+      "expected_result": "Lực giảm 4 lần, dây kéo dài 4 lần, công giữ 98,1 J.",
+      "feedback_on_failure": "Chọn một cấu hình hợp lệ và giữ lại cùng tải, độ cao.",
+      "cases": [
+        {
+          "parameters": {
+            "mass_kg": 10,
+            "strands": 1,
+            "lift_m": 1
+          },
+          "elapsed_s": 0
+        },
+        {
+          "parameters": {
+            "mass_kg": 10,
+            "strands": 4,
+            "lift_m": 1
+          },
+          "elapsed_s": 0
+        }
+      ]
+    },
+    {
+      "id": "VL-DIEN-01-A-1",
+      "title": "Sửa cách mắc ampe kế",
+      "runtime_id": "circuit",
+      "initial_state": "Đặt lại bàn mạch về mặc định và đóng mạch.",
+      "actions": "Đổi ampe kế sang song song, xem báo lỗi. Trả về nối tiếp và giữ vôn kế song song.",
+      "expected_result": "Nhận ra trạng thái invalid và phục hồi số đo hợp lệ.",
+      "feedback_on_failure": "Sửa ampe kế sang nối tiếp rồi đọc lại.",
+      "cases": [
+        {
+          "parameters": {
+            "ammeter": "parallel"
+          },
+          "elapsed_s": 0
+        }
+      ]
+    },
+    {
+      "id": "VL-DIEN-01-A-2",
+      "title": "So mạch hai điện trở",
+      "runtime_id": "parallel-circuit",
+      "initial_state": "Đặt 12 V, R₁ = 20 Ω, R₂ = 30 Ω.",
+      "actions": "Ghi ca nối tiếp và song song khi đóng mạch, sau đó mở công tắc ở ca song song.",
+      "expected_result": "Đối chiếu R tương đương 50/12 Ω, dòng nguồn 0,24/1 A; mạch hở có dòng 0 A.",
+      "feedback_on_failure": "Đóng công tắc khi so hai cấu hình; ghi ca mạch hở riêng.",
+      "cases": [
+        {
+          "parameters": {
+            "voltage_V": 12,
+            "resistance1_ohm": 20,
+            "resistance2_ohm": 30,
+            "topology": "series",
+            "switchClosed": true
+          },
+          "elapsed_s": 0
+        },
+        {
+          "parameters": {
+            "voltage_V": 12,
+            "resistance1_ohm": 20,
+            "resistance2_ohm": 30,
+            "topology": "parallel",
+            "switchClosed": true
+          },
+          "elapsed_s": 0
+        },
+        {
+          "parameters": {
+            "voltage_V": 12,
+            "resistance1_ohm": 20,
+            "resistance2_ohm": 30,
+            "topology": "parallel",
+            "switchClosed": false
+          },
+          "elapsed_s": 0
+        }
+      ]
+    },
+    {
+      "id": "VL-RC-01-A-1",
+      "title": "Đọc cùng mức điện áp ở ca nạp và xả",
+      "runtime_id": "capacitor",
+      "initial_state": "Đặt U = 10 V, R = 1000 Ω, C = 1000 µF.",
+      "actions": "Ghi nạp tại t = 0. Đối chiếu hai ca tại mốc τ ln 2 trên đồ thị hoặc bằng ca chuẩn; giao diện không có nhập chính xác mốc này.",
+      "expected_result": "Tại τ ln 2, hai ca có Uc = 5 V; dòng có dấu ngược nhau.",
+      "feedback_on_failure": "Dùng thời gian tương đối của từng lượt, kiểm đơn vị và dấu dòng.",
+      "cases": [
+        {
+          "parameters": {
+            "voltage_V": 10,
+            "resistance_ohm": 1000,
+            "capacitance_uF": 1000,
+            "mode": "charge"
+          },
+          "elapsed_s": 0
+        },
+        {
+          "parameters": {
+            "voltage_V": 10,
+            "resistance_ohm": 1000,
+            "capacitance_uF": 1000,
+            "mode": "charge"
+          },
+          "elapsed_s": 0.6931471805599453
+        },
+        {
+          "parameters": {
+            "voltage_V": 10,
+            "resistance_ohm": 1000,
+            "capacitance_uF": 1000,
+            "mode": "discharge"
+          },
+          "elapsed_s": 0.6931471805599453
+        }
+      ]
+    }
+  ]
+}

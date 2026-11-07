@@ -39,6 +39,7 @@ test('mass and material do not change the ideal period; zero angle is stationary
 test('dragging the bob changes length and release angle, with bounded values', async ({ page }) => {
   await page.goto('/#lab/pendulum');
   const canvas = page.getByTestId('pendulum-canvas');
+  await canvas.scrollIntoViewIfNeeded();
   const box = (await canvas.boundingBox())!;
   const x = (logical: number) => box.x + logical / 760 * box.width;
   const y = (logical: number) => box.y + logical / 420 * box.height;
