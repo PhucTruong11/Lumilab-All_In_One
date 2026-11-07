@@ -11,27 +11,41 @@ import './completion.css';
 import { LabSessionProvider } from './labSession';
 import { AppBoundary } from './components/AppBoundary';
 import { PracticeCatalog } from './components/PracticeCatalog';
-import { isLabId } from '@lumilab/lab-engine';
+import { parseRoute, tabs, type View } from './routing';
 import './practice.css';
 import './experiment.css';
 
-type View = 'lab' | 'library' | 'workspace' | 'lumi';
-const tabs: { id: View; label: string }[] = [
-  { id: 'lab', label: 'Phòng thực hành' }, { id: 'library', label: 'Thư viện bài học' },
-  { id: 'workspace', label: 'Không gian học tập' }, { id: 'lumi', label: '✦ Lumi' },
-];
 function App() {
-  const [view, setView] = useState<View>('lab');
-  const [labOpen, setLabOpen] = useState(false);
-  const [labId, setLabId] = useState<LabId>('pendulum');
+  const [initialRoute] = useState(() => (typeof location !== 'undefined' ? parseRoute(location.hash) : null));
+  const [view, setView] = useState<View>(initialRoute?.view ?? 'lab');
+  const [labOpen, setLabOpen] = useState(initialRoute?.labOpen ?? false);
+  const [labId, setLabId] = useState<LabId>(initialRoute?.labId ?? 'pendulum');
   const [lessonRequest, setLessonRequest] = useState<{ id: string; sequence: number } | null>(null);
   const [online, setOnline] = useState(navigator.onLine);
   function navigate(next: View, id?: LabId) { location.hash = next === 'lab' ? id ? `lab/${id}` : 'lab' : next; if (id) setLabId(id); if (next === 'lab') setLabOpen(!!id); setView(next); }
   function openLesson(id: string) { setLessonRequest(previous => ({ id, sequence: (previous?.sequence || 0) + 1 })); navigate('library'); }
   useEffect(() => {
-    const route = () => { const [next, id] = location.hash.slice(1).split('/'); if (tabs.some(tab => tab.id === next)) { setView(next as View); window.scrollTo({ top: 0, behavior: 'instant' }); } if (next === 'lab') { setLabOpen(isLabId(id || '')); if (isLabId(id || '')) setLabId(id as LabId); } };
-    const network = () => setOnline(navigator.onLine); route(); addEventListener('hashchange', route); addEventListener('online', network); addEventListener('offline', network);
-    return () => { removeEventListener('hashchange', route); removeEventListener('online', network); removeEventListener('offline', network); };
+    const route = () => {
+      const parsed = parseRoute(location.hash);
+      if (parsed) {
+        setView(parsed.view);
+        setLabOpen(parsed.labOpen);
+        if (parsed.labId) setLabId(parsed.labId);
+        window.scrollTo({ top: 0, behavior: 'instant' });
+      }
+    };
+    const network = () => setOnline(navigator.onLine);
+    route();
+    addEventListener('hashchange', route);
+    addEventListener('popstate', route);
+    addEventListener('online', network);
+    addEventListener('offline', network);
+    return () => {
+      removeEventListener('hashchange', route);
+      removeEventListener('popstate', route);
+      removeEventListener('online', network);
+      removeEventListener('offline', network);
+    };
   }, []);
   return <>
     <a className="skip-link" href="#main-content">Đến nội dung chính</a>
