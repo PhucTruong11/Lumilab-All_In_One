@@ -1,6 +1,6 @@
 {
   "schema_version": "practice-map-1.0",
-  "revision": "nine-labs-capabilities-v1",
+  "revision": "eleven-labs-capabilities-v1",
   "practices": [
     {"id": "VL-CONLAC-01", "primary": "pendulum", "title": "Con lắc đơn", "runtime_ids": ["pendulum"]},
     {"id": "VL-LOXO-01", "primary": "spring", "title": "Con lắc lò xo", "runtime_ids": ["spring", "spring-damped"]},
@@ -8,9 +8,11 @@
     {"id": "VL-RONGROC-01", "primary": "pulley", "title": "Ròng rọc và pa-lăng", "runtime_ids": ["pulley"]},
     {"id": "VL-DIEN-01", "primary": "parallel-circuit", "title": "Định luật Ohm, mạch nối tiếp và song song", "runtime_ids": ["circuit", "parallel-circuit"]},
     {"id": "VL-RC-01", "primary": "capacitor", "title": "Nạp và xả tụ điện RC", "runtime_ids": ["capacitor"]},
-    {"id": "HH-KIEM-01", "primary": "alkali-water", "title": "Na, K tác dụng với nước và màu ngọn lửa", "runtime_ids": ["alkali-water"]},
-    {"id": "HH-HNO3-01", "primary": "copper-nitric", "title": "Đồng với HNO₃: NO và NO₂", "runtime_ids": ["copper-nitric"]},
-    {"id": "HH-CHLORINE-01", "primary": "chlorine-bleach", "title": "Điều chế clo và tính tẩy màu", "runtime_ids": ["chlorine-bleach"]}
+    {"id": "HH-CHUANDO-01", "primary": "chemistry", "title": "Chuẩn độ axit–bazơ", "runtime_ids": ["chemistry"]},
+    {"id": "HH-KETTUA-01", "primary": "precipitation", "title": "Phản ứng tạo kết tủa AgCl", "runtime_ids": ["precipitation"]},
+    {"id": "HH-TAOKHI-01", "primary": "gas-reaction", "title": "Phản ứng axit và muối bicarbonat", "runtime_ids": ["gas-reaction"]},
+    {"id": "HH-DIENHOA-01", "primary": "electrochemistry", "title": "Pin điện hóa", "runtime_ids": ["electrochemistry"]},
+    {"id": "HH-NGUYENTU-01", "primary": "atomic", "title": "Cấu tạo nguyên tử", "runtime_ids": ["atomic"]}
   ],
   "tutor_pilot_runtime_ids": ["pendulum", "circuit", "chemistry"]
 }

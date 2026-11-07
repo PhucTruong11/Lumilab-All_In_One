@@ -89,7 +89,7 @@ test('library opens each corresponding new lab', async ({ page }) => {
   await page.getByRole('button', { name: /Hóa học.*Khám phá môn học/ }).click();
   await page.locator('.chapter-card').filter({ has: page.getByRole('heading', { name: 'Dung dịch và axit–bazơ', exact: true }) }).getByRole('button', { name: 'Xem chương' }).click();
   await page.getByRole('button', { name: 'Xem bài học' }).click();
-  await page.getByRole('button', { name: 'Mở mô phỏng lưu trữ' }).click();
+  await page.getByRole('button', { name: 'Mở lab chuẩn độ' }).click();
   await expect(page.getByRole('heading', { name: 'Chuẩn độ axit–bazơ', exact: true })).toBeVisible();
   await page.getByRole('button', { name: 'Thư viện bài học', exact: true }).click();
   await page.getByRole('button', { name: 'Tất cả môn' }).click();

@@ -1,12 +1,12 @@
-# LumiLab — Dataset cho 9 bài lab
+# LumiLab — Dataset cho 11 bài lab
 
-**Cập nhật 07/11/2026 · Bản 0.5 · Trạng thái `draft` · Phụ trách biên soạn: Đạt**
+**Cập nhật 07/11/2026 · Bản 0.6 · Trạng thái `draft` · Phụ trách biên soạn: Đạt**
 
-**Dữ liệu đang dùng:** Phòng thực hành hiển thị đúng 9 bài đã chốt. Ba bài ghép có hai chế độ, tổng cộng 12 mô hình đang mở. Xem bảng đối chiếu bài, mô hình, kiểm thử và học liệu trong [bàn giao 9 bài](tasks/NINE-LABS.md).
+**Dữ liệu đang dùng:** Phòng thực hành hiển thị 11 bài đã chốt (6 bài Vật lí và 5 bài Hóa học tương thích với phiên cũ). Ba bài Vật lí ghép có hai chế độ, tổng cộng 14 mô hình đang mở trên Phòng thực hành (và 3 mô hình Hóa vô cơ định tính được chuyển sang mục lưu trữ). Xem bảng đối chiếu bài, mô hình, kiểm thử và học liệu trong [bàn giao thực hành](tasks/NINE-LABS.md).
 
-Danh mục gồm **6 bài Vật lí và 3 bài Hóa học vô cơ**. Mỗi bài có mô phỏng và học liệu tiếng Việt. Ba bài Hóa dùng mô phỏng ảo định tính. Các mục dưới đây ghi căn cứ, giới hạn và ca đối chiếu khoa học.
+Danh mục gồm **6 bài Vật lí và 5 bài Hóa học**. Mỗi bài có mô phỏng, phép tính độc lập và học liệu tiếng Việt. Các mục dưới đây ghi căn cứ, giới hạn và ca đối chiếu khoa học.
 
-Các trang SGK dưới đây là **số trang in trên sách**. Mã bản điện tử nằm trong đường dẫn của Nhà xuất bản Giáo dục Việt Nam (NXBGDVN). Các SGK THPT được dẫn theo bộ *Kết nối tri thức với cuộc sống*; Khoa học tự nhiên 9 là nguồn bổ trợ THCS. Mục OpenStax dẫn thẳng đến phần dùng để đối chiếu. Các nguồn được ghi ở trạng thái `reference-only`; quyền đưa nội dung nguồn vào corpus là `pending`.
+Các trang SGK dưới đây là **số trang in trên sách**. Mã bản điện tử nằm trong đường dẫn của Nhà xuất bản Giáo dục Việt Nam (NXBGDVN). Các SGK THPT/THCS được dẫn theo bộ *Kết nối tri thức với cuộc sống* và *Chân trời sáng tạo*. Mục OpenStax dẫn thẳng đến phần dùng để đối chiếu. Các nguồn được ghi ở trạng thái `reference-only`; quyền đưa nội dung nguồn vào corpus là `pending`.
 
 ## Vật lí — 6 bài
 
@@ -52,32 +52,44 @@ Các trang SGK dưới đây là **số trang in trên sách**. Mã bản điệ
 - **SGK:** Vật lí 11, [Bài 21, tr. 84–85, điện dung, điện tích và đơn vị](https://taphuan.nxbgd.vn/tap-huan/doc-sach/sgk-vat-li-11.4701093133#page=85), dùng làm nền về tụ điện.
 - **OpenStax:** *University Physics Volume 2*, [§8.1 Capacitors and Capacitance](https://openstax.org/books/university-physics-volume-2/pages/8-1-capacitors-and-capacitance) và [§10.5 RC Circuits](https://openstax.org/books/university-physics-volume-2/pages/10-5-rc-circuits). Quy luật nạp/xả là phần mở rộng đối chiếu theo §10.5.
 
-## Hóa học vô cơ — 3 bài
+## Hóa học — 5 bài (tương thích phiên cũ)
 
-### 1. Kim loại kiềm tác dụng với nước và màu ngọn lửa — `HH-KIEM-01`
+### 1. Chuẩn độ axit–bazơ — `HH-CHUANDO-01` (`chemistry`)
 
-- **Kiến thức:** Na và K phản ứng với nước tạo hydroxide và hydrogen: `2M + 2H₂O → 2MOH + H₂`, với `M` là Na hoặc K. Màu nhận biết của ion trong phép thử ngọn lửa là một quan sát riêng: Na⁺ cho màu vàng, K⁺ cho màu tím nhạt.
-- **Mô phỏng và ca kiểm:** Tách chế độ quan sát phản ứng với nước (bọt khí, môi trường kiềm, mức độ phản ứng theo mô hình định tính) và chế độ nhận diện màu ngọn lửa của ion. Câu đánh giá cần phân biệt màu nhận biết ion với hiện tượng có thể thấy trong phản ứng kim loại–nước.
-- **SGK:** Hóa học 12, Bài 24 *Nguyên tố nhóm IA*, [tr. 110–111, Bảng 24.3, kim loại kiềm tác dụng với nước](https://taphuan.nxbgd.vn/tap-huan/doc-sach/sgk-hoa-hoc-12.4701708102#page=111); [tr. 112, Hình 24.3, màu ngọn lửa của ion](https://taphuan.nxbgd.vn/tap-huan/doc-sach/sgk-hoa-hoc-12.4701708102#page=113).
-- **OpenStax:** *Chemistry 2e*, [§18.1 Periodicity](https://openstax.org/books/chemistry-2e/pages/18-1-periodicity), đối chiếu phản ứng của kim loại nhóm 1 với nước. Dùng Hình 24.3 của SGK cho màu của từng ion.
+- **Kiến thức:** Phản ứng trung hòa một nấc tỉ lệ 1:1 giữa axit mạnh (`HCl`, `HNO₃`) và bazơ mạnh (`NaOH`, `KOH`) nồng độ cố định 0,1 mol/L ở 25 °C, thể tích axit ban đầu 25 mL, `Kw = 10⁻¹⁴`. Điểm tương đương đạt tại `V_bazơ = 25 mL` (`pH = 7`, `0,0025 mol` muối). Phenolphthalein không màu ở `pH = 7` và chuyển hồng trong khoảng nội suy `pH 8,2–10`.
+- **Mô phỏng và ca kiểm:** So sánh ba mốc thể tích bazơ `0 mL` (`pH = 1`), `25 mL` (`pH = 7`, `indicatorFraction = 0`) và `50 mL` (`pH ≈ 12,523`). Phân biệt điểm tương đương theo số mol với điểm kết thúc theo màu chỉ thị.
+- **SGK:** Hóa học 11 (CTST), [Bài 2, tr. 15–18, mục pH và chuẩn độ acid–base](https://taphuan.nxbgd.vn/tap-huan/doc-sach/shs-hoa-hoc-11.4537016533#page=19); Khoa học tự nhiên 8 (CTST), [Bài 9–11, tr. 43–50](https://taphuan.nxbgd.vn/tap-huan/doc-sach/shs-khoa-hoc-tu-nhien-8.4539229607#page=51).
+- **OpenStax:** *Chemistry 2e*, [§14.7 Acid-Base Titrations](https://openstax.org/books/chemistry-2e/pages/14-7-acid-base-titrations).
 
-### 2. Kim loại tác dụng với axit nitric: NO và NO₂ — `HH-HNO3-01`
+### 2. Phản ứng tạo kết tủa AgCl — `HH-KETTUA-01` (`precipitation`)
 
-- **Kiến thức:** HNO₃ là chất oxi hóa mạnh. Giới hạn mô phỏng ở hai trường hợp đại diện của đồng: axit loãng cho NO là sản phẩm khí chính trong mô hình; axit đặc cho NO₂ là sản phẩm khí chính. NO ban đầu không màu và có thể bị oxi hóa thành NO₂ màu nâu đỏ khi gặp oxygen trong không khí. Sản phẩm thực tế phụ thuộc vào kim loại và điều kiện; không suy rộng hai ca đồng cho mọi kim loại.
-- **Mô phỏng và ca kiểm:** Hai kịch bản định tính có sẵn. Ca NO phân biệt màu khí lúc mới sinh với màu có thể thấy sau khi tiếp xúc không khí. Câu đánh giá yêu cầu giải thích vì sao có thể thấy khí nâu đỏ dù sản phẩm khí ban đầu trong mô hình là NO.
-- **SGK:** Hóa học 11, [Bài 6, tr. 40, tính oxi hóa của nitric acid](https://taphuan.nxbgd.vn/tap-huan/doc-sach/sgk-hoa-hoc-11.4701111834#page=41), dùng làm nền về HNO₃.
-- **OpenStax:** *Chemistry 2e*, [§18.9 Occurrence, Preparation, and Compounds of Oxygen](https://openstax.org/books/chemistry-2e/pages/18-9-occurrence-preparation-and-compounds-of-oxygen), nguồn cho hai ca đại diện của Cu. Đối chiếu tính chất khí với NIOSH: [NO](https://www.cdc.gov/niosh/npg/npgd0448.html) và [NO₂](https://www.cdc.gov/niosh/npg/npgd0454.html).
+- **Kiến thức:** Trộn dung dịch `AgNO₃` 0,100 mol/L và `NaCl` 0,100 mol/L ở 25 °C theo phương trình `AgNO₃(aq) + NaCl(aq) → AgCl(s) + NaNO₃(aq)` (tỉ lệ mol 1:1). Số mol kết tủa tính theo chất giới hạn `n_AgCl = min(n_AgNO₃, n_NaCl)`, khối lượng `m_AgCl = n_AgCl × 143,32 g/mol`. Mô hình tính hiệu suất lý thuyết, không giải cân bằng `Ksp`.
+- **Mô phỏng và ca kiểm:** Đối chiếu ca `25 mL AgNO₃ + 10 mL NaCl` (`NaCl` giới hạn 0,001 mol, tạo `0,14332 g AgCl`, dư `0,0015 mol AgNO₃`) với ca `0 mL AgNO₃ + 50 mL NaCl` (`0 g AgCl`, `AgNO₃` giới hạn).
+- **SGK:** Khoa học tự nhiên 8 (CTST), [Bài 13, tr. 61–62, phản ứng dung dịch muối với muối](https://taphuan.nxbgd.vn/tap-huan/doc-sach/shs-khoa-hoc-tu-nhien-8.4539229607#page=63).
+- **OpenStax:** *Chemistry 2e*, [§4.2 Classifying Chemical Reactions](https://openstax.org/books/chemistry-2e/pages/4-2-classifying-chemical-reactions) và [§4.4 Reaction Yields](https://openstax.org/books/chemistry-2e/pages/4-4-reaction-yields).
 
-### 3. Điều chế và tính tẩy màu của khí clo — `HH-CHLORINE-01`
+### 3. Phản ứng axit và muối bicarbonat — `HH-TAOKHI-01` (`gas-reaction`)
 
-- **Kiến thức:** Phần điều chế minh họa nguyên lí oxi hóa ion chloride thành Cl₂ ở mức phương trình. Trong môi trường có nước, cân bằng `Cl₂ + H₂O ⇌ HCl + HOCl` viết theo cách biểu diễn phân tử trong SGK. HOCl có tính oxi hóa, làm mất màu chất màu trong thí nghiệm minh họa.
-- **Mô phỏng và ca kiểm:** So sánh giấy màu ẩm với đối chứng giấy màu khô trong điều kiện khô của mô hình. Kết quả cần thể hiện giấy ẩm mất màu rõ hơn và giải thích vai trò của nước; giới hạn kết luận trong ca đối chứng đã mô tả.
-- **SGK:** Hóa học 10, Bài 21 *Nhóm halogen*, [tr. 109, Hình 21.6, giấy màu khô và ẩm](https://taphuan.nxbgd.vn/tap-huan/doc-sach/sgk-hoa-hoc-10.4700854983#page=109); [tr. 111, mục Điều chế chlorine](https://taphuan.nxbgd.vn/tap-huan/doc-sach/sgk-hoa-hoc-10.4700854983#page=111).
-- **OpenStax:** *Chemistry 2e*, [§18.11 Occurrence, Preparation, and Properties of Halogens](https://openstax.org/books/chemistry-2e/pages/18-11-occurrence-preparation-and-properties-of-halogens), đối chiếu HOCl và tính tẩy màu. Tham chiếu an toàn: [NIOSH — Chlorine](https://www.cdc.gov/niosh/npg/npgd0115.html).
+- **Kiến thức:** `HCl(aq) + NaHCO₃(s) → NaCl(aq) + H₂O(l) + CO₂(g)` với `HCl` 0,100 mol/L (0–50 mL) và `NaHCO₃` tinh khiết (0–1 g, `M = 84,0066 g/mol`), tỉ lệ mol 1:1:1. Thể tích `CO₂` khô lý tưởng ở `T = 298,15 K` (25 °C) và `P = 1 atm` tính theo `V = nRT/P` (`R = 0,082057366080960 L·atm/(mol·K)`), không dùng 22,4 L/mol.
+- **Mô phỏng và ca kiểm:** Đối chiếu ca `25 mL HCl + 0,420033 g NaHCO₃` (`HCl` giới hạn 0,0025 mol, `V ≈ 61,16 mL`), ca `50 mL HCl + 0,0840066 g NaHCO₃` (`NaHCO₃` giới hạn 0,001 mol, `V ≈ 24,47 mL`) và ca `0 mL HCl` (`0 mL CO₂`).
+- **SGK:** Khoa học tự nhiên 8 (CTST), [Bài 13, tr. 61–62, muối phản ứng với dung dịch acid](https://taphuan.nxbgd.vn/tap-huan/doc-sach/shs-khoa-hoc-tu-nhien-8.4539229607#page=63).
+- **OpenStax:** *Chemistry 2e*, [§4.2 Classifying Chemical Reactions](https://openstax.org/books/chemistry-2e/pages/4-2-classifying-chemical-reactions), [§4.4 Reaction Yields](https://openstax.org/books/chemistry-2e/pages/4-4-reaction-yields) và [§9.2 The Ideal Gas Law](https://openstax.org/books/chemistry-2e/pages/9-2-relating-pressure-volume-amount-and-temperature-the-ideal-gas-law).
+
+### 4. Pin điện hóa — `HH-DIENHOA-01` (`electrochemistry`)
+
+- **Kiến thức:** Ba cặp điện cực chuẩn ở 25 °C, hoạt độ ion bằng 1: `E°(Zn²⁺/Zn) = −0,76 V`, `E°(Cu²⁺/Cu) = +0,34 V`, `E°(Ag⁺/Ag) = +0,80 V`. Điện cực có `E°` nhỏ hơn là anode (oxi hóa), lớn hơn là cathode (khử). Vôn kế lý tưởng đo `U = E°phải − E°trái`, suất điện động chuẩn `E°pin = |E°phải − E°trái|`. Tháo cầu muối làm mạch hở nên `meterVoltage_V = null`.
+- **Mô phỏng và ca kiểm:** Đối chiếu ca mặc định `trái = Zn, phải = Cu` (`U = 1,10 V`), ca `trái = Ag, phải = Zn, tháo cầu muối` (`U = −1,56 V`, `E°pin = 1,56 V`, `meterVoltage_V = null`, phản ứng `Zn + 2Ag⁺ → Zn²⁺ + 2Ag`) và ca `Cu–Cu` (`U = 0 V`).
+- **OpenStax:** *Chemistry 2e*, [§17.3 Electrode and Cell Potentials](https://openstax.org/books/chemistry-2e/pages/17-3-electrode-and-cell-potentials).
+
+### 5. Cấu tạo nguyên tử — `HH-NGUYENTU-01` (`atomic`)
+
+- **Kiến thức:** Mô hình đếm hạt trong miền `Z` từ 1 đến 18 (H đến Ar), `N` từ 0 đến 24, `n_e` từ 0 đến 18. Số hiệu nguyên tử `Z = n_p` xác định nguyên tố; số khối `A = Z + N`; điện tích tương đối `q/e = Z − n_e`. Sơ đồ lớp vỏ `2, 8, 8` minh họa phân bố hạt cho tối đa 18 electron, không phải quỹ đạo lượng tử và không đánh giá độ bền đồng vị.
+- **Mô phỏng và ca kiểm:** Đối chiếu nguyên tử `Na` trung hòa mặc định (`11p, 12n, 11e` → `Z = 11, A = 23, q/e = 0`, vỏ `[2, 8, 1]`), ion `Na⁺` (`11p, 12n, 10e` → `q/e = +1`) và ion `Cl⁻` (`17p, 18n, 18e` → `Cl, Z = 17, A = 35, q/e = −1`, vỏ `[2, 8, 8]`).
+- **OpenStax:** *Chemistry 2e*, [§2.3 Atomic Structure and Symbolism](https://openstax.org/books/chemistry-2e/pages/2-3-atomic-structure-and-symbolism).
 
 ## Trạng thái và bàn giao dataset
 
-- **Học liệu nháp đã tích hợp.** Cả 9 bài có kiến thức, giả thiết, bài tập có lời giải và quiz. Sáu mô hình mới có hoạt động dự đoán, so sánh điều kiện và giải thích, kèm tiêu chí tự đánh giá. Ba bài Hóa dùng kịch bản ảo định tính.
-- **Ca kiểm khoa học.** Các mô hình mới dùng [19 ca chung](../tests/golden/curriculum-labs.json) để đối chiếu TypeScript và Python. Kết quả chạy thực tế được ghi ở [bàn giao 9 bài](tasks/NINE-LABS.md).
+- **Học liệu nháp đã tích hợp.** Cả 11 bài trên Phòng thực hành có kiến thức, giả thiết, bài tập có lời giải, hoạt động hướng dẫn kèm tiêu chí tự đánh giá và quiz. Bộ dữ liệu đánh giá Tutor tại `knowledge/learning/nine-labs/learning-dataset.json` bao phủ đầy đủ 11 bài (6 Vật lí + 5 Hóa học tương thích phiên cũ).
+- **Ca kiểm khoa học.** Các mô hình dùng chung các bộ golden (`tests/golden/server-readings.json`, `tests/golden/additional-labs.json`, `tests/golden/expanded-labs.json`, `tests/golden/react-labs.json`, `tests/golden/curriculum-labs.json`) để đối chiếu TypeScript và Python.
 - **Quyền sử dụng:** Tra cứu nguồn qua các liên kết. Ghi căn cứ sử dụng riêng cho từng nguồn và loại nội dung trước khi đưa vào kho dùng chung. [Cổng NXBGDVN](https://taphuan.nxbgd.vn/tap-huan?grade=11) nêu phạm vi sử dụng cho dạy và học; rà soát điều khoản của từng sách OpenStax cho mục đích nhập liệu. Khi chưa rõ quyền, chỉ giữ dẫn chiếu; không nhập bản chụp, hình hoặc trích đoạn sách vào corpus.
 - **Review và tích hợp:** Nam rà công thức, đơn vị, điều kiện, phương trình và ca chuẩn; ghi người duyệt, ngày và bản sửa. Đạt ghi rõ nội dung có căn cứ SGK và nội dung mở rộng. Khoa chỉ lập chỉ mục RAG cho nội dung đã được duyệt và có căn cứ sử dụng. Đ.Phúc dùng câu hỏi và rubric để kiểm tra AI Tutor. Kết quả thí nghiệm lấy từ bộ mô phỏng và bộ kiểm tra khoa học.

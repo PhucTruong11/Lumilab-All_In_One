@@ -13,8 +13,9 @@ it('shared mapping covers every active mode exactly once and preserves the revie
   expect(new Set(modes).size).toBe(modes.length);
   expect([...modes].sort()).toEqual([...activeLabIds].sort());
   expect(practiceGroups.map(p => p.primary)).toEqual(practiceMapping.practices.map(p => p.primary));
-  expect(practiceMapping.practices).toHaveLength(9);
+  expect(practiceMapping.practices).toHaveLength(11);
   expect(practiceMapping.tutor_pilot_runtime_ids).toEqual(['pendulum', 'circuit', 'chemistry']);
-  expect(archivedLabIds).toContain('chemistry');
+  expect(activeLabIds).toContain('chemistry');
+  expect(archivedLabIds).toEqual(['alkali-water', 'copper-nitric', 'chlorine-bleach']);
   for (const p of practiceMapping.practices) expect(p.runtime_ids).toContain(p.primary);
 });

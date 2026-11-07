@@ -1,6 +1,17 @@
 import { expect, test } from '@playwright/test';
 
-for (const id of ['pendulum', 'pulley', 'alkali-water', 'copper-nitric', 'chlorine-bleach']) {
+for (const id of [
+  'pendulum',
+  'pulley',
+  'chemistry',
+  'precipitation',
+  'gas-reaction',
+  'electrochemistry',
+  'atomic',
+  'alkali-water',
+  'copper-nitric',
+  'chlorine-bleach',
+]) {
   test(`enhanced workbench fits desktop and mobile without JavaScript errors: ${id}`, async ({ page }, info) => {
     const errors: string[] = [];
     page.on('pageerror', error => errors.push(error.message));
