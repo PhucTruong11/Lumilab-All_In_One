@@ -1,0 +1,113 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "lab_id",
+    "model_version",
+    "dataset_version",
+    "parameters",
+    "elapsed_s",
+    "presentation",
+    "notes",
+    "records"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "session-1.0"
+    },
+    "lab_id": {
+      "enum": [
+        "pendulum",
+        "chemistry",
+        "circuit",
+        "mechanics",
+        "spring",
+        "electrochemistry",
+        "atomic",
+        "parallel-circuit",
+        "capacitor",
+        "precipitation",
+        "gas-reaction"
+      ]
+    },
+    "model_version": {
+      "type": "string"
+    },
+    "dataset_version": {
+      "type": "string"
+    },
+    "parameters": {
+      "type": "object"
+    },
+    "elapsed_s": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 86400
+    },
+    "presentation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "side",
+        "material"
+      ],
+      "properties": {
+        "side": {
+          "enum": [
+            -1,
+            1
+          ]
+        },
+        "material": {
+          "enum": [
+            "steel",
+            "copper",
+            "wood"
+          ]
+        }
+      }
+    },
+    "notes": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "prediction",
+        "reflection"
+      ],
+      "properties": {
+        "prediction": {
+          "type": "string",
+          "maxLength": 1000
+        },
+        "reflection": {
+          "type": "string",
+          "maxLength": 1000
+        }
+      }
+    },
+    "records": {
+      "type": "array",
+      "maxItems": 20,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "parameters",
+          "elapsed_s"
+        ],
+        "properties": {
+          "parameters": {
+            "type": "object"
+          },
+          "elapsed_s": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 86400
+          }
+        }
+      }
+    }
+  }
+}

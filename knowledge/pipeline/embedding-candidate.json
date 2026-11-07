@@ -1,0 +1,11 @@
+{
+  "repo_id": "intfloat/multilingual-e5-small",
+  "revision": "614241f622f53c4eeff9890bdc4f31cfecc418b3",
+  "license": "MIT",
+  "license_evidence": "https://huggingface.co/intfloat/multilingual-e5-small/blob/614241f622f53c4eeff9890bdc4f31cfecc418b3/README.md",
+  "local_path": "local-models/multilingual-e5-small-614241f6",
+  "family": "e5",
+  "status": "local-integration-tested-development-benchmark-only",
+  "network_at_runtime": false,
+  "results": "docs/evaluation/e5-development.json"
+}

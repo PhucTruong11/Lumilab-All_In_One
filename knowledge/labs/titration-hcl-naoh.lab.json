@@ -1,0 +1,14 @@
+{
+  "id":"titration-hcl-naoh","title":"Chuẩn độ axit–bazơ","domain":"chemistry","schema_version":"1.0",
+  "summary":"Theo dõi số mol, pH và chỉ thị khi chuẩn độ HCl bằng NaOH ở 25°C trong mô hình lý tưởng.",
+  "model_version":"strong-acid-base-v1","dataset_version":"kb-draft-2026-11-01",
+  "implementation_status":"planned","review_status":"draft",
+  "parameters":{
+    "acid_volume_ml":{"unit":"mL","min":25,"max":25,"default":25},
+    "base_volume_ml":{"unit":"mL","min":0,"max":50,"default":0},
+    "acid_concentration_mol_l":{"unit":"mol/L","min":0.1,"max":0.1,"default":0.1},
+    "base_concentration_mol_l":{"unit":"mol/L","min":0.1,"max":0.1,"default":0.1},
+    "temperature_c":{"unit":"degC","min":25,"max":25,"default":25}
+  },
+  "evidence_ids":["titration-hcl-naoh-ideal"]
+}

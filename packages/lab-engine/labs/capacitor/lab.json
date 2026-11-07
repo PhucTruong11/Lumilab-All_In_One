@@ -1,0 +1,71 @@
+{
+  "schema_version": "1.0",
+  "id": "capacitor",
+  "title": "Tụ điện: nạp và phóng điện",
+  "subject": "physics",
+  "model_version": "ideal-rc-step-v1",
+  "dataset_version": "reaction-network-draft-2026-11-04",
+  "implementation_status": "client",
+  "review_status": "draft",
+  "duration_s": 120,
+  "assumptions": [
+    "Một điện trở thuần và một tụ điện lý tưởng; không rò điện, điện cảm, điện trở nội nguồn hay phụ thuộc nhiệt độ.",
+    "Mỗi lần đổi chế độ bắt đầu lượt mới: charge bắt đầu ở 0 V nối nguồn voltage_V; discharge bắt đầu ở voltage_V rồi tách nguồn, chỉ nối tụ với điện trở.",
+    "Quy ước dòng dương khi nạp bản dương: current_A và resistorVoltage_V âm khi phóng. Charge_C là điện tích trên bản dương; năng lượng E = C Uc² / 2.",
+    "Điện dung đầu vào microfarad được đổi sang farad bằng hệ số 1e-6. Thời gian từ 0 đến 120 s, hằng số thời gian tau = RC, nghiệm giải tích hàm mũ.",
+    "Đầu ra có đơn vị s, V, A, C và J; chỉ dùng preview khi dữ liệu chưa duyệt."
+  ],
+  "sources": [
+    {
+      "label": "OpenStax University Physics Volume 2 §10.5 — RC Circuits, equations 10.8–10.13",
+      "url": "https://openstax.org/books/university-physics-volume-2/pages/10-5-rc-circuits"
+    },
+    {
+      "label": "OpenStax University Physics Volume 2 §8.3 — Energy Stored in a Capacitor",
+      "url": "https://openstax.org/books/university-physics-volume-2/pages/8-3-energy-stored-in-a-capacitor"
+    }
+  ],
+  "parameter_schema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "voltage_V",
+      "resistance_ohm",
+      "capacitance_uF",
+      "mode"
+    ],
+    "properties": {
+      "voltage_V": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 12,
+        "description": "Điện áp nguồn khi nạp hoặc điện áp ban đầu khi phóng, V"
+      },
+      "resistance_ohm": {
+        "type": "number",
+        "minimum": 100,
+        "maximum": 10000,
+        "description": "Điện trở R, ohm"
+      },
+      "capacitance_uF": {
+        "type": "number",
+        "minimum": 10,
+        "maximum": 1000,
+        "description": "Điện dung C, microfarad"
+      },
+      "mode": {
+        "type": "string",
+        "enum": [
+          "charge",
+          "discharge"
+        ]
+      }
+    }
+  },
+  "defaults": {
+    "voltage_V": 6,
+    "resistance_ohm": 2000,
+    "capacitance_uF": 500,
+    "mode": "charge"
+  }
+}

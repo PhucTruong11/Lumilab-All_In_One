@@ -1,0 +1,54 @@
+{
+  "schema_version": "1.0",
+  "id": "electrochemistry",
+  "title": "Pin điện hóa",
+  "subject": "chemistry",
+  "model_version": "standard-galvanic-cell-v1",
+  "dataset_version": "client-expansion-draft-2026-11-01",
+  "implementation_status": "client",
+  "review_status": "draft",
+  "assumptions": [
+    "Điện cựcZn²⁺/Zn,Cu²⁺/Cu,Ag⁺/Ag ở25°C, hoạt độ ion1; E°làm tròn0,01V.",
+    "Vôn kế lý tưởng đỏ bên phải/đen bên trái: U=E°phải−E°trái; không tính dòng điện hoặc động học.",
+    "Chiều electron minh họa trường hợp nối tải. Tháo cầu muối khóa số đọc mô phỏng, không mô phỏng quá độ thật."
+  ],
+  "sources": [
+    {
+      "label": "Pin điện hóa · OpenStax",
+      "url": "https://openstax.org/books/chemistry-2e/pages/17-3-electrode-and-cell-potentials"
+    }
+  ],
+  "parameter_schema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "left",
+      "right",
+      "bridgeConnected"
+    ],
+    "properties": {
+      "left": {
+        "enum": [
+          "zn",
+          "cu",
+          "ag"
+        ]
+      },
+      "right": {
+        "enum": [
+          "zn",
+          "cu",
+          "ag"
+        ]
+      },
+      "bridgeConnected": {
+        "type": "boolean"
+      }
+    }
+  },
+  "defaults": {
+    "left": "zn",
+    "right": "cu",
+    "bridgeConnected": true
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "revision": "domain-2026-11-06",
+  "levels": [
+    "THCS",
+    "THPT"
+  ],
+  "curriculum": {
+    "series": "Chân trời sáng tạo",
+    "edition": null,
+    "pages": null,
+    "status": "pending"
+  },
+  "physics": [
+    {
+      "topic": "forces_pulleys",
+      "lab_ids": [
+        "mechanics"
+      ],
+      "note": "Pulley theory planned; no pulley simulation or validated model claimed."
+    },
+    {
+      "topic": "electricity",
+      "lab_ids": [
+        "circuit",
+        "parallel-circuit",
+        "capacitor"
+      ]
+    },
+    {
+      "topic": "pendulum",
+      "lab_ids": [
+        "pendulum"
+      ]
+    }
+  ],
+  "chemistry": [
+    {
+      "chapter": "solutions_acid_base",
+      "lab_ids": [
+        "chemistry"
+      ]
+    },
+    {
+      "chapter": "salts_precipitation",
+      "lab_ids": [
+        "precipitation"
+      ]
+    },
+    {
+      "chapter": "inorganic_gas_reactions",
+      "lab_ids": [
+        "gas-reaction"
+      ]
+    }
+  ],
+  "llm": {
+    "requested_model": "gemini-3.5-flash-lite",
+    "student_app": "disabled-under18",
+    "benchmark": "adult-developer-cli-only-until-gates-pass"
+  },
+  "notice": "Content scope broadens; existing UI/engine simulations remain bounded by their individual model schemas."
+}

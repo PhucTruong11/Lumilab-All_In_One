@@ -1,0 +1,30 @@
+{
+  "sources": [
+    {
+      "id": "vmlu",
+      "url": "https://github.com/ZaloAI-Jaist/VMLU",
+      "status": "rights_pending",
+      "scope": [
+        "middle_school_physics",
+        "middle_school_chemistry",
+        "high_school_physics",
+        "high_school_chemistry"
+      ],
+      "allowed_uses": [],
+      "dataset_hash": null,
+      "notes": "Official dataset requires login; repository MIT and README Licenses TBU do not grant dataset rights. No third-party mirror substituted.",
+      "download_status": "authenticated_download_required",
+      "repo_commit": "b0225316f4eaa1e2ca39c4164075d1b1aee4e220"
+    },
+    {
+      "id": "vnhsge",
+      "status": "unverified",
+      "allowed_uses": []
+    },
+    {
+      "id": "vbench",
+      "status": "unverified",
+      "allowed_uses": []
+    }
+  ]
+}

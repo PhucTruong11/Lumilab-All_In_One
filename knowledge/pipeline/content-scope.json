@@ -1,0 +1,357 @@
+{
+  "schema_version": "content-scope-1.0",
+  "revision": "team-scope-2026-11-06",
+  "selected_on": "2026-11-06",
+  "basis": "User-selected physics topics, inorganic chemistry (one core block plus two proposed extensions), OpenStax and Vietnamese curriculum THCS–THPT",
+  "chapter_interpretation": "The three chemistry blocks are a project organization proposal, not claimed SGK chapter numbering.",
+  "topics": [
+    {
+      "id": "forces-pulleys",
+      "subject": "physics",
+      "title_vi": "Lực và ròng rọc",
+      "lab_ids": [
+        "mechanics"
+      ],
+      "notes": "Ròng rọc là học liệu nền; engine hiện chưa có lab ròng rọc độc lập.",
+      "references": [
+        {
+          "source_id": "osbooks-physics",
+          "commit": "56e71824e73e371c0d20eb68a77611aa438b5f89",
+          "collection_path": "collections/physics.collection.xml",
+          "chapter_number": 4,
+          "chapter_title": "Forces and Newton’s Laws of Motion",
+          "module_ids": [
+            "m54144",
+            "m54135",
+            "m54138",
+            "m54142",
+            "m54131"
+          ],
+          "url": "https://github.com/openstax/osbooks-physics/blob/56e71824e73e371c0d20eb68a77611aa438b5f89/collections/physics.collection.xml",
+          "rights_status": "pending",
+          "academic_status": "pending",
+          "content_ingested": false
+        },
+        {
+          "source_id": "osbooks-physics",
+          "commit": "56e71824e73e371c0d20eb68a77611aa438b5f89",
+          "collection_path": "collections/physics.collection.xml",
+          "chapter_number": 9,
+          "chapter_title": "Work, Energy, and Simple Machines",
+          "module_ids": [
+            "m54268",
+            "m54271",
+            "m54273",
+            "m54274"
+          ],
+          "url": "https://github.com/openstax/osbooks-physics/blob/56e71824e73e371c0d20eb68a77611aa438b5f89/collections/physics.collection.xml",
+          "rights_status": "pending",
+          "academic_status": "pending",
+          "content_ingested": false
+        }
+      ],
+      "levels": [
+        "THCS",
+        "THPT"
+      ],
+      "scope_status": "selected_by_team",
+      "academic_status": "pending",
+      "reviewer": null,
+      "reviewed_at": null,
+      "curriculum_mapping": {
+        "series": "Chân trời sáng tạo",
+        "grade": null,
+        "edition": null,
+        "lesson": null,
+        "pages": null,
+        "status": "pending"
+      }
+    },
+    {
+      "id": "electricity",
+      "subject": "physics",
+      "title_vi": "Điện và mạch điện",
+      "lab_ids": [
+        "circuit",
+        "parallel-circuit",
+        "capacitor"
+      ],
+      "references": [
+        {
+          "source_id": "osbooks-physics",
+          "commit": "56e71824e73e371c0d20eb68a77611aa438b5f89",
+          "collection_path": "collections/physics.collection.xml",
+          "chapter_number": 19,
+          "chapter_title": "Electrical Circuits",
+          "module_ids": [
+            "m54450",
+            "m54437",
+            "m54435",
+            "m54442",
+            "m54446"
+          ],
+          "url": "https://github.com/openstax/osbooks-physics/blob/56e71824e73e371c0d20eb68a77611aa438b5f89/collections/physics.collection.xml",
+          "rights_status": "pending",
+          "academic_status": "pending",
+          "content_ingested": false
+        }
+      ],
+      "levels": [
+        "THCS",
+        "THPT"
+      ],
+      "scope_status": "selected_by_team",
+      "academic_status": "pending",
+      "reviewer": null,
+      "reviewed_at": null,
+      "curriculum_mapping": {
+        "series": "Chân trời sáng tạo",
+        "grade": null,
+        "edition": null,
+        "lesson": null,
+        "pages": null,
+        "status": "pending"
+      }
+    },
+    {
+      "id": "pendulum",
+      "subject": "physics",
+      "title_vi": "Con lắc và dao động",
+      "lab_ids": [
+        "pendulum",
+        "spring"
+      ],
+      "notes": "Mục Simple Harmonic Motion nằm trong chương Motion in Two Dimensions của bản đã ghim; không gán nhầm số chương theo trí nhớ.",
+      "references": [
+        {
+          "source_id": "osbooks-physics",
+          "commit": "56e71824e73e371c0d20eb68a77611aa438b5f89",
+          "collection_path": "collections/physics.collection.xml",
+          "chapter_number": 5,
+          "chapter_title": "Motion in Two Dimensions",
+          "module_ids": [
+            "m54145",
+            "m54165",
+            "m54147",
+            "m54162",
+            "m54159",
+            "m54154"
+          ],
+          "url": "https://github.com/openstax/osbooks-physics/blob/56e71824e73e371c0d20eb68a77611aa438b5f89/collections/physics.collection.xml",
+          "rights_status": "pending",
+          "academic_status": "pending",
+          "content_ingested": false
+        }
+      ],
+      "levels": [
+        "THCS",
+        "THPT"
+      ],
+      "scope_status": "selected_by_team",
+      "academic_status": "pending",
+      "reviewer": null,
+      "reviewed_at": null,
+      "curriculum_mapping": {
+        "series": "Chân trời sáng tạo",
+        "grade": null,
+        "edition": null,
+        "lesson": null,
+        "pages": null,
+        "status": "pending"
+      }
+    },
+    {
+      "id": "inorganic-acid-base",
+      "subject": "chemistry",
+      "title_vi": "Vô cơ 1: dung dịch, axit–bazơ và trung hòa",
+      "lab_ids": [
+        "chemistry"
+      ],
+      "priority": "core",
+      "references": [
+        {
+          "source_id": "osbooks-chemistry-bundle",
+          "commit": "db0a8e6027100ce082e67fc8879faab86f9a58a7",
+          "collection_path": "collections/chemistry-2e.collection.xml",
+          "chapter_number": 3,
+          "chapter_title": "Composition of Substances and Solutions",
+          "module_ids": [
+            "m68699",
+            "m68700",
+            "m68702",
+            "m68703",
+            "m68704"
+          ],
+          "url": "https://github.com/openstax/osbooks-chemistry-bundle/blob/db0a8e6027100ce082e67fc8879faab86f9a58a7/collections/chemistry-2e.collection.xml",
+          "rights_status": "pending",
+          "academic_status": "pending",
+          "content_ingested": false
+        },
+        {
+          "source_id": "osbooks-chemistry-bundle",
+          "commit": "db0a8e6027100ce082e67fc8879faab86f9a58a7",
+          "collection_path": "collections/chemistry-2e.collection.xml",
+          "chapter_number": 14,
+          "chapter_title": "Acid-Base Equilibria",
+          "module_ids": [
+            "m68802",
+            "m68803",
+            "m68804",
+            "m68805",
+            "m68806",
+            "m68807",
+            "m68808",
+            "m68809"
+          ],
+          "url": "https://github.com/openstax/osbooks-chemistry-bundle/blob/db0a8e6027100ce082e67fc8879faab86f9a58a7/collections/chemistry-2e.collection.xml",
+          "rights_status": "pending",
+          "academic_status": "pending",
+          "content_ingested": false
+        }
+      ],
+      "levels": [
+        "THCS",
+        "THPT"
+      ],
+      "scope_status": "selected_by_team",
+      "academic_status": "pending",
+      "reviewer": null,
+      "reviewed_at": null,
+      "curriculum_mapping": {
+        "series": "Chân trời sáng tạo",
+        "grade": null,
+        "edition": null,
+        "lesson": null,
+        "pages": null,
+        "status": "pending"
+      }
+    },
+    {
+      "id": "inorganic-precipitation",
+      "subject": "chemistry",
+      "title_vi": "Vô cơ 2: phản ứng trong dung dịch và kết tủa",
+      "lab_ids": [
+        "precipitation"
+      ],
+      "priority": "extension",
+      "references": [
+        {
+          "source_id": "osbooks-chemistry-bundle",
+          "commit": "db0a8e6027100ce082e67fc8879faab86f9a58a7",
+          "collection_path": "collections/chemistry-2e.collection.xml",
+          "chapter_number": 4,
+          "chapter_title": "Stoichiometry of Chemical Reactions",
+          "module_ids": [
+            "m68730",
+            "m68709",
+            "m68710",
+            "m68713",
+            "m68714",
+            "m68716"
+          ],
+          "url": "https://github.com/openstax/osbooks-chemistry-bundle/blob/db0a8e6027100ce082e67fc8879faab86f9a58a7/collections/chemistry-2e.collection.xml",
+          "rights_status": "pending",
+          "academic_status": "pending",
+          "content_ingested": false
+        },
+        {
+          "source_id": "osbooks-chemistry-bundle",
+          "commit": "db0a8e6027100ce082e67fc8879faab86f9a58a7",
+          "collection_path": "collections/chemistry-2e.collection.xml",
+          "chapter_number": 15,
+          "chapter_title": "Equilibria of Other Reaction Classes",
+          "module_ids": [
+            "m68810",
+            "m68811",
+            "m68813",
+            "m68814"
+          ],
+          "url": "https://github.com/openstax/osbooks-chemistry-bundle/blob/db0a8e6027100ce082e67fc8879faab86f9a58a7/collections/chemistry-2e.collection.xml",
+          "rights_status": "pending",
+          "academic_status": "pending",
+          "content_ingested": false
+        }
+      ],
+      "levels": [
+        "THCS",
+        "THPT"
+      ],
+      "scope_status": "selected_by_team",
+      "academic_status": "pending",
+      "reviewer": null,
+      "reviewed_at": null,
+      "curriculum_mapping": {
+        "series": "Chân trời sáng tạo",
+        "grade": null,
+        "edition": null,
+        "lesson": null,
+        "pages": null,
+        "status": "pending"
+      }
+    },
+    {
+      "id": "inorganic-gas",
+      "subject": "chemistry",
+      "title_vi": "Vô cơ 3: phản ứng tạo khí và lượng chất",
+      "lab_ids": [
+        "gas-reaction"
+      ],
+      "priority": "extension",
+      "references": [
+        {
+          "source_id": "osbooks-chemistry-bundle",
+          "commit": "db0a8e6027100ce082e67fc8879faab86f9a58a7",
+          "collection_path": "collections/chemistry-2e.collection.xml",
+          "chapter_number": 4,
+          "chapter_title": "Stoichiometry of Chemical Reactions",
+          "module_ids": [
+            "m68730",
+            "m68709",
+            "m68710",
+            "m68713",
+            "m68714",
+            "m68716"
+          ],
+          "url": "https://github.com/openstax/osbooks-chemistry-bundle/blob/db0a8e6027100ce082e67fc8879faab86f9a58a7/collections/chemistry-2e.collection.xml",
+          "rights_status": "pending",
+          "academic_status": "pending",
+          "content_ingested": false
+        }
+      ],
+      "levels": [
+        "THCS",
+        "THPT"
+      ],
+      "scope_status": "selected_by_team",
+      "academic_status": "pending",
+      "reviewer": null,
+      "reviewed_at": null,
+      "curriculum_mapping": {
+        "series": "Chân trời sáng tạo",
+        "grade": null,
+        "edition": null,
+        "lesson": null,
+        "pages": null,
+        "status": "pending"
+      }
+    }
+  ],
+  "sgk_policy": {
+    "series": "Chân trời sáng tạo",
+    "status": "bibliography_and_rights_pending",
+    "uses": "Alignment reference only; no scanning, copying exercises/images, embedding or provider submission authorized by scope selection.",
+    "missing": [
+      "grade",
+      "publisher/edition/year",
+      "lesson/pages",
+      "lawful access/rights basis",
+      "teacher review"
+    ]
+  },
+  "review_gate": [
+    "Source rights and permitted use recorded per artifact",
+    "Model/conditions/constants checked against independent evidence",
+    "Actual teacher reviewer/date/section/page evidence",
+    "Only then promote an academic record; VERIFIED remains a separate server gate"
+  ]
+}

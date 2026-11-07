@@ -1,0 +1,78 @@
+import { expect, test } from '@playwright/test';
+
+test('library has two subjects and three chapters per subject; a lesson links to the lab', async ({ page }) => {
+  await page.route('**/api/**', route => route.abort());
+  await page.goto('/#lab/pendulum');
+  await page.getByRole('button', { name: 'Thư viện bài học', exact: true }).click();
+  await expect(page.locator('.subject-card')).toHaveCount(2);
+  await page.locator('.subject-card.physics').click();
+  await expect(page.locator('.chapter-card')).toHaveCount(3);
+  await page.locator('.chapter-card').filter({ hasText: 'Dao động' }).getByRole('button').click();
+  await page.locator('.lesson-list article').filter({ hasText: 'Con lắc đơn:' }).getByRole('button', { name: 'Xem bài học', exact: true }).click();
+  await expect(page.getByRole('heading', { name: 'Kiến thức nền', exact: true })).toBeVisible();
+  await page.getByLabel('Ghi chú của bạn', { exact: true }).fill('Giữ chiều dài, đổi khối lượng.');
+  await page.getByRole('button', { name: 'Lưu ghi chú', exact: true }).click();
+  await expect(page.getByText('Đã lưu trên máy này.', { exact: true })).toBeVisible();
+  await page.getByLabel('Đáp án (s)', { exact: true }).fill('2,01');
+  await page.getByRole('button', { name: 'Kiểm tra', exact: true }).click();
+  await expect(page.getByText('Đúng rồi!', { exact: false })).toBeVisible();
+  await page.getByRole('button', { name: 'Gợi ý & lời giải', exact: true }).click();
+  await expect(page.locator('.hint-box')).toContainText('2,006');
+  await page.getByRole('button', { name: 'Mở lab con lắc', exact: true }).click();
+  await expect(page.getByTestId('pendulum-canvas')).toBeVisible();
+  await page.getByRole('button', { name: 'Thư viện bài học', exact: true }).click();
+  await page.getByRole('button', { name: 'Tất cả môn', exact: true }).click();
+  await page.locator('.subject-card.chemistry').click();
+  await expect(page.locator('.chapter-card')).toHaveCount(3);
+  await expect(page.getByRole('heading', { name: 'Phản ứng tạo khí', exact: true })).toBeVisible();
+});
+
+test('practice draft persists, quiz can be answered and question/answer files are separate', async ({ page }) => {
+  await page.goto('/#lab/pendulum');
+  await page.getByRole('button', { name: 'Không gian học tập', exact: true }).click();
+  await page.getByLabel('Tên hoạt động', { exact: true }).fill('Thử nghiệm của lớp 11A');
+  await page.getByRole('button', { name: 'Lưu bản nháp', exact: true }).click();
+  await page.reload();
+  await page.getByRole('button', { name: 'Không gian học tập', exact: true }).click();
+  await expect(page.getByLabel('Tên hoạt động', { exact: true })).toHaveValue('Thử nghiệm của lớp 11A');
+  await page.getByRole('button', { name: 'Tạo khung hoạt động', exact: true }).click();
+  await expect(page.locator('.activity-steps li')).toHaveCount(4);
+  await page.getByRole('button', { name: 'Tạo quiz', exact: true }).click();
+  await page.getByRole('combobox', { name: 'Môn học', exact: true }).selectOption('chemistry');
+  await page.getByRole('combobox', { name: 'Chương', exact: true }).selectOption('precipitation');
+  await page.getByRole('button', { name: 'Tạo bộ quiz', exact: true }).click();
+  await expect(page.locator('.quiz-question')).toHaveCount(1);
+  await page.getByRole('radio').nth(1).check();
+  await page.getByRole('button', { name: 'Xem kết quả & giải thích', exact: true }).click();
+  await expect(page.getByText('Đúng 1/1 câu.', { exact: false })).toBeVisible();
+  const download = page.waitForEvent('download');
+  await page.getByRole('button', { name: 'Tải đề', exact: true }).click();
+  expect((await download).suggestedFilename()).toBe('LumiLab-quiz.txt');
+  const key = page.waitForEvent('download');
+  await page.getByRole('button', { name: 'Tải đáp án', exact: true }).click();
+  expect((await key).suggestedFilename()).toBe('LumiLab-dap-an.txt');
+});
+
+test('Lumi chat preserves its conversation, honors selected sources and opens the knowledge tree', async ({ page }) => {
+  const errors: string[] = [];
+  page.on('pageerror', error => errors.push(error.message));
+  await page.goto('/#lab/pendulum');
+  await page.getByRole('button', { name: '✦ Lumi', exact: true }).click();
+  await expect(page.getByText('Theo kịch bản · Chưa kết nối AI')).toBeVisible();
+  await page.getByLabel('Hỏi Lumi', { exact: true }).fill('Vì sao khối lượng không đổi chu kỳ?');
+  await page.getByRole('button', { name: 'Gửi câu hỏi', exact: true }).click();
+  await expect(page.locator('.chat-message.assistant')).toContainText('khối lượng không làm đổi chu kỳ');
+  await page.getByRole('button', { name: 'Thu gọn nguồn học tập', exact: true }).click();
+  await expect(page.locator('.sources-panel')).toHaveCount(0);
+  await page.getByRole('button', { name: 'Hiện nguồn học tập', exact: true }).click();
+  for (const checkbox of await page.getByRole('checkbox').all()) await checkbox.uncheck();
+  await page.getByLabel('Hỏi Lumi', { exact: true }).fill('Công thức nào?');
+  await page.getByRole('button', { name: 'Gửi câu hỏi', exact: true }).click();
+  await expect(page.locator('.chat-message.assistant').last()).toContainText('chưa chọn nguồn');
+  await page.getByRole('button', { name: 'Cây kiến thức', exact: true }).click();
+  await expect(page.locator('.knowledge-tree')).toContainText('Phản ứng tạo kết tủa');
+  await page.getByRole('button', { name: 'Thư viện bài học', exact: true }).click();
+  await page.getByRole('button', { name: '✦ Lumi', exact: true }).click();
+  await expect(page.locator('.chat-message.user')).toHaveCount(2);
+  expect(errors).toEqual([]);
+});

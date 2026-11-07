@@ -1,0 +1,100 @@
+{
+  "$defs": {
+    "HistoryMessage": {
+      "additionalProperties": false,
+      "properties": {
+        "role": {
+          "pattern": "^(user|assistant)$",
+          "title": "Role",
+          "type": "string"
+        },
+        "text": {
+          "maxLength": 1000,
+          "minLength": 1,
+          "title": "Text",
+          "type": "string"
+        }
+      },
+      "required": [
+        "role",
+        "text"
+      ],
+      "title": "HistoryMessage",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "lab_id": {
+      "maxLength": 32,
+      "minLength": 1,
+      "title": "Lab Id",
+      "type": "string"
+    },
+    "question": {
+      "maxLength": 800,
+      "minLength": 1,
+      "title": "Question",
+      "type": "string"
+    },
+    "mode": {
+      "default": "hint",
+      "enum": [
+        "hint",
+        "explanation",
+        "feedback",
+        "qa"
+      ],
+      "title": "Mode",
+      "type": "string"
+    },
+    "hint_level": {
+      "default": 0,
+      "maximum": 3,
+      "minimum": 0,
+      "title": "Hint Level",
+      "type": "integer"
+    },
+    "run_id": {
+      "anyOf": [
+        {
+          "format": "uuid",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Run Id"
+    },
+    "level": {
+      "default": "THPT",
+      "enum": [
+        "THPT",
+        "THCS"
+      ],
+      "title": "Level",
+      "type": "string"
+    },
+    "history": {
+      "items": {
+        "$ref": "#/$defs/HistoryMessage"
+      },
+      "maxItems": 4,
+      "title": "History",
+      "type": "array"
+    },
+    "include_drafts": {
+      "default": true,
+      "title": "Include Drafts",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "lab_id",
+    "question"
+  ],
+  "title": "TutorRequest",
+  "type": "object"
+}

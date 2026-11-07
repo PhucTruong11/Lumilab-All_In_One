@@ -1,0 +1,19 @@
+{
+  "dataset_version": "kb-draft-2026-11-01",
+  "entries": [
+    {
+      "id": "pendulum-ideal-agm", "lab_id": "pendulum", "review_status": "draft", "reviewer": null,
+      "source_ids": ["nist-pendulum", "nist-agm"],
+      "assumptions": ["Point mass, massless inextensible string, no friction", "Release angle between 0 and 90 degrees"],
+      "claims": ["T = 2*pi*sqrt(L/g) / AGM(1, cos(theta_0/2))", "Period is independent of mass in this model", "Zero release angle is stationary; limiting period is not an observed oscillation"]
+    },
+    {
+      "id": "titration-hcl-naoh-ideal", "lab_id": "titration-hcl-naoh", "review_status": "draft", "reviewer": null,
+      "source_ids": ["openstax-titration"],
+      "conditions": {"temperature_c": 25, "acid_formula": "HCl", "base_formula": "NaOH"},
+      "reaction": {"reactants": {"HCl": 1, "NaOH": 1}, "products": {"NaCl": 1, "H2O": 1}},
+      "assumptions": ["Ideal dilute fully dissociated solutions", "Additive volumes", "Kw = 1e-14 at 25 C", "Indicator consumption neglected"],
+      "claims": ["Equivalent moles of HCl and NaOH give pH 7 under these assumptions", "Phenolphthalein remains colourless at pH 7; endpoint and equivalence are distinct"]
+    }
+  ]
+}

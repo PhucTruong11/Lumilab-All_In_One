@@ -1,0 +1,71 @@
+{
+  "provenance": "Independent hand-worked ideal-model references, draft 2026-11-04. Resistors: KCL/KVL and Ohm. RC: t=0 and t=ln(2)*RC yield exactly half voltage. Chemical extents from balanced 1:1 equations, gas volumes decimal nRT/P at 298.15 K and 1 atm. These fixtures are regression evidence, not academic approval.",
+  "cases": [
+    {
+      "lab_id": "parallel-circuit",
+      "parameters": {"voltage_V": 12, "resistance1_ohm": 20, "resistance2_ohm": 30, "topology": "series", "switchClosed": true},
+      "elapsed_s": 0,
+      "expected": {"equivalentResistance_ohm": 50, "totalCurrent_A": 0.24, "branch1Current_A": 0.24, "branch2Current_A": 0.24, "resistor1Voltage_V": 4.8, "resistor2Voltage_V": 7.2, "totalPower_W": 2.88}
+    },
+    {
+      "lab_id": "parallel-circuit",
+      "parameters": {"voltage_V": 12, "resistance1_ohm": 20, "resistance2_ohm": 30, "topology": "parallel", "switchClosed": true},
+      "elapsed_s": 0,
+      "expected": {"equivalentResistance_ohm": 12, "totalCurrent_A": 1, "branch1Current_A": 0.6, "branch2Current_A": 0.4, "resistor1Voltage_V": 12, "resistor2Voltage_V": 12, "totalPower_W": 12}
+    },
+    {
+      "lab_id": "parallel-circuit",
+      "parameters": {"voltage_V": 12, "resistance1_ohm": 20, "resistance2_ohm": 30, "topology": "parallel", "switchClosed": false},
+      "elapsed_s": 0,
+      "expected": {"equivalentResistance_ohm": 12, "totalCurrent_A": 0, "branch1Current_A": 0, "branch2Current_A": 0, "resistor1Voltage_V": 0, "resistor2Voltage_V": 0, "totalPower_W": 0}
+    },
+    {
+      "lab_id": "capacitor",
+      "parameters": {"voltage_V": 10, "resistance_ohm": 1000, "capacitance_uF": 1000, "mode": "charge"},
+      "elapsed_s": 0,
+      "expected": {"timeConstant_s": 1, "capacitorVoltage_V": 0, "resistorVoltage_V": 10, "current_A": 0.01, "charge_C": 0, "energy_J": 0}
+    },
+    {
+      "lab_id": "capacitor",
+      "parameters": {"voltage_V": 10, "resistance_ohm": 1000, "capacitance_uF": 1000, "mode": "charge"},
+      "elapsed_s": 0.6931471805599453,
+      "expected": {"timeConstant_s": 1, "capacitorVoltage_V": 5, "resistorVoltage_V": 5, "current_A": 0.005, "charge_C": 0.005, "energy_J": 0.0125}
+    },
+    {
+      "lab_id": "capacitor",
+      "parameters": {"voltage_V": 10, "resistance_ohm": 1000, "capacitance_uF": 1000, "mode": "discharge"},
+      "elapsed_s": 0.6931471805599453,
+      "expected": {"timeConstant_s": 1, "capacitorVoltage_V": 5, "resistorVoltage_V": -5, "current_A": -0.005, "charge_C": 0.005, "energy_J": 0.0125}
+    },
+    {
+      "lab_id": "precipitation",
+      "parameters": {"silverVolume_ml": 25, "chlorideVolume_ml": 10},
+      "elapsed_s": 0,
+      "expected": {"silverMoles": 0.0025, "chlorideMoles": 0.001, "precipitateMoles": 0.001, "precipitateMass_g": 0.14332, "remainingSilverMoles": 0.0015, "remainingChlorideMoles": 0, "totalVolume_ml": 35, "hasPrecipitate": true, "limitingReagent": "NaCl"}
+    },
+    {
+      "lab_id": "precipitation",
+      "parameters": {"silverVolume_ml": 0, "chlorideVolume_ml": 50},
+      "elapsed_s": 0,
+      "expected": {"silverMoles": 0, "chlorideMoles": 0.005, "precipitateMoles": 0, "precipitateMass_g": 0, "remainingSilverMoles": 0, "remainingChlorideMoles": 0.005, "totalVolume_ml": 50, "hasPrecipitate": false, "limitingReagent": "AgNO3"}
+    },
+    {
+      "lab_id": "gas-reaction",
+      "parameters": {"acidVolume_ml": 25, "bicarbonateMass_g": 0.420033},
+      "elapsed_s": 0,
+      "expected": {"acidMoles": 0.0025, "bicarbonateMoles": 0.005, "reactionMoles": 0.0025, "carbonDioxideVolume_ml": 61.16350924259556, "remainingAcidMoles": 0, "remainingBicarbonateMoles": 0.0025, "hasGas": true, "limitingReagent": "HCl"}
+    },
+    {
+      "lab_id": "gas-reaction",
+      "parameters": {"acidVolume_ml": 50, "bicarbonateMass_g": 0.0840066},
+      "elapsed_s": 0,
+      "expected": {"acidMoles": 0.005, "bicarbonateMoles": 0.001, "reactionMoles": 0.001, "carbonDioxideVolume_ml": 24.465403697038224, "remainingAcidMoles": 0.004, "remainingBicarbonateMoles": 0, "hasGas": true, "limitingReagent": "NaHCO3"}
+    },
+    {
+      "lab_id": "gas-reaction",
+      "parameters": {"acidVolume_ml": 0, "bicarbonateMass_g": 0.0840066},
+      "elapsed_s": 0,
+      "expected": {"acidMoles": 0, "bicarbonateMoles": 0.001, "reactionMoles": 0, "carbonDioxideVolume_ml": 0, "remainingAcidMoles": 0, "remainingBicarbonateMoles": 0.001, "hasGas": false, "limitingReagent": "HCl"}
+    }
+  ]
+}

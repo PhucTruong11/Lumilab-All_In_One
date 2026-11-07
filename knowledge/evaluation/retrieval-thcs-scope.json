@@ -1,0 +1,174 @@
+{
+  "revision": "thcs-scope-smoke-2026-11-06",
+  "status": "authored-development-not-teacher-reviewed",
+  "cases": [
+    {
+      "id": "thcs-mechanics-0",
+      "lab_id": "mechanics",
+      "level": "THCS",
+      "question": "Ròng rọc cố định đổi hướng lực thế nào?",
+      "relevant_document_ids": [
+        "mechanics-thcs-foundation"
+      ],
+      "language": "vi"
+    },
+    {
+      "id": "thcs-mechanics-1",
+      "lab_id": "mechanics",
+      "level": "THCS",
+      "question": "Hai nhánh dây đỡ ròng rọc động",
+      "relevant_document_ids": [
+        "mechanics-thcs-foundation"
+      ],
+      "language": "vi"
+    },
+    {
+      "id": "thcs-mechanics-ood",
+      "lab_id": "mechanics",
+      "level": "THCS",
+      "question": "Dự báo thời tiết và bitcoin ngày mai",
+      "relevant_document_ids": [],
+      "language": "vi"
+    },
+    {
+      "id": "thcs-pendulum-0",
+      "lab_id": "pendulum",
+      "level": "THCS",
+      "question": "Khối lượng chu kỳ con lắc đơn",
+      "relevant_document_ids": [
+        "pendulum-thcs-foundation"
+      ],
+      "language": "vi"
+    },
+    {
+      "id": "thcs-pendulum-1",
+      "lab_id": "pendulum",
+      "level": "THCS",
+      "question": "Tăng chiều dài dây giữ góc thả nhỏ",
+      "relevant_document_ids": [
+        "pendulum-thcs-foundation"
+      ],
+      "language": "vi"
+    },
+    {
+      "id": "thcs-pendulum-ood",
+      "lab_id": "pendulum",
+      "level": "THCS",
+      "question": "Dự báo thời tiết và bitcoin ngày mai",
+      "relevant_document_ids": [],
+      "language": "vi"
+    },
+    {
+      "id": "thcs-circuit-0",
+      "lab_id": "circuit",
+      "level": "THCS",
+      "question": "Tăng điện trở giữ hiệu điện thế",
+      "relevant_document_ids": [
+        "circuit-thcs-foundation"
+      ],
+      "language": "vi"
+    },
+    {
+      "id": "thcs-circuit-1",
+      "lab_id": "circuit",
+      "level": "THCS",
+      "question": "Ampe kế đo dòng điện mắc thế nào?",
+      "relevant_document_ids": [
+        "circuit-thcs-foundation"
+      ],
+      "language": "vi"
+    },
+    {
+      "id": "thcs-circuit-ood",
+      "lab_id": "circuit",
+      "level": "THCS",
+      "question": "Dự báo thời tiết và bitcoin ngày mai",
+      "relevant_document_ids": [],
+      "language": "vi"
+    },
+    {
+      "id": "thcs-chemistry-0",
+      "lab_id": "chemistry",
+      "level": "THCS",
+      "question": "Axit bazơ trung hòa theo mol",
+      "relevant_document_ids": [
+        "chemistry-thcs-foundation"
+      ],
+      "language": "vi"
+    },
+    {
+      "id": "thcs-chemistry-1",
+      "lab_id": "chemistry",
+      "level": "THCS",
+      "question": "Khác nồng độ có cùng thể tích trung hòa không?",
+      "relevant_document_ids": [
+        "chemistry-thcs-foundation"
+      ],
+      "language": "vi"
+    },
+    {
+      "id": "thcs-chemistry-ood",
+      "lab_id": "chemistry",
+      "level": "THCS",
+      "question": "Dự báo thời tiết và bitcoin ngày mai",
+      "relevant_document_ids": [],
+      "language": "vi"
+    },
+    {
+      "id": "thcs-precipitation-0",
+      "lab_id": "precipitation",
+      "level": "THCS",
+      "question": "Bạc chloride kết tủa màu trắng",
+      "relevant_document_ids": [
+        "precipitation-thcs-foundation"
+      ],
+      "language": "vi"
+    },
+    {
+      "id": "thcs-precipitation-1",
+      "lab_id": "precipitation",
+      "level": "THCS",
+      "question": "Trộn mọi dung dịch có tạo kết tủa không?",
+      "relevant_document_ids": [
+        "precipitation-thcs-foundation"
+      ],
+      "language": "vi"
+    },
+    {
+      "id": "thcs-precipitation-ood",
+      "lab_id": "precipitation",
+      "level": "THCS",
+      "question": "Dự báo thời tiết và bitcoin ngày mai",
+      "relevant_document_ids": [],
+      "language": "vi"
+    },
+    {
+      "id": "thcs-gas-reaction-0",
+      "lab_id": "gas-reaction",
+      "level": "THCS",
+      "question": "Axit với muối hydrogencarbonate",
+      "relevant_document_ids": [
+        "gas-reaction-thcs-foundation"
+      ],
+      "language": "vi"
+    },
+    {
+      "id": "thcs-gas-reaction-1",
+      "lab_id": "gas-reaction",
+      "level": "THCS",
+      "question": "Bọt khí có tự chứng minh khí carbon dioxide không?",
+      "relevant_document_ids": [
+        "gas-reaction-thcs-foundation"
+      ],
+      "language": "vi"
+    },
+    {
+      "id": "thcs-gas-reaction-ood",
+      "lab_id": "gas-reaction",
+      "level": "THCS",
+      "question": "Dự báo thời tiết và bitcoin ngày mai",
+      "relevant_document_ids": [],
+      "language": "vi"
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0",
+  "id": "precipitation",
+  "title": "Phản ứng tạo kết tủa AgCl",
+  "subject": "chemistry",
+  "model_version": "ideal-agcl-precipitation-v1",
+  "dataset_version": "reaction-network-draft-2026-11-04",
+  "implementation_status": "client",
+  "review_status": "draft",
+  "assumptions": [
+    "Hai dung dịch AgNO3 và NaCl riêng biệt đều có nồng độ cố định 0.100 mol/L, 25 °C; thể tích mỗi dung dịch từ 0 đến 50 mL; thể tích hỗn hợp cộng được.",
+    "AgNO3(aq) + NaCl(aq) → AgCl(s) + NaNO3(aq); phương trình ion Ag+(aq) + Cl-(aq) → AgCl(s); tỷ lệ mol 1:1.",
+    "Mô hình tính hiệu suất lý thuyết, coi chất giới hạn phản ứng hoàn toàn; không giải Ksp, hoạt độ ion, cân bằng tạo phức, tốc độ hay kích thước hạt. Không dùng để dự đoán cân bằng ở lượng vết.",
+    "Khối lượng mol AgCl lấy tròn 143.32 g/mol. Số mol = 0.100 mol/L × thể tích mL / 1000. Khối lượng kết tủa = số mol phản ứng × khối lượng mol.",
+    "Đám mây trắng là minh họa định tính AgCl, không đo độ đục hoặc thời gian lắng. Các hạt vẽ không tương ứng số phân tử thật.",
+    "Dung dịch bạc có nguy cơ và cần xử lý chất thải đúng quy trình; mô phỏng không hướng dẫn tự làm. Nguồn và mô hình chưa được duyệt học thuật: chỉ preview."
+  ],
+  "sources": [
+    {
+      "label": "OpenStax Chemistry 2e §4.2 — Precipitation Reactions and Solubility Rules, ví dụ AgNO3 + NaCl",
+      "url": "https://openstax.org/books/chemistry-2e/pages/4-2-classifying-chemical-reactions"
+    },
+    {
+      "label": "OpenStax Chemistry 2e §4.4 — Reaction Yields, chất giới hạn và hiệu suất lý thuyết",
+      "url": "https://openstax.org/books/chemistry-2e/pages/4-4-reaction-yields"
+    }
+  ],
+  "parameter_schema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": ["silverVolume_ml", "chlorideVolume_ml"],
+    "properties": {
+      "silverVolume_ml": {"type": "number", "minimum": 0, "maximum": 50, "description": "Thể tích AgNO3 0.100 mol/L, mL"},
+      "chlorideVolume_ml": {"type": "number", "minimum": 0, "maximum": 50, "description": "Thể tích NaCl 0.100 mol/L, mL"}
+    }
+  },
+  "defaults": {"silverVolume_ml": 25, "chlorideVolume_ml": 10}
+}

@@ -1,0 +1,192 @@
+{
+  "revision": "ctst-development-2026-11-06",
+  "purpose": "Authored development regression, not held-out or teacher validated",
+  "cases": [
+    {
+      "id": "ctst-retrieval-net-force",
+      "lab_id": "mechanics",
+      "level": "THPT",
+      "question": "Hợp lực quyết định gia tốc như thế nào?",
+      "relevant_document_ids": [
+        "ctst-net-force"
+      ],
+      "split": "development",
+      "review_status": "draft",
+      "language": "vi"
+    },
+    {
+      "id": "ctst-retrieval-pulley-context",
+      "lab_id": "mechanics",
+      "level": "THPT",
+      "question": "Ròng rọc và lực căng dây của vật treo có luôn bằng trọng lực không?",
+      "relevant_document_ids": [
+        "ctst-pulley-context"
+      ],
+      "split": "development",
+      "review_status": "draft",
+      "language": "vi"
+    },
+    {
+      "id": "ctst-retrieval-period-measure",
+      "lab_id": "pendulum",
+      "level": "THPT",
+      "question": "Đếm nhiều dao động để đo chu kỳ và tần số thế nào?",
+      "relevant_document_ids": [
+        "ctst-period-measure"
+      ],
+      "split": "development",
+      "review_status": "draft",
+      "language": "vi"
+    },
+    {
+      "id": "ctst-retrieval-pendulum-limits",
+      "lab_id": "pendulum",
+      "level": "THPT",
+      "question": "Góc lớn có còn dùng công thức con lắc góc nhỏ không?",
+      "relevant_document_ids": [
+        "ctst-pendulum-limits"
+      ],
+      "split": "development",
+      "review_status": "draft",
+      "language": "vi"
+    },
+    {
+      "id": "ctst-retrieval-meter-wiring",
+      "lab_id": "circuit",
+      "level": "THCS",
+      "question": "Ampe kế vôn kế mắc nối tiếp hay song song?",
+      "relevant_document_ids": [
+        "ctst-meter-wiring"
+      ],
+      "split": "development",
+      "review_status": "draft",
+      "language": "vi"
+    },
+    {
+      "id": "ctst-retrieval-ohm-graph",
+      "lab_id": "circuit",
+      "level": "THCS",
+      "question": "Đồ thị I theo U có độ dốc liên quan điện trở như thế nào?",
+      "relevant_document_ids": [
+        "ctst-ohm-graph"
+      ],
+      "split": "development",
+      "review_status": "draft",
+      "language": "vi"
+    },
+    {
+      "id": "ctst-retrieval-parallel-branches",
+      "lab_id": "parallel-circuit",
+      "level": "THCS",
+      "question": "Điện trở tương đương và tổng dòng ở hai nhánh song song?",
+      "relevant_document_ids": [
+        "ctst-parallel-branches"
+      ],
+      "split": "development",
+      "review_status": "draft",
+      "language": "vi"
+    },
+    {
+      "id": "ctst-retrieval-source-voltage",
+      "lab_id": "circuit",
+      "level": "THPT",
+      "question": "Suất điện động và sụt áp điện trở trong khác nhau thế nào?",
+      "relevant_document_ids": [
+        "ctst-source-voltage"
+      ],
+      "split": "development",
+      "review_status": "draft",
+      "language": "vi"
+    },
+    {
+      "id": "ctst-retrieval-ph-indicator",
+      "lab_id": "chemistry",
+      "level": "THCS",
+      "question": "pH và màu chỉ thị phenolphthalein có giống nhau không?",
+      "relevant_document_ids": [
+        "ctst-ph-indicator"
+      ],
+      "split": "development",
+      "review_status": "draft",
+      "language": "vi"
+    },
+    {
+      "id": "ctst-retrieval-neutralization",
+      "lab_id": "chemistry",
+      "level": "THCS",
+      "question": "Trung hoà nên so số mol hay thể tích?",
+      "relevant_document_ids": [
+        "ctst-neutralization"
+      ],
+      "split": "development",
+      "review_status": "draft",
+      "language": "vi"
+    },
+    {
+      "id": "ctst-retrieval-titration-direction",
+      "lab_id": "chemistry",
+      "level": "THPT",
+      "question": "Chiều đổi màu trong chuẩn độ acid base có phụ thuộc chiều thêm dung dịch không?",
+      "relevant_document_ids": [
+        "ctst-titration-direction"
+      ],
+      "split": "development",
+      "review_status": "draft",
+      "language": "vi"
+    },
+    {
+      "id": "ctst-retrieval-silver-chloride",
+      "lab_id": "precipitation",
+      "level": "THCS",
+      "question": "Kết tủa AgCl còn tăng khi chất giới hạn đã hết không?",
+      "relevant_document_ids": [
+        "ctst-silver-chloride"
+      ],
+      "split": "development",
+      "review_status": "draft",
+      "language": "vi"
+    },
+    {
+      "id": "ctst-retrieval-carbonate-gas",
+      "lab_id": "gas-reaction",
+      "level": "THCS",
+      "question": "Acid gặp carbonate tạo CO2 hay hydrogen?",
+      "relevant_document_ids": [
+        "ctst-carbonate-gas"
+      ],
+      "split": "development",
+      "review_status": "draft",
+      "language": "vi"
+    },
+    {
+      "id": "ctst-outside-0",
+      "lab_id": "chemistry",
+      "level": "THCS",
+      "question": "Cách lập trình một trò chơi bóng đá?",
+      "relevant_document_ids": [],
+      "split": "development",
+      "review_status": "draft",
+      "language": "vi"
+    },
+    {
+      "id": "ctst-outside-1",
+      "lab_id": "pendulum",
+      "level": "THPT",
+      "question": "Thời tiết tuần sau ở Đà Lạt?",
+      "relevant_document_ids": [],
+      "split": "development",
+      "review_status": "draft",
+      "language": "vi"
+    },
+    {
+      "id": "ctst-outside-2",
+      "lab_id": "circuit",
+      "level": "THCS",
+      "question": "Viết bài phân tích tác phẩm văn học?",
+      "relevant_document_ids": [],
+      "split": "development",
+      "review_status": "draft",
+      "language": "vi"
+    }
+  ]
+}

@@ -1,0 +1,669 @@
+{
+  "$defs": {
+    "Document": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "maxLength": 100,
+          "minLength": 1,
+          "title": "Id",
+          "type": "string"
+        },
+        "lab_id": {
+          "maxLength": 32,
+          "minLength": 1,
+          "title": "Lab Id",
+          "type": "string"
+        },
+        "title": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Title",
+          "type": "string"
+        },
+        "text": {
+          "maxLength": 4000,
+          "minLength": 1,
+          "title": "Text",
+          "type": "string"
+        },
+        "keywords": {
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 30,
+          "title": "Keywords",
+          "type": "array"
+        },
+        "review_status": {
+          "enum": [
+            "draft",
+            "cross_checked",
+            "reviewed"
+          ],
+          "title": "Review Status",
+          "type": "string"
+        },
+        "provenance": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Provenance"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "cross_checked_by": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Cross Checked By"
+        },
+        "cross_checked_at": {
+          "anyOf": [
+            {
+              "format": "date",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Cross Checked At"
+        },
+        "reviewer": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Reviewer"
+        },
+        "reviewed_at": {
+          "anyOf": [
+            {
+              "format": "date",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Reviewed At"
+        },
+        "origin": {
+          "enum": [
+            "project-authored",
+            "external"
+          ],
+          "title": "Origin",
+          "type": "string"
+        },
+        "external_material_use": {
+          "enum": [
+            "reference-only",
+            "licensed-excerpt"
+          ],
+          "title": "External Material Use",
+          "type": "string"
+        },
+        "references": {
+          "items": {
+            "$ref": "#/$defs/Reference"
+          },
+          "maxItems": 8,
+          "minItems": 1,
+          "title": "References",
+          "type": "array"
+        },
+        "assumptions": {
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 12,
+          "minItems": 1,
+          "title": "Assumptions",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "lab_id",
+        "title",
+        "text",
+        "keywords",
+        "review_status",
+        "reviewer",
+        "reviewed_at",
+        "origin",
+        "external_material_use",
+        "references",
+        "assumptions"
+      ],
+      "title": "Document",
+      "type": "object"
+    },
+    "DraftRunEvidence": {
+      "additionalProperties": false,
+      "properties": {
+        "run_id": {
+          "format": "uuid",
+          "title": "Run Id",
+          "type": "string"
+        },
+        "lab_id": {
+          "title": "Lab Id",
+          "type": "string"
+        },
+        "model_version": {
+          "title": "Model Version",
+          "type": "string"
+        },
+        "dataset_version": {
+          "title": "Dataset Version",
+          "type": "string"
+        },
+        "status": {
+          "const": "INSUFFICIENT_DATA",
+          "default": "INSUFFICIENT_DATA",
+          "title": "Status",
+          "type": "string"
+        },
+        "review_status": {
+          "const": "draft",
+          "default": "draft",
+          "title": "Review Status",
+          "type": "string"
+        },
+        "notice": {
+          "const": "Preview từ mô hình nháp; dữ liệu chưa duyệt, chưa được kiểm chứng khoa học.",
+          "default": "Preview từ mô hình nháp; dữ liệu chưa duyệt, chưa được kiểm chứng khoa học.",
+          "title": "Notice",
+          "type": "string"
+        },
+        "preview": {
+          "additionalProperties": {
+            "$ref": "#/$defs/JsonValue"
+          },
+          "title": "Preview",
+          "type": "object"
+        }
+      },
+      "required": [
+        "run_id",
+        "lab_id",
+        "model_version",
+        "dataset_version",
+        "preview"
+      ],
+      "title": "DraftRunEvidence",
+      "type": "object"
+    },
+    "GatewayAnswer": {
+      "properties": {
+        "status": {
+          "title": "Status",
+          "type": "string"
+        },
+        "notice": {
+          "default": "Preview từ mô hình nháp; dữ liệu chưa duyệt, chưa được kiểm chứng khoa học.",
+          "title": "Notice",
+          "type": "string"
+        },
+        "response_source": {
+          "title": "Response Source",
+          "type": "string"
+        },
+        "degraded_reason": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Degraded Reason"
+        },
+        "model": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Model"
+        },
+        "attempts": {
+          "default": 0,
+          "title": "Attempts",
+          "type": "integer"
+        },
+        "guard_attempts": {
+          "default": 0,
+          "title": "Guard Attempts",
+          "type": "integer"
+        },
+        "input_guard": {
+          "default": "LOCAL_ONLY",
+          "title": "Input Guard",
+          "type": "string"
+        },
+        "input_tokens": {
+          "default": 0,
+          "title": "Input Tokens",
+          "type": "integer"
+        },
+        "output_tokens": {
+          "default": 0,
+          "title": "Output Tokens",
+          "type": "integer"
+        },
+        "latency_ms": {
+          "default": 0,
+          "title": "Latency Ms",
+          "type": "integer"
+        },
+        "prompt_version": {
+          "default": "lumi-seven-blocks-v4-context-guard",
+          "title": "Prompt Version",
+          "type": "string"
+        },
+        "skill_id": {
+          "title": "Skill Id",
+          "type": "string"
+        },
+        "output": {
+          "$ref": "#/$defs/TutorOutput"
+        }
+      },
+      "required": [
+        "status",
+        "response_source",
+        "skill_id",
+        "output"
+      ],
+      "title": "GatewayAnswer",
+      "type": "object"
+    },
+    "Hit": {
+      "properties": {
+        "chunk_id": {
+          "title": "Chunk Id",
+          "type": "string"
+        },
+        "document": {
+          "$ref": "#/$defs/Document"
+        },
+        "score": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Score"
+        }
+      },
+      "required": [
+        "chunk_id",
+        "document"
+      ],
+      "title": "Hit",
+      "type": "object"
+    },
+    "JsonValue": {},
+    "Provenance": {
+      "additionalProperties": false,
+      "properties": {
+        "source_id": {
+          "title": "Source Id",
+          "type": "string"
+        },
+        "book": {
+          "title": "Book",
+          "type": "string"
+        },
+        "chapter": {
+          "title": "Chapter",
+          "type": "string"
+        },
+        "section": {
+          "title": "Section",
+          "type": "string"
+        },
+        "pages": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Pages"
+        },
+        "license": {
+          "title": "License",
+          "type": "string"
+        },
+        "commit": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Commit"
+        },
+        "source_language": {
+          "default": "vi",
+          "title": "Source Language",
+          "type": "string"
+        },
+        "level": {
+          "default": "THPT",
+          "enum": [
+            "THPT",
+            "THCS"
+          ],
+          "title": "Level",
+          "type": "string"
+        },
+        "curriculum_series": {
+          "default": "Chân trời sáng tạo",
+          "title": "Curriculum Series",
+          "type": "string"
+        },
+        "curriculum_status": {
+          "default": "pending",
+          "enum": [
+            "pending",
+            "reviewed"
+          ],
+          "title": "Curriculum Status",
+          "type": "string"
+        },
+        "curriculum_edition": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Curriculum Edition"
+        },
+        "constants": {
+          "additionalProperties": {
+            "type": "number"
+          },
+          "title": "Constants",
+          "type": "object"
+        },
+        "units": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "title": "Units",
+          "type": "object"
+        },
+        "conditions": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "title": "Conditions",
+          "type": "object"
+        },
+        "equation": {
+          "anyOf": [
+            {
+              "additionalProperties": {
+                "additionalProperties": {
+                  "type": "integer"
+                },
+                "type": "object"
+              },
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Equation"
+        },
+        "academic_review_role": {
+          "anyOf": [
+            {
+              "const": "teacher",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Academic Review Role"
+        }
+      },
+      "required": [
+        "source_id",
+        "book",
+        "chapter",
+        "section",
+        "license",
+        "commit"
+      ],
+      "title": "Provenance",
+      "type": "object"
+    },
+    "Reference": {
+      "additionalProperties": false,
+      "properties": {
+        "label": {
+          "maxLength": 300,
+          "minLength": 1,
+          "title": "Label",
+          "type": "string"
+        },
+        "url": {
+          "format": "uri",
+          "maxLength": 2083,
+          "minLength": 1,
+          "title": "Url",
+          "type": "string"
+        },
+        "authority": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Authority"
+        }
+      },
+      "required": [
+        "label",
+        "url"
+      ],
+      "title": "Reference",
+      "type": "object"
+    },
+    "RetrievalResponse": {
+      "properties": {
+        "corpus_revision": {
+          "title": "Corpus Revision",
+          "type": "string"
+        },
+        "retrieval_method": {
+          "default": "local-lexical",
+          "enum": [
+            "local-lexical",
+            "local-hash-vector",
+            "local-semantic-vector",
+            "local-hybrid-hash",
+            "local-hybrid-semantic"
+          ],
+          "title": "Retrieval Method",
+          "type": "string"
+        },
+        "embedding_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Embedding Id"
+        },
+        "index_revision": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Index Revision"
+        },
+        "threshold": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Threshold"
+        },
+        "status": {
+          "enum": [
+            "FOUND",
+            "NO_MATCH"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "hits": {
+          "items": {
+            "$ref": "#/$defs/Hit"
+          },
+          "title": "Hits",
+          "type": "array"
+        }
+      },
+      "required": [
+        "corpus_revision",
+        "status",
+        "hits"
+      ],
+      "title": "RetrievalResponse",
+      "type": "object"
+    },
+    "TutorOutput": {
+      "additionalProperties": false,
+      "properties": {
+        "message": {
+          "maxLength": 1500,
+          "minLength": 1,
+          "title": "Message",
+          "type": "string"
+        },
+        "citation_ids": {
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 3,
+          "title": "Citation Ids",
+          "type": "array"
+        },
+        "follow_up": {
+          "anyOf": [
+            {
+              "maxLength": 400,
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Follow Up"
+        }
+      },
+      "required": [
+        "message",
+        "citation_ids"
+      ],
+      "title": "TutorOutput",
+      "type": "object"
+    }
+  },
+  "properties": {
+    "request_id": {
+      "title": "Request Id",
+      "type": "string"
+    },
+    "answer": {
+      "$ref": "#/$defs/GatewayAnswer"
+    },
+    "retrieval": {
+      "$ref": "#/$defs/RetrievalResponse"
+    },
+    "run": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/DraftRunEvidence"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  },
+  "required": [
+    "request_id",
+    "answer",
+    "retrieval",
+    "run"
+  ],
+  "title": "TutorResponse",
+  "type": "object"
+}

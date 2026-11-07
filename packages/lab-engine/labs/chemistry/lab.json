@@ -1,0 +1,68 @@
+{
+  "schema_version": "1.0",
+  "id": "chemistry",
+  "title": "Chuẩn độ axit–bazơ",
+  "subject": "chemistry",
+  "model_version": "ideal-strong-titration-ts-v1",
+  "dataset_version": "client-draft-2026-11-01",
+  "implementation_status": "client",
+  "review_status": "draft",
+  "assumptions": [
+    "Axit/bazơ mạnh1:1, nồng độ0,1mol/L,25mL axit,25°C, Kw=10⁻¹⁴; dung dịch loãng lý tưởng, thể tích cộng được.",
+    "Phenolphthalein: màu nội suy pH8,2–10, không phải phép đo; không áp dụng axit yếu."
+  ],
+  "sources": [
+    {
+      "label": "OpenStax Chemistry 2e §14.7",
+      "url": "https://openstax.org/books/chemistry-2e/pages/14-7-acid-base-titrations"
+    }
+  ],
+  "parameter_schema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "acid",
+      "base",
+      "baseVolume_ml"
+    ],
+    "properties": {
+      "acid": {
+        "enum": [
+          "hcl",
+          "hno3"
+        ]
+      },
+      "base": {
+        "enum": [
+          "naoh",
+          "koh"
+        ]
+      },
+      "baseVolume_ml": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 50,
+        "description": "mL"
+      }
+    }
+  },
+  "defaults": {
+    "acid": "hcl",
+    "base": "naoh",
+    "baseVolume_ml": 0
+  },
+  "constants": {
+    "acid_volume_ml": 25,
+    "acid_concentration_mol_l": 0.1,
+    "base_concentration_mol_l": 0.1,
+    "temperature_c": 25,
+    "Kw_concentration": 1e-14
+  },
+  "constant_units": {
+    "acid_volume_ml": "mL",
+    "acid_concentration_mol_l": "mol/L",
+    "base_concentration_mol_l": "mol/L",
+    "temperature_c": "degC",
+    "Kw_concentration": "(mol/L)^2"
+  }
+}

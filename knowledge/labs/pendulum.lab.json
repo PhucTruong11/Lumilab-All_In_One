@@ -1,0 +1,13 @@
+{
+  "id":"pendulum","title":"Con lắc đơn","domain":"physics","schema_version":"1.0",
+  "summary":"Khảo sát chiều dài, khối lượng và góc thả trong mô hình con lắc lý tưởng phi tuyến.",
+  "model_version":"pendulum-agm-v1","dataset_version":"kb-draft-2026-11-01",
+  "implementation_status":"planned","review_status":"draft",
+  "parameters":{
+    "length_m":{"unit":"m","min":0.3,"max":2,"default":1},
+    "mass_kg":{"unit":"kg","min":0.1,"max":1,"default":0.2},
+    "angle_deg":{"unit":"degree","min":0,"max":90,"default":10},
+    "gravity_m_s2":{"unit":"m/s^2","min":9.81,"max":9.81,"default":9.81}
+  },
+  "evidence_ids":["pendulum-ideal-agm"]
+}

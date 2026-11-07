@@ -1,0 +1,55 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "active",
+    "archived"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "catalog-1.0"
+    },
+    "active": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "pendulum",
+          "spring",
+          "mechanics",
+          "circuit",
+          "parallel-circuit",
+          "capacitor",
+          "chemistry",
+          "precipitation",
+          "gas-reaction",
+          "electrochemistry",
+          "atomic"
+        ]
+      },
+      "uniqueItems": true
+    },
+    "archived": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "pendulum",
+          "spring",
+          "mechanics",
+          "circuit",
+          "parallel-circuit",
+          "capacitor",
+          "chemistry",
+          "precipitation",
+          "gas-reaction",
+          "electrochemistry",
+          "atomic"
+        ]
+      },
+      "uniqueItems": true
+    }
+  }
+}
