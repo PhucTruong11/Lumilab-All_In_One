@@ -6,15 +6,11 @@
 
 Danh mục gồm **6 bài Vật lí và 5 bài Hóa học**. Mỗi bài có mô phỏng, phép tính độc lập và học liệu tiếng Việt. Các mục dưới đây ghi căn cứ, giới hạn và ca đối chiếu khoa học.
 
-<<<<<<< HEAD
 `lab.json` của từng mô hình lưu cấu hình, phiên bản, giới hạn tham số, giả thiết và liên kết nguồn; đây không phải file chứa sẵn mọi kết quả thí nghiệm. Engine TypeScript tính số đọc trên trình duyệt, còn API dùng bộ tính Python để tính lại từ tham số và thời điểm người dùng gửi. API trả đối tượng preview dạng JSON cho lượt đó; màn hình số liệu trình bày tên đại lượng bằng tiếng Việt, đơn vị và số làm tròn. File lịch sử JSON tải về giữ giá trị gốc để đối chiếu kỹ thuật. Kết quả vẫn là `draft/preview`.
 
 Danh mục hiện có 12 mô hình đang mở cho 9 bài và 5 mô hình lưu trữ. `gas-reaction` (HCl + NaHCO₃) thuộc nhóm lưu trữ, không phải một trong ba bài Hóa hiện hành của dataset 9 bài. Thể tích CO₂ ở model này là giá trị lý thuyết của khí khô lý tưởng tại 298,15 K và 1 atm, không phải lượng khí đo được hay chứng nhận khoa học.
 
-Các trang SGK dưới đây là **số trang in trên sách**. Mã bản điện tử nằm trong đường dẫn của Nhà xuất bản Giáo dục Việt Nam (NXBGDVN). Các SGK THPT được dẫn theo bộ *Kết nối tri thức với cuộc sống*; Khoa học tự nhiên 9 là nguồn bổ trợ THCS. Mục OpenStax dẫn thẳng đến phần dùng để đối chiếu. Các nguồn được ghi ở trạng thái `reference-only`; quyền đưa nội dung nguồn vào corpus là `pending`.
-=======
-Các trang SGK dưới đây là **số trang in trên sách**. Mã bản điện tử nằm trong đường dẫn của Nhà xuất bản Giáo dục Việt Nam (NXBGDVN). Các SGK THPT/THCS được dẫn theo bộ *Kết nối tri thức với cuộc sống* và *Chân trời sáng tạo*. Mục OpenStax dẫn thẳng đến phần dùng để đối chiếu. Các nguồn được ghi ở trạng thái `reference-only`; quyền đưa nội dung nguồn vào corpus là `pending`.
->>>>>>> b0896b7c693d1257cb83da762e40ffe58155c19e
+Các trang SGK dưới đây là **số trang in trên sách**. Mã bản điện tử nằm trong đường dẫn của Nhà xuất bản Giáo dục Việt Nam (NXBGDVN). Các SGK THPT/THCS được dẫn theo bộ *Kết nối tri thức với cuộc sống* và *Chân trời sáng tạo*; Khoa học tự nhiên 9 là nguồn bổ trợ THCS. Mục OpenStax dẫn thẳng đến phần dùng để đối chiếu. Các nguồn được ghi ở trạng thái `reference-only`; quyền đưa nội dung nguồn vào corpus là `pending`.
 
 ## Vật lí — 6 bài
 
@@ -97,12 +93,7 @@ Các trang SGK dưới đây là **số trang in trên sách**. Mã bản điệ
 
 ## Trạng thái và bàn giao dataset
 
-<<<<<<< HEAD
-- **Học liệu nháp đã tích hợp.** Cả 9 bài có kiến thức, giả thiết, bài tập có lời giải và quiz. Sáu mô hình mới có hoạt động dự đoán, so sánh điều kiện và giải thích, kèm tiêu chí tự đánh giá. Ba bài Hóa dùng kịch bản ảo định tính.
-- **Ca kiểm khoa học.** Các mô hình mới dùng [22 ca chung](../tests/golden/curriculum-labs.json) để đối chiếu TypeScript và Python, gồm thêm lò xo thả lệch âm, ngưỡng ma sát nghỉ và ròng rọc hai nhánh. Kết quả chạy thực tế được ghi ở [bàn giao 9 bài](tasks/NINE-LABS.md).
-=======
 - **Học liệu nháp đã tích hợp.** Cả 11 bài trên Phòng thực hành có kiến thức, giả thiết, bài tập có lời giải, hoạt động hướng dẫn kèm tiêu chí tự đánh giá và quiz. Bộ dữ liệu đánh giá Tutor tại `knowledge/learning/nine-labs/learning-dataset.json` bao phủ đầy đủ 11 bài (6 Vật lí + 5 Hóa học tương thích phiên cũ).
 - **Ca kiểm khoa học.** Các mô hình dùng chung các bộ golden (`tests/golden/server-readings.json`, `tests/golden/additional-labs.json`, `tests/golden/expanded-labs.json`, `tests/golden/react-labs.json`, `tests/golden/curriculum-labs.json`) để đối chiếu TypeScript và Python.
->>>>>>> b0896b7c693d1257cb83da762e40ffe58155c19e
 - **Quyền sử dụng:** Tra cứu nguồn qua các liên kết. Ghi căn cứ sử dụng riêng cho từng nguồn và loại nội dung trước khi đưa vào kho dùng chung. [Cổng NXBGDVN](https://taphuan.nxbgd.vn/tap-huan?grade=11) nêu phạm vi sử dụng cho dạy và học; rà soát điều khoản của từng sách OpenStax cho mục đích nhập liệu. Khi chưa rõ quyền, chỉ giữ dẫn chiếu; không nhập bản chụp, hình hoặc trích đoạn sách vào corpus.
 - **Review và tích hợp:** Nam rà công thức, đơn vị, điều kiện, phương trình và ca chuẩn; ghi người duyệt, ngày và bản sửa. Đạt ghi rõ nội dung có căn cứ SGK và nội dung mở rộng. Khoa chỉ lập chỉ mục RAG cho nội dung đã được duyệt và có căn cứ sử dụng. Đ.Phúc dùng câu hỏi và rubric để kiểm tra AI Tutor. Kết quả thí nghiệm lấy từ bộ mô phỏng và bộ kiểm tra khoa học.
