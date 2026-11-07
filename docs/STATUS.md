@@ -29,7 +29,7 @@ Mốc M02 đang tích hợp trên nhánh `feat/full-web-engine-api` (Issue #5). 
 | Thành phần | Trạng thái tại B |
 | --- | --- |
 | Web | 9 lab hiện hành, bài học, soạn/quiz và Lumi UI; đã build |
-| Lab engine | 11 model TypeScript/config gồm 9 hiện hành, 2 lưu trữ; 74 unit test đạt |
+| Lab engine | 17 model TypeScript/config gồm 12 hiện hành, 5 lưu trữ; 74 unit test đạt |
 | API | FastAPI catalog, tính lại preview, phiên/lượt PostgreSQL, retrieval/Tutor; 508 pytest đạt, 9 skip khi không có DB |
 | Knowledge | 30 thẻ draft; data CLI lint/build đạt, 12 warning thiếu nguồn thứ hai |
 | E2E | 33 đạt, 3 skip khi không có PostgreSQL |
@@ -43,7 +43,7 @@ Pilot con lắc có hồ sơ claim bản nháp tại `knowledge/verification/pen
 
 Kiểm lại sau thay đổi UI/hồ sơ: `npm run check:web`, `npm run test:unit` (74 đạt), `npm run build:web`, Ruff đạt; pytest API với PostgreSQL local 521 đạt, 2 skip, 1 cảnh báo Starlette; Playwright E2E trên Docker web mới với PostgreSQL local 38 đạt. Không tính các ca skip là đạt, và chưa dùng kết quả này làm bằng chứng duyệt nguồn.
 
-Task Verify #9 trên `feature/verifyData`: route runtime nay chặn preview nếu thiếu stage khoa học bắt buộc hoặc trùng tên stage. Kiểm HTTP tại defaults của cả 9 lab hiện hành và 2 model lưu trữ đều trả preview draft với facts/evidence rỗng. Pilot `VL-CONLAC-01` kiểm tỉ lệ chu kỳ khi chiều dài tăng gấp bốn qua route. Ruff và 330 pytest Verify đạt trước ca pilot mới; `test_expansion_routes.py` đạt 29 ca sau khi thêm pilot (1 cảnh báo Starlette). 74 unit TypeScript, check:web và build:web đạt. Toàn bộ API đạt 513 pytest, 9 skip khi không cấp DB test ở lượt trước ca pilot; ca route bị ảnh hưởng đã chạy lại. Nguồn/giả thiết vẫn cần T2/T4 duyệt trước khi mở `VERIFIED`.
+Task Verify #9 trên `feature/verifyData`: route runtime nay chặn preview nếu thiếu stage khoa học bắt buộc hoặc trùng tên stage. Kiểm HTTP tại defaults của cả 9 lab hiện hành và 5 model lưu trữ đều trả preview draft với facts/evidence rỗng. Pilot `VL-CONLAC-01` kiểm tỉ lệ chu kỳ khi chiều dài tăng gấp bốn qua route. Ruff và 330 pytest Verify đạt trước ca pilot mới; `test_expansion_routes.py` đạt 29 ca sau khi thêm pilot (1 cảnh báo Starlette). 74 unit TypeScript, check:web và build:web đạt. Toàn bộ API đạt 513 pytest, 9 skip khi không cấp DB test ở lượt trước ca pilot; ca route bị ảnh hưởng đã chạy lại. Nguồn/giả thiết vẫn cần T2/T4 duyệt trước khi mở `VERIFIED`.
 
 Kiểm Verify local 07/11/2026: 325 pytest tại `test_scientific_checks.py`, `test_foundation.py`, `test_expansion_routes.py` đạt (1 cảnh báo Starlette TestClient); 74 unit TypeScript và Ruff đạt. Docker proxy Verify con lắc trả preview, `facts={}`, `evidence=[]`, có `physics_invariants: pass`. Đây là kiểm tích hợp kỹ thuật, chưa phải duyệt nguồn hay chứng nhận khoa học.
 
