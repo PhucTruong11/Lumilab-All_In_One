@@ -1,0 +1,41 @@
+{
+  "schema_version": "1.0",
+  "id": "gas-reaction",
+  "title": "Phản ứng axit và muối bicarbonat",
+  "subject": "chemistry",
+  "model_version": "ideal-bicarbonate-gas-v1",
+  "dataset_version": "reaction-network-draft-2026-11-04",
+  "implementation_status": "client",
+  "review_status": "draft",
+  "assumptions": [
+    "HCl 0.100 mol/L, thể tích từ 0 đến 50 mL; NaHCO3 tinh khiết từ 0 đến 1 g; khối lượng mol NaHCO3 quy ước 84.0066 g/mol.",
+    "HCl(aq) + NaHCO3(s) → NaCl(aq) + CO2(g) + H2O(l); tỷ lệ mol HCl:NaHCO3:CO2 là 1:1:1; coi chất giới hạn phản ứng hoàn toàn.",
+    "Khí CO2 khô lý tưởng ở nhiệt độ cố định 298.15 K (25 °C), áp suất 1 atm. Dùng R = 0.082057366080960 L·atm/(mol·K), V = nRT/P; đầu ra khí mL.",
+    "Đây là lượng khí lý thuyết; không giải động học, nhiệt phản ứng, CO2 hòa tan, áp suất hơi nước, độ kín, hiệu suất thu khí hay kích thước bọt. Bọt khí chỉ là minh họa hiện tượng, không là số đo tốc độ.",
+    "Mô phỏng không phải hướng dẫn thực hành với axit ngoài đời; dữ liệu và mô hình chưa duyệt học thuật, chỉ preview."
+  ],
+  "sources": [
+    {
+      "label": "OpenStax Chemistry 2e §4.2 — Acid-base reactions, sodium bicarbonate và khí carbon dioxide",
+      "url": "https://openstax.org/books/chemistry-2e/pages/4-2-classifying-chemical-reactions"
+    },
+    {
+      "label": "OpenStax Chemistry 2e §4.4 — Reaction Yields, chất giới hạn",
+      "url": "https://openstax.org/books/chemistry-2e/pages/4-4-reaction-yields"
+    },
+    {
+      "label": "OpenStax Chemistry 2e §9.2 — The Ideal Gas Law, PV = nRT",
+      "url": "https://openstax.org/books/chemistry-2e/pages/9-2-relating-pressure-volume-amount-and-temperature-the-ideal-gas-law"
+    }
+  ],
+  "parameter_schema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": ["acidVolume_ml", "bicarbonateMass_g"],
+    "properties": {
+      "acidVolume_ml": {"type": "number", "minimum": 0, "maximum": 50, "description": "Thể tích HCl 0.100 mol/L, mL"},
+      "bicarbonateMass_g": {"type": "number", "minimum": 0, "maximum": 1, "description": "Khối lượng NaHCO3, g"}
+    }
+  },
+  "defaults": {"acidVolume_ml": 25, "bicarbonateMass_g": 0.3}
+}

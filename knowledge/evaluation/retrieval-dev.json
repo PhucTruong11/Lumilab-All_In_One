@@ -1,0 +1,324 @@
+{
+  "revision": "retrieval-development-2026-11-05",
+  "purpose": "Small authored development set; not independent held-out evidence",
+  "cases": [
+    {
+      "id": "pendulum-retrieval-01",
+      "lab_id": "pendulum",
+      "question": "Khối lượng có làm chu kỳ thay đổi không?",
+      "relevant_document_ids": [
+        "pendulum-overview"
+      ],
+      "split": "development",
+      "review_status": "draft",
+      "language": "vi"
+    },
+    {
+      "id": "pendulum-retrieval-02",
+      "lab_id": "pendulum",
+      "question": "Dây dài hơn thì chu kỳ thế nào?",
+      "relevant_document_ids": [
+        "pendulum-overview"
+      ],
+      "split": "development",
+      "review_status": "draft",
+      "language": "vi"
+    },
+    {
+      "id": "pendulum-retrieval-03",
+      "lab_id": "pendulum",
+      "question": "Góc thả lớn dùng công thức gì?",
+      "relevant_document_ids": [
+        "pendulum-overview"
+      ],
+      "split": "development",
+      "review_status": "draft",
+      "language": "vi"
+    },
+    {
+      "id": "pendulum-retrieval-04",
+      "lab_id": "pendulum",
+      "question": "Góc thả bằng không có dao động không?",
+      "relevant_document_ids": [
+        "pendulum-overview"
+      ],
+      "split": "development",
+      "review_status": "draft",
+      "language": "vi"
+    },
+    {
+      "id": "pendulum-retrieval-05",
+      "lab_id": "pendulum",
+      "question": "Chu kỳ của vật nặng so với vật nhẹ?",
+      "relevant_document_ids": [
+        "pendulum-overview"
+      ],
+      "split": "development",
+      "review_status": "draft",
+      "language": "vi"
+    },
+    {
+      "id": "pendulum-retrieval-06",
+      "lab_id": "pendulum",
+      "question": "How does length affect a pendulum period?",
+      "relevant_document_ids": [
+        "pendulum-overview"
+      ],
+      "split": "development",
+      "review_status": "draft",
+      "language": "en"
+    },
+    {
+      "id": "pendulum-retrieval-07",
+      "lab_id": "pendulum",
+      "question": "Does mass change the ideal pendulum period?",
+      "relevant_document_ids": [
+        "pendulum-overview"
+      ],
+      "split": "development",
+      "review_status": "draft",
+      "language": "en"
+    },
+    {
+      "id": "pendulum-retrieval-08",
+      "lab_id": "pendulum",
+      "question": "Why does large amplitude require a nonlinear model?",
+      "relevant_document_ids": [
+        "pendulum-overview"
+      ],
+      "split": "development",
+      "review_status": "draft",
+      "language": "en"
+    },
+    {
+      "id": "pendulum-retrieval-09",
+      "lab_id": "pendulum",
+      "question": "Bitcoin ngày mai tăng không?",
+      "relevant_document_ids": [],
+      "split": "development",
+      "review_status": "draft",
+      "language": "vi"
+    },
+    {
+      "id": "pendulum-retrieval-10",
+      "lab_id": "pendulum",
+      "question": "Tế bào thực vật có cấu trúc gì?",
+      "relevant_document_ids": [],
+      "split": "development",
+      "review_status": "draft",
+      "language": "vi"
+    },
+    {
+      "id": "circuit-retrieval-01",
+      "lab_id": "circuit",
+      "question": "Ampe kế phải mắc thế nào?",
+      "relevant_document_ids": [
+        "circuit-overview"
+      ],
+      "split": "development",
+      "review_status": "draft",
+      "language": "vi"
+    },
+    {
+      "id": "circuit-retrieval-02",
+      "lab_id": "circuit",
+      "question": "Vôn kế đo điện áp trên điện trở mắc thế nào?",
+      "relevant_document_ids": [
+        "circuit-overview"
+      ],
+      "split": "development",
+      "review_status": "draft",
+      "language": "vi"
+    },
+    {
+      "id": "circuit-retrieval-03",
+      "lab_id": "circuit",
+      "question": "Mạch hở có dòng điện không?",
+      "relevant_document_ids": [
+        "circuit-overview"
+      ],
+      "split": "development",
+      "review_status": "draft",
+      "language": "vi"
+    },
+    {
+      "id": "circuit-retrieval-04",
+      "lab_id": "circuit",
+      "question": "Thêm tải nối tiếp thì dòng thay đổi thế nào?",
+      "relevant_document_ids": [
+        "circuit-overview"
+      ],
+      "split": "development",
+      "review_status": "draft",
+      "language": "vi"
+    },
+    {
+      "id": "circuit-retrieval-05",
+      "lab_id": "circuit",
+      "question": "Đổi điện trở và giữ nguồn thì đo gì?",
+      "relevant_document_ids": [
+        "circuit-overview"
+      ],
+      "split": "development",
+      "review_status": "draft",
+      "language": "vi"
+    },
+    {
+      "id": "circuit-retrieval-06",
+      "lab_id": "circuit",
+      "question": "How should an ammeter be connected?",
+      "relevant_document_ids": [
+        "circuit-overview"
+      ],
+      "split": "development",
+      "review_status": "draft",
+      "language": "en"
+    },
+    {
+      "id": "circuit-retrieval-07",
+      "lab_id": "circuit",
+      "question": "Does an open switch stop the current?",
+      "relevant_document_ids": [
+        "circuit-overview"
+      ],
+      "split": "development",
+      "review_status": "draft",
+      "language": "en"
+    },
+    {
+      "id": "circuit-retrieval-08",
+      "lab_id": "circuit",
+      "question": "What resistance determines current through series loads?",
+      "relevant_document_ids": [
+        "circuit-overview"
+      ],
+      "split": "development",
+      "review_status": "draft",
+      "language": "en"
+    },
+    {
+      "id": "circuit-retrieval-09",
+      "lab_id": "circuit",
+      "question": "Dự báo thời tiết ngày mai?",
+      "relevant_document_ids": [],
+      "split": "development",
+      "review_status": "draft",
+      "language": "vi"
+    },
+    {
+      "id": "circuit-retrieval-10",
+      "lab_id": "circuit",
+      "question": "Cho cách điều trị cảm cúm?",
+      "relevant_document_ids": [],
+      "split": "development",
+      "review_status": "draft",
+      "language": "vi"
+    },
+    {
+      "id": "chemistry-retrieval-01",
+      "lab_id": "chemistry",
+      "question": "Điểm tương đương xác định bằng gì?",
+      "relevant_document_ids": [
+        "chemistry-overview"
+      ],
+      "split": "development",
+      "review_status": "draft",
+      "language": "vi"
+    },
+    {
+      "id": "chemistry-retrieval-02",
+      "lab_id": "chemistry",
+      "question": "pH tại tương đương của axit mạnh bazơ mạnh?",
+      "relevant_document_ids": [
+        "chemistry-overview"
+      ],
+      "split": "development",
+      "review_status": "draft",
+      "language": "vi"
+    },
+    {
+      "id": "chemistry-retrieval-03",
+      "lab_id": "chemistry",
+      "question": "Phenolphthalein đổi màu có trùng tương đương không?",
+      "relevant_document_ids": [
+        "chemistry-overview"
+      ],
+      "split": "development",
+      "review_status": "draft",
+      "language": "vi"
+    },
+    {
+      "id": "chemistry-retrieval-04",
+      "lab_id": "chemistry",
+      "question": "Màu trong lab là đo thực nghiệm hay minh họa?",
+      "relevant_document_ids": [
+        "chemistry-overview"
+      ],
+      "split": "development",
+      "review_status": "draft",
+      "language": "vi"
+    },
+    {
+      "id": "chemistry-retrieval-05",
+      "lab_id": "chemistry",
+      "question": "Axit 25 mL 0,1 M cần bao nhiêu bazơ 0,1 M?",
+      "relevant_document_ids": [
+        "chemistry-overview"
+      ],
+      "split": "development",
+      "review_status": "draft",
+      "language": "vi"
+    },
+    {
+      "id": "chemistry-retrieval-06",
+      "lab_id": "chemistry",
+      "question": "What is the pH at equivalence for a strong acid and strong base?",
+      "relevant_document_ids": [
+        "chemistry-overview"
+      ],
+      "split": "development",
+      "review_status": "draft",
+      "language": "en"
+    },
+    {
+      "id": "chemistry-retrieval-07",
+      "lab_id": "chemistry",
+      "question": "Is the indicator endpoint the same as equivalence?",
+      "relevant_document_ids": [
+        "chemistry-overview"
+      ],
+      "split": "development",
+      "review_status": "draft",
+      "language": "en"
+    },
+    {
+      "id": "chemistry-retrieval-08",
+      "lab_id": "chemistry",
+      "question": "Why does one drop near equivalence change the pH?",
+      "relevant_document_ids": [
+        "chemistry-overview"
+      ],
+      "split": "development",
+      "review_status": "draft",
+      "language": "en"
+    },
+    {
+      "id": "chemistry-retrieval-09",
+      "lab_id": "chemistry",
+      "question": "Tổng thống nước Mỹ hiện tại là ai?",
+      "relevant_document_ids": [],
+      "split": "development",
+      "review_status": "draft",
+      "language": "vi"
+    },
+    {
+      "id": "chemistry-retrieval-10",
+      "lab_id": "chemistry",
+      "question": "Tính lãi suất ngân hàng cho tui?",
+      "relevant_document_ids": [],
+      "split": "development",
+      "review_status": "draft",
+      "language": "vi"
+    }
+  ]
+}

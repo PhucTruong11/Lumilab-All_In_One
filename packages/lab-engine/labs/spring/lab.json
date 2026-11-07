@@ -1,0 +1,54 @@
+{
+  "schema_version": "1.0",
+  "id": "spring",
+  "title": "Con lắc lò xo",
+  "subject": "physics",
+  "model_version": "horizontal-hooke-oscillator-v1",
+  "dataset_version": "client-expansion-draft-2026-11-01",
+  "implementation_status": "client",
+  "review_status": "draft",
+  "assumptions": [
+    "Lò xo ngang lý tưởng, không khối lượng/ma sát, vật chất điểm, tuân Hooke.",
+    "Thả từ li độ ban đầu với vận tốc0; biên độ là trị tuyệt đối li độ thả;0m không có dao động."
+  ],
+  "sources": [
+    {
+      "label": "Con lắc lò xo · OpenStax",
+      "url": "https://openstax.org/books/university-physics-volume-1/pages/15-1-simple-harmonic-motion"
+    }
+  ],
+  "parameter_schema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "mass_kg",
+      "stiffness_N_m",
+      "displacement_m"
+    ],
+    "properties": {
+      "mass_kg": {
+        "type": "number",
+        "minimum": 0.1,
+        "maximum": 2,
+        "description": "kg"
+      },
+      "stiffness_N_m": {
+        "type": "number",
+        "minimum": 5,
+        "maximum": 100,
+        "description": "N/m"
+      },
+      "displacement_m": {
+        "type": "number",
+        "minimum": -0.4,
+        "maximum": 0.4,
+        "description": "m"
+      }
+    }
+  },
+  "defaults": {
+    "mass_kg": 0.5,
+    "stiffness_N_m": 20,
+    "displacement_m": 0.2
+  }
+}

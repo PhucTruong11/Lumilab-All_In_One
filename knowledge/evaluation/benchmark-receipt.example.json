@@ -1,0 +1,14 @@
+{
+  "purpose": "adult_developer_benchmark",
+  "operator_18_plus": false,
+  "account_verified": false,
+  "free_quota_verified": false,
+  "remaining_attempts": 0,
+  "checked_on": "",
+  "model": "gemini-3.5-flash-lite",
+  "event_cap": 0,
+  "reserved_demo": 5,
+  "benchmark_sha256": "",
+  "dataset_send_provider_approved": false,
+  "session_id": null
+}

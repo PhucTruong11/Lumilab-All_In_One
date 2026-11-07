@@ -1,0 +1,368 @@
+{
+  "$defs": {
+    "Document": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "maxLength": 100,
+          "minLength": 1,
+          "title": "Id",
+          "type": "string"
+        },
+        "lab_id": {
+          "maxLength": 32,
+          "minLength": 1,
+          "title": "Lab Id",
+          "type": "string"
+        },
+        "title": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Title",
+          "type": "string"
+        },
+        "text": {
+          "maxLength": 4000,
+          "minLength": 1,
+          "title": "Text",
+          "type": "string"
+        },
+        "keywords": {
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 30,
+          "title": "Keywords",
+          "type": "array"
+        },
+        "review_status": {
+          "enum": [
+            "draft",
+            "cross_checked",
+            "reviewed"
+          ],
+          "title": "Review Status",
+          "type": "string"
+        },
+        "provenance": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Provenance"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "cross_checked_by": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Cross Checked By"
+        },
+        "cross_checked_at": {
+          "anyOf": [
+            {
+              "format": "date",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Cross Checked At"
+        },
+        "reviewer": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Reviewer"
+        },
+        "reviewed_at": {
+          "anyOf": [
+            {
+              "format": "date",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Reviewed At"
+        },
+        "origin": {
+          "enum": [
+            "project-authored",
+            "external"
+          ],
+          "title": "Origin",
+          "type": "string"
+        },
+        "external_material_use": {
+          "enum": [
+            "reference-only",
+            "licensed-excerpt"
+          ],
+          "title": "External Material Use",
+          "type": "string"
+        },
+        "references": {
+          "items": {
+            "$ref": "#/$defs/Reference"
+          },
+          "maxItems": 8,
+          "minItems": 1,
+          "title": "References",
+          "type": "array"
+        },
+        "assumptions": {
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 12,
+          "minItems": 1,
+          "title": "Assumptions",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "lab_id",
+        "title",
+        "text",
+        "keywords",
+        "review_status",
+        "reviewer",
+        "reviewed_at",
+        "origin",
+        "external_material_use",
+        "references",
+        "assumptions"
+      ],
+      "title": "Document",
+      "type": "object"
+    },
+    "Provenance": {
+      "additionalProperties": false,
+      "properties": {
+        "source_id": {
+          "title": "Source Id",
+          "type": "string"
+        },
+        "book": {
+          "title": "Book",
+          "type": "string"
+        },
+        "chapter": {
+          "title": "Chapter",
+          "type": "string"
+        },
+        "section": {
+          "title": "Section",
+          "type": "string"
+        },
+        "pages": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Pages"
+        },
+        "license": {
+          "title": "License",
+          "type": "string"
+        },
+        "commit": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Commit"
+        },
+        "source_language": {
+          "default": "vi",
+          "title": "Source Language",
+          "type": "string"
+        },
+        "level": {
+          "default": "THPT",
+          "enum": [
+            "THPT",
+            "THCS"
+          ],
+          "title": "Level",
+          "type": "string"
+        },
+        "curriculum_series": {
+          "default": "Chân trời sáng tạo",
+          "title": "Curriculum Series",
+          "type": "string"
+        },
+        "curriculum_status": {
+          "default": "pending",
+          "enum": [
+            "pending",
+            "reviewed"
+          ],
+          "title": "Curriculum Status",
+          "type": "string"
+        },
+        "curriculum_edition": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Curriculum Edition"
+        },
+        "constants": {
+          "additionalProperties": {
+            "type": "number"
+          },
+          "title": "Constants",
+          "type": "object"
+        },
+        "units": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "title": "Units",
+          "type": "object"
+        },
+        "conditions": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "title": "Conditions",
+          "type": "object"
+        },
+        "equation": {
+          "anyOf": [
+            {
+              "additionalProperties": {
+                "additionalProperties": {
+                  "type": "integer"
+                },
+                "type": "object"
+              },
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Equation"
+        },
+        "academic_review_role": {
+          "anyOf": [
+            {
+              "const": "teacher",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Academic Review Role"
+        }
+      },
+      "required": [
+        "source_id",
+        "book",
+        "chapter",
+        "section",
+        "license",
+        "commit"
+      ],
+      "title": "Provenance",
+      "type": "object"
+    },
+    "Reference": {
+      "additionalProperties": false,
+      "properties": {
+        "label": {
+          "maxLength": 300,
+          "minLength": 1,
+          "title": "Label",
+          "type": "string"
+        },
+        "url": {
+          "format": "uri",
+          "maxLength": 2083,
+          "minLength": 1,
+          "title": "Url",
+          "type": "string"
+        },
+        "authority": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Authority"
+        }
+      },
+      "required": [
+        "label",
+        "url"
+      ],
+      "title": "Reference",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "revision": {
+      "maxLength": 100,
+      "minLength": 1,
+      "title": "Revision",
+      "type": "string"
+    },
+    "documents": {
+      "items": {
+        "$ref": "#/$defs/Document"
+      },
+      "maxItems": 1000,
+      "title": "Documents",
+      "type": "array"
+    }
+  },
+  "required": [
+    "revision",
+    "documents"
+  ],
+  "title": "Corpus",
+  "type": "object"
+}

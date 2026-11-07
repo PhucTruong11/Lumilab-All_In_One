@@ -1,0 +1,26 @@
+{
+  "dataset_version": "react-labs-v1-draft",
+  "review_status": "pending-T2-T4",
+  "assumptions": "Strong monoprotic acid/base 0.1 mol/L, 25 mL acid, 25 C, additive volumes, Kw=1e-14. Ideal DC series loads; V measures main R. Client model only.",
+  "titration": {
+    "model_version": "ideal-strong-titration-ts-v1",
+    "evidence": "SCIENCE.md; OpenStax Chemistry 2e 14.7. Analytic limiting acid/base concentration and water equilibrium; pH tolerances allow small water contribution away from equivalence.",
+    "cases": [
+      { "id": "initial", "baseVolume_ml": 0, "pH": 1, "tolerance": 0.000001 },
+      { "id": "before-equivalence", "baseVolume_ml": 24.95, "pH": 4.000, "tolerance": 0.001 },
+      { "id": "equivalence", "baseVolume_ml": 25, "pH": 7, "tolerance": 0.000000001 },
+      { "id": "after-equivalence", "baseVolume_ml": 25.05, "pH": 9.999566, "tolerance": 0.000002 },
+      { "id": "base-excess", "baseVolume_ml": 50, "pH": 12.522879, "tolerance": 0.000001 }
+    ]
+  },
+  "circuit": {
+    "model_version": "ideal-series-circuit-ts-v1",
+    "evidence": "OpenStax University Physics 2 10.2/10.4; independently solve I=U/Rtotal, UV=IRmain, P=UI.",
+    "cases": [
+      { "id": "main-only", "slots": [null, null, null], "current_A": 0.3, "resistorVoltage_V": 6, "power_W": 1.8 },
+      { "id": "series-extra", "slots": ["extraResistor", null, null], "current_A": 0.15, "resistorVoltage_V": 3, "power_W": 0.9 },
+      { "id": "series-both", "slots": ["bulb", "extraResistor", "switchInstalled"], "current_A": 0.12, "resistorVoltage_V": 2.4, "power_W": 0.72 }
+    ],
+    "tolerance": 0.0000000001
+  }
+}

@@ -1,0 +1,195 @@
+{
+  "created_at": "2026-11-06T00:48:19.167280+00:00",
+  "scientific_status": "draft",
+  "curriculum": {
+    "series": "Chân trời sáng tạo",
+    "edition": null,
+    "pages": null,
+    "status": "pending"
+  },
+  "sources": [
+    {
+      "source_id": "osbooks-physics",
+      "commit": "56e71824e73e371c0d20eb68a77611aa438b5f89",
+      "url": "https://github.com/openstax/osbooks-physics",
+      "license": "CC-BY-4.0",
+      "license_sha256": "0ff174546cbe3dd1287da231f9796618ac2f6e6595b2d11f567b2c9790f64868",
+      "rights_status": "pending",
+      "module_count": 100,
+      "text_bytes": 4753571,
+      "selected_module_count": 18,
+      "candidate_sections": [
+        {
+          "path": "modules/m54131/index.cnxml",
+          "title": "Newton's Third Law of Motion",
+          "sha256": "38debe9dd79d477ff9feb0c41f1a773fc861beb05a05604837da197b4bb349c5",
+          "bytes": 55756,
+          "topics": [
+            "forces_pulleys"
+          ]
+        },
+        {
+          "path": "modules/m54135/index.cnxml",
+          "title": "Force",
+          "sha256": "1e0e19d0914456fd54899c63e5eea1e513d2c38a152b6f7238cf5cf1f7e86d69",
+          "bytes": 27256,
+          "topics": [
+            "forces_pulleys"
+          ]
+        },
+        {
+          "path": "modules/m54138/index.cnxml",
+          "title": "Newton's First Law of Motion: Inertia",
+          "sha256": "a80c8b217fce876320c8f2fd7c5d11c0f73411cd7a50cb276bfd37ff1c3d5684",
+          "bytes": 36853,
+          "topics": [
+            "forces_pulleys"
+          ]
+        },
+        {
+          "path": "modules/m54142/index.cnxml",
+          "title": "Newton's Second Law of Motion",
+          "sha256": "d41a4d2058bc38c572c7028317c27985524fdfa5a25d173e2552bb4594f6a0d2",
+          "bytes": 57010,
+          "topics": [
+            "forces_pulleys"
+          ]
+        },
+        {
+          "path": "modules/m54154/index.cnxml",
+          "title": "Simple Harmonic Motion",
+          "sha256": "3f2f24b70a80d49858fc9d8a231f829810ccdd1314763b9be2dffb0bf1a5bc31",
+          "bytes": 55028,
+          "topics": [
+            "pendulum"
+          ]
+        },
+        {
+          "path": "modules/m54189/index.cnxml",
+          "title": "Newton's Law of Universal Gravitation and Einstein's Theory of General Relativity",
+          "sha256": "e96729ff41211f88e6db45a8d9df5ba467fbd3fc368a57664f8ce964b278f3e0",
+          "bytes": 70278,
+          "topics": [
+            "forces_pulleys"
+          ]
+        },
+        {
+          "path": "modules/m54215/index.cnxml",
+          "title": "Linear Momentum, Force, and Impulse",
+          "sha256": "28138a9abfc371159beb48364d7c44faacf0e2ccb24365e6d5417b17b8bb5615",
+          "bytes": 62446,
+          "topics": [
+            "forces_pulleys"
+          ]
+        },
+        {
+          "path": "modules/m54271/index.cnxml",
+          "title": "Work, Power, and the Work–Energy Theorem",
+          "sha256": "a725f64eef150bf333fbbe40c7afe55c99b9f26dd72a001e467d65ec9c4783b0",
+          "bytes": 51877,
+          "topics": [
+            "forces_pulleys"
+          ]
+        }
+      ],
+      "ingested": false,
+      "note": "Title keyword selection only; review chapter/level/science and rights before import."
+    },
+    {
+      "source_id": "osbooks-chemistry-bundle",
+      "commit": "db0a8e6027100ce082e67fc8879faab86f9a58a7",
+      "url": "https://github.com/openstax/osbooks-chemistry-bundle",
+      "license": "CC-BY-NC-SA-4.0",
+      "license_sha256": "ab1a44bbba58252630134574d7b2534813339240eb645825ffcc2487dbe8114a",
+      "rights_status": "pending",
+      "module_count": 176,
+      "text_bytes": 9208644,
+      "selected_module_count": 38,
+      "candidate_sections": [
+        {
+          "path": "modules/m68667/index.cnxml",
+          "title": "Phases and Classification of Matter",
+          "sha256": "b475db0a65516445faf786769f8c93ac74faf0465b692f1116a22c6223041448",
+          "bytes": 50058,
+          "topics": [
+            "acid_base"
+          ]
+        },
+        {
+          "path": "modules/m68670/index.cnxml",
+          "title": "Physical and Chemical Properties",
+          "sha256": "dbda94a3174bb1612d03ac7a59f73290960ad155bdff3d5aa00a075dd21d3579",
+          "bytes": 19425,
+          "topics": [
+            "acid_base"
+          ]
+        },
+        {
+          "path": "modules/m68696/index.cnxml",
+          "title": "Ionic and Molecular Compounds",
+          "sha256": "e1f8d7208735d7f549546e3854ca8cd518ed7efa041789397d9059bea89cd3ee",
+          "bytes": 44456,
+          "topics": [
+            "precipitation"
+          ]
+        },
+        {
+          "path": "modules/m68710/index.cnxml",
+          "title": "Classifying Chemical Reactions",
+          "sha256": "c719e62a4f4abda07120fd310571fc04ee814a8ddf0353725538b95634081bf9",
+          "bytes": 188483,
+          "topics": [
+            "inorganic_reactions"
+          ]
+        },
+        {
+          "path": "modules/m68713/index.cnxml",
+          "title": "Reaction Stoichiometry",
+          "sha256": "de6a87fe7198dfda846d64c54fb35f577193bd7ff4860d03ab52046dd5109aa9",
+          "bytes": 54030,
+          "topics": [
+            "inorganic_reactions"
+          ]
+        },
+        {
+          "path": "modules/m68714/index.cnxml",
+          "title": "Reaction Yields",
+          "sha256": "f57fe5b0184e3db64155f7542058f2092d8d88928c3f22dbeea7a461b5042e7f",
+          "bytes": 45125,
+          "topics": [
+            "inorganic_reactions"
+          ]
+        },
+        {
+          "path": "modules/m68737/index.cnxml",
+          "title": "Ionic Bonding",
+          "sha256": "9f33812c393f6a0a74ee50a2193e02ac79774acfa6bf75acfa64afb5d31fd82f",
+          "bytes": 29760,
+          "topics": [
+            "precipitation"
+          ]
+        },
+        {
+          "path": "modules/m68741/index.cnxml",
+          "title": "Strengths of Ionic and Covalent Bonds",
+          "sha256": "a2cd319c26ba8a1771072d5c0b4ba4597af963580fd2d7da2c4ad00317d0e635",
+          "bytes": 83007,
+          "topics": [
+            "precipitation"
+          ]
+        }
+      ],
+      "ingested": false,
+      "note": "Title keyword selection only; review chapter/level/science and rights before import."
+    }
+  ],
+  "llm_calls": 0,
+  "vmlu": {
+    "status": "AUTHENTICATED_DOWNLOAD_REQUIRED",
+    "url": "https://vmlu.ai/#Download",
+    "repo_commit": "b0225316f4eaa1e2ca39c4164075d1b1aee4e220",
+    "dataset_downloaded": false,
+    "license_status": "dataset_terms_pending",
+    "note": "Do not reuse website credentials or unofficial mirrors. Repo MIT is not a dataset grant."
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "schema_version": "1.0",
+  "id": "pendulum",
+  "title": "Con lắc đơn",
+  "subject": "physics",
+  "model_version": "pendulum-agm-v1",
+  "dataset_version": "client-draft-2026-11-01",
+  "implementation_status": "client",
+  "review_status": "draft",
+  "assumptions": [
+    "Vật chất điểm, dây không dãn, không ma sát; góc 0–90°, phi tuyến AGM.",
+    "Vật liệu chỉ minh họa; góc0 không có chu kỳ đo."
+  ],
+  "sources": [
+    {
+      "label": "NIST DLMF §22.19: Pendulum",
+      "url": "https://dlmf.nist.gov/22.19"
+    },
+    {
+      "label": "NIST DLMF §19.8: AGM",
+      "url": "https://dlmf.nist.gov/19.8"
+    }
+  ],
+  "parameter_schema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "length_m",
+      "mass_kg",
+      "angle_deg",
+      "gravity_m_s2"
+    ],
+    "properties": {
+      "length_m": {
+        "type": "number",
+        "minimum": 0.3,
+        "maximum": 2,
+        "description": "m"
+      },
+      "mass_kg": {
+        "type": "number",
+        "minimum": 0.1,
+        "maximum": 1,
+        "description": "kg"
+      },
+      "angle_deg": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 90,
+        "description": "degree"
+      },
+      "gravity_m_s2": {
+        "const": 9.81,
+        "description": "m/s²"
+      }
+    }
+  },
+  "defaults": {
+    "length_m": 1,
+    "mass_kg": 0.2,
+    "angle_deg": 35,
+    "gravity_m_s2": 9.81
+  },
+  "constants": {
+    "gravity_m_s2": 9.81
+  },
+  "constant_units": {
+    "gravity_m_s2": "m/s^2"
+  }
+}

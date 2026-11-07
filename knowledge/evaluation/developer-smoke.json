@@ -1,0 +1,88 @@
+{
+  "revision": "developer-smoke-2026-11-06",
+  "split": "development_fixture_not_vmlu",
+  "review_status": "draft",
+  "teacher_review": null,
+  "license": "LicenseRef-LumiLab-Draft",
+  "cases": [
+    {
+      "id": "dev-circuit-ohm",
+      "subject": "high_school_physics",
+      "lab_id": "circuit",
+      "level": "THPT",
+      "question": "Trong mô hình điện trở lý tưởng, nguồn 6 V nối điện trở 20 ohm. Dòng điện là bao nhiêu?",
+      "options": [
+        "0,3 A",
+        "3 A",
+        "120 A",
+        "26 A"
+      ],
+      "answer": "A",
+      "tool": {
+        "operation": "ohm_current",
+        "values": {
+          "voltage_V": 6,
+          "resistance_ohm": 20
+        }
+      }
+    },
+    {
+      "id": "dev-pendulum-mass",
+      "subject": "high_school_physics",
+      "lab_id": "pendulum",
+      "level": "THPT",
+      "question": "Giữ chiều dài dây, gia tốc trọng trường và góc thả nhỏ. Trong mô hình con lắc lý tưởng, đổi khối lượng ảnh hưởng chu kỳ thế nào?",
+      "options": [
+        "Chu kỳ tăng theo khối lượng",
+        "Chu kỳ giảm theo khối lượng",
+        "Chu kỳ không đổi",
+        "Không có dao động"
+      ],
+      "answer": "C"
+    },
+    {
+      "id": "dev-unit-volume",
+      "subject": "middle_school_chemistry",
+      "lab_id": "chemistry",
+      "level": "THCS",
+      "question": "Đổi 25 mL thành đơn vị L.",
+      "options": [
+        "0,25 L",
+        "0,025 L",
+        "2,5 L",
+        "25 L"
+      ],
+      "answer": "B",
+      "tool": {
+        "operation": "convert_unit",
+        "values": {
+          "value": 25
+        },
+        "from_unit": "mL",
+        "to_unit": "L"
+      }
+    },
+    {
+      "id": "dev-force-linear",
+      "subject": "middle_school_physics",
+      "lab_id": "mechanics",
+      "level": "THCS",
+      "question": "Cho hệ thức lý tưởng 2x + 1 = 7. Giá trị x là bao nhiêu?",
+      "options": [
+        "2",
+        "3",
+        "4",
+        "6"
+      ],
+      "answer": "B",
+      "tool": {
+        "operation": "linear_equation",
+        "values": {
+          "a": 2,
+          "b": 1,
+          "c": 7
+        }
+      }
+    }
+  ]
+}

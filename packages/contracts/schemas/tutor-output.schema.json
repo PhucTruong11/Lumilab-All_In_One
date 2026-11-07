@@ -1,0 +1,39 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "message": {
+      "maxLength": 1500,
+      "minLength": 1,
+      "title": "Message",
+      "type": "string"
+    },
+    "citation_ids": {
+      "items": {
+        "type": "string"
+      },
+      "maxItems": 3,
+      "title": "Citation Ids",
+      "type": "array"
+    },
+    "follow_up": {
+      "anyOf": [
+        {
+          "maxLength": 400,
+          "minLength": 1,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Follow Up"
+    }
+  },
+  "required": [
+    "message",
+    "citation_ids"
+  ],
+  "title": "TutorOutput",
+  "type": "object"
+}

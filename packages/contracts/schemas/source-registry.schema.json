@@ -1,0 +1,183 @@
+{
+  "$defs": {
+    "Source": {
+      "additionalProperties": false,
+      "properties": {
+        "id": {
+          "pattern": "^[a-z0-9-]+$",
+          "title": "Id",
+          "type": "string"
+        },
+        "title": {
+          "title": "Title",
+          "type": "string"
+        },
+        "url": {
+          "format": "uri",
+          "maxLength": 2083,
+          "minLength": 1,
+          "title": "Url",
+          "type": "string"
+        },
+        "license": {
+          "title": "License",
+          "type": "string"
+        },
+        "license_url": {
+          "anyOf": [
+            {
+              "format": "uri",
+              "maxLength": 2083,
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "License Url"
+        },
+        "commit": {
+          "anyOf": [
+            {
+              "pattern": "^[0-9a-f]{40}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Commit"
+        },
+        "accessed_at": {
+          "format": "date",
+          "title": "Accessed At",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "external",
+            "project-authored"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "rights_status": {
+          "enum": [
+            "pending",
+            "internal",
+            "approved",
+            "rejected"
+          ],
+          "title": "Rights Status",
+          "type": "string"
+        },
+        "allowed_uses": {
+          "items": {
+            "enum": [
+              "convert",
+              "index",
+              "send_llm",
+              "commercial"
+            ],
+            "type": "string"
+          },
+          "title": "Allowed Uses",
+          "type": "array"
+        },
+        "reviewer": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Reviewer"
+        },
+        "reviewed_at": {
+          "anyOf": [
+            {
+              "format": "date",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Reviewed At"
+        },
+        "purpose": {
+          "title": "Purpose",
+          "type": "string"
+        },
+        "restrictions": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Restrictions",
+          "type": "array"
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "url",
+        "license",
+        "license_url",
+        "commit",
+        "accessed_at",
+        "kind",
+        "rights_status",
+        "allowed_uses",
+        "reviewer",
+        "reviewed_at",
+        "purpose",
+        "restrictions"
+      ],
+      "title": "Source",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "source-registry-1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "revision": {
+      "title": "Revision",
+      "type": "string"
+    },
+    "curriculum": {
+      "additionalProperties": true,
+      "title": "Curriculum",
+      "type": "object"
+    },
+    "mvp_lab_ids": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Mvp Lab Ids",
+      "type": "array"
+    },
+    "sources": {
+      "items": {
+        "$ref": "#/$defs/Source"
+      },
+      "title": "Sources",
+      "type": "array"
+    }
+  },
+  "required": [
+    "schema_version",
+    "revision",
+    "curriculum",
+    "mvp_lab_ids",
+    "sources"
+  ],
+  "title": "Registry",
+  "type": "object"
+}

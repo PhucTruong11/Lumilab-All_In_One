@@ -1,0 +1,9 @@
+{
+  "dataset_version": "client-expansion-draft-2026-11-01",
+  "review_status": "pending-T2-T4",
+  "mechanics": {"model_version":"constant-force-motion-v1","source":"OpenStax University Physics1 §5.3","assumptions":"constant resultant force, inertial frame, no friction, SI units","parameters":{"mass_kg":2,"force_N":6,"initialVelocity_m_s":1},"time_s":2,"expected":{"acceleration_m_s2":3,"velocity_m_s":7,"position_m":8,"kineticEnergy_J":49}},
+  "spring": {"model_version":"horizontal-hooke-oscillator-v1","source":"OpenStax University Physics1 §15.1","assumptions":"horizontal Hooke spring, no friction, release from rest","parameters":{"mass_kg":0.5,"stiffness_N_m":20,"displacement_m":0.2},"expected":{"period_s":0.9934588265796101,"totalEnergy_J":0.4}},
+  "cell": {"model_version":"standard-galvanic-cell-v1","source":"OpenStax Chemistry2e §17.3; E° rounded to0.01V","assumptions":"25C, ion activities1, ideal meter positive terminal at right","cases":[{"left":"zn","right":"cu","emf_V":1.1,"voltage_V":1.1},{"left":"cu","right":"zn","emf_V":1.1,"voltage_V":-1.1},{"left":"cu","right":"ag","emf_V":0.46,"voltage_V":0.46},{"left":"zn","right":"ag","emf_V":1.56,"voltage_V":1.56},{"left":"zn","right":"zn","emf_V":0,"voltage_V":0}]},
+  "atomic": {"model_version":"atomic-particle-counts-v1","source":"OpenStax Chemistry2e §2.3","assumptions":"particle counts only, no isotope stability prediction or literal orbital trajectories","parameters":{"protons":11,"neutrons":12,"electrons":10},"expected":{"symbol":"Na","massNumber":23,"charge_e":1}},
+  "absolute_tolerance": 1e-10
+}

@@ -1,0 +1,282 @@
+{
+  "revision": "retrieval-challenge-08-2026-11-06",
+  "purpose": "Project-authored challenge frozen before RAG08 edits, not independent teacher-reviewed held-out validation",
+  "cases": [
+    {
+      "id": "challenge-01",
+      "lab_id": "pendulum",
+      "level": "THPT",
+      "question": "Nếu quả cầu nặng gấp đôi thì thời gian một vòng dao động có tăng không?",
+      "relevant_document_ids": [
+        "pendulum-overview"
+      ],
+      "split": "frozen_challenge",
+      "review_status": "draft",
+      "language": "vi"
+    },
+    {
+      "id": "challenge-02",
+      "lab_id": "pendulum",
+      "level": "THPT",
+      "question": "How is the period affected by increasing the string length?",
+      "relevant_document_ids": [
+        "pendulum-overview"
+      ],
+      "split": "frozen_challenge",
+      "review_status": "draft",
+      "language": "en"
+    },
+    {
+      "id": "challenge-03",
+      "lab_id": "pendulum",
+      "level": "THCS",
+      "question": "Một chu kỳ dao động được hiểu ra sao?",
+      "relevant_document_ids": [
+        "pendulum-thcs-foundation"
+      ],
+      "split": "frozen_challenge",
+      "review_status": "draft",
+      "language": "vi"
+    },
+    {
+      "id": "challenge-04",
+      "lab_id": "pendulum",
+      "level": "THPT",
+      "question": "What changes when the release angle is large?",
+      "relevant_document_ids": [
+        "pendulum-overview"
+      ],
+      "split": "frozen_challenge",
+      "review_status": "draft",
+      "language": "en"
+    },
+    {
+      "id": "challenge-05",
+      "lab_id": "circuit",
+      "level": "THPT",
+      "question": "Which connection is required for the voltmeter?",
+      "relevant_document_ids": [
+        "circuit-overview"
+      ],
+      "split": "frozen_challenge",
+      "review_status": "draft",
+      "language": "en"
+    },
+    {
+      "id": "challenge-06",
+      "lab_id": "circuit",
+      "level": "THPT",
+      "question": "Why is there no current when the circuit is open?",
+      "relevant_document_ids": [
+        "circuit-overview"
+      ],
+      "split": "frozen_challenge",
+      "review_status": "draft",
+      "language": "en"
+    },
+    {
+      "id": "challenge-07",
+      "lab_id": "circuit",
+      "level": "THCS",
+      "question": "Điện trở tăng khi giữ nguyên hiệu điện thế thì dòng điện ra sao?",
+      "relevant_document_ids": [
+        "circuit-thcs-foundation"
+      ],
+      "split": "frozen_challenge",
+      "review_status": "draft",
+      "language": "vi"
+    },
+    {
+      "id": "challenge-08",
+      "lab_id": "parallel-circuit",
+      "level": "THPT",
+      "question": "How does parallel wiring affect the branch voltage?",
+      "relevant_document_ids": [
+        "parallel-circuit-overview"
+      ],
+      "split": "frozen_challenge",
+      "review_status": "draft",
+      "language": "en"
+    },
+    {
+      "id": "challenge-09",
+      "lab_id": "chemistry",
+      "level": "THPT",
+      "question": "Is the color endpoint identical to the equivalence point?",
+      "relevant_document_ids": [
+        "chemistry-overview"
+      ],
+      "split": "frozen_challenge",
+      "review_status": "draft",
+      "language": "en"
+    },
+    {
+      "id": "challenge-10",
+      "lab_id": "chemistry",
+      "level": "THPT",
+      "question": "Why add the titrant slowly near equivalence?",
+      "relevant_document_ids": [
+        "chemistry-overview"
+      ],
+      "split": "frozen_challenge",
+      "review_status": "draft",
+      "language": "en"
+    },
+    {
+      "id": "challenge-11",
+      "lab_id": "chemistry",
+      "level": "THCS",
+      "question": "Có thể dùng quy tắc thể tích bằng nhau khi nồng độ axit và bazơ khác nhau không?",
+      "relevant_document_ids": [
+        "chemistry-thcs-foundation"
+      ],
+      "split": "frozen_challenge",
+      "review_status": "draft",
+      "language": "vi"
+    },
+    {
+      "id": "challenge-12",
+      "lab_id": "chemistry",
+      "level": "THPT",
+      "question": "Trong lab màu dung dịch có phải số đo thực nghiệm không?",
+      "relevant_document_ids": [
+        "chemistry-overview"
+      ],
+      "split": "frozen_challenge",
+      "review_status": "draft",
+      "language": "vi"
+    },
+    {
+      "id": "challenge-13",
+      "lab_id": "mechanics",
+      "level": "THCS",
+      "question": "Ròng rọc động lý tưởng đổi lực kéo và quãng đường như thế nào?",
+      "relevant_document_ids": [
+        "mechanics-thcs-foundation"
+      ],
+      "split": "frozen_challenge",
+      "review_status": "draft",
+      "language": "vi"
+    },
+    {
+      "id": "challenge-14",
+      "lab_id": "mechanics",
+      "level": "THPT",
+      "question": "Nếu hợp lực không đổi thì gia tốc phụ thuộc yếu tố nào?",
+      "relevant_document_ids": [
+        "mechanics-overview"
+      ],
+      "split": "frozen_challenge",
+      "review_status": "draft",
+      "language": "vi"
+    },
+    {
+      "id": "challenge-15",
+      "lab_id": "precipitation",
+      "level": "THPT",
+      "question": "How is the amount of precipitate related to the limiting reactant?",
+      "relevant_document_ids": [
+        "precipitation-overview"
+      ],
+      "split": "frozen_challenge",
+      "review_status": "draft",
+      "language": "en"
+    },
+    {
+      "id": "challenge-16",
+      "lab_id": "precipitation",
+      "level": "THCS",
+      "question": "Có phải mọi dung dịch trộn với nhau đều tạo chất rắn không?",
+      "relevant_document_ids": [
+        "precipitation-thcs-foundation"
+      ],
+      "split": "frozen_challenge",
+      "review_status": "draft",
+      "language": "vi"
+    },
+    {
+      "id": "challenge-17",
+      "lab_id": "gas-reaction",
+      "level": "THPT",
+      "question": "Ở 25 độ C một atm có được dùng thể tích mol 22,4 lít không?",
+      "relevant_document_ids": [
+        "gas-reaction-overview"
+      ],
+      "split": "frozen_challenge",
+      "review_status": "draft",
+      "language": "vi"
+    },
+    {
+      "id": "challenge-18",
+      "lab_id": "gas-reaction",
+      "level": "THCS",
+      "question": "Thấy bọt khí có đủ để khẳng định danh tính khí không?",
+      "relevant_document_ids": [
+        "gas-reaction-thcs-foundation"
+      ],
+      "split": "frozen_challenge",
+      "review_status": "draft",
+      "language": "vi"
+    },
+    {
+      "id": "challenge-19",
+      "lab_id": "pendulum",
+      "level": "THPT",
+      "question": "Giá vàng ngày mai tăng hay giảm?",
+      "relevant_document_ids": [],
+      "split": "frozen_challenge",
+      "review_status": "draft",
+      "language": "vi"
+    },
+    {
+      "id": "challenge-20",
+      "lab_id": "circuit",
+      "level": "THCS",
+      "question": "Làm sao chữa bệnh cúm nhanh?",
+      "relevant_document_ids": [],
+      "split": "frozen_challenge",
+      "review_status": "draft",
+      "language": "vi"
+    },
+    {
+      "id": "challenge-21",
+      "lab_id": "chemistry",
+      "level": "THPT",
+      "question": "Viết cho em một bài thơ tình yêu.",
+      "relevant_document_ids": [],
+      "split": "frozen_challenge",
+      "review_status": "draft",
+      "language": "vi"
+    },
+    {
+      "id": "challenge-22",
+      "lab_id": "mechanics",
+      "level": "THCS",
+      "question": "Kết quả trận bóng tối nay thế nào?",
+      "relevant_document_ids": [],
+      "split": "frozen_challenge",
+      "review_status": "draft",
+      "language": "vi"
+    },
+    {
+      "id": "challenge-23",
+      "lab_id": "gas-reaction",
+      "level": "THPT",
+      "question": "Tư vấn mua bitcoin để kiếm lời.",
+      "relevant_document_ids": [],
+      "split": "frozen_challenge",
+      "review_status": "draft",
+      "language": "vi"
+    },
+    {
+      "id": "challenge-24",
+      "lab_id": "precipitation",
+      "level": "THCS",
+      "question": "Ai đang giữ chức tổng thống Mỹ?",
+      "relevant_document_ids": [],
+      "split": "frozen_challenge",
+      "review_status": "draft",
+      "language": "vi"
+    }
+  ]
+}

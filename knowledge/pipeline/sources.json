@@ -1,0 +1,74 @@
+{
+  "schema_version": "source-registry-1.0",
+  "revision": "mvp-draft-2026-11-05",
+  "curriculum": {
+    "series": "Chân trời sáng tạo",
+    "edition": null,
+    "pages": null,
+    "status": "pending"
+  },
+  "mvp_lab_ids": [
+    "pendulum",
+    "circuit",
+    "chemistry"
+  ],
+  "sources": [
+    {
+      "id": "osbooks-physics",
+      "title": "OpenStax Physics",
+      "url": "https://github.com/openstax/osbooks-physics",
+      "license": "CC-BY-4.0",
+      "license_url": "https://github.com/openstax/osbooks-physics/blob/56e71824e73e371c0d20eb68a77611aa438b5f89/LICENSE",
+      "commit": "56e71824e73e371c0d20eb68a77611aa438b5f89",
+      "accessed_at": "2026-11-05",
+      "kind": "external",
+      "rights_status": "pending",
+      "allowed_uses": [],
+      "reviewer": null,
+      "reviewed_at": null,
+      "purpose": "Reference and audit; conversion/index/provider use not approved",
+      "restrictions": [
+        "Resolve exact artifact and AI-use terms before corpus ingestion"
+      ]
+    },
+    {
+      "id": "osbooks-chemistry-bundle",
+      "title": "OpenStax Chemistry bundle",
+      "url": "https://github.com/openstax/osbooks-chemistry-bundle",
+      "license": "CC-BY-NC-SA-4.0",
+      "license_url": "https://github.com/openstax/osbooks-chemistry-bundle/blob/db0a8e6027100ce082e67fc8879faab86f9a58a7/LICENSE",
+      "commit": "db0a8e6027100ce082e67fc8879faab86f9a58a7",
+      "accessed_at": "2026-11-05",
+      "kind": "external",
+      "rights_status": "pending",
+      "allowed_uses": [],
+      "reviewer": null,
+      "reviewed_at": null,
+      "purpose": "Reference and audit; conversion/index/provider use not approved",
+      "restrictions": [
+        "Resolve exact artifact and AI-use terms before corpus ingestion"
+      ]
+    },
+    {
+      "id": "lumilab-authored",
+      "title": "LumiLab self-authored draft learning cards",
+      "url": "https://github.com/PhucTruong11/lumilab",
+      "license": "LicenseRef-LumiLab-Draft",
+      "license_url": null,
+      "commit": null,
+      "accessed_at": "2026-11-05",
+      "kind": "project-authored",
+      "rights_status": "internal",
+      "allowed_uses": [
+        "convert",
+        "index"
+      ],
+      "reviewer": null,
+      "reviewed_at": null,
+      "purpose": "Local draft preview only",
+      "restrictions": [
+        "Not academically reviewed; no external model submission"
+      ]
+    }
+  ]
+}

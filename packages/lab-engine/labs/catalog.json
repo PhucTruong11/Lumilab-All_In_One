@@ -1,0 +1,18 @@
+{
+  "schema_version": "catalog-1.0",
+  "active": [
+    "pendulum",
+    "spring",
+    "mechanics",
+    "circuit",
+    "parallel-circuit",
+    "capacitor",
+    "chemistry",
+    "precipitation",
+    "gas-reaction"
+  ],
+  "archived": [
+    "electrochemistry",
+    "atomic"
+  ]
+}

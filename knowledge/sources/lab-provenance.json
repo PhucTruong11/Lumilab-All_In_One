@@ -1,0 +1,493 @@
+{
+  "revision": "client-provenance-draft-2026-11-04",
+  "scope": "Client reference inventory; not claim-level evidence or a runtime ingestion gate. The separate server KB remains draft.",
+  "approval_note": "False means not approved by this project, not a general legal finding. Do not invent reviews or permissions. Check rights for the specific intended use and artifact.",
+  "source_policies": [
+    {
+      "id": "nist-dlmf",
+      "policy_url": "https://dlmf.nist.gov/about/notices",
+      "checked_on": "2026-11-01",
+      "observed_terms": "Limited copying/internal teaching-research distribution; commercial and bulk copying restrictions. Not a blanket public-domain resource.",
+      "project_corpus_permission": "not_established"
+    },
+    {
+      "id": "openstax",
+      "policy_url": "https://help.openstax.org/s/article/Openstax-textbook-licensing-and-customization",
+      "book_notice_url": "https://openstax.org/books/chemistry-2e/pages/preface",
+      "checked_on": "2026-11-01",
+      "observed_terms": "Current pages state CC BY-NC-SA 4.0; Chemistry 2e also carries a separate prior-written-permission notice for LLM/generative-AI ingestion. Check the exact artifact and terms before reuse.",
+      "project_corpus_permission": "not_established"
+    }
+  ],
+  "labs": [
+    {
+      "lab_id": "atomic",
+      "title": "Cấu tạo nguyên tử",
+      "config_path": "packages/lab-engine/labs/atomic/lab.json",
+      "model_version": "atomic-particle-counts-v1",
+      "dataset_version": "client-expansion-draft-2026-11-01",
+      "reference_sources": [
+        {
+          "title": "Cấu tạo nguyên tử · OpenStax",
+          "url": "https://openstax.org/books/chemistry-2e/pages/2-3-atomic-structure-and-symbolism",
+          "policy_id": "openstax"
+        }
+      ],
+      "scientific_review": {
+        "status": "draft",
+        "reviewer": null,
+        "reviewed_on": null
+      },
+      "curriculum_review": {
+        "status": "pending",
+        "book_series": null,
+        "edition": null,
+        "grade": null,
+        "lesson": null,
+        "pages": null,
+        "reviewer": null
+      },
+      "rights_review": {
+        "status": "pending",
+        "reviewer": null,
+        "grant_or_license_evidence": null,
+        "intended_current_use": "reference_links_and_model_cross_check",
+        "source_text_ingestion_approved_for_project": false
+      },
+      "rag_eligible": false,
+      "open_evidence_gaps": [
+        "Review particle-count identities and shell illustration limits",
+        "Do not imply isotope stability from allowed inputs"
+      ]
+    },
+    {
+      "lab_id": "chemistry",
+      "title": "Chuẩn độ axit–bazơ",
+      "config_path": "packages/lab-engine/labs/chemistry/lab.json",
+      "model_version": "ideal-strong-titration-ts-v1",
+      "dataset_version": "client-draft-2026-11-01",
+      "reference_sources": [
+        {
+          "title": "OpenStax Chemistry 2e §14.7",
+          "url": "https://openstax.org/books/chemistry-2e/pages/14-7-acid-base-titrations",
+          "policy_id": "openstax"
+        }
+      ],
+      "scientific_review": {
+        "status": "draft",
+        "reviewer": null,
+        "reviewed_on": null
+      },
+      "curriculum_review": {
+        "status": "pending",
+        "book_series": null,
+        "edition": null,
+        "grade": null,
+        "lesson": null,
+        "pages": null,
+        "reviewer": null
+      },
+      "rights_review": {
+        "status": "pending",
+        "reviewer": null,
+        "grant_or_license_evidence": null,
+        "intended_current_use": "reference_links_and_model_cross_check",
+        "source_text_ingestion_approved_for_project": false
+      },
+      "rag_eligible": false,
+      "open_evidence_gaps": [
+        "Trace indicator transition interval separately",
+        "Review ideal 25 C strong-acid/base assumptions and four client pairs",
+        "Do not treat colour interpolation as measured data"
+      ]
+    },
+    {
+      "lab_id": "circuit",
+      "title": "Mạch điện",
+      "config_path": "packages/lab-engine/labs/circuit/lab.json",
+      "model_version": "ideal-series-circuit-ts-v1",
+      "dataset_version": "client-draft-2026-11-01",
+      "reference_sources": [
+        {
+          "title": "OpenStax University Physics2 §10.2",
+          "url": "https://openstax.org/books/university-physics-volume-2/pages/10-2-resistors-in-series-and-parallel",
+          "policy_id": "openstax"
+        },
+        {
+          "title": "OpenStax University Physics2 §10.4",
+          "url": "https://openstax.org/books/university-physics-volume-2/pages/10-4-electrical-measuring-instruments",
+          "policy_id": "openstax"
+        }
+      ],
+      "scientific_review": {
+        "status": "draft",
+        "reviewer": null,
+        "reviewed_on": null
+      },
+      "curriculum_review": {
+        "status": "pending",
+        "book_series": null,
+        "edition": null,
+        "grade": null,
+        "lesson": null,
+        "pages": null,
+        "reviewer": null
+      },
+      "rights_review": {
+        "status": "pending",
+        "reviewer": null,
+        "grant_or_license_evidence": null,
+        "intended_current_use": "reference_links_and_model_cross_check",
+        "source_text_ingestion_approved_for_project": false
+      },
+      "rag_eligible": false,
+      "open_evidence_gaps": [
+        "Review series-load and ideal-meter scope",
+        "Identify fixed resistances as authored parameters"
+      ]
+    },
+    {
+      "lab_id": "electrochemistry",
+      "title": "Pin điện hóa",
+      "config_path": "packages/lab-engine/labs/electrochemistry/lab.json",
+      "model_version": "standard-galvanic-cell-v1",
+      "dataset_version": "client-expansion-draft-2026-11-01",
+      "reference_sources": [
+        {
+          "title": "Pin điện hóa · OpenStax",
+          "url": "https://openstax.org/books/chemistry-2e/pages/17-3-electrode-and-cell-potentials",
+          "policy_id": "openstax"
+        }
+      ],
+      "scientific_review": {
+        "status": "draft",
+        "reviewer": null,
+        "reviewed_on": null
+      },
+      "curriculum_review": {
+        "status": "pending",
+        "book_series": null,
+        "edition": null,
+        "grade": null,
+        "lesson": null,
+        "pages": null,
+        "reviewer": null
+      },
+      "rights_review": {
+        "status": "pending",
+        "reviewer": null,
+        "grant_or_license_evidence": null,
+        "intended_current_use": "reference_links_and_model_cross_check",
+        "source_text_ingestion_approved_for_project": false
+      },
+      "rag_eligible": false,
+      "open_evidence_gaps": [
+        "Trace each rounded electrode potential to a specific table/condition",
+        "Review standard activities and qualitative current illustration"
+      ]
+    },
+    {
+      "lab_id": "mechanics",
+      "title": "Định luật II Newton",
+      "config_path": "packages/lab-engine/labs/mechanics/lab.json",
+      "model_version": "constant-force-motion-v1",
+      "dataset_version": "client-expansion-draft-2026-11-01",
+      "reference_sources": [
+        {
+          "title": "Định luật II Newton · OpenStax",
+          "url": "https://openstax.org/books/university-physics-volume-1/pages/5-3-newtons-second-law",
+          "policy_id": "openstax"
+        }
+      ],
+      "scientific_review": {
+        "status": "draft",
+        "reviewer": null,
+        "reviewed_on": null
+      },
+      "curriculum_review": {
+        "status": "pending",
+        "book_series": null,
+        "edition": null,
+        "grade": null,
+        "lesson": null,
+        "pages": null,
+        "reviewer": null
+      },
+      "rights_review": {
+        "status": "pending",
+        "reviewer": null,
+        "grant_or_license_evidence": null,
+        "intended_current_use": "reference_links_and_model_cross_check",
+        "source_text_ingestion_approved_for_project": false
+      },
+      "rag_eligible": false,
+      "open_evidence_gaps": [
+        "Review constant net force, inertial frame and frictionless scope"
+      ]
+    },
+    {
+      "lab_id": "pendulum",
+      "title": "Con lắc đơn",
+      "config_path": "packages/lab-engine/labs/pendulum/lab.json",
+      "model_version": "pendulum-agm-v1",
+      "dataset_version": "client-draft-2026-11-01",
+      "reference_sources": [
+        {
+          "title": "NIST DLMF §22.19: Pendulum",
+          "url": "https://dlmf.nist.gov/22.19",
+          "policy_id": "nist-dlmf"
+        },
+        {
+          "title": "NIST DLMF §19.8: AGM",
+          "url": "https://dlmf.nist.gov/19.8",
+          "policy_id": "nist-dlmf"
+        }
+      ],
+      "scientific_review": {
+        "status": "draft",
+        "reviewer": null,
+        "reviewed_on": null
+      },
+      "curriculum_review": {
+        "status": "pending",
+        "book_series": null,
+        "edition": null,
+        "grade": null,
+        "lesson": null,
+        "pages": null,
+        "reviewer": null
+      },
+      "rights_review": {
+        "status": "pending",
+        "reviewer": null,
+        "grant_or_license_evidence": null,
+        "intended_current_use": "reference_links_and_model_cross_check",
+        "source_text_ingestion_approved_for_project": false
+      },
+      "rag_eligible": false,
+      "open_evidence_gaps": [
+        "Review nonlinear AGM model and zero-angle limit",
+        "Document g=9.81 m/s2 as a model setting, not a local measurement"
+      ]
+    },
+    {
+      "lab_id": "spring",
+      "title": "Con lắc lò xo",
+      "config_path": "packages/lab-engine/labs/spring/lab.json",
+      "model_version": "horizontal-hooke-oscillator-v1",
+      "dataset_version": "client-expansion-draft-2026-11-01",
+      "reference_sources": [
+        {
+          "title": "Con lắc lò xo · OpenStax",
+          "url": "https://openstax.org/books/university-physics-volume-1/pages/15-1-simple-harmonic-motion",
+          "policy_id": "openstax"
+        }
+      ],
+      "scientific_review": {
+        "status": "draft",
+        "reviewer": null,
+        "reviewed_on": null
+      },
+      "curriculum_review": {
+        "status": "pending",
+        "book_series": null,
+        "edition": null,
+        "grade": null,
+        "lesson": null,
+        "pages": null,
+        "reviewer": null
+      },
+      "rights_review": {
+        "status": "pending",
+        "reviewer": null,
+        "grant_or_license_evidence": null,
+        "intended_current_use": "reference_links_and_model_cross_check",
+        "source_text_ingestion_approved_for_project": false
+      },
+      "rag_eligible": false,
+      "open_evidence_gaps": [
+        "Review Hooke regime, massless spring and energy invariants"
+      ]
+    },
+    {
+      "lab_id": "parallel-circuit",
+      "title": "Mạch nối tiếp và song song",
+      "config_path": "packages/lab-engine/labs/parallel-circuit/lab.json",
+      "model_version": "ideal-two-resistor-network-v1",
+      "dataset_version": "reaction-network-draft-2026-11-04",
+      "reference_sources": [
+        {
+          "title": "OpenStax University Physics Volume 2 §10.2 — Resistors in Series and Parallel",
+          "url": "https://openstax.org/books/university-physics-volume-2/pages/10-2-resistors-in-series-and-parallel",
+          "policy_id": "openstax"
+        }
+      ],
+      "scientific_review": {
+        "status": "draft",
+        "reviewer": null,
+        "reviewed_on": null
+      },
+      "curriculum_review": {
+        "status": "pending",
+        "book_series": null,
+        "edition": null,
+        "grade": null,
+        "lesson": null,
+        "pages": null,
+        "reviewer": null
+      },
+      "rights_review": {
+        "status": "pending",
+        "reviewer": null,
+        "grant_or_license_evidence": null,
+        "intended_current_use": "reference_links_and_model_cross_check",
+        "source_text_ingestion_approved_for_project": false
+      },
+      "rag_eligible": false,
+      "open_evidence_gaps": [
+        "Independent academic review of fixed conditions, idealization, constants and golden fixtures",
+        "Curriculum/book mapping and intended source rights review pending"
+      ]
+    },
+    {
+      "lab_id": "capacitor",
+      "title": "Tụ điện: nạp và phóng điện",
+      "config_path": "packages/lab-engine/labs/capacitor/lab.json",
+      "model_version": "ideal-rc-step-v1",
+      "dataset_version": "reaction-network-draft-2026-11-04",
+      "reference_sources": [
+        {
+          "title": "OpenStax University Physics Volume 2 §10.5 — RC Circuits, equations 10.8–10.13",
+          "url": "https://openstax.org/books/university-physics-volume-2/pages/10-5-rc-circuits",
+          "policy_id": "openstax"
+        },
+        {
+          "title": "OpenStax University Physics Volume 2 §8.3 — Energy Stored in a Capacitor",
+          "url": "https://openstax.org/books/university-physics-volume-2/pages/8-3-energy-stored-in-a-capacitor",
+          "policy_id": "openstax"
+        }
+      ],
+      "scientific_review": {
+        "status": "draft",
+        "reviewer": null,
+        "reviewed_on": null
+      },
+      "curriculum_review": {
+        "status": "pending",
+        "book_series": null,
+        "edition": null,
+        "grade": null,
+        "lesson": null,
+        "pages": null,
+        "reviewer": null
+      },
+      "rights_review": {
+        "status": "pending",
+        "reviewer": null,
+        "grant_or_license_evidence": null,
+        "intended_current_use": "reference_links_and_model_cross_check",
+        "source_text_ingestion_approved_for_project": false
+      },
+      "rag_eligible": false,
+      "open_evidence_gaps": [
+        "Independent academic review of fixed conditions, idealization, constants and golden fixtures",
+        "Curriculum/book mapping and intended source rights review pending"
+      ]
+    },
+    {
+      "lab_id": "precipitation",
+      "title": "Phản ứng tạo kết tủa AgCl",
+      "config_path": "packages/lab-engine/labs/precipitation/lab.json",
+      "model_version": "ideal-agcl-precipitation-v1",
+      "dataset_version": "reaction-network-draft-2026-11-04",
+      "reference_sources": [
+        {
+          "title": "OpenStax Chemistry 2e §4.2 — Precipitation Reactions and Solubility Rules, ví dụ AgNO3 + NaCl",
+          "url": "https://openstax.org/books/chemistry-2e/pages/4-2-classifying-chemical-reactions",
+          "policy_id": "openstax"
+        },
+        {
+          "title": "OpenStax Chemistry 2e §4.4 — Reaction Yields, chất giới hạn và hiệu suất lý thuyết",
+          "url": "https://openstax.org/books/chemistry-2e/pages/4-4-reaction-yields",
+          "policy_id": "openstax"
+        }
+      ],
+      "scientific_review": {
+        "status": "draft",
+        "reviewer": null,
+        "reviewed_on": null
+      },
+      "curriculum_review": {
+        "status": "pending",
+        "book_series": null,
+        "edition": null,
+        "grade": null,
+        "lesson": null,
+        "pages": null,
+        "reviewer": null
+      },
+      "rights_review": {
+        "status": "pending",
+        "reviewer": null,
+        "grant_or_license_evidence": null,
+        "intended_current_use": "reference_links_and_model_cross_check",
+        "source_text_ingestion_approved_for_project": false
+      },
+      "rag_eligible": false,
+      "open_evidence_gaps": [
+        "Independent academic review of fixed conditions, idealization, constants and golden fixtures",
+        "Curriculum/book mapping and intended source rights review pending"
+      ]
+    },
+    {
+      "lab_id": "gas-reaction",
+      "title": "Phản ứng axit và muối bicarbonat",
+      "config_path": "packages/lab-engine/labs/gas-reaction/lab.json",
+      "model_version": "ideal-bicarbonate-gas-v1",
+      "dataset_version": "reaction-network-draft-2026-11-04",
+      "reference_sources": [
+        {
+          "title": "OpenStax Chemistry 2e §4.2 — Acid-base reactions, sodium bicarbonate và khí carbon dioxide",
+          "url": "https://openstax.org/books/chemistry-2e/pages/4-2-classifying-chemical-reactions",
+          "policy_id": "openstax"
+        },
+        {
+          "title": "OpenStax Chemistry 2e §4.4 — Reaction Yields, chất giới hạn",
+          "url": "https://openstax.org/books/chemistry-2e/pages/4-4-reaction-yields",
+          "policy_id": "openstax"
+        },
+        {
+          "title": "OpenStax Chemistry 2e §9.2 — The Ideal Gas Law, PV = nRT",
+          "url": "https://openstax.org/books/chemistry-2e/pages/9-2-relating-pressure-volume-amount-and-temperature-the-ideal-gas-law",
+          "policy_id": "openstax"
+        }
+      ],
+      "scientific_review": {
+        "status": "draft",
+        "reviewer": null,
+        "reviewed_on": null
+      },
+      "curriculum_review": {
+        "status": "pending",
+        "book_series": null,
+        "edition": null,
+        "grade": null,
+        "lesson": null,
+        "pages": null,
+        "reviewer": null
+      },
+      "rights_review": {
+        "status": "pending",
+        "reviewer": null,
+        "grant_or_license_evidence": null,
+        "intended_current_use": "reference_links_and_model_cross_check",
+        "source_text_ingestion_approved_for_project": false
+      },
+      "rag_eligible": false,
+      "open_evidence_gaps": [
+        "Independent academic review of fixed conditions, idealization, constants and golden fixtures",
+        "Curriculum/book mapping and intended source rights review pending"
+      ]
+    }
+  ]
+}
