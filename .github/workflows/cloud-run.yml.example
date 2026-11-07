@@ -1,0 +1,80 @@
+# DISABLED REFERENCE. Rename only after account/quota/WIF/environments and cost review.
+# Requires the existing quality workflow for the selected main commit to succeed.
+name: cloud-run-release
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: cloud-run-release
+  cancel-in-progress: false
+jobs:
+  staging:
+    if: github.ref == 'refs/heads/main'
+    environment: staging
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      actions: read
+      id-token: write
+    outputs:
+      image: ${{ steps.image.outputs.ref }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Require green quality checks for this commit
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh api "repos/$GITHUB_REPOSITORY/actions/runs?head_sha=$GITHUB_SHA&status=success" --jq '.workflow_runs[] | select(.name == "quality" and .head_branch == "main") | .id' | grep -q .
+      - uses: google-github-actions/auth@v3
+        with:
+          workload_identity_provider: ${{ vars.GCP_WIF_PROVIDER }}
+          service_account: ${{ vars.GCP_DEPLOY_SERVICE_ACCOUNT }}
+      - uses: google-github-actions/setup-gcloud@v3
+      - name: Build and publish an immutable image
+        id: image
+        env:
+          PROJECT: ${{ vars.GCP_PROJECT_ID }}
+          REGION: ${{ vars.GCP_REGION }}
+        run: |
+          gcloud auth configure-docker "$REGION-docker.pkg.dev" --quiet
+          image="$REGION-docker.pkg.dev/$PROJECT/lumilab/api:$GITHUB_SHA"
+          docker build -f docker/api.Dockerfile -t "$image" .
+          docker push "$image"
+          digest=$(gcloud artifacts docker images describe "$image" --format='value(image_summary.digest)')
+          echo "ref=$REGION-docker.pkg.dev/$PROJECT/lumilab/api@$digest" >> "$GITHUB_OUTPUT"
+      - name: Deploy staging with live AI disabled
+        env:
+          IMAGE: ${{ steps.image.outputs.ref }}
+          PROJECT: ${{ vars.GCP_PROJECT_ID }}
+          REGION: ${{ vars.GCP_REGION }}
+          RUNTIME_SA: ${{ vars.GCP_RUNTIME_SERVICE_ACCOUNT }}
+        run: |
+          gcloud run deploy lumilab-staging --project "$PROJECT" --region "$REGION" --image "$IMAGE" --service-account "$RUNTIME_SA" --port 8000 --cpu 1 --memory 512Mi --min 0 --max 1 --concurrency 4 --timeout 20 --cpu-throttling --no-cpu-boost --update-env-vars LUMILAB_LLM_ENABLED=false,LUMILAB_RAG_ENABLED=false,LUMILAB_LLM_EVENT_CAP=0 --quiet
+          url=$(gcloud run services describe lumilab-staging --project "$PROJECT" --region "$REGION" --format='value(status.url)')
+          token=$(gcloud auth print-identity-token --audiences="$url")
+          curl --fail --max-time 30 -H "Authorization: Bearer $token" "$url/health"
+  production:
+    needs: staging
+    environment: production
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: google-github-actions/auth@v3
+        with:
+          workload_identity_provider: ${{ vars.GCP_WIF_PROVIDER }}
+          service_account: ${{ vars.GCP_DEPLOY_SERVICE_ACCOUNT }}
+      - uses: google-github-actions/setup-gcloud@v3
+      - name: Promote the same digest after environment approval
+        env:
+          IMAGE: ${{ needs.staging.outputs.image }}
+          PROJECT: ${{ vars.GCP_PROJECT_ID }}
+          REGION: ${{ vars.GCP_REGION }}
+          RUNTIME_SA: ${{ vars.GCP_RUNTIME_SERVICE_ACCOUNT }}
+        run: |
+          gcloud run deploy lumilab-production --project "$PROJECT" --region "$REGION" --image "$IMAGE" --service-account "$RUNTIME_SA" --port 8000 --cpu 1 --memory 512Mi --min 0 --max 1 --concurrency 4 --timeout 20 --cpu-throttling --no-cpu-boost --update-env-vars LUMILAB_LLM_ENABLED=false,LUMILAB_RAG_ENABLED=false,LUMILAB_LLM_EVENT_CAP=0 --quiet
+          url=$(gcloud run services describe lumilab-production --project "$PROJECT" --region "$REGION" --format='value(status.url)')
+          token=$(gcloud auth print-identity-token --audiences="$url")
+          curl --fail --max-time 30 -H "Authorization: Bearer $token" "$url/health"

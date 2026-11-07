@@ -1,0 +1,85 @@
+{
+  "schema_version": "transfer-modules-1.0",
+  "source_revision": "9868ac8d468c2111558be68e5d9945e1391a3e2a",
+  "notice": "Selected files are inputs to integration, not runnable standalone modules. Source reuse must be allowed by contest rules.",
+  "modules": [
+    {
+      "id": "contracts-reference",
+      "milestone": "M02",
+      "requires": [
+        "B web/API skeleton"
+      ],
+      "paths": [
+        "packages/contracts/src/index.ts"
+      ],
+      "integration_notes": [
+        "Select DTOs actually needed in B; create B package manifest and workspace entry. Do not assume every A DTO is deployed."
+      ]
+    },
+    {
+      "id": "pendulum-model",
+      "milestone": "M03",
+      "requires": [
+        "B TypeScript package",
+        "Vitest runner"
+      ],
+      "paths": [
+        "packages/lab-engine/src/pendulum.ts",
+        "packages/lab-engine/src/pendulum.test.ts",
+        "packages/lab-engine/labs/pendulum/lab.json"
+      ],
+      "integration_notes": [
+        "Create B index/registry for one lab; do not copy A runtime.ts or broad barrel. Add JSON schema/lifecycle intentionally."
+      ]
+    },
+    {
+      "id": "pendulum-view",
+      "milestone": "M03",
+      "requires": [
+        "pendulum-model",
+        "B React shell",
+        "B useLab/engine adapter",
+        "Recharts/CSS"
+      ],
+      "paths": [
+        "apps/web/src/components/PendulumCanvas.tsx",
+        "apps/web/src/components/PendulumChart.tsx",
+        "apps/web/src/components/PendulumLab.tsx",
+        "apps/web/src/components/AppBoundary.tsx"
+      ],
+      "integration_notes": [
+        "Adapt useLab/labSession imports and record types to B. These components are not runnable until those dependencies are implemented."
+      ]
+    },
+    {
+      "id": "circuit-model",
+      "milestone": "M08",
+      "requires": [
+        "B engine registry",
+        "B golden tests"
+      ],
+      "paths": [
+        "packages/lab-engine/src/circuit.ts",
+        "packages/lab-engine/labs/circuit/lab.json"
+      ],
+      "integration_notes": [
+        "Register circuit only after config/renderer/Python counterpart are ready. Write B-specific circuit tests."
+      ]
+    },
+    {
+      "id": "titration-model",
+      "milestone": "M08",
+      "requires": [
+        "B engine registry",
+        "B golden tests"
+      ],
+      "paths": [
+        "packages/lab-engine/src/titration.ts",
+        "packages/lab-engine/labs/chemistry/lab.json"
+      ],
+      "integration_notes": [
+        "Use module id chemistry in B only after matching config and Python preview are available. Write B-specific tests."
+      ]
+    }
+  ]
+}
