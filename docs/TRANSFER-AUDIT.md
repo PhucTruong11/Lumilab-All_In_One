@@ -28,7 +28,7 @@ Các nhóm trong bảng đạt **100% về sự hiện diện đường dẫn**.
 | 1 | Hoàn thiện runbook vận hành LLM | Đã viết [LLM-RUNBOOK.md](LLM-RUNBOOK.md) theo gateway B; kiểm bằng provider giả. |
 | 2 | Ghi sổ nguồn chuyển giao | Đã viết [MIGRATION-LEDGER.md](MIGRATION-LEDGER.md), tách nguồn A và phần phát triển mới tại B. |
 | 3 | Chuẩn hóa nghiệm thu và vận hành B | Đã viết [OPERATIONS.md](OPERATIONS.md), thử backup/restore trên DB mới và chạy PostgreSQL tests. |
-| 4 | Đưa commit LLM hiện tại qua review | Gộp commit `740428a` và runbook trên cùng nhánh để mở PR vào main; review/CI/merge là mốc riêng trong PR. |
+| 4 | Đưa commit LLM hiện tại qua review | Đã push `740428a` cùng runbook `d449123`, mở [PR #15 vào main](https://github.com/PhucTruong11/Lumilab-All_In_One/pull/15). Review/CI/merge là mốc riêng trong PR; chưa tự merge/deploy. |
 
 Không chép nguyên runbook A: tài liệu Gemini cũ mô tả 2 attempts/chưa có deadline chung, trong khi settings B hiện cho tối đa 4 chat attempts và deadline chung 18 giây. Tài liệu Tutor/vector cũng có đoạn lịch sử trước khi nối endpoint. Các phần này cần được viết lại theo code hiện hành.
 
