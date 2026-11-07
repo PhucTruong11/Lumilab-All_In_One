@@ -23,6 +23,8 @@ docker compose -f docker/compose.yml ps
 
 Mở **http://127.0.0.1:5175**. API docs: **http://127.0.0.1:8002/docs**. `up ... web` cũng khởi động API và PostgreSQL vì chúng là dependencies. Lab engine là mã client nằm trong web image, **không có service lab riêng**. Nginx trong web container chuyển `/api/*` sang API container; API tạo schema ban đầu sau khi DB khỏe. Compose giữ dữ liệu DB trong volume `lumilab-b-dev_postgres_data`, tách khỏi repo A.
 
+Các bài có [cấu hình thử nhanh, nhập số chính xác và hướng dẫn thao tác](docs/LAB-INTERACTIONS.md). Với mô hình có thời gian, dùng tốc độ phát hoặc tiến từng bước để quan sát; đổi cấu hình mẫu vẫn giữ sổ đo.
+
 | Service | Vai trò | Cổng trên máy |
 | --- | --- | --- |
 | `web` | Trang web, lab engine, proxy `/api` | `127.0.0.1:5175` |

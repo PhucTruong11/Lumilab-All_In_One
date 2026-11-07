@@ -419,7 +419,15 @@ export function PendulumCanvas({
       className="pendulum-canvas"
       data-testid="pendulum-canvas"
       role="img"
-      aria-label="Con lắc tương tác: kéo quả nặng để đổi chiều dài và góc thả. Có thể dùng các thanh trượt bên dưới."
+      tabIndex={0}
+      aria-label="Con lắc tương tác: kéo quả nặng; phím trái/phải đổi góc, lên/xuống đổi chiều dài dây."
+      onKeyDown={event => {
+        if (!['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].includes(event.key)) return;
+        event.preventDefault();
+        const length = event.key === 'ArrowUp' ? parameters.length_m + .01 : event.key === 'ArrowDown' ? parameters.length_m - .01 : parameters.length_m;
+        const angle = event.key === 'ArrowRight' ? parameters.angle_deg + 1 : event.key === 'ArrowLeft' ? parameters.angle_deg - 1 : parameters.angle_deg;
+        onDrag(Math.max(.3, Math.min(2, Number(length.toFixed(2)))), Math.max(0, Math.min(90, angle)), side);
+      }}
       onPointerDown={event => {
         const p = point(event);
         const theta = (side * pendulumAngleAtTime(parameters, time) * Math.PI) / 180;
