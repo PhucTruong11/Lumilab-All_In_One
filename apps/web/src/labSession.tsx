@@ -43,7 +43,7 @@ export function LabSessionProvider({ children }: { children: ReactNode }) {
         if (saved) instances[id].restore(saved);
       } catch {
         warnings[id] =
-          'Bản lưu không đọc được hoặc đã khác phiên bản. Phiên mới đã mở; bạn có thể nhập tệp khác.';
+          'Bản lưu trên máy không đọc được hoặc không tương thích. Bài thực hành đã mở với dữ liệu mặc định.';
       }
     }
     return { engines: instances, warnings };

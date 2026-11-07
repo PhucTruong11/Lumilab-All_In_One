@@ -24,7 +24,6 @@ test('pulley controls update the reading and preserve a recorded observation', a
   await expect(page.getByTestId('pulley-force')).toHaveText(/^24\.525\s*N$/);
   await page.getByRole('button', { name: 'Ghi số đo', exact: true }).click();
   await expect(page.locator('.notebook tbody tr')).toContainText('24.525');
-  await page.getByRole('button', { name: 'Lưu phiên', exact: true }).click();
   await page.reload();
   await expect(page.locator('.notebook tbody tr')).toContainText('24.525');
 });

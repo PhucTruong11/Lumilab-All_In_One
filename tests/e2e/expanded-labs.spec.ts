@@ -63,7 +63,7 @@ test('spring bob drag, mass, graph, zero release and persistence use the shared 
   await page.getByRole('slider', { name: 'Khối lượng vật', exact: true }).press('End'); await expect(page.getByTestId('spring-period')).toContainText('1.987');
   await page.getByRole('button', { name: 'Thả vật', exact: false }).click(); await expect(page.getByTestId('spring-displacement')).not.toContainText('0.300');
   await page.getByRole('button', { name: 'Tạm dừng', exact: false }).click(); await page.getByRole('button', { name: 'Ghi số đo', exact: false }).click();
-  await page.getByRole('button', { name: 'Lưu phiên', exact: true }).click(); await page.reload(); await expect(page.locator('.notebook tbody tr')).toHaveCount(1);
+  await page.reload(); await expect(page.locator('.notebook tbody tr')).toHaveCount(1);
   await expect(page.getByRole('img', { name: 'Đồ thị li độ lò xo theo thời gian', exact: true }).locator('.recharts-surface')).toBeVisible();
   // Use keyboard to select exact zero without depending on browser range-event internals.
   const release = page.getByRole('slider', { name: 'Li độ thả', exact: true }); await release.press('Home'); await release.press('ArrowRight', { delay: 1 });
