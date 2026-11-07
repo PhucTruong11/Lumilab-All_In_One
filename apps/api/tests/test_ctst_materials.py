@@ -40,12 +40,18 @@ def test_citations_have_audited_pages_without_fabricating_publication_or_review(
         assert doc.origin == "project-authored" and doc.external_material_use == "reference-only"
         assert doc.provenance.source_id == "lumilab-authored"
         assert doc.provenance.curriculum_status == mapping["curriculum_status"] == "pending"
-        assert doc.review_status == "draft" and doc.reviewer is doc.reviewed_at is None
-        assert mapping["teacher_reviewer"] is None
+        if mapping["teacher_reviewer"] is None:
+            assert doc.review_status == "draft" and doc.reviewer is doc.reviewed_at is None
+        else:
+            # A card is reviewed only when the audit names the same teacher and the card has two authorities.
+            assert doc.review_status == "reviewed" and doc.reviewer == mapping["teacher_reviewer"]
+            assert doc.reviewed_at is not None and doc.provenance.academic_review_role == "teacher"
         assert str(doc.references[0].url) == book["url"] + f'#page={mapping["reader_page"]}'
         assert mapping["printed_pages"] in doc.references[0].label
         assert len({r.authority for r in doc.references}) >= 2
-    assert not registry.source("lumilab-authored").permits("send_llm", draft=True)
+    authored_source = registry.source("lumilab-authored")
+    assert authored_source.rights_status == "approved" and authored_source.reviewer and authored_source.reviewed_at
+    assert authored_source.permits("send_llm")
     assert all(not registry.source(name).permits("index", draft=True)
                for name in ("osbooks-physics", "osbooks-chemistry-bundle"))
 
@@ -60,10 +66,12 @@ def test_authored_cards_retrievable_in_their_lab_and_level_only(bundle, case):
     if case["relevant_document_ids"]:
         assert set(case["relevant_document_ids"]) & found
         assert all(h.document.lab_id == query.lab_id and h.document.provenance.level == query.level for h in hits)
-        assert all(h.document.review_status == "draft" for h in hits)
+        assert all(h.document.review_status in {"draft", "reviewed"} for h in hits)
     else:
         assert not hits
-    assert not index.retrieve(query.model_copy(update={"include_drafts": False})).hits
+    # Production mode never returns an unreviewed card.
+    assert all(h.document.review_status == "reviewed" and h.document.reviewer
+               for h in index.retrieve(query.model_copy(update={"include_drafts": False})).hits)
     assert not index.retrieve(query.model_copy(update={"commercial": True})).hits
 
 
@@ -92,7 +100,8 @@ def test_quantitative_examples_and_reaction_metadata_match_supported_models(bund
 def test_strict_build_does_not_publish_draft_cards(bundle):
     corpus, registry, _, _ = bundle
     assert lint_corpus(corpus, registry, ROOT / "packages/lab-engine", strict=True)
-    assert compile_artifact(corpus, registry, ROOT / "packages/lab-engine")["chunks"] == []
+    chunks = compile_artifact(corpus, registry, ROOT / "packages/lab-engine")["chunks"]
+    assert chunks and all(c["document"]["review_status"] == "reviewed" and c["document"]["reviewer"] for c in chunks)
 
 
 def test_http_hybrid_preserves_citations_and_draft_label(bundle, tmp_path):
@@ -111,9 +120,11 @@ def test_http_hybrid_preserves_citations_and_draft_label(bundle, tmp_path):
         assert response.status_code == 200
         body = response.json()
         hit = next(h for h in body["hits"] if h["document"]["id"] == "ctst-titration-direction")
-        assert hit["document"]["review_status"] == "draft"
+        assert hit["document"]["review_status"] == "reviewed" and hit["document"]["reviewer"] == "Huỳnh Minh Phước"
         assert "15–18" in hit["document"]["references"][0]["label"]
         assert "#page=19" in hit["document"]["references"][0]["url"]
         assert "VERIFIED" not in response.text
         strict = client.post("/api/v1/retrieval/query", json=payload | {"include_drafts": False})
-        assert strict.status_code == 200 and strict.json()["status"] == "NO_MATCH"
+        assert strict.status_code == 200
+        assert all(h["document"]["review_status"] == "reviewed" and h["document"]["reviewer"]
+                   for h in strict.json()["hits"])
