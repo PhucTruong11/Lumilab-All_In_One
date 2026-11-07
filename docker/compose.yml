@@ -25,10 +25,23 @@ services:
     ports: ["127.0.0.1:${LUMILAB_API_PORT:-8002}:8000"]
     depends_on:
       db: {condition: service_healthy}
+    command: ["sh", "-c", "python -m lumilab_api.run_schema && exec python -m uvicorn lumilab_api.main:app --host 0.0.0.0 --port 8000 --no-access-log"]
     healthcheck:
       test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/ready', timeout=5)"]
       interval: 15s
       timeout: 6s
+      retries: 5
+  web:
+    build:
+      context: ..
+      dockerfile: docker/web.Dockerfile
+    ports: ["127.0.0.1:${LUMILAB_WEB_PORT:-5175}:80"]
+    depends_on:
+      api: {condition: service_healthy}
+    healthcheck:
+      test: ["CMD", "wget", "-q", "-O", "/dev/null", "http://127.0.0.1/healthz"]
+      interval: 15s
+      timeout: 5s
       retries: 5
   chroma:
     image: chromadb/chroma:1.3.0
