@@ -1,0 +1,273 @@
+{
+  "revision": "authored-labs-v3-reapproval-draft-01",
+  "documents": [
+    {
+      "id": "pendulum-thcs-foundation",
+      "lab_id": "pendulum",
+      "title": "Quan sát chu kỳ con lắc",
+      "text": "Chu kỳ là thời gian để con lắc thực hiện một dao động đầy đủ. Với góc thả nhỏ và cùng gia tốc trọng trường, con lắc dài hơn có chu kỳ dài hơn. Thay khối lượng quả nặng trong khi giữ nguyên chiều dài, góc thả và gia tốc trọng trường thì chu kỳ lý tưởng giữ nguyên. Khi so hai lượt, chỉ đổi một biến. Thẻ này dùng để bổ trợ kiến thức.",
+      "keywords": [
+        "chu kỳ",
+        "chiều dài",
+        "khối lượng",
+        "dao động"
+      ],
+      "review_status": "draft",
+      "reviewer": null,
+      "reviewed_at": null,
+      "origin": "project-authored",
+      "external_material_use": "reference-only",
+      "references": [
+        {
+          "label": "Physics Classroom",
+          "url": "https://www.physicsclassroom.com/class/waves/Lesson-0/Pendulum-Motion",
+          "authority": "Physics Classroom"
+        },
+        {
+          "label": "SGK Vật lí 11 KNTT · Bài 5 · tr. 22–23 · công thức (5.8) · bản số 4701093133",
+          "url": "https://taphuan.nxbgd.vn/tap-huan/doc-sach/sgk-vat-li-11.4701093133#page=23",
+          "authority": "NXBGDVN"
+        }
+      ],
+      "assumptions": [
+        "Con lắc đơn lý tưởng, góc thả nhỏ và khác 0. Giữ L, g và góc thả khi so khối lượng."
+      ],
+      "provenance": {
+        "source_id": "lumilab-authored",
+        "book": "LumiLab học liệu tự biên soạn",
+        "chapter": "Nền tảng Vật lý",
+        "section": "Quan sát chu kỳ con lắc",
+        "license": "LicenseRef-LumiLab-Draft",
+        "commit": null,
+        "level": "THCS",
+        "source_language": "vi",
+        "curriculum_series": "Chân trời sáng tạo",
+        "curriculum_status": "pending",
+        "units": {},
+        "conditions": {
+          "curriculum": "Mapping lớp/năm/trang pending; học liệu tự biên soạn",
+          "model_version": "pendulum-agm-v1",
+          "model_scope": "Con lắc đơn lý tưởng, góc thả nhỏ và khác 0. Giữ L, g và góc thả khi so khối lượng."
+        },
+        "constants": {},
+        "equation": null
+      }
+    },
+    {
+      "id": "chemistry-thcs-foundation",
+      "lab_id": "chemistry",
+      "title": "Axit, bazơ và phản ứng trung hòa",
+      "text": "Trong dung dịch loãng, HCl và NaOH phản ứng theo tỉ lệ một mol axit với một mol bazơ. Khi chuẩn độ, so số mol n = C·V với V theo lít. Hai dung dịch có cùng thể tích chỉ cung cấp số mol bằng nhau nếu nồng độ bằng nhau. Lab dùng axit mạnh và bazơ mạnh một nấc ở nồng độ cố định. Các axit yếu và bazơ nhiều nấc cần phân tích riêng.",
+      "keywords": [
+        "axit",
+        "bazơ",
+        "trung hòa",
+        "nồng độ",
+        "mol"
+      ],
+      "review_status": "draft",
+      "reviewer": null,
+      "reviewed_at": null,
+      "origin": "project-authored",
+      "external_material_use": "reference-only",
+      "references": [
+        {
+          "label": "OpenStax Chemistry 2e §14.7",
+          "url": "https://openstax.org/books/chemistry-2e/pages/14-7-acid-base-titrations",
+          "authority": "OpenStax"
+        },
+        {
+          "label": "SGK Hóa học 11 CTST · Bài 2 · tr. 17–18 · nguyên tắc chuẩn độ · bản số 4537016533",
+          "url": "https://taphuan.nxbgd.vn/tap-huan/doc-sach/shs-hoa-hoc-11.4537016533#page=19",
+          "authority": "NXBGDVN"
+        }
+      ],
+      "assumptions": [
+        "Tỉ lượng 1:1 cho cặp axit mạnh một nấc và bazơ mạnh một nhóm hydroxide. Xác định tương đương theo số mol."
+      ],
+      "provenance": {
+        "source_id": "lumilab-authored",
+        "book": "LumiLab học liệu tự biên soạn",
+        "chapter": "Nền tảng Hóa vô cơ",
+        "section": "Axit, bazơ và phản ứng trung hòa",
+        "license": "LicenseRef-LumiLab-Draft",
+        "commit": null,
+        "level": "THCS",
+        "source_language": "vi",
+        "curriculum_series": "Chân trời sáng tạo",
+        "curriculum_status": "pending",
+        "units": {},
+        "conditions": {
+          "curriculum": "Mapping lớp/năm/trang pending; học liệu tự biên soạn",
+          "model_version": "ideal-strong-titration-ts-v1",
+          "model_scope": "Tỉ lượng 1:1 cho cặp axit mạnh một nấc và bazơ mạnh một nhóm hydroxide. Xác định tương đương theo số mol."
+        },
+        "equation": null,
+        "constants": {}
+      }
+    },
+    {
+      "id": "ctst-meter-wiring",
+      "lab_id": "circuit",
+      "title": "Mắc đồng hồ đúng trước khi đọc số",
+      "text": "Nguồn, dây dẫn, công tắc và thiết bị tiêu thụ phải tạo đường kín để có dòng điện ổn định trong mô hình đơn giản. Ampe kế đo dòng qua thiết bị nên mắc nối tiếp với thiết bị; vôn kế đo hiệu điện thế giữa hai điểm nên mắc song song với đoạn cần đo. Trước khi đóng công tắc, kiểm tra cực và thang đo. Không nối trực tiếp ampe kế qua hai cực nguồn thật. Bài tập tự soạn: cần đo dòng qua điện trở và điện áp trên điện trở thì đặt hai đồng hồ ở đâu? Ghi chú đường đi của dòng trước khi trả lời. Gợi ý: một đồng hồ nằm trên đường dòng đi, đồng hồ kia nối tới hai đầu điện trở. Đáp án: ampe kế nối tiếp, vôn kế song song. Lab dùng đồng hồ lý tưởng; thao tác kéo thả không thay thế việc lắp thiết bị thật. Trong lab, khi hiện cảnh báo mắc sai, sửa cả hai đồng hồ trước khi đọc lại kết quả. Mạch hở mắc đúng hiện 0 A.",
+      "keywords": [
+        "ampe kế",
+        "vôn kế",
+        "nối tiếp",
+        "song song",
+        "công tắc",
+        "mạch kín"
+      ],
+      "review_status": "draft",
+      "reviewer": null,
+      "reviewed_at": null,
+      "origin": "project-authored",
+      "external_material_use": "reference-only",
+      "references": [
+        {
+          "label": "CTST · Khoa học tự nhiên 8 · Bài 23 · Mạch điện đơn giản; Bài 25 · Cường độ dòng điện và hiệu điện thế · tr. 101–102, 109–110 · bản online 4539229607 (năm in chưa xác định)",
+          "url": "https://taphuan.nxbgd.vn/tap-huan/doc-sach/shs-khoa-hoc-tu-nhien-8.4539229607#page=111",
+          "authority": "NXBGDVN"
+        },
+        {
+          "label": "OpenStax University Physics Vol. 2 §10.4 · Electrical Measuring Instruments",
+          "url": "https://openstax.org/books/university-physics-volume-2/pages/10-4-electrical-measuring-instruments",
+          "authority": "OpenStax"
+        }
+      ],
+      "assumptions": [
+        "Mạch DC và đồng hồ lý tưởng; không hướng dẫn thao tác với điện lưới.",
+        "Bài SGK dùng bóng đèn/pin; lab có điện trở và nguồn với tham số riêng, không sao chép sơ đồ hoặc số đo của sách.",
+        "Học liệu do Codex soạn theo yêu cầu nhóm; chưa có giáo viên ký duyệt."
+      ],
+      "provenance": {
+        "source_id": "lumilab-authored",
+        "book": "LumiLab — học liệu tự biên soạn, đối chiếu CTST",
+        "chapter": "circuit",
+        "section": "ctst-meter-wiring",
+        "license": "LicenseRef-LumiLab-Draft",
+        "commit": null,
+        "level": "THCS",
+        "source_language": "vi",
+        "curriculum_series": "Chân trời sáng tạo",
+        "curriculum_status": "pending",
+        "conditions": {
+          "model_scope": "Ampe kế nối tiếp với phần đo dòng, vôn kế mắc hai đầu điện trở chính. Đồng hồ lý tưởng. Lab khóa số đọc khi mắc sai.",
+          "curriculum_evidence": "Đã đọc trang online; chưa duyệt giáo viên, năm in chưa xác định.",
+          "model_version": "ideal-series-circuit-ts-v2"
+        }
+      }
+    },
+    {
+      "id": "ctst-source-voltage",
+      "lab_id": "circuit",
+      "title": "Điện áp hai cực của nguồn thật và phạm vi lab",
+      "text": "Với mô hình nguồn thật có suất điện động E và điện trở trong r, khi nguồn phát dòng I, điện áp hai cực là U = E − Ir. Nếu r dương và E, r giữ nguyên, I tăng thì U giảm. Trên đồ thị U theo I, hệ số góc là −r. Câu hỏi tự soạn: vì sao điện áp hai cực giảm khi nguồn phát dòng lớn hơn? Gợi ý: xét sụt áp trên điện trở trong. Đáp án: phần Ir tăng. Bàn mạch LumiLab dùng nguồn lý tưởng và vôn kế đo hai đầu điện trở chính. Để xác định r cần số đo điện áp hai cực nguồn thật và dòng điện ở các tải khác nhau.",
+      "keywords": [
+        "suất điện động",
+        "điện trở trong",
+        "điện áp hai cực",
+        "sụt áp",
+        "biến trở",
+        "nguồn"
+      ],
+      "review_status": "draft",
+      "reviewer": null,
+      "reviewed_at": null,
+      "origin": "project-authored",
+      "external_material_use": "reference-only",
+      "references": [
+        {
+          "label": "CTST · Vật lí 11 — Sách giáo viên · Hướng dẫn bài thực hành đo suất điện động và điện trở trong · tr. 130–131 · bản online 4537350556 (năm in chưa xác định)",
+          "url": "https://taphuan.nxbgd.vn/tap-huan/doc-sach/sgv-vat-li-11.4537350556#page=131",
+          "authority": "NXBGDVN"
+        },
+        {
+          "label": "OpenStax College Physics §21.2 Electromotive Force: Terminal Voltage",
+          "url": "https://openstax.org/books/college-physics/pages/21-2-electromotive-force-terminal-voltage",
+          "authority": "OpenStax"
+        }
+      ],
+      "assumptions": [
+        "Lý thuyết mở rộng cho nguồn thật khi phát điện. Engine không có tham số điện trở trong và không suy ra r từ số đọc trên R chính."
+      ],
+      "provenance": {
+        "source_id": "lumilab-authored",
+        "book": "LumiLab — học liệu tự biên soạn, đối chiếu CTST",
+        "chapter": "circuit",
+        "section": "ctst-source-voltage",
+        "license": "LicenseRef-LumiLab-Draft",
+        "commit": null,
+        "level": "THPT",
+        "source_language": "vi",
+        "curriculum_series": "Chân trời sáng tạo",
+        "curriculum_status": "pending",
+        "conditions": {
+          "model_scope": "Lý thuyết mở rộng cho nguồn thật khi phát điện. Engine không có tham số điện trở trong và không suy ra r từ số đọc trên R chính.",
+          "curriculum_evidence": "Đã đọc trang online; chưa duyệt giáo viên, năm in chưa xác định.",
+          "formula": "U = E - I*r",
+          "model_version": "ideal-series-circuit-ts-v2"
+        }
+      }
+    },
+    {
+      "id": "ctst-ph-indicator",
+      "lab_id": "chemistry",
+      "title": "pH và màu chỉ thị không phải một đại lượng",
+      "text": "pH cho biết mức độ acid hoặc base của dung dịch. Trong mô hình nước loãng ở 25 °C, pH nhỏ hơn 7 là acid, lớn hơn 7 là base và bằng 7 là trung tính. Giấy quỳ chỉ giúp nhận biết môi trường; giấy pH cho khoảng giá trị gần đúng. Phenolphthalein không màu trong môi trường acid và trung tính, chuyển dần sang hồng trong khoảng pH 8,2–10 theo cách hiển thị của lab. Bài tập tự soạn: dung dịch không màu sau khi thêm phenolphthalein có chắc pH bằng 7 không? Hãy ghi hai khả năng trước khi mở gợi ý. Đáp án: không; dung dịch acid cũng có thể không màu. Trong lab, màu là hình minh hoạ được vẽ từ pH tính bằng code, không phải số đo quang học hay bằng chứng đủ để kết luận mọi thành phần dung dịch.",
+      "keywords": [
+        "pH",
+        "chỉ thị",
+        "quỳ tím",
+        "phenolphthalein",
+        "trung tính",
+        "màu"
+      ],
+      "review_status": "draft",
+      "reviewer": null,
+      "reviewed_at": null,
+      "origin": "project-authored",
+      "external_material_use": "reference-only",
+      "references": [
+        {
+          "label": "CTST · Khoa học tự nhiên 8 · Bài 9 · Acid; Bài 10 · Base; Bài 11 · Thang pH · tr. 43–44, 49–50 · bản online 4539229607 (năm in chưa xác định)",
+          "url": "https://taphuan.nxbgd.vn/tap-huan/doc-sach/shs-khoa-hoc-tu-nhien-8.4539229607#page=51",
+          "authority": "NXBGDVN"
+        },
+        {
+          "label": "OpenStax Chemistry 2e §14.2 pH and pOH",
+          "url": "https://openstax.org/books/chemistry-2e/pages/14-2-ph-and-poh",
+          "authority": "OpenStax"
+        },
+        {
+          "label": "OpenStax Chemistry 2e §14.7 · Acid-Base Titrations · bảng khoảng đổi màu của chỉ thị",
+          "url": "https://openstax.org/books/chemistry-2e/pages/14-7-acid-base-titrations",
+          "authority": "OpenStax"
+        }
+      ],
+      "assumptions": [
+        "Dung dịch nước loãng ở 25 °C; không coi mọi dung dịch đều nằm trong khoảng pH 0–14.",
+        "Lab giới hạn acid/base mạnh một nấc và có pH số; nhận biết chỉ thị ở THCS không đòi dùng toàn bộ mô hình cân bằng THPT.",
+        "Học liệu do Codex soạn theo yêu cầu nhóm; chưa có giáo viên ký duyệt."
+      ],
+      "provenance": {
+        "source_id": "lumilab-authored",
+        "book": "LumiLab — học liệu tự biên soạn, đối chiếu CTST",
+        "chapter": "chemistry",
+        "section": "ctst-ph-indicator",
+        "license": "LicenseRef-LumiLab-Draft",
+        "commit": null,
+        "level": "THCS",
+        "source_language": "vi",
+        "curriculum_series": "Chân trời sáng tạo",
+        "curriculum_status": "pending",
+        "conditions": {
+          "model_scope": "Dung dịch nước loãng ở 25 °C. Phenolphthalein chuyển màu trong một khoảng pH; lab mô phỏng khoảng 8,2–10.",
+          "curriculum_evidence": "Đã đọc trang online; chưa duyệt giáo viên, năm in chưa xác định.",
+          "model_version": "ideal-strong-titration-ts-v1"
+        }
+      }
+    }
+  ]
+}

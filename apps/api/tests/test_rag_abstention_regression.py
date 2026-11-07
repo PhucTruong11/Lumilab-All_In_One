@@ -25,7 +25,6 @@ ROOT = Path(__file__).resolve().parents[3]
 # RAG-01 confirmed false positives at main 8f18b041 (hybrid, hash REF config).
 KNOWN_FALSE_POSITIVES = {
     "dev-wronglab-02",   # spring-stiffness question, pendulum scope
-    "dev-wronglab-03",   # pendulum question, circuit scope
     "dev-missing-03",    # buffer-solution question; no buffer card exists
     "ho-missing-01",     # damped spring in oil; no damping card exists
 }
