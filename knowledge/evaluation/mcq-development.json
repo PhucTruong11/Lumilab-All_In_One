@@ -1,0 +1,105 @@
+{
+  "revision": "team-mcq-development-2026-11-06",
+  "origin": "Project-authored draft questions; not VMLU or copied textbook content",
+  "review_status": "draft",
+  "split": "development_not_held_out",
+  "cases": [
+    {
+      "id": "physics-ohm",
+      "subject": "high_school_physics",
+      "lab_id": "circuit",
+      "level": "THPT",
+      "question": "Một điện trở thuần 20 ohm được đặt dưới hiệu điện thế không đổi 6 V. Cường độ dòng điện qua nó bằng bao nhiêu?",
+      "options": [
+        "0,3 A",
+        "120 A",
+        "3 A",
+        "26 A"
+      ],
+      "answer": "A",
+      "tool": {
+        "operation": "ohm_current",
+        "values": {
+          "voltage_V": 6,
+          "resistance_ohm": 20
+        }
+      },
+      "expected_evidence": true
+    },
+    {
+      "id": "physics-pendulum",
+      "subject": "high_school_physics",
+      "lab_id": "pendulum",
+      "level": "THPT",
+      "question": "Trong mô hình con lắc đơn góc nhỏ, giữ chiều dài và gia tốc trọng trường cố định. Đổi khối lượng quả nặng thì chu kỳ thay đổi thế nào?",
+      "options": [
+        "Tăng theo khối lượng",
+        "Giảm theo khối lượng",
+        "Không đổi",
+        "Không thể xác định vì thiếu khối lượng"
+      ],
+      "answer": "C",
+      "expected_evidence": true
+    },
+    {
+      "id": "physics-control",
+      "subject": "high_school_physics",
+      "lab_id": "pendulum",
+      "level": "THPT",
+      "question": "Muốn kiểm tra riêng ảnh hưởng của chiều dài tới chu kỳ con lắc, cách thao tác phù hợp nhất là gì?",
+      "options": [
+        "Thay đồng thời chiều dài và khối lượng",
+        "Chỉ thay chiều dài, giữ các điều kiện còn lại cố định",
+        "Chỉ thay màu quả nặng",
+        "Thay mọi thông số rồi so kết quả"
+      ],
+      "answer": "B",
+      "expected_evidence": true
+    },
+    {
+      "id": "chemistry-equivalence",
+      "subject": "high_school_chemistry",
+      "lab_id": "chemistry",
+      "level": "THPT",
+      "question": "Ở 25 độ C, chuẩn độ 25 mL HCl 0,1 mol/L bằng NaOH 0,1 mol/L, giả sử dung dịch lý tưởng. Thể tích NaOH tại điểm tương đương bằng bao nhiêu?",
+      "options": [
+        "12,5 mL",
+        "50 mL",
+        "2,5 mL",
+        "25 mL"
+      ],
+      "answer": "D",
+      "expected_evidence": true
+    },
+    {
+      "id": "chemistry-control",
+      "subject": "high_school_chemistry",
+      "lab_id": "chemistry",
+      "level": "THPT",
+      "question": "Gần điểm kết thúc chuẩn độ axit-bazơ, vì sao nên thêm từng giọt rồi lắc đều?",
+      "options": [
+        "Để hạn chế vượt điểm kết thúc và quan sát màu sau khi trộn",
+        "Để làm nồng độ chất chuẩn tự tăng",
+        "Để thay đổi hệ số phản ứng",
+        "Để loại bỏ nhu cầu đọc buret"
+      ],
+      "answer": "A",
+      "expected_evidence": true
+    },
+    {
+      "id": "chemistry-source",
+      "subject": "high_school_chemistry",
+      "lab_id": "chemistry",
+      "level": "THPT",
+      "question": "Một kết quả mô phỏng chỉ có nhãn preview và dữ liệu chưa duyệt. Kết luận nào phù hợp?",
+      "options": [
+        "Đã có chứng nhận giáo viên",
+        "Chắc chắn đúng ngoài đời trong mọi điều kiện",
+        "Cần xem giả thiết và bằng chứng được duyệt trước khi khẳng định",
+        "Có thể bỏ qua điều kiện phản ứng"
+      ],
+      "answer": "C",
+      "expected_evidence": true
+    }
+  ]
+}

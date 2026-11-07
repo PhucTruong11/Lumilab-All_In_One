@@ -1,0 +1,54 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "lab_id": {
+      "maxLength": 32,
+      "minLength": 1,
+      "title": "Lab Id",
+      "type": "string"
+    },
+    "question": {
+      "maxLength": 800,
+      "minLength": 1,
+      "title": "Question",
+      "type": "string"
+    },
+    "mode": {
+      "default": "hint",
+      "enum": [
+        "hint",
+        "explanation",
+        "feedback",
+        "qa"
+      ],
+      "title": "Mode",
+      "type": "string"
+    },
+    "hint_level": {
+      "default": 0,
+      "maximum": 3,
+      "minimum": 0,
+      "title": "Hint Level",
+      "type": "integer"
+    },
+    "run_id": {
+      "anyOf": [
+        {
+          "format": "uuid",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Run Id"
+    }
+  },
+  "required": [
+    "lab_id",
+    "question"
+  ],
+  "title": "TutorTask",
+  "type": "object"
+}

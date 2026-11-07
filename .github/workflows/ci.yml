@@ -1,11 +1,12 @@
-name: CI
-
-on:
-  push:
-  pull_request:
-
+name: quality
+on: [push, pull_request]
+permissions:
+  contents: read
+concurrency:
+  group: quality-${{ github.event.pull_request.number || github.run_id }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 jobs:
-  web:
+  frontend:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -15,15 +16,63 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run check:web
+      - run: npm run test:unit
       - run: npm run build:web
-
-  api:
+  backend:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: '3.13'
-      - run: python -m pip install -e './apps/api[dev]'
+      - run: python -m pip install -r docker/requirements-dev.lock
+      - run: python -m pip install --no-deps -e apps/api
       - run: python -m ruff check apps/api
+      - run: python -m lumilab_api.data_cli lint --include-drafts
+      - run: python -m lumilab_api.data_cli build --include-drafts
       - run: python -m pytest apps/api/tests
+  e2e:
+    runs-on: ubuntu-latest
+    env:
+      LUMILAB_DATABASE_URL: postgresql+psycopg://lumilab:lumilab_test@127.0.0.1:5432/lumilab
+    services:
+      postgres:
+        image: postgres:17-alpine
+        env:
+          POSTGRES_DB: lumilab
+          POSTGRES_USER: lumilab
+          POSTGRES_PASSWORD: lumilab_test
+        ports:
+          - 5432:5432
+        options: --health-cmd "pg_isready -U lumilab" --health-interval 5s --health-timeout 3s --health-retries 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - run: npm ci
+      - run: python -m pip install -r docker/requirements-dev.lock
+      - run: python -m pip install --no-deps -e apps/api
+      - run: npx playwright install --with-deps chromium
+      - run: python -m lumilab_api.run_schema
+      - run: python -m lumilab_api.data_cli build --include-drafts
+      - run: python -m pytest apps/api/tests/test_tutor_postgres.py -q
+      - run: npm run test:e2e
+
+  quality-gate:
+    runs-on: ubuntu-latest
+    if: ${{ always() }}
+    needs: [frontend, backend, e2e]
+    steps:
+      - name: Require all checks
+        env:
+          FRONTEND: ${{ needs.frontend.result }}
+          BACKEND: ${{ needs.backend.result }}
+          E2E: ${{ needs.e2e.result }}
+        run: |
+          printf 'Frontend: %s\nBackend: %s\nE2E: %s\n' "$FRONTEND" "$BACKEND" "$E2E"
+          test "$FRONTEND" = success && test "$BACKEND" = success && test "$E2E" = success

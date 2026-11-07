@@ -1,0 +1,55 @@
+{
+  "schema_version": "1.0",
+  "id": "mechanics",
+  "title": "Định luật II Newton",
+  "subject": "physics",
+  "model_version": "constant-force-motion-v1",
+  "dataset_version": "client-expansion-draft-2026-11-01",
+  "implementation_status": "client",
+  "review_status": "draft",
+  "assumptions": [
+    "Chuyển động1chiều trong hệ quán tính, tổng lực không đổi, không ma sát; t0–10s.",
+    "Thước hình vẽ tự điều chỉnh theo hành trình10s; không có va chạm hoặc giới hạn ray vật lý."
+  ],
+  "sources": [
+    {
+      "label": "Định luật II Newton · OpenStax",
+      "url": "https://openstax.org/books/university-physics-volume-1/pages/5-3-newtons-second-law"
+    }
+  ],
+  "parameter_schema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "mass_kg",
+      "force_N",
+      "initialVelocity_m_s"
+    ],
+    "properties": {
+      "mass_kg": {
+        "type": "number",
+        "minimum": 0.5,
+        "maximum": 5,
+        "description": "kg"
+      },
+      "force_N": {
+        "type": "number",
+        "minimum": -10,
+        "maximum": 10,
+        "description": "N"
+      },
+      "initialVelocity_m_s": {
+        "type": "number",
+        "minimum": -3,
+        "maximum": 3,
+        "description": "m/s"
+      }
+    }
+  },
+  "defaults": {
+    "mass_kg": 2,
+    "force_N": 2,
+    "initialVelocity_m_s": 0
+  },
+  "duration_s": 10
+}

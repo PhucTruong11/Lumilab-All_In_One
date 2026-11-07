@@ -1,0 +1,54 @@
+{
+  "schema_version": "1.0",
+  "id": "atomic",
+  "title": "Cấu tạo nguyên tử",
+  "subject": "chemistry",
+  "model_version": "atomic-particle-counts-v1",
+  "dataset_version": "client-expansion-draft-2026-11-01",
+  "implementation_status": "client",
+  "review_status": "draft",
+  "assumptions": [
+    "Mô hình đếm hạtZ1–18,A=Z+N,q/e=Z−ne; không kiểm đồng vị bền hoặc tồn tại thực nghiệm.",
+    "Sơ đồ lớp vỏ2,8,8 là minh họa cho phạm vi18electron, không quỹ đạo thật, không phép đo cấu trúc lượng tử."
+  ],
+  "sources": [
+    {
+      "label": "Cấu tạo nguyên tử · OpenStax",
+      "url": "https://openstax.org/books/chemistry-2e/pages/2-3-atomic-structure-and-symbolism"
+    }
+  ],
+  "parameter_schema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "protons",
+      "neutrons",
+      "electrons"
+    ],
+    "properties": {
+      "protons": {
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 18,
+        "description": "hạt"
+      },
+      "neutrons": {
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 24,
+        "description": "hạt"
+      },
+      "electrons": {
+        "type": "integer",
+        "minimum": 0,
+        "maximum": 18,
+        "description": "hạt"
+      }
+    }
+  },
+  "defaults": {
+    "protons": 11,
+    "neutrons": 12,
+    "electrons": 11
+  }
+}

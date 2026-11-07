@@ -1,20 +1,31 @@
 {
   "name": "lumilab-b",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "type": "module",
   "workspaces": [
-    "apps/web"
+    "apps/web",
+    "packages/contracts",
+    "packages/lab-engine"
   ],
   "engines": {
     "node": ">=24 <25"
   },
   "scripts": {
     "dev:web": "npm run dev --workspace @lumilab/web",
-    "check:web": "tsc --noEmit -p apps/web/tsconfig.json",
-    "build:web": "npm run build --workspace @lumilab/web"
+    "check:web": "tsc --noEmit -p apps/web && tsc --noEmit -p packages/lab-engine && eslint apps/web packages --max-warnings 0",
+    "test:unit": "vitest run",
+    "build:web": "npm run build --workspace @lumilab/web",
+    "test:e2e": "playwright test"
   },
   "devDependencies": {
-    "typescript": "^5.9.3"
+    "@eslint/js": "^10.0.1",
+    "@playwright/test": "^1.56.0",
+    "@types/node": "^24.10.0",
+    "ajv": "^8.17.1",
+    "eslint": "^10.14.0",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.46.0",
+    "vitest": "^5.0.5"
   }
 }

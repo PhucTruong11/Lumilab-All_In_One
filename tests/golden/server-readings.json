@@ -1,0 +1,16 @@
+[
+  {"lab":"pendulum","parameters":{"angle_deg":0},"expected":{"period_s":null,"frequency_hz":null,"energy_j":0,"max_speed_m_s":0}},
+  {"lab":"pendulum","parameters":{"angle_deg":90},"expected":{"period_s":2.367841947576237,"energy_j":1.962}},
+  {"lab":"chemistry","parameters":{"baseVolume_ml":25,"acid":"hno3","base":"koh"},"expected":{"pH":7,"indicatorFraction":0,"salt":"KNO₃","stage":"equivalence","saltMoles":0.0025}},
+  {"lab":"chemistry","parameters":{"baseVolume_ml":0},"expected":{"pH":1,"stage":"acid","remainingAcidMoles":0.0025}},
+  {"lab":"chemistry","parameters":{"baseVolume_ml":50},"expected":{"pH":12.52287874528,"stage":"base","remainingBaseMoles":0.0025}},
+  {"lab":"circuit","parameters":{"slots":["extraResistor","bulb",null]},"expected":{"valid":true,"closed":true,"totalResistance_ohm":50,"current_A":0.12,"resistorVoltage_V":2.4,"power_W":0.72,"bulbPower_W":0.144}},
+  {"lab":"circuit","parameters":{"slots":["switchInstalled",null,null],"switchClosed":false},"expected":{"valid":true,"closed":false,"current_A":0}},
+  {"lab":"circuit","parameters":{"ammeter":"parallel"},"expected":{"valid":false,"current_A":null,"resistorVoltage_V":null}},
+  {"lab":"mechanics","parameters":{"mass_kg":2,"force_N":-4,"initialVelocity_m_s":2},"time":3,"expected":{"acceleration_m_s2":-2,"velocity_m_s":-4,"position_m":-3,"kineticEnergy_J":16}},
+  {"lab":"spring","parameters":{"mass_kg":1,"stiffness_N_m":25,"displacement_m":0.2},"time":0.3141592653589793,"expected":{"omega_rad_s":5,"period_s":1.2566370614359172,"displacement_m":0,"velocity_m_s":-1,"force_N":0,"potentialEnergy_J":0,"kineticEnergy_J":0.5,"totalEnergy_J":0.5}},
+  {"lab":"spring","parameters":{"displacement_m":0},"time":1,"expected":{"period_s":null,"totalEnergy_J":0}},
+  {"lab":"electrochemistry","parameters":{"left":"ag","right":"zn","bridgeConnected":false},"expected":{"voltage_V":-1.56,"emf_V":1.56,"meterVoltage_V":null,"anodeSide":"right","cathodeSide":"left","exchangedElectrons":2,"reaction":"Zn + 2Ag⁺ → Zn²⁺ + 2Ag"}},
+  {"lab":"electrochemistry","parameters":{"left":"cu","right":"cu","bridgeConnected":true},"expected":{"voltage_V":0,"meterVoltage_V":0,"anode":null,"exchangedElectrons":0}},
+  {"lab":"atomic","parameters":{"protons":17,"neutrons":18,"electrons":18},"expected":{"symbol":"Cl","atomicNumber":17,"massNumber":35,"charge_e":-1,"shells":[2,8,8]}}
+]

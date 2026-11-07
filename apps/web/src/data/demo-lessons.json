@@ -1,0 +1,308 @@
+[
+  {
+    "id": "pendulum",
+    "subjectId": "physics",
+    "chapterId": "oscillations",
+    "title": "Con lắc đơn: điều gì làm đổi chu kỳ?",
+    "lead": "Dự đoán ảnh hưởng của khối lượng và chiều dài, rồi thay từng biến để kiểm tra bằng số liệu.",
+    "knowledge": [
+      {
+        "title": "Một chu kỳ là gì?",
+        "text": "Chu kỳ T là thời gian để con lắc trở lại cùng vị trí và cùng chiều chuyển động. Tần số cho biết số chu kỳ trong một giây."
+      },
+      {
+        "title": "Thay một biến mỗi lần",
+        "text": "Khi thử ảnh hưởng của khối lượng, giữ chiều dài, gia tốc trọng trường và góc thả không đổi. Sau đó giữ khối lượng để khảo sát chiều dài."
+      },
+      {
+        "title": "Đọc quy luật từ số đo",
+        "text": "Trong mô hình lý tưởng, chu kỳ không phụ thuộc khối lượng. Giữ góc thả và g không đổi, dây dài hơn làm chu kỳ lớn hơn theo căn bậc hai của chiều dài. Ở góc lớn, tăng góc thả cũng làm chu kỳ tăng."
+      },
+      {
+        "title": "Giới hạn của mô hình",
+        "text": "Dây không dãn, vật là chất điểm và bỏ qua ma sát. Demo cho kéo đến 90° mỗi bên và tính dao động phi tuyến. T ≈ 2π√(L/g) vẫn là xấp xỉ cho góc nhỏ; ở góc lớn cần tính ảnh hưởng của biên độ. Góc 0° không tạo dao động."
+      }
+    ],
+    "formulas": [
+      {
+        "expression": "T ≈ 2π√(L/g)",
+        "description": "T theo s; L theo m; g theo m/s². Dùng cho con lắc đơn dao động góc nhỏ."
+      },
+      {
+        "expression": "f = 1/T",
+        "description": "Tần số f theo Hz khi chu kỳ T theo s."
+      },
+      {
+        "expression": "g ≈ 4π²L/T²",
+        "description": "Suy ra gia tốc trọng trường từ chiều dài và chu kỳ trong mô hình góc nhỏ."
+      }
+    ],
+    "exercise": {
+      "id": "pendulum-period",
+      "prompt": "Con lắc dài 1,00 m, được thả ở góc 10° tại nơi g = 9,81 m/s². Bỏ qua ma sát. Tính chu kỳ theo mô hình góc nhỏ, làm tròn đến 0,01 s.",
+      "unit": "s",
+      "answer": 2.0060666807106475,
+      "tolerance": 0.015,
+      "hint": "Dùng T ≈ 2π√(L/g). Thay L = 1,00 m và g = 9,81 m/s²; không cần khối lượng của vật.",
+      "explanation": "T ≈ 2π√(1/9,81) ≈ 2,006 s, làm tròn là 2,01 s. Khi kiểm tra trong mô phỏng, giữ chiều dài và g như đề bài."
+    },
+    "quiz": [
+      {
+        "id": "pendulum-mass",
+        "stem": "Trong mô hình góc nhỏ, tăng khối lượng từ 0,2 kg lên 1 kg và giữ các tham số khác không đổi. Chu kỳ thay đổi thế nào?",
+        "options": [
+          "Tăng 5 lần",
+          "Giảm 5 lần",
+          "Không đổi",
+          "Tăng theo căn bậc hai của khối lượng"
+        ],
+        "correctIndex": 2,
+        "explanation": "Công thức T ≈ 2π√(L/g) không chứa khối lượng."
+      },
+      {
+        "id": "pendulum-length",
+        "stem": "Giữ g không đổi và tăng chiều dài con lắc từ 0,5 m lên 2 m. Chu kỳ trong mô hình góc nhỏ tăng bao nhiêu lần?",
+        "options": [
+          "4 lần",
+          "2 lần",
+          "8 lần",
+          "Không đổi"
+        ],
+        "correctIndex": 1,
+        "explanation": "Chiều dài tăng 4 lần nên chu kỳ tăng √4 = 2 lần."
+      },
+      {
+        "id": "pendulum-small-angle",
+        "stem": "Điều kiện nào phù hợp với công thức xấp xỉ T ≈ 2π√(L/g)?",
+        "options": [
+          "Góc thả nhỏ và bỏ qua ma sát",
+          "Góc thả tùy ý, kể cả 90°",
+          "Dây dãn nhiều khi dao động",
+          "Ma sát lớn nhưng chu kỳ luôn chính xác"
+        ],
+        "correctIndex": 0,
+        "explanation": "T ≈ 2π√(L/g) là xấp xỉ góc nhỏ và bỏ qua ma sát. Mô phỏng cho kéo đến 90° và tính chu kỳ phi tuyến khi góc lớn."
+      },
+      {
+        "id": "pendulum-control",
+        "stem": "Muốn kiểm tra riêng ảnh hưởng của khối lượng lên chu kỳ, cần giữ những đại lượng nào cố định?",
+        "options": [
+          "Chỉ giữ khối lượng",
+          "Chỉ giữ thời gian chạy mô phỏng",
+          "Đổi cả chiều dài và khối lượng",
+          "Chiều dài, g và góc thả"
+        ],
+        "correctIndex": 3,
+        "explanation": "Giữ các biến còn lại để sự khác biệt, nếu có, có thể gắn với khối lượng."
+      }
+    ]
+  },
+  {
+    "id": "circuit",
+    "subjectId": "physics",
+    "chapterId": "electricity",
+    "title": "Mạch điện: mắc đúng, đo đúng",
+    "lead": "Chọn cách mắc ampe kế và vôn kế, rồi khảo sát dòng điện qua điện trở thuần.",
+    "knowledge": [
+      {
+        "title": "Quan hệ U, I và R",
+        "text": "Với điện trở thuần không đổi, dòng điện tỉ lệ thuận với hiệu điện thế và tỉ lệ nghịch với điện trở."
+      },
+      {
+        "title": "Chọn cách mắc dụng cụ",
+        "text": "Ampe kế mắc nối tiếp để đo dòng qua điện trở. Vôn kế mắc song song với hai đầu điện trở để đo hiệu điện thế."
+      },
+      {
+        "title": "Khảo sát có kiểm soát",
+        "text": "Giữ R cố định, thay U và ghi I. Đồ thị I theo U của điện trở lý tưởng là đường thẳng qua gốc, có độ dốc 1/R."
+      },
+      {
+        "title": "Giới hạn của mô hình",
+        "text": "Nguồn, dây dẫn và dụng cụ đo được coi là lý tưởng; R không đổi. Demo không tính sự nóng lên hay hỏng thiết bị. Mắc sai sẽ khóa phép đo để học sinh sửa."
+      }
+    ],
+    "formulas": [
+      {
+        "expression": "I = U/R",
+        "description": "I theo A; U theo V; R theo Ω. Áp dụng cho điện trở thuần trong mô hình này."
+      },
+      {
+        "expression": "R = U/I",
+        "description": "Suy ra điện trở từ hiệu điện thế và dòng điện khác 0."
+      },
+      {
+        "expression": "P = UI = U²/R",
+        "description": "Công suất P theo W. Mô phỏng tính công suất, chưa mô phỏng nhiệt độ điện trở."
+      }
+    ],
+    "exercise": {
+      "id": "circuit-current",
+      "prompt": "Mạch lý tưởng có điện trở R = 20 Ω, hiệu điện thế hai đầu điện trở U = 6 V. Ampe kế nối tiếp, vôn kế song song. Tính cường độ dòng điện qua điện trở.",
+      "unit": "A",
+      "answer": 0.3,
+      "tolerance": 0.005,
+      "hint": "Dùng I = U/R. Chia 6 V cho 20 Ω; đáp án cần nhập theo A, không theo mA.",
+      "explanation": "I = 6/20 = 0,30 A, tương đương 300 mA. Trên mô phỏng, chọn cách mắc đúng trước khi đọc số chỉ."
+    },
+    "quiz": [
+      {
+        "id": "circuit-ammeter",
+        "stem": "Để đo dòng điện qua điện trở, ampe kế cần mắc thế nào?",
+        "options": [
+          "Nối tiếp với điện trở",
+          "Song song với điện trở",
+          "Tách khỏi mạch",
+          "Chỉ nối vào một đầu điện trở"
+        ],
+        "correctIndex": 0,
+        "explanation": "Dòng qua điện trở phải đi qua ampe kế mắc nối tiếp."
+      },
+      {
+        "id": "circuit-voltmeter",
+        "stem": "Để đo hiệu điện thế giữa hai đầu điện trở, vôn kế cần mắc thế nào?",
+        "options": [
+          "Nối tiếp với điện trở",
+          "Song song với hai đầu điện trở",
+          "Thay hoàn toàn điện trở",
+          "Nối hai que đo vào cùng một điểm"
+        ],
+        "correctIndex": 1,
+        "explanation": "Vôn kế so sánh điện thế của hai điểm ở hai đầu điện trở."
+      },
+      {
+        "id": "circuit-voltage",
+        "stem": "Giữ R = 20 Ω và tăng U từ 3 V lên 6 V. Cường độ dòng điện thay đổi thế nào?",
+        "options": [
+          "Giảm một nửa",
+          "Không đổi",
+          "Tăng gấp đôi",
+          "Tăng gấp bốn"
+        ],
+        "correctIndex": 2,
+        "explanation": "I = U/R: U tăng gấp đôi, R giữ nguyên nên I tăng gấp đôi."
+      },
+      {
+        "id": "circuit-resistance",
+        "stem": "Giữ U = 6 V và tăng R từ 20 Ω lên 40 Ω. Dòng điện mới bằng bao nhiêu?",
+        "options": [
+          "0,60 A",
+          "0,30 A",
+          "1,50 A",
+          "0,15 A"
+        ],
+        "correctIndex": 3,
+        "explanation": "I = 6/40 = 0,15 A. Điện trở tăng gấp đôi làm dòng giảm một nửa."
+      }
+    ]
+  },
+  {
+    "id": "chemistry",
+    "subjectId": "chemistry",
+    "chapterId": "solutions",
+    "title": "Chuẩn độ: một giọt, nhiều điều bất ngờ",
+    "lead": "Thêm NaOH vào HCl, theo dõi pH và màu phenolphthalein để hiểu quá trình trung hòa.",
+    "knowledge": [
+      {
+        "title": "Theo dõi số mol",
+        "text": "Trong bài HCl–NaOH, mỗi mol H⁺ phản ứng với một mol OH⁻. Tại điểm tương đương, số mol NaOH đã thêm bằng số mol HCl ban đầu."
+      },
+      {
+        "title": "pH gần điểm tương đương",
+        "text": "Với hai dung dịch 0,1 M trong demo, một thay đổi thể tích rất nhỏ gần điểm tương đương có thể làm pH tăng mạnh khi dung dịch chuyển từ axit dư sang bazơ dư."
+      },
+      {
+        "title": "Màu không đồng nghĩa với tương đương",
+        "text": "Ở 25°C, HCl và NaOH đạt tương đương tại pH 7. Phenolphthalein vẫn không màu lúc này; chuyển hồng khi dung dịch có pH khoảng trên 8,3. Điểm kết thúc theo màu gần điểm tương đương nhưng khác khái niệm."
+      },
+      {
+        "title": "Giới hạn của mô hình",
+        "text": "Demo dùng axit mạnh và bazơ mạnh, dung dịch lý tưởng ở 25°C. Màu là minh họa; bước 0,05 mL không phải thể tích mọi giọt thật. Không suy rộng kết quả sang axit yếu hoặc nhiều nấc."
+      }
+    ],
+    "formulas": [
+      {
+        "expression": "HCl + NaOH → NaCl + H₂O",
+        "description": "Phương trình phân tử của phản ứng trong dung dịch. HCl và NaOH phản ứng theo tỉ lệ số mol 1:1."
+      },
+      {
+        "expression": "H⁺ + OH⁻ → H₂O",
+        "description": "Phương trình ion rút gọn của sự trung hòa giữa axit mạnh và bazơ mạnh trong bài này."
+      },
+      {
+        "expression": "n = CV",
+        "description": "n theo mol; C theo mol/L; V phải đổi từ mL sang L khi tính số mol."
+      },
+      {
+        "expression": "Vtđ = CaVa/Cb",
+        "description": "Từ CaVa = CbVtđ cho HCl–NaOH tỉ lệ 1:1. Ca, Cb cùng theo mol/L; Va và thể tích bazơ tương đương Vtđ cùng theo mL hoặc L."
+      },
+      {
+        "expression": "pH = −log₁₀[H⁺]",
+        "description": "Trong mô hình dung dịch lý tưởng, [H⁺] theo mol/L. Code tính cả sự tự điện li của nước gần tương đương."
+      },
+      {
+        "expression": "pH + pOH = 14",
+        "description": "Áp dụng ở 25°C cho mô hình dung dịch lý tưởng; pOH = −log₁₀[OH⁻] với [OH⁻] theo mol/L. Nhiệt độ khác có thể làm tổng này thay đổi."
+      }
+    ],
+    "exercise": {
+      "id": "chemistry-equivalence",
+      "prompt": "Chuẩn độ 25,00 mL HCl 0,100 M bằng NaOH 0,100 M. Phản ứng theo tỉ lệ 1:1. Cần thêm bao nhiêu mL NaOH để đạt điểm tương đương?",
+      "unit": "mL",
+      "answer": 25,
+      "tolerance": 0.05,
+      "hint": "Đặt CaVa = CbVb, rồi suy ra Vb = CaVa/Cb. Hai nồng độ bằng nhau nên hai thể tích tại tương đương bằng nhau.",
+      "explanation": "Vb = 0,100 × 25,00 / 0,100 = 25,00 mL. Tại đây pH = 7 và phenolphthalein vẫn không màu; màu hồng xuất hiện sau đó khi bazơ hơi dư."
+    },
+    "quiz": [
+      {
+        "id": "chemistry-equivalence-definition",
+        "stem": "Điểm tương đương trong chuẩn độ HCl bằng NaOH được xác định bởi điều kiện nào?",
+        "options": [
+          "Dung dịch vừa có màu hồng đậm",
+          "Số mol NaOH thêm bằng số mol HCl ban đầu",
+          "Thể tích hai dung dịch luôn bằng nhau dù nồng độ khác nhau",
+          "Buret đã nhỏ hết dung dịch"
+        ],
+        "correctIndex": 1,
+        "explanation": "Phản ứng HCl–NaOH có tỉ lệ số mol 1:1; điểm tương đương được xác định theo tỉ lượng phản ứng."
+      },
+      {
+        "id": "chemistry-equivalence-color",
+        "stem": "Với HCl 25,00 mL 0,1 M và NaOH 0,1 M ở 25°C, tại đúng 25,00 mL NaOH, pH và màu phenolphthalein là gì?",
+        "options": [
+          "pH 7, không màu",
+          "pH 7, hồng đậm",
+          "pH 1, không màu",
+          "pH 14, màu xanh"
+        ],
+        "correctIndex": 0,
+        "explanation": "Tại tương đương của axit mạnh–bazơ mạnh, pH = 7 ở 25°C. Phenolphthalein chưa chuyển hồng."
+      },
+      {
+        "id": "chemistry-endpoint",
+        "stem": "Phát biểu nào phân biệt đúng điểm kết thúc theo phenolphthalein và điểm tương đương trong bài HCl–NaOH?",
+        "options": [
+          "Hai điểm luôn trùng nhau chính xác",
+          "Điểm tương đương chỉ do màu quyết định",
+          "Điểm kết thúc nhận biết theo đổi màu, còn tương đương xác định theo số mol phản ứng",
+          "Màu hồng chứng minh toàn bộ dung dịch vẫn còn axit dư"
+        ],
+        "correctIndex": 2,
+        "explanation": "Màu chỉ thị đổi ở khoảng pH riêng. Với phenolphthalein, điểm kết thúc nằm hơi sau điểm tương đương trong bài này."
+      },
+      {
+        "id": "chemistry-concentration",
+        "stem": "Giữ HCl 25,00 mL 0,100 M, nhưng đổi NaOH thành 0,200 M. Thể tích NaOH cần tại tương đương là bao nhiêu?",
+        "options": [
+          "50,00 mL",
+          "25,00 mL",
+          "6,25 mL",
+          "12,50 mL"
+        ],
+        "correctIndex": 3,
+        "explanation": "Vb = CaVa/Cb = 0,100 × 25,00 / 0,200 = 12,50 mL. NaOH đậm đặc gấp đôi nên cần một nửa thể tích."
+      }
+    ]
+  }
+]

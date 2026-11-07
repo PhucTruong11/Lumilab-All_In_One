@@ -9,12 +9,17 @@
     "preview": "vite preview --host 127.0.0.1"
   },
   "dependencies": {
+    "@lumilab/contracts": "*",
+    "@lumilab/lab-engine": "*",
     "react": "^19.3.1",
-    "react-dom": "^19.3.1"
+    "react-dom": "^19.3.1",
+    "recharts": "^3.10.1"
   },
   "devDependencies": {
+    "@tailwindcss/vite": "^4.1.0",
     "@types/react": "^19.2.0",
     "@types/react-dom": "^19.2.0",
+    "tailwindcss": "^4.1.0",
     "vite": "^8.3.5"
   }
 }

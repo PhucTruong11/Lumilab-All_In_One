@@ -1,0 +1,6 @@
+# Optional local pipeline, tested on Python 3.13 Windows; not a full transitive lock.
+# Keep separate from lean API/dev locks; never pip-freeze the model workstation into CI.
+chromadb==1.5.9
+sentence-transformers==5.7.0
+pint==0.26.2
+sympy==1.14.0

@@ -1,0 +1,98 @@
+{
+  "schema_version": "1.0",
+  "id": "circuit",
+  "title": "Mạch điện",
+  "subject": "physics",
+  "model_version": "ideal-series-circuit-ts-v1",
+  "dataset_version": "client-draft-2026-11-01",
+  "implementation_status": "client",
+  "review_status": "draft",
+  "assumptions": [
+    "Tải nối tiếp DC, dây/đồng hồ lý tưởng; bóng10Ω và điện trở phụ20Ω cố định.",
+    "V đo R chính; sai cách mắc khóa số đo, không mô phỏng ngắn mạch; không mạng tải song song."
+  ],
+  "sources": [
+    {
+      "label": "OpenStax University Physics2 §10.2",
+      "url": "https://openstax.org/books/university-physics-volume-2/pages/10-2-resistors-in-series-and-parallel"
+    },
+    {
+      "label": "OpenStax University Physics2 §10.4",
+      "url": "https://openstax.org/books/university-physics-volume-2/pages/10-4-electrical-measuring-instruments"
+    }
+  ],
+  "parameter_schema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "voltage_V",
+      "resistance_ohm",
+      "ammeter",
+      "voltmeter",
+      "slots",
+      "switchClosed"
+    ],
+    "properties": {
+      "voltage_V": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 12,
+        "description": "V"
+      },
+      "resistance_ohm": {
+        "type": "number",
+        "minimum": 5,
+        "maximum": 100,
+        "description": "Ω"
+      },
+      "ammeter": {
+        "enum": [
+          "series",
+          "parallel"
+        ]
+      },
+      "voltmeter": {
+        "enum": [
+          "series",
+          "parallel"
+        ]
+      },
+      "slots": {
+        "type": "array",
+        "minItems": 3,
+        "maxItems": 3,
+        "items": {
+          "enum": [
+            null,
+            "extraResistor",
+            "bulb",
+            "switchInstalled"
+          ]
+        }
+      },
+      "switchClosed": {
+        "type": "boolean"
+      }
+    }
+  },
+  "defaults": {
+    "voltage_V": 6,
+    "resistance_ohm": 20,
+    "ammeter": "series",
+    "voltmeter": "parallel",
+    "slots": [
+      null,
+      null,
+      null
+    ],
+    "switchClosed": true
+  },
+  "constants": {
+    "extra_resistor_ohm": 20,
+    "bulb_resistance_ohm": 10
+  },
+  "constant_units": {
+    "extra_resistor_ohm": "ohm",
+    "bulb_resistance_ohm": "ohm"
+  }
+}

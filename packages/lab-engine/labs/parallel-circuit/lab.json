@@ -1,0 +1,35 @@
+{
+  "schema_version": "1.0",
+  "id": "parallel-circuit",
+  "title": "Mạch nối tiếp và song song",
+  "subject": "physics",
+  "model_version": "ideal-two-resistor-network-v1",
+  "dataset_version": "reaction-network-draft-2026-11-04",
+  "implementation_status": "client",
+  "review_status": "draft",
+  "assumptions": [
+    "Nguồn điện một chiều lý tưởng, dây và công tắc không có điện trở; hai điện trở thuần tuân theo định luật Ohm, không đổi theo nhiệt độ.",
+    "Chỉ hỗ trợ hai điện trở nối tiếp hoặc song song, không phải bộ giải mạch tùy ý. Điện trở tương đương mô tả riêng mạng điện trở, kể cả khi công tắc mở.",
+    "Công tắc đặt giữa nguồn và toàn bộ mạng; mở công tắc làm dòng và điện áp trên điện trở bằng 0; bỏ qua quá trình quá độ và điện dung ký sinh.",
+    "Đầu ra có đơn vị V, A, ohm và W; dữ liệu đang chờ duyệt, chỉ dùng preview."
+  ],
+  "sources": [
+    {
+      "label": "OpenStax University Physics Volume 2 §10.2 — Resistors in Series and Parallel",
+      "url": "https://openstax.org/books/university-physics-volume-2/pages/10-2-resistors-in-series-and-parallel"
+    }
+  ],
+  "parameter_schema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": ["voltage_V", "resistance1_ohm", "resistance2_ohm", "topology", "switchClosed"],
+    "properties": {
+      "voltage_V": {"type": "number", "minimum": 0, "maximum": 12, "description": "Điện áp nguồn, V"},
+      "resistance1_ohm": {"type": "number", "minimum": 5, "maximum": 100, "description": "Điện trở R1, ohm"},
+      "resistance2_ohm": {"type": "number", "minimum": 5, "maximum": 100, "description": "Điện trở R2, ohm"},
+      "topology": {"type": "string", "enum": ["series", "parallel"]},
+      "switchClosed": {"type": "boolean"}
+    }
+  },
+  "defaults": {"voltage_V": 6, "resistance1_ohm": 20, "resistance2_ohm": 30, "topology": "parallel", "switchClosed": true}
+}
