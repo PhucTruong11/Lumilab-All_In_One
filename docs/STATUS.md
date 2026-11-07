@@ -1,12 +1,12 @@
 # Trạng thái repo B
 
-Mốc hiện tại: **M01 — khung ứng dụng local**. M00 đã có README và hướng dẫn làm việc. M01 ở nhánh `chore/m01-local-base`, theo Issue #2; chờ CI/review trước khi merge.
+Mốc hiện tại: **M01 — khung ứng dụng local**. M00 đã có README và hướng dẫn làm việc. Web/API M01 đã vào `main` qua PR #3; lab engine vẫn chờ mốc sau.
 
 | Thành phần | Trạng thái |
 | --- | --- |
 | Web | React/TypeScript shell, hiển thị health API |
 | API | FastAPI `/health` |
-| CI | Workflow check/build web, Ruff/pytest API; chưa chạy trên GitHub |
+| CI | Workflow check/build web, Ruff/pytest API; main CI đạt ở run 42346817285 |
 | Contracts / lab engine | Chỉ có cấu trúc thư mục, chưa có module |
 | Knowledge / golden / E2E / Docker | Chỉ có cấu trúc thư mục |
 | Phiên / RAG / Lumi / live AI | Chưa triển khai |
