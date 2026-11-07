@@ -1,8 +1,10 @@
 # LumiLab — Dataset cho 9 bài lab
 
-**Cập nhật 07/11/2026 · Bản 0.4 · Trạng thái `draft` · Phụ trách biên soạn: Đạt**
+**Cập nhật 07/11/2026 · Bản 0.5 · Trạng thái `draft` · Phụ trách biên soạn: Đạt**
 
-Tài liệu này chốt danh mục **6 bài Vật lí và 3 bài Hóa học vô cơ** để biên soạn học liệu tiếng Việt, thiết kế dữ liệu mô phỏng và viết bộ câu hỏi đánh giá. Đây là phạm vi dataset dự kiến, chưa xác nhận các lab đã triển khai. Ba bài Hóa chỉ dùng trong mô phỏng ảo.
+**Dữ liệu đang dùng:** Phòng thực hành hiển thị đúng 9 bài đã chốt. Ba bài ghép có hai chế độ, tổng cộng 12 mô hình đang mở. Xem bảng đối chiếu bài, mô hình, kiểm thử và học liệu trong [bàn giao 9 bài](tasks/NINE-LABS.md).
+
+Danh mục gồm **6 bài Vật lí và 3 bài Hóa học vô cơ**. Mỗi bài có mô phỏng và học liệu tiếng Việt. Ba bài Hóa dùng mô phỏng ảo định tính. Các mục dưới đây ghi căn cứ, giới hạn và ca đối chiếu khoa học.
 
 Các trang SGK dưới đây là **số trang in trên sách**. Mã bản điện tử nằm trong đường dẫn của Nhà xuất bản Giáo dục Việt Nam (NXBGDVN). Các SGK THPT được dẫn theo bộ *Kết nối tri thức với cuộc sống*; Khoa học tự nhiên 9 là nguồn bổ trợ THCS. Mục OpenStax dẫn thẳng đến phần dùng để đối chiếu. Các nguồn được ghi ở trạng thái `reference-only`; quyền đưa nội dung nguồn vào corpus là `pending`.
 
@@ -75,7 +77,7 @@ Các trang SGK dưới đây là **số trang in trên sách**. Mã bản điệ
 
 ## Trạng thái và bàn giao dataset
 
-- **Đã lập hồ sơ:** Cả 9 bài có mã, kiến thức, giả thiết hoặc điều kiện quan sát, ca kiểm dự kiến, trang SGK và mục OpenStax. Có bản nháp cho con lắc đơn: [học liệu](../knowledge/pendulum.draft.json) và [câu hỏi mẫu](../tests/pendulum-dataset.sample.json). Các ca kiểm trong sổ là tiêu chí để biên soạn, chưa phải kết quả kiểm thử.
-- **Đạt biên soạn:** Viết nội dung tiếng Việt cho từng mã, ghi phiên bản, nguồn và vị trí, phạm vi áp dụng, dữ liệu hoặc hiện tượng dự kiến. Mỗi bài có câu dự đoán, câu đọc kết quả, câu giải thích, đáp án và rubric. Trong ba bài Hóa, giữ phần hiển thị ở mức kịch bản ảo, phương trình và hiện tượng; không đưa quy trình thực hành tạo khí hoặc thử phản ứng ngoài mô phỏng.
+- **Học liệu nháp đã tích hợp.** Cả 9 bài có kiến thức, giả thiết, bài tập có lời giải và quiz. Sáu mô hình mới có hoạt động dự đoán, so sánh điều kiện và giải thích, kèm tiêu chí tự đánh giá. Ba bài Hóa dùng kịch bản ảo định tính.
+- **Ca kiểm khoa học.** Các mô hình mới dùng [19 ca chung](../tests/golden/curriculum-labs.json) để đối chiếu TypeScript và Python. Kết quả chạy thực tế được ghi ở [bàn giao 9 bài](tasks/NINE-LABS.md).
 - **Quyền sử dụng:** Tra cứu nguồn qua các liên kết. Ghi căn cứ sử dụng riêng cho từng nguồn và loại nội dung trước khi đưa vào kho dùng chung. [Cổng NXBGDVN](https://taphuan.nxbgd.vn/tap-huan?grade=11) nêu phạm vi sử dụng cho dạy và học; rà soát điều khoản của từng sách OpenStax cho mục đích nhập liệu. Khi chưa rõ quyền, chỉ giữ dẫn chiếu; không nhập bản chụp, hình hoặc trích đoạn sách vào corpus.
 - **Review và tích hợp:** Nam rà công thức, đơn vị, điều kiện, phương trình và ca chuẩn; ghi người duyệt, ngày và bản sửa. Đạt ghi rõ nội dung có căn cứ SGK và nội dung mở rộng. Khoa chỉ lập chỉ mục RAG cho nội dung đã được duyệt và có căn cứ sử dụng. Đ.Phúc dùng câu hỏi và rubric để kiểm tra AI Tutor. Kết quả thí nghiệm lấy từ bộ mô phỏng và bộ kiểm tra khoa học.

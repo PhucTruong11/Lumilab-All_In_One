@@ -19,7 +19,7 @@ test('practice navigation opens the nine-lab catalog with subject and search fil
 });
 
 test('every lesson includes theory, formulas, exercise and the corresponding working lab', async ({ page }) => {
-  const labs = [['pendulum','Con lắc đơn'],['spring','Con lắc lò xo'],['mechanics','Định luật II Newton'],['circuit','Mạch điện'],['chemistry','Chuẩn độ axit–bazơ'],['parallel-circuit','Mạch nối tiếp và song song'],['capacitor','Tụ điện: nạp và phóng điện'],['precipitation','Phản ứng tạo kết tủa AgCl'],['gas-reaction','Phản ứng axit và muối bicarbonat']];
+  const labs = [["pendulum", "Con lắc đơn"], ["spring", "Con lắc lò xo"], ["mechanics", "Định luật II Newton"], ["pulley", "Ròng rọc và pa-lăng"], ["parallel-circuit", "Mạch nối tiếp và song song"], ["capacitor", "Tụ điện: nạp và phóng điện"], ["alkali-water", "Na, K tác dụng với nước và màu ngọn lửa"], ["copper-nitric", "Đồng với HNO₃: NO và NO₂"], ["chlorine-bleach", "Clo và tính tẩy màu trong điều kiện ẩm"]];
   await page.goto('/');
   for (const [id, title] of labs) {
     await page.getByTestId(`practice-card-${id}`).getByRole('button', { name: 'Xem bài học', exact: true }).click();
@@ -27,6 +27,10 @@ test('every lesson includes theory, formulas, exercise and the corresponding wor
     await expect(page.getByRole('heading', { name: 'Công thức cần nhớ', exact: true })).toBeVisible();
     await expect(page.getByRole('heading', { name: 'Thử vận dụng', exact: true })).toBeVisible();
     await expect(page.getByLabel('Ghi chú của bạn', { exact: true })).toBeVisible();
+    if (['pulley', 'alkali-water', 'copper-nitric', 'chlorine-bleach'].includes(id)) {
+      await page.getByText('Thực hành có hướng dẫn', { exact: true }).click();
+      await expect(page.getByRole('heading', { name: 'Tiêu chí tự đánh giá' })).toBeVisible();
+    }
     await page.getByRole('button', { name: 'Thực hành ngay', exact: true }).click();
     await expect(page.getByRole('heading', { name: title, exact: true })).toBeInViewport();
     await expect(page.locator('.stage-panel')).toBeVisible();

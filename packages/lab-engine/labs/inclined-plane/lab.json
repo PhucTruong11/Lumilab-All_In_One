@@ -1,0 +1,59 @@
+{
+  "schema_version": "1.0",
+  "id": "inclined-plane",
+  "title": "Newton II và mặt phẳng nghiêng",
+  "subject": "physics",
+  "model_version": "rest-release-incline-v1",
+  "dataset_version": "lumilab-nine-draft-v1",
+  "implementation_status": "client",
+  "review_status": "draft",
+  "duration_s": 8,
+  "assumptions": [
+    "Thả vật từ nghỉ trên dốc dài 5 m, g = 9,81 m/s², không có lực kéo. Ma sát trượt dùng μₖ = 0,8 μₛ để so sánh.",
+    "Vật chỉ trượt khi tan α lớn hơn μₛ. Tại mép dốc, hiển thị vận tốc ngay trước khi rời dốc."
+  ],
+  "sources": [
+    {
+      "label": "OpenStax University Physics §6.2",
+      "url": "https://openstax.org/books/university-physics-volume-1/pages/6-2-friction"
+    },
+    {
+      "label": "SGK Vật lí 10 Kết nối tri thức, Bài 18, tr. 72–73",
+      "url": "https://taphuan.nxbgd.vn/tap-huan/doc-sach/sgk-vat-li-10.4700746482#page=73"
+    }
+  ],
+  "parameter_schema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "mass_kg",
+      "angle_deg",
+      "static_friction"
+    ],
+    "properties": {
+      "mass_kg": {
+        "type": "number",
+        "minimum": 0.5,
+        "maximum": 5,
+        "description": "Khối lượng (kg)"
+      },
+      "angle_deg": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 60,
+        "description": "Góc nghiêng (°)"
+      },
+      "static_friction": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 1,
+        "description": "Hệ số ma sát nghỉ"
+      }
+    }
+  },
+  "defaults": {
+    "mass_kg": 2,
+    "angle_deg": 30,
+    "static_friction": 0.25
+  }
+}
