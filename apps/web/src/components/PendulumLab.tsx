@@ -264,6 +264,21 @@ export function PendulumLab() {
               </div>
             </label>
 
+            <fieldset className="materials">
+              <legend>Quả nặng</legend>
+              {([['steel', 'Thép'], ['copper', 'Đồng'], ['wood', 'Gỗ']] as const).map(([key, label]) => (
+                <button
+                  key={key}
+                  type="button"
+                  aria-pressed={material === key}
+                  onClick={() => engine.setPresentation({ material: key })}
+                >
+                  <i className={`material-dot ${key}`} />
+                  {label}
+                </button>
+              ))}
+            </fieldset>
+
             <div className="damping-control-card">
               <div className="damping-header">
                 <label className="toggle-switch">
