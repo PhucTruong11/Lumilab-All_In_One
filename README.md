@@ -1,17 +1,38 @@
 # LumiLab B
 
-Không gian triển khai LumiLab theo từng mốc. Hiện tại repo mới có khung làm việc; web, API, lab và AI chưa được đưa vào.
+Khung ứng dụng để đưa LumiLab sang repo B từng mốc. M01 hiện có web React/TypeScript và FastAPI `/health`; các lab và AI chưa được tích hợp.
 
-## Bắt đầu
+## Chạy local
 
-1. Đọc `AGENTS.md` và `docs/STATUS.md`.
-2. Nhận một task trên GitHub Issues, ghi owner, branch và đường dẫn sẽ sửa.
-3. Mỗi mốc chỉ công bố tính năng đã chạy và được kiểm ngay tại repo này.
+Yêu cầu Node 24 và Python 3.13. Từ root repo B:
 
-## Mốc chuyển
+```powershell
+npm ci
+py -3.13 -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -e './apps/api[dev]'
+```
 
-- **M00 — Base:** cấu trúc và quy tắc làm việc.
-- **M01 — App shell:** React/TypeScript, FastAPI `/health`, CI cơ bản.
-- **M02+ — Từng lab và luồng học:** chỉ thêm module cùng dependency và bài kiểm tra của nó.
+Terminal 1:
 
-Lệnh cài/chạy sẽ được bổ sung khi M01 được triển khai. Mặc định không có lời gọi AI live và không có dữ liệu học sinh thật.
+```powershell
+.\.venv\Scripts\python.exe -m uvicorn lumilab_api.main:app --reload --port 8002
+```
+
+Terminal 2:
+
+```powershell
+npm run dev:web
+```
+
+Web: http://127.0.0.1:5175 · API health: http://127.0.0.1:8002/health . Web gọi `/api/health` qua Vite proxy.
+
+## Kiểm tra
+
+```powershell
+npm run check:web
+npm run build:web
+.\.venv\Scripts\python.exe -m ruff check apps/api
+.\.venv\Scripts\python.exe -m pytest apps/api/tests
+```
+
+Đọc `AGENTS.md` và `docs/STATUS.md` trước khi thêm module. `packages/`, `knowledge/`, `tests/` và `docker/` là cấu trúc dành cho các mốc tiếp theo; file `.gitkeep` không có chức năng runtime. AI live mặc định không được bật.

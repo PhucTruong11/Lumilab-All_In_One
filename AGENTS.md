@@ -1,13 +1,12 @@
 # LumiLab B — quy tắc làm việc
 
-Repo này được xây từng mốc. Đọc `README.md`, `docs/STATUS.md` và GitHub Issue của task trước khi sửa.
+Đọc `README.md`, `docs/STATUS.md` và task trước khi sửa. Repo B được xây từng mốc; chỉ công bố chức năng có thật và đã kiểm ở B.
 
-- Kiểm tra nhánh và thay đổi hiện có; mỗi task có owner, branch và paths rõ trên Issue chung.
-- Chỉ ghi tính năng, lệnh chạy và kết quả test đã có thật trong B. Không lấy kết quả của repo khác làm bằng chứng B.
-- Đưa từng module cùng dependency, contract và test; registry và UI chỉ công bố module đã triển khai.
-- Engine/verifier tính số liệu. AI không đặt số đo hoặc trạng thái kiểm chứng. Nguồn chưa duyệt chỉ là draft/preview, không VERIFIED.
-- Mặc định AI live tắt, ngân sách 0. Không đưa secret vào Git hoặc biến `VITE_*`.
+- Kiểm tra `git status --short`; mỗi task có owner, branch và paths rõ. Giữ thay đổi của người khác.
+- Đưa từng module cùng dependency, contract và test. Registry và UI chỉ công bố module đã triển khai.
+- Engine/verifier tính số liệu. AI không đặt số đo hoặc trạng thái kiểm chứng. Nguồn chưa duyệt giữ draft/preview, không VERIFIED.
+- Mặc định AI live tắt, ngân sách 0. Secret ở server env, không đưa vào Git hoặc biến `VITE_*`.
 - Không đổi contract chung khi chưa trao đổi với owner liên quan. Không xóa dữ liệu, reset volume hoặc force push để sửa lỗi.
-- Bàn giao mỗi task bằng diff, lệnh kiểm tra thực tế, kết quả, giới hạn và bước tiếp theo.
+- Bàn giao bằng diff, lệnh kiểm tra thực tế, kết quả và giới hạn.
 
-M00 chỉ có khung làm việc. Thêm lệnh cài/chạy vào README khi ứng dụng tương ứng đã tồn tại.
+M01: `npm ci`, `npm run dev:web`, `npm run check:web`, `npm run build:web`; API qua `apps/api` theo README. Các thư mục có `.gitkeep` là chỗ cho mốc sau, không phải implementation.

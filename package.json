@@ -1,0 +1,20 @@
+{
+  "name": "lumilab-b",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "apps/web"
+  ],
+  "engines": {
+    "node": ">=24 <25"
+  },
+  "scripts": {
+    "dev:web": "npm run dev --workspace @lumilab/web",
+    "check:web": "tsc --noEmit -p apps/web/tsconfig.json",
+    "build:web": "npm run build --workspace @lumilab/web"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  }
+}

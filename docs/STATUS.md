@@ -1,21 +1,25 @@
 # Trạng thái repo B
 
-Mốc hiện tại: **M00 — Base**. Repo có tài liệu làm việc; chưa có ứng dụng chạy.
+Mốc hiện tại: **M01 — khung ứng dụng local**. M00 đã có README và hướng dẫn làm việc. M01 ở nhánh `chore/m01-local-base`, theo Issue #2; chờ CI/review trước khi merge.
 
-| Thành phần | Trạng thái | Bằng chứng |
-| --- | --- | --- |
-| Khung repo | Đã khởi tạo | README, AGENTS, Issue #1 |
-| Web / API | Chưa triển khai | M01 chưa bắt đầu |
-| Lab engine / Verify | Chưa triển khai | Chưa có |
-| Phiên / PostgreSQL | Chưa triển khai | Chưa có |
-| Học liệu / RAG / Lumi | Chưa triển khai | Chưa có |
-| AI live | Tắt theo định hướng, chưa có implementation | Không có provider call |
-| CI / deploy | Chưa triển khai | Chưa có |
+| Thành phần | Trạng thái |
+| --- | --- |
+| Web | React/TypeScript shell, hiển thị health API |
+| API | FastAPI `/health` |
+| CI | Workflow check/build web, Ruff/pytest API; chưa chạy trên GitHub |
+| Contracts / lab engine | Chỉ có cấu trúc thư mục, chưa có module |
+| Knowledge / golden / E2E / Docker | Chỉ có cấu trúc thư mục |
+| Phiên / RAG / Lumi / live AI | Chưa triển khai |
+
+## Kiểm tra local M01
+
+- `npm ci`: đạt.
+- `npm run check:web`: đạt.
+- `npm run build:web`: đạt.
+- `.\.venv\Scripts\python.exe -m ruff check apps/api`: đạt.
+- `.\.venv\Scripts\python.exe -m pytest apps/api/tests`: 1 passed, 1 warning từ Starlette TestClient.
+- Smoke test: web HTTP 200, proxy `/api/health` trả `{"status":"ok"}`. Chrome headless: tiêu đề hiện, API sẵn sàng, 0 lỗi JavaScript.
 
 ## Việc tiếp theo
 
-- M01: dựng React/TypeScript web shell, FastAPI `/health`, scripts build/check và CI; chạy kiểm ở B.
-- M02: contract nhỏ cho một lab và mock có nhãn rõ.
-- M03+: chuyển từng lab, sau đó server tính lại, lưu phiên và Lumi.
-
-Task và claimed paths nằm trên GitHub Issues của B. Chỉ đổi trạng thái khi có bằng chứng tại B.
+M02: contract tối thiểu và mock có nhãn cho một lab. M03: con lắc client cùng model, điều khiển và test. Chỉ đánh dấu mốc hoàn thành sau khi kiểm tại repo B.
