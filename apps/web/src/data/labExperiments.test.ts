@@ -4,7 +4,7 @@ import { experimentParameters, labExperiments } from './labExperiments';
 
 describe('starting configurations', () => {
   it('covers every active runtime', () => {
-    expect(Object.keys(labExperiments).sort()).toEqual([...activeLabIds].sort());
+    expect(activeLabIds.every(id => (labExperiments[id]?.length ?? 0) >= 3)).toBe(true);
   });
   for (const id of Object.keys(labExperiments) as LabId[]) {
     it(`${id}: each configuration passes the real engine validation`, () => {
