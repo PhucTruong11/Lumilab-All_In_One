@@ -8,7 +8,7 @@ import re
 from collections import Counter
 from collections.abc import Callable, Mapping
 from dataclasses import dataclass
-from math import exp, isclose, isfinite, log10, pi, sin, sqrt
+from math import cos, exp, isclose, isfinite, log10, pi, sin, sqrt, tan
 from sys import float_info
 from typing import Any
 
@@ -24,6 +24,16 @@ class UnsupportedFormula(ValueError):
 _TOKEN = re.compile(r"([A-Z][a-z]?)([0-9]*)")
 _ELEMENTS = frozenset({"H", "C", "O", "N", "Na", "Cl", "Ag", "K"})
 _SUBSCRIPTS = str.maketrans("₀₁₂₃₄₅₆₇₈₉", "0123456789")
+_QUANTITATIVE_CHEMISTRY_LABS = {"chemistry", "precipitation", "gas-reaction"}
+_QUALITATIVE_CHEMISTRY_LABS = {"alkali-water", "copper-nitric", "chlorine-bleach"}
+
+
+def required_science_stages(lab_id: str) -> set[str]:
+    if lab_id in _QUANTITATIVE_CHEMISTRY_LABS:
+        return {"formula_equation", "scientific_rules", "quantitative", "simulation"}
+    if lab_id in _QUALITATIVE_CHEMISTRY_LABS:
+        return {"simulation"}
+    return {"physics_invariants"}
 
 
 def parse_formula(formula: str) -> dict[str, int]:
@@ -387,21 +397,87 @@ def _physics_checks(lab_id: str, p: Mapping[str, Any], r: Mapping[str, Any]) -> 
         _field(r, "emf_V", abs(voltage))
         _field(r, "meterVoltage_V", voltage if p["bridgeConnected"] else None)
         return "Rounded standard-potential difference agrees at 25°C/unit activity; no kinetics checked."
-    if lab_id == "pulley":
-        load = _number(p, "loadMass_kg", positive=True)
-        ptype = str(p.get("pulleyType", "single_movable"))
-        h = _number(p, "liftHeight_m", positive=True)
-        n = 1 if ptype == "fixed" else (4 if ptype == "palang_4" else 2)
-        weight = load * 9.81
-        effort = weight / n
-        _field(r, "loadWeight_N", weight)
-        _field(r, "effortForce_N", effort)
-        _field(r, "mechanicalAdvantage", n)
-        _field(r, "ropeDistance_m", h * n)
-        _field(r, "liftHeight_m", h)
-        _field(r, "work_J", effort * (h * n))
-        return "Mechanical advantage, rope travel and conservation of work agree."
     raise _CheckFailure("unsupported", "MODEL_UNSUPPORTED", "No independent invariants for this model.")
+
+
+def _curriculum_physics(lab_id: str, p: Mapping[str, Any], r: Mapping[str, Any]) -> str:
+    mass = p["mass_kg"]
+    if lab_id == "pulley":
+        _field(r, "weight_N", mass * 9.81)
+        _field(r, "pull_N", mass * 9.81 / p["strands"])
+        _field(r, "rope_m", p["lift_m"] * p["strands"])
+        _field(r, "work_J", r["pull_N"] * r["rope_m"])
+        return "Supporting strands balance the load; input work equals gravitational work."
+    if lab_id == "inclined-plane":
+        angle = p["angle_deg"] * pi / 180
+        _field(r, "normal_N", mass * 9.81 * cos(angle))
+        _field(r, "downhill_N", mass * 9.81 * sin(angle))
+        stationary = tan(angle) <= p["static_friction"] + 1e-12
+        expected_friction = r["downhill_N"] if stationary else 0.8 * p["static_friction"] * r["normal_N"]
+        _field(r, "friction_N", expected_friction)
+        _field(r, "acceleration_m_s2", (r["downhill_N"] - r["friction_N"]) / mass)
+        distance = _number(r, "position_m")
+        if not 0 <= distance <= 5:
+            raise _CheckFailure("invalid", "RAMP_BOUNDS", "Position is outside the 5 m ramp.")
+        acceleration = r["acceleration_m_s2"]
+        _field(r, "position_m", acceleration * _number(r, "time_s") ** 2 / 2)
+        _field(r, "velocity_m_s", sqrt(2 * acceleration * distance))
+        return "Normal force, friction, acceleration and rest-release kinematics agree."
+    initial = p["displacement_m"]
+    stiffness = p["stiffness_N_m"]
+    x, v = _number(r, "displacement_m"), _number(r, "velocity_m_s")
+    energy = (mass * v ** 2 + stiffness * x ** 2) / 2
+    _field(r, "energy_J", energy)
+    initial_energy = stiffness * initial ** 2 / 2
+    if energy > initial_energy + 1e-10 or abs(x) > _number(r, "envelope_m") + 1e-10:
+        raise _CheckFailure("invalid", "DAMPING_BOUNDS", "Energy or displacement exceeds its bound.")
+    if p["damping_ratio"] == 0:
+        _field(r, "energy_J", initial_energy)
+    if initial == 0:
+        _field(r, "period_s", None)
+    else:
+        period = _number(r, "period_s", positive=True)
+        _expect(period ** 2 * stiffness * (1 - p["damping_ratio"] ** 2), 4 * pi ** 2 * mass, "period")
+    if r["time_s"] == 0:
+        _field(r, "displacement_m", initial)
+        _field(r, "velocity_m_s", 0)
+    return "Mechanical energy, damped period, envelope and release conditions agree."
+
+
+def _curriculum_chemistry(lab_id: str, p: Mapping[str, Any], r: Mapping[str, Any]) -> str:
+    equation = None
+    if not p["observed"]:
+        product, appearance = None, None
+    elif lab_id == "alkali-water":
+        metal = p["metal"]
+        if p["mode"] == "water":
+            product, appearance = metal + "OH và H₂", "Bọt khí"
+            equation = f"2{metal} + 2H₂O → 2{metal}OH + H₂"
+            if not equation_is_balanced({metal: 2, "H2O": 2}, {metal + "OH": 2, "H2": 1}):
+                raise _CheckFailure("invalid", "UNBALANCED_CATALOG", "Alkali equation is not balanced.")
+        else:
+            product, appearance = metal + "⁺", {"Na": "Vàng", "K": "Tím nhạt"}[metal]
+    elif lab_id == "copper-nitric":
+        if p["acid"] == "dilute":
+            product, appearance = "NO", "Có thể chuyển nâu đỏ" if p["air"] else "Không màu"
+            equation = "3Cu + 8HNO₃ → 3Cu(NO₃)₂ + 2NO + 4H₂O"
+        else:
+            product, appearance = "NO₂", "Nâu đỏ"
+            equation = "Cu + 4HNO₃ → Cu(NO₃)₂ + 2NO₂ + 2H₂O"
+    elif p["mode"] == "formation":
+        product, appearance = "Cl₂", "Minh họa oxi hóa"
+        equation = "2Cl⁻ → Cl₂ + 2e⁻"
+    elif p["damp"]:
+        product, appearance = "HOCl", "Giấy màu nhạt rõ"
+        equation = "Cl₂ + H₂O ⇌ HCl + HOCl"
+        if not equation_is_balanced({"Cl2": 1, "H2O": 1}, {"HCl": 1, "HOCl": 1}):
+            raise _CheckFailure("invalid", "UNBALANCED_CATALOG", "Chlorine equation is not balanced.")
+    else:
+        product, appearance = None, "Không thấy tẩy màu rõ"
+    _field(r, "product", product)
+    _field(r, "appearance", appearance)
+    _field(r, "equation", equation)
+    return "Observation matches the explicit draft scenario. No reaction rate or yield is inferred."
 
 
 def check_science(
@@ -412,7 +488,15 @@ def check_science(
     Inputs normally have already passed the runtime schema. Missing readings or
     unsupported reaction conditions return explicit stages rather than approval.
     """
-    if lab_id in {"chemistry", "precipitation", "gas-reaction"}:
+    if lab_id in {"spring-damped", "inclined-plane", "pulley"}:
+        return [_stage("physics_invariants", lambda: _curriculum_physics(lab_id, parameters, reading))]
+    if lab_id in _QUALITATIVE_CHEMISTRY_LABS:
+        return [
+            _stage("simulation", lambda: _curriculum_chemistry(lab_id, parameters, reading)),
+            {"stage": "quantitative", "status": "skipped", "code": "QUALITATIVE_MODEL",
+             "reason": "The observation has no quantitative rate, yield or concentration output."},
+        ]
+    if lab_id in _QUANTITATIVE_CHEMISTRY_LABS:
         try:
             reaction = _chemistry_scope(lab_id, parameters)
         except _CheckFailure as error:
@@ -434,20 +518,11 @@ def check_science(
             _stage("simulation", state),
         ]
     if lab_id in {"pendulum", "mechanics", "spring", "circuit", "parallel-circuit",
-                  "capacitor", "atomic", "electrochemistry", "pulley"}:
+                  "capacitor", "atomic", "electrochemistry"}:
         return [
             {"stage": "formula_equation", "status": "skipped", "code": "NOT_APPLICABLE",
              "reason": "Neutral-reaction formula balancing is not applied to this model."},
             _stage("physics_invariants", lambda: _physics_checks(lab_id, parameters, reading)),
-        ]
-    if lab_id in {"alkali-metal", "hno3-reaction", "chlorine-gas"}:
-        return [
-            {"stage": "formula_equation", "status": "skipped", "code": "DESCRIPTIVE_QUALITATIVE",
-             "reason": "Qualitative inorganic reaction with color/gas/flame indicators."},
-            {"stage": "scientific_rules", "status": "pass", "code": "DRAFT_CATALOG_MATCH",
-             "reason": f"Matches declared inorganic reaction in Vietnamese textbook curriculum: {lab_id}."},
-            {"stage": "simulation", "status": "pass", "code": "SIMULATION_MATCH",
-             "reason": "Reaction rate, gas evolution and indicator state agree with deterministic model."},
         ]
     return [{"stage": "scientific_rules", "status": "skipped", "code": "MODEL_UNSUPPORTED",
              "reason": "No independent scientific checks are registered for this lab."}]

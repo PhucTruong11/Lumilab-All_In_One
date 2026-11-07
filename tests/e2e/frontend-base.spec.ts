@@ -31,7 +31,9 @@ test('mass and material do not change the ideal period; zero angle is stationary
   await expect(page.getByTestId('period-reading')).toContainText('—');
   await page.getByRole('button', { name: 'Ghi số đo' }).click();
   await expect(page.locator('.notebook tbody tr')).toHaveCount(1);
-  await expect(page.locator('.notebook tbody tr td').last()).toHaveText('—');
+  // The enhanced notebook adds an energy column after the period.
+  await expect(page.locator('.notebook tbody tr td').nth(3)).toHaveText('—');
+  await expect(page.locator('.notebook tbody tr td').nth(4)).toHaveText('0.000');
 });
 
 test('dragging the bob changes length and release angle, with bounded values', async ({ page }) => {

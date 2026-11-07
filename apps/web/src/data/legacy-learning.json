@@ -1,0 +1,465 @@
+{
+  "sourceRevision": "67712a7a6e6de24fd64e9a9b9cdbf2c80aff2475",
+  "reviewStatus": "draft",
+  "chapters": [
+    {
+      "subjectId": "physics",
+      "id": "oscillations",
+      "name": "Dao động",
+      "description": "Tìm hiểu chu kỳ và kiểm soát các biến qua con lắc đơn.",
+      "goal": "Nhận biết chu kỳ và kiểm tra điều gì làm thay đổi dao động của con lắc đơn.",
+      "topics": [
+        "Chu kỳ và tần số",
+        "Khối lượng, chiều dài và góc thả",
+        "Đọc số đo con lắc"
+      ],
+      "steps": [
+        {
+          "title": "Nhận biết một chu kỳ",
+          "description": "Theo dõi con lắc trở lại cùng vị trí và cùng chiều chuyển động; phân biệt chu kỳ T với tần số f.",
+          "checkpoint": "Mô tả được một chu kỳ và gọi đúng đơn vị s, Hz."
+        },
+        {
+          "title": "Dự đoán từng biến",
+          "description": "Đổi riêng khối lượng hoặc chiều dài, giữ g và góc thả nhỏ không đổi. Đối chiếu với T ≈ 2π√(L/g).",
+          "checkpoint": "Nêu dự đoán riêng cho chiều dài và khối lượng."
+        },
+        {
+          "title": "Đo rồi giải thích",
+          "description": "Dùng mô phỏng ghi hai lần đo để kiểm tra dự đoán; chú ý công thức là xấp xỉ góc nhỏ, bỏ qua ma sát.",
+          "checkpoint": "Dùng hai số đo để giải thích một dự đoán đúng hoặc cần sửa."
+        }
+      ],
+      "experimentId": "pendulum"
+    },
+    {
+      "subjectId": "physics",
+      "id": "electricity",
+      "name": "Dòng điện và mạch điện",
+      "description": "Mắc dụng cụ đo và khảo sát quan hệ giữa hiệu điện thế, điện trở, dòng điện.",
+      "goal": "Mắc đúng dụng cụ đo và giải thích quan hệ giữa hiệu điện thế, dòng điện, điện trở.",
+      "topics": [
+        "Các đại lượng U, I, R",
+        "Ampe kế và vôn kế",
+        "Định luật Ôm"
+      ],
+      "steps": [
+        {
+          "title": "Đọc các đại lượng",
+          "description": "Phân biệt hiệu điện thế U, cường độ dòng điện I và điện trở R; đọc đúng đơn vị V, A và Ω.",
+          "checkpoint": "Gắn được mỗi số chỉ với đại lượng và đơn vị tương ứng."
+        },
+        {
+          "title": "Chọn cách mắc",
+          "description": "Ampe kế mắc nối tiếp để đo dòng qua điện trở; vôn kế mắc song song với hai đầu điện trở cần đo.",
+          "checkpoint": "Chỉ ra được vị trí đúng của cả hai dụng cụ trên sơ đồ."
+        },
+        {
+          "title": "Khảo sát quan hệ",
+          "description": "Giữ R không đổi, thay hiệu điện thế hai đầu R và so sánh I = U/R. Khi thêm linh kiện, phân biệt U nguồn với U trên R chính.",
+          "checkpoint": "Giải thích được dòng tăng khi U trên R tăng và R giữ nguyên."
+        }
+      ],
+      "experimentId": "circuit"
+    },
+    {
+      "subjectId": "physics",
+      "id": "mechanics",
+      "name": "Chuyển động và lực",
+      "description": "Liên hệ chuyển động, lực tác dụng và cách mô tả một hệ vật lí.",
+      "goal": "Đọc chuyển động và liên hệ sự thay đổi vận tốc với hợp lực tác dụng.",
+      "topics": [
+        "Vị trí và hệ quy chiếu",
+        "Vận tốc và gia tốc",
+        "Lực và hợp lực"
+      ],
+      "steps": [
+        {
+          "title": "Mô tả chuyển động",
+          "description": "Chọn mốc vị trí, chiều dương và mốc thời gian trước khi đọc bảng hoặc đồ thị chuyển động.",
+          "checkpoint": "Mô tả được vị trí của vật ở hai thời điểm theo cùng một mốc."
+        },
+        {
+          "title": "Phân biệt vận tốc, gia tốc",
+          "description": "Vận tốc mô tả sự thay đổi vị trí; gia tốc mô tả sự thay đổi vận tốc, kể cả khi hướng chuyển động đổi.",
+          "checkpoint": "Nêu được ví dụ vật có gia tốc dù tốc độ không đổi."
+        },
+        {
+          "title": "Vẽ lực và giải thích",
+          "description": "Biểu diễn các lực tác dụng, tìm hợp lực và liên hệ với gia tốc bằng định luật II Newton trong hệ quy chiếu quán tính.",
+          "checkpoint": "Vẽ được sơ đồ lực đơn giản và xác định hướng gia tốc."
+        }
+      ]
+    },
+    {
+      "subjectId": "physics",
+      "id": "waves",
+      "name": "Sóng",
+      "description": "Khám phá sự truyền dao động, bước sóng và các hiện tượng giao thoa.",
+      "goal": "Phân biệt dao động tại một điểm với sự truyền sóng và đọc các đại lượng của sóng.",
+      "topics": [
+        "Dao động và sự truyền sóng",
+        "Bước sóng, tần số, tốc độ",
+        "Chồng chất và giao thoa"
+      ],
+      "steps": [
+        {
+          "title": "Theo dõi một điểm",
+          "description": "So sánh chuyển động của một điểm trong môi trường với sự lan truyền của dạng sóng qua nhiều điểm.",
+          "checkpoint": "Chỉ ra được điểm đang dao động và chiều truyền của sóng."
+        },
+        {
+          "title": "Đọc đặc trưng sóng",
+          "description": "Nhận biết bước sóng λ, tần số f và tốc độ truyền v; dùng v = λf với các đơn vị nhất quán.",
+          "checkpoint": "Đọc được λ từ hình sóng và chọn đúng đơn vị cho v, f."
+        },
+        {
+          "title": "So sánh khi sóng gặp nhau",
+          "description": "Xét sự chồng chất của các li độ; nhận biết tăng cường và triệt tiêu trong hình minh họa giao thoa.",
+          "checkpoint": "Giải thích được hai li độ cùng dấu hoặc trái dấu cộng như thế nào."
+        }
+      ]
+    },
+    {
+      "subjectId": "physics",
+      "id": "thermal",
+      "name": "Nhiệt học và khí lí tưởng",
+      "description": "Kết nối nhiệt độ, nội năng và các đại lượng trạng thái của chất khí.",
+      "goal": "Liên hệ nhiệt độ, trạng thái khí và sự thay đổi nội năng trong mô hình cơ bản.",
+      "topics": [
+        "Nhiệt độ và thang Kelvin",
+        "Trạng thái khí lí tưởng",
+        "Nhiệt, công và nội năng"
+      ],
+      "steps": [
+        {
+          "title": "Đọc nhiệt độ",
+          "description": "Phân biệt thang Celsius và Kelvin; đổi T(K) = t(°C) + 273,15 trước khi dùng phương trình khí.",
+          "checkpoint": "Đổi được một nhiệt độ sang Kelvin và ghi đúng đơn vị."
+        },
+        {
+          "title": "Theo dõi trạng thái khí",
+          "description": "Nhận biết p, V, n, T trong pV = nRT. Với lượng khí không đổi, chỉ so sánh các trạng thái theo điều kiện đã cho.",
+          "checkpoint": "Chỉ ra được đại lượng giữ nguyên khi đọc một quá trình khí."
+        },
+        {
+          "title": "Giải thích trao đổi năng lượng",
+          "description": "Phân biệt nội năng của hệ với năng lượng truyền qua nhiệt hoặc công; theo dõi sự thay đổi nội năng trong ví dụ đơn giản.",
+          "checkpoint": "Nêu được một cách làm nội năng thay đổi và cơ chế truyền năng lượng."
+        }
+      ]
+    },
+    {
+      "subjectId": "physics",
+      "id": "nuclear",
+      "name": "Vật lí hạt nhân",
+      "description": "Tìm hiểu cấu tạo hạt nhân, sự phóng xạ và năng lượng hạt nhân.",
+      "goal": "Đọc kí hiệu hạt nhân và phân biệt các quá trình biến đổi hạt nhân cơ bản.",
+      "topics": [
+        "Số proton, neutron và đồng vị",
+        "Phóng xạ và chu kỳ bán rã",
+        "Phân hạch và nhiệt hạch"
+      ],
+      "steps": [
+        {
+          "title": "Đọc cấu tạo hạt nhân",
+          "description": "Dùng số khối A và số proton Z để xác định số neutron A − Z; nhận biết đồng vị có cùng Z nhưng khác A.",
+          "checkpoint": "Xác định được proton, neutron và một cặp đồng vị từ kí hiệu."
+        },
+        {
+          "title": "Đọc sự suy giảm phóng xạ",
+          "description": "Tìm chu kỳ bán rã trên đồ thị số hạt chưa phân rã của một mẫu lớn; phân biệt quy luật của mẫu với sự ngẫu nhiên của từng hạt.",
+          "checkpoint": "Ước lượng được thời gian số hạt trong mẫu giảm còn một nửa."
+        },
+        {
+          "title": "So sánh biến đổi hạt nhân",
+          "description": "Phân hạch chia một hạt nhân nặng; nhiệt hạch kết hợp các hạt nhân nhẹ. Liên hệ năng lượng với độ giảm khối lượng của hệ.",
+          "checkpoint": "Phân loại được hai sơ đồ phân hạch và nhiệt hạch minh họa."
+        }
+      ]
+    },
+    {
+      "subjectId": "chemistry",
+      "id": "solutions",
+      "name": "Dung dịch và axit–bazơ",
+      "description": "Quan sát chuẩn độ HCl bằng NaOH và phân biệt điểm tương đương với điểm kết thúc theo chỉ thị.",
+      "goal": "Theo dõi lượng chất khi chuẩn độ và phân biệt điểm tương đương với màu chỉ thị.",
+      "topics": [
+        "Nồng độ và số mol",
+        "Trung hòa HCl–NaOH",
+        "pH và phenolphthalein"
+      ],
+      "steps": [
+        {
+          "title": "Từ thể tích đến số mol",
+          "description": "Dùng n = CV với C theo mol/L và V theo L; kiểm tra đơn vị trước khi so sánh lượng axit, bazơ.",
+          "checkpoint": "Đổi được mL sang L và giải thích ý nghĩa của n = CV."
+        },
+        {
+          "title": "Tìm điểm tương đương",
+          "description": "Với HCl–NaOH, phản ứng có tỉ lệ 1:1. Điểm tương đương đạt khi số mol NaOH thêm bằng số mol HCl ban đầu.",
+          "checkpoint": "Giải thích được vì sao bài demo cần 25 mL bazơ cùng nồng độ."
+        },
+        {
+          "title": "Đối chiếu pH và màu",
+          "description": "Quan sát chuẩn độ trong mô phỏng: ở 25°C, tương đương có pH 7 và phenolphthalein vẫn không màu; màu hồng xuất hiện khi bazơ hơi dư.",
+          "checkpoint": "Nêu được sự khác nhau giữa điểm tương đương và điểm kết thúc theo màu."
+        }
+      ],
+      "experimentId": "chemistry"
+    },
+    {
+      "subjectId": "chemistry",
+      "id": "reactions",
+      "name": "Phản ứng và cân bằng",
+      "description": "Theo dõi sự biến đổi chất, tốc độ phản ứng và trạng thái cân bằng.",
+      "goal": "Đọc phản ứng theo lượng chất, tốc độ và trạng thái cân bằng.",
+      "topics": [
+        "Phương trình và tỉ lệ mol",
+        "Tốc độ phản ứng",
+        "Cân bằng động"
+      ],
+      "steps": [
+        {
+          "title": "Đọc phương trình",
+          "description": "Cân bằng số nguyên tử mỗi nguyên tố và dùng hệ số để đọc tỉ lệ số mol các chất trong phản ứng.",
+          "checkpoint": "Kiểm tra được một phương trình đã cân bằng bằng cách đếm nguyên tử."
+        },
+        {
+          "title": "So sánh tốc độ",
+          "description": "Theo dõi lượng chất thay đổi theo thời gian; so sánh dữ liệu khi chỉ đổi một yếu tố như nhiệt độ hoặc nồng độ.",
+          "checkpoint": "Chọn được hai bộ dữ liệu phù hợp để kiểm tra riêng một yếu tố."
+        },
+        {
+          "title": "Nhận biết cân bằng động",
+          "description": "Ở cân bằng, tốc độ thuận và nghịch bằng nhau; lượng các chất ổn định nhưng hai phản ứng vẫn diễn ra.",
+          "checkpoint": "Giải thích được vì sao cân bằng không có nghĩa phản ứng đã dừng."
+        }
+      ]
+    },
+    {
+      "subjectId": "chemistry",
+      "id": "electrochemistry",
+      "name": "Điện hóa",
+      "description": "Liên hệ phản ứng oxi hóa–khử với pin điện hóa và quá trình điện phân.",
+      "goal": "Theo dõi sự trao đổi electron và phân biệt pin điện hóa với điện phân.",
+      "topics": [
+        "Oxi hóa và khử",
+        "Pin điện hóa",
+        "Điện phân"
+      ],
+      "steps": [
+        {
+          "title": "Nhận biết trao đổi electron",
+          "description": "Oxi hóa là nhường electron, khử là nhận electron; dùng số oxi hóa để đọc các bán phản ứng đơn giản.",
+          "checkpoint": "Chỉ ra được chất nhường và chất nhận electron trong ví dụ."
+        },
+        {
+          "title": "Đọc sơ đồ pin",
+          "description": "Trong pin điện hóa, oxi hóa ở anode, khử ở cathode; electron đi qua mạch ngoài từ anode đến cathode.",
+          "checkpoint": "Gắn đúng bán phản ứng và chiều electron trên sơ đồ pin."
+        },
+        {
+          "title": "So sánh với điện phân",
+          "description": "Pin điện hóa chuyển năng lượng hóa học thành điện năng; điện phân dùng nguồn điện ngoài để thúc đẩy phản ứng.",
+          "checkpoint": "Nêu được vai trò của nguồn điện ngoài trong sơ đồ điện phân."
+        }
+      ]
+    },
+    {
+      "subjectId": "chemistry",
+      "id": "organic",
+      "name": "Hóa học hữu cơ",
+      "description": "Khám phá cấu tạo, nhóm chức và tính chất của các hợp chất hữu cơ.",
+      "goal": "Đọc cấu tạo hợp chất hữu cơ và dùng nhóm chức để sắp xếp kiến thức.",
+      "topics": [
+        "Công thức và cấu tạo",
+        "Nhóm chức",
+        "Cấu tạo và tính chất"
+      ],
+      "steps": [
+        {
+          "title": "Đọc cấu tạo",
+          "description": "Phân biệt công thức phân tử với công thức cấu tạo; nhận biết hai chất có thể cùng công thức phân tử nhưng khác cách liên kết.",
+          "checkpoint": "Chỉ ra được thông tin công thức cấu tạo bổ sung so với công thức phân tử."
+        },
+        {
+          "title": "Nhận biết nhóm chức",
+          "description": "Tìm các nhóm chức quen thuộc như −OH của alcohol và −COOH của axit carboxylic trong công thức cấu tạo.",
+          "checkpoint": "Đánh dấu được nhóm chức và xếp chất vào nhóm tương ứng."
+        },
+        {
+          "title": "Liên hệ cấu tạo, tính chất",
+          "description": "So sánh những cấu trúc gần nhau để đọc vai trò của nhóm chức và phần mạch carbon; đối chiếu dự đoán với bảng dữ liệu được cung cấp.",
+          "checkpoint": "Nêu được một điểm giống, một điểm khác và tính chất cần đối chiếu."
+        }
+      ]
+    },
+    {
+      "subjectId": "chemistry",
+      "id": "atomic",
+      "name": "Cấu tạo nguyên tử",
+      "description": "Tìm hiểu các hạt cấu tạo, lớp electron và sự sắp xếp nguyên tố.",
+      "goal": "Liên hệ cấu tạo nguyên tử với cấu hình electron và vị trí trong bảng tuần hoàn.",
+      "topics": [
+        "Các hạt trong nguyên tử",
+        "Sự phân bố electron",
+        "Bảng tuần hoàn"
+      ],
+      "steps": [
+        {
+          "title": "Đếm các hạt",
+          "description": "Phân biệt proton, neutron và electron; nguyên tử trung hòa có số electron bằng số proton.",
+          "checkpoint": "Xác định được số proton và electron của một nguyên tử trung hòa."
+        },
+        {
+          "title": "Đọc cấu hình electron",
+          "description": "Theo dõi sự phân bố electron theo lớp và phân lớp trong các ví dụ đơn giản; nhận biết electron ở lớp ngoài cùng.",
+          "checkpoint": "Chỉ ra được lớp ngoài cùng từ cấu hình electron đã cho."
+        },
+        {
+          "title": "Tìm vị trí và so sánh",
+          "description": "Đọc số hiệu nguyên tử, chu kỳ và nhóm trong bảng tuần hoàn; so sánh các nguyên tố trong cùng chu kỳ hoặc cùng nhóm.",
+          "checkpoint": "Tìm được một nguyên tố và mô tả đúng hàng, cột của nó."
+        }
+      ]
+    },
+    {
+      "subjectId": "chemistry",
+      "id": "bonding",
+      "name": "Liên kết hóa học",
+      "description": "Giải thích cách nguyên tử liên kết và mối liên hệ với tính chất của chất.",
+      "goal": "Phân biệt các kiểu liên kết và liên hệ cấu tạo với tính chất của chất.",
+      "topics": [
+        "Electron hóa trị",
+        "Liên kết ion và cộng hóa trị",
+        "Phân cực và tương tác"
+      ],
+      "steps": [
+        {
+          "title": "Theo dõi electron hóa trị",
+          "description": "Nhận biết electron tham gia liên kết trong các ví dụ đơn giản; đọc hình biểu diễn electron trước và sau khi hình thành liên kết.",
+          "checkpoint": "Chỉ ra được electron dùng chung hoặc sự hình thành ion trong hình minh họa."
+        },
+        {
+          "title": "Phân biệt kiểu liên kết",
+          "description": "Liên kết ion gắn với lực hút giữa các ion trái dấu; liên kết cộng hóa trị gắn với cặp electron dùng chung giữa các nguyên tử.",
+          "checkpoint": "Giải thích được khác nhau giữa mô hình liên kết ion và cộng hóa trị."
+        },
+        {
+          "title": "Đọc phân cực và tính chất",
+          "description": "Phân biệt phân cực của liên kết với phân cực của cả phân tử; xét thêm hình dạng phân tử và tương tác giữa các hạt.",
+          "checkpoint": "Nêu được vì sao cần biết cấu trúc trước khi dự đoán tính chất."
+        }
+      ]
+    }
+  ],
+  "practice": {
+    "objective": "Dự đoán, thay đổi có kiểm soát, thu thập số đo và giải thích quy luật.",
+    "rubric": [
+      "Nêu dự đoán và lý do: 2 điểm",
+      "Kiểm soát biến, thao tác đúng: 3 điểm",
+      "Ghi số liệu có đơn vị: 2 điểm",
+      "Giải thích dựa trên số liệu và giới hạn: 3 điểm"
+    ],
+    "guidance": "Bài ứng viên; cần đối chiếu SGK bộ sách sử dụng. Kịch bản theo mẫu, chưa gọi AI API.",
+    "activities": [
+      {
+        "lessonId": "pendulum",
+        "title": "Con lắc đơn",
+        "assumptions": "Góc thả đến 90°, dây không dãn, vật là chất điểm, bỏ qua ma sát. Chu kỳ và chuyển động tính theo mô hình phi tuyến; T ≈ 2π√(L/g) dùng khi góc nhỏ. Số đo là số liệu mô phỏng.",
+        "steps": [
+          "Đặt L = 1 m, g = 9,81 m/s², góc 10°. Đo với m = 0,2 kg và 0,4 kg.",
+          "Giữ m và g; đo với L = 0,5 m, 1 m và 2 m.",
+          "Đối chiếu chu kỳ, tính g ≈ 4π²L/T² và giải thích giới hạn góc nhỏ."
+        ],
+        "questions": [
+          {
+            "id": "pendulum-prediction",
+            "stem": "Nếu tăng khối lượng quả nặng gấp đôi, chu kỳ con lắc sẽ thay đổi thế nào?",
+            "options": [
+              "Chu kỳ tăng lên",
+              "Chu kỳ gần như không đổi",
+              "Chu kỳ giảm xuống"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "id": "pendulum-reflection",
+            "stem": "Giữ nguyên các yếu tố khác, muốn chu kỳ lớn hơn thì em sẽ…",
+            "options": [
+              "Tăng chiều dài dây",
+              "Tăng khối lượng quả nặng",
+              "Đổi màu quả nặng"
+            ],
+            "correctIndex": 0
+          }
+        ]
+      },
+      {
+        "lessonId": "chemistry",
+        "title": "Chuẩn độ axit–bazơ",
+        "assumptions": "25 mL HCl 0,1 M; NaOH 0,1 M; dung dịch lý tưởng ở 25 °C. Màu chỉ thị là minh họa. Một bước mô phỏng là 0,05 mL.",
+        "steps": [
+          "Chọn bộ HCl/NaOH mặc định, dự đoán màu phenolphthalein ở điểm tương đương.",
+          "Ghi thể tích, pH, màu chỉ thị tại 24,95; 25,00 và 25,05 mL NaOH.",
+          "Giải thích điểm tương đương khác điểm kết thúc theo chỉ thị; nêu nguyên tắc an toàn."
+        ],
+        "questions": [
+          {
+            "id": "chemistry-prediction",
+            "stem": "Tại điểm tương đương của HCl và NaOH, phenolphthalein có màu gì?",
+            "options": [
+              "Hồng đậm",
+              "Không màu",
+              "Xanh lam"
+            ],
+            "correctIndex": 1
+          },
+          {
+            "id": "chemistry-reflection",
+            "stem": "Vì sao thêm một bước 0,05 mL sau 25 mL lại thấy màu hồng?",
+            "options": [
+              "NaOH bắt đầu dư, pH tăng mạnh",
+              "Dung dịch bị nóng lên",
+              "HCl dư làm chỉ thị chuyển hồng"
+            ],
+            "correctIndex": 0
+          }
+        ]
+      },
+      {
+        "lessonId": "circuit",
+        "title": "Mạch điện",
+        "assumptions": "Nguồn và dụng cụ đo lý tưởng. Điện trở phụ 20 Ω và bóng đèn 10 Ω mắc nối tiếp; bóng đèn có điện trở cố định. Vôn kế đo R chính. Độ sáng minh họa công suất; không mô phỏng nhiệt hay hỏng dụng cụ.",
+        "steps": [
+          "Dùng mạch mặc định chưa thêm linh kiện. Mắc ampe kế nối tiếp, vôn kế song song với R.",
+          "Giữ R = 20 Ω, ghi I ở U = 3 V, 6 V và 9 V.",
+          "Vẽ đồ thị I–U, tính U/I và giải thích cách mắc dụng cụ."
+        ],
+        "questions": [
+          {
+            "id": "circuit-prediction",
+            "stem": "Giữ nguyên điện trở, nếu tăng hiệu điện thế gấp đôi thì cường độ dòng điện…",
+            "options": [
+              "Tăng gấp đôi",
+              "Không thay đổi",
+              "Giảm một nửa"
+            ],
+            "correctIndex": 0
+          },
+          {
+            "id": "circuit-reflection",
+            "stem": "Để đo đúng dòng điện qua điện trở, ampe kế phải mắc…",
+            "options": [
+              "Song song với điện trở",
+              "Nối tiếp trong mạch",
+              "Ở bên ngoài mạch"
+            ],
+            "correctIndex": 1
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -27,10 +27,12 @@
           "gas-reaction",
           "electrochemistry",
           "atomic",
+          "spring-damped",
+          "inclined-plane",
           "pulley",
-          "alkali-metal",
-          "hno3-reaction",
-          "chlorine-gas"
+          "alkali-water",
+          "copper-nitric",
+          "chlorine-bleach"
         ]
       },
       "uniqueItems": true
@@ -51,10 +53,12 @@
           "gas-reaction",
           "electrochemistry",
           "atomic",
+          "spring-damped",
+          "inclined-plane",
           "pulley",
-          "alkali-metal",
-          "hno3-reaction",
-          "chlorine-gas"
+          "alkali-water",
+          "copper-nitric",
+          "chlorine-bleach"
         ]
       },
       "uniqueItems": true

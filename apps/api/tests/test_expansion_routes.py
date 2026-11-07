@@ -127,8 +127,10 @@ def test_runtime_catalog_keeps_archived_models_out_of_default_list():
     with TestClient(app()) as client:
         active = client.get("/api/v1/runtime-labs").json()["items"]
         all_labs = client.get("/api/v1/runtime-labs?include_archived=true").json()["items"]
-    assert len(active) == 9 and len(all_labs) == 11
-    assert {lab["id"] for lab in all_labs} - {lab["id"] for lab in active} == {"atomic", "electrochemistry"}
+    assert len(active) == 12 and len(all_labs) == 17
+    assert {lab["id"] for lab in all_labs} - {lab["id"] for lab in active} == {
+        "atomic", "electrochemistry", "chemistry", "precipitation", "gas-reaction",
+    }
     assert all(lab["review_status"] == "draft" and lab["server_recompute"] for lab in active)
     assert all(lab["sources"] and lab["parameter_schema"] and lab["defaults"] for lab in active)
 

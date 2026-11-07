@@ -17,6 +17,8 @@ services:
     build:
       context: ..
       dockerfile: docker/api.Dockerfile
+      args:
+        BUILD_SHA: ${LUMILAB_BUILD_SHA:-unknown}
     environment:
       LUMILAB_DATABASE_URL: postgresql+psycopg://${POSTGRES_USER:-lumilab}:${POSTGRES_PASSWORD:-lumilab_local_only}@db:5432/${POSTGRES_DB:-lumilab}
       LUMILAB_LLM_ENABLED: "false"
@@ -35,6 +37,8 @@ services:
     build:
       context: ..
       dockerfile: docker/web.Dockerfile
+      args:
+        BUILD_SHA: ${LUMILAB_BUILD_SHA:-unknown}
     ports: ["127.0.0.1:${LUMILAB_WEB_PORT:-5175}:80"]
     depends_on:
       api: {condition: service_healthy}

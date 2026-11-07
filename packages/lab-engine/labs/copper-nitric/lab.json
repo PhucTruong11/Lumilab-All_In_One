@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0",
+  "id": "copper-nitric",
+  "title": "Đồng với HNO₃: NO và NO₂",
+  "subject": "chemistry",
+  "model_version": "copper-nitric-qualitative-v1",
+  "dataset_version": "lumilab-nine-draft-v1",
+  "implementation_status": "client",
+  "review_status": "draft",
+  "assumptions": [
+    "Hai kịch bản đại diện chỉ xét đồng và HNO₃ loãng hoặc đặc. Thực tế sản phẩm phụ thuộc điều kiện.",
+    "NO ban đầu không màu, có thể chuyển thành NO₂ trong không khí. Mô phỏng không định lượng mức chuyển hóa."
+  ],
+  "sources": [
+    {
+      "label": "OpenStax Chemistry 2e §18.9, copper with nitric acid",
+      "url": "https://openstax.org/books/chemistry-2e/pages/18-9-occurrence-preparation-and-compounds-of-oxygen"
+    },
+    {
+      "label": "SGK Hóa học 11 Kết nối tri thức, Bài 6, tr. 40",
+      "url": "https://taphuan.nxbgd.vn/tap-huan/doc-sach/sgk-hoa-hoc-11.4701111834#page=41"
+    }
+  ],
+  "parameter_schema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "acid",
+      "air",
+      "observed"
+    ],
+    "properties": {
+      "acid": {
+        "type": "string",
+        "enum": [
+          "dilute",
+          "concentrated"
+        ],
+        "description": "Kịch bản axit"
+      },
+      "air": {
+        "type": "boolean",
+        "description": "Tiếp xúc không khí"
+      },
+      "observed": {
+        "type": "boolean",
+        "description": "Quan sát đã mở"
+      }
+    }
+  },
+  "defaults": {
+    "acid": "dilute",
+    "air": false,
+    "observed": false
+  }
+}

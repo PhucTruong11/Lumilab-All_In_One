@@ -35,10 +35,12 @@
         "capacitor",
         "precipitation",
         "gas-reaction",
+        "spring-damped",
+        "inclined-plane",
         "pulley",
-        "alkali-metal",
-        "hno3-reaction",
-        "chlorine-gas"
+        "alkali-water",
+        "copper-nitric",
+        "chlorine-bleach"
       ]
     },
     "title": {

@@ -1,20 +1,22 @@
 import { useState } from 'react';
-import { defaultPulley, pulleyReading, type PulleyParameters, type PulleyType } from '@lumilab/lab-engine';
+import type { PulleyParameters } from '@lumilab/lab-engine';
+import { useLab } from '../labSession';
+import { ExpandedFooter } from './ExpandedLabParts';
 
 export function PulleyLab() {
-  const [params, setParams] = useState<PulleyParameters>(defaultPulley);
-  const reading = pulleyReading(params);
+  const { engine, state } = useLab('pulley');
+  const { parameters: params, reading } = state;
+  const pulleyType = params.strands === 1 ? 'fixed' : params.strands === 4 ? 'palang_4' : 'single_movable';
   const [isLifting, setIsLifting] = useState(false);
 
-  const update = (key: keyof PulleyParameters, value: unknown) => {
-    setParams(prev => ({ ...prev, [key]: value }));
-  };
+  const update = (key: keyof PulleyParameters, value: number) => engine.setParameters({ [key]: value });
 
-  const n = reading.mechanicalAdvantage;
-  const loadY = isLifting ? 210 - params.liftHeight_m * 50 : 280;
-  const pullY = isLifting ? 310 + params.liftHeight_m * 50 * (n === 1 ? -1 : 1) : 220;
+  const n = params.strands;
+  const loadY = isLifting ? 210 - params.lift_m * 50 : 280;
+  const pullY = isLifting ? 310 + params.lift_m * 50 * (n === 1 ? -1 : 1) : 220;
 
   return (
+    <>
     <div className="workbench-grid interactive-lab">
       <section className="stage-panel" aria-label="Bàn thí nghiệm ròng rọc">
         <div className="panel-title">
@@ -59,7 +61,7 @@ export function PulleyLab() {
             <circle r="4" fill="#364d3e" />
           </g>
 
-          {params.pulleyType !== 'fixed' && (
+          {pulleyType !== 'fixed' && (
             <g transform="translate(480 75)">
               <rect x="-6" y="-30" width="12" height="30" fill="#889c90" />
               <circle r="32" fill="#cadad0" stroke="#5f7567" strokeWidth="4" />
@@ -69,7 +71,7 @@ export function PulleyLab() {
           )}
 
           {/* Ròng rọc động (nếu có) */}
-          {params.pulleyType !== 'fixed' && (
+          {pulleyType !== 'fixed' && (
             <g transform={`translate(380 ${loadY - 45})`}>
               <circle r="36" fill="#cadad0" stroke="#3b6951" strokeWidth="4" />
               <circle r="12" fill="#fff" stroke="#3b6951" strokeWidth="3" />
@@ -79,7 +81,7 @@ export function PulleyLab() {
           )}
 
           {/* Dây vắt qua ròng rọc */}
-          {params.pulleyType === 'fixed' ? (
+          {pulleyType === 'fixed' ? (
             <g>
               <line x1="344" y1="75" x2="344" y2={loadY} stroke="#b08144" strokeWidth="5" />
               <line x1="416" y1="75" x2="416" y2={pullY} stroke="#b08144" strokeWidth="5" />
@@ -110,23 +112,23 @@ export function PulleyLab() {
             />
             <path d="M-18 0q18-24 36 0" fill="none" stroke="#cfdfd6" strokeWidth="5" />
             <text x="0" y="36" textAnchor="middle" fill="#ffffff" fontSize="16" fontWeight="bold">
-              {params.loadMass_kg.toFixed(1)} kg
+              {params.mass_kg.toFixed(1)} kg
             </text>
             <text x="0" y="58" textAnchor="middle" fill="#a4c9b5" fontSize="12">
-              P = {reading.loadWeight_N.toFixed(1)} N
+              P = {reading.weight_N.toFixed(1)} N
             </text>
           </g>
 
           {/* Lực kế kéo ở tay cầm (Dynamometer) */}
-          <g transform={`translate(${params.pulleyType === 'fixed' ? 416 : 512} ${pullY})`}>
+          <g transform={`translate(${pulleyType === 'fixed' ? 416 : 512} ${pullY})`}>
             <rect x="-16" y="0" width="32" height="70" rx="8" fill="#f8eed9" stroke="#bfa370" strokeWidth="2" />
             <line x1="0" y1="12" x2="0" y2="58" stroke="#bd9f66" strokeWidth="3" />
             <circle cx="0" cy="35" r="5" fill="#a6432b" />
             <text x="25" y="38" fill="#845314" fontSize="13" fontWeight="bold">
-              F = {reading.effortForce_N.toFixed(1)} N
+              F = {reading.pull_N.toFixed(1)} N
             </text>
             <text x="25" y="54" fill="#a07a4a" fontSize="11">
-              (Lợi {reading.mechanicalAdvantage} lần lực)
+              (Lợi {params.strands} lần lực)
             </text>
           </g>
 
@@ -145,6 +147,7 @@ export function PulleyLab() {
         </svg>
 
         <div className="stage-actions">
+          <button className="record-button" onClick={() => engine.record()}>Ghi số đo</button>
           <button
             type="button"
             className="primary-button"
@@ -156,7 +159,7 @@ export function PulleyLab() {
             type="button"
             className="secondary-button"
             onClick={() => {
-              setParams(defaultPulley);
+              engine.reset();
               setIsLifting(false);
             }}
           >
@@ -167,15 +170,15 @@ export function PulleyLab() {
         <div className="readings readings-expanded" aria-label="Kết quả đo ròng rọc">
           <div>
             <span>Trọng lượng tải P</span>
-            <strong>{reading.loadWeight_N.toFixed(1)} <small>N</small></strong>
+            <strong>{reading.weight_N.toFixed(1)} <small>N</small></strong>
           </div>
           <div>
             <span>Lực kéo F cần tác dụng</span>
-            <strong style={{ color: '#28775c' }}>{reading.effortForce_N.toFixed(1)} <small>N</small></strong>
+            <strong data-testid="pulley-force" style={{ color: '#28775c' }}>{Number(reading.pull_N.toFixed(3))} <small>N</small></strong>
           </div>
           <div>
             <span>Đoạn dây phải kéo (s)</span>
-            <strong>{reading.ropeDistance_m.toFixed(2)} <small>m</small></strong>
+            <strong>{reading.rope_m.toFixed(2)} <small>m</small></strong>
           </div>
           <div>
             <span>Công thực hiện A</span>
@@ -201,8 +204,8 @@ export function PulleyLab() {
               <button
                 key={type}
                 type="button"
-                aria-pressed={params.pulleyType === type}
-                onClick={() => update('pulleyType', type as PulleyType)}
+                aria-pressed={pulleyType === type}
+                onClick={() => update('strands', type === 'fixed' ? 1 : type === 'palang_4' ? 4 : 2)}
                 style={{ justifyContent: 'flex-start', padding: '10px 14px' }}
               >
                 {label}
@@ -212,29 +215,29 @@ export function PulleyLab() {
 
           <label className="parameter" style={{ marginTop: '20px' }}>
             <span>
-              Khối lượng tải m <output>{params.loadMass_kg.toFixed(1)} kg</output>
+              Khối lượng tải m <output>{params.mass_kg.toFixed(1)} kg</output>
             </span>
             <input
               type="range"
-              min="0.5"
+              min="1"
               max="20"
               step="0.5"
-              value={params.loadMass_kg}
-              onChange={e => update('loadMass_kg', Number(e.target.value))}
+              value={params.mass_kg}
+              onChange={e => update('mass_kg', Number(e.target.value))}
             />
           </label>
 
           <label className="parameter">
             <span>
-              Độ cao cần nâng h <output>{params.liftHeight_m.toFixed(2)} m</output>
+              Độ cao cần nâng h <output>{params.lift_m.toFixed(2)} m</output>
             </span>
             <input
               type="range"
-              min="0.1"
+              min="0"
               max="2"
               step="0.1"
-              value={params.liftHeight_m}
-              onChange={e => update('liftHeight_m', Number(e.target.value))}
+              value={params.lift_m}
+              onChange={e => update('lift_m', Number(e.target.value))}
             />
           </label>
         </section>
@@ -246,7 +249,7 @@ export function PulleyLab() {
           </div>
           <div style={{ padding: '14px 18px', background: '#f8faf9', borderRadius: '12px', fontSize: '13px', lineHeight: '1.6', color: '#335242' }}>
             <p><strong>Kết luận khoa học SGK:</strong></p>
-            <p>{reading.description}</p>
+            <p>Ròng rọc lý tưởng: số nhánh dây đỡ quyết định tỉ số lực kéo và quãng đường kéo dây.</p>
             <p style={{ marginTop: '8px', color: '#1f694f', fontWeight: 'bold' }}>
               ⚖ Công có ích: A = {reading.work_J.toFixed(1)} J (bảo toàn công khi bỏ qua ma sát).
             </p>
@@ -254,5 +257,11 @@ export function PulleyLab() {
         </section>
       </aside>
     </div>
+    <ExpandedFooter id="pulley" formulas={<p>F = P/n; s = n·h; A = P·h, bỏ qua ma sát.</p>}
+      columns={['Khối lượng (kg)', 'Số nhánh đỡ', 'Độ cao (m)', 'Lực kéo (N)', 'Quãng dây (m)']}
+      rows={state.records.map(row => [row.parameters.mass_kg, row.parameters.strands, row.parameters.lift_m,
+        Number(row.reading.pull_N.toFixed(3)), Number(row.reading.rope_m.toFixed(3))])}
+      onClear={() => engine.clearRecords()}/>
+    </>
   );
 }

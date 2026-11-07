@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import type { LabId } from '@lumilab/lab-engine';
-import { loadLabPreview } from '../api';
+import { loadLabPreview, type PreviewVerification } from '../api';
 import { downloadText } from '../data/learning';
 import { historyLimit, readRunHistory, runHistoryKey, saveDraftRun, type DraftLabRun } from '../runHistory';
 import { LabServerHistory } from './LabServerHistory';
@@ -12,18 +12,29 @@ const highlights: Record<LabId, [key: string, label: string, unit: string][]> = 
   circuit: [['current_A', 'Dòng điện', 'A'], ['totalResistance_ohm', 'Tổng điện trở', 'Ω']],
   mechanics: [['acceleration_m_s2', 'Gia tốc', 'm/s²'], ['position_m', 'Vị trí', 'm']],
   spring: [['period_s', 'Chu kỳ', 's'], ['displacement_m', 'Li độ', 'm']],
-  pulley: [['effort_force_N', 'Lực kéo F', 'N'], ['mechanical_advantage', 'Lợi về lực', 'lần'], ['work_input_J', 'Công thực hiện', 'J']],
-  'alkali-metal': [['h2_evolution_rate_ml_s', 'Tốc độ thoát H₂', 'mL/s'], ['flame_color', 'Màu ngọn lửa', ''], ['solution_nature', 'Tính chất dung dịch', '']],
-  'hno3-reaction': [['dominant_gas', 'Khí chủ yếu', ''], ['gas_color', 'Màu khí', ''], ['solution_color', 'Màu dung dịch', '']],
-  'chlorine-gas': [['chlorine_volume_ml', 'Thể tích Cl₂', 'mL'], ['bleaching_wet_paper', 'Tẩy màu giấy ẩm', ''], ['gas_color', 'Màu khí', '']],
   electrochemistry: [['meterVoltage_V', 'Điện áp đo', 'V'], ['emf_V', 'Suất điện động', 'V']],
   'parallel-circuit': [['totalCurrent_A', 'Dòng toàn mạch', 'A'], ['equivalentResistance_ohm', 'Điện trở tương đương', 'Ω']],
   capacitor: [['capacitorVoltage_V', 'Điện áp tụ', 'V'], ['timeConstant_s', 'Hằng số thời gian', 's']],
   precipitation: [['precipitateMass_g', 'Khối lượng AgCl', 'g']],
   'gas-reaction': [['carbonDioxideVolume_ml', 'Thể tích CO₂', 'mL']],
+  'spring-damped': [["displacement_m", "Li độ", "m"], ["energy_J", "Cơ năng", "J"]],
+  'inclined-plane': [["state", "Trạng thái", ""], ["acceleration_m_s2", "Gia tốc", "m/s²"]],
+  'pulley': [["pull_N", "Lực kéo", "N"], ["rope_m", "Dây cần kéo", "m"]],
+  'alkali-water': [["appearance", "Quan sát", ""], ["product", "Sản phẩm", ""]],
+  'copper-nitric': [["appearance", "Quan sát", ""], ["product", "Sản phẩm", ""]],
+  'chlorine-bleach': [["appearance", "Quan sát", ""], ["product", "Sản phẩm", ""]],
   atomic: [['symbol', 'Nguyên tố', ''], ['massNumber', 'Số khối', ''], ['charge_e', 'Điện tích', 'e']],
 };
 const numberFormat = new Intl.NumberFormat('vi-VN', { maximumSignificantDigits: 8 });
+const stageLabels: Record<string, string> = {
+  physics_invariants: 'Bất biến vật lí', formula_equation: 'Công thức và phương trình',
+  scientific_rules: 'Quy tắc khoa học', quantitative: 'Định lượng',
+  simulation: 'Mô phỏng', charge_balance: 'Cân bằng điện tích',
+};
+const stageStatusLabels: Record<string, string> = {
+  pass: 'Đạt', skipped: 'Chưa kiểm', invalid: 'Không hợp lệ',
+  unsupported: 'Ngoài phạm vi', insufficient_data: 'Thiếu dữ liệu',
+};
 
 export function LabServerPreview({ id }: { id: LabId }) {
   const { engine, state } = useLab(id);
@@ -31,6 +42,7 @@ export function LabServerPreview({ id }: { id: LabId }) {
   const [pending, setPending] = useState(false);
   const [error, setError] = useState('');
   const [result, setResult] = useState<DraftLabRun | null>(null);
+  const [verification, setVerification] = useState<PreviewVerification | null>(null);
   const [storageNotice, setStorageNotice] = useState('');
   const [history, setHistory] = useState<DraftLabRun[]>([]);
 
@@ -65,19 +77,21 @@ export function LabServerPreview({ id }: { id: LabId }) {
     setPending(true);
     setError('');
     setResult(null);
+    setVerification(null);
     try {
       const input = {
         parameters: snapshot.parameters, elapsed_s: snapshot.elapsed_s,
         model_version: engine.modelVersion, dataset_version: engine.definition.dataset_version,
       };
-      const { requestId, values } = await loadLabPreview(id, input, controller.signal);
+      const previewResponse = await loadLabPreview(id, input, controller.signal);
       if (active.current === controller) {
         const run: DraftLabRun = {
-          ...input, schema_version: 1, lab_id: id, request_id: requestId,
+          ...input, schema_version: 1, lab_id: id, request_id: previewResponse.requestId,
           saved_at: new Date().toISOString(), status: 'INSUFFICIENT_DATA',
-          code: 'REVIEWED_EVIDENCE_REQUIRED', preview: values,
+          code: 'REVIEWED_EVIDENCE_REQUIRED', preview: previewResponse.values,
         };
         setResult(run);
+        setVerification(previewResponse);
         try {
           setHistory(saveDraftRun(run));
           setStorageNotice('');
@@ -112,6 +126,7 @@ export function LabServerPreview({ id }: { id: LabId }) {
       {error && <p role="alert">{error}</p>}
       {result && <div aria-label="Bản xem trước từ máy chủ" role="status">
         <strong>Bản xem trước từ máy chủ</strong>
+        <p>Trạng thái Verify: Thiếu bằng chứng đã duyệt. Đây là số liệu tính lại từ mô hình, chưa phải kết quả được chứng nhận.</p>
         <p>Thời điểm chụp: {numberFormat.format(result.elapsed_s)} s.{historical && ' Đây là kết quả của lượt đã gửi. Hãy tính lại để xem lượt hiện tại.'}</p>
         <dl>{highlights[id].map(([key, label, unit]) => {
           const value = result.preview[key];
@@ -122,6 +137,22 @@ export function LabServerPreview({ id }: { id: LabId }) {
         <details><summary>Xem toàn bộ số liệu máy chủ</summary>
           <pre style={{ whiteSpace: 'pre-wrap', overflowWrap: 'anywhere' }}>{JSON.stringify(result.preview, null, 2)}</pre>
         </details>
+        {verification && <details><summary>Các bước kiểm và giới hạn</summary>
+          <p>Mã kết quả: {result.code}. Không có bằng chứng đã duyệt cho lượt này.</p>
+          <ul>{verification.stageChecks.map(check => <li key={check.stage}>
+            <strong>{stageLabels[check.stage] || check.stage}: {stageStatusLabels[check.status] || check.status}</strong>
+            {' · '}{check.reason}
+          </li>)}</ul>
+          {verification.checksSkipped.includes('reviewed_evidence') &&
+            <p>Bước đối chiếu bằng chứng đã duyệt: chưa thực hiện.</p>}
+          {verification.limitations.length > 0 && <p>Giới hạn từ API: {verification.limitations.join(' ')}</p>}
+          <p>Giả thiết mô hình:</p>
+          <ul>{engine.definition.assumptions.map(item => <li key={item}>{item}</li>)}</ul>
+          <p>Nguồn tham khảo mô hình (chưa duyệt cho Verify):</p>
+          <ul>{engine.definition.sources.map(source => <li key={source.url}>
+            <a href={source.url} target="_blank" rel="noreferrer">{source.label}</a>
+          </li>)}</ul>
+        </details>}
       </div>}
       <details>
         <summary>Lịch sử lượt thử ({history.length}/{historyLimit})</summary>

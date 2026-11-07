@@ -1,4 +1,5 @@
 // Keep public types aligned with schemas/lab.schema.json. T3 owns contract changes.
+export * from './system';
 export type Domain = 'physics' | 'chemistry';
 export interface ParameterDefinition { unit: string; min: number; max: number; default: number }
 export interface LabDefinition {

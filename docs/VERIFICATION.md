@@ -2,13 +2,19 @@
 
 Chuyển và điều chỉnh từ `PhucTruong11/lumilab` tại commit `f5f233f8dc2ee21934e6b77c740e7959fecb102a`, file `docs/VERIFICATION.md`. Mô tả hiện trạng dưới đây áp dụng cho mã Verify đã có trong B; đây không phải chứng nhận khoa học hoặc quyền duyệt nguồn.
 
-Hiện có 11 bộ tính Python đối chiếu TypeScript, 9 lab hiện hành và 2 lab lưu trữ. Route runtime kiểm schema/revision, tính lại và chạy scientific_checks cho catalog đã hỗ trợ. Các bước ghi stage/status/code/reason trong stage_checks. Schema, bảo toàn nguyên tố của phương trình catalog, điều kiện cố định, định lượng và bất biến đã có kiểm thử. Parser chỉ hỗ trợ công thức trung hòa phẳng; ionic charge_balance ghi skipped; units chuyển tường minh theo tên trường, chưa có pint runtime.
+Hiện có 17 bộ tính Python đối chiếu TypeScript. Danh mục gồm 12 mô hình thuộc 9 bài và 5 mô hình lưu trữ. Route runtime kiểm schema/revision, tính lại và chạy scientific_checks cho catalog đã hỗ trợ. Các bước ghi stage/status/code/reason trong stage_checks. Schema, bảo toàn nguyên tố của phương trình catalog, điều kiện cố định, định lượng và bất biến đã có kiểm thử. Parser chỉ hỗ trợ công thức trung hòa phẳng; ionic charge_balance ghi skipped; units chuyển tường minh theo tên trường, chưa có pint runtime.
 
 Dữ liệu/nguồn chưa duyệt nên kết quả hợp lệ vẫn INSUFFICIENT_DATA/REVIEWED_EVIDENCE_REQUIRED, preview có số đọc, facts/evidence rỗng. Kết quả vi phạm invariant không được trả preview để lưu. Chưa có nhánh tự động nâng VERIFIED. Xem [các stage đang chạy và giới hạn](VERIFY-STAGES.md) và [contract của B](CONTRACT.md).
 
-Route runtime chỉ trả preview khi các stage bắt buộc của model đều `pass`: `physics_invariants` cho model Vật lí, hoặc `formula_equation`, `scientific_rules`, `quantitative`, `simulation` cho model Hóa. Thiếu stage bắt buộc hoặc lặp tên stage trả `INSUFFICIENT_DATA/SCIENTIFIC_CHECKS_INCOMPLETE` với `preview=null`. `charge_balance` của Hóa vẫn `skipped` vì parser hiện chỉ hỗ trợ công thức trung hòa; cổng này không thay thế duyệt evidence.
+Route runtime chỉ trả preview khi các stage bắt buộc của từng mô hình đều `pass`. Các mô hình kiểm bất biến dùng `physics_invariants`. Các bài phản ứng có định lượng cần `formula_equation`, `scientific_rules`, `quantitative` và `simulation`. Ba bài Hóa định tính cần `simulation` để đối chiếu hiện tượng và phương trình với kịch bản. Stage `quantitative` của ba bài này ghi `skipped` vì mô hình chỉ trả quan sát định tính.
+
+Thiếu stage bắt buộc hoặc lặp tên stage trả `INSUFFICIENT_DATA/SCIENTIFIC_CHECKS_INCOMPLETE` với `preview=null`. Các stage đạt yêu cầu cho phép xem preview nháp. Trạng thái duyệt evidence vẫn được kiểm riêng.
 
 Pilot dataset `VL-CONLAC-01` ánh xạ tới runtime `pendulum`. Ca hai chiều dài 0,4 m và 1,6 m ở cùng góc 10° và cùng `g` kiểm tỉ lệ chu kỳ 2 qua route; cả hai vẫn là preview draft. Công thức góc nhỏ trong dataset chỉ được dùng trong miền góc nhỏ, còn runtime AGM hỗ trợ đến 90°.
+
+Hồ sơ claim của pilot nằm ở [`knowledge/verification/pendulum.draft.json`](../knowledge/verification/pendulum.draft.json). Hồ sơ gắn đúng `lab_id`, `model_version`, `dataset_version`, giả thiết, phạm vi tham số, nguồn tham khảo và ca hồi quy với từng claim. Đây là tài liệu **draft**, không được API nạp làm bằng chứng đã duyệt. T2 cần xác nhận công thức AGM, ca đối chiếu độc lập, miền và sai số của xấp xỉ góc nhỏ; T4 cần kiểm vị trí nguồn, quyền sử dụng và phạm vi claim. Chỉ khi có reviewer/date thật, nguồn được duyệt cho đúng mục đích, ca chuẩn và các stage bắt buộc đạt thì T2/T3/T4 mới có thể nối cổng `VERIFIED` với route và lưu run. Hiện không có cổng đó; sửa nhãn trong hồ sơ không tự nâng trạng thái.
+
+Web đọc `stage_checks`, `checks_skipped` và `limitations` của phản hồi draft, hiển thị giả thiết cùng liên kết nguồn của cấu hình runtime với nhãn chưa duyệt. Kết quả được gắn phiên bản và thời điểm snapshot; đổi tham số hoặc thời điểm sẽ báo kết quả thuộc lượt cũ. Phản hồi `INVALID`, `UNSUPPORTED`, thiếu stage hoặc sai revision không được lưu thành preview.
 
 Hai route P0 body phẳng giữ tương thích sàng lọc; route runtime /labs/ID mới có các stage mở rộng. Nguồn RAG và LLM không quyết định kết quả Verify. Chưa hỗ trợ mọi chất, ion, phương trình hay điều kiện phản ứng.
 

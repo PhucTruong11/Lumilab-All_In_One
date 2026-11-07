@@ -1,16 +1,16 @@
-import { useState } from 'react';
-import { chlorineReading, defaultChlorine, type ChlorineParameters, type ChlorineStrip } from '@lumilab/lab-engine';
+import { useLab } from '../labSession';
+import { ExpandedFooter } from './ExpandedLabParts';
 
 export function ChlorineLab() {
-  const [params, setParams] = useState<ChlorineParameters>(defaultChlorine);
-  const [isGenerating, setIsGenerating] = useState(false);
-  const reading = chlorineReading(params);
-
-  const update = (key: keyof ChlorineParameters, value: unknown) => {
-    setParams(prev => ({ ...prev, [key]: value }));
-  };
+  const { engine, state } = useLab('chlorine-bleach');
+  const { parameters: params, reading } = state;
+  const isGenerating = params.observed;
+  const stripType = params.damp ? 'wet' : 'dry';
+  const isBleached = params.observed && params.mode === 'bleach' && params.damp;
+  const update = (patch: Partial<typeof params>) => engine.setParameters({ ...patch, observed: false });
 
   return (
+    <>
     <div className="workbench-grid interactive-lab">
       <section className="stage-panel" aria-label="Bàn thí nghiệm điều chế khí clo">
         <div className="panel-title">
@@ -59,7 +59,7 @@ export function ChlorineLab() {
             <rect x="-8" y="-70" width="16" height="85" fill="#f8fafc" stroke="#64748b" strokeWidth="2" />
             <path d="M-18 -110h36l-18 40z" fill="#f8fafc" stroke="#64748b" strokeWidth="2" />
             <text x="25" y="-90" fontSize="11" fill="#475569">
-              HCl đặc (37%)
+              Minh họa dụng cụ ảo
             </text>
             <text x="0" y="170" textAnchor="middle" fill="#475569" fontSize="12" fontWeight="bold">
               1. Bình điều chế Cl₂
@@ -88,24 +88,24 @@ export function ChlorineLab() {
               height="80"
               rx="3"
               fill={
-                params.stripType === 'wet' && isGenerating
+                isBleached
                   ? '#ffffff'
-                  : params.stripType === 'wet'
+                  : stripType === 'wet'
                   ? '#ec4899'
                   : '#dc2626'
               }
               stroke="#64748b"
               strokeWidth="2"
             />
-            <text x="0" y="80" textAnchor="middle" fill={params.stripType === 'wet' && isGenerating ? '#94a3b8' : '#ffffff'} fontSize="10" fontWeight="bold">
-              {params.stripType === 'wet' && isGenerating ? 'TẨY TRẮNG' : params.stripType === 'wet' ? 'GIẤY ẨM' : 'GIẤY KHÔ'}
+            <text x="0" y="80" textAnchor="middle" fill={isBleached ? '#94a3b8' : '#ffffff'} fontSize="10" fontWeight="bold">
+              {isBleached ? 'TẨY TRẮNG' : stripType === 'wet' ? 'GIẤY ẨM' : 'GIẤY KHÔ'}
             </text>
 
             <text x="0" y="180" textAnchor="middle" fill="#334155" fontSize="12" fontWeight="bold">
               2. Ống thử tẩy màu
             </text>
             <text x="0" y="200" textAnchor="middle" fill="#64748b" fontSize="11">
-              {params.stripType === 'wet' ? 'Mẫu giấy màu ẨM' : 'Mẫu giấy màu KHÔ'}
+              {stripType === 'wet' ? 'Mẫu giấy màu ẨM' : 'Mẫu giấy màu KHÔ'}
             </text>
           </g>
 
@@ -131,34 +131,22 @@ export function ChlorineLab() {
         </svg>
 
         <div className="stage-actions">
+          <button className="record-button" disabled={!params.observed} onClick={() => engine.record()}>Ghi quan sát</button>
+          <button className="secondary-button" onClick={() => engine.reset()}>Đặt lại</button>
           <button
             type="button"
             className="primary-button"
-            onClick={() => setIsGenerating(!isGenerating)}
+            aria-label="Quan sát" onClick={() => engine.setParameters({ observed: true })}
           >
-            {isGenerating ? '✓ Khí Cl₂ đang được sinh ra & dẫn qua ống' : '▶ Nhỏ HCl vào KMnO₄ để sinh khí Cl₂'}
+            {isGenerating ? '✓ Đã mở quan sát' : '▶ Quan sát kịch bản clo'}
           </button>
         </div>
 
-        <div className="readings readings-expanded" aria-label="Kết quả đo điều chế Clo">
-          <div>
-            <span>Màu sắc khí sinh ra</span>
-            <strong style={{ color: '#84cc16' }}>Vàng lục nhạt</strong>
-          </div>
-          <div>
-            <span>Thể tích khí Cl₂ (đkc)</span>
-            <strong>{reading.cl2Volume_ml.toFixed(1)} <small>mL</small></strong>
-          </div>
-          <div>
-            <span>Kết quả thử tẩy màu</span>
-            <strong style={{ color: reading.isBleached ? '#16a34a' : '#dc2626' }}>
-              {reading.stripResult}
-            </strong>
-          </div>
-          <div>
-            <span>Chất gây tẩy màu</span>
-            <strong style={{ color: '#0284c7' }}>{reading.isBleached ? 'Axit HClO' : 'Không có HClO'}</strong>
-          </div>
+        <div className="readings readings-expanded" aria-label="Kết quả quan sát Clo">
+          <div><span>Sản phẩm trong mô hình</span><strong>{reading.product ?? '—'}</strong></div>
+          <div><span>Hiện tượng</span><strong data-testid="chem-observation">{reading.appearance ?? '—'}</strong></div>
+          <div><span>Giấy màu</span><strong>{params.damp ? 'Ẩm' : 'Khô'}</strong></div>
+          <div><span>Phạm vi</span><strong>Định tính</strong></div>
         </div>
       </section>
 
@@ -178,8 +166,8 @@ export function ChlorineLab() {
               <button
                 key={typeKey}
                 type="button"
-                aria-pressed={params.stripType === typeKey}
-                onClick={() => update('stripType', typeKey as ChlorineStrip)}
+                aria-pressed={stripType === typeKey}
+                onClick={() => update({ damp: typeKey === 'wet' })}
                 style={{ width: '100%', justifyContent: 'flex-start' }}
               >
                 {label}
@@ -187,27 +175,18 @@ export function ChlorineLab() {
             ))}
           </fieldset>
 
-          <label className="parameter" style={{ marginTop: '18px' }}>
-            <span>
-              Khối lượng KMnO₄ <output>{params.kmno4Mass_g.toFixed(2)} g</output>
-            </span>
-            <input
-              type="range"
-              min="0.5"
-              max="5"
-              step="0.1"
-              value={params.kmno4Mass_g}
-              onChange={e => update('kmno4Mass_g', Number(e.target.value))}
-            />
-          </label>
+          <label className="parameter"><span>Chế độ</span><select aria-label="Chế độ clo" value={params.mode}
+            onChange={e => update({ mode: e.target.value as 'formation' | 'bleach' })}>
+            <option value="formation">Nguyên lí tạo clo</option><option value="bleach">Tính tẩy màu</option>
+          </select></label>
 
           <div style={{ marginTop: '16px', padding: '12px', background: '#fefce8', borderRadius: '10px', fontSize: '13px', color: '#854d0e' }}>
             <strong>Phương trình phản ứng:</strong>
             <p style={{ marginTop: '4px', fontFamily: 'monospace', fontSize: '11px', fontWeight: 'bold' }}>
-              {reading.prepEquation}
+              {reading.equation ?? '—'}
             </p>
             <p style={{ marginTop: '6px', fontFamily: 'monospace', fontSize: '11px', color: '#0284c7', fontWeight: 'bold' }}>
-              ↳ {reading.bleachEquation}
+              ↳ {params.mode === 'bleach' ? 'Vai trò của nước trong mô hình tẩy màu.' : 'Oxi hóa ion chloride.'}
             </p>
           </div>
         </section>
@@ -218,10 +197,13 @@ export function ChlorineLab() {
             <span>Bản chất tính tẩy màu của Clo</span>
           </div>
           <div style={{ padding: '14px', background: '#f8faf9', borderRadius: '12px', fontSize: '12.5px', lineHeight: '1.6', color: '#2d4b3b' }}>
-            <p>{reading.explanation}</p>
+            <p>{reading.detail}</p>
           </div>
         </section>
       </aside>
     </div>
+    <ExpandedFooter id="chlorine-bleach" formulas={<p>Quan sát định tính trong phạm vi kịch bản nháp đã chọn.</p>}
+      columns={['Chế độ', 'Giấy', 'Sản phẩm', 'Hiện tượng']} rows={state.records.map(row => [row.parameters.mode, row.parameters.damp ? 'Ẩm' : 'Khô', row.reading.product ?? '—', row.reading.appearance ?? '—'])} onClear={() => engine.clearRecords()}/>
+    </>
   );
 }

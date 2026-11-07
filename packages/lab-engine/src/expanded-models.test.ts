@@ -50,8 +50,8 @@ describe('four new client models, independently established reference cases', ()
 });
 
 describe('expanded runtime registration and time-aware roundtrips', () => {
-  it('has configs including archived models, keeps all prior versions, validates/roundtrips every lab', () => {
-    expect(labIds).toHaveLength(15); expect(Object.keys(labDefinitions).sort()).toEqual([...labIds].sort());
+  it('has eleven configs including two archived models, keeps all prior versions, validates/roundtrips every lab', () => {
+    expect(labIds).toHaveLength(17); expect(Object.keys(labDefinitions).sort()).toEqual([...labIds].sort());
     for (const id of labIds) { const engine = createLabEngine(id); engine.record(); const restored = createLabEngine(id); restored.restore(engine.serialize()); expect(restored.snapshot().reading).toEqual(engine.snapshot().reading); expect(restored.snapshot().records[0].reading).toEqual(engine.snapshot().records[0].reading); }
   });
   it('records/restores values at elapsed time and stops Newton at10s', () => {

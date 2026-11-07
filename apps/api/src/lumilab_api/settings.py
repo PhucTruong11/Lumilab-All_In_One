@@ -9,6 +9,7 @@ class Settings(BaseSettings):
     model_config = SettingsConfigDict(env_prefix="LUMILAB_", env_file=".env", extra="ignore")
 
     env: str = "development"
+    build_sha: str = Field(default="unknown", pattern=r"^(unknown|[0-9a-f]{40})$")
     allowed_origins: list[str] = ["http://127.0.0.1:5175", "http://localhost:5175"]
     knowledge_dir: Path = Path("knowledge")
     contracts_dir: Path = Path("packages/contracts")

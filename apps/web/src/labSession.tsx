@@ -6,22 +6,13 @@ export const sessionKey = (id: LabId) => `lumilab-session-v1-${id}`;
 const SessionContext = createContext<{ engines: Engines; warnings: Partial<Record<LabId, string>> } | null>(null);
 export function LabSessionProvider({ children }: { children: ReactNode }) {
   const [value] = useState(() => {
-    const instances = {
-      pendulum: createLabEngine('pendulum'),
-      chemistry: createLabEngine('chemistry'),
-      circuit: createLabEngine('circuit'),
-      mechanics: createLabEngine('mechanics'),
-      spring: createLabEngine('spring'),
-      electrochemistry: createLabEngine('electrochemistry'),
-      atomic: createLabEngine('atomic'),
-      'parallel-circuit': createLabEngine('parallel-circuit'),
-      capacitor: createLabEngine('capacitor'),
-      precipitation: createLabEngine('precipitation'),
-      'gas-reaction': createLabEngine('gas-reaction'),
-      pulley: createLabEngine('pulley'),
-      'alkali-metal': createLabEngine('alkali-metal'),
-      'hno3-reaction': createLabEngine('hno3-reaction'),
-      'chlorine-gas': createLabEngine('chlorine-gas'),
+    const instances = { pendulum: createLabEngine('pendulum'), chemistry: createLabEngine('chemistry'), circuit: createLabEngine('circuit'), mechanics: createLabEngine('mechanics'), spring: createLabEngine('spring'), electrochemistry: createLabEngine('electrochemistry'), atomic: createLabEngine('atomic'), 'parallel-circuit': createLabEngine('parallel-circuit'), capacitor: createLabEngine('capacitor'), precipitation: createLabEngine('precipitation'), 'gas-reaction': createLabEngine('gas-reaction'),
+      'spring-damped': createLabEngine('spring-damped'),
+      'inclined-plane': createLabEngine('inclined-plane'),
+      'pulley': createLabEngine('pulley'),
+      'alkali-water': createLabEngine('alkali-water'),
+      'copper-nitric': createLabEngine('copper-nitric'),
+      'chlorine-bleach': createLabEngine('chlorine-bleach'),
     };
     const warnings: Partial<Record<LabId, string>> = {};
     for (const id of Object.keys(instances) as LabId[]) {

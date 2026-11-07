@@ -1,31 +1,23 @@
-import { useState } from 'react';
-import { alkaliReading, defaultAlkali, type AlkaliMetal, type AlkaliMode, type AlkaliParameters } from '@lumilab/lab-engine';
+import { useLab } from '../labSession';
+import { ExpandedFooter } from './ExpandedLabParts';
 
 export function AlkaliLab() {
-  const [params, setParams] = useState<AlkaliParameters>(defaultAlkali);
-  const [isReacting, setIsReacting] = useState(false);
-  const reading = alkaliReading(params);
-
-  const update = (key: keyof AlkaliParameters, value: unknown) => {
-    setParams(prev => ({ ...prev, [key]: value }));
-  };
-
-  const handleStartReaction = () => {
-    setIsReacting(true);
-  };
-
-  const handleReset = () => {
-    setIsReacting(false);
-    setParams(defaultAlkali);
-  };
+  const { engine, state } = useLab('alkali-water');
+  const { parameters: params, reading } = state;
+  const isReacting = params.observed;
+  const flameHex = params.observed ? (params.metal === 'Na' ? '#ffc800' : '#b28dff') : '#a7cde5';
+  const update = (patch: Partial<typeof params>) => engine.setParameters({ ...patch, observed: false });
+  const handleStartReaction = () => engine.setParameters({ observed: true });
+  const handleReset = () => engine.reset();
 
   return (
+    <>
     <div className="workbench-grid interactive-lab">
       <section className="stage-panel" aria-label="Bàn thí nghiệm kim loại kiềm">
         <div className="panel-title">
           <h2>Kim loại kiềm: Phản ứng với nước & Thử màu ngọn lửa</h2>
           <span className="mode-chip">
-            <i /> {params.mode === 'water_reaction' ? 'Thí nghiệm chậu nước' : 'Phép thử ngọn lửa đèn khí'}
+            <i /> {params.mode === 'water' ? 'Thí nghiệm chậu nước' : 'Phép thử ngọn lửa đèn khí'}
           </span>
         </div>
 
@@ -44,8 +36,8 @@ export function AlkaliLab() {
               <stop offset="100%" stopColor="#43a089" stopOpacity="0.25" />
             </radialGradient>
             <radialGradient id="flame-glow" cx="50%" cy="60%" r="50%">
-              <stop offset="0%" stopColor={reading.flameHex} stopOpacity="0.95" />
-              <stop offset="70%" stopColor={reading.flameHex} stopOpacity="0.6" />
+              <stop offset="0%" stopColor={flameHex} stopOpacity="0.95" />
+              <stop offset="70%" stopColor={flameHex} stopOpacity="0.6" />
               <stop offset="100%" stopColor="#ffffff" stopOpacity="0" />
             </radialGradient>
           </defs>
@@ -53,7 +45,7 @@ export function AlkaliLab() {
           {/* Background */}
           <rect x="10" y="5" width="740" height="442" rx="22" fill="url(#alkali-stage-bg)" />
 
-          {params.mode === 'water_reaction' ? (
+          {params.mode === 'water' ? (
             /* --- Chế độ phản ứng với nước --- */
             <g id="water-mode-scene">
               {/* Bàn thí nghiệm */}
@@ -94,16 +86,8 @@ export function AlkaliLab() {
                     />
                   ))}
                   {/* Ngọn lửa nếu là Kali (K) */}
-                  {params.metal === 'k' && (
-                    <path
-                      d="M-12 -6q12 -28 24 0q-12 -10 -24 0"
-                      fill="#b28dff"
-                      stroke="#865be3"
-                      strokeWidth="2"
-                    />
-                  )}
-                  <text x="0" y="-35" textAnchor="middle" fill={params.metal === 'k' ? '#703bc9' : '#1f694f'} fontSize="12" fontWeight="bold">
-                    {params.metal === 'na' ? '⚡ Na nóng chảy, chạy tròn, xì khí H₂' : '🔥 K bốc cháy ngọn lửa tím nhạt!'}
+                  <text x="0" y="-35" textAnchor="middle" fill={params.metal === 'K' ? '#703bc9' : '#1f694f'} fontSize="12" fontWeight="bold">
+                    {reading.detail}
                   </text>
                 </g>
               )}
@@ -122,7 +106,7 @@ export function AlkaliLab() {
               <ellipse cx="380" cy="150" rx="45" ry="90" fill="url(#flame-glow)" />
               <path
                 d="M365 220q15 -140 30 0"
-                fill={reading.flameHex}
+                fill={flameHex}
                 opacity="0.8"
               />
 
@@ -130,51 +114,36 @@ export function AlkaliLab() {
               <line x1="220" y1="210" x2="375" y2="170" stroke="#71867c" strokeWidth="4" />
               <circle cx="375" cy="170" r="5" fill="#f0ebd8" stroke="#a4936d" strokeWidth="2" />
               <text x="210" y="215" textAnchor="end" fill="#526d5f" fontSize="12">
-                Dây platin chứa ion {params.metal.toUpperCase()}⁺
+                Dây platin chứa ion {params.metal}⁺
               </text>
 
               <text x="380" y="60" textAnchor="middle" fill="#213d2f" fontSize="18" fontWeight="bold">
-                Màu ngọn lửa đặc trưng: {reading.flameColor}
+                Màu ngọn lửa đặc trưng: {(params.mode === 'flame' ? reading.appearance ?? '—' : 'Chọn phép thử ngọn lửa')}
               </text>
             </g>
           )}
         </svg>
 
         <div className="stage-actions">
-          {params.mode === 'water_reaction' && (
-            <button
+          <button className="record-button" disabled={!params.observed} onClick={() => engine.record()}>Ghi quan sát</button>
+          <button
               type="button"
               className="primary-button"
-              onClick={handleStartReaction}
+              aria-label="Quan sát" onClick={handleStartReaction}
               disabled={isReacting}
             >
-              {isReacting ? '✓ Phản ứng đang diễn ra' : `▶ Thả mẩu kim loại ${params.metal.toUpperCase()} vào nước`}
+              {isReacting ? '✓ Đã mở quan sát' : params.mode === 'water' ? `▶ Quan sát ${params.metal} với nước` : '▶ Quan sát màu ngọn lửa'}
             </button>
-          )}
           <button type="button" className="secondary-button" onClick={handleReset}>
             ↺ Làm sạch & Mẫu mới
           </button>
         </div>
 
         <div className="readings readings-expanded" aria-label="Kết quả phản ứng kim loại kiềm">
-          <div>
-            <span>Khí H₂ thoát ra (đkc)</span>
-            <strong>{reading.h2Volume_ml.toFixed(1)} <small>mL</small></strong>
-          </div>
-          <div>
-            <span>pH dung dịch kiềm</span>
-            <strong style={{ color: '#c02674' }}>{reading.pH.toFixed(2)}</strong>
-          </div>
-          <div>
-            <span>Màu ngọn lửa ion</span>
-            <strong style={{ color: params.metal === 'na' ? '#d97706' : '#7c3aed' }}>
-              {reading.flameColor.split(' ')[0]}
-            </strong>
-          </div>
-          <div>
-            <span>Mức độ mãnh liệt</span>
-            <strong>{reading.reactionIntensity}</strong>
-          </div>
+          <div><span>Sản phẩm</span><strong>{reading.product ?? '—'}</strong></div>
+          <div><span>Hiện tượng</span><strong data-testid="chem-observation">{reading.appearance ?? '—'}</strong></div>
+          <div><span>Mẫu</span><strong>{params.metal}</strong></div>
+          <div><span>Phạm vi</span><strong>Định tính</strong></div>
         </div>
       </section>
 
@@ -188,16 +157,15 @@ export function AlkaliLab() {
           <fieldset className="materials">
             <legend>Kim loại kiềm (Nhóm IA)</legend>
             {[
-              ['na', 'Natri (Na) · M = 23'],
-              ['k', 'Kali (K) · M = 39'],
+              ['Na', 'Natri (Na)'],
+              ['K', 'Kali (K)'],
             ].map(([metalKey, label]) => (
               <button
                 key={metalKey}
                 type="button"
                 aria-pressed={params.metal === metalKey}
                 onClick={() => {
-                  update('metal', metalKey as AlkaliMetal);
-                  setIsReacting(false);
+                  update({ metal: metalKey as 'Na' | 'K' });
                 }}
               >
                 {label}
@@ -208,14 +176,14 @@ export function AlkaliLab() {
           <fieldset className="materials" style={{ marginTop: '16px', flexDirection: 'column' }}>
             <legend>Chế độ thí nghiệm</legend>
             {[
-              ['water_reaction', '1. Tác dụng với nước (Quan sát sinh khí & pH)'],
-              ['flame_test', '2. Thử màu ngọn lửa đèn khí'],
+              ['water', '1. Tác dụng với nước (quan sát sinh khí)'],
+              ['flame', '2. Thử màu ngọn lửa đèn khí'],
             ].map(([mKey, label]) => (
               <button
                 key={mKey}
                 type="button"
                 aria-pressed={params.mode === mKey}
-                onClick={() => update('mode', mKey as AlkaliMode)}
+                onClick={() => update({ mode: mKey as 'water' | 'flame' })}
                 style={{ justifyContent: 'flex-start' }}
               >
                 {label}
@@ -223,36 +191,27 @@ export function AlkaliLab() {
             ))}
           </fieldset>
 
-          <label className="parameter" style={{ marginTop: '16px' }}>
-            <span>
-              Khối lượng kim loại m <output>{params.mass_g.toFixed(2)} g</output>
-            </span>
-            <input
-              type="range"
-              min="0.05"
-              max="0.5"
-              step="0.01"
-              value={params.mass_g}
-              onChange={e => update('mass_g', Number(e.target.value))}
-            />
-          </label>
+          <p className="content-note">Đổi mẫu hoặc chế độ để bắt đầu quan sát mới. Mô hình này chỉ mô tả hiện tượng định tính.</p>
 
           <div style={{ marginTop: '16px', padding: '12px', background: '#fdf7f9', borderRadius: '10px', fontSize: '13px', color: '#9d174d' }}>
             <strong>Phương trình phản ứng:</strong>
-            <p style={{ marginTop: '4px', fontFamily: 'monospace', fontWeight: 'bold' }}>{reading.equation}</p>
+            <p style={{ marginTop: '4px', fontFamily: 'monospace', fontWeight: 'bold' }}>{reading.equation ?? '—'}</p>
           </div>
         </section>
 
         <section className="chart-panel">
           <div className="panel-title">
             <h2>Hiện tượng quan sát SGK</h2>
-            <span>Chân trời sáng tạo / KNTT</span>
+            <span>Học liệu Kết nối tri thức · nháp</span>
           </div>
           <div style={{ padding: '14px', background: '#f8faf9', borderRadius: '12px', fontSize: '12.5px', lineHeight: '1.6', color: '#2d4b3b' }}>
-            <p>{reading.phenomenon}</p>
+            <p>{reading.detail}</p>
           </div>
         </section>
       </aside>
     </div>
+    <ExpandedFooter id="alkali-water" formulas={<p>Quan sát định tính trong phạm vi kịch bản nháp đã chọn.</p>}
+      columns={['Mẫu', 'Chế độ', 'Sản phẩm', 'Hiện tượng']} rows={state.records.map(row => [row.parameters.metal, row.parameters.mode, row.reading.product ?? '—', row.reading.appearance ?? '—'])} onClear={() => engine.clearRecords()}/>
+    </>
   );
 }

@@ -4,19 +4,21 @@
     "pendulum",
     "spring",
     "mechanics",
-    "pulley",
     "circuit",
+    "parallel-circuit",
     "capacitor",
-    "alkali-metal",
-    "hno3-reaction",
-    "chlorine-gas"
+    "spring-damped",
+    "inclined-plane",
+    "pulley",
+    "alkali-water",
+    "copper-nitric",
+    "chlorine-bleach"
   ],
   "archived": [
-    "parallel-circuit",
+    "electrochemistry",
+    "atomic",
     "chemistry",
     "precipitation",
-    "gas-reaction",
-    "electrochemistry",
-    "atomic"
+    "gas-reaction"
   ]
 }

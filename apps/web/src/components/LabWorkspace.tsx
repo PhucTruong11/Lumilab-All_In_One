@@ -6,7 +6,7 @@ import { ChemistryLab } from './ChemistryLab';
 import { CircuitLab } from './CircuitLab';
 import { LabSessionTools, LearningJourney, useLabClock } from './LabSessionTools';
 import { labDefinitions, type LabId } from '@lumilab/lab-engine';
-import { archivedPracticeIds, practiceIds, practiceInfo } from '../data/practice';
+import { archivedPracticeIds, practiceGroups, practiceIds, practiceInfo } from '../data/practice';
 export type { LabId } from '@lumilab/lab-engine';
 
 const MechanicsLab = lazy(() => import('./MechanicsLab').then(m => ({ default: m.MechanicsLab })));
@@ -22,16 +22,21 @@ const CapacitorLab = lazy(() => import('./AdditionalCircuitLab').then(m => ({ de
 const PrecipitationLab = lazy(() => import('./ReactionLab').then(m => ({ default: m.PrecipitationLab })));
 const GasReactionLab = lazy(() => import('./ReactionLab').then(m => ({ default: m.GasReactionLab })));
 
+const DampedSpringLab = lazy(() => import('./CurriculumLab').then(m => ({ default: m.DampedSpringLab })));
+const InclineLab = lazy(() => import('./CurriculumLab').then(m => ({ default: m.InclineLab })));
+
 const renderers: Record<LabId, React.ComponentType> = {
   pendulum: PendulumLab,
   spring: SpringLab,
   mechanics: MechanicsLab,
   pulley: PulleyLab,
+  'spring-damped': DampedSpringLab,
+  'inclined-plane': InclineLab,
   circuit: CircuitLab,
   capacitor: CapacitorLab,
-  'alkali-metal': AlkaliLab,
-  'hno3-reaction': Hno3Lab,
-  'chlorine-gas': ChlorineLab,
+  'alkali-water': AlkaliLab,
+  'copper-nitric': Hno3Lab,
+  'chlorine-bleach': ChlorineLab,
   chemistry: ChemistryLab,
   'parallel-circuit': ParallelCircuitLab,
   precipitation: PrecipitationLab,
@@ -56,6 +61,7 @@ export function LabWorkspace({
   useLabClock(labId);
   const lab = labDefinitions[labId];
   const Renderer = renderers[labId];
+  const group = practiceGroups.find(item => item.modes.includes(labId));
 
   return (
     <>
@@ -103,6 +109,10 @@ export function LabWorkspace({
         </label>
       </div>
 
+      {group && group.modes.length > 1 && <nav className="mode-switch" aria-label="Chế độ thực hành của bài">
+        {group.modes.map(id => <button key={id} className="secondary-button" aria-pressed={labId === id}
+          onClick={() => onSelect(id)}>{labDefinitions[id].title}</button>)}
+      </nav>}
       <LabSessionTools key={labId} id={labId} />
       <AppBoundary key={`renderer-${labId}`}>
         <Suspense fallback={<div className="lab-opening" role="status">Đang mở bàn thực hành…</div>}>

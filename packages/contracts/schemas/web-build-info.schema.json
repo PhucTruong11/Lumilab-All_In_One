@@ -1,0 +1,34 @@
+{
+  "properties": {
+    "schema_version": {
+      "const": "web-build-1.0",
+      "default": "web-build-1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "git_sha": {
+      "title": "Git Sha",
+      "type": "string"
+    },
+    "mapping_revision": {
+      "title": "Mapping Revision",
+      "type": "string"
+    },
+    "mapping_fingerprint": {
+      "title": "Mapping Fingerprint",
+      "type": "string"
+    },
+    "runtime_fingerprint": {
+      "title": "Runtime Fingerprint",
+      "type": "string"
+    }
+  },
+  "required": [
+    "git_sha",
+    "mapping_revision",
+    "mapping_fingerprint",
+    "runtime_fingerprint"
+  ],
+  "title": "WebBuildInfo",
+  "type": "object"
+}
