@@ -19,9 +19,9 @@ test('three grouped lessons open both original and extended models', async ({ pa
 
 test('pulley controls update the reading and preserve a recorded observation', async ({ page }) => {
   await page.goto('/#lab/pulley');
-  await expect(page.getByTestId('pulley-force')).toHaveText('49.05N');
-  await page.getByRole('combobox', { name: 'Số nhánh dây đỡ' }).selectOption('4');
-  await expect(page.getByTestId('pulley-force')).toHaveText('24.525N');
+  await expect(page.getByTestId('pulley-force')).toHaveText(/^49\.05\s*N$/);
+  await page.getByRole('button', { name: '3. Pa-lăng (n = 4 nhánh dây)' }).click();
+  await expect(page.getByTestId('pulley-force')).toHaveText(/^24\.525\s*N$/);
   await page.getByRole('button', { name: 'Ghi số đo', exact: true }).click();
   await expect(page.locator('.notebook tbody tr')).toContainText('24.525');
   await page.getByRole('button', { name: 'Lưu phiên', exact: true }).click();
@@ -56,8 +56,8 @@ test('chemistry controls compare observation states without carrying an old resu
   const observation = page.getByTestId('chem-observation');
   await page.goto('/#lab/alkali-water');
   await observe(); await expect(observation).toHaveText('Bọt khí');
-  await page.getByRole('combobox', { name: 'Quan sát', exact: true }).selectOption('flame');
-  await page.getByRole('combobox', { name: 'Kim loại hoặc ion tương ứng' }).selectOption('K');
+  await page.getByRole('button', { name: '2. Thử màu ngọn lửa đèn khí' }).click();
+  await page.getByRole('button', { name: 'Kali (K)', exact: true }).click();
   await expect(observation).toHaveText('—');
   await observe(); await expect(observation).toHaveText('Tím nhạt');
 
@@ -65,12 +65,12 @@ test('chemistry controls compare observation states without carrying an old resu
   await observe(); await expect(observation).toHaveText('Không màu');
   await page.getByRole('checkbox', { name: /NO gặp không khí/ }).check();
   await observe(); await expect(observation).toHaveText('Có thể chuyển nâu đỏ');
-  await page.getByRole('combobox', { name: 'Kịch bản axit' }).selectOption('concentrated');
+  await page.getByRole('button', { name: '2. Axit HNO₃ đặc', exact: true }).click();
   await observe(); await expect(observation).toHaveText('Nâu đỏ');
 
   await page.goto('/#lab/chlorine-bleach');
   await observe(); await expect(observation).toHaveText('Không thấy tẩy màu rõ');
-  await page.getByRole('combobox', { name: 'Điều kiện giấy màu' }).selectOption('damp');
+  await page.getByRole('button', { name: '1. Giấy màu ẨM (Có nước)', exact: true }).click();
   await observe(); await expect(observation).toHaveText('Giấy màu nhạt rõ');
   await page.getByRole('button', { name: 'Ghi quan sát' }).click();
   await expect(page.locator('.notebook tbody tr')).toContainText('HOCl');

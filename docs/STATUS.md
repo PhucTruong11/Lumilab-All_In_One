@@ -8,6 +8,8 @@ PR Dataset #13 đã merge tại `02d92f2`. Nhánh runbook đã sync main và b�
 
 ## Lịch sử tích hợp
 
+Tích hợp UI/UX PR #14 trên `feature/ui-ux`: giữ canvas/vector/chart con lắc và bốn bàn thực hành SVG mới; nối chúng vào runtime chuẩn `pulley`, `alkali-water`, `copper-nitric`, `chlorine-bleach` và giữ đủ các mode/nhánh lưu trữ của main. Các màn Hóa dùng quan sát định tính từ snapshot thay vì bộ tính riêng không có stage tương ứng. Kiểm local với DB thử riêng: **645 pytest đạt, 2 skip thư viện tùy chọn; 65 E2E Chrome đạt**, gồm 5 ca desktop/mobile mới. Không nâng trạng thái khoa học hoặc bật LLM; trạng thái CI/review xem PR.
+
 Nhánh `feat/docker-release-capabilities` bổ sung metadata web/API và manifest chung cho 9 bài/12 mode, giữ nguyên scope ba pilot Tutor. CI có job Docker dùng PostgreSQL tmpfs riêng, kiểm proxy/owned-run/Tutor template và nạp/recreate image từ archive. Kiểm local trước commit: **645 pytest đạt, 2 skip Chroma/Pint**, **96 unit TypeScript đạt**, Ruff và check:web đạt; smoke Docker và run tồn tại sau recreate đạt. Lượt local dùng `--allow-dirty` nên bundle chỉ dùng phát triển; bản release cần checkout sạch và CI trên SHA cuối. [Hướng dẫn release](DOCKER-RELEASE.md)
 
 Mốc M02 đang tích hợp trên nhánh `feat/full-web-engine-api` (Issue #5). Web, engine, contracts, API, knowledge draft và bộ test liên quan đã được đưa vào B. Xem Issue #5 và PR của nhánh để biết trạng thái tích hợp mới nhất.
