@@ -16,6 +16,14 @@ export type PreviewInput = {
   model_version: string; dataset_version: string; parameters: object; elapsed_s: number;
 };
 
+export type PreviewVerification = {
+  requestId: string;
+  values: Record<string, PreviewValue>;
+  stageChecks: { stage: string; status: string; code: string; reason: string }[];
+  limitations: string[];
+  checksSkipped: string[];
+};
+
 export function isPreview(value: unknown): value is Record<string, PreviewValue> {
   return !!value && typeof value === 'object' && !Array.isArray(value) &&
     Object.keys(value).length > 0 && Object.values(value).every(item =>
@@ -28,17 +36,40 @@ export async function loadLabPreview(
   labId: string,
   input: PreviewInput,
   signal: AbortSignal,
-): Promise<{ requestId: string; values: Record<string, PreviewValue> }> {
+): Promise<PreviewVerification> {
   const response = await fetch(apiBase + '/api/v1/verification/labs/' + encodeURIComponent(labId), {
     method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(input), signal,
   });
-  if (!response.ok) throw new Error('Máy chủ chưa trả được kết quả. Hãy thử lại.');
-  const data = await response.json();
-  if (data?.code === 'REVISION_MISMATCH') throw new Error('Phiên bản lab khác máy chủ. Hãy tải lại trang.');
-  if (data?.status !== 'INSUFFICIENT_DATA' || data.code !== 'REVIEWED_EVIDENCE_REQUIRED' ||
-      data.model_version !== input.model_version || data.dataset_version !== input.dataset_version ||
-      typeof data.request_id !== 'string' || !data.request_id || !isPreview(data.preview)) {
+  if (!response.ok) {
+    if (response.status === 422) throw new Error('Thông số gửi lên không đúng định dạng. Hãy kiểm tra và thử lại.');
+    throw new Error('Máy chủ chưa trả được kết quả. Hãy thử lại.');
+  }
+  const data: unknown = await response.json();
+  if (!data || typeof data !== 'object') throw new Error('API trả về kết quả không hợp lệ.');
+  const result = data as Record<string, unknown>;
+  if (result.code === 'REVISION_MISMATCH') throw new Error('Phiên bản lab khác máy chủ. Hãy tải lại trang.');
+  const fields = Array.isArray(result.fields) && result.fields.every(item => typeof item === 'string')
+    ? result.fields as string[] : [];
+  const fieldNote = fields.length ? ` Trường liên quan: ${fields.join(', ')}.` : '';
+  if (result.status === 'INVALID') throw new Error('Thông số hoặc kết quả không hợp lệ.' + fieldNote);
+  if (result.status === 'UNSUPPORTED') throw new Error('Thông số nằm ngoài phạm vi mô hình.' + fieldNote);
+  if (result.code === 'SCIENTIFIC_CHECKS_INCOMPLETE') {
+    throw new Error('Máy chủ chưa hoàn thành các bước kiểm khoa học. Không có bản xem trước để lưu.');
+  }
+  if (result.code === 'MISSING_INPUT') throw new Error('Chưa đủ thông số để tính lại.' + fieldNote);
+  if (result.status !== 'INSUFFICIENT_DATA' || result.code !== 'REVIEWED_EVIDENCE_REQUIRED' ||
+      result.model_version !== input.model_version || result.dataset_version !== input.dataset_version ||
+      typeof result.request_id !== 'string' || !result.request_id || !isPreview(result.preview) ||
+      !Array.isArray(result.stage_checks) || !result.stage_checks.every(item =>
+        !!item && typeof item === 'object' &&
+        ['stage', 'status', 'code', 'reason'].every(key => typeof item[key] === 'string')) ||
+      !Array.isArray(result.limitations) || !result.limitations.every(item => typeof item === 'string') ||
+      !Array.isArray(result.checks_skipped) || !result.checks_skipped.every(item => typeof item === 'string')) {
     throw new Error('Máy chủ chưa có bản xem trước phù hợp.');
   }
-  return { requestId: data.request_id, values: data.preview };
+  return {
+    requestId: result.request_id, values: result.preview,
+    stageChecks: result.stage_checks as PreviewVerification['stageChecks'],
+    limitations: result.limitations as string[], checksSkipped: result.checks_skipped as string[],
+  };
 }

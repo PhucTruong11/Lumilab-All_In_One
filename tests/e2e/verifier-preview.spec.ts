@@ -23,6 +23,12 @@ test('all seven labs display and persist real server readings as unreviewed prev
     });
     await expect(panel.getByText('Dữ liệu chưa duyệt', { exact: true })).toBeVisible();
     await expect(panel.getByText('Bản xem trước từ máy chủ', { exact: true })).toBeVisible();
+    await panel.getByText('Các bước kiểm và giới hạn').click();
+    await expect(panel).toContainText('Thiếu bằng chứng đã duyệt');
+    for (const check of body.stage_checks) {
+      await expect(panel).toContainText(check.reason);
+    }
+    await expect(panel).toContainText('Nguồn tham khảo mô hình (chưa duyệt cho Verify)');
     await panel.getByText('Xem toàn bộ số liệu máy chủ').click();
     await expect(panel.getByRole('status', { name: 'Bản xem trước từ máy chủ' }).locator('pre')).toBeVisible();
     expect(await panel.getByRole('status', { name: 'Bản xem trước từ máy chủ' }).locator('pre').textContent()).toBe(JSON.stringify(body.preview, null, 2));
@@ -50,6 +56,34 @@ test('all seven labs display and persist real server readings as unreviewed prev
       expect(JSON.parse(await readFile((await file.path())!, 'utf-8'))).toEqual(history);
     }
   }
+});
+
+test('invalid, unsupported and incomplete science responses do not create preview history', async ({ page }) => {
+  await page.goto('/#lab/pendulum');
+  const panel = page.getByRole('region', { name: 'Kết quả tính lại từ máy chủ' });
+  const path = '**/api/v1/verification/labs/pendulum';
+  for (const [status, code, message] of [
+    ['INVALID', 'INVALID_MODEL_PARAMETERS', 'không hợp lệ'],
+    ['UNSUPPORTED', 'OUTSIDE_MODEL_SCOPE', 'ngoài phạm vi mô hình'],
+    ['INSUFFICIENT_DATA', 'SCIENTIFIC_CHECKS_INCOMPLETE', 'chưa hoàn thành các bước kiểm khoa học'],
+  ]) {
+    await page.route(path, route => route.fulfill({ status: 200, contentType: 'application/json',
+      body: JSON.stringify({ status, code, fields: ['angle_deg'], preview: null }) }));
+    await panel.getByRole('button', { name: 'Tính lại trên máy chủ' }).click();
+    await expect(panel.getByRole('alert')).toContainText(message);
+    await expect(panel.getByText('Bản xem trước từ máy chủ', { exact: true })).toHaveCount(0);
+    await expect(panel.getByText('Lịch sử lượt thử (0/20)')).toBeVisible();
+    await page.unroute(path);
+  }
+});
+
+test('changing a pendulum parameter marks the server result as an older snapshot', async ({ page }) => {
+  await page.goto('/#lab/pendulum');
+  const panel = page.getByRole('region', { name: 'Kết quả tính lại từ máy chủ' });
+  await panel.getByRole('button', { name: 'Tính lại trên máy chủ' }).click();
+  await expect(panel.getByText('Bản xem trước từ máy chủ', { exact: true })).toBeVisible();
+  await page.getByRole('slider', { name: 'Chiều dài dây', exact: true }).press('End');
+  await expect(panel).toContainText('Đây là kết quả của lượt đã gửi');
 });
 
 test('preview failure can be retried and lab switching clears the old result', async ({ page }) => {
