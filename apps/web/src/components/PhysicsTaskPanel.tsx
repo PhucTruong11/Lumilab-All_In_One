@@ -43,7 +43,22 @@ export function PhysicsTaskPanel({ id, selectedId, onSelect }: {
     {open && <div className="lab-task-panel">
       <div className="lab-task-heading"><div><h2>Chọn bài để làm</h2><p>Đề bài ở ngay trong phòng thực hành; mô phỏng bên dưới luôn dùng được.</p></div>
         <label> Bài tập
-          <select aria-label="Chọn bài tập thực hành" value={selectedId || ''} onChange={event => choose(event.target.value || undefined)}>
+          <select
+            aria-label="Chọn bài tập thực hành"
+            value={selectedId || ''}
+            onChange={event => choose(event.target.value || undefined)}
+            onKeyDown={event => {
+              const allValues = ['', ...activities.map(t => t.id), ...(exerciseId ? [exerciseId] : [])];
+              const currentIndex = allValues.indexOf(selectedId || '');
+              if (event.key === 'ArrowDown') {
+                const nextIndex = Math.min(currentIndex + 1, allValues.length - 1);
+                choose(allValues[nextIndex] || undefined);
+              } else if (event.key === 'ArrowUp') {
+                const prevIndex = Math.max(currentIndex - 1, 0);
+                choose(allValues[prevIndex] || undefined);
+              }
+            }}
+          >
             <option value="">Chọn một bài</option>
             {activities.map(task => <option key={task.id} value={task.id}>{task.title}</option>)}
             <option value={exerciseId}>{lesson.title} · Bài tính</option>

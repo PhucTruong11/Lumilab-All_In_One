@@ -88,6 +88,7 @@ export function LabServerHistory({ id, preview }: { id: LabId; preview: DraftLab
           <pre style={{ whiteSpace: 'pre-wrap', overflowWrap: 'anywhere' }}>{JSON.stringify(run.input.parameters, null, 2)}</pre>
           <p>Preview đã lưu trên máy chủ</p>
           {run.result.preview && <ServerReadingDetails reading={run.result.preview} />}
+          <pre style={{ whiteSpace: 'pre-wrap', overflowWrap: 'anywhere' }}>{JSON.stringify(run.result.preview, null, 2)}</pre>
         </details>
       </li>)}</ol>}
       {offset !== null && <button className="secondary-button" disabled={busy} onClick={() => refresh(offset)}>Xem lượt cũ hơn</button>}
