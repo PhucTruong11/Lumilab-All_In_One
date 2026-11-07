@@ -105,6 +105,24 @@ def test_every_runtime_model_has_complete_science_stages_at_defaults():
             assert result["evidence"] == [], lab_id
 
 
+def test_pendulum_dataset_length_comparison_stays_draft():
+    config = json.loads((ROOT / "packages/lab-engine/labs/pendulum/lab.json")
+                        .read_text(encoding="utf-8"))
+    payload = {key: config[key] for key in ("model_version", "dataset_version")}
+    with TestClient(app()) as client:
+        periods = []
+        for length_m in (0.4, 1.6):
+            parameters = config["defaults"] | {"length_m": length_m, "angle_deg": 10}
+            response = client.post("/api/v1/verification/labs/pendulum",
+                                   json=payload | {"parameters": parameters})
+            assert response.status_code == 200
+            result = response.json()
+            assert result["code"] == "REVIEWED_EVIDENCE_REQUIRED"
+            assert result["facts"] == {} and result["evidence"] == []
+            periods.append(result["preview"]["period_s"])
+    assert periods[1] / periods[0] == pytest.approx(2, rel=2e-9)
+
+
 def test_runtime_catalog_keeps_archived_models_out_of_default_list():
     with TestClient(app()) as client:
         active = client.get("/api/v1/runtime-labs").json()["items"]
