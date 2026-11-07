@@ -1,0 +1,2119 @@
+{
+  "baseline_sha": "6cdff4ce018582e6df1752183a2fc5036165cbdb",
+  "dataset_revision": "eleven-lab-learning-draft-01",
+  "corpus_revision": "authored-nine-labs-draft-v1",
+  "registry_revision": "mvp-draft-2026-11-05",
+  "input_hashes": {
+    "knowledge/learning/nine-labs/learning-dataset.json": "a4e0ab841edb6e5946cd05c81f1e3ac8d830a04c6d0e33933a0c4f52e4b04413",
+    "knowledge/retrieval/documents.json": "065ad13a9d7d989de6e25f0978386e766ea59ee9bd9eee4277bfa1579953096f",
+    "knowledge/pipeline/sources.json": "bcb46877a08194fd96ce7726771bd8e0ff9d8ab5259fe42066f2b4bd215f13a8"
+  },
+  "embedding": "token-hash-v1-512",
+  "case_count": 66,
+  "pilot_case_count": 17,
+  "live_provider_attempts": 0,
+  "semantic_review": "NOT_RUN",
+  "scope": "Direct Python integration with authored requests. No HTTP, session database, or owned runs.",
+  "modes": {
+    "authored": {
+      "fingerprint": "d67e6f2cd0abf9af523c5277c21c24f128c62ff99c63c0fd8d8aaa9d48edfd21",
+      "chunks": 36,
+      "passed": 66,
+      "pilot_reasons": {
+        "LIVE_DISABLED": 15,
+        "NO_RELEVANT_SOURCE": 2
+      },
+      "other_reasons": {
+        "MVP_SCOPE_ONLY": 49
+      },
+      "cases": [
+        {
+          "id": "VL-CONLAC-01-T-1",
+          "runtime_id": "pendulum",
+          "pilot_scope": true,
+          "expected_offline": [
+            "LIVE_DISABLED",
+            "NO_RELEVANT_SOURCE"
+          ],
+          "retrieval_status": "FOUND",
+          "sources": {
+            "ctst-pendulum-limits:0": "reviewed",
+            "pendulum-overview:0": "draft",
+            "ctst-period-measure:0": "reviewed"
+          },
+          "response_status": "FALLBACK",
+          "degraded_reason": "LIVE_DISABLED",
+          "citation_ids": [
+            "ctst-pendulum-limits:0"
+          ],
+          "failed_checks": []
+        },
+        {
+          "id": "VL-CONLAC-01-T-2",
+          "runtime_id": "pendulum",
+          "pilot_scope": true,
+          "expected_offline": [
+            "LIVE_DISABLED",
+            "NO_RELEVANT_SOURCE"
+          ],
+          "retrieval_status": "FOUND",
+          "sources": {
+            "ctst-period-measure:0": "reviewed"
+          },
+          "response_status": "FALLBACK",
+          "degraded_reason": "LIVE_DISABLED",
+          "citation_ids": [
+            "ctst-period-measure:0"
+          ],
+          "failed_checks": []
+        },
+        {
+          "id": "VL-CONLAC-01-T-3",
+          "runtime_id": "pendulum",
+          "pilot_scope": true,
+          "expected_offline": [
+            "LIVE_DISABLED",
+            "NO_RELEVANT_SOURCE"
+          ],
+          "retrieval_status": "NO_MATCH",
+          "sources": {},
+          "response_status": "NEEDS_SOURCE",
+          "degraded_reason": "NO_RELEVANT_SOURCE",
+          "citation_ids": [],
+          "failed_checks": []
+        },
+        {
+          "id": "VL-CONLAC-01-T-4",
+          "runtime_id": "pendulum",
+          "pilot_scope": true,
+          "expected_offline": [
+            "LIVE_DISABLED",
+            "NO_RELEVANT_SOURCE"
+          ],
+          "retrieval_status": "FOUND",
+          "sources": {
+            "ctst-period-measure:0": "reviewed",
+            "ctst-pendulum-limits:0": "reviewed"
+          },
+          "response_status": "FALLBACK",
+          "degraded_reason": "LIVE_DISABLED",
+          "citation_ids": [
+            "ctst-period-measure:0"
+          ],
+          "failed_checks": []
+        },
+        {
+          "id": "VL-CONLAC-01-T-5",
+          "runtime_id": "pendulum",
+          "pilot_scope": true,
+          "expected_offline": [
+            "LIVE_DISABLED",
+            "NO_RELEVANT_SOURCE"
+          ],
+          "retrieval_status": "FOUND",
+          "sources": {
+            "ctst-pendulum-limits:0": "reviewed",
+            "ctst-period-measure:0": "reviewed"
+          },
+          "response_status": "FALLBACK",
+          "degraded_reason": "LIVE_DISABLED",
+          "citation_ids": [
+            "ctst-pendulum-limits:0"
+          ],
+          "failed_checks": []
+        },
+        {
+          "id": "VL-CONLAC-01-T-6",
+          "runtime_id": "pendulum",
+          "pilot_scope": true,
+          "expected_offline": [
+            "LIVE_DISABLED",
+            "NO_RELEVANT_SOURCE"
+          ],
+          "retrieval_status": "FOUND",
+          "sources": {
+            "ctst-period-measure:0": "reviewed",
+            "ctst-pendulum-limits:0": "reviewed"
+          },
+          "response_status": "FALLBACK",
+          "degraded_reason": "LIVE_DISABLED",
+          "citation_ids": [
+            "ctst-period-measure:0"
+          ],
+          "failed_checks": []
+        },
+        {
+          "id": "VL-LOXO-01-T-1",
+          "runtime_id": "spring-damped",
+          "pilot_scope": false,
+          "expected_offline": [
+            "MVP_SCOPE_ONLY"
+          ],
+          "retrieval_status": "NO_MATCH",
+          "sources": {},
+          "response_status": "FALLBACK",
+          "degraded_reason": "MVP_SCOPE_ONLY",
+          "citation_ids": [],
+          "failed_checks": []
+        },
+        {
+          "id": "VL-LOXO-01-T-2",
+          "runtime_id": "spring-damped",
+          "pilot_scope": false,
+          "expected_offline": [
+            "MVP_SCOPE_ONLY"
+          ],
+          "retrieval_status": "NO_MATCH",
+          "sources": {},
+          "response_status": "FALLBACK",
+          "degraded_reason": "MVP_SCOPE_ONLY",
+          "citation_ids": [],
+          "failed_checks": []
+        },
+        {
+          "id": "VL-LOXO-01-T-3",
+          "runtime_id": "spring-damped",
+          "pilot_scope": false,
+          "expected_offline": [
+            "MVP_SCOPE_ONLY"
+          ],
+          "retrieval_status": "FOUND",
+          "sources": {
+            "spring-damped-overview:0": "draft"
+          },
+          "response_status": "FALLBACK",
+          "degraded_reason": "MVP_SCOPE_ONLY",
+          "citation_ids": [
+            "spring-damped-overview:0"
+          ],
+          "failed_checks": []
+        },
+        {
+          "id": "VL-LOXO-01-T-4",
+          "runtime_id": "spring",
+          "pilot_scope": false,
+          "expected_offline": [
+            "MVP_SCOPE_ONLY"
+          ],
+          "retrieval_status": "NO_MATCH",
+          "sources": {},
+          "response_status": "FALLBACK",
+          "degraded_reason": "MVP_SCOPE_ONLY",
+          "citation_ids": [],
+          "failed_checks": []
+        },
+        {
+          "id": "VL-LOXO-01-T-5",
+          "runtime_id": "spring-damped",
+          "pilot_scope": false,
+          "expected_offline": [
+            "MVP_SCOPE_ONLY"
+          ],
+          "retrieval_status": "NO_MATCH",
+          "sources": {},
+          "response_status": "FALLBACK",
+          "degraded_reason": "MVP_SCOPE_ONLY",
+          "citation_ids": [],
+          "failed_checks": []
+        },
+        {
+          "id": "VL-LOXO-01-T-6",
+          "runtime_id": "spring-damped",
+          "pilot_scope": false,
+          "expected_offline": [
+            "MVP_SCOPE_ONLY"
+          ],
+          "retrieval_status": "NO_MATCH",
+          "sources": {},
+          "response_status": "FALLBACK",
+          "degraded_reason": "MVP_SCOPE_ONLY",
+          "citation_ids": [],
+          "failed_checks": []
+        },
+        {
+          "id": "VL-MATPHANGNGHIENG-01-T-1",
+          "runtime_id": "inclined-plane",
+          "pilot_scope": false,
+          "expected_offline": [
+            "MVP_SCOPE_ONLY"
+          ],
+          "retrieval_status": "FOUND",
+          "sources": {
+            "inclined-plane-overview:0": "draft"
+          },
+          "response_status": "FALLBACK",
+          "degraded_reason": "MVP_SCOPE_ONLY",
+          "citation_ids": [
+            "inclined-plane-overview:0"
+          ],
+          "failed_checks": []
+        },
+        {
+          "id": "VL-MATPHANGNGHIENG-01-T-2",
+          "runtime_id": "inclined-plane",
+          "pilot_scope": false,
+          "expected_offline": [
+            "MVP_SCOPE_ONLY"
+          ],
+          "retrieval_status": "NO_MATCH",
+          "sources": {},
+          "response_status": "FALLBACK",
+          "degraded_reason": "MVP_SCOPE_ONLY",
+          "citation_ids": [],
+          "failed_checks": []
+        },
+        {
+          "id": "VL-MATPHANGNGHIENG-01-T-3",
+          "runtime_id": "inclined-plane",
+          "pilot_scope": false,
+          "expected_offline": [
+            "MVP_SCOPE_ONLY"
+          ],
+          "retrieval_status": "FOUND",
+          "sources": {
+            "inclined-plane-overview:0": "draft"
+          },
+          "response_status": "FALLBACK",
+          "degraded_reason": "MVP_SCOPE_ONLY",
+          "citation_ids": [
+            "inclined-plane-overview:0"
+          ],
+          "failed_checks": []
+        },
+        {
+          "id": "VL-MATPHANGNGHIENG-01-T-4",
+          "runtime_id": "inclined-plane",
+          "pilot_scope": false,
+          "expected_offline": [
+            "MVP_SCOPE_ONLY"
+          ],
+          "retrieval_status": "NO_MATCH",
+          "sources": {},
+          "response_status": "FALLBACK",
+          "degraded_reason": "MVP_SCOPE_ONLY",
+          "citation_ids": [],
+          "failed_checks": []
+        },
+        {
+          "id": "VL-MATPHANGNGHIENG-01-T-5",
+          "runtime_id": "inclined-plane",
+          "pilot_scope": false,
+          "expected_offline": [
+            "MVP_SCOPE_ONLY"
+          ],
+          "retrieval_status": "FOUND",
+          "sources": {
+            "inclined-plane-overview:0": "draft"
+          },
+          "response_status": "FALLBACK",
+          "degraded_reason": "MVP_SCOPE_ONLY",
+          "citation_ids": [
+            "inclined-plane-overview:0"
+          ],
+          "failed_checks": []
+        },
+        {
+          "id": "VL-MATPHANGNGHIENG-01-T-6",
+          "runtime_id": "inclined-plane",
+          "pilot_scope": false,
+          "expected_offline": [
+            "MVP_SCOPE_ONLY"
+          ],
+          "retrieval_status": "NO_MATCH",
+          "sources": {},
+          "response_status": "FALLBACK",
+          "degraded_reason": "MVP_SCOPE_ONLY",
+          "citation_ids": [],
+          "failed_checks": []
+        },
+        {
+          "id": "VL-RONGROC-01-T-1",
+          "runtime_id": "pulley",
+          "pilot_scope": false,
+          "expected_offline": [
+            "MVP_SCOPE_ONLY"
+          ],
+          "retrieval_status": "FOUND",
+          "sources": {
+            "pulley-overview:0": "draft"
+          },
+          "response_status": "FALLBACK",
+          "degraded_reason": "MVP_SCOPE_ONLY",
+          "citation_ids": [
+            "pulley-overview:0"
+          ],
+          "failed_checks": []
+        },
+        {
+          "id": "VL-RONGROC-01-T-2",
+          "runtime_id": "pulley",
+          "pilot_scope": false,
+          "expected_offline": [
+            "MVP_SCOPE_ONLY"
+          ],
+          "retrieval_status": "NO_MATCH",
+          "sources": {},
+          "response_status": "FALLBACK",
+          "degraded_reason": "MVP_SCOPE_ONLY",
+          "citation_ids": [],
+          "failed_checks": []
+        },
+        {
+          "id": "VL-RONGROC-01-T-3",
+          "runtime_id": "pulley",
+          "pilot_scope": false,
+          "expected_offline": [
+            "MVP_SCOPE_ONLY"
+          ],
+          "retrieval_status": "NO_MATCH",
+          "sources": {},
+          "response_status": "FALLBACK",
+          "degraded_reason": "MVP_SCOPE_ONLY",
+          "citation_ids": [],
+          "failed_checks": []
+        },
+        {
+          "id": "VL-RONGROC-01-T-4",
+          "runtime_id": "pulley",
+          "pilot_scope": false,
+          "expected_offline": [
+            "MVP_SCOPE_ONLY"
+          ],
+          "retrieval_status": "FOUND",
+          "sources": {
+            "pulley-overview:0": "draft"
+          },
+          "response_status": "FALLBACK",
+          "degraded_reason": "MVP_SCOPE_ONLY",
+          "citation_ids": [
+            "pulley-overview:0"
+          ],
+          "failed_checks": []
+        },
+        {
+          "id": "VL-RONGROC-01-T-5",
+          "runtime_id": "pulley",
+          "pilot_scope": false,
+          "expected_offline": [
+            "MVP_SCOPE_ONLY"
+          ],
+          "retrieval_status": "NO_MATCH",
+          "sources": {},
+          "response_status": "FALLBACK",
+          "degraded_reason": "MVP_SCOPE_ONLY",
+          "citation_ids": [],
+          "failed_checks": []
+        },
+        {
+          "id": "VL-RONGROC-01-T-6",
+          "runtime_id": "pulley",
+          "pilot_scope": false,
+          "expected_offline": [
+            "MVP_SCOPE_ONLY"
+          ],
+          "retrieval_status": "NO_MATCH",
+          "sources": {},
+          "response_status": "FALLBACK",
+          "degraded_reason": "MVP_SCOPE_ONLY",
+          "citation_ids": [],
+          "failed_checks": []
+        },
+        {
+          "id": "VL-DIEN-01-T-1",
+          "runtime_id": "circuit",
+          "pilot_scope": true,
+          "expected_offline": [
+            "LIVE_DISABLED",
+            "NO_RELEVANT_SOURCE"
+          ],
+          "retrieval_status": "FOUND",
+          "sources": {
+            "circuit-overview:0": "draft"
+          },
+          "response_status": "FALLBACK",
+          "degraded_reason": "LIVE_DISABLED",
+          "citation_ids": [
+            "circuit-overview:0"
+          ],
+          "failed_checks": []
+        },
+        {
+          "id": "VL-DIEN-01-T-2",
+          "runtime_id": "circuit",
+          "pilot_scope": true,
+          "expected_offline": [
+            "LIVE_DISABLED",
+            "NO_RELEVANT_SOURCE"
+          ],
+          "retrieval_status": "NO_MATCH",
+          "sources": {},
+          "response_status": "NEEDS_SOURCE",
+          "degraded_reason": "NO_RELEVANT_SOURCE",
+          "citation_ids": [],
+          "failed_checks": []
+        },
+        {
+          "id": "VL-DIEN-01-T-3",
+          "runtime_id": "circuit",
+          "pilot_scope": true,
+          "expected_offline": [
+            "LIVE_DISABLED",
+            "NO_RELEVANT_SOURCE"
+          ],
+          "retrieval_status": "FOUND",
+          "sources": {
+            "circuit-overview:0": "draft"
+          },
+          "response_status": "FALLBACK",
+          "degraded_reason": "LIVE_DISABLED",
+          "citation_ids": [
+            "circuit-overview:0"
+          ],
+          "failed_checks": []
+        },
+        {
+          "id": "VL-DIEN-01-T-4",
+          "runtime_id": "parallel-circuit",
+          "pilot_scope": false,
+          "expected_offline": [
+            "MVP_SCOPE_ONLY"
+          ],
+          "retrieval_status": "FOUND",
+          "sources": {
+            "parallel-circuit-overview:0": "draft"
+          },
+          "response_status": "FALLBACK",
+          "degraded_reason": "MVP_SCOPE_ONLY",
+          "citation_ids": [
+            "parallel-circuit-overview:0"
+          ],
+          "failed_checks": []
+        },
+        {
+          "id": "VL-DIEN-01-T-5",
+          "runtime_id": "circuit",
+          "pilot_scope": true,
+          "expected_offline": [
+            "LIVE_DISABLED",
+            "NO_RELEVANT_SOURCE"
+          ],
+          "retrieval_status": "FOUND",
+          "sources": {
+            "circuit-overview:0": "draft"
+          },
+          "response_status": "FALLBACK",
+          "degraded_reason": "LIVE_DISABLED",
+          "citation_ids": [
+            "circuit-overview:0"
+          ],
+          "failed_checks": []
+        },
+        {
+          "id": "VL-DIEN-01-T-6",
+          "runtime_id": "circuit",
+          "pilot_scope": true,
+          "expected_offline": [
+            "LIVE_DISABLED",
+            "NO_RELEVANT_SOURCE"
+          ],
+          "retrieval_status": "FOUND",
+          "sources": {
+            "circuit-overview:0": "draft",
+            "ctst-source-voltage:0": "reviewed"
+          },
+          "response_status": "FALLBACK",
+          "degraded_reason": "LIVE_DISABLED",
+          "citation_ids": [
+            "circuit-overview:0"
+          ],
+          "failed_checks": []
+        },
+        {
+          "id": "VL-RC-01-T-1",
+          "runtime_id": "capacitor",
+          "pilot_scope": false,
+          "expected_offline": [
+            "MVP_SCOPE_ONLY"
+          ],
+          "retrieval_status": "FOUND",
+          "sources": {
+            "capacitor-overview:0": "draft"
+          },
+          "response_status": "FALLBACK",
+          "degraded_reason": "MVP_SCOPE_ONLY",
+          "citation_ids": [
+            "capacitor-overview:0"
+          ],
+          "failed_checks": []
+        },
+        {
+          "id": "VL-RC-01-T-2",
+          "runtime_id": "capacitor",
+          "pilot_scope": false,
+          "expected_offline": [
+            "MVP_SCOPE_ONLY"
+          ],
+          "retrieval_status": "FOUND",
+          "sources": {
+            "capacitor-overview:0": "draft"
+          },
+          "response_status": "FALLBACK",
+          "degraded_reason": "MVP_SCOPE_ONLY",
+          "citation_ids": [
+            "capacitor-overview:0"
+          ],
+          "failed_checks": []
+        },
+        {
+          "id": "VL-RC-01-T-3",
+          "runtime_id": "capacitor",
+          "pilot_scope": false,
+          "expected_offline": [
+            "MVP_SCOPE_ONLY"
+          ],
+          "retrieval_status": "NO_MATCH",
+          "sources": {},
+          "response_status": "FALLBACK",
+          "degraded_reason": "MVP_SCOPE_ONLY",
+          "citation_ids": [],
+          "failed_checks": []
+        },
+        {
+          "id": "VL-RC-01-T-4",
+          "runtime_id": "capacitor",
+          "pilot_scope": false,
+          "expected_offline": [
+            "MVP_SCOPE_ONLY"
+          ],
+          "retrieval_status": "NO_MATCH",
+          "sources": {},
+          "response_status": "FALLBACK",
+          "degraded_reason": "MVP_SCOPE_ONLY",
+          "citation_ids": [],
+          "failed_checks": []
+        },
+        {
+          "id": "VL-RC-01-T-5",
+          "runtime_id": "capacitor",
+          "pilot_scope": false,
+          "expected_offline": [
+            "MVP_SCOPE_ONLY"
+          ],
+          "retrieval_status": "NO_MATCH",
+          "sources": {},
+          "response_status": "FALLBACK",
+          "degraded_reason": "MVP_SCOPE_ONLY",
+          "citation_ids": [],
+          "failed_checks": []
+        },
+        {
+          "id": "VL-RC-01-T-6",
+          "runtime_id": "capacitor",
+          "pilot_scope": false,
+          "expected_offline": [
+            "MVP_SCOPE_ONLY"
+          ],
+          "retrieval_status": "NO_MATCH",
+          "sources": {},
+          "response_status": "FALLBACK",
+          "degraded_reason": "MVP_SCOPE_ONLY",
+          "citation_ids": [],
+          "failed_checks": []
+        },
+        {
+          "id": "HH-CHUANDO-01-T-1",
+          "runtime_id": "chemistry",
+          "pilot_scope": true,
+          "expected_offline": [
+            "LIVE_DISABLED",
+            "NO_RELEVANT_SOURCE"
+          ],
+          "retrieval_status": "FOUND",
+          "sources": {
+            "ctst-titration-direction:0": "reviewed",
+            "chemistry-overview:0": "draft"
+          },
+          "response_status": "FALLBACK",
+          "degraded_reason": "LIVE_DISABLED",
+          "citation_ids": [
+            "ctst-titration-direction:0"
+          ],
+          "failed_checks": []
+        },
+        {
+          "id": "HH-CHUANDO-01-T-2",
+          "runtime_id": "chemistry",
+          "pilot_scope": true,
+          "expected_offline": [
+            "LIVE_DISABLED",
+            "NO_RELEVANT_SOURCE"
+          ],
+          "retrieval_status": "FOUND",
+          "sources": {
+            "ctst-titration-direction:0": "reviewed"
+          },
+          "response_status": "FALLBACK",
+          "degraded_reason": "LIVE_DISABLED",
+          "citation_ids": [
+            "ctst-titration-direction:0"
+          ],
+          "failed_checks": []
+        },
+        {
+          "id": "HH-CHUANDO-01-T-3",
+          "runtime_id": "chemistry",
+          "pilot_scope": true,
+          "expected_offline": [
+            "LIVE_DISABLED",
+            "NO_RELEVANT_SOURCE"
+          ],
+          "retrieval_status": "FOUND",
+          "sources": {
+            "ctst-titration-direction:0": "reviewed",
+            "chemistry-overview:0": "draft"
+          },
+          "response_status": "FALLBACK",
+          "degraded_reason": "LIVE_DISABLED",
+          "citation_ids": [
+            "ctst-titration-direction:0"
+          ],
+          "failed_checks": []
+        },
+        {
+          "id": "HH-CHUANDO-01-T-4",
+          "runtime_id": "chemistry",
+          "pilot_scope": true,
+          "expected_offline": [
+            "LIVE_DISABLED",
+            "NO_RELEVANT_SOURCE"
+          ],
+          "retrieval_status": "FOUND",
+          "sources": {
+            "ctst-titration-direction:0": "reviewed",
+            "chemistry-overview:0": "draft"
+          },
+          "response_status": "FALLBACK",
+          "degraded_reason": "LIVE_DISABLED",
+          "citation_ids": [
+            "ctst-titration-direction:0"
+          ],
+          "failed_checks": []
+        },
+        {
+          "id": "HH-CHUANDO-01-T-5",
+          "runtime_id": "chemistry",
+          "pilot_scope": true,
+          "expected_offline": [
+            "LIVE_DISABLED",
+            "NO_RELEVANT_SOURCE"
+          ],
+          "retrieval_status": "FOUND",
+          "sources": {
+            "chemistry-overview:0": "draft",
+            "ctst-titration-direction:0": "reviewed"
+          },
+          "response_status": "FALLBACK",
+          "degraded_reason": "LIVE_DISABLED",
+          "citation_ids": [
+            "chemistry-overview:0"
+          ],
+          "failed_checks": []
+        },
+        {
+          "id": "HH-CHUANDO-01-T-6",
+          "runtime_id": "chemistry",
+          "pilot_scope": true,
+          "expected_offline": [
+            "LIVE_DISABLED",
+            "NO_RELEVANT_SOURCE"
+          ],
+          "retrieval_status": "FOUND",
+          "sources": {
+            "ctst-titration-direction:0": "reviewed"
+          },
+          "response_status": "FALLBACK",
+          "degraded_reason": "LIVE_DISABLED",
+          "citation_ids": [
+            "ctst-titration-direction:0"
+          ],
+          "failed_checks": []
+        },
+        {
+          "id": "HH-KETTUA-01-T-1",
+          "runtime_id": "precipitation",
+          "pilot_scope": false,
+          "expected_offline": [
+            "MVP_SCOPE_ONLY"
+          ],
+          "retrieval_status": "FOUND",
+          "sources": {
+            "precipitation-overview:0": "draft"
+          },
+          "response_status": "FALLBACK",
+          "degraded_reason": "MVP_SCOPE_ONLY",
+          "citation_ids": [
+            "precipitation-overview:0"
+          ],
+          "failed_checks": []
+        },
+        {
+          "id": "HH-KETTUA-01-T-2",
+          "runtime_id": "precipitation",
+          "pilot_scope": false,
+          "expected_offline": [
+            "MVP_SCOPE_ONLY"
+          ],
+          "retrieval_status": "NO_MATCH",
+          "sources": {},
+          "response_status": "FALLBACK",
+          "degraded_reason": "MVP_SCOPE_ONLY",
+          "citation_ids": [],
+          "failed_checks": []
+        },
+        {
+          "id": "HH-KETTUA-01-T-3",
+          "runtime_id": "precipitation",
+          "pilot_scope": false,
+          "expected_offline": [
+            "MVP_SCOPE_ONLY"
+          ],
+          "retrieval_status": "FOUND",
+          "sources": {
+            "precipitation-overview:0": "draft"
+          },
+          "response_status": "FALLBACK",
+          "degraded_reason": "MVP_SCOPE_ONLY",
+          "citation_ids": [
+            "precipitation-overview:0"
+          ],
+          "failed_checks": []
+        },
+        {
+          "id": "HH-KETTUA-01-T-4",
+          "runtime_id": "precipitation",
+          "pilot_scope": false,
+          "expected_offline": [
+            "MVP_SCOPE_ONLY"
+          ],
+          "retrieval_status": "NO_MATCH",
+          "sources": {},
+          "response_status": "FALLBACK",
+          "degraded_reason": "MVP_SCOPE_ONLY",
+          "citation_ids": [],
+          "failed_checks": []
+        },
+        {
+          "id": "HH-KETTUA-01-T-5",
+          "runtime_id": "precipitation",
+          "pilot_scope": false,
+          "expected_offline": [
+            "MVP_SCOPE_ONLY"
+          ],
+          "retrieval_status": "FOUND",
+          "sources": {
+            "precipitation-overview:0": "draft"
+          },
+          "response_status": "FALLBACK",
+          "degraded_reason": "MVP_SCOPE_ONLY",
+          "citation_ids": [
+            "precipitation-overview:0"
+          ],
+          "failed_checks": []
+        },
+        {
+          "id": "HH-KETTUA-01-T-6",
+          "runtime_id": "precipitation",
+          "pilot_scope": false,
+          "expected_offline": [
+            "MVP_SCOPE_ONLY"
+          ],
+          "retrieval_status": "NO_MATCH",
+          "sources": {},
+          "response_status": "FALLBACK",
+          "degraded_reason": "MVP_SCOPE_ONLY",
+          "citation_ids": [],
+          "failed_checks": []
+        },
+        {
+          "id": "HH-TAOKHI-01-T-1",
+          "runtime_id": "gas-reaction",
+          "pilot_scope": false,
+          "expected_offline": [
+            "MVP_SCOPE_ONLY"
+          ],
+          "retrieval_status": "FOUND",
+          "sources": {
+            "gas-reaction-overview:0": "draft"
+          },
+          "response_status": "FALLBACK",
+          "degraded_reason": "MVP_SCOPE_ONLY",
+          "citation_ids": [
+            "gas-reaction-overview:0"
+          ],
+          "failed_checks": []
+        },
+        {
+          "id": "HH-TAOKHI-01-T-2",
+          "runtime_id": "gas-reaction",
+          "pilot_scope": false,
+          "expected_offline": [
+            "MVP_SCOPE_ONLY"
+          ],
+          "retrieval_status": "NO_MATCH",
+          "sources": {},
+          "response_status": "FALLBACK",
+          "degraded_reason": "MVP_SCOPE_ONLY",
+          "citation_ids": [],
+          "failed_checks": []
+        },
+        {
+          "id": "HH-TAOKHI-01-T-3",
+          "runtime_id": "gas-reaction",
+          "pilot_scope": false,
+          "expected_offline": [
+            "MVP_SCOPE_ONLY"
+          ],
+          "retrieval_status": "NO_MATCH",
+          "sources": {},
+          "response_status": "FALLBACK",
+          "degraded_reason": "MVP_SCOPE_ONLY",
+          "citation_ids": [],
+          "failed_checks": []
+        },
+        {
+          "id": "HH-TAOKHI-01-T-4",
+          "runtime_id": "gas-reaction",
+          "pilot_scope": false,
+          "expected_offline": [
+            "MVP_SCOPE_ONLY"
+          ],
+          "retrieval_status": "FOUND",
+          "sources": {
+            "gas-reaction-overview:0": "draft"
+          },
+          "response_status": "FALLBACK",
+          "degraded_reason": "MVP_SCOPE_ONLY",
+          "citation_ids": [
+            "gas-reaction-overview:0"
+          ],
+          "failed_checks": []
+        },
+        {
+          "id": "HH-TAOKHI-01-T-5",
+          "runtime_id": "gas-reaction",
+          "pilot_scope": false,
+          "expected_offline": [
+            "MVP_SCOPE_ONLY"
+          ],
+          "retrieval_status": "NO_MATCH",
+          "sources": {},
+          "response_status": "FALLBACK",
+          "degraded_reason": "MVP_SCOPE_ONLY",
+          "citation_ids": [],
+          "failed_checks": []
+        },
+        {
+          "id": "HH-TAOKHI-01-T-6",
+          "runtime_id": "gas-reaction",
+          "pilot_scope": false,
+          "expected_offline": [
+            "MVP_SCOPE_ONLY"
+          ],
+          "retrieval_status": "NO_MATCH",
+          "sources": {},
+          "response_status": "FALLBACK",
+          "degraded_reason": "MVP_SCOPE_ONLY",
+          "citation_ids": [],
+          "failed_checks": []
+        },
+        {
+          "id": "HH-DIENHOA-01-T-1",
+          "runtime_id": "electrochemistry",
+          "pilot_scope": false,
+          "expected_offline": [
+            "MVP_SCOPE_ONLY"
+          ],
+          "retrieval_status": "FOUND",
+          "sources": {
+            "electrochemistry-overview:0": "draft"
+          },
+          "response_status": "FALLBACK",
+          "degraded_reason": "MVP_SCOPE_ONLY",
+          "citation_ids": [
+            "electrochemistry-overview:0"
+          ],
+          "failed_checks": []
+        },
+        {
+          "id": "HH-DIENHOA-01-T-2",
+          "runtime_id": "electrochemistry",
+          "pilot_scope": false,
+          "expected_offline": [
+            "MVP_SCOPE_ONLY"
+          ],
+          "retrieval_status": "NO_MATCH",
+          "sources": {},
+          "response_status": "FALLBACK",
+          "degraded_reason": "MVP_SCOPE_ONLY",
+          "citation_ids": [],
+          "failed_checks": []
+        },
+        {
+          "id": "HH-DIENHOA-01-T-3",
+          "runtime_id": "electrochemistry",
+          "pilot_scope": false,
+          "expected_offline": [
+            "MVP_SCOPE_ONLY"
+          ],
+          "retrieval_status": "NO_MATCH",
+          "sources": {},
+          "response_status": "FALLBACK",
+          "degraded_reason": "MVP_SCOPE_ONLY",
+          "citation_ids": [],
+          "failed_checks": []
+        },
+        {
+          "id": "HH-DIENHOA-01-T-4",
+          "runtime_id": "electrochemistry",
+          "pilot_scope": false,
+          "expected_offline": [
+            "MVP_SCOPE_ONLY"
+          ],
+          "retrieval_status": "NO_MATCH",
+          "sources": {},
+          "response_status": "FALLBACK",
+          "degraded_reason": "MVP_SCOPE_ONLY",
+          "citation_ids": [],
+          "failed_checks": []
+        },
+        {
+          "id": "HH-DIENHOA-01-T-5",
+          "runtime_id": "electrochemistry",
+          "pilot_scope": false,
+          "expected_offline": [
+            "MVP_SCOPE_ONLY"
+          ],
+          "retrieval_status": "NO_MATCH",
+          "sources": {},
+          "response_status": "FALLBACK",
+          "degraded_reason": "MVP_SCOPE_ONLY",
+          "citation_ids": [],
+          "failed_checks": []
+        },
+        {
+          "id": "HH-DIENHOA-01-T-6",
+          "runtime_id": "electrochemistry",
+          "pilot_scope": false,
+          "expected_offline": [
+            "MVP_SCOPE_ONLY"
+          ],
+          "retrieval_status": "NO_MATCH",
+          "sources": {},
+          "response_status": "FALLBACK",
+          "degraded_reason": "MVP_SCOPE_ONLY",
+          "citation_ids": [],
+          "failed_checks": []
+        },
+        {
+          "id": "HH-NGUYENTU-01-T-1",
+          "runtime_id": "atomic",
+          "pilot_scope": false,
+          "expected_offline": [
+            "MVP_SCOPE_ONLY"
+          ],
+          "retrieval_status": "FOUND",
+          "sources": {
+            "atomic-overview:0": "draft"
+          },
+          "response_status": "FALLBACK",
+          "degraded_reason": "MVP_SCOPE_ONLY",
+          "citation_ids": [
+            "atomic-overview:0"
+          ],
+          "failed_checks": []
+        },
+        {
+          "id": "HH-NGUYENTU-01-T-2",
+          "runtime_id": "atomic",
+          "pilot_scope": false,
+          "expected_offline": [
+            "MVP_SCOPE_ONLY"
+          ],
+          "retrieval_status": "NO_MATCH",
+          "sources": {},
+          "response_status": "FALLBACK",
+          "degraded_reason": "MVP_SCOPE_ONLY",
+          "citation_ids": [],
+          "failed_checks": []
+        },
+        {
+          "id": "HH-NGUYENTU-01-T-3",
+          "runtime_id": "atomic",
+          "pilot_scope": false,
+          "expected_offline": [
+            "MVP_SCOPE_ONLY"
+          ],
+          "retrieval_status": "NO_MATCH",
+          "sources": {},
+          "response_status": "FALLBACK",
+          "degraded_reason": "MVP_SCOPE_ONLY",
+          "citation_ids": [],
+          "failed_checks": []
+        },
+        {
+          "id": "HH-NGUYENTU-01-T-4",
+          "runtime_id": "atomic",
+          "pilot_scope": false,
+          "expected_offline": [
+            "MVP_SCOPE_ONLY"
+          ],
+          "retrieval_status": "NO_MATCH",
+          "sources": {},
+          "response_status": "FALLBACK",
+          "degraded_reason": "MVP_SCOPE_ONLY",
+          "citation_ids": [],
+          "failed_checks": []
+        },
+        {
+          "id": "HH-NGUYENTU-01-T-5",
+          "runtime_id": "atomic",
+          "pilot_scope": false,
+          "expected_offline": [
+            "MVP_SCOPE_ONLY"
+          ],
+          "retrieval_status": "NO_MATCH",
+          "sources": {},
+          "response_status": "FALLBACK",
+          "degraded_reason": "MVP_SCOPE_ONLY",
+          "citation_ids": [],
+          "failed_checks": []
+        },
+        {
+          "id": "HH-NGUYENTU-01-T-6",
+          "runtime_id": "atomic",
+          "pilot_scope": false,
+          "expected_offline": [
+            "MVP_SCOPE_ONLY"
+          ],
+          "retrieval_status": "FOUND",
+          "sources": {
+            "atomic-overview:0": "draft"
+          },
+          "response_status": "FALLBACK",
+          "degraded_reason": "MVP_SCOPE_ONLY",
+          "citation_ids": [
+            "atomic-overview:0"
+          ],
+          "failed_checks": []
+        }
+      ]
+    },
+    "reviewed_only": {
+      "fingerprint": "cf1d740b22e057b9ee996397a969871b1fb7c58c02bbd7b0895807bba4f16d67",
+      "chunks": 10,
+      "passed": 66,
+      "pilot_reasons": {
+        "LIVE_DISABLED": 12,
+        "NO_RELEVANT_SOURCE": 5
+      },
+      "other_reasons": {
+        "MVP_SCOPE_ONLY": 49
+      },
+      "cases": [
+        {
+          "id": "VL-CONLAC-01-T-1",
+          "runtime_id": "pendulum",
+          "pilot_scope": true,
+          "expected_offline": [
+            "LIVE_DISABLED",
+            "NO_RELEVANT_SOURCE"
+          ],
+          "retrieval_status": "FOUND",
+          "sources": {
+            "ctst-pendulum-limits:0": "reviewed",
+            "ctst-period-measure:0": "reviewed"
+          },
+          "response_status": "FALLBACK",
+          "degraded_reason": "LIVE_DISABLED",
+          "citation_ids": [
+            "ctst-pendulum-limits:0"
+          ],
+          "failed_checks": []
+        },
+        {
+          "id": "VL-CONLAC-01-T-2",
+          "runtime_id": "pendulum",
+          "pilot_scope": true,
+          "expected_offline": [
+            "LIVE_DISABLED",
+            "NO_RELEVANT_SOURCE"
+          ],
+          "retrieval_status": "FOUND",
+          "sources": {
+            "ctst-period-measure:0": "reviewed"
+          },
+          "response_status": "FALLBACK",
+          "degraded_reason": "LIVE_DISABLED",
+          "citation_ids": [
+            "ctst-period-measure:0"
+          ],
+          "failed_checks": []
+        },
+        {
+          "id": "VL-CONLAC-01-T-3",
+          "runtime_id": "pendulum",
+          "pilot_scope": true,
+          "expected_offline": [
+            "LIVE_DISABLED",
+            "NO_RELEVANT_SOURCE"
+          ],
+          "retrieval_status": "NO_MATCH",
+          "sources": {},
+          "response_status": "NEEDS_SOURCE",
+          "degraded_reason": "NO_RELEVANT_SOURCE",
+          "citation_ids": [],
+          "failed_checks": []
+        },
+        {
+          "id": "VL-CONLAC-01-T-4",
+          "runtime_id": "pendulum",
+          "pilot_scope": true,
+          "expected_offline": [
+            "LIVE_DISABLED",
+            "NO_RELEVANT_SOURCE"
+          ],
+          "retrieval_status": "FOUND",
+          "sources": {
+            "ctst-period-measure:0": "reviewed",
+            "ctst-pendulum-limits:0": "reviewed"
+          },
+          "response_status": "FALLBACK",
+          "degraded_reason": "LIVE_DISABLED",
+          "citation_ids": [
+            "ctst-period-measure:0"
+          ],
+          "failed_checks": []
+        },
+        {
+          "id": "VL-CONLAC-01-T-5",
+          "runtime_id": "pendulum",
+          "pilot_scope": true,
+          "expected_offline": [
+            "LIVE_DISABLED",
+            "NO_RELEVANT_SOURCE"
+          ],
+          "retrieval_status": "FOUND",
+          "sources": {
+            "ctst-pendulum-limits:0": "reviewed",
+            "ctst-period-measure:0": "reviewed"
+          },
+          "response_status": "FALLBACK",
+          "degraded_reason": "LIVE_DISABLED",
+          "citation_ids": [
+            "ctst-pendulum-limits:0"
+          ],
+          "failed_checks": []
+        },
+        {
+          "id": "VL-CONLAC-01-T-6",
+          "runtime_id": "pendulum",
+          "pilot_scope": true,
+          "expected_offline": [
+            "LIVE_DISABLED",
+            "NO_RELEVANT_SOURCE"
+          ],
+          "retrieval_status": "FOUND",
+          "sources": {
+            "ctst-period-measure:0": "reviewed",
+            "ctst-pendulum-limits:0": "reviewed"
+          },
+          "response_status": "FALLBACK",
+          "degraded_reason": "LIVE_DISABLED",
+          "citation_ids": [
+            "ctst-period-measure:0"
+          ],
+          "failed_checks": []
+        },
+        {
+          "id": "VL-LOXO-01-T-1",
+          "runtime_id": "spring-damped",
+          "pilot_scope": false,
+          "expected_offline": [
+            "MVP_SCOPE_ONLY"
+          ],
+          "retrieval_status": "NO_MATCH",
+          "sources": {},
+          "response_status": "FALLBACK",
+          "degraded_reason": "MVP_SCOPE_ONLY",
+          "citation_ids": [],
+          "failed_checks": []
+        },
+        {
+          "id": "VL-LOXO-01-T-2",
+          "runtime_id": "spring-damped",
+          "pilot_scope": false,
+          "expected_offline": [
+            "MVP_SCOPE_ONLY"
+          ],
+          "retrieval_status": "NO_MATCH",
+          "sources": {},
+          "response_status": "FALLBACK",
+          "degraded_reason": "MVP_SCOPE_ONLY",
+          "citation_ids": [],
+          "failed_checks": []
+        },
+        {
+          "id": "VL-LOXO-01-T-3",
+          "runtime_id": "spring-damped",
+          "pilot_scope": false,
+          "expected_offline": [
+            "MVP_SCOPE_ONLY"
+          ],
+          "retrieval_status": "NO_MATCH",
+          "sources": {},
+          "response_status": "FALLBACK",
+          "degraded_reason": "MVP_SCOPE_ONLY",
+          "citation_ids": [],
+          "failed_checks": []
+        },
+        {
+          "id": "VL-LOXO-01-T-4",
+          "runtime_id": "spring",
+          "pilot_scope": false,
+          "expected_offline": [
+            "MVP_SCOPE_ONLY"
+          ],
+          "retrieval_status": "NO_MATCH",
+          "sources": {},
+          "response_status": "FALLBACK",
+          "degraded_reason": "MVP_SCOPE_ONLY",
+          "citation_ids": [],
+          "failed_checks": []
+        },
+        {
+          "id": "VL-LOXO-01-T-5",
+          "runtime_id": "spring-damped",
+          "pilot_scope": false,
+          "expected_offline": [
+            "MVP_SCOPE_ONLY"
+          ],
+          "retrieval_status": "NO_MATCH",
+          "sources": {},
+          "response_status": "FALLBACK",
+          "degraded_reason": "MVP_SCOPE_ONLY",
+          "citation_ids": [],
+          "failed_checks": []
+        },
+        {
+          "id": "VL-LOXO-01-T-6",
+          "runtime_id": "spring-damped",
+          "pilot_scope": false,
+          "expected_offline": [
+            "MVP_SCOPE_ONLY"
+          ],
+          "retrieval_status": "NO_MATCH",
+          "sources": {},
+          "response_status": "FALLBACK",
+          "degraded_reason": "MVP_SCOPE_ONLY",
+          "citation_ids": [],
+          "failed_checks": []
+        },
+        {
+          "id": "VL-MATPHANGNGHIENG-01-T-1",
+          "runtime_id": "inclined-plane",
+          "pilot_scope": false,
+          "expected_offline": [
+            "MVP_SCOPE_ONLY"
+          ],
+          "retrieval_status": "NO_MATCH",
+          "sources": {},
+          "response_status": "FALLBACK",
+          "degraded_reason": "MVP_SCOPE_ONLY",
+          "citation_ids": [],
+          "failed_checks": []
+        },
+        {
+          "id": "VL-MATPHANGNGHIENG-01-T-2",
+          "runtime_id": "inclined-plane",
+          "pilot_scope": false,
+          "expected_offline": [
+            "MVP_SCOPE_ONLY"
+          ],
+          "retrieval_status": "NO_MATCH",
+          "sources": {},
+          "response_status": "FALLBACK",
+          "degraded_reason": "MVP_SCOPE_ONLY",
+          "citation_ids": [],
+          "failed_checks": []
+        },
+        {
+          "id": "VL-MATPHANGNGHIENG-01-T-3",
+          "runtime_id": "inclined-plane",
+          "pilot_scope": false,
+          "expected_offline": [
+            "MVP_SCOPE_ONLY"
+          ],
+          "retrieval_status": "NO_MATCH",
+          "sources": {},
+          "response_status": "FALLBACK",
+          "degraded_reason": "MVP_SCOPE_ONLY",
+          "citation_ids": [],
+          "failed_checks": []
+        },
+        {
+          "id": "VL-MATPHANGNGHIENG-01-T-4",
+          "runtime_id": "inclined-plane",
+          "pilot_scope": false,
+          "expected_offline": [
+            "MVP_SCOPE_ONLY"
+          ],
+          "retrieval_status": "NO_MATCH",
+          "sources": {},
+          "response_status": "FALLBACK",
+          "degraded_reason": "MVP_SCOPE_ONLY",
+          "citation_ids": [],
+          "failed_checks": []
+        },
+        {
+          "id": "VL-MATPHANGNGHIENG-01-T-5",
+          "runtime_id": "inclined-plane",
+          "pilot_scope": false,
+          "expected_offline": [
+            "MVP_SCOPE_ONLY"
+          ],
+          "retrieval_status": "NO_MATCH",
+          "sources": {},
+          "response_status": "FALLBACK",
+          "degraded_reason": "MVP_SCOPE_ONLY",
+          "citation_ids": [],
+          "failed_checks": []
+        },
+        {
+          "id": "VL-MATPHANGNGHIENG-01-T-6",
+          "runtime_id": "inclined-plane",
+          "pilot_scope": false,
+          "expected_offline": [
+            "MVP_SCOPE_ONLY"
+          ],
+          "retrieval_status": "NO_MATCH",
+          "sources": {},
+          "response_status": "FALLBACK",
+          "degraded_reason": "MVP_SCOPE_ONLY",
+          "citation_ids": [],
+          "failed_checks": []
+        },
+        {
+          "id": "VL-RONGROC-01-T-1",
+          "runtime_id": "pulley",
+          "pilot_scope": false,
+          "expected_offline": [
+            "MVP_SCOPE_ONLY"
+          ],
+          "retrieval_status": "NO_MATCH",
+          "sources": {},
+          "response_status": "FALLBACK",
+          "degraded_reason": "MVP_SCOPE_ONLY",
+          "citation_ids": [],
+          "failed_checks": []
+        },
+        {
+          "id": "VL-RONGROC-01-T-2",
+          "runtime_id": "pulley",
+          "pilot_scope": false,
+          "expected_offline": [
+            "MVP_SCOPE_ONLY"
+          ],
+          "retrieval_status": "NO_MATCH",
+          "sources": {},
+          "response_status": "FALLBACK",
+          "degraded_reason": "MVP_SCOPE_ONLY",
+          "citation_ids": [],
+          "failed_checks": []
+        },
+        {
+          "id": "VL-RONGROC-01-T-3",
+          "runtime_id": "pulley",
+          "pilot_scope": false,
+          "expected_offline": [
+            "MVP_SCOPE_ONLY"
+          ],
+          "retrieval_status": "NO_MATCH",
+          "sources": {},
+          "response_status": "FALLBACK",
+          "degraded_reason": "MVP_SCOPE_ONLY",
+          "citation_ids": [],
+          "failed_checks": []
+        },
+        {
+          "id": "VL-RONGROC-01-T-4",
+          "runtime_id": "pulley",
+          "pilot_scope": false,
+          "expected_offline": [
+            "MVP_SCOPE_ONLY"
+          ],
+          "retrieval_status": "NO_MATCH",
+          "sources": {},
+          "response_status": "FALLBACK",
+          "degraded_reason": "MVP_SCOPE_ONLY",
+          "citation_ids": [],
+          "failed_checks": []
+        },
+        {
+          "id": "VL-RONGROC-01-T-5",
+          "runtime_id": "pulley",
+          "pilot_scope": false,
+          "expected_offline": [
+            "MVP_SCOPE_ONLY"
+          ],
+          "retrieval_status": "NO_MATCH",
+          "sources": {},
+          "response_status": "FALLBACK",
+          "degraded_reason": "MVP_SCOPE_ONLY",
+          "citation_ids": [],
+          "failed_checks": []
+        },
+        {
+          "id": "VL-RONGROC-01-T-6",
+          "runtime_id": "pulley",
+          "pilot_scope": false,
+          "expected_offline": [
+            "MVP_SCOPE_ONLY"
+          ],
+          "retrieval_status": "NO_MATCH",
+          "sources": {},
+          "response_status": "FALLBACK",
+          "degraded_reason": "MVP_SCOPE_ONLY",
+          "citation_ids": [],
+          "failed_checks": []
+        },
+        {
+          "id": "VL-DIEN-01-T-1",
+          "runtime_id": "circuit",
+          "pilot_scope": true,
+          "expected_offline": [
+            "LIVE_DISABLED",
+            "NO_RELEVANT_SOURCE"
+          ],
+          "retrieval_status": "NO_MATCH",
+          "sources": {},
+          "response_status": "NEEDS_SOURCE",
+          "degraded_reason": "NO_RELEVANT_SOURCE",
+          "citation_ids": [],
+          "failed_checks": []
+        },
+        {
+          "id": "VL-DIEN-01-T-2",
+          "runtime_id": "circuit",
+          "pilot_scope": true,
+          "expected_offline": [
+            "LIVE_DISABLED",
+            "NO_RELEVANT_SOURCE"
+          ],
+          "retrieval_status": "NO_MATCH",
+          "sources": {},
+          "response_status": "NEEDS_SOURCE",
+          "degraded_reason": "NO_RELEVANT_SOURCE",
+          "citation_ids": [],
+          "failed_checks": []
+        },
+        {
+          "id": "VL-DIEN-01-T-3",
+          "runtime_id": "circuit",
+          "pilot_scope": true,
+          "expected_offline": [
+            "LIVE_DISABLED",
+            "NO_RELEVANT_SOURCE"
+          ],
+          "retrieval_status": "NO_MATCH",
+          "sources": {},
+          "response_status": "NEEDS_SOURCE",
+          "degraded_reason": "NO_RELEVANT_SOURCE",
+          "citation_ids": [],
+          "failed_checks": []
+        },
+        {
+          "id": "VL-DIEN-01-T-4",
+          "runtime_id": "parallel-circuit",
+          "pilot_scope": false,
+          "expected_offline": [
+            "MVP_SCOPE_ONLY"
+          ],
+          "retrieval_status": "NO_MATCH",
+          "sources": {},
+          "response_status": "FALLBACK",
+          "degraded_reason": "MVP_SCOPE_ONLY",
+          "citation_ids": [],
+          "failed_checks": []
+        },
+        {
+          "id": "VL-DIEN-01-T-5",
+          "runtime_id": "circuit",
+          "pilot_scope": true,
+          "expected_offline": [
+            "LIVE_DISABLED",
+            "NO_RELEVANT_SOURCE"
+          ],
+          "retrieval_status": "NO_MATCH",
+          "sources": {},
+          "response_status": "NEEDS_SOURCE",
+          "degraded_reason": "NO_RELEVANT_SOURCE",
+          "citation_ids": [],
+          "failed_checks": []
+        },
+        {
+          "id": "VL-DIEN-01-T-6",
+          "runtime_id": "circuit",
+          "pilot_scope": true,
+          "expected_offline": [
+            "LIVE_DISABLED",
+            "NO_RELEVANT_SOURCE"
+          ],
+          "retrieval_status": "FOUND",
+          "sources": {
+            "ctst-source-voltage:0": "reviewed"
+          },
+          "response_status": "FALLBACK",
+          "degraded_reason": "LIVE_DISABLED",
+          "citation_ids": [
+            "ctst-source-voltage:0"
+          ],
+          "failed_checks": []
+        },
+        {
+          "id": "VL-RC-01-T-1",
+          "runtime_id": "capacitor",
+          "pilot_scope": false,
+          "expected_offline": [
+            "MVP_SCOPE_ONLY"
+          ],
+          "retrieval_status": "NO_MATCH",
+          "sources": {},
+          "response_status": "FALLBACK",
+          "degraded_reason": "MVP_SCOPE_ONLY",
+          "citation_ids": [],
+          "failed_checks": []
+        },
+        {
+          "id": "VL-RC-01-T-2",
+          "runtime_id": "capacitor",
+          "pilot_scope": false,
+          "expected_offline": [
+            "MVP_SCOPE_ONLY"
+          ],
+          "retrieval_status": "NO_MATCH",
+          "sources": {},
+          "response_status": "FALLBACK",
+          "degraded_reason": "MVP_SCOPE_ONLY",
+          "citation_ids": [],
+          "failed_checks": []
+        },
+        {
+          "id": "VL-RC-01-T-3",
+          "runtime_id": "capacitor",
+          "pilot_scope": false,
+          "expected_offline": [
+            "MVP_SCOPE_ONLY"
+          ],
+          "retrieval_status": "NO_MATCH",
+          "sources": {},
+          "response_status": "FALLBACK",
+          "degraded_reason": "MVP_SCOPE_ONLY",
+          "citation_ids": [],
+          "failed_checks": []
+        },
+        {
+          "id": "VL-RC-01-T-4",
+          "runtime_id": "capacitor",
+          "pilot_scope": false,
+          "expected_offline": [
+            "MVP_SCOPE_ONLY"
+          ],
+          "retrieval_status": "NO_MATCH",
+          "sources": {},
+          "response_status": "FALLBACK",
+          "degraded_reason": "MVP_SCOPE_ONLY",
+          "citation_ids": [],
+          "failed_checks": []
+        },
+        {
+          "id": "VL-RC-01-T-5",
+          "runtime_id": "capacitor",
+          "pilot_scope": false,
+          "expected_offline": [
+            "MVP_SCOPE_ONLY"
+          ],
+          "retrieval_status": "NO_MATCH",
+          "sources": {},
+          "response_status": "FALLBACK",
+          "degraded_reason": "MVP_SCOPE_ONLY",
+          "citation_ids": [],
+          "failed_checks": []
+        },
+        {
+          "id": "VL-RC-01-T-6",
+          "runtime_id": "capacitor",
+          "pilot_scope": false,
+          "expected_offline": [
+            "MVP_SCOPE_ONLY"
+          ],
+          "retrieval_status": "NO_MATCH",
+          "sources": {},
+          "response_status": "FALLBACK",
+          "degraded_reason": "MVP_SCOPE_ONLY",
+          "citation_ids": [],
+          "failed_checks": []
+        },
+        {
+          "id": "HH-CHUANDO-01-T-1",
+          "runtime_id": "chemistry",
+          "pilot_scope": true,
+          "expected_offline": [
+            "LIVE_DISABLED",
+            "NO_RELEVANT_SOURCE"
+          ],
+          "retrieval_status": "FOUND",
+          "sources": {
+            "ctst-titration-direction:0": "reviewed"
+          },
+          "response_status": "FALLBACK",
+          "degraded_reason": "LIVE_DISABLED",
+          "citation_ids": [
+            "ctst-titration-direction:0"
+          ],
+          "failed_checks": []
+        },
+        {
+          "id": "HH-CHUANDO-01-T-2",
+          "runtime_id": "chemistry",
+          "pilot_scope": true,
+          "expected_offline": [
+            "LIVE_DISABLED",
+            "NO_RELEVANT_SOURCE"
+          ],
+          "retrieval_status": "FOUND",
+          "sources": {
+            "ctst-titration-direction:0": "reviewed"
+          },
+          "response_status": "FALLBACK",
+          "degraded_reason": "LIVE_DISABLED",
+          "citation_ids": [
+            "ctst-titration-direction:0"
+          ],
+          "failed_checks": []
+        },
+        {
+          "id": "HH-CHUANDO-01-T-3",
+          "runtime_id": "chemistry",
+          "pilot_scope": true,
+          "expected_offline": [
+            "LIVE_DISABLED",
+            "NO_RELEVANT_SOURCE"
+          ],
+          "retrieval_status": "FOUND",
+          "sources": {
+            "ctst-titration-direction:0": "reviewed"
+          },
+          "response_status": "FALLBACK",
+          "degraded_reason": "LIVE_DISABLED",
+          "citation_ids": [
+            "ctst-titration-direction:0"
+          ],
+          "failed_checks": []
+        },
+        {
+          "id": "HH-CHUANDO-01-T-4",
+          "runtime_id": "chemistry",
+          "pilot_scope": true,
+          "expected_offline": [
+            "LIVE_DISABLED",
+            "NO_RELEVANT_SOURCE"
+          ],
+          "retrieval_status": "FOUND",
+          "sources": {
+            "ctst-titration-direction:0": "reviewed"
+          },
+          "response_status": "FALLBACK",
+          "degraded_reason": "LIVE_DISABLED",
+          "citation_ids": [
+            "ctst-titration-direction:0"
+          ],
+          "failed_checks": []
+        },
+        {
+          "id": "HH-CHUANDO-01-T-5",
+          "runtime_id": "chemistry",
+          "pilot_scope": true,
+          "expected_offline": [
+            "LIVE_DISABLED",
+            "NO_RELEVANT_SOURCE"
+          ],
+          "retrieval_status": "FOUND",
+          "sources": {
+            "ctst-titration-direction:0": "reviewed"
+          },
+          "response_status": "FALLBACK",
+          "degraded_reason": "LIVE_DISABLED",
+          "citation_ids": [
+            "ctst-titration-direction:0"
+          ],
+          "failed_checks": []
+        },
+        {
+          "id": "HH-CHUANDO-01-T-6",
+          "runtime_id": "chemistry",
+          "pilot_scope": true,
+          "expected_offline": [
+            "LIVE_DISABLED",
+            "NO_RELEVANT_SOURCE"
+          ],
+          "retrieval_status": "FOUND",
+          "sources": {
+            "ctst-titration-direction:0": "reviewed"
+          },
+          "response_status": "FALLBACK",
+          "degraded_reason": "LIVE_DISABLED",
+          "citation_ids": [
+            "ctst-titration-direction:0"
+          ],
+          "failed_checks": []
+        },
+        {
+          "id": "HH-KETTUA-01-T-1",
+          "runtime_id": "precipitation",
+          "pilot_scope": false,
+          "expected_offline": [
+            "MVP_SCOPE_ONLY"
+          ],
+          "retrieval_status": "NO_MATCH",
+          "sources": {},
+          "response_status": "FALLBACK",
+          "degraded_reason": "MVP_SCOPE_ONLY",
+          "citation_ids": [],
+          "failed_checks": []
+        },
+        {
+          "id": "HH-KETTUA-01-T-2",
+          "runtime_id": "precipitation",
+          "pilot_scope": false,
+          "expected_offline": [
+            "MVP_SCOPE_ONLY"
+          ],
+          "retrieval_status": "NO_MATCH",
+          "sources": {},
+          "response_status": "FALLBACK",
+          "degraded_reason": "MVP_SCOPE_ONLY",
+          "citation_ids": [],
+          "failed_checks": []
+        },
+        {
+          "id": "HH-KETTUA-01-T-3",
+          "runtime_id": "precipitation",
+          "pilot_scope": false,
+          "expected_offline": [
+            "MVP_SCOPE_ONLY"
+          ],
+          "retrieval_status": "NO_MATCH",
+          "sources": {},
+          "response_status": "FALLBACK",
+          "degraded_reason": "MVP_SCOPE_ONLY",
+          "citation_ids": [],
+          "failed_checks": []
+        },
+        {
+          "id": "HH-KETTUA-01-T-4",
+          "runtime_id": "precipitation",
+          "pilot_scope": false,
+          "expected_offline": [
+            "MVP_SCOPE_ONLY"
+          ],
+          "retrieval_status": "NO_MATCH",
+          "sources": {},
+          "response_status": "FALLBACK",
+          "degraded_reason": "MVP_SCOPE_ONLY",
+          "citation_ids": [],
+          "failed_checks": []
+        },
+        {
+          "id": "HH-KETTUA-01-T-5",
+          "runtime_id": "precipitation",
+          "pilot_scope": false,
+          "expected_offline": [
+            "MVP_SCOPE_ONLY"
+          ],
+          "retrieval_status": "NO_MATCH",
+          "sources": {},
+          "response_status": "FALLBACK",
+          "degraded_reason": "MVP_SCOPE_ONLY",
+          "citation_ids": [],
+          "failed_checks": []
+        },
+        {
+          "id": "HH-KETTUA-01-T-6",
+          "runtime_id": "precipitation",
+          "pilot_scope": false,
+          "expected_offline": [
+            "MVP_SCOPE_ONLY"
+          ],
+          "retrieval_status": "NO_MATCH",
+          "sources": {},
+          "response_status": "FALLBACK",
+          "degraded_reason": "MVP_SCOPE_ONLY",
+          "citation_ids": [],
+          "failed_checks": []
+        },
+        {
+          "id": "HH-TAOKHI-01-T-1",
+          "runtime_id": "gas-reaction",
+          "pilot_scope": false,
+          "expected_offline": [
+            "MVP_SCOPE_ONLY"
+          ],
+          "retrieval_status": "NO_MATCH",
+          "sources": {},
+          "response_status": "FALLBACK",
+          "degraded_reason": "MVP_SCOPE_ONLY",
+          "citation_ids": [],
+          "failed_checks": []
+        },
+        {
+          "id": "HH-TAOKHI-01-T-2",
+          "runtime_id": "gas-reaction",
+          "pilot_scope": false,
+          "expected_offline": [
+            "MVP_SCOPE_ONLY"
+          ],
+          "retrieval_status": "NO_MATCH",
+          "sources": {},
+          "response_status": "FALLBACK",
+          "degraded_reason": "MVP_SCOPE_ONLY",
+          "citation_ids": [],
+          "failed_checks": []
+        },
+        {
+          "id": "HH-TAOKHI-01-T-3",
+          "runtime_id": "gas-reaction",
+          "pilot_scope": false,
+          "expected_offline": [
+            "MVP_SCOPE_ONLY"
+          ],
+          "retrieval_status": "NO_MATCH",
+          "sources": {},
+          "response_status": "FALLBACK",
+          "degraded_reason": "MVP_SCOPE_ONLY",
+          "citation_ids": [],
+          "failed_checks": []
+        },
+        {
+          "id": "HH-TAOKHI-01-T-4",
+          "runtime_id": "gas-reaction",
+          "pilot_scope": false,
+          "expected_offline": [
+            "MVP_SCOPE_ONLY"
+          ],
+          "retrieval_status": "NO_MATCH",
+          "sources": {},
+          "response_status": "FALLBACK",
+          "degraded_reason": "MVP_SCOPE_ONLY",
+          "citation_ids": [],
+          "failed_checks": []
+        },
+        {
+          "id": "HH-TAOKHI-01-T-5",
+          "runtime_id": "gas-reaction",
+          "pilot_scope": false,
+          "expected_offline": [
+            "MVP_SCOPE_ONLY"
+          ],
+          "retrieval_status": "NO_MATCH",
+          "sources": {},
+          "response_status": "FALLBACK",
+          "degraded_reason": "MVP_SCOPE_ONLY",
+          "citation_ids": [],
+          "failed_checks": []
+        },
+        {
+          "id": "HH-TAOKHI-01-T-6",
+          "runtime_id": "gas-reaction",
+          "pilot_scope": false,
+          "expected_offline": [
+            "MVP_SCOPE_ONLY"
+          ],
+          "retrieval_status": "NO_MATCH",
+          "sources": {},
+          "response_status": "FALLBACK",
+          "degraded_reason": "MVP_SCOPE_ONLY",
+          "citation_ids": [],
+          "failed_checks": []
+        },
+        {
+          "id": "HH-DIENHOA-01-T-1",
+          "runtime_id": "electrochemistry",
+          "pilot_scope": false,
+          "expected_offline": [
+            "MVP_SCOPE_ONLY"
+          ],
+          "retrieval_status": "NO_MATCH",
+          "sources": {},
+          "response_status": "FALLBACK",
+          "degraded_reason": "MVP_SCOPE_ONLY",
+          "citation_ids": [],
+          "failed_checks": []
+        },
+        {
+          "id": "HH-DIENHOA-01-T-2",
+          "runtime_id": "electrochemistry",
+          "pilot_scope": false,
+          "expected_offline": [
+            "MVP_SCOPE_ONLY"
+          ],
+          "retrieval_status": "NO_MATCH",
+          "sources": {},
+          "response_status": "FALLBACK",
+          "degraded_reason": "MVP_SCOPE_ONLY",
+          "citation_ids": [],
+          "failed_checks": []
+        },
+        {
+          "id": "HH-DIENHOA-01-T-3",
+          "runtime_id": "electrochemistry",
+          "pilot_scope": false,
+          "expected_offline": [
+            "MVP_SCOPE_ONLY"
+          ],
+          "retrieval_status": "NO_MATCH",
+          "sources": {},
+          "response_status": "FALLBACK",
+          "degraded_reason": "MVP_SCOPE_ONLY",
+          "citation_ids": [],
+          "failed_checks": []
+        },
+        {
+          "id": "HH-DIENHOA-01-T-4",
+          "runtime_id": "electrochemistry",
+          "pilot_scope": false,
+          "expected_offline": [
+            "MVP_SCOPE_ONLY"
+          ],
+          "retrieval_status": "NO_MATCH",
+          "sources": {},
+          "response_status": "FALLBACK",
+          "degraded_reason": "MVP_SCOPE_ONLY",
+          "citation_ids": [],
+          "failed_checks": []
+        },
+        {
+          "id": "HH-DIENHOA-01-T-5",
+          "runtime_id": "electrochemistry",
+          "pilot_scope": false,
+          "expected_offline": [
+            "MVP_SCOPE_ONLY"
+          ],
+          "retrieval_status": "NO_MATCH",
+          "sources": {},
+          "response_status": "FALLBACK",
+          "degraded_reason": "MVP_SCOPE_ONLY",
+          "citation_ids": [],
+          "failed_checks": []
+        },
+        {
+          "id": "HH-DIENHOA-01-T-6",
+          "runtime_id": "electrochemistry",
+          "pilot_scope": false,
+          "expected_offline": [
+            "MVP_SCOPE_ONLY"
+          ],
+          "retrieval_status": "NO_MATCH",
+          "sources": {},
+          "response_status": "FALLBACK",
+          "degraded_reason": "MVP_SCOPE_ONLY",
+          "citation_ids": [],
+          "failed_checks": []
+        },
+        {
+          "id": "HH-NGUYENTU-01-T-1",
+          "runtime_id": "atomic",
+          "pilot_scope": false,
+          "expected_offline": [
+            "MVP_SCOPE_ONLY"
+          ],
+          "retrieval_status": "NO_MATCH",
+          "sources": {},
+          "response_status": "FALLBACK",
+          "degraded_reason": "MVP_SCOPE_ONLY",
+          "citation_ids": [],
+          "failed_checks": []
+        },
+        {
+          "id": "HH-NGUYENTU-01-T-2",
+          "runtime_id": "atomic",
+          "pilot_scope": false,
+          "expected_offline": [
+            "MVP_SCOPE_ONLY"
+          ],
+          "retrieval_status": "NO_MATCH",
+          "sources": {},
+          "response_status": "FALLBACK",
+          "degraded_reason": "MVP_SCOPE_ONLY",
+          "citation_ids": [],
+          "failed_checks": []
+        },
+        {
+          "id": "HH-NGUYENTU-01-T-3",
+          "runtime_id": "atomic",
+          "pilot_scope": false,
+          "expected_offline": [
+            "MVP_SCOPE_ONLY"
+          ],
+          "retrieval_status": "NO_MATCH",
+          "sources": {},
+          "response_status": "FALLBACK",
+          "degraded_reason": "MVP_SCOPE_ONLY",
+          "citation_ids": [],
+          "failed_checks": []
+        },
+        {
+          "id": "HH-NGUYENTU-01-T-4",
+          "runtime_id": "atomic",
+          "pilot_scope": false,
+          "expected_offline": [
+            "MVP_SCOPE_ONLY"
+          ],
+          "retrieval_status": "NO_MATCH",
+          "sources": {},
+          "response_status": "FALLBACK",
+          "degraded_reason": "MVP_SCOPE_ONLY",
+          "citation_ids": [],
+          "failed_checks": []
+        },
+        {
+          "id": "HH-NGUYENTU-01-T-5",
+          "runtime_id": "atomic",
+          "pilot_scope": false,
+          "expected_offline": [
+            "MVP_SCOPE_ONLY"
+          ],
+          "retrieval_status": "NO_MATCH",
+          "sources": {},
+          "response_status": "FALLBACK",
+          "degraded_reason": "MVP_SCOPE_ONLY",
+          "citation_ids": [],
+          "failed_checks": []
+        },
+        {
+          "id": "HH-NGUYENTU-01-T-6",
+          "runtime_id": "atomic",
+          "pilot_scope": false,
+          "expected_offline": [
+            "MVP_SCOPE_ONLY"
+          ],
+          "retrieval_status": "NO_MATCH",
+          "sources": {},
+          "response_status": "FALLBACK",
+          "degraded_reason": "MVP_SCOPE_ONLY",
+          "citation_ids": [],
+          "failed_checks": []
+        }
+      ]
+    }
+  }
+}
