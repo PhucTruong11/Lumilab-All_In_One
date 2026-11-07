@@ -4,6 +4,7 @@ import { loadLabPreview, type PreviewVerification } from '../api';
 import { downloadText } from '../data/learning';
 import { historyLimit, readRunHistory, runHistoryKey, saveDraftRun, type DraftLabRun } from '../runHistory';
 import { LabServerHistory } from './LabServerHistory';
+import { ServerReadingDetails } from './ServerReadingDetails';
 import { useLab } from '../labSession';
 
 const highlights: Record<LabId, [key: string, label: string, unit: string][]> = {
@@ -135,7 +136,7 @@ export function LabServerPreview({ id }: { id: LabId }) {
           ].filter(Boolean).join(' ')}</dd></div>;
         })}</dl>
         <details><summary>Xem toàn bộ số liệu máy chủ</summary>
-          <pre style={{ whiteSpace: 'pre-wrap', overflowWrap: 'anywhere' }}>{JSON.stringify(result.preview, null, 2)}</pre>
+          <ServerReadingDetails reading={result.preview} />
         </details>
         {verification && <details><summary>Các bước kiểm và giới hạn</summary>
           <p>Mã kết quả: {result.code}. Không có bằng chứng đã duyệt cho lượt này.</p>
@@ -169,7 +170,7 @@ export function LabServerPreview({ id }: { id: LabId }) {
             <p>Thông số đã gửi</p>
             <pre style={{ whiteSpace: 'pre-wrap', overflowWrap: 'anywhere' }}>{JSON.stringify(run.parameters, null, 2)}</pre>
             <p>Preview đã lưu</p>
-            <pre style={{ whiteSpace: 'pre-wrap', overflowWrap: 'anywhere' }}>{JSON.stringify(run.preview, null, 2)}</pre>
+            <ServerReadingDetails reading={run.preview} />
           </details>
         </li>)}</ol>
       </details>

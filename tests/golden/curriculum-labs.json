@@ -44,6 +44,22 @@
     }
   },
   {
+    "lab_id": "spring-damped",
+    "parameters": {
+      "mass_kg": 2,
+      "stiffness_N_m": 8,
+      "displacement_m": -0.2,
+      "damping_ratio": 0.6
+    },
+    "elapsed_s": 0,
+    "expected": {
+      "displacement_m": -0.2,
+      "velocity_m_s": 0,
+      "envelope_m": 0.25,
+      "energy_J": 0.16
+    }
+  },
+  {
     "lab_id": "inclined-plane",
     "parameters": {
       "mass_kg": 2,
@@ -78,6 +94,21 @@
     "parameters": {
       "mass_kg": 2,
       "angle_deg": 30,
+      "static_friction": 0.5773502691896257
+    },
+    "elapsed_s": 1,
+    "expected": {
+      "acceleration_m_s2": 0,
+      "position_m": 0,
+      "friction_N": 9.81,
+      "state": "Đứng yên"
+    }
+  },
+  {
+    "lab_id": "inclined-plane",
+    "parameters": {
+      "mass_kg": 2,
+      "angle_deg": 30,
       "static_friction": 0
     },
     "elapsed_s": 8,
@@ -97,6 +128,20 @@
     "expected": {
       "pull_N": 98.1,
       "rope_m": 1,
+      "work_J": 98.1
+    }
+  },
+  {
+    "lab_id": "pulley",
+    "parameters": {
+      "mass_kg": 10,
+      "strands": 2,
+      "lift_m": 1
+    },
+    "elapsed_s": 0,
+    "expected": {
+      "pull_N": 49.05,
+      "rope_m": 2,
       "work_J": 98.1
     }
   },

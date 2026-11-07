@@ -13,6 +13,7 @@ import { AppBoundary } from './components/AppBoundary';
 import { PracticeCatalog } from './components/PracticeCatalog';
 import { isLabId } from '@lumilab/lab-engine';
 import './practice.css';
+import './select.css';
 import './experiment.css';
 
 type View = 'lab' | 'library' | 'workspace' | 'lumi';
@@ -24,12 +25,13 @@ function App() {
   const [view, setView] = useState<View>('lab');
   const [labOpen, setLabOpen] = useState(false);
   const [labId, setLabId] = useState<LabId>('pendulum');
+  const [taskId, setTaskId] = useState<string>();
   const [lessonRequest, setLessonRequest] = useState<{ id: string; sequence: number } | null>(null);
   const [online, setOnline] = useState(navigator.onLine);
-  function navigate(next: View, id?: LabId) { location.hash = next === 'lab' ? id ? `lab/${id}` : 'lab' : next; if (id) setLabId(id); if (next === 'lab') setLabOpen(!!id); setView(next); }
+  function navigate(next: View, id?: LabId, task?: string) { location.hash = next === 'lab' ? id ? `lab/${id}${task ? `/${encodeURIComponent(task)}` : ''}` : 'lab' : next; if (id) setLabId(id); setTaskId(task); if (next === 'lab') setLabOpen(!!id); setView(next); }
   function openLesson(id: string) { setLessonRequest(previous => ({ id, sequence: (previous?.sequence || 0) + 1 })); navigate('library'); }
   useEffect(() => {
-    const route = () => { const [next, id] = location.hash.slice(1).split('/'); if (tabs.some(tab => tab.id === next)) { setView(next as View); window.scrollTo({ top: 0, behavior: 'instant' }); } if (next === 'lab') { setLabOpen(isLabId(id || '')); if (isLabId(id || '')) setLabId(id as LabId); } };
+    const route = () => { const [next, id, task] = location.hash.slice(1).split('/'); if (tabs.some(tab => tab.id === next)) { setView(next as View); window.scrollTo({ top: 0, behavior: 'instant' }); } if (next === 'lab') { setLabOpen(isLabId(id || '')); if (isLabId(id || '')) setLabId(id as LabId); setTaskId(task || undefined); } };
     const network = () => setOnline(navigator.onLine); route(); addEventListener('hashchange', route); addEventListener('online', network); addEventListener('offline', network);
     return () => { removeEventListener('hashchange', route); removeEventListener('online', network); removeEventListener('offline', network); };
   }, []);
@@ -42,8 +44,8 @@ function App() {
     </header>
     <main id="main-content" tabIndex={-1} className="w-full"><AppBoundary>
       {view === 'lab' && !labOpen && <PracticeCatalog onOpen={id => navigate('lab', id)} onLesson={id => openLesson(id)}/>}
-      {view === 'lab' && labOpen && <LabWorkspace labId={labId} onSelect={id => navigate('lab', id)} onCatalog={() => navigate('lab')} onLesson={() => openLesson(labId)} onLumi={() => navigate('lumi')}/>}
-      <div hidden={view !== 'library'}><LessonLibrary requested={lessonRequest} openLab={id => navigate('lab', id)}/></div>
+      {view === 'lab' && labOpen && <LabWorkspace labId={labId} taskId={taskId} onSelect={id => navigate('lab', id)} onTaskSelect={task => navigate('lab', labId, task)} onCatalog={() => navigate('lab')} onLesson={() => openLesson(labId)} onLumi={() => navigate('lumi')}/>}
+      <div hidden={view !== 'library'}><LessonLibrary requested={lessonRequest} openLab={(id, task) => navigate('lab', id, task)}/></div>
       <div hidden={view !== 'workspace'}><LearningWorkspace openLab={id => navigate('lab', id)}/></div>
       <div hidden={view !== 'lumi'}><LumiChat active={view === 'lumi'} labId={labId} openLab={() => navigate('lab', labId)}/></div>
     </AppBoundary></main>

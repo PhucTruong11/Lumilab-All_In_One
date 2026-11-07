@@ -1,6 +1,7 @@
 import { lazy, Suspense, useState } from 'react';
 import { ExperimentTools } from './ExperimentTools';
 import { LabServerPreview } from './LabServerPreview';
+import { PhysicsTaskPanel } from './PhysicsTaskPanel';
 import { AppBoundary } from './AppBoundary';
 import { PendulumLab } from './PendulumLab';
 import { ChemistryLab } from './ChemistryLab';
@@ -48,13 +49,17 @@ const renderers: Record<LabId, React.ComponentType> = {
 
 export function LabWorkspace({
   labId,
+  taskId,
   onSelect,
+  onTaskSelect,
   onCatalog,
   onLesson,
   onLumi,
 }: {
   labId: LabId;
+  taskId?: string;
   onSelect: (id: LabId) => void;
+  onTaskSelect: (id?: string) => void;
   onCatalog: () => void;
   onLesson: () => void;
   onLumi: () => void;
@@ -112,6 +117,7 @@ export function LabWorkspace({
           <Renderer />
         </Suspense>
       </AppBoundary>
+      {lab.subject === 'physics' && <PhysicsTaskPanel key={'tasks-' + labId} id={labId} selectedId={taskId} onSelect={onTaskSelect} />}
       <ExperimentTools key={`tools-${labId}`} id={labId} speed={speed} onSpeed={setSpeed} focused={focused} onFocus={() => setFocused(value => !value)}/>
       <div className="lab-support">
         <LabSessionTools key={labId} id={labId} />

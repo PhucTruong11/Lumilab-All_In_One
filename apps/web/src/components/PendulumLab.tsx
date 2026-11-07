@@ -2,13 +2,14 @@ import { ChartBoundary } from './AppBoundary';
 import { lazy, Suspense, useCallback, useState } from 'react';
 import { pendulumAngleAtTime, type PendulumParameters } from '@lumilab/lab-engine';
 import { PendulumCanvas, type PendulumVisualOptions } from './PendulumCanvas';
-import { useLab } from '../labSession';
+import { useLab, useLabSpeed } from '../labSession';
 import { LabSlider } from './ExpandedLabParts';
 
 const Chart = lazy(() => import('./PendulumChart').then(module => ({ default: module.PendulumChart })));
 
 export function PendulumLab() {
   const { engine, state } = useLab('pendulum');
+  const [speedMultiplier, setSpeedMultiplier] = useLabSpeed('pendulum');
   const { parameters, reading, elapsed_s: time, presentation, records } = state;
   const running = state.phase === 'running';
   const { side, material } = presentation;
@@ -118,6 +119,11 @@ export function PendulumLab() {
             />
             <div className="stage-clock" aria-label="Thời gian mô phỏng">
               <span>t</span> <output>{time.toFixed(1)}</output> s
+              {speedMultiplier < 1 && (
+                <span className="slow-badge" title="Đang ở chế độ tua chậm">
+                  🐢 {speedMultiplier}x Slow
+                </span>
+              )}
             </div>
           </div>
 
@@ -132,6 +138,33 @@ export function PendulumLab() {
             <button className="secondary-button" onClick={reset}>
               ↺ Đặt lại
             </button>
+
+            <div className="playback-speed-controls" role="group" aria-label="Tốc độ dao động">
+              <span className="speed-label">Tốc độ:</span>
+              <button
+                type="button"
+                className={`speed-chip ${speedMultiplier === 1 ? 'active' : ''}`}
+                onClick={() => setSpeedMultiplier(1)}
+              >
+                1x Chuẩn
+              </button>
+              <button
+                type="button"
+                className={`speed-chip ${speedMultiplier === 0.5 ? 'active' : ''}`}
+                onClick={() => setSpeedMultiplier(0.5)}
+              >
+                0.5x
+              </button>
+              <button
+                type="button"
+                className={`speed-chip slow-mo ${speedMultiplier === 0.25 ? 'active' : ''}`}
+                onClick={() => setSpeedMultiplier(0.25)}
+                title="Tua chậm 0.25x để quan sát kỹ góc lệch, vận tốc và cơ năng"
+              >
+                🐢 Slow motion
+              </button>
+            </div>
+
             <button className="record-button" onClick={record} disabled={dampingEnabled}>
               ＋ Ghi số đo
             </button>
@@ -179,19 +212,6 @@ export function PendulumLab() {
             <LabSlider label="Góc thả" unit="°" min={0} max={90} step={1} value={parameters.angle_deg}
               onChange={value => change('angle_deg', value)} presets={[5, 15, 30, 45, 60]}/>
 
-            <fieldset className="materials">
-              <legend>Quả nặng</legend>
-              {([['steel', 'Thép'], ['copper', 'Đồng'], ['wood', 'Gỗ']] as const).map(([key, label]) => (
-                <button
-                  key={key}
-                  type="button"
-                  aria-label={label}
-                  aria-pressed={material === key}
-                  onClick={() => engine.setPresentation({ material: key })}
-                ><i className={`material-dot ${key}`}/>{label}</button>
-              ))}
-            </fieldset>
-
             <div className="damping-control-card">
               <div className="damping-header">
                 <label className="toggle-switch">
@@ -201,12 +221,11 @@ export function PendulumLab() {
                     onChange={e => setDampingEnabled(e.target.checked)}
                   />
                   <span className="toggle-slider" />
-                  <span>Minh họa lực cản (tắt dần)</span>
+                  <span>Lực cản môi trường (Tắt dần)</span>
                 </label>
               </div>
               {dampingEnabled && (
                 <div className="damping-slider-wrap">
-                  <p className="lab-notice">Chỉ minh họa trên hình và đồ thị; chưa hỗ trợ ghi số đo có cản. Tính lại trên máy chủ vẫn dùng mô hình không ma sát.</p>
                   <div className="damping-labels">
                     <span>Hệ số cản b: <strong>{dampingCoeff.toFixed(3)} N·s/m</strong></span>
                     <span className="sub-hint">
@@ -307,7 +326,7 @@ export function PendulumLab() {
                 </thead>
                 <tbody>
                   {records.map((row, index) => (
-                    <tr key={`${row.id}-${index}`} className={index === records.length - 1 ? 'latest-record-row' : undefined}>
+                    <tr key={`${row.id}-${index}`}>
                       <td>{row.parameters.length_m.toFixed(2)}</td>
                       <td>{row.parameters.mass_kg.toFixed(2)}</td>
                       <td>{row.parameters.angle_deg}</td>
