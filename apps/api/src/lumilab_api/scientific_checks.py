@@ -24,6 +24,16 @@ class UnsupportedFormula(ValueError):
 _TOKEN = re.compile(r"([A-Z][a-z]?)([0-9]*)")
 _ELEMENTS = frozenset({"H", "C", "O", "N", "Na", "Cl", "Ag", "K"})
 _SUBSCRIPTS = str.maketrans("₀₁₂₃₄₅₆₇₈₉", "0123456789")
+_QUANTITATIVE_CHEMISTRY_LABS = {"chemistry", "precipitation", "gas-reaction"}
+_QUALITATIVE_CHEMISTRY_LABS = {"alkali-water", "copper-nitric", "chlorine-bleach"}
+
+
+def required_science_stages(lab_id: str) -> set[str]:
+    if lab_id in _QUANTITATIVE_CHEMISTRY_LABS:
+        return {"formula_equation", "scientific_rules", "quantitative", "simulation"}
+    if lab_id in _QUALITATIVE_CHEMISTRY_LABS:
+        return {"simulation"}
+    return {"physics_invariants"}
 
 
 def parse_formula(formula: str) -> dict[str, int]:
@@ -480,13 +490,13 @@ def check_science(
     """
     if lab_id in {"spring-damped", "inclined-plane", "pulley"}:
         return [_stage("physics_invariants", lambda: _curriculum_physics(lab_id, parameters, reading))]
-    if lab_id in {"alkali-water", "copper-nitric", "chlorine-bleach"}:
+    if lab_id in _QUALITATIVE_CHEMISTRY_LABS:
         return [
             _stage("simulation", lambda: _curriculum_chemistry(lab_id, parameters, reading)),
             {"stage": "quantitative", "status": "skipped", "code": "QUALITATIVE_MODEL",
              "reason": "The observation has no quantitative rate, yield or concentration output."},
         ]
-    if lab_id in {"chemistry", "precipitation", "gas-reaction"}:
+    if lab_id in _QUANTITATIVE_CHEMISTRY_LABS:
         try:
             reaction = _chemistry_scope(lab_id, parameters)
         except _CheckFailure as error:

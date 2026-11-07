@@ -9,7 +9,7 @@ from jsonschema import Draft7Validator
 from pydantic import Field
 
 from lumilab_api.readings import MODELS
-from lumilab_api.scientific_checks import check_science
+from lumilab_api.scientific_checks import check_science, required_science_stages
 from lumilab_api.verifier import Number, StageCheck, VerificationInput, VerificationResult
 
 
@@ -116,4 +116,11 @@ def recompute(
             # An inconsistent model result is not an eligible preview to save or explain.
             result.preview = None
             return result
+
+    required_stages = required_science_stages(lab_id)
+    passed_stages = [check.stage for check in result.stage_checks if check.status == "pass"]
+    if (len(result.stage_checks) != len({check.stage for check in result.stage_checks})
+            or not required_stages.issubset(passed_stages)):
+        result.code, result.layer = "SCIENTIFIC_CHECKS_INCOMPLETE", "science"
+        result.preview = None
     return result

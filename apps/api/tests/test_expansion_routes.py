@@ -68,6 +68,61 @@ def test_inconsistent_model_output_is_not_eligible_for_preview(monkeypatch):
     assert result["preview"] is None and result["facts"] == {}
 
 
+@pytest.mark.parametrize("lab_id", ["pendulum", "chemistry"])
+@pytest.mark.parametrize("checks", [[], [
+    {"stage": "physics_invariants", "status": "pass", "code": "OK", "reason": "test"},
+    {"stage": "physics_invariants", "status": "skipped", "code": "SKIP", "reason": "test"},
+]])
+def test_missing_or_duplicate_science_stages_cannot_produce_preview(monkeypatch, lab_id, checks):
+    import lumilab_api.recompute as recompute_module
+
+    monkeypatch.setattr(recompute_module, "check_science", lambda *_: checks)
+    config = json.loads((ROOT / f"packages/lab-engine/labs/{lab_id}/lab.json").read_text(encoding="utf-8"))
+    payload = {key: config[key] for key in ("model_version", "dataset_version")}
+    with TestClient(app()) as client:
+        response = client.post("/api/v1/verification/labs/" + lab_id,
+                               json=payload | {"parameters": config["defaults"]})
+    assert response.status_code == 200
+    result = response.json()
+    assert result["status"] == "INSUFFICIENT_DATA"
+    assert result["code"] == "SCIENTIFIC_CHECKS_INCOMPLETE"
+    assert result["preview"] is None and result["facts"] == {} and result["evidence"] == []
+
+
+def test_every_runtime_model_has_complete_science_stages_at_defaults():
+    catalog = json.loads((ROOT / "packages/lab-engine/labs/catalog.json").read_text(encoding="utf-8"))
+    with TestClient(app()) as client:
+        for lab_id in catalog["active"] + catalog["archived"]:
+            config = json.loads((ROOT / f"packages/lab-engine/labs/{lab_id}/lab.json")
+                                .read_text(encoding="utf-8"))
+            payload = {key: config[key] for key in ("model_version", "dataset_version")}
+            response = client.post("/api/v1/verification/labs/" + lab_id,
+                                   json=payload | {"parameters": config["defaults"]})
+            assert response.status_code == 200, lab_id
+            result = response.json()
+            assert result["code"] == "REVIEWED_EVIDENCE_REQUIRED", lab_id
+            assert result["preview"] is not None and result["facts"] == {}, lab_id
+            assert result["evidence"] == [], lab_id
+
+
+def test_pendulum_dataset_length_comparison_stays_draft():
+    config = json.loads((ROOT / "packages/lab-engine/labs/pendulum/lab.json")
+                        .read_text(encoding="utf-8"))
+    payload = {key: config[key] for key in ("model_version", "dataset_version")}
+    with TestClient(app()) as client:
+        periods = []
+        for length_m in (0.4, 1.6):
+            parameters = config["defaults"] | {"length_m": length_m, "angle_deg": 10}
+            response = client.post("/api/v1/verification/labs/pendulum",
+                                   json=payload | {"parameters": parameters})
+            assert response.status_code == 200
+            result = response.json()
+            assert result["code"] == "REVIEWED_EVIDENCE_REQUIRED"
+            assert result["facts"] == {} and result["evidence"] == []
+            periods.append(result["preview"]["period_s"])
+    assert periods[1] / periods[0] == pytest.approx(2, rel=2e-9)
+
+
 def test_runtime_catalog_keeps_archived_models_out_of_default_list():
     with TestClient(app()) as client:
         active = client.get("/api/v1/runtime-labs").json()["items"]

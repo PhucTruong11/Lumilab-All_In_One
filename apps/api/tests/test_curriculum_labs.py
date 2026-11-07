@@ -4,6 +4,7 @@ from pathlib import Path
 import pytest
 from fastapi.testclient import TestClient
 
+from lumilab_api import recompute as recompute_module
 from lumilab_api.main import create_app
 
 ROOT = Path(__file__).resolve().parents[3]
@@ -30,8 +31,32 @@ def test_curriculum_preview_matches_reference_case(client, case):
     assert result["code"] == "REVIEWED_EVIDENCE_REQUIRED"
     assert result["facts"] == {}
     assert {"server_recompute", "schema"} <= set(result["checks_passed"])
+    if lab in {"alkali-water", "copper-nitric", "chlorine-bleach"}:
+        assert "simulation" in result["checks_passed"]
+        assert "quantitative" in result["checks_skipped"]
     for key, value in case["expected"].items():
         assert result["preview"][key] == (pytest.approx(value, abs=1e-9) if isinstance(value, (int, float)) else value)
+
+
+@pytest.mark.parametrize("simulation_status", [None, "skipped"])
+def test_qualitative_preview_requires_passing_simulation(client, monkeypatch, simulation_status):
+    checks = [{"stage": "quantitative", "status": "skipped", "code": "QUALITATIVE_MODEL",
+               "reason": "No quantities are inferred."}]
+    if simulation_status is not None:
+        checks.append({"stage": "simulation", "status": simulation_status, "code": "SKIPPED",
+                       "reason": "The scenario was not checked."})
+    monkeypatch.setattr(recompute_module, "check_science", lambda *_: checks)
+    config = json.loads((ROOT / "packages/lab-engine/labs/alkali-water/lab.json")
+                        .read_text(encoding="utf-8"))
+    response = client.post("/api/v1/verification/labs/alkali-water", json={
+        "model_version": config["model_version"], "dataset_version": config["dataset_version"],
+        "parameters": config["defaults"],
+    })
+    assert response.status_code == 200
+    result = response.json()
+    assert result["status"] == "INSUFFICIENT_DATA"
+    assert result["code"] == "SCIENTIFIC_CHECKS_INCOMPLETE"
+    assert result["preview"] is None and result["facts"] == {} and result["evidence"] == []
 
 
 def test_pulley_rejects_unsupported_strands(client):
