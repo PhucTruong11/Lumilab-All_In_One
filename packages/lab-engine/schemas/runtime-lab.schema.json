@@ -34,7 +34,13 @@
         "parallel-circuit",
         "capacitor",
         "precipitation",
-        "gas-reaction"
+        "gas-reaction",
+        "spring-damped",
+        "inclined-plane",
+        "pulley",
+        "alkali-water",
+        "copper-nitric",
+        "chlorine-bleach"
       ]
     },
     "title": {

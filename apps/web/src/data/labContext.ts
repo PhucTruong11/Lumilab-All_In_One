@@ -38,5 +38,9 @@ export function labContext(engines: Engines, id: LabId) {
     facts = JSON.stringify(shared.reading);
     guidance = id === 'parallel-circuit' ? 'Giữ U, R₁, R₂; so sánh I khi đổi từ nối tiếp sang song song. Kiểm I toàn mạch bằng tổng dòng nhánh ở mạch song song.' : id === 'capacitor' ? 'Thay R hoặc C, quan sát thời gian nạp. Tại t = RC, điện áp nạp đạt khoảng 63,2% U nguồn; khi xả còn 36,8%.' : id === 'precipitation' ? 'Giữ nồng độ 0,1 M, chỉ đổi thể tích một dung dịch. So sánh số mol hai chất và lượng AgCl tạo thành; độ đục chỉ minh họa.' : 'Giữ lượng axit, tăng NaHCO₃ và so lượng CO₂. Khi axit hết, thêm bicarbonat không làm tăng sản phẩm. Thể tích khí theo mô hình lý tưởng 25°C, 1 atm.';
   }
+  if (!facts) {
+    facts = Object.entries(shared.reading).filter(([, value]) => value !== null).map(([name, value]) => name + ': ' + String(value)).join(' · ');
+    guidance = engines[id].definition.assumptions.join(' ');
+  }
   return { facts, guidance, records: shared.records.length, prediction: shared.notes.prediction, reflection: shared.notes.reflection, modelVersion: engines[id].modelVersion, sources: engines[id].definition.sources };
 }

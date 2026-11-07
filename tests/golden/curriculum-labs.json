@@ -1,0 +1,268 @@
+[
+  {
+    "lab_id": "spring-damped",
+    "parameters": {
+      "mass_kg": 2,
+      "stiffness_N_m": 8,
+      "displacement_m": 0.2,
+      "damping_ratio": 0
+    },
+    "elapsed_s": 0.7853981633974483,
+    "expected": {
+      "displacement_m": 0,
+      "velocity_m_s": -0.4,
+      "energy_J": 0.16,
+      "period_s": 3.141592653589793
+    }
+  },
+  {
+    "lab_id": "spring-damped",
+    "parameters": {
+      "mass_kg": 2,
+      "stiffness_N_m": 8,
+      "displacement_m": 0.2,
+      "damping_ratio": 0.6
+    },
+    "elapsed_s": 0.5776226504666211,
+    "expected": {
+      "envelope_m": 0.125,
+      "period_s": 3.9269908169872414
+    }
+  },
+  {
+    "lab_id": "spring-damped",
+    "parameters": {
+      "mass_kg": 2,
+      "stiffness_N_m": 8,
+      "displacement_m": 0,
+      "damping_ratio": 0.9
+    },
+    "elapsed_s": 12,
+    "expected": {
+      "energy_J": 0,
+      "period_s": null
+    }
+  },
+  {
+    "lab_id": "inclined-plane",
+    "parameters": {
+      "mass_kg": 2,
+      "angle_deg": 30,
+      "static_friction": 0
+    },
+    "elapsed_s": 1,
+    "expected": {
+      "acceleration_m_s2": 4.905,
+      "position_m": 2.4525,
+      "velocity_m_s": 4.905,
+      "state": "Đang trượt"
+    }
+  },
+  {
+    "lab_id": "inclined-plane",
+    "parameters": {
+      "mass_kg": 2,
+      "angle_deg": 30,
+      "static_friction": 0.7
+    },
+    "elapsed_s": 1,
+    "expected": {
+      "acceleration_m_s2": 0,
+      "position_m": 0,
+      "friction_N": 9.81,
+      "state": "Đứng yên"
+    }
+  },
+  {
+    "lab_id": "inclined-plane",
+    "parameters": {
+      "mass_kg": 2,
+      "angle_deg": 30,
+      "static_friction": 0
+    },
+    "elapsed_s": 8,
+    "expected": {
+      "position_m": 5,
+      "state": "Đến cuối dốc"
+    }
+  },
+  {
+    "lab_id": "pulley",
+    "parameters": {
+      "mass_kg": 10,
+      "strands": 1,
+      "lift_m": 1
+    },
+    "elapsed_s": 0,
+    "expected": {
+      "pull_N": 98.1,
+      "rope_m": 1,
+      "work_J": 98.1
+    }
+  },
+  {
+    "lab_id": "pulley",
+    "parameters": {
+      "mass_kg": 10,
+      "strands": 4,
+      "lift_m": 1
+    },
+    "elapsed_s": 0,
+    "expected": {
+      "pull_N": 24.525,
+      "rope_m": 4,
+      "work_J": 98.1
+    }
+  },
+  {
+    "lab_id": "alkali-water",
+    "parameters": {
+      "metal": "Na",
+      "mode": "water",
+      "observed": true
+    },
+    "elapsed_s": 0,
+    "expected": {
+      "product": "NaOH và H₂",
+      "appearance": "Bọt khí",
+      "equation": "2Na + 2H₂O → 2NaOH + H₂"
+    }
+  },
+  {
+    "lab_id": "alkali-water",
+    "parameters": {
+      "metal": "K",
+      "mode": "water",
+      "observed": true
+    },
+    "elapsed_s": 0,
+    "expected": {
+      "product": "KOH và H₂",
+      "equation": "2K + 2H₂O → 2KOH + H₂"
+    }
+  },
+  {
+    "lab_id": "alkali-water",
+    "parameters": {
+      "metal": "Na",
+      "mode": "flame",
+      "observed": true
+    },
+    "elapsed_s": 0,
+    "expected": {
+      "product": "Na⁺",
+      "appearance": "Vàng",
+      "equation": null
+    }
+  },
+  {
+    "lab_id": "alkali-water",
+    "parameters": {
+      "metal": "K",
+      "mode": "flame",
+      "observed": true
+    },
+    "elapsed_s": 0,
+    "expected": {
+      "product": "K⁺",
+      "appearance": "Tím nhạt",
+      "equation": null
+    }
+  },
+  {
+    "lab_id": "alkali-water",
+    "parameters": {
+      "metal": "Na",
+      "mode": "water",
+      "observed": false
+    },
+    "elapsed_s": 0,
+    "expected": {
+      "product": null,
+      "appearance": null,
+      "equation": null
+    }
+  },
+  {
+    "lab_id": "copper-nitric",
+    "parameters": {
+      "acid": "dilute",
+      "air": false,
+      "observed": true
+    },
+    "elapsed_s": 0,
+    "expected": {
+      "product": "NO",
+      "appearance": "Không màu",
+      "equation": "3Cu + 8HNO₃ → 3Cu(NO₃)₂ + 2NO + 4H₂O"
+    }
+  },
+  {
+    "lab_id": "copper-nitric",
+    "parameters": {
+      "acid": "dilute",
+      "air": true,
+      "observed": true
+    },
+    "elapsed_s": 0,
+    "expected": {
+      "product": "NO",
+      "appearance": "Có thể chuyển nâu đỏ"
+    }
+  },
+  {
+    "lab_id": "copper-nitric",
+    "parameters": {
+      "acid": "concentrated",
+      "air": false,
+      "observed": true
+    },
+    "elapsed_s": 0,
+    "expected": {
+      "product": "NO₂",
+      "appearance": "Nâu đỏ",
+      "equation": "Cu + 4HNO₃ → Cu(NO₃)₂ + 2NO₂ + 2H₂O"
+    }
+  },
+  {
+    "lab_id": "chlorine-bleach",
+    "parameters": {
+      "mode": "formation",
+      "damp": false,
+      "observed": true
+    },
+    "elapsed_s": 0,
+    "expected": {
+      "product": "Cl₂",
+      "equation": "2Cl⁻ → Cl₂ + 2e⁻"
+    }
+  },
+  {
+    "lab_id": "chlorine-bleach",
+    "parameters": {
+      "mode": "bleach",
+      "damp": false,
+      "observed": true
+    },
+    "elapsed_s": 0,
+    "expected": {
+      "product": null,
+      "appearance": "Không thấy tẩy màu rõ",
+      "equation": null
+    }
+  },
+  {
+    "lab_id": "chlorine-bleach",
+    "parameters": {
+      "mode": "bleach",
+      "damp": true,
+      "observed": true
+    },
+    "elapsed_s": 0,
+    "expected": {
+      "product": "HOCl",
+      "appearance": "Giấy màu nhạt rõ",
+      "equation": "Cl₂ + H₂O ⇌ HCl + HOCl"
+    }
+  }
+]

@@ -304,5 +304,765 @@
         "explanation": "Vb = CaVa/Cb = 0,100 × 25,00 / 0,200 = 12,50 mL. NaOH đậm đặc gấp đôi nên cần một nửa thể tích."
       }
     ]
+  },
+  {
+    "id": "mechanics",
+    "subjectId": "physics",
+    "chapterId": "mechanics",
+    "title": "Lực thay đổi chuyển động thế nào?",
+    "lead": "Liên hệ hợp lực với gia tốc trong một tình huống đơn giản.",
+    "knowledge": [
+      {
+        "title": "Vận tốc và gia tốc",
+        "text": "Gia tốc mô tả sự thay đổi vận tốc theo thời gian. Vận tốc thay đổi về độ lớn hoặc hướng đều có thể tạo gia tốc."
+      },
+      {
+        "title": "Hợp lực",
+        "text": "Trong hệ quy chiếu quán tính, gia tốc của vật cùng hướng với hợp lực. Mô hình ở đây xét vật có khối lượng không đổi."
+      }
+    ],
+    "formulas": [
+      {
+        "expression": "ΣF = ma",
+        "description": "Hợp lực theo N, m theo kg, a theo m/s²."
+      },
+      {
+        "expression": "a = Δv/Δt",
+        "description": "Gia tốc trung bình; các vận tốc phải xét theo cùng hệ quy chiếu."
+      }
+    ],
+    "exercise": {
+      "id": "force",
+      "prompt": "Vật có khối lượng 2 kg chịu hợp lực 6 N trong hệ quy chiếu quán tính. Tính độ lớn gia tốc.",
+      "unit": "m/s²",
+      "answer": 3,
+      "tolerance": 0.01,
+      "hint": "Dùng a = ΣF/m.",
+      "explanation": "a = 6/2 = 3 m/s², cùng hướng với hợp lực."
+    },
+    "quiz": [
+      {
+        "id": "force-direction",
+        "stem": "Trong hệ quy chiếu quán tính, gia tốc cùng hướng với đại lượng nào?",
+        "options": [
+          "Vận tốc trong mọi trường hợp",
+          "Hợp lực",
+          "Trọng lực trong mọi trường hợp",
+          "Quãng đường"
+        ],
+        "correctIndex": 1,
+        "explanation": "Theo ΣF = ma với m dương, gia tốc cùng hướng hợp lực."
+      }
+    ]
+  },
+  {
+    "id": "spring",
+    "subjectId": "physics",
+    "chapterId": "oscillations",
+    "title": "Con lắc lò xo: nhịp dao động đến từ đâu?",
+    "lead": "Khám phá quan hệ giữa chu kỳ, khối lượng và độ cứng lò xo ngang.",
+    "knowledge": [
+      {
+        "title": "Lực kéo về",
+        "text": "Trong giới hạn Hooke, lực đàn hồi ngược chiều li độ: F = −kx. Mô hình dùng lò xo ngang không ma sát, vật được thả từ nghỉ."
+      },
+      {
+        "title": "Chu kỳ và năng lượng",
+        "text": "Với biên độ khác0, T = 2π√(m/k). Tăng khối lượng làm T tăng; tăng độ cứng làm T giảm. Đổi biên độ không làm đổi chu kỳ trong mô hình Hooke lý tưởng. Tại vị trí cân bằng khi thả từ nghỉ, vật đứng yên nên không đo được chu kỳ dao động."
+      },
+      {
+        "title": "Cách kiểm tra bằng lab",
+        "text": "Giữ độ cứng, kéo vật đến cùng li độ rồi thay khối lượng và ghi hai lượt. Tiếp theo giữ khối lượng, đổi độ cứng. So sánh đồ thị x(t) và số đo T."
+      }
+    ],
+    "formulas": [
+      {
+        "expression": "T = 2π√(m/k)",
+        "description": "m theo kg, k theo N/m, T theo s; dao động có biên độ khác0."
+      },
+      {
+        "expression": "x(t) = x₀cos(√(k/m)t)",
+        "description": "Thả từ li độx₀ với vận tốc ban đầu0; x theo m, t theo s."
+      },
+      {
+        "expression": "E = ½kx₀²",
+        "description": "Tổng động năng và thế năng bảo toàn khi không ma sát; E theo J."
+      }
+    ],
+    "exercise": {
+      "id": "spring-period",
+      "prompt": "Một vật0,5kg gắn với lò xo ngang có độ cứng20N/m, dao động lý tưởng với biên độ0,2m. Tính chu kỳ, làm tròn đến0,001s.",
+      "unit": "s",
+      "answer": 0.993,
+      "tolerance": 0.005,
+      "hint": "Dùng T=2π√(m/k); biên độ không xuất hiện trong công thức chu kỳ của lò xo Hooke.",
+      "explanation": "T=2π√(0,5/20)≈0,993s. Nếu tăng khối lượng lên2kg và giữ k, chu kỳ tăng2lần."
+    },
+    "quiz": [
+      {
+        "id": "spring-mass",
+        "stem": "Giữ k, tăng khối lượng4lần thì chu kỳ lò xo lý tưởng có biên độ khác0 thay đổi thế nào?",
+        "options": [
+          "Tăng2lần",
+          "Tăng4lần",
+          "Giảm2lần",
+          "Không đổi"
+        ],
+        "correctIndex": 0,
+        "explanation": "T tỉ lệ√m, nên √4=2."
+      },
+      {
+        "id": "spring-stiffness",
+        "stem": "Giữ m, tăng độ cứng4lần thì chu kỳ lò xo lý tưởng thay đổi thế nào?",
+        "options": [
+          "Tăng2lần",
+          "Giảm2lần",
+          "Giảm4lần",
+          "Không đổi"
+        ],
+        "correctIndex": 1,
+        "explanation": "T tỉ lệ1/√k, nên T mới bằng một nửa."
+      }
+    ]
+  },
+  {
+    "id": "parallel-circuit",
+    "subjectId": "physics",
+    "chapterId": "electricity",
+    "title": "Hai điện trở: nối tiếp hay song song?",
+    "lead": "Đọc dòng nhánh và điện trở tương đương khi đổi cách nối.",
+    "knowledge": [
+      {
+        "title": "Nối tiếp",
+        "text": "Dòng điện đi lần lượt qua hai điện trở nên có cùng cường độ. Điện áp nguồn bằng tổng điện áp hai điện trở."
+      },
+      {
+        "title": "Song song",
+        "text": "Hai nhánh nối cùng hai nút nên có cùng điện áp. Dòng nguồn bằng tổng dòng qua hai nhánh. Giữ điện áp nguồn, điện trở tương đương song song nhỏ hơn từng điện trở."
+      }
+    ],
+    "formulas": [
+      {
+        "expression": "Rnt = R₁ + R₂; I = U/Rnt",
+        "description": "Nguồn, dây và công tắc lý tưởng; mạch kín."
+      },
+      {
+        "expression": "Rss = R₁R₂/(R₁ + R₂); I = I₁ + I₂",
+        "description": "Hai điện trở song song; I₁ = U/R₁, I₂ = U/R₂."
+      }
+    ],
+    "exercise": {
+      "id": "parallel-resistance",
+      "prompt": "Hai điện trở 20 Ω và 30 Ω mắc song song với nguồn lý tưởng 6 V, mạch kín. Tính dòng điện toàn mạch.",
+      "unit": "A",
+      "answer": 0.5,
+      "tolerance": 0.001,
+      "hint": "Tính Rss = 20×30/(20+30), sau đó I = 6/Rss.",
+      "explanation": "Rss = 12 Ω, I = 6/12 = 0,5 A. Dòng nhánh là 0,3 A và 0,2 A."
+    },
+    "quiz": [
+      {
+        "id": "parallel-voltage",
+        "stem": "Hai điện trở mắc song song có đại lượng nào bằng nhau?",
+        "options": [
+          "Dòng điện trong mọi trường hợp",
+          "Điện áp hai đầu",
+          "Công suất trong mọi trường hợp",
+          "Điện trở"
+        ],
+        "correctIndex": 1,
+        "explanation": "Hai nhánh nối chung hai nút nên cùng điện áp."
+      }
+    ]
+  },
+  {
+    "id": "capacitor",
+    "subjectId": "physics",
+    "chapterId": "electricity",
+    "title": "Tụ điện nạp và xả thế nào?",
+    "lead": "Quan sát quá trình RC lý tưởng bằng điện áp theo thời gian.",
+    "knowledge": [
+      {
+        "title": "Hằng số thời gian",
+        "text": "Tích RC đặc trưng tốc độ nạp/xả. Tăng R hoặc C làm biến đổi chậm hơn. Đổi thông số trong lab bắt đầu lại quá trình từ t = 0."
+      },
+      {
+        "title": "Điều kiện đầu",
+        "text": "Chế độ nạp bắt đầu từ tụ chưa tích điện. Chế độ xả bắt đầu từ tụ có điện áp bằng U nguồn và ngắt nguồn. Dòng xả âm theo chiều tham chiếu của dòng nạp. Đây là bài mở rộng, cần giáo viên đối chiếu chương trình."
+      }
+    ],
+    "formulas": [
+      {
+        "expression": "τ = RC; Uc = U(1 − e^(−t/τ))",
+        "description": "Nạp từ Uc(0)=0. C đổi từ µF sang F; τ theo s."
+      },
+      {
+        "expression": "Uc = Ue^(−t/τ); E = ½CUc²",
+        "description": "Xả từ Uc(0)=U; tụ lý tưởng, không rò."
+      }
+    ],
+    "exercise": {
+      "id": "rc-time",
+      "prompt": "R = 1000 Ω, C = 1000 µF. Tính hằng số thời gian của mạch RC.",
+      "unit": "s",
+      "answer": 1,
+      "tolerance": 0.001,
+      "hint": "1000 µF = 0,001 F. Nhân R với C theo đơn vị SI.",
+      "explanation": "τ = 1000×0,001 = 1 s. Sau 1 s, tụ nạp đạt khoảng 63,2% U."
+    },
+    "quiz": [
+      {
+        "id": "rc-capacitance",
+        "stem": "Giữ R, tăng C hai lần thì τ thay đổi ra sao?",
+        "options": [
+          "Giảm hai lần",
+          "Không đổi",
+          "Tăng hai lần",
+          "Tăng bốn lần"
+        ],
+        "correctIndex": 2,
+        "explanation": "τ = RC nên tỉ lệ thuận với C."
+      }
+    ]
+  },
+  {
+    "id": "precipitation",
+    "subjectId": "chemistry",
+    "chapterId": "precipitation",
+    "title": "Dung dịch trong suốt tạo kết tủa trắng",
+    "lead": "Tìm chất giới hạn trong phản ứng AgNO₃–NaCl.",
+    "knowledge": [
+      {
+        "title": "Tạo chất ít tan",
+        "text": "Khi trộn dung dịch AgNO₃ với NaCl, AgCl trắng ít tan được tạo thành. Lab dùng mô hình phản ứng hoàn toàn theo tỉ lệ mol 1:1, bỏ qua độ tan còn lại."
+      },
+      {
+        "title": "Chất giới hạn",
+        "text": "Lượng AgCl tính từ số mol nhỏ hơn của hai chất. Chỉ thêm chất đã dư sẽ không làm tăng kết tủa trong mô hình. Độ đục trên hình là minh họa lượng sản phẩm, không phải đo quang."
+      },
+      {
+        "title": "An toàn",
+        "text": "Muối bạc và chất thải chứa bạc cần được xử lý đúng quy định trong phòng thí nghiệm. Không tự làm theo hình minh họa tại nhà."
+      }
+    ],
+    "formulas": [
+      {
+        "expression": "AgNO₃ + NaCl → AgCl↓ + NaNO₃",
+        "description": "Dung dịch nước, nồng độ cố định 0,1 mol/L."
+      },
+      {
+        "expression": "n = CV; mAgCl = min(nAgNO₃, nNaCl) × 143,32",
+        "description": "V theo L, n theo mol, m theo g. Khối lượng mol dùng trong mô hình 143,32 g/mol."
+      }
+    ],
+    "exercise": {
+      "id": "precipitate-mass",
+      "prompt": "Trộn 10 mL AgNO₃ 0,1 M với 20 mL NaCl 0,1 M. Giả sử phản ứng hoàn toàn, M(AgCl)=143,32 g/mol. Tính khối lượng AgCl.",
+      "unit": "g",
+      "answer": 0.14332,
+      "tolerance": 0.0001,
+      "hint": "Tính mol từng chất, chọn số nhỏ hơn theo tỉ lệ 1:1.",
+      "explanation": "nAgNO₃=0,001 mol; nNaCl=0,002 mol. AgNO₃ giới hạn; m=0,001×143,32=0,14332 g."
+    },
+    "quiz": [
+      {
+        "id": "excess-salt",
+        "stem": "AgNO₃ đã hết. Thêm NaCl tạo thêm AgCl trong mô hình này không?",
+        "options": [
+          "Có, luôn tăng",
+          "Không",
+          "Tùy màu cốc",
+          "Tăng gấp đôi"
+        ],
+        "correctIndex": 1,
+        "explanation": "Cần cả hai chất phản ứng; AgNO₃ đã hết nên không tạo thêm AgCl."
+      }
+    ]
+  },
+  {
+    "id": "gas-reaction",
+    "subjectId": "chemistry",
+    "chapterId": "gas-reactions",
+    "title": "Axit và bicarbonat: CO₂ đến từ đâu?",
+    "lead": "Thay lượng chất và dự đoán thể tích khí ở cùng điều kiện.",
+    "knowledge": [
+      {
+        "title": "Phản ứng sinh khí",
+        "text": "HCl phản ứng với NaHCO₃ tạo NaCl, nước và CO₂. Mô hình xét sản phẩm cuối khi phản ứng hoàn toàn, không tính tốc độ sủi bọt hoặc khí hòa tan."
+      },
+      {
+        "title": "Lượng chất và điều kiện khí",
+        "text": "Tỉ lệ HCl:NaHCO₃:CO₂ bằng 1:1:1. Thể tích khí phụ thuộc số mol, nhiệt độ và áp suất. Lab dùng khí lý tưởng tại 25°C và 1 atm; không dùng 22,4 L/mol ở điều kiện này."
+      },
+      {
+        "title": "An toàn",
+        "text": "Khí sinh ra có thể gây tăng áp trong bình kín. Hình ảnh chỉ minh họa, không hướng dẫn tự làm thí nghiệm ngoài phòng học."
+      }
+    ],
+    "formulas": [
+      {
+        "expression": "HCl + NaHCO₃ → NaCl + H₂O + CO₂↑",
+        "description": "HCl cố định 0,1 M, NaHCO₃ tinh khiết theo mô hình."
+      },
+      {
+        "expression": "nCO₂ = min(CV, m/84,0066); V = nRT/P",
+        "description": "Vaxit theo L; khí tại 298,15 K, 1 atm. R = 0,082057366 L·atm/(mol·K)."
+      }
+    ],
+    "exercise": {
+      "id": "gas-moles",
+      "prompt": "Cho 25 mL HCl 0,1 M phản ứng với 0,42 g NaHCO₃ (M=84,0066 g/mol). Giả sử phản ứng hoàn toàn, tính số mol CO₂.",
+      "unit": "mol",
+      "answer": 0.0025,
+      "tolerance": 1e-05,
+      "hint": "So 0,1×0,025 mol HCl với 0,42/84,0066 mol NaHCO₃.",
+      "explanation": "HCl có 0,0025 mol và là chất giới hạn. Theo tỉ lệ 1:1 tạo 0,0025 mol CO₂."
+    },
+    "quiz": [
+      {
+        "id": "gas-condition",
+        "stem": "Cùng số mol CO₂, giữ áp suất và tăng nhiệt độ tuyệt đối thì thể tích khí lý tưởng?",
+        "options": [
+          "Giảm",
+          "Không đổi",
+          "Tăng",
+          "Luôn bằng 22,4 L"
+        ],
+        "correctIndex": 2,
+        "explanation": "V = nRT/P nên tăng theo nhiệt độ tuyệt đối khi n, P cố định."
+      }
+    ]
+  },
+  {
+    "id": "electrochemistry",
+    "subjectId": "chemistry",
+    "chapterId": "electrochemistry",
+    "title": "Electron đi đâu trong pin điện hóa?",
+    "lead": "Nhận biết quá trình oxi hóa và khử trong pin galvanic.",
+    "knowledge": [
+      {
+        "title": "Oxi hóa và khử",
+        "text": "Oxi hóa là quá trình nhường electron; khử là quá trình nhận electron."
+      },
+      {
+        "title": "Hai điện cực",
+        "text": "Trong pin galvanic, oxi hóa xảy ra ở anode và khử ở cathode. Electron đi qua mạch ngoài từ anode sang cathode; không nhầm với chiều dòng điện quy ước."
+      }
+    ],
+    "formulas": [
+      {
+        "expression": "E°pin = E°cathode − E°anode",
+        "description": "Dùng các thế khử chuẩn, cùng đơn vị V, trong điều kiện chuẩn tương ứng. Không áp dụng trực tiếp cho mọi nồng độ."
+      }
+    ],
+    "exercise": {
+      "id": "cell-potential",
+      "prompt": "Cho thế khử chuẩn cathode là 0,34 V và anode là −0,76 V. Tính suất điện động chuẩn của pin.",
+      "unit": "V",
+      "answer": 1.1,
+      "tolerance": 0.01,
+      "hint": "Lấy 0,34 trừ (−0,76).",
+      "explanation": "E°pin = 0,34 − (−0,76) = 1,10 V."
+    },
+    "quiz": [
+      {
+        "id": "oxidation",
+        "stem": "Quá trình oxi hóa là gì?",
+        "options": [
+          "Nhận electron",
+          "Nhường electron",
+          "Luôn tạo kết tủa",
+          "Luôn tạo khí"
+        ],
+        "correctIndex": 1,
+        "explanation": "Oxi hóa là quá trình nhường electron."
+      }
+    ]
+  },
+  {
+    "id": "atomic",
+    "subjectId": "chemistry",
+    "chapterId": "atomic",
+    "title": "Bên trong một nguyên tử",
+    "lead": "Đọc số proton, neutron và electron từ kí hiệu nguyên tử.",
+    "knowledge": [
+      {
+        "title": "Hạt cấu tạo",
+        "text": "Hạt nhân chứa proton và neutron. Electron nằm ngoài hạt nhân; nguyên tử trung hòa có số electron bằng số proton."
+      },
+      {
+        "title": "Số khối và số hiệu nguyên tử",
+        "text": "Số hiệu nguyên tử Z là số proton. Số khối A là tổng số proton và neutron; A không phải nguyên tử khối trung bình."
+      }
+    ],
+    "formulas": [
+      {
+        "expression": "N = A − Z",
+        "description": "N là số neutron, A là số khối, Z là số proton."
+      },
+      {
+        "expression": "ne = Z (nguyên tử trung hòa)",
+        "description": "Không áp dụng cho ion đã nhận hoặc mất electron."
+      }
+    ],
+    "exercise": {
+      "id": "neutrons",
+      "prompt": "Nguyên tử có số khối A = 23 và số hiệu nguyên tử Z = 11. Hạt nhân có bao nhiêu neutron?",
+      "unit": "neutron",
+      "answer": 12,
+      "tolerance": 0,
+      "hint": "Tính N = A − Z.",
+      "explanation": "N = 23 − 11 = 12 neutron."
+    },
+    "quiz": [
+      {
+        "id": "atomic-number",
+        "stem": "Số hiệu nguyên tử Z cho biết điều gì?",
+        "options": [
+          "Số neutron",
+          "Tổng proton và neutron",
+          "Số proton",
+          "Khối lượng tính theo kg"
+        ],
+        "correctIndex": 2,
+        "explanation": "Z là số proton trong hạt nhân."
+      }
+    ]
+  },
+  {
+    "id": "spring-damped",
+    "subjectId": "physics",
+    "chapterId": "oscillations",
+    "title": "Con lắc lò xo tắt dần",
+    "lead": "Thay độ cản để quan sát biên độ và cơ năng giảm dần.",
+    "knowledge": [
+      {
+        "title": "Điều kiện mô hình",
+        "text": "Lò xo ngang Hooke, lực cản nhớt tỉ lệ với vận tốc, thả từ nghỉ. Chỉ xét 0 ≤ ζ ≤ 0,9."
+      },
+      {
+        "title": "Điểm cần phân biệt",
+        "text": "Tại ζ = 0 thu được dao động lý tưởng. Khi ζ > 0, công của lực cản làm cơ năng giảm."
+      }
+    ],
+    "formulas": [
+      {
+        "expression": "ω₀ = √(k/m); ωd = ω₀√(1 − ζ²)",
+        "description": "T = 2π/ωd khi vật còn dao động trong mô hình."
+      }
+    ],
+    "exercise": {
+      "id": "spring-damped-exercise",
+      "prompt": "Giữ nguyên m và k. Khi tỉ số cản ζ = 0,6, tần số góc tắt dần bằng bao nhiêu lần ω₀?",
+      "unit": "lần",
+      "answer": 0.8,
+      "tolerance": 0.001,
+      "hint": "Tính √(1 − ζ²).",
+      "explanation": "√(1 − 0,6²) = 0,8."
+    },
+    "quiz": [
+      {
+        "id": "spring-damped-quiz",
+        "stem": "Đại lượng nào giảm do lực cản nhớt trong mô hình?",
+        "options": [
+          "Cơ năng",
+          "Khối lượng",
+          "Độ cứng",
+          "Chiều dài tự nhiên"
+        ],
+        "correctIndex": 0,
+        "explanation": "Lực cản thực hiện công âm nên cơ năng giảm."
+      }
+    ],
+    "activity": {
+      "prediction": "Giữ nguyên m, k và li độ thả. Khi tăng tỉ số cản, biên độ sau vài chu kỳ sẽ đổi thế nào?",
+      "compare": "Ghi hai lượt ở cùng thời điểm, một lượt có ζ = 0 và một lượt có ζ > 0.",
+      "reflection": "Dùng đồ thị li độ và số đọc cơ năng để giải thích vì sao biên độ giảm.",
+      "rubric": [
+        "Nêu đúng biến thay đổi và các biến giữ nguyên.",
+        "Dùng hai số đọc cơ năng có đơn vị.",
+        "Liên hệ cơ năng giảm với công của lực cản."
+      ]
+    }
+  },
+  {
+    "id": "inclined-plane",
+    "subjectId": "physics",
+    "chapterId": "mechanics",
+    "title": "Newton II và mặt phẳng nghiêng",
+    "lead": "Đổi góc nghiêng và ma sát để tìm ngưỡng trượt.",
+    "knowledge": [
+      {
+        "title": "Điều kiện mô hình",
+        "text": "Thả vật từ nghỉ trên dốc dài 5 m, g = 9,81 m/s², không có lực kéo. Ma sát trượt dùng μₖ = 0,8 μₛ để so sánh."
+      },
+      {
+        "title": "Điểm cần phân biệt",
+        "text": "Vật chỉ trượt khi tan α lớn hơn μₛ. Tại mép dốc, hiển thị vận tốc ngay trước khi rời dốc."
+      }
+    ],
+    "formulas": [
+      {
+        "expression": "N = mg cos α; F∥ = mg sin α; a = (F∥ − f)/m",
+        "description": "Ma sát nghỉ cân bằng F∥ đến ngưỡng μₛN. Khi trượt, f = μₖN."
+      }
+    ],
+    "exercise": {
+      "id": "inclined-plane-exercise",
+      "prompt": "Dốc 30°, bỏ qua ma sát và lấy g = 9,81 m/s². Gia tốc dọc dốc bằng bao nhiêu?",
+      "unit": "m/s²",
+      "answer": 4.905,
+      "tolerance": 0.01,
+      "hint": "Chiếu trọng lực theo phương dọc mặt dốc.",
+      "explanation": "a = g sin 30° = 4,905 m/s²."
+    },
+    "quiz": [
+      {
+        "id": "inclined-plane-quiz",
+        "stem": "Khi vật đứng yên trên dốc, độ lớn ma sát nghỉ trong mô hình bằng bao nhiêu?",
+        "options": [
+          "Thành phần trọng lực dọc dốc",
+          "Trọng lượng toàn phần",
+          "Luôn bằng μₛN",
+          "Luôn bằng 0"
+        ],
+        "correctIndex": 0,
+        "explanation": "Vật đứng yên khi ma sát nghỉ cân bằng lực dọc dốc và chưa vượt quá ngưỡng."
+      }
+    ],
+    "activity": {
+      "prediction": "Ở cùng góc nghiêng, điều gì xảy ra nếu tăng hệ số ma sát nghỉ?",
+      "compare": "Giữ góc và khối lượng. Ghi một lượt vật đứng yên và một lượt vật trượt.",
+      "reflection": "Giải thích sự khác nhau bằng thành phần trọng lực dọc dốc và giới hạn ma sát nghỉ.",
+      "rubric": [
+        "Phân biệt ma sát nghỉ và trượt.",
+        "Dẫn trạng thái và gia tốc ở cả hai lượt.",
+        "Giải thích ngưỡng trượt bằng tan α và μₛ."
+      ]
+    }
+  },
+  {
+    "id": "pulley",
+    "subjectId": "physics",
+    "chapterId": "mechanics",
+    "title": "Ròng rọc và pa-lăng",
+    "lead": "Đếm nhánh dây đỡ để so lực kéo và quãng đường kéo.",
+    "knowledge": [
+      {
+        "title": "Điều kiện mô hình",
+        "text": "Cụm tải nâng chậm đều bằng dây nhẹ không dãn và ròng rọc không ma sát. Các nhánh đỡ thẳng đứng."
+      },
+      {
+        "title": "Điểm cần phân biệt",
+        "text": "m là khối lượng toàn bộ cụm nâng. Không dùng mô hình này để suy ra tải an toàn của thiết bị thật."
+      }
+    ],
+    "formulas": [
+      {
+        "expression": "F = mg/n; s = nh; W = F·s = mgh",
+        "description": "n là số nhánh dây đỡ cụm tải, h là độ cao nâng."
+      }
+    ],
+    "exercise": {
+      "id": "pulley-exercise",
+      "prompt": "Pa-lăng lý tưởng có 4 nhánh dây thẳng đứng đỡ tải. Để nâng tải 0,75 m cần kéo bao nhiêu mét dây?",
+      "unit": "m",
+      "answer": 3,
+      "tolerance": 0.01,
+      "hint": "Mỗi nhánh ngắn đi một đoạn bằng độ cao nâng.",
+      "explanation": "s = 4 × 0,75 = 3 m."
+    },
+    "quiz": [
+      {
+        "id": "pulley-quiz",
+        "stem": "Ròng rọc cố định đơn lẻ có lợi về lực trong mô hình lý tưởng không?",
+        "options": [
+          "Không, chỉ đổi hướng kéo",
+          "Có, giảm lực còn một nửa",
+          "Có, giảm lực còn một phần tư",
+          "Chỉ có khi tăng độ cao nâng"
+        ],
+        "correctIndex": 0,
+        "explanation": "Một nhánh đỡ nên F bằng trọng lượng tải."
+      }
+    ],
+    "activity": {
+      "prediction": "Giữ cùng khối lượng và độ cao nâng. Từ 1 đến 4 nhánh đỡ, lực kéo và dây kéo đổi thế nào?",
+      "compare": "Ghi số đo ở 1, 2 và 4 nhánh. So sánh tích lực kéo và quãng đường kéo.",
+      "reflection": "Dùng số đo để giải thích pa-lăng lý tưởng lợi về lực nhưng phải kéo dây dài hơn.",
+      "rubric": [
+        "Đếm đúng nhánh đỡ cụm tải.",
+        "So sánh lực và độ dài có đơn vị.",
+        "Nhận ra công kéo bằng mgh trong mô hình."
+      ]
+    }
+  },
+  {
+    "id": "alkali-water",
+    "subjectId": "chemistry",
+    "chapterId": "inorganic",
+    "title": "Na, K tác dụng với nước và màu ngọn lửa",
+    "lead": "Tách hiện tượng phản ứng với nước khỏi màu nhận biết ion.",
+    "knowledge": [
+      {
+        "title": "Điều kiện mô hình",
+        "text": "Hai quan sát độc lập. Phản ứng với nước cho hydroxide và hydrogen. Màu ngọn lửa đại diện cho ion Na⁺ hoặc K⁺."
+      },
+      {
+        "title": "Điểm cần phân biệt",
+        "text": "Mô phỏng định tính, hình và màu mang tính minh họa."
+      }
+    ],
+    "formulas": [
+      {
+        "expression": "2M + 2H₂O → 2MOH + H₂",
+        "description": "M chỉ nhận hai giá trị Na và K trong bài."
+      }
+    ],
+    "exercise": {
+      "id": "alkali-water-exercise",
+      "prompt": "Theo phương trình cân bằng, 2 mol Na phản ứng hoàn toàn thì tạo bao nhiêu mol H₂?",
+      "unit": "mol",
+      "answer": 1,
+      "tolerance": 0,
+      "hint": "Đọc tỉ lệ hệ số giữa Na và H₂.",
+      "explanation": "Hai mol Na tương ứng một mol H₂."
+    },
+    "quiz": [
+      {
+        "id": "alkali-water-quiz",
+        "stem": "Trong phép thử màu riêng, ion K⁺ cho màu nào?",
+        "options": [
+          "Tím nhạt",
+          "Vàng",
+          "Xanh lam",
+          "Nâu đỏ"
+        ],
+        "correctIndex": 0,
+        "explanation": "K⁺ cho màu tím nhạt. Màu vàng là quan sát đặc trưng của Na⁺ trong bài."
+      }
+    ],
+    "activity": {
+      "prediction": "Dự đoán sản phẩm khi Na hoặc K gặp nước và màu nhận biết của từng ion.",
+      "compare": "Ghi quan sát của hai kim loại với nước. Chuyển sang chế độ màu ngọn lửa và ghi hai màu của ion.",
+      "reflection": "Phân biệt bọt khí hydrogen với màu nhận biết ion.",
+      "rubric": [
+        "Nêu đúng sản phẩm hydroxide và hydrogen.",
+        "Ghép đúng màu với Na⁺ và K⁺.",
+        "Giải thích vì sao hai chế độ là hai phép quan sát riêng."
+      ]
+    }
+  },
+  {
+    "id": "copper-nitric",
+    "subjectId": "chemistry",
+    "chapterId": "inorganic",
+    "title": "Đồng với HNO₃: NO và NO₂",
+    "lead": "So sánh sản phẩm khí chính trong hai kịch bản đại diện.",
+    "knowledge": [
+      {
+        "title": "Điều kiện mô hình",
+        "text": "Hai kịch bản đại diện chỉ xét đồng và HNO₃ loãng hoặc đặc. Thực tế sản phẩm phụ thuộc điều kiện."
+      },
+      {
+        "title": "Điểm cần phân biệt",
+        "text": "NO ban đầu không màu, có thể chuyển thành NO₂ trong không khí. Mô phỏng không định lượng mức chuyển hóa."
+      }
+    ],
+    "formulas": [
+      {
+        "expression": "2NO + O₂ → 2NO₂",
+        "description": "NO có thể bị oxi hóa tiếp sau khi thoát ra không khí."
+      }
+    ],
+    "exercise": {
+      "id": "copper-nitric-exercise",
+      "prompt": "Trong phương trình 2NO + O₂ → 2NO₂, khi 2 mol NO bị oxi hóa hoàn toàn thì tiêu thụ bao nhiêu mol O₂?",
+      "unit": "mol",
+      "answer": 1,
+      "tolerance": 0,
+      "hint": "Đọc hệ số đứng trước O₂.",
+      "explanation": "Tỉ lệ NO : O₂ bằng 2 : 1."
+    },
+    "quiz": [
+      {
+        "id": "copper-nitric-quiz",
+        "stem": "Trong kịch bản Cu với HNO₃ loãng, khí ban đầu trước khi gặp không khí là gì?",
+        "options": [
+          "NO không màu",
+          "NO₂ nâu đỏ",
+          "H₂ không màu",
+          "Cl₂ vàng lục"
+        ],
+        "correctIndex": 0,
+        "explanation": "Mô hình loãng dùng NO làm sản phẩm khí chính. NO có thể bị oxi hóa thành NO₂ khi gặp không khí."
+      }
+    ],
+    "activity": {
+      "prediction": "Dự đoán khí ban đầu và màu trong hai kịch bản đại diện của đồng.",
+      "compare": "Ghi ca loãng trước và sau khi chọn tiếp xúc không khí, rồi so sánh với ca đặc.",
+      "reflection": "Giải thích vì sao có thể thấy màu nâu đỏ sau khi khí ban đầu không màu.",
+      "rubric": [
+        "Phân biệt NO với NO₂ theo điều kiện mô hình.",
+        "Dẫn đúng quan sát trước và sau tiếp xúc không khí.",
+        "Dùng phương trình 2NO + O₂ → 2NO₂."
+      ]
+    }
+  },
+  {
+    "id": "chlorine-bleach",
+    "subjectId": "chemistry",
+    "chapterId": "inorganic",
+    "title": "Clo và tính tẩy màu trong điều kiện ẩm",
+    "lead": "Xem nguyên lí tạo clo rồi so sánh giấy màu khô và ẩm.",
+    "knowledge": [
+      {
+        "title": "Điều kiện mô hình",
+        "text": "Điều chế chỉ minh họa bán phản ứng oxi hóa chloride. Giấy màu khô trong môi trường khô là đối chứng."
+      },
+      {
+        "title": "Điểm cần phân biệt",
+        "text": "Quan sát độ nhạt mang tính định tính và giới hạn trong điều kiện đã chọn."
+      }
+    ],
+    "formulas": [
+      {
+        "expression": "Cl₂ + H₂O ⇌ HCl + HOCl",
+        "description": "HOCl có tính oxi hóa và làm mất màu chất màu trong ca minh họa."
+      }
+    ],
+    "exercise": {
+      "id": "chlorine-bleach-exercise",
+      "prompt": "Theo bán phản ứng 2Cl⁻ → Cl₂ + 2e⁻, để tạo một phân tử Cl₂ cần nhường bao nhiêu electron?",
+      "unit": "electron",
+      "answer": 2,
+      "tolerance": 0,
+      "hint": "Đếm số electron ở vế phải.",
+      "explanation": "Hai ion Cl⁻ nhường tổng cộng hai electron."
+    },
+    "quiz": [
+      {
+        "id": "chlorine-bleach-quiz",
+        "stem": "Chất nào giải thích hiện tượng giấy màu ẩm nhạt rõ hơn trong bài?",
+        "options": [
+          "HOCl",
+          "O₂",
+          "H₂",
+          "NaOH"
+        ],
+        "correctIndex": 0,
+        "explanation": "Nước cho phép hình thành HOCl, chất oxi hóa làm nhạt màu giấy trong mô hình."
+      }
+    ],
+    "activity": {
+      "prediction": "Dự đoán mẫu giấy màu nào nhạt rõ hơn khi đổi điều kiện khô sang ẩm.",
+      "compare": "Ghi quan sát đối chứng khô và ca ẩm. Xem thêm bán phản ứng trong chế độ nguyên lí tạo clo.",
+      "reflection": "Giải thích vai trò của nước và HOCl, rồi nêu phạm vi kết luận của ca đối chứng.",
+      "rubric": [
+        "Nêu khác biệt giữa hai quan sát.",
+        "Liên hệ nước với sự hình thành HOCl.",
+        "Giới hạn kết luận trong kịch bản mô phỏng."
+      ]
+    }
   }
 ]

@@ -1,0 +1,56 @@
+{
+  "schema_version": "1.0",
+  "id": "chlorine-bleach",
+  "title": "Clo và tính tẩy màu trong điều kiện ẩm",
+  "subject": "chemistry",
+  "model_version": "chlorine-moisture-qualitative-v1",
+  "dataset_version": "lumilab-nine-draft-v1",
+  "implementation_status": "client",
+  "review_status": "draft",
+  "assumptions": [
+    "Điều chế chỉ minh họa bán phản ứng oxi hóa chloride. Giấy màu khô trong môi trường khô là đối chứng.",
+    "Quan sát độ nhạt mang tính định tính và giới hạn trong điều kiện đã chọn."
+  ],
+  "sources": [
+    {
+      "label": "OpenStax Chemistry 2e §18.11, HOCl",
+      "url": "https://openstax.org/books/chemistry-2e/pages/18-11-occurrence-preparation-and-properties-of-halogens"
+    },
+    {
+      "label": "SGK Hóa học 10 Kết nối tri thức, Bài 21, tr. 109, 111",
+      "url": "https://taphuan.nxbgd.vn/tap-huan/doc-sach/sgk-hoa-hoc-10.4700854983#page=109"
+    }
+  ],
+  "parameter_schema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "mode",
+      "damp",
+      "observed"
+    ],
+    "properties": {
+      "mode": {
+        "type": "string",
+        "enum": [
+          "formation",
+          "bleach"
+        ],
+        "description": "Chế độ"
+      },
+      "damp": {
+        "type": "boolean",
+        "description": "Giấy ẩm"
+      },
+      "observed": {
+        "type": "boolean",
+        "description": "Quan sát đã mở"
+      }
+    }
+  },
+  "defaults": {
+    "mode": "bleach",
+    "damp": false,
+    "observed": false
+  }
+}
