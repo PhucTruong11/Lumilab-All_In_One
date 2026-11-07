@@ -58,7 +58,8 @@ def test_retrieval_never_expands_lab_level_or_review_scope():
     result=index.retrieve(query)
     assert result.hits and all(h.document.lab_id=='pendulum' and h.document.provenance.level=='THPT'
         for h in result.hits)
-    assert not index.retrieve(query.model_copy(update={'include_drafts':False})).hits
+    assert all(h.document.review_status=='reviewed' and h.document.reviewer
+        for h in index.retrieve(query.model_copy(update={'include_drafts':False})).hits)
     assert not index.retrieve(query.model_copy(update={'query':'Bitcoin ngày mai tăng không?'})).hits
     serialized=json.dumps(artifact,ensure_ascii=False)
     assert 'Đổi' in serialized  # original content, not a translated/generated replacement

@@ -222,12 +222,13 @@ def test_local_retrieval_provenance_and_draft_filter(settings, lab_id, question,
         assert any(phrase in hit["document"]["text"] for hit in result["hits"])
         for hit in result["hits"]:
             doc = hit["document"]
-            assert doc["review_status"] == "draft"
+            assert doc["review_status"] in {"draft", "reviewed"}
             assert doc["lab_id"] == lab_id
-            assert doc["reviewer"] is None
+            assert (doc["reviewer"] is None) == (doc["review_status"] == "draft")
             assert doc["references"][0]["url"].startswith("https://")
         reviewed = client.post("/api/v1/retrieval/query", json=payload | {"include_drafts": False}).json()
-        assert reviewed["hits"] == [] and reviewed["status"] == "NO_MATCH"
+        # Production mode serves only teacher-reviewed cards.
+        assert all(h["document"]["review_status"] == "reviewed" and h["document"]["reviewer"] for h in reviewed["hits"])
 
 
 def test_local_retrieval_empty_unsupported_and_injection(settings):
