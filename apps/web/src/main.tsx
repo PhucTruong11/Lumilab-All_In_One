@@ -14,6 +14,7 @@ import { PracticeCatalog } from './components/PracticeCatalog';
 import { isLabId } from '@lumilab/lab-engine';
 import './practice.css';
 import './select.css';
+import './library-layout.css';
 import './experiment.css';
 
 type View = 'lab' | 'library' | 'workspace' | 'lumi';

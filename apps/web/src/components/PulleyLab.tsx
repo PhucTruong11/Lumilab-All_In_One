@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState, type PointerEvent } from 'react';
 import type { PulleyParameters } from '@lumilab/lab-engine';
 import { useLab } from '../labSession';
 import { useSvgDrag } from './useSvgDrag';
@@ -10,25 +10,33 @@ export function PulleyLab() {
   const n = params.strands;
   const pulleyType = n === 1 ? 'fixed' : n === 4 ? 'palang_4' : 'single_movable';
   const [lowered, setLowered] = useState(false);
+  const dragStartY = useRef(0);
+  const dragStartLift = useRef(0);
 
   const update = (key: keyof PulleyParameters, value: number) => {
     engine.setParameters({ [key]: value });
     if (key === 'lift_m') setLowered(false);
   };
 
-  const { drag, start, handlers } = useSvgDrag((key, _x, y, moved) => {
+  const applyDrag = (key: string, y: number, moved: boolean) => {
     if (!moved) return;
-    if (key === 'load') {
-      update('lift_m', Math.max(0, Math.min(2, Math.round(((280 - (y - 35)) / 85) * 100) / 100)));
-    } else if (key === 'dyno') {
-      update('lift_m', Math.max(0, Math.min(2, Math.round(((y - 200) / 75) * 100) / 100)));
-    }
-  });
+    const delta = (y - dragStartY.current) / (key === 'load' ? -85 : 75);
+    const lift = Math.max(0, Math.min(2, Math.round((dragStartLift.current + delta) * 100) / 100));
+    if (lift !== engine.snapshot().parameters.lift_m || lowered) update('lift_m', lift);
+  };
+  const { start, handlers } = useSvgDrag(
+    (key, _x, y, moved) => applyDrag(key, y, moved),
+    drag => { dragStartY.current = drag.startY; applyDrag(drag.key, drag.y, drag.moved); },
+  );
+  const beginDrag = (event: PointerEvent<SVGElement>, key: string) => {
+    dragStartLift.current = lowered ? 0 : engine.snapshot().parameters.lift_m;
+    start(event, key);
+  };
 
   const activeLift = lowered ? 0 : params.lift_m;
-  const loadY = drag?.key === 'load' && drag.moved ? Math.max(110, Math.min(280, drag.y - 35)) : 280 - activeLift * 85;
+  const loadY = 280 - activeLift * 85;
   const pullX = n === 1 ? 416 : n === 2 ? 512 : 532;
-  const pullY = drag?.key === 'dyno' && drag.moved ? Math.max(155, Math.min(340, drag.y - 35)) : 165 + activeLift * 75;
+  const pullY = 165 + activeLift * 75;
 
   const forceRatio = Math.min(1, reading.pull_N / Math.max(1, reading.weight_N));
   const ropeRatio = Math.min(1, reading.rope_m / 8);
@@ -151,6 +159,11 @@ export function PulleyLab() {
               </>
             )}
 
+            <line x1={pullX} y1={n === 4 ? 78 : 76} x2={pullX} y2={pullY}
+              stroke="transparent" strokeWidth="24" pointerEvents="stroke"
+              className="svg-draggable" data-testid="pulley-rope"
+              onPointerDown={e => beginDrag(e, 'dyno')} />
+
             {/* Strand count badge */}
             <g transform="translate(232 62)">
               <rect x="-54" y="-15" width="108" height="28" rx="14" fill="#ffffffeb" stroke="#bdd5c8" />
@@ -167,7 +180,7 @@ export function PulleyLab() {
               tabIndex={0}
               aria-label="Tải ròng rọc: kéo để đổi độ cao"
               data-testid="pulley-load"
-              onPointerDown={e => start(e, 'load')}
+              onPointerDown={e => beginDrag(e, 'load')}
               onKeyDown={e => {
                 if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
                   e.preventDefault();
@@ -209,7 +222,7 @@ export function PulleyLab() {
               tabIndex={0}
               aria-label="Lực kế ròng rọc: kéo xuống để nâng tải"
               data-testid="pulley-dynamometer"
-              onPointerDown={e => start(e, 'dyno')}
+              onPointerDown={e => beginDrag(e, 'dyno')}
               onKeyDown={e => {
                 if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
                   e.preventDefault();
@@ -350,7 +363,7 @@ export function PulleyLab() {
               onChange={value => update('lift_m', value)}
             />
             <p className="lab-notice">
-              Kéo trực tiếp khối tải hoặc kéo lực kế xuống để nâng tải; cũng có thể chọn tải/lực kế rồi bấm phím mũi tên.
+              Kéo khối tải hoặc đoạn dây cạnh lực kế lên xuống để đổi độ cao liên tục; cũng có thể chọn tải/lực kế rồi bấm phím mũi tên.
             </p>
           </section>
 

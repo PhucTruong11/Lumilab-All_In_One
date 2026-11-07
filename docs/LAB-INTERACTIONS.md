@@ -18,7 +18,7 @@
 | Lò xo tắt dần | Kéo khối nặng gắn pít-tông giảm chấn để đặt li độ thả | Chọn khối nặng; trái/phải chỉnh li độ `±0,02 m` |
 | Newton | Kéo xe, mũi tên lực, quả cân; xem mốc quãng đường theo giây | Trái/phải chỉnh lực; Enter thêm quả cân |
 | Mặt phẳng nghiêng | Kéo tay nắm tròn ở đầu dốc; bật/tắt phân tích lực `P, N, P∥, Fms` | Lên/xuống chỉnh từng độ |
-| Ròng rọc & Pa-lăng | Kéo khối tải lên hoặc kéo lực kế xuống để nâng tải (1 / 2 / 4 nhánh dây) | Chọn tải hoặc lực kế; lên/xuống chỉnh `0,05 m` |
+| Ròng rọc & Pa-lăng | Kéo khối tải, lực kế hoặc đoạn dây treo lên/xuống; độ cao và số đo đổi ngay trong lúc kéo (1 / 2 / 4 nhánh dây) | Chọn tải hoặc lực kế; lên/xuống chỉnh `0,05 m` |
 | Mạch điện / Mạng R / RC | Lắp nhiều bóng/điện trở cùng loại vào 3 ô mạch nối tiếp; kéo vật đã lắp sang ô khác hoặc vào khay tháo; kéo `R₁` hoán đổi `R₂`; thả tụ phụ `+100 µF` | Chọn vật bằng Enter rồi chọn ô, hoặc chỉnh từng ô bằng select; đóng/mở khóa K trực tiếp |
 | Na/K với nước & ngọn lửa | Chạm lọ mẫu `Na/K`, chạm kẹp thả vào chậu nước hoặc đưa dây Pt vào ngọn lửa | Tab đến dụng cụ trên bàn, dùng Enter/Space |
 | Cu–HNO₃ | Chạm lọ `HNO₃` loãng/đặc, chạm nút bông ở miệng ống để thử tiếp xúc `O₂` | Tab đến lọ/nút bông hoặc nút mở quan sát, dùng Enter/Space |
