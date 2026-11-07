@@ -2,7 +2,8 @@ import { useRef, useState, type PointerEvent } from 'react';
 
 type Drag = { key: string; pointerId: number; x: number; y: number; startX: number; startY: number; moved: boolean };
 /** Pointer capture keeps mouse, pen and touch dragging alive outside the SVG. */
-export function useSvgDrag(onDrop: (key: string, x: number, y: number, moved: boolean) => void) {
+export function useSvgDrag(onDrop: (key: string, x: number, y: number, moved: boolean) => void,
+  onMove?: (drag: Drag) => void) {
   const [drag, setDrag] = useState<Drag | null>(null);
   const active = useRef<Drag | null>(null);
   function point(event: PointerEvent<SVGElement>) {
@@ -24,6 +25,7 @@ export function useSvgDrag(onDrop: (key: string, x: number, y: number, moved: bo
     const p = point(event);
     active.current = { ...active.current, x: p.x, y: p.y, moved: active.current.moved || Math.hypot(p.x - active.current.startX, p.y - active.current.startY) > 5 };
     setDrag(active.current);
+    onMove?.(active.current);
   }
   function end(event: PointerEvent<SVGSVGElement>) {
     if (!active.current || active.current.pointerId !== event.pointerId) return;

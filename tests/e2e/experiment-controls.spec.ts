@@ -98,6 +98,32 @@ test('pulley load supports real dragging and keyboard changes', async ({ page })
   await expect.poll(async () => Number(await input.inputValue())).toBeGreaterThan(1.05);
 });
 
+test('pulley rope changes the lift during a drag and follows both directions', async ({ page }) => {
+  await page.goto('/#lab/pulley');
+  const input = page.getByRole('spinbutton', { name: 'Độ cao cần nâng h chính xác' });
+  const dyno = page.getByTestId('pulley-dynamometer');
+  const box = (await dyno.boundingBox())!;
+  const x = box.x + box.width / 2;
+  const y = box.y + box.height / 2;
+  await page.mouse.move(x, y);
+  await page.mouse.down();
+  await page.mouse.move(x, y + 35, { steps: 8 });
+  await expect.poll(async () => Number(await input.inputValue())).toBeGreaterThan(1);
+  await page.mouse.move(x, y + 10, { steps: 8 });
+  await expect.poll(async () => Number(await input.inputValue())).toBeLessThan(1.3);
+  await page.mouse.up();
+
+  const beforeRope = Number(await input.inputValue());
+  const ropeBox = (await page.getByTestId('pulley-rope').boundingBox())!;
+  const ropeX = ropeBox.x + ropeBox.width / 2;
+  const ropeY = ropeBox.y + ropeBox.height / 2;
+  await page.mouse.move(ropeX, ropeY);
+  await page.mouse.down();
+  await page.mouse.move(ropeX, ropeY + 25, { steps: 6 });
+  await expect.poll(async () => Number(await input.inputValue())).toBeGreaterThan(beforeRope);
+  await page.mouse.up();
+});
+
 test('incline handle supports dragging and keyboard changes', async ({ page }) => {
   await page.goto('/#lab/inclined-plane');
   const handle = page.getByTestId('incline-angle-handle');
