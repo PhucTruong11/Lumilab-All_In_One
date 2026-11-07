@@ -1,25 +1,28 @@
 import { useEffect, useState } from 'react';
 import { labDefinitions, type LabId, type ParameterMap } from '@lumilab/lab-engine';
-import source from '../data/physics-tasks.json';
+import physicsSource from '../data/physics-tasks.json';
+import chemistrySource from '../data/chemistry-tasks.json';
 import { lessons } from '../data/learning';
 import { useLab } from '../labSession';
 import { Exercise } from './LessonLibrary';
 
-export function PhysicsTaskPanel({ id, selectedId, onSelect }: {
+const allTasks = [...physicsSource.tasks, ...chemistrySource.tasks];
+
+export function LabTaskPanel({ id, selectedId, onSelect }: {
   id: LabId; selectedId?: string; onSelect: (taskId?: string) => void;
 }) {
   const { engine } = useLab(id);
   const [open, setOpen] = useState(Boolean(selectedId));
   const [notice, setNotice] = useState('');
-  const activities = source.tasks.filter(task => task.runtime_id === id);
-  const lesson = lessons.find(item => item.id === id && item.subjectId === 'physics');
-  const exerciseId = lesson?.exercise.id;
+  const activities = allTasks.filter(task => task.runtime_id === id);
+  const lesson = lessons.find(item => item.id === id);
+  const exerciseId = lesson?.exercise?.id;
   const activity = activities.find(task => task.id === selectedId);
   const exerciseSelected = selectedId === exerciseId;
 
   useEffect(() => { if (selectedId) setOpen(true); }, [selectedId]);
   useEffect(() => { setNotice(''); }, [selectedId, id]);
-  if (!lesson) return null;
+  if (!lesson && activities.length === 0) return null;
 
   function choose(taskId?: string) {
     onSelect(taskId);
@@ -61,7 +64,7 @@ export function PhysicsTaskPanel({ id, selectedId, onSelect }: {
           >
             <option value="">Chọn một bài</option>
             {activities.map(task => <option key={task.id} value={task.id}>{task.title}</option>)}
-            <option value={exerciseId}>{lesson.title} · Bài tính</option>
+            {exerciseId && lesson && <option value={exerciseId}>{lesson.title} · Bài tính</option>}
           </select>
         </label>
       </div>
@@ -71,13 +74,15 @@ export function PhysicsTaskPanel({ id, selectedId, onSelect }: {
         <p><strong>Điều kiện ban đầu:</strong> {activity.initial_state}</p>
         <p><strong>Yêu cầu:</strong> {activity.actions}</p>
         <div className="lab-task-actions">{activity.cases.map((sample, index) => <button type="button" className="secondary-button" key={index}
-          onClick={() => apply(sample.parameters)}>Áp dụng ca {index + 1} · đọc tại {sample.elapsed_s.toLocaleString('vi-VN', { maximumFractionDigits: 3 })} s</button>)}</div>
-        <p className="content-note">Thay thông số trên bàn thí nghiệm, ghi số đo và giải thích kết quả. Mỗi ca mẫu bắt đầu ở thời điểm 0 s; chạy mô phỏng tới thời điểm đề yêu cầu.</p>
+          onClick={() => apply(sample.parameters)}>Áp dụng ca {index + 1}{sample.elapsed_s > 0 ? ` · đọc tại ${sample.elapsed_s.toLocaleString('vi-VN', { maximumFractionDigits: 3 })} s` : ''}</button>)}</div>
+        <p className="content-note">Thay thông số trên bàn thí nghiệm, ghi số đo và giải thích kết quả.{activity.cases.some(s => s.elapsed_s > 0) ? ' Mỗi ca mẫu bắt đầu ở thời điểm 0 s; chạy mô phỏng tới thời điểm đề yêu cầu.' : ''}</p>
         <details><summary>Gợi ý và kết quả tham khảo</summary><p>{activity.feedback_on_failure}</p><p>{activity.expected_result}</p></details>
       </div>}
-      {exerciseSelected && <Exercise key={exerciseId} lesson={lesson} />}
+      {exerciseSelected && lesson && <Exercise key={exerciseId} lesson={lesson} />}
       <p className="content-note">Học liệu đang ở trạng thái nháp; số đọc mô phỏng không phải kết quả đã chứng nhận.</p>
       <p role="status" className="inline-notice">{notice}</p>
     </div>}
   </section>;
 }
+
+export { LabTaskPanel as PhysicsTaskPanel };
