@@ -1,0 +1,75 @@
+{
+ "generated_at": "2026-11-07T11:08:43.350907+00:00",
+ "provider": "mock (NOT a real provider)",
+ "cases": [
+  {
+   "question": "Khối lượng làm đổi chu kỳ không?",
+   "mode": "hint",
+   "template": {
+    "source": "template",
+    "reason": "LIVE_DISABLED",
+    "citations": [
+     "pendulum-overview:0"
+    ]
+   },
+   "mock": {
+    "source": "llm",
+    "status": "DRAFT_GUIDANCE",
+    "citations": [
+     "pendulum-overview:0"
+    ],
+    "citation_valid": true
+   }
+  },
+  {
+   "question": "Vì sao phải giữ góc lệch nhỏ khi đo chu kỳ?",
+   "mode": "explanation",
+   "template": {
+    "source": "template",
+    "reason": "LIVE_DISABLED",
+    "citations": [
+     "pendulum-overview:0"
+    ]
+   },
+   "mock": {
+    "source": "llm",
+    "status": "DRAFT_GUIDANCE",
+    "citations": [
+     "pendulum-overview:0"
+    ],
+    "citation_valid": true
+   }
+  },
+  {
+   "question": "Em đo 10 dao động hết 20,1 giây, chu kỳ là bao nhiêu?",
+   "mode": "qa",
+   "template": {
+    "source": "template",
+    "reason": "LIVE_DISABLED",
+    "citations": [
+     "pendulum-overview:0"
+    ]
+   },
+   "mock": {
+    "source": "llm",
+    "status": "DRAFT_GUIDANCE",
+    "citations": [
+     "pendulum-overview:0"
+    ],
+    "citation_valid": true
+   }
+  }
+ ],
+ "provider_error": {
+  "source": "template",
+  "reason": "PROVIDER_CONFIGURATION_OR_RESPONSE_ERROR"
+ },
+ "budget_exhausted": {
+  "source": "template",
+  "reason": "LIMIT"
+ },
+ "source_restriction": {
+  "source": "template",
+  "reason": "REVIEWED_SOURCES_REQUIRED"
+ }
+}
