@@ -1,6 +1,6 @@
 {
   "schema_version": "nine-lab-learning-1.0",
-  "revision": "eleven-lab-learning-draft-01",
+  "revision": "eleven-lab-learning-draft-02",
   "review_status": "draft",
   "owner": "Đạt",
   "split": "development",
@@ -1397,7 +1397,7 @@
           "cases": [
             {
               "path": "tests/golden/server-readings.json",
-              "pointer": "/9",
+              "pointer": "/11",
               "parameters": {
                 "mass_kg": 1,
                 "stiffness_N_m": 25,
@@ -1407,7 +1407,7 @@
             },
             {
               "path": "tests/golden/server-readings.json",
-              "pointer": "/10",
+              "pointer": "/12",
               "parameters": {
                 "displacement_m": 0
               },
@@ -2334,7 +2334,7 @@
           "cases": [
             {
               "path": "tests/golden/server-readings.json",
-              "pointer": "/8",
+              "pointer": "/10",
               "parameters": {
                 "mass_kg": 2,
                 "force_N": -4,
@@ -2382,7 +2382,7 @@
           "cases": [
             {
               "path": "tests/golden/curriculum-labs.json",
-              "pointer": "/3",
+              "pointer": "/4",
               "parameters": {
                 "mass_kg": 2,
                 "angle_deg": 30,
@@ -2392,7 +2392,7 @@
             },
             {
               "path": "tests/golden/curriculum-labs.json",
-              "pointer": "/4",
+              "pointer": "/5",
               "parameters": {
                 "mass_kg": 2,
                 "angle_deg": 30,
@@ -3157,7 +3157,7 @@
           "cases": [
             {
               "path": "tests/golden/curriculum-labs.json",
-              "pointer": "/6",
+              "pointer": "/8",
               "parameters": {
                 "mass_kg": 10,
                 "strands": 1,
@@ -3167,7 +3167,7 @@
             },
             {
               "path": "tests/golden/curriculum-labs.json",
-              "pointer": "/7",
+              "pointer": "/10",
               "parameters": {
                 "mass_kg": 10,
                 "strands": 4,
@@ -4123,7 +4123,7 @@
           "cases": [
             {
               "path": "tests/golden/server-readings.json",
-              "pointer": "/7",
+              "pointer": "/9",
               "parameters": {
                 "ammeter": "parallel"
               },
@@ -8132,7 +8132,7 @@
           "cases": [
             {
               "path": "tests/golden/server-readings.json",
-              "pointer": "/11",
+              "pointer": "/13",
               "parameters": {
                 "left": "ag",
                 "right": "zn",
@@ -8142,7 +8142,7 @@
             },
             {
               "path": "tests/golden/server-readings.json",
-              "pointer": "/12",
+              "pointer": "/14",
               "parameters": {
                 "left": "cu",
                 "right": "cu",
@@ -8712,7 +8712,7 @@
           "answer": {
             "value": 35,
             "explanation": "A = Z + N = 17 + 18 = 35.",
-            "unit": "u",
+            "unit": "không đơn vị",
             "absolute_tolerance": 0
           },
           "difficulty": "cơ bản",
@@ -8891,7 +8891,7 @@
           "cases": [
             {
               "path": "tests/golden/server-readings.json",
-              "pointer": "/13",
+              "pointer": "/15",
               "parameters": {
                 "protons": 17,
                 "neutrons": 18,

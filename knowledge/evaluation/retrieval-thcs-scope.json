@@ -1,10 +1,10 @@
 {
-  "revision": "thcs-scope-smoke-2026-11-06",
+  "revision": "thcs-scope-smoke-2026-11-08",
   "status": "authored-development-not-teacher-reviewed",
   "cases": [
     {
       "id": "thcs-mechanics-0",
-      "lab_id": "mechanics",
+      "lab_id": "pulley",
       "level": "THCS",
       "question": "Ròng rọc cố định đổi hướng lực thế nào?",
       "relevant_document_ids": [
@@ -14,7 +14,7 @@
     },
     {
       "id": "thcs-mechanics-1",
-      "lab_id": "mechanics",
+      "lab_id": "pulley",
       "level": "THCS",
       "question": "Hai nhánh dây đỡ ròng rọc động",
       "relevant_document_ids": [

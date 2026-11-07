@@ -52,6 +52,7 @@ def test_reviewer_signatures_and_two_independent_sources_are_required():
         Registry.model_validate(raw)
     data = corpus().model_dump(mode="json")
     doc = data["documents"][1]
+    doc["references"] = [doc["references"][0]]
     doc.update(review_status="cross_checked", cross_checked_by="Fixture only", cross_checked_at="2026-11-05")
     with pytest.raises(ValueError, match="independent"):
         lint_corpus(Corpus.model_validate(data), registry(), ROOT / "packages/lab-engine")

@@ -1,14 +1,14 @@
 # LumiLab — Dataset cho 11 bài lab
 
-**Cập nhật 07/11/2026 · Bản 0.6 · Trạng thái `draft` · Phụ trách biên soạn: Đạt**
+**Cập nhật 08/11/2026 · Bản 0.7 · Trạng thái `draft` · Phụ trách biên soạn: Đạt**
 
 **Dữ liệu đang dùng:** Phòng thực hành hiển thị 11 bài đã chốt (6 bài Vật lí và 5 bài Hóa học tương thích với phiên cũ). Ba bài Vật lí ghép có hai chế độ, tổng cộng 14 mô hình đang mở trên Phòng thực hành (và 3 mô hình Hóa vô cơ định tính được chuyển sang mục lưu trữ). Xem bảng đối chiếu bài, mô hình, kiểm thử và học liệu trong [bàn giao thực hành](tasks/NINE-LABS.md).
 
-Danh mục gồm **6 bài Vật lí và 5 bài Hóa học**. Mỗi bài có mô phỏng, phép tính độc lập và học liệu tiếng Việt. Các mục dưới đây ghi căn cứ, giới hạn và ca đối chiếu khoa học.
+Danh mục gồm **6 bài Vật lí và 5 bài Hóa học**. Mỗi bài có mô phỏng, phép tính độc lập và học liệu tiếng Việt. [Bàn giao DAT-01](../knowledge/reviews/dat-01-review-handoff.md) ghi nguồn và trạng thái của 36 thẻ học liệu dùng để kiểm tra truy xuất.
 
 `lab.json` của từng mô hình lưu cấu hình, phiên bản, giới hạn tham số, giả thiết và liên kết nguồn; đây không phải file chứa sẵn mọi kết quả thí nghiệm. Engine TypeScript tính số đọc trên trình duyệt, còn API dùng bộ tính Python để tính lại từ tham số và thời điểm người dùng gửi. API trả đối tượng preview dạng JSON cho lượt đó; màn hình số liệu trình bày tên đại lượng bằng tiếng Việt, đơn vị và số làm tròn. File lịch sử JSON tải về giữ giá trị gốc để đối chiếu kỹ thuật. Kết quả vẫn là `draft/preview`.
 
-Danh mục hiện có 12 mô hình đang mở cho 9 bài và 5 mô hình lưu trữ. `gas-reaction` (HCl + NaHCO₃) thuộc nhóm lưu trữ, không phải một trong ba bài Hóa hiện hành của dataset 9 bài. Thể tích CO₂ ở model này là giá trị lý thuyết của khí khô lý tưởng tại 298,15 K và 1 atm, không phải lượng khí đo được hay chứng nhận khoa học.
+Bài tạo khí `gas-reaction` (HCl + NaHCO₃) nằm trong Phòng thực hành. Mô hình tính thể tích lý thuyết của CO₂ khô lý tưởng tại 298,15 K và 1 atm. Số hiển thị là kết quả tính của bản xem trước.
 
 Các trang SGK dưới đây là **số trang in trên sách**. Mã bản điện tử nằm trong đường dẫn của Nhà xuất bản Giáo dục Việt Nam (NXBGDVN). Các SGK THPT/THCS được dẫn theo bộ *Kết nối tri thức với cuộc sống* và *Chân trời sáng tạo*; Khoa học tự nhiên 9 là nguồn bổ trợ THCS. Mục OpenStax dẫn thẳng đến phần dùng để đối chiếu. Các nguồn được ghi ở trạng thái `reference-only`; quyền đưa nội dung nguồn vào corpus là `pending`.
 
@@ -87,7 +87,7 @@ Các trang SGK dưới đây là **số trang in trên sách**. Mã bản điệ
 
 ### 5. Cấu tạo nguyên tử — `HH-NGUYENTU-01` (`atomic`)
 
-- **Kiến thức:** Phần điều chế minh họa nguyên lí oxi hóa ion chloride thành Cl₂ ở mức phương trình. Trong môi trường có nước, phs6OCl có tính oxi hóa, làm mất màu chất màu trong thí nghiệm minh họa.
+- **Kiến thức:** Phần điều chế minh họa nguyên lí oxi hóa ion chloride thành Cl₂ ở mức phương trình. Trong nước có cân bằng `Cl₂ + H₂O ⇌ HCl + HOCl`. HOCl có tính oxi hóa, góp phần làm mất màu trong mô phỏng.
 - **Mô phỏng và ca kiểm:** So sánh giấy màu ẩm với đối chứng giấy màu khô trong điều kiện khô của mô hình. Kết quả cần thể hiện giấy ẩm mất màu rõ hơn và giải thích vai trò của nước; giới hạn kết luận trong ca đối chứng đã mô tả.
 - **SGK:** Hóa học 10, Bài 21 *Nhóm halogen*, [tr. 109, Hình 21.6, giấy màu khô và ẩm](https://taphuan.nxbgd.vn/tap-huan/doc-sach/sgk-hoa-hoc-10.4700854983#page=109); [tr. 111, mục Điều chế chlorine](https://taphuan.nxbgd.vn/tap-huan/doc-sach/sgk-hoa-hoc-10.4700854983#page=111).
 - **OpenStax:** *Chemistry 2e*, [§18.11 Occurrence, Preparation, and Properties of Halogens](https://openstax.org/books/chemistry-2e/pages/18-11-occurrence-preparation-and-properties-of-halogens), đối chiếu HOCl và tính tẩy màu. Tham chiếu an toàn: [NIOSH — Chlorine](https://www.cdc.gov/niosh/npg/npgd0115.html).

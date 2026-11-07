@@ -1,18 +1,21 @@
 {
-  "revision": "authored-nine-labs-draft-v1",
+  "revision": "authored-labs-draft-v3",
   "documents": [
     {
       "id": "pendulum-overview",
       "lab_id": "pendulum",
       "title": "Khối lượng và chu kỳ con lắc",
-      "text": "Trong mô hình con lắc lý tưởng, khối lượng không làm đổi chu kỳ. Chiều dài tăng làm chu kỳ tăng. Công thức góc nhỏ chỉ là xấp xỉ. Khi góc thả lớn, mô hình dùng tính toán phi tuyến. Góc thả bằng 0 tạo trạng thái đứng yên.",
+      "text": "Trong mô hình con lắc lý tưởng, thay khối lượng quả nặng không làm đổi chu kỳ khi giữ nguyên chiều dài L, gia tốc trọng trường g và góc thả. Với góc nhỏ, T ≈ 2π√(L/g), nên tăng L làm chu kỳ dài hơn. Ở góc lớn, dùng chu kỳ phi tuyến của mô phỏng. Nếu thả ở 0° từ nghỉ, vật đứng yên và không có chu kỳ quan sát. Nếu nhập chiều dài dây 0 m, hãy nhập chiều dài trong khoảng 0,3–2 m, chẳng hạn 1 m.",
       "keywords": [
         "con lắc",
         "khối lượng",
         "chu kỳ",
         "chiều dài",
         "biên độ",
-        "góc thả"
+        "góc thả",
+        "chiều dài 0 m",
+        "chiều dài dây",
+        "tham số ngoài phạm vi"
       ],
       "review_status": "draft",
       "reviewer": null,
@@ -29,11 +32,16 @@
           "label": "NIST DLMF §19.8: AGM",
           "url": "https://dlmf.nist.gov/19.8",
           "authority": "NIST"
+        },
+        {
+          "label": "The Physics Classroom · Pendulum Motion · Period of a Pendulum",
+          "url": "https://www.physicsclassroom.com/class/waves/Lesson-0/Pendulum-Motion",
+          "authority": "The Physics Classroom"
         }
       ],
       "assumptions": [
-        "Vật chất điểm, dây không dãn, không ma sát; góc 0–90°, phi tuyến AGM.",
-        "Vật liệu chỉ minh họa; góc0 không có chu kỳ đo."
+        "Vật chất điểm, dây không dãn, không ma sát. Góc thả từ 0° đến 90°. Tính phi tuyến bằng AGM.",
+        "Chiều dài từ 0,3 đến 2 m theo cấu hình LumiLab. Vật liệu chỉ minh họa. Góc thả 0° cho trạng thái đứng yên."
       ],
       "provenance": {
         "source_id": "lumilab-authored",
@@ -49,7 +57,11 @@
         "units": {
           "gravity_m_s2": "m/s^2"
         },
-        "conditions": {},
+        "conditions": {
+          "model_version": "pendulum-agm-v1",
+          "model_scope": "Vật chất điểm, dây nhẹ không dãn, bỏ qua cản. Chiều dài 0,3–2 m, góc thả 0–90°. Tính chu kỳ phi tuyến bằng AGM.",
+          "formula": "T ≈ 2*pi*sqrt(L/g) với góc nhỏ"
+        },
         "constants": {
           "gravity_m_s2": 9.81
         }
@@ -59,7 +71,7 @@
       "id": "chemistry-overview",
       "lab_id": "chemistry",
       "title": "Chuẩn độ và màu chỉ thị",
-      "text": "Trong mô hình axit mạnh và bazơ mạnh một nấc ở 25°C, điểm tương đương xác định theo số mol. Với 25 mL axit 0,1 mol/L và bazơ 0,1 mol/L, điểm tương đương ở 25 mL bazơ. pH bằng 7 tại điểm đó và phenolphthalein vẫn không màu. Điểm kết thúc nhận biết qua màu có thể khác điểm tương đương. Màu trên lab là minh họa.",
+      "text": "Lab thêm bazơ mạnh vào 25 mL axit mạnh. Hai dung dịch cùng nồng độ 0,100 mol/L và phản ứng theo tỉ lệ 1:1. Điểm tương đương ở 25 mL bazơ vì số mol phản ứng bằng nhau. Ở 25 °C trong mô hình này, pH tại điểm tương đương là 7 và phenolphthalein vẫn không màu. Màu chuyển dần trong khoảng pH 8,2–10 theo cách hiển thị của lab. Điểm kết thúc nhận biết qua màu có thể lệch điểm tương đương. Thể tích bazơ cho phép từ 0 đến 50 mL.",
       "keywords": [
         "chuẩn độ",
         "axit",
@@ -79,6 +91,16 @@
           "label": "OpenStax Chemistry 2e §14.7",
           "url": "https://openstax.org/books/chemistry-2e/pages/14-7-acid-base-titrations",
           "authority": "OpenStax"
+        },
+        {
+          "label": "SGK Hóa học 11 CTST · Bài 2 · tr. 15–16 · bản số 4537016533",
+          "url": "https://taphuan.nxbgd.vn/tap-huan/doc-sach/shs-hoa-hoc-11.4537016533#page=17",
+          "authority": "NXBGDVN"
+        },
+        {
+          "label": "SGK Hóa học 11 CTST · Bài 2 · tr. 17–18 · bản số 4537016533",
+          "url": "https://taphuan.nxbgd.vn/tap-huan/doc-sach/shs-hoa-hoc-11.4537016533#page=19",
+          "authority": "NXBGDVN"
         }
       ],
       "assumptions": [
@@ -107,7 +129,10 @@
           "temperature": "25 degC",
           "acid_concentration": "0.1 mol/L",
           "acid_volume": "25 mL",
-          "model": "ideal strong 1:1, water autoionization"
+          "model": "ideal strong 1:1, water autoionization",
+          "model_version": "ideal-strong-titration-ts-v1",
+          "model_scope": "Axit và bazơ mạnh một nấc, dung dịch loãng lý tưởng ở 25 °C, thể tích cộng được. Màu chỉ thị là mô phỏng. Axit yếu nằm ngoài phạm vi.",
+          "formula": "n = C*V; tại tương đương n_acid = n_base"
         },
         "equation": {
           "reactants": {
@@ -132,7 +157,7 @@
       "id": "circuit-overview",
       "lab_id": "circuit",
       "title": "Điện trở và dòng điện",
-      "text": "Lab dùng nguồn một chiều với tải nối tiếp và dụng cụ đo lý tưởng. Dòng điện phụ thuộc điện áp nguồn và tổng điện trở. Ampe kế mắc nối tiếp, vôn kế mắc song song với điện trở cần đo. Mạch hở có dòng điện bằng 0. Khi cách mắc đồng hồ sai, mô phỏng khóa số đo.",
+      "text": "Bàn mạch dùng nguồn một chiều, tải nối tiếp và đồng hồ lý tưởng. Dòng điện của mạch kín mắc đúng bằng điện áp nguồn chia tổng điện trở. Khi có cảnh báo mắc sai đồng hồ, hãy kiểm tra từng đồng hồ. Ampe kế mắc nối tiếp với tải. Vôn kế mắc song song qua hai đầu điện trở chính. Kiểm tra lại số đọc sau khi sửa. Công tắc đã lắp và đang mở cho dòng 0 A nếu đồng hồ mắc đúng. Khi đồng hồ mắc sai, ô số đọc để trống vì lab khóa phép tính số đọc.",
       "keywords": [
         "mạch điện",
         "định luật ôm",
@@ -141,7 +166,13 @@
         "nối tiếp",
         "song song",
         "dòng điện",
-        "điện trở"
+        "điện trở",
+        "cảnh báo mắc sai đồng hồ",
+        "mắc sai",
+        "khóa số đọc",
+        "ô trống",
+        "0 A",
+        "công tắc hở"
       ],
       "review_status": "draft",
       "reviewer": null,
@@ -158,11 +189,16 @@
           "label": "OpenStax University Physics2 §10.4",
           "url": "https://openstax.org/books/university-physics-volume-2/pages/10-4-electrical-measuring-instruments",
           "authority": "OpenStax"
+        },
+        {
+          "label": "SGK Khoa học tự nhiên 8 CTST · Bài 25 · tr. 109–110 · bản số 4539229607",
+          "url": "https://taphuan.nxbgd.vn/tap-huan/doc-sach/shs-khoa-hoc-tu-nhien-8.4539229607#page=111",
+          "authority": "NXBGDVN"
         }
       ],
       "assumptions": [
-        "Tải nối tiếp DC, dây/đồng hồ lý tưởng; bóng10Ω và điện trở phụ20Ω cố định.",
-        "V đo R chính; sai cách mắc khóa số đo, không mô phỏng ngắn mạch; không mạng tải song song."
+        "Tải một chiều nối tiếp, dây và đồng hồ lý tưởng. Bóng đèn và điện trở bổ sung 10 Ω, điện trở phụ 20 Ω.",
+        "Vôn kế đo hai đầu điện trở chính. Mắc sai thì khóa số đọc, không mô phỏng ngắn mạch. Chỉ có trạng thái công tắc hở khi đã lắp công tắc."
       ],
       "provenance": {
         "source_id": "lumilab-authored",
@@ -179,7 +215,11 @@
           "extra_resistor_ohm": "ohm",
           "bulb_resistance_ohm": "ohm"
         },
-        "conditions": {},
+        "conditions": {
+          "model_version": "ideal-series-circuit-ts-v2",
+          "model_scope": "Tải nối tiếp, nguồn và đồng hồ lý tưởng. Vôn kế đo R chính. Dòng bằng 0 khi đã lắp công tắc, công tắc mở và cách mắc đồng hồ hợp lệ.",
+          "formula": "I = U_nguon/R_tong khi mạch kín hợp lệ; U_R = I*R_chinh"
+        },
         "constants": {
           "extra_resistor_ohm": 20,
           "bulb_resistance_ohm": 10
@@ -190,7 +230,7 @@
       "id": "mechanics-overview",
       "lab_id": "mechanics",
       "title": "Hợp lực và gia tốc",
-      "text": "Trong hệ quy chiếu quán tính và chuyển động một chiều, gia tốc bằng hợp lực chia khối lượng. Lab giả sử hợp lực không đổi và bỏ qua ma sát. Khi hợp lực bằng 0, vật vẫn có thể chuyển động với vận tốc ban đầu khác 0.",
+      "text": "Trong hệ quy chiếu quán tính, gia tốc cùng hướng với hợp lực và có độ lớn bằng độ lớn hợp lực chia khối lượng. Mô phỏng nhận hợp lực có dấu dọc theo trục chuyển động. Giữ khối lượng và đổi dấu hợp lực để so sánh chiều gia tốc. Khi hợp lực bằng 0, gia tốc bằng 0 và vật giữ vận tốc ban đầu. Vật chỉ đứng yên trong ca hợp lực bằng 0 nếu vận tốc ban đầu cũng bằng 0.",
       "keywords": [
         "hợp lực",
         "gia tốc",
@@ -209,6 +249,11 @@
           "label": "Định luật II Newton · OpenStax",
           "url": "https://openstax.org/books/university-physics-volume-1/pages/5-3-newtons-second-law",
           "authority": "OpenStax"
+        },
+        {
+          "label": "SGK Vật lí 10 KNTT · Bài 15 · tr. 63 · công thức (15.1) · bản số 4700746482",
+          "url": "https://taphuan.nxbgd.vn/tap-huan/doc-sach/sgk-vat-li-10.4700746482#page=63",
+          "authority": "NXBGDVN"
         }
       ],
       "assumptions": [
@@ -227,14 +272,18 @@
         "curriculum_series": "Chân trời sáng tạo",
         "curriculum_status": "pending",
         "units": {},
-        "conditions": {}
+        "conditions": {
+          "model_version": "constant-force-motion-v1",
+          "model_scope": "Chuyển động một chiều với hợp lực không đổi, bỏ qua ma sát và va chạm. Miền thời gian 0–10 s.",
+          "formula": "a = F_net/m; v = v0 + a*t"
+        }
       }
     },
     {
       "id": "spring-overview",
       "lab_id": "spring",
       "title": "Lò xo và dao động",
-      "text": "Lab dùng lò xo Hooke lý tưởng nằm ngang, bỏ qua ma sát và khối lượng lò xo. Chu kỳ phụ thuộc khối lượng vật và độ cứng lò xo. Cơ năng được bảo toàn trong mô hình. Thả vật ở vị trí cân bằng với vận tốc ban đầu bằng 0 thì vật đứng yên.",
+      "text": "Lò xo ngang lý tưởng tuân định luật Hooke. Khi thả vật từ nghỉ ở li độ khác 0, chu kỳ T = 2π√(m/k), với khối lượng m theo kg và độ cứng lò xo k theo N/m. Giữ k và tăng m thì chu kỳ tăng. Giữ m và tăng k thì chu kỳ giảm. Động năng và thế năng đàn hồi chuyển hóa qua lại, tổng cơ năng giữ nguyên trong mô hình lý tưởng. Thả vật từ nghỉ ngay vị trí cân bằng cho trạng thái đứng yên, nên lab không hiện chu kỳ.",
       "keywords": [
         "lò xo",
         "Hooke",
@@ -253,6 +302,11 @@
           "label": "Con lắc lò xo · OpenStax",
           "url": "https://openstax.org/books/university-physics-volume-1/pages/15-1-simple-harmonic-motion",
           "authority": "OpenStax"
+        },
+        {
+          "label": "SGK Vật lí 11 KNTT · Bài 5 · tr. 20–21 · công thức (5.5) · bản số 4701093133",
+          "url": "https://taphuan.nxbgd.vn/tap-huan/doc-sach/sgk-vat-li-11.4701093133#page=21",
+          "authority": "NXBGDVN"
         }
       ],
       "assumptions": [
@@ -271,14 +325,18 @@
         "curriculum_series": "Chân trời sáng tạo",
         "curriculum_status": "pending",
         "units": {},
-        "conditions": {}
+        "conditions": {
+          "model_version": "horizontal-hooke-oscillator-v1",
+          "model_scope": "Lò xo ngang không khối lượng, vật chất điểm, không ma sát, thả từ nghỉ.",
+          "formula": "F = -k*x; T = 2*pi*sqrt(m/k); E = k*x0^2/2"
+        }
       }
     },
     {
       "id": "electrochemistry-overview",
       "lab_id": "electrochemistry",
       "title": "Pin và chiều điện áp",
-      "text": "Mô hình pin dùng các điện cực Zn, Cu và Ag với hoạt độ ion bằng 1 ở 25°C. Điện áp phải trừ trái đổi dấu khi đổi bên hai điện cực. Điện cực có thế khử chuẩn lớn hơn là cathode. Mô hình chỉ cho điện áp chuẩn và hướng electron định tính.",
+      "text": "Ở 25 °C và hoạt độ ion bằng 1, lab dùng thế khử chuẩn làm tròn: Zn²⁺/Zn −0,76 V, Cu²⁺/Cu +0,34 V, Ag⁺/Ag +0,80 V. Với hai điện cực khác nhau, cathode là phía có thế khử chuẩn lớn hơn. Số đọc vôn kế lấy thế bên phải trừ thế bên trái, nên đổi dấu khi đổi chỗ. Hai điện cực giống nhau cho 0 V khi nối cầu muối và không có chiều tự phát. Khi tháo cầu muối, lab khóa số đọc vôn kế nhưng vẫn giữ giá trị lý thuyết.",
       "keywords": [
         "điện hóa",
         "điện cực",
@@ -299,6 +357,11 @@
           "label": "Pin điện hóa · OpenStax",
           "url": "https://openstax.org/books/chemistry-2e/pages/17-3-electrode-and-cell-potentials",
           "authority": "OpenStax"
+        },
+        {
+          "label": "University of Texas at Austin · Standard Reduction Potentials · Zn, Cu, Ag",
+          "url": "https://mccord.cm.utexas.edu/courses/spring2016/ch302/standard-pots-redox.php",
+          "authority": "University of Texas at Austin"
         }
       ],
       "assumptions": [
@@ -318,14 +381,18 @@
         "curriculum_series": "Chân trời sáng tạo",
         "curriculum_status": "pending",
         "units": {},
-        "conditions": {}
+        "conditions": {
+          "model_version": "standard-galvanic-cell-v1",
+          "model_scope": "Pin chuẩn Zn, Cu, Ag. Hướng electron mô tả xu hướng khi nối tải. Không tính cường độ dòng hoặc động học.",
+          "formula": "U_meter = E°_phai - E°_trai khi có cầu muối"
+        }
       }
     },
     {
       "id": "atomic-overview",
       "lab_id": "atomic",
       "title": "Số hạt và điện tích nguyên tử",
-      "text": "Số proton xác định nguyên tố. Số khối bằng tổng proton và neutron. Điện tích theo đơn vị e bằng số proton trừ số electron. Đổi neutron làm đổi số khối, đổi electron làm đổi điện tích. Sơ đồ vỏ electron trong lab chỉ minh họa số hạt, không xác định độ bền đồng vị.",
+      "text": "Số proton Z xác định nguyên tố. Số khối A = Z + N đếm proton và neutron, nên không có đơn vị. Điện tích tính theo đơn vị điện tích nguyên tố là q/e = Z − nₑ. Giữ Z rồi thêm neutron làm đổi số khối. Giữ Z rồi thêm electron làm điện tích giảm một đơn vị e. Hình lớp electron của lab chỉ biểu diễn số hạt. Muốn kết luận một đồng vị tồn tại hay bền cần dữ liệu thực nghiệm.",
       "keywords": [
         "nguyên tử",
         "proton",
@@ -345,6 +412,11 @@
           "label": "Cấu tạo nguyên tử · OpenStax",
           "url": "https://openstax.org/books/chemistry-2e/pages/2-3-atomic-structure-and-symbolism",
           "authority": "OpenStax"
+        },
+        {
+          "label": "IUPAC Gold Book · Mass number (M03726)",
+          "url": "https://goldbook.iupac.org/terms/view/M03726",
+          "authority": "IUPAC"
         }
       ],
       "assumptions": [
@@ -363,14 +435,18 @@
         "curriculum_series": "Chân trời sáng tạo",
         "curriculum_status": "pending",
         "units": {},
-        "conditions": {}
+        "conditions": {
+          "model_version": "atomic-particle-counts-v1",
+          "model_scope": "Z từ 1 đến 18, N từ 0 đến 24, electron từ 0 đến 18. Hình lớp 2–8–8 chỉ dùng trong miền này.",
+          "formula": "A = Z + N; q/e = Z - n_e"
+        }
       }
     },
     {
       "id": "parallel-circuit-overview",
       "lab_id": "parallel-circuit",
       "title": "Dòng nhánh và cách nối điện trở",
-      "text": "Trong mạch hai điện trở nối tiếp, dòng qua mỗi điện trở bằng dòng toàn mạch. Trong mạch song song, hai điện trở cùng điện áp và dòng toàn mạch bằng tổng dòng nhánh. Đổi từ nối tiếp sang song song khi giữ điện áp và hai điện trở làm dòng nguồn tăng. Mở công tắc làm dòng điện bằng 0.",
+      "text": "Hai điện trở dương mắc nối tiếp có cùng dòng điện và R tương đương bằng tổng hai điện trở. Khi mắc song song, hai nhánh có cùng hiệu điện thế và dòng nguồn bằng tổng dòng nhánh. Giữ điện áp nguồn dương, giữ hai điện trở và đóng công tắc khi đổi kiểu mắc để so sánh. Mắc song song làm giảm R tương đương và tăng dòng nguồn trong phép so sánh đó. Khi công tắc mở, số đọc dòng bằng 0. R tương đương vẫn mô tả riêng mạng điện trở.",
       "keywords": [
         "mạch điện",
         "song song",
@@ -389,6 +465,16 @@
           "label": "OpenStax University Physics Volume 2 §10.2 — Resistors in Series and Parallel",
           "url": "https://openstax.org/books/university-physics-volume-2/pages/10-2-resistors-in-series-and-parallel",
           "authority": "OpenStax"
+        },
+        {
+          "label": "SGK Khoa học tự nhiên 9 KNTT · Bài 12 · tr. 60–61 · bản số 4700446949",
+          "url": "https://taphuan.nxbgd.vn/tap-huan/doc-sach/sgk-khoa-hoc-tu-nhien-9.4700446949#page=61",
+          "authority": "NXBGDVN"
+        },
+        {
+          "label": "SGK Khoa học tự nhiên 9 KNTT · Bài 12 · tr. 62–63 · bản số 4700446949",
+          "url": "https://taphuan.nxbgd.vn/tap-huan/doc-sach/sgk-khoa-hoc-tu-nhien-9.4700446949#page=63",
+          "authority": "NXBGDVN"
         }
       ],
       "assumptions": [
@@ -409,14 +495,18 @@
         "curriculum_series": "Chân trời sáng tạo",
         "curriculum_status": "pending",
         "units": {},
-        "conditions": {}
+        "conditions": {
+          "model_version": "ideal-two-resistor-network-v1",
+          "model_scope": "Hai điện trở thuần dương, nguồn DC và công tắc lý tưởng. Chỉ giải nối tiếp hoặc song song hai nhánh.",
+          "formula": "R_nt = R1+R2; 1/R_ss = 1/R1+1/R2; I_nguon = U/R_eq khi kín"
+        }
       }
     },
     {
       "id": "capacitor-overview",
       "lab_id": "capacitor",
       "title": "Nạp xả tụ điện và hằng số thời gian RC",
-      "text": "Hằng số thời gian bằng R nhân C theo đơn vị SI. Khi nạp từ tụ chưa tích điện, sau một hằng số thời gian điện áp đạt khoảng 63,2 phần trăm điện áp nguồn. Khi xả từ cùng điện áp ban đầu, sau một hằng số thời gian còn khoảng 36,8 phần trăm. Tăng R hoặc C làm quá trình chậm hơn. Đổi chế độ khởi tạo lại quá trình, không chuyển mạch liên tục.",
+      "text": "Đổi điện dung từ µF sang F trước khi tính hằng số thời gian τ = RC theo giây. Với tụ chưa tích điện, tại t = τ điện áp tụ đạt khoảng 63,2% điện áp nguồn khi nạp. Khi xả từ điện áp ban đầu khác 0, tại t = τ điện áp còn khoảng 36,8% giá trị ban đầu. Tăng R hoặc C làm τ lớn hơn. Lab khởi tạo lượt mới khi đổi chế độ: nạp bắt đầu ở 0 V, xả bắt đầu ở điện áp đã chọn và đã ngắt nguồn.",
       "keywords": [
         "tụ điện",
         "RC",
@@ -440,6 +530,11 @@
           "label": "OpenStax University Physics Volume 2 §8.3 — Energy Stored in a Capacitor",
           "url": "https://openstax.org/books/university-physics-volume-2/pages/8-3-energy-stored-in-a-capacitor",
           "authority": "OpenStax"
+        },
+        {
+          "label": "All About Circuits · Voltage and Current Calculations · RC time constant",
+          "url": "https://www.allaboutcircuits.com/textbook/direct-current/chpt-16/voltage-current-calculations/",
+          "authority": "All About Circuits"
         }
       ],
       "assumptions": [
@@ -461,14 +556,18 @@
         "curriculum_series": "Chân trời sáng tạo",
         "curriculum_status": "pending",
         "units": {},
-        "conditions": {}
+        "conditions": {
+          "model_version": "ideal-rc-step-v1",
+          "model_scope": "Một điện trở và một tụ lý tưởng. Miền quan sát 0–120 s. Lượt xả có chiều dòng ngược chiều dương quy ước khi nạp.",
+          "formula": "tau=R*C; U_nap=U0*(1-exp(-t/tau)); U_xa=U0*exp(-t/tau)"
+        }
       }
     },
     {
       "id": "precipitation-overview",
       "lab_id": "precipitation",
       "title": "Kết tủa AgCl và chất giới hạn",
-      "text": "AgNO₃ và NaCl phản ứng theo tỉ lệ mol 1:1 tạo AgCl trắng và NaNO₃. Số mol AgCl bằng số mol nhỏ hơn của hai chất trong mô hình phản ứng hoàn toàn. Khối lượng AgCl bằng số mol nhân 143,32 g/mol. Màu đục chỉ minh họa, không tính độ tan hoặc tốc độ lắng. Hai dung dịch cố định 0,1 mol/L.",
+      "text": "Trong mô hình phản ứng hoàn toàn, AgNO₃ và NaCl phản ứng theo tỉ lệ mol 1:1 tạo AgCl trắng và NaNO₃. Hai dung dịch có nồng độ 0,100 mol/L. Đổi thể tích từ mL sang L rồi tính số mol từng chất. Số mol AgCl lý thuyết bằng số mol nhỏ hơn của hai chất. Khối lượng AgCl bằng số mol nhân 143,32 g/mol. Nếu một thể tích bằng 0 mL, lượng AgCl bằng 0. Màu đục chỉ minh họa hiện tượng. Độ tan hoặc tốc độ lắng cần dữ liệu riêng.",
       "keywords": [
         "kết tủa",
         "AgCl",
@@ -492,6 +591,11 @@
           "label": "OpenStax Chemistry 2e §4.4 — Reaction Yields, chất giới hạn và hiệu suất lý thuyết",
           "url": "https://openstax.org/books/chemistry-2e/pages/4-4-reaction-yields",
           "authority": "OpenStax"
+        },
+        {
+          "label": "SGK Khoa học tự nhiên 8 CTST · Bài 13 · tr. 61–62 · bản số 4539229607",
+          "url": "https://taphuan.nxbgd.vn/tap-huan/doc-sach/shs-khoa-hoc-tu-nhien-8.4539229607#page=63",
+          "authority": "NXBGDVN"
         }
       ],
       "assumptions": [
@@ -514,14 +618,18 @@
         "curriculum_series": "Chân trời sáng tạo",
         "curriculum_status": "pending",
         "units": {},
-        "conditions": {}
+        "conditions": {
+          "model_version": "ideal-agcl-precipitation-v1",
+          "model_scope": "Hai dung dịch từ 0–50 mL ở 25 °C. Giả thiết chất giới hạn phản ứng hoàn toàn. Không giải độ tan, tốc độ lắng hay nồng độ vết.",
+          "formula": "n_AgCl=min(C_AgNO3*V_AgNO3,C_NaCl*V_NaCl); m_AgCl=n_AgCl*M_AgCl"
+        }
       }
     },
     {
       "id": "gas-reaction-overview",
       "lab_id": "gas-reaction",
       "title": "Axit và bicarbonat tạo CO₂",
-      "text": "HCl và NaHCO₃ phản ứng theo tỉ lệ mol 1:1 tạo NaCl, nước và CO₂. Chất giới hạn quyết định số mol khí. Dùng phương trình khí lý tưởng tại 25°C và 1 atm để tính thể tích; ở điều kiện này không dùng 22,4 L/mol. Đây là lượng khí lý thuyết cuối phản ứng, bỏ qua khí hòa tan và tốc độ sủi bọt.",
+      "text": "HCl và NaHCO₃ phản ứng theo tỉ lệ mol 1:1:1 giữa HCl, NaHCO₃ và CO₂. Tính số mol HCl từ nồng độ và thể tích, tính số mol NaHCO₃ từ khối lượng. Lấy số mol nhỏ hơn làm lượng CO₂ lý thuyết. Lab tính thể tích khí khô lý tưởng ở 25 °C (298,15 K) và 1 atm bằng V = nRT/P. Ở điều kiện này, thể tích mol xấp xỉ 24,47 L/mol. Hình bọt khí minh họa hiện tượng; mô hình bỏ qua khí hòa tan và tốc độ thoát khí.",
       "keywords": [
         "axit",
         "bicarbonat",
@@ -551,6 +659,11 @@
           "label": "OpenStax Chemistry 2e §9.2 — The Ideal Gas Law, PV = nRT",
           "url": "https://openstax.org/books/chemistry-2e/pages/9-2-relating-pressure-volume-amount-and-temperature-the-ideal-gas-law",
           "authority": "OpenStax"
+        },
+        {
+          "label": "University of Wisconsin–Madison Demonstration Lab · Gases: The Visible Mole · Description",
+          "url": "https://demolab.chem.wisc.edu/general-chemistry-demonstrations-topic-page/gases-visible-mole-2/",
+          "authority": "University of Wisconsin–Madison"
         }
       ],
       "assumptions": [
@@ -572,14 +685,18 @@
         "curriculum_series": "Chân trời sáng tạo",
         "curriculum_status": "pending",
         "units": {},
-        "conditions": {}
+        "conditions": {
+          "model_version": "ideal-bicarbonate-gas-v1",
+          "model_scope": "HCl 0,100 mol/L, 0–50 mL. NaHCO₃ tinh khiết, 0–1 g. CO₂ khô lý tưởng, 298,15 K và 1 atm.",
+          "formula": "n_CO2=min(C_HCl*V_HCl,m_NaHCO3/M_NaHCO3); V_CO2=n_CO2*R*T/P"
+        }
       }
     },
     {
       "id": "mechanics-thcs-foundation",
-      "lab_id": "mechanics",
-      "title": "Lực và ròng rọc lý tưởng",
-      "text": "Ròng rọc cố định có thể đổi hướng lực kéo. Với ròng rọc động lý tưởng được đỡ bởi hai nhánh dây, lực kéo để nâng đều vật bằng một nửa trọng lượng; đổi lại đầu dây phải đi quãng đường dài hơn. Bỏ qua ma sát và khối lượng dây. Lab Newton hiện tại không mô phỏng hệ ròng rọc.",
+      "lab_id": "pulley",
+      "title": "Ròng rọc cố định và ròng rọc động",
+      "text": "Ròng rọc cố định lý tưởng có thể đổi hướng kéo. Với cụm nâng được đỡ bằng hai nhánh dây thẳng đứng và chuyển động đều, lực kéo bằng một nửa trọng lượng của cụm. Để nâng lên cùng độ cao, đầu dây đi quãng đường gấp đôi. Trong bài pa-lăng, giữ nguyên tải và độ cao, rồi so sánh một nhánh với hai nhánh. Công nâng lý tưởng bằng nhau giữa hai cấu hình.",
       "keywords": [
         "ròng rọc",
         "lực kéo",
@@ -605,13 +722,12 @@
         }
       ],
       "assumptions": [
-        "Học liệu tự biên soạn, chưa giáo viên duyệt; nguồn chỉ để đối chiếu, không chép trang sách.",
-        "Giới hạn mô hình và điều kiện cần được kiểm tra trước sử dụng."
+        "Bài pa-lăng nâng đều, dây nhẹ không dãn, bỏ qua ma sát. Khối lượng gồm cả cụm được nâng."
       ],
       "provenance": {
         "source_id": "lumilab-authored",
         "book": "LumiLab học liệu tự biên soạn",
-        "chapter": "Nền tảng Vật lý",
+        "chapter": "pulley",
         "section": "Lực và ròng rọc lý tưởng",
         "license": "LicenseRef-LumiLab-Draft",
         "commit": null,
@@ -621,7 +737,10 @@
         "curriculum_status": "pending",
         "units": {},
         "conditions": {
-          "curriculum": "Mapping lớp/năm/trang pending; học liệu tự biên soạn"
+          "curriculum": "Mapping lớp/năm/trang pending; học liệu tự biên soạn",
+          "model_version": "vertical-ideal-pulley-v1",
+          "model_scope": "Bài pa-lăng nâng đều, dây nhẹ không dãn, bỏ qua ma sát. Khối lượng gồm cả cụm được nâng.",
+          "formula": "F=mg/n; s=n*h; W=F*s"
         },
         "constants": {},
         "equation": null
@@ -683,7 +802,7 @@
       "id": "circuit-thcs-foundation",
       "lab_id": "circuit",
       "title": "Dòng điện và điện trở",
-      "text": "Trong mô hình điện trở tuân theo định luật Ohm ở nhiệt độ không đổi, giữ hiệu điện thế rồi tăng điện trở sẽ làm dòng điện giảm. Để kiểm tra ảnh hưởng của một yếu tố, cần giữ các yếu tố khác không đổi. Ampe kế lý tưởng nối tiếp với phần mạch cần đo dòng.",
+      "text": "Với điện trở tuân định luật Ohm ở nhiệt độ không đổi, I = U/R. Giữ hiệu điện thế hai đầu điện trở thì tăng R làm giảm I. Để kiểm tra trên bàn mạch, giữ nguồn, chỉ dùng điện trở chính, mắc đúng đồng hồ và giữ mạch kín. Ampe kế đặt nối tiếp với phần mạch cần đo. Khi có thêm tải nối tiếp, dùng tổng điện trở để tính dòng từ điện áp nguồn.",
       "keywords": [
         "điện trở",
         "hiệu điện thế",
@@ -705,11 +824,25 @@
           "label": "OpenStax University Physics2 §10.4",
           "url": "https://openstax.org/books/university-physics-volume-2/pages/10-4-electrical-measuring-instruments",
           "authority": "OpenStax"
+        },
+        {
+          "label": "SGK Khoa học tự nhiên 9 CTST · Bài 8 · tr. 41–42 · bản số 4539047173",
+          "url": "https://taphuan.nxbgd.vn/tap-huan/doc-sach/shs-khoa-hoc-tu-nhien-9.4539047173#page=43",
+          "authority": "NXBGDVN"
+        },
+        {
+          "label": "SGK Khoa học tự nhiên 8 CTST · Bài 25 · tr. 109–110 · bản số 4539229607",
+          "url": "https://taphuan.nxbgd.vn/tap-huan/doc-sach/shs-khoa-hoc-tu-nhien-8.4539229607#page=111",
+          "authority": "NXBGDVN"
+        },
+        {
+          "label": "OpenStax Physics §19.1 Ohm’s Law",
+          "url": "https://openstax.org/books/physics/pages/19-1-ohms-law",
+          "authority": "OpenStax"
         }
       ],
       "assumptions": [
-        "Học liệu tự biên soạn, chưa giáo viên duyệt; nguồn chỉ để đối chiếu, không chép trang sách.",
-        "Giới hạn mô hình và điều kiện cần được kiểm tra trước sử dụng."
+        "Nguồn DC lý tưởng. Giữ sơ đồ và trạng thái công tắc khi so sánh. Quy tắc Ohm áp dụng cho điện trở thuần."
       ],
       "provenance": {
         "source_id": "lumilab-authored",
@@ -724,7 +857,10 @@
         "curriculum_status": "pending",
         "units": {},
         "conditions": {
-          "curriculum": "Mapping lớp/năm/trang pending; học liệu tự biên soạn"
+          "curriculum": "Mapping lớp/năm/trang pending; học liệu tự biên soạn",
+          "model_version": "ideal-series-circuit-ts-v2",
+          "model_scope": "Nguồn DC lý tưởng. Giữ sơ đồ và trạng thái công tắc khi so sánh. Quy tắc Ohm áp dụng cho điện trở thuần.",
+          "formula": "I=U_R/R; trong mạch kín I=U_nguon/R_tong"
         },
         "constants": {},
         "equation": null
@@ -787,7 +923,7 @@
       "id": "precipitation-thcs-foundation",
       "lab_id": "precipitation",
       "title": "Nhận biết phản ứng tạo kết tủa",
-      "text": "Khi dung dịch cung cấp ion bạc tiếp xúc với dung dịch có ion chloride trong điều kiện phù hợp, có thể tạo chất rắn bạc chloride màu trắng. Không phải mọi cặp dung dịch trộn vào đều tạo kết tủa. Quan sát phải đi kèm xác định chất tham gia và điều kiện; màu minh họa không phải phép đo thực nghiệm.",
+      "text": "Ag⁺ và Cl⁻ trong dung dịch có thể tạo chất rắn AgCl màu trắng. Phương trình ion rút gọn là Ag⁺(aq) + Cl⁻(aq) → AgCl(s). Trong lab, cần chọn thể tích dương cho cả AgNO₃ và NaCl để quan sát kết tủa minh họa. Nêu tên hai dung dịch và phương trình trước khi giải thích hiện tượng. Một đám mây trắng trên màn hình chỉ cho biết ca mô phỏng đang biểu diễn kết tủa.",
       "keywords": [
         "kết tủa",
         "bạc chloride",
@@ -807,14 +943,13 @@
           "authority": "OpenStax"
         },
         {
-          "label": "RSC Education – thí nghiệm tham khảo",
-          "url": "https://edu.rsc.org/experiments/testing-salts-for-anions-and-cations/464.article",
+          "label": "RSC Education · Tests for anions · chloride và bạc nitrate",
+          "url": "https://edu.rsc.org/download?ac=17362",
           "authority": "Royal Society of Chemistry"
         }
       ],
       "assumptions": [
-        "Học liệu tự biên soạn, chưa giáo viên duyệt; nguồn chỉ để đối chiếu, không chép trang sách.",
-        "Giới hạn mô hình và điều kiện cần được kiểm tra trước sử dụng."
+        "Chỉ xét cặp AgNO₃ và NaCl của mô hình, với hai dung dịch 0,100 mol/L. Quan sát màu mang tính định tính."
       ],
       "provenance": {
         "source_id": "lumilab-authored",
@@ -829,7 +964,9 @@
         "curriculum_status": "pending",
         "units": {},
         "conditions": {
-          "curriculum": "Mapping lớp/năm/trang pending; học liệu tự biên soạn"
+          "curriculum": "Mapping lớp/năm/trang pending; học liệu tự biên soạn",
+          "model_version": "ideal-agcl-precipitation-v1",
+          "model_scope": "Chỉ xét cặp AgNO₃ và NaCl của mô hình, với hai dung dịch 0,100 mol/L. Quan sát màu mang tính định tính."
         },
         "constants": {},
         "equation": null
@@ -839,7 +976,7 @@
       "id": "gas-reaction-thcs-foundation",
       "lab_id": "gas-reaction",
       "title": "Axit và muối hydrogencarbonate",
-      "text": "Phản ứng giữa axit và muối hydrogencarbonate có thể tạo khí carbon dioxide. Bọt khí là dấu hiệu cần kiểm tra, không tự chứng minh danh tính khí hoặc lượng khí sinh ra. Lab HCl và NaHCO₃ giới hạn loại chất và điều kiện của mô hình; không mô phỏng mọi phản ứng vô cơ.",
+      "text": "Axit tác dụng với muối hydrogencarbonate có thể tạo CO₂. Cặp chất của lab là HCl và NaHCO₃. Bọt khí gợi ý có khí thoát ra. Muốn nhận diện khí trong thực nghiệm cần biết chất tham gia và có phép thử phù hợp, ví dụ CO₂ làm nước vôi trong vẩn đục ở điều kiện thử. Lab minh họa bọt khí và tính riêng thể tích CO₂ lý thuyết.",
       "keywords": [
         "khí",
         "hydrogencarbonate",
@@ -859,14 +996,18 @@
           "authority": "OpenStax"
         },
         {
-          "label": "RSC Education – thí nghiệm tham khảo",
-          "url": "https://edu.rsc.org/experiments/testing-salts-for-anions-and-cations/464.article",
+          "label": "RSC Education · Tests for anions · CO₂ từ carbonate và nước vôi",
+          "url": "https://edu.rsc.org/download?ac=17362",
           "authority": "Royal Society of Chemistry"
+        },
+        {
+          "label": "UW–Madison Demonstration Lab · The Visible Mole · NaHCO₃ và HCl",
+          "url": "https://demolab.chem.wisc.edu/general-chemistry-demonstrations-topic-page/gases-visible-mole-2/",
+          "authority": "University of Wisconsin–Madison"
         }
       ],
       "assumptions": [
-        "Học liệu tự biên soạn, chưa giáo viên duyệt; nguồn chỉ để đối chiếu, không chép trang sách.",
-        "Giới hạn mô hình và điều kiện cần được kiểm tra trước sử dụng."
+        "Mô phỏng cặp HCl–NaHCO₃. Phép nhận biết bằng nước vôi là kiến thức đối chiếu, không phải thao tác trong lab."
       ],
       "provenance": {
         "source_id": "lumilab-authored",
@@ -881,7 +1022,9 @@
         "curriculum_status": "pending",
         "units": {},
         "conditions": {
-          "curriculum": "Mapping lớp/năm/trang pending; học liệu tự biên soạn"
+          "curriculum": "Mapping lớp/năm/trang pending; học liệu tự biên soạn",
+          "model_version": "ideal-bicarbonate-gas-v1",
+          "model_scope": "Mô phỏng cặp HCl–NaHCO₃. Phép nhận biết bằng nước vôi là kiến thức đối chiếu, không phải thao tác trong lab."
         },
         "constants": {},
         "equation": null
@@ -891,7 +1034,7 @@
       "id": "ctst-net-force",
       "lab_id": "mechanics",
       "title": "Hợp lực quyết định gia tốc",
-      "text": "Muốn giải thích xe tăng tốc, trước hết chọn vật đang xét và chiều dương. Gia tốc cùng hướng với hợp lực; lực kéo riêng lẻ không phải lúc nào cũng là hợp lực. Với khối lượng không đổi, a = F_hợp/m. Nếu có lực cản thì phải cộng lực có dấu trước khi chia cho khối lượng. Khi so hai lượt thử, giữ khối lượng rồi thay lực, hoặc giữ hợp lực rồi thay khối lượng; đổi cả hai sẽ khó biết nguyên nhân. Bài tập tự soạn: xe 3 kg chịu hợp lực 6 N theo chiều dương. Ghi dự đoán, tính gia tốc rồi kiểm tra bằng lab. Gợi ý: dùng hợp lực, không cộng thêm trọng lực theo phương ngang. Đáp án: a = 2 m/s². Hãy giải thích vì sao tăng gấp đôi khối lượng với cùng hợp lực làm gia tốc giảm một nửa.",
+      "text": "Muốn giải thích xe tăng tốc, trước hết chọn vật đang xét và chiều dương. Gia tốc cùng hướng với hợp lực; lực kéo riêng lẻ không phải lúc nào cũng là hợp lực. Với khối lượng không đổi, a = F_hợp/m. Nếu có lực cản thì phải cộng lực có dấu trước khi chia cho khối lượng. Khi so hai lượt thử, giữ khối lượng rồi thay lực, hoặc giữ hợp lực rồi thay khối lượng; đổi cả hai sẽ khó biết nguyên nhân. Bài tập tự soạn: xe 3 kg chịu hợp lực 6 N theo chiều dương. Ghi dự đoán, tính gia tốc rồi kiểm tra bằng lab. Gợi ý: dùng hợp lực, không cộng thêm trọng lực theo phương ngang. Đáp án: a = 2 m/s². Hãy giải thích vì sao tăng gấp đôi khối lượng với cùng hợp lực làm gia tốc giảm một nửa. Trong màn Newton, đặt ô lực theo giá trị hợp lực đã xác định.",
       "keywords": [
         "hợp lực",
         "gia tốc",
@@ -934,9 +1077,10 @@
         "curriculum_series": "Chân trời sáng tạo",
         "curriculum_status": "pending",
         "conditions": {
-          "model_scope": "Lab mechanics là mô hình một chiều với lực kéo và lực cản được cấu hình; không tự suy lực căng từ quả nặng treo.",
+          "model_scope": "Lab Newton nhập hợp lực có dấu theo trục ngang. Ca tự soạn dùng m = 3 kg và F_hợp = +6 N.",
           "curriculum_evidence": "Đã đọc trang online; chưa duyệt giáo viên, năm in chưa xác định.",
-          "formula": "a = F_net/m"
+          "formula": "a = F_net/m",
+          "model_version": "constant-force-motion-v1"
         }
       }
     },
@@ -944,7 +1088,7 @@
       "id": "ctst-pulley-context",
       "lab_id": "mechanics",
       "title": "Ròng rọc trong thí nghiệm kéo xe",
-      "text": "Trong thí nghiệm khảo sát Newton, dây qua ròng rọc giúp truyền lực từ vật treo sang xe. Cần phân biệt trọng lực của vật treo với lực căng dây kéo xe. Khi cả hệ tăng tốc, không được luôn thay lực căng bằng m_treo g. Nếu coi dây và ròng rọc lý tưởng, bỏ ma sát, xe nằm ngang có khối lượng M và vật treo có khối lượng m, ta viết T = Ma và mg − T = ma; từ đó a = mg/(M + m). Đây là bài mở rộng lý thuyết, lab hiện tại chưa giải hệ ròng rọc này. Câu hỏi tự soạn: thêm vật nặng treo có làm lực căng luôn bằng trọng lượng của nó không? Gợi ý: xét riêng vật đang đi xuống. Đáp án: không; khi vật tăng tốc xuống thì T nhỏ hơn mg. Khi dùng lab xe, nhập lực kéo như một tham số độc lập và nêu rõ giới hạn đó.",
+      "text": "Trong thí nghiệm khảo sát Newton, dây qua ròng rọc giúp truyền lực từ vật treo sang xe. Cần phân biệt trọng lực của vật treo với lực căng dây kéo xe. Khi cả hệ tăng tốc, không được luôn thay lực căng bằng m_treo g. Nếu coi dây và ròng rọc lý tưởng, bỏ ma sát, xe nằm ngang có khối lượng M và vật treo có khối lượng m, ta viết T = Ma và mg − T = ma; từ đó a = mg/(M + m). Đây là bài mở rộng lý thuyết, lab hiện tại chưa giải hệ ròng rọc này. Câu hỏi tự soạn: thêm vật nặng treo có làm lực căng luôn bằng trọng lượng của nó không? Gợi ý: xét riêng vật đang đi xuống. Đáp án: không; khi vật tăng tốc xuống thì T nhỏ hơn mg. Khi dùng màn Newton, nhập hợp lực đã biết trên xe. Hệ xe–vật treo tăng tốc và pa-lăng nâng đều là hai bài toán riêng.",
       "keywords": [
         "ròng rọc",
         "lực căng",
@@ -987,9 +1131,10 @@
         "curriculum_series": "Chân trời sáng tạo",
         "curriculum_status": "pending",
         "conditions": {
-          "model_scope": "SGK có hệ xe–dây–ròng rọc; engine hiện chỉ có xe chịu lực cho trước, chưa mô phỏng ròng rọc hoặc lợi về lực.",
+          "model_scope": "Hệ xe ngang–vật treo chỉ là mở rộng lý thuyết. Màn Newton nhập hợp lực có dấu. Màn pa-lăng mô phỏng cụm tải nâng đều.",
           "curriculum_evidence": "Đã đọc trang online; chưa duyệt giáo viên, năm in chưa xác định.",
-          "formula": "a = m*g/(M+m); T = M*a"
+          "formula": "a = m*g/(M+m); T = M*a",
+          "model_version": "constant-force-motion-v1"
         }
       }
     },
@@ -1212,7 +1357,7 @@
       "id": "ctst-parallel-branches",
       "lab_id": "parallel-circuit",
       "title": "Hai nhánh song song: cùng điện áp, cộng dòng",
-      "text": "Hai điện trở song song phải có cả hai đầu nối vào cùng một cặp nút. Khi đó hiệu điện thế trên hai nhánh bằng nhau; dòng mạch chính bằng tổng dòng từng nhánh. Điện trở tương đương thỏa 1/R_eq = 1/R1 + 1/R2, vì vậy nhỏ hơn từng điện trở nhánh khi cả hai đều dương. Bài tập tự soạn: hai điện trở 40 Ω mắc song song vào nguồn lý tưởng 8 V. Dự đoán trước khi chạy lab. Gợi ý: tính dòng riêng từng nhánh rồi cộng. Đáp án: mỗi nhánh 0,2 A, tổng 0,4 A và R_eq = 20 Ω. Đổi cách vẽ hoặc kéo linh kiện trên màn hình không đủ tạo mạch song song nếu các nút nối không đúng. Không áp dụng quy tắc cộng điện trở của mạch nối tiếp cho cấu hình này.",
+      "text": "Hai điện trở song song phải có cả hai đầu nối vào cùng một cặp nút. Khi đó hiệu điện thế trên hai nhánh bằng nhau; dòng mạch chính bằng tổng dòng từng nhánh. Điện trở tương đương thỏa 1/R_eq = 1/R1 + 1/R2, vì vậy nhỏ hơn từng điện trở nhánh khi cả hai đều dương. Bài tập tự soạn: hai điện trở 40 Ω mắc song song vào nguồn lý tưởng 8 V. Dự đoán trước, rồi chọn chế độ song song và đóng công tắc để đối chiếu. Gợi ý: tính dòng riêng từng nhánh rồi cộng. Đáp án: mỗi nhánh 0,2 A, tổng 0,4 A và R_eq = 20 Ω. Đổi cách vẽ hoặc kéo linh kiện trên màn hình không đủ tạo mạch song song nếu các nút nối không đúng. Không áp dụng quy tắc cộng điện trở của mạch nối tiếp cho cấu hình này.",
       "keywords": [
         "song song",
         "nhánh",
@@ -1255,9 +1400,10 @@
         "curriculum_series": "Chân trời sáng tạo",
         "curriculum_status": "pending",
         "conditions": {
-          "model_scope": "Lab hai điện trở chỉ giải hai cấu hình đã hỗ trợ; không phải trình giải mọi sơ đồ kéo thả.",
+          "model_scope": "Ca minh họa dùng nguồn lý tưởng 8 V, hai nhánh 40 Ω và công tắc đóng.",
           "curriculum_evidence": "Đã đọc trang online; chưa duyệt giáo viên, năm in chưa xác định.",
-          "formula": "1/R_eq = 1/R1 + 1/R2; I = I1 + I2"
+          "formula": "1/R_eq = 1/R1 + 1/R2; I = I1 + I2",
+          "model_version": "ideal-two-resistor-network-v1"
         }
       }
     },
@@ -1501,7 +1647,7 @@
       "id": "ctst-silver-chloride",
       "lab_id": "precipitation",
       "title": "Kết tủa AgCl và chất giới hạn",
-      "text": "Khi trộn dung dịch silver nitrate AgNO3 với sodium chloride NaCl trong điều kiện mô hình, AgCl ít tan tạo kết tủa trắng, còn NaNO3 ở dung dịch. Phương trình AgNO3 + NaCl → AgCl + NaNO3 có tỉ lệ mol 1:1. Khối lượng kết tủa phụ thuộc lượng chất giới hạn; thêm chất đang dư không làm lượng kết tủa tăng mãi. Câu hỏi tự soạn: AgNO3 đã hết, tiếp tục thêm NaCl có tạo thêm AgCl trong mô hình không? Ghi dự đoán rồi thay từng thể tích trong lab. Gợi ý: để tạo sản phẩm cần đủ cả hai chất phản ứng. Đáp án: không, vì thiếu AgNO3. Không suy rằng mọi cặp dung dịch muối đều tạo kết tủa. Phải đối chiếu khả năng tan và điều kiện phản ứng. Màu trắng trên màn hình là minh hoạ; lab chưa mô phỏng cân bằng tan hoặc sự sẫm màu của AgCl dưới ánh sáng.",
+      "text": "Khi trộn dung dịch silver nitrate AgNO3 với sodium chloride NaCl trong điều kiện mô hình, AgCl ít tan tạo kết tủa trắng, còn NaNO3 ở dung dịch. Phương trình AgNO3 + NaCl → AgCl + NaNO3 có tỉ lệ mol 1:1. Khối lượng kết tủa phụ thuộc lượng chất giới hạn; thêm chất đang dư không làm lượng kết tủa tăng mãi. Câu hỏi tự soạn: AgNO3 đã hết, tiếp tục thêm NaCl có tạo thêm AgCl trong mô hình không? Ghi dự đoán, giữ thể tích AgNO₃ và tăng NaCl khi NaCl đã dư để kiểm tra. Gợi ý: để tạo sản phẩm cần đủ cả hai chất phản ứng. Đáp án: không, vì thiếu AgNO3. Không suy rằng mọi cặp dung dịch muối đều tạo kết tủa. Phải đối chiếu khả năng tan và điều kiện phản ứng. Màu trắng trên màn hình là minh hoạ; lab chưa mô phỏng cân bằng tan hoặc sự sẫm màu của AgCl dưới ánh sáng.",
       "keywords": [
         "AgCl",
         "kết tủa",
@@ -1544,8 +1690,9 @@
         "curriculum_series": "Chân trời sáng tạo",
         "curriculum_status": "pending",
         "conditions": {
-          "model_scope": "SGK có đúng cặp AgNO3–NaCl; định lượng của lab dùng nồng độ cố định và giả thiết tạo kết tủa hoàn toàn, chưa mô hình Ksp.",
-          "curriculum_evidence": "Đã đọc trang online; chưa duyệt giáo viên, năm in chưa xác định."
+          "model_scope": "Cặp AgNO₃/NaCl 0,100 mol/L, giả thiết chất giới hạn phản ứng hoàn toàn. Giữ thể tích AgNO₃ cố định khi thay lượng NaCl.",
+          "curriculum_evidence": "Đã đọc trang online; chưa duyệt giáo viên, năm in chưa xác định.",
+          "model_version": "ideal-agcl-precipitation-v1"
         },
         "equation": {
           "reactants": {
@@ -1563,7 +1710,7 @@
       "id": "ctst-carbonate-gas",
       "lab_id": "gas-reaction",
       "title": "Carbonate gặp acid: phân biệt CO2 với H2",
-      "text": "Acid tác dụng với carbonate có thể tạo muối, nước và carbon dioxide. Lab dùng NaHCO3 + HCl → NaCl + CO2 + H2O. Một mol NaHCO3 cần một mol HCl để tạo một mol CO2; muốn biết lượng khí phải xét chất giới hạn. SGK KHTN 8 minh hoạ dung dịch Na2CO3 với HCl, còn lab dùng NaHCO3 rắn, nên tốc độ và bề mặt tiếp xúc ngoài đời có thể khác. Câu hỏi tự soạn: thấy bọt khí khi acid gặp carbonate thì có kết luận đó là hydrogen không? Gợi ý: phân biệt carbonate với kim loại phản ứng với acid. Đáp án: không; trong phản ứng carbonate đang xét, khí là CO2. Không tự dùng một thể tích mol khí cho mọi điều kiện. Lab tính thể tích khí khô theo PV = nRT với nhiệt độ và áp suất mô hình; chưa mô phỏng khí hoà tan hay hơi nước.",
+      "text": "Acid tác dụng với carbonate có thể tạo muối, nước và carbon dioxide. Lab dùng NaHCO3 + HCl → NaCl + CO2 + H2O. Một mol NaHCO3 cần một mol HCl để tạo một mol CO2; muốn biết lượng khí phải xét chất giới hạn. SGK KHTN 8 minh hoạ dung dịch Na2CO3 với HCl, còn lab dùng NaHCO3 rắn, nên tốc độ và bề mặt tiếp xúc ngoài đời có thể khác. Câu hỏi tự soạn: thấy bọt khí khi acid gặp carbonate thì có kết luận đó là hydrogen không? Gợi ý: phân biệt carbonate với kim loại phản ứng với acid. Đáp án: không; trong phản ứng carbonate đang xét, khí là CO2. Không tự dùng một thể tích mol khí cho mọi điều kiện. Lab tính thể tích khí khô theo PV = nRT ở 298,15 K và 1 atm; chưa mô phỏng khí hoà tan hay hơi nước.",
       "keywords": [
         "carbonate",
         "CO2",
@@ -1588,6 +1735,11 @@
           "label": "OpenStax Chemistry 2e §4.2 Classifying Chemical Reactions",
           "url": "https://openstax.org/books/chemistry-2e/pages/4-2-classifying-chemical-reactions",
           "authority": "OpenStax"
+        },
+        {
+          "label": "University of Wisconsin–Madison Demonstration Lab · Gases: The Visible Mole · Description",
+          "url": "https://demolab.chem.wisc.edu/general-chemistry-demonstrations-topic-page/gases-visible-mole-2/",
+          "authority": "University of Wisconsin–Madison"
         }
       ],
       "assumptions": [
@@ -1607,9 +1759,10 @@
         "curriculum_series": "Chân trời sáng tạo",
         "curriculum_status": "pending",
         "conditions": {
-          "model_scope": "SGK dùng Na2CO3(aq) + HCl; lab dùng NaHCO3(s) + HCl. Không coi hai chất hoặc động học là đồng nhất; không tự đổi hằng số thể tích mol khí.",
+          "model_scope": "SGK minh họa Na₂CO₃ với HCl. Mô phỏng dùng NaHCO₃, khí CO₂ khô lý tưởng ở 298,15 K và 1 atm.",
           "curriculum_evidence": "Đã đọc trang online; chưa duyệt giáo viên, năm in chưa xác định.",
-          "formula": "PV = nRT"
+          "formula": "PV = nRT",
+          "model_version": "ideal-bicarbonate-gas-v1"
         },
         "equation": {
           "reactants": {
@@ -1628,7 +1781,7 @@
       "id": "spring-damped-overview",
       "lab_id": "spring-damped",
       "title": "Con lắc lò xo tắt dần",
-      "text": "Thay độ cản để quan sát biên độ và cơ năng giảm dần. Lò xo ngang Hooke, lực cản nhớt tỉ lệ với vận tốc, thả từ nghỉ. Chỉ xét 0 ≤ ζ ≤ 0,9. Tại ζ = 0 thu được dao động lý tưởng. Khi ζ > 0, công của lực cản làm cơ năng giảm. ω₀ = √(k/m); ωd = ω₀√(1 − ζ²) T = 2π/ωd khi vật còn dao động trong mô hình.",
+      "text": "Lò xo ngang Hooke chịu lực cản nhớt tỉ lệ với vận tốc. Lab thả vật từ nghỉ và xét 0 ≤ ζ ≤ 0,9. Khi ζ = 0, cơ năng được bảo toàn. Khi ζ > 0 và vật dao động, biên độ và cơ năng giảm theo thời gian. Với ω₀ = √(k/m) và ωd = ω₀√(1 − ζ²), chu kỳ của dao động còn lại là T = 2π/ωd. Giữ m, k và li độ thả khác 0 rồi thay ζ để so sánh đường bao biên độ. Thả ngay vị trí cân bằng cho trạng thái đứng yên.",
       "keywords": [
         "lò xo",
         "tắt dần",
@@ -1669,7 +1822,11 @@
         "curriculum_series": "Kết nối tri thức với cuộc sống",
         "curriculum_status": "pending",
         "units": {},
-        "conditions": {},
+        "conditions": {
+          "model_version": "viscous-spring-underdamped-v1",
+          "model_scope": "Cản nhớt dưới tới hạn, thả từ nghỉ, ζ 0–0,9. Không dùng công thức chu kỳ cho ca đứng yên.",
+          "formula": "omega0=sqrt(k/m); omegad=omega0*sqrt(1-zeta^2); T=2*pi/omegad"
+        },
         "constants": {}
       }
     },
@@ -1677,7 +1834,7 @@
       "id": "inclined-plane-overview",
       "lab_id": "inclined-plane",
       "title": "Newton II và mặt phẳng nghiêng",
-      "text": "Đổi góc nghiêng và ma sát để tìm ngưỡng trượt. Thả vật từ nghỉ trên dốc dài 5 m, g = 9,81 m/s², không có lực kéo. Ma sát trượt dùng μₖ = 0,8 μₛ để so sánh. Vật chỉ trượt khi tan α lớn hơn μₛ. Tại mép dốc, hiển thị vận tốc ngay trước khi rời dốc. N = mg cos α; F∥ = mg sin α; a = (F∥ − f)/m Ma sát nghỉ cân bằng F∥ đến ngưỡng μₛN. Khi trượt, f = μₖN.",
+      "text": "Vật được thả từ nghỉ trên dốc dài 5 m, không có lực kéo. Thành phần trọng lực dọc dốc là mg sin α và phản lực là mg cos α. Khi tan α không vượt μₛ, ma sát nghỉ cân bằng lực dọc dốc. Khi tan α vượt ngưỡng, mô hình cho vật trượt và dùng μₖ = 0,8 μₛ. So sánh hai lượt gần ngưỡng bằng cách giữ μₛ và thay góc. Ở mép dốc, số hiển thị là vận tốc ngay trước khi rời dốc.",
       "keywords": [
         "mặt phẳng nghiêng",
         "ma sát",
@@ -1718,7 +1875,11 @@
         "curriculum_series": "Kết nối tri thức với cuộc sống",
         "curriculum_status": "pending",
         "units": {},
-        "conditions": {},
+        "conditions": {
+          "model_version": "rest-release-incline-v1",
+          "model_scope": "Thả từ nghỉ, g = 9,81 m/s². Công thức μₖ = 0,8 μₛ là giả thiết riêng của lab. Engine có dung sai số ở ngưỡng.",
+          "formula": "N=m*g*cos(alpha); F_doc=m*g*sin(alpha); f_truot=mu_k*N"
+        },
         "constants": {}
       }
     },
@@ -1726,7 +1887,7 @@
       "id": "pulley-overview",
       "lab_id": "pulley",
       "title": "Ròng rọc và pa-lăng",
-      "text": "Đếm nhánh dây đỡ để so lực kéo và quãng đường kéo. Cụm tải nâng chậm đều bằng dây nhẹ không dãn và ròng rọc không ma sát. Các nhánh đỡ thẳng đứng. m là khối lượng toàn bộ cụm nâng. Không dùng mô hình này để suy ra tải an toàn của thiết bị thật. F = mg/n; s = nh; W = F·s = mgh n là số nhánh dây đỡ cụm tải, h là độ cao nâng.",
+      "text": "Đếm số nhánh dây thẳng đứng thực sự đỡ cụm nâng. Gọi n là số nhánh, m là khối lượng cả cụm và h là độ cao nâng. Khi nâng đều bằng dây lý tưởng, lực kéo F = mg/n, quãng đường đầu dây s = nh và công W = F·s = mgh. Giữ m và h rồi tăng n để so sánh lực với quãng đường kéo. Tải trọng an toàn ngoài đời cần thông số thiết bị và kiểm tra riêng.",
       "keywords": [
         "ròng rọc",
         "pa-lăng",
@@ -1767,7 +1928,11 @@
         "curriculum_series": "Kết nối tri thức với cuộc sống",
         "curriculum_status": "pending",
         "units": {},
-        "conditions": {},
+        "conditions": {
+          "model_version": "vertical-ideal-pulley-v1",
+          "model_scope": "Nâng đều, dây nhẹ không dãn, ròng rọc không ma sát và nhánh đỡ thẳng đứng.",
+          "formula": "F=m*g/n; s=n*h; W=F*s"
+        },
         "constants": {}
       }
     },
@@ -1775,7 +1940,7 @@
       "id": "alkali-water-overview",
       "lab_id": "alkali-water",
       "title": "Na, K tác dụng với nước và màu ngọn lửa",
-      "text": "Tách hiện tượng phản ứng với nước khỏi màu nhận biết ion. Hai quan sát độc lập. Phản ứng với nước cho hydroxide và hydrogen. Màu ngọn lửa đại diện cho ion Na⁺ hoặc K⁺. Mô phỏng định tính, hình và màu mang tính minh họa. 2M + 2H₂O → 2MOH + H₂ M chỉ nhận hai giá trị Na và K trong bài.",
+      "text": "Mô hình lưu trữ có hai phép quan sát riêng. Với nước, natri và kali tạo hydroxide tương ứng và hydrogen theo phương trình 2M + 2H₂O → 2MOH + H₂, với M là Na hoặc K. Chế độ ngọn lửa biểu diễn màu vàng cho Na⁺ và tím nhạt cho K⁺. So sánh hai chế độ bằng cách ghi riêng sản phẩm và màu quan sát. Mô phỏng chỉ diễn giải định tính, không đo tốc độ phản ứng.",
       "keywords": [
         "natri",
         "kali",
@@ -1798,6 +1963,11 @@
           "label": "SGK Hóa học 12 Kết nối tri thức, Bài 24, tr. 110–112",
           "url": "https://taphuan.nxbgd.vn/tap-huan/doc-sach/sgk-hoa-hoc-12.4701708102#page=113",
           "authority": "NXBGDVN"
+        },
+        {
+          "label": "RSC Education · Flame colours · màu đặc trưng của Na và K",
+          "url": "https://edu.rsc.org/resources/flame-colours-a-demonstration/760.article",
+          "authority": "Royal Society of Chemistry"
         }
       ],
       "assumptions": [
@@ -1816,7 +1986,10 @@
         "curriculum_series": "Kết nối tri thức với cuộc sống",
         "curriculum_status": "pending",
         "units": {},
-        "conditions": {},
+        "conditions": {
+          "model_version": "alkali-water-flame-qualitative-v1",
+          "model_scope": "Mô hình lưu trữ. Chỉ quan sát ảo Na hoặc K. Không suy công suất, tốc độ hay quy trình thí nghiệm từ ảnh."
+        },
         "constants": {}
       }
     },
@@ -1824,7 +1997,7 @@
       "id": "copper-nitric-overview",
       "lab_id": "copper-nitric",
       "title": "Đồng với HNO₃: NO và NO₂",
-      "text": "So sánh sản phẩm khí chính trong hai kịch bản đại diện. Hai kịch bản đại diện chỉ xét đồng và HNO₃ loãng hoặc đặc. Thực tế sản phẩm phụ thuộc điều kiện. NO ban đầu không màu, có thể chuyển thành NO₂ trong không khí. Mô phỏng không định lượng mức chuyển hóa. 2NO + O₂ → 2NO₂ NO có thể bị oxi hóa tiếp sau khi thoát ra không khí.",
+      "text": "Mô hình lưu trữ so sánh hai kịch bản của đồng với axit nitric. Kịch bản loãng lấy NO không màu làm khí chính: 3Cu + 8HNO₃ → 3Cu(NO₃)₂ + 2NO + 4H₂O. Khi gặp oxygen, một phần NO có thể bị oxi hóa theo 2NO + O₂ → 2NO₂. Kịch bản đặc lấy NO₂ nâu đỏ làm khí chính: Cu + 4HNO₃ → Cu(NO₃)₂ + 2NO₂ + 2H₂O. Màu và sản phẩm trong hai ca là minh họa định tính; điều kiện thực tế có thể cho hỗn hợp sản phẩm.",
       "keywords": [
         "đồng",
         "axit nitric",
@@ -1840,14 +2013,19 @@
       "external_material_use": "reference-only",
       "references": [
         {
-          "label": "OpenStax Chemistry 2e §18.9, copper with nitric acid",
-          "url": "https://openstax.org/books/chemistry-2e/pages/18-9-occurrence-preparation-and-compounds-of-oxygen",
+          "label": "OpenStax Chemistry 2e §18.7 · NO từ HNO₃ loãng, NO₂ từ HNO₃ đặc, Hình 18.36",
+          "url": "https://openstax.org/books/chemistry-2e/pages/18-7-occurrence-preparation-and-properties-of-nitrogen",
           "authority": "OpenStax"
         },
         {
           "label": "SGK Hóa học 11 Kết nối tri thức, Bài 6, tr. 40",
           "url": "https://taphuan.nxbgd.vn/tap-huan/doc-sach/sgk-hoa-hoc-11.4701111834#page=41",
           "authority": "NXBGDVN"
+        },
+        {
+          "label": "Purdue University · The Chemistry of Nitrogen and Phosphorus · NO, NO₂ và đồng",
+          "url": "https://chemed.chem.purdue.edu/genchem/topicreview/bp/ch10/group5.php",
+          "authority": "Purdue University"
         }
       ],
       "assumptions": [
@@ -1866,7 +2044,10 @@
         "curriculum_series": "Kết nối tri thức với cuộc sống",
         "curriculum_status": "pending",
         "units": {},
-        "conditions": {},
+        "conditions": {
+          "model_version": "copper-nitric-qualitative-v1",
+          "model_scope": "Mô hình lưu trữ, hai kịch bản đại diện cho Cu với HNO₃. Công tắc không khí chỉ minh họa khả năng oxi hóa NO, không tính mức chuyển hóa."
+        },
         "constants": {}
       }
     },
@@ -1874,7 +2055,7 @@
       "id": "chlorine-bleach-overview",
       "lab_id": "chlorine-bleach",
       "title": "Clo và tính tẩy màu trong điều kiện ẩm",
-      "text": "Xem nguyên lí tạo clo rồi so sánh giấy màu khô và ẩm. Điều chế chỉ minh họa bán phản ứng oxi hóa chloride. Giấy màu khô trong môi trường khô là đối chứng. Quan sát độ nhạt mang tính định tính và giới hạn trong điều kiện đã chọn. Cl₂ + H₂O ⇌ HCl + HOCl HOCl có tính oxi hóa và làm mất màu chất màu trong ca minh họa.",
+      "text": "Trong chế độ minh họa điều chế, hai ion chloride nhường electron theo bán phản ứng 2Cl⁻ → Cl₂ + 2e⁻. Trong nước có cân bằng Cl₂ + H₂O ⇌ HCl + HOCl. HOCl có tính oxi hóa và góp phần tẩy màu trong ca giấy ẩm. Ca đối chứng dùng giấy màu khô trong môi trường khô và không hiện tẩy màu rõ. So sánh hai ca bằng mức nhạt hiển thị. Đây là mô hình lưu trữ mô tả hiện tượng, không định lượng tốc độ hay độ nhạt.",
       "keywords": [
         "clo",
         "chlorine",
@@ -1898,6 +2079,11 @@
           "label": "SGK Hóa học 10 Kết nối tri thức, Bài 21, tr. 109, 111",
           "url": "https://taphuan.nxbgd.vn/tap-huan/doc-sach/sgk-hoa-hoc-10.4700854983#page=109",
           "authority": "NXBGDVN"
+        },
+        {
+          "label": "RSC Education · Reactions of chlorine with water or halide ions · Teaching notes về giấy chỉ thị ẩm",
+          "url": "https://edu.rsc.org/experiments/reactions-of-chlorine-with-water-or-halide-ions/530.article",
+          "authority": "Royal Society of Chemistry"
         }
       ],
       "assumptions": [
@@ -1916,7 +2102,10 @@
         "curriculum_series": "Kết nối tri thức với cuộc sống",
         "curriculum_status": "pending",
         "units": {},
-        "conditions": {},
+        "conditions": {
+          "model_version": "chlorine-moisture-qualitative-v1",
+          "model_scope": "Mô hình lưu trữ. Chế độ điều chế minh họa bán phản ứng. Giấy khô trong môi trường khô là đối chứng riêng của mô phỏng."
+        },
         "constants": {}
       }
     }

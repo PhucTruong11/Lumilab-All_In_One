@@ -1,6 +1,6 @@
 {
-  "revision": "retrieval-challenge-08-2026-11-06",
-  "purpose": "Project-authored challenge frozen before RAG08 edits, not independent teacher-reviewed held-out validation",
+  "revision": "retrieval-challenge-08-2026-11-08",
+  "purpose": "Project-authored challenge frozen before RAG08 edits, 2026-11-08 aligns only challenge-13 lab scope with corpus; no independent teacher-reviewed held-out validation",
   "cases": [
     {
       "id": "challenge-01",
@@ -148,7 +148,7 @@
     },
     {
       "id": "challenge-13",
-      "lab_id": "mechanics",
+      "lab_id": "pulley",
       "level": "THCS",
       "question": "Ròng rọc động lý tưởng đổi lực kéo và quãng đường như thế nào?",
       "relevant_document_ids": [

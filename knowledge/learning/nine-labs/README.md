@@ -1,6 +1,7 @@
 # Bộ dữ liệu học tập và đánh giá Tutor cho 11 bài LumiLab
 
-**Revision** · eleven-lab-learning-draft-01  
+**Revision** · eleven-lab-learning-draft-02
+
 **Trạng thái** · draft, dùng cho review và đánh giá nội bộ  
 **Phụ trách** · Đạt
 
@@ -33,6 +34,8 @@ Có 25 rubric riêng và 1 rubric dùng chung cho câu khách quan. Bài tự lu
 - Gói này cần consumer riêng khi nhóm tích hợp. Đ.Phúc nối phần học và chấm với giao diện, Nam đối chiếu ca chuẩn và trạng thái phiên, Khoa chỉ lập chỉ mục học liệu sau review phù hợp. Phản hồi Tutor dùng dữ liệu từ lượt đúng phiên và nguồn được phép dùng. Kết quả khoa học vẫn theo Verify và nhãn preview hiện hành.
 
 ## Kiểm tra và phạm vi
+
+Revision 02 sửa 11 liên kết ca mẫu và nhãn đơn vị ở bài điền số khối. Hồ sơ nguồn, kết quả kiểm tra và các mục chờ duyệt nằm trong [bàn giao DAT-01](../../reviews/dat-01-review-handoff.md).
 
 Đã kiểm UTF-8, ID duy nhất, đường dẫn và tham chiếu, 38 đáp án/lời giải hiện hành, đáp án mới, thang điểm, giới hạn tham số và 66 payload theo hợp đồng API Tutor. Tính lại 29 ca tham chiếu bằng engine TypeScript và các hàm Python. Các bước này kiểm dữ liệu và kết quả mô hình, chưa xác nhận mức độ học sinh hiểu bài hay chất lượng trả lời của AI.
 
