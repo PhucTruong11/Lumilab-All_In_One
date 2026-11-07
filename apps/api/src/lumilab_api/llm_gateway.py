@@ -16,12 +16,12 @@ from .input_guard import GuardResult, HttpPromptGuard, local_attack, screen_ques
 from .llm_budget import BudgetDenied
 from .llm_providers import HttpProvider, ProviderFailure, Route
 from .provider_limits import route_token_budget
+from .system_info import load_practice_map
 from .tutor_context import PREVIEW_NOTICE, TutorContext, TutorOutput
 
 PROMPT_VERSION = "lumi-seven-blocks-v4-context-guard"
 SKILLS = {"hint": "progressive-hint", "explanation": "grounded-feedback",
           "feedback": "grounded-feedback", "qa": "experiment-guide"}
-MVP = {"pendulum", "circuit", "chemistry"}
 
 
 def redact(text: str) -> str:
@@ -124,6 +124,7 @@ class Gateway:
                  guard_factory=HttpPromptGuard):
         self.settings, self.registry, self.routes, self.budget = settings, registry, routes, budget
         self.provider_factory = provider_factory
+        self.pilot_runtime_ids = set(load_practice_map(settings.contracts_dir).tutor_pilot_runtime_ids)
         self.guard_factory = guard_factory
         self.cache = OrderedDict()
         self.lock = Lock()
@@ -148,7 +149,7 @@ class Gateway:
         if any(local_attack(text) for text in untrusted):
             guard = GuardResult('LOCAL_BLOCK', True)
             return fallback('INPUT_INJECTION_DETECTED', 'BLOCKED')
-        if context.task.lab_id not in MVP:
+        if context.task.lab_id not in self.pilot_runtime_ids:
             return fallback("MVP_SCOPE_ONLY")
         if not context.sources:
             return fallback("NO_RELEVANT_SOURCE", "NEEDS_SOURCE")

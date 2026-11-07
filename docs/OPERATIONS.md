@@ -2,6 +2,8 @@
 
 Runbook cho stack local tại [README](../README.md), đối chiếu ngày **07/11/2026**. [Runbook LLM](LLM-RUNBOOK.md) · [Sổ chuyển giao](MIGRATION-LEDGER.md). Production/Cloud Run vẫn là template; tài liệu này không kích hoạt deploy.
 
+Đã bổ sung [Docker release bundle có phiên bản](DOCKER-RELEASE.md): CI xuất archive image đã kiểm, checksum và digest; có lệnh kiểm/nạp lại image trước rollback. Các lệnh giữ tag thủ công bên dưới vẫn dùng được khi image còn local.
+
 ## 1. Gate trước review và phát hành
 
 Chạy từ root sau khi cài Node 24, Python 3.13 và dependencies theo README. AI live off, cap 0; không đặt provider key trong CI.

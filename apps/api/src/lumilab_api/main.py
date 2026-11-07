@@ -24,6 +24,7 @@ from lumilab_api.recompute import load_runtime_definitions
 from lumilab_api.retrieval import retrieval_router
 from lumilab_api.session_routes import session_router
 from lumilab_api.settings import Settings
+from lumilab_api.system_info import SystemInfo, load_practice_map, system_info, validate_mapping
 from lumilab_api.tutor_routes import tutor_router
 from lumilab_api.vector_index import VectorConfig, VectorUnavailable
 from lumilab_api.verification_routes import verification_router
@@ -64,6 +65,9 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         raise ValueError("Semantic RAG disabled until a matching build artifact/model is available")
     catalog = load_catalog(config.knowledge_dir, config.contracts_dir)
     runtime_labs = load_runtime_definitions(config.runtime_lab_dir)
+    mapping = load_practice_map(config.contracts_dir)
+    validate_mapping(mapping, runtime_labs)
+    release = system_info(config, mapping, runtime_labs, registry, compiled_index)
     engine = None
     if config.database_url:
         url = config.database_url.get_secret_value()
@@ -161,6 +165,10 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         return catalog[lab_id]
 
     app.include_router(verification_router(catalog, runtime_labs))
+    @app.get("/api/v1/system", response_model=SystemInfo, tags=["system"])
+    def release_identity():
+        return release
+
     app.include_router(retrieval_router(config.knowledge_dir, set(runtime_labs), compiled_index=compiled_index, source_registry=registry))
     budget = PostgresBudget(engine, event_id=config.llm_event_id, event_cap=config.llm_event_cap,
         daily_microusd=config.llm_daily_microusd, session_rpm=config.llm_session_rpm,

@@ -1,17 +1,14 @@
-import { activeLabIds, archivedLabIds, labDefinitions, type LabId } from '@lumilab/lab-engine';
+import { practiceMapping } from '@lumilab/contracts';
+import { activeLabIds, archivedLabIds, isLabId, labDefinitions, type LabId } from '@lumilab/lab-engine';
 export const practiceIds: readonly LabId[] = activeLabIds;
 export const archivedPracticeIds: readonly LabId[] = archivedLabIds;
-export const practiceGroups: readonly { primary: LabId; title: string; modes: readonly LabId[] }[] = [
-  { primary: 'pendulum', title: 'Con lắc đơn', modes: ['pendulum'] },
-  { primary: 'spring', title: 'Con lắc lò xo', modes: ['spring', 'spring-damped'] },
-  { primary: 'mechanics', title: 'Newton II và mặt phẳng nghiêng', modes: ['mechanics', 'inclined-plane'] },
-  { primary: 'pulley', title: 'Ròng rọc và pa-lăng', modes: ['pulley'] },
-  { primary: 'parallel-circuit', title: 'Định luật Ohm, mạch nối tiếp và song song', modes: ['circuit', 'parallel-circuit'] },
-  { primary: 'capacitor', title: 'Nạp và xả tụ điện RC', modes: ['capacitor'] },
-  { primary: 'alkali-water', title: 'Na, K tác dụng với nước và màu ngọn lửa', modes: ['alkali-water'] },
-  { primary: 'copper-nitric', title: 'Đồng với HNO₃: NO và NO₂', modes: ['copper-nitric'] },
-  { primary: 'chlorine-bleach', title: 'Điều chế clo và tính tẩy màu', modes: ['chlorine-bleach'] },
-];
+function runtimeId(id: string): LabId {
+  if (!isLabId(id)) throw new Error('Practice references an unsupported runtime');
+  return id;
+}
+export const practiceGroups: readonly { primary: LabId; title: string; modes: readonly LabId[] }[] =
+  practiceMapping.practices.map(item => ({ primary: runtimeId(item.primary), title: item.title,
+    modes: item.runtime_ids.map(runtimeId) }));
 export const practiceInfo: Record<LabId, { chapter: string; lead: string; action: string; label: string }> = {
   pendulum: { chapter: 'Dao động', lead: 'Điều gì làm chu kỳ thay đổi? Kéo quả nặng và thử từng giả thuyết.', action: 'Kéo quả nặng · đo chu kỳ', label: 'Mở lab con lắc' },
   spring: { chapter: 'Dao động', lead: 'Kéo rồi thả vật. So sánh khối lượng, độ cứng và nhịp dao động.', action: 'Thả vật · xem đồ thị x(t)', label: 'Mở lab con lắc lò xo' },

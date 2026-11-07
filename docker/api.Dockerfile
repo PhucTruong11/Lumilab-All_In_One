@@ -11,6 +11,9 @@ RUN pip install --no-cache-dir -r docker/requirements-api.lock && pip install --
 # Build the authored draft baseline once; API queries never update this artifact.
 RUN python -m lumilab_api.data_cli build --include-drafts --output /workspace/retrieval-index/index.json
 ENV LUMILAB_RAG_ARTIFACT_PATH=/workspace/retrieval-index/index.json
+ARG BUILD_SHA=unknown
+ENV LUMILAB_BUILD_SHA=$BUILD_SHA
+LABEL org.opencontainers.image.revision=$BUILD_SHA
 USER appuser
 EXPOSE 8000
 CMD ["python", "-m", "uvicorn", "lumilab_api.main:app", "--host", "0.0.0.0", "--port", "8000", "--no-access-log"]

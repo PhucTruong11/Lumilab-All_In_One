@@ -31,6 +31,9 @@ jobs:
       - run: python -m lumilab_api.data_cli lint --include-drafts
       - run: python -m lumilab_api.data_cli build --include-drafts
       - run: python -m pytest apps/api/tests
+      - run: python scripts/export_api_schemas.py --check
+      - run: python scripts/check_foundation.py
+      - run: python scripts/check_docs.py
   e2e:
     runs-on: ubuntu-latest
     env:
@@ -63,16 +66,51 @@ jobs:
       - run: python -m pytest apps/api/tests/test_tutor_postgres.py -q
       - run: npm run test:e2e
 
+  docker:
+    needs: [frontend, backend, e2e]
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Test final images through Nginx and retain rollback bundle
+        run: python scripts/docker_release.py build-test --project "lumilab-ci-${{ github.run_id }}-${{ github.run_attempt }}" --output .local/docker-release
+      - name: Retain tested image archive, digests and version manifest
+        uses: actions/upload-artifact@v4
+        with:
+          name: docker-release-${{ github.sha }}-${{ github.run_attempt }}
+          retention-days: 14
+          compression-level: 0
+          include-hidden-files: true
+          if-no-files-found: error
+          path: |
+            .local/docker-release/images.tar.gz
+            .local/docker-release/release.json
+            .local/docker-release/smoke.json
+            .local/docker-release/rollback.yml
+      - name: Retain isolated stack diagnostics on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: docker-diagnostics-${{ github.run_id }}-${{ github.run_attempt }}
+          retention-days: 3
+          include-hidden-files: true
+          if-no-files-found: ignore
+          path: .local/docker-release/compose.log
+
   quality-gate:
     runs-on: ubuntu-latest
     if: ${{ always() }}
-    needs: [frontend, backend, e2e]
+    needs: [frontend, backend, e2e, docker]
     steps:
       - name: Require all checks
         env:
           FRONTEND: ${{ needs.frontend.result }}
           BACKEND: ${{ needs.backend.result }}
           E2E: ${{ needs.e2e.result }}
+          DOCKER: ${{ needs.docker.result }}
         run: |
-          printf 'Frontend: %s\nBackend: %s\nE2E: %s\n' "$FRONTEND" "$BACKEND" "$E2E"
-          test "$FRONTEND" = success && test "$BACKEND" = success && test "$E2E" = success
+          printf 'Frontend: %s\nBackend: %s\nE2E: %s\nDocker: %s\n' "$FRONTEND" "$BACKEND" "$E2E" "$DOCKER"
+          test "$FRONTEND" = success && test "$BACKEND" = success && test "$E2E" = success && test "$DOCKER" = success
