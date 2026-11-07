@@ -46,12 +46,20 @@ export function LumiChat({ active, labId, openLab }: { active: boolean; labId: L
         setMessages(previous => [...previous.slice(-38), { role: 'user', text }, { role: 'assistant', text: 'Bài đang hỏi chưa chọn nguồn. Hãy chọn nguồn của bài trước.' }]);
         setInput(''); return;
       }
+      let activeLessonId = lessonId;
+      if (!(savedRun.id && savedRun.lessonId === lessonId)) {
+        const q = text.toLocaleLowerCase('vi');
+        if (/mạch|điện trở|ampe|vôn|ohm|ôm|nối tiếp|song song|công tắc|suất điện động|dòng điện|hiệu điện thế/.test(q) && sources.includes('circuit')) activeLessonId = 'circuit';
+        else if (/chuẩn độ|axit|acid|bazơ|base|hcl|naoh|\bph\b|phenolphthalein|trung hòa|trung hoà|chỉ thị|tương đương/.test(q) && sources.includes('chemistry')) activeLessonId = 'chemistry';
+        else if (/con lắc đơn|chiều dài dây|góc thả/.test(q) && sources.includes('pendulum')) activeLessonId = 'pendulum';
+        if (activeLessonId !== lessonId) setLessonId(activeLessonId);
+      }
       const controller = new AbortController(); pendingRun.current = controller; setWaiting(true); setInput('');
       let answer: Message;
       try {
-        const result = await askServerTutor({ lab_id: lessonId, question: text,
+        const result = await askServerTutor({ lab_id: activeLessonId, question: text,
           mode: mode === 'explain' ? 'explanation' : mode, hint_level: level,
-          run_id: savedRun.lessonId === lessonId && savedRun.id ? savedRun.id : null,
+          run_id: savedRun.lessonId === activeLessonId && savedRun.id ? savedRun.id : null,
           include_drafts: includeDrafts, level: learningLevel,
           history: messages.slice(-4).map(item => ({ role: item.role, text: item.text.slice(0, 1000) })),
         }, AbortSignal.any([controller.signal, AbortSignal.timeout(20000)]));
