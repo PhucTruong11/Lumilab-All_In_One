@@ -6,6 +6,10 @@ Hiện có 11 bộ tính Python đối chiếu TypeScript, 9 lab hiện hành v�
 
 Dữ liệu/nguồn chưa duyệt nên kết quả hợp lệ vẫn INSUFFICIENT_DATA/REVIEWED_EVIDENCE_REQUIRED, preview có số đọc, facts/evidence rỗng. Kết quả vi phạm invariant không được trả preview để lưu. Chưa có nhánh tự động nâng VERIFIED. Xem [các stage đang chạy và giới hạn](VERIFY-STAGES.md) và [contract của B](CONTRACT.md).
 
+Route runtime chỉ trả preview khi các stage bắt buộc của model đều `pass`: `physics_invariants` cho model Vật lí, hoặc `formula_equation`, `scientific_rules`, `quantitative`, `simulation` cho model Hóa. Thiếu stage bắt buộc hoặc lặp tên stage trả `INSUFFICIENT_DATA/SCIENTIFIC_CHECKS_INCOMPLETE` với `preview=null`. `charge_balance` của Hóa vẫn `skipped` vì parser hiện chỉ hỗ trợ công thức trung hòa; cổng này không thay thế duyệt evidence.
+
+Pilot dataset `VL-CONLAC-01` ánh xạ tới runtime `pendulum`. Ca hai chiều dài 0,4 m và 1,6 m ở cùng góc 10° và cùng `g` kiểm tỉ lệ chu kỳ 2 qua route; cả hai vẫn là preview draft. Công thức góc nhỏ trong dataset chỉ được dùng trong miền góc nhỏ, còn runtime AGM hỗ trợ đến 90°.
+
 Hai route P0 body phẳng giữ tương thích sàng lọc; route runtime /labs/ID mới có các stage mở rộng. Nguồn RAG và LLM không quyết định kết quả Verify. Chưa hỗ trợ mọi chất, ion, phương trình hay điều kiện phản ứng.
 
 Bảng dưới đây là **thiết kế mục tiêu**, không phải checklist đã hoàn thành.

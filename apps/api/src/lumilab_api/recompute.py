@@ -116,4 +116,15 @@ def recompute(
             # An inconsistent model result is not an eligible preview to save or explain.
             result.preview = None
             return result
+
+    required_stages = (
+        {"formula_equation", "scientific_rules", "quantitative", "simulation"}
+        if lab_id in {"chemistry", "precipitation", "gas-reaction"}
+        else {"physics_invariants"}
+    )
+    passed_stages = [check.stage for check in result.stage_checks if check.status == "pass"]
+    if (len(result.stage_checks) != len({check.stage for check in result.stage_checks})
+            or not required_stages.issubset(passed_stages)):
+        result.code, result.layer = "SCIENTIFIC_CHECKS_INCOMPLETE", "science"
+        result.preview = None
     return result
