@@ -1,0 +1,705 @@
+{
+ "set": "dev",
+ "generated_at": "2026-11-07T11:00:35.328889+00:00",
+ "corpus_fingerprint": "45725db93c40b71627cf6fb4cfcd9fa4eccf593d946b5cb10ba1d3ee218b7da5",
+ "embedding_id": "token-hash-v1-512",
+ "config": {
+  "min_cosine": 0.12,
+  "min_bm25": 0.05,
+  "note": "C/D weighted score fusion (experimental); REF = production RRF via CompiledIndex.retrieve (top-3)"
+ },
+ "answerable_cases": 16,
+ "refusal_cases": 8,
+ "summary": {
+  "A": {
+   "hit@1": 0.8125,
+   "hit@3": 0.9375,
+   "hit@5": 0.9375,
+   "recall@1": 0.7812,
+   "recall@3": 0.9375,
+   "recall@5": 0.9375,
+   "mrr": 0.875,
+   "crr": 0.625
+  },
+  "B": {
+   "hit@1": 0.75,
+   "hit@3": 0.9375,
+   "hit@5": 0.9375,
+   "recall@1": 0.7188,
+   "recall@3": 0.9375,
+   "recall@5": 0.9375,
+   "mrr": 0.8438,
+   "crr": 0.75
+  },
+  "C": {
+   "hit@1": 0.8125,
+   "hit@3": 0.9375,
+   "hit@5": 0.9375,
+   "recall@1": 0.7812,
+   "recall@3": 0.9375,
+   "recall@5": 0.9375,
+   "mrr": 0.875,
+   "crr": 0.625
+  },
+  "D": {
+   "hit@1": 0.8125,
+   "hit@3": 0.9375,
+   "hit@5": 0.9375,
+   "recall@1": 0.7812,
+   "recall@3": 0.9375,
+   "recall@5": 0.9375,
+   "mrr": 0.875,
+   "crr": 0.625
+  },
+  "REF": {
+   "hit@1": 0.8125,
+   "hit@3": 0.9375,
+   "hit@5": 0.9375,
+   "recall@1": 0.7812,
+   "recall@3": 0.9375,
+   "recall@5": 0.9375,
+   "mrr": 0.875,
+   "crr": 0.625
+  }
+ },
+ "failures": {
+  "false_answers": {
+   "A": [
+    "dev-wronglab-02",
+    "dev-wronglab-03",
+    "dev-missing-03"
+   ],
+   "B": [
+    "dev-wronglab-02",
+    "dev-missing-03"
+   ],
+   "C": [
+    "dev-wronglab-02",
+    "dev-wronglab-03",
+    "dev-missing-03"
+   ],
+   "D": [
+    "dev-wronglab-02",
+    "dev-wronglab-03",
+    "dev-missing-03"
+   ],
+   "REF": [
+    "dev-wronglab-02",
+    "dev-wronglab-03",
+    "dev-missing-03"
+   ]
+  },
+  "wrong_lab_hits": {
+   "A": [
+    "dev-wronglab-02",
+    "dev-wronglab-03"
+   ],
+   "B": [
+    "dev-wronglab-02"
+   ],
+   "C": [
+    "dev-wronglab-02",
+    "dev-wronglab-03"
+   ],
+   "D": [
+    "dev-wronglab-02",
+    "dev-wronglab-03"
+   ],
+   "REF": [
+    "dev-wronglab-02",
+    "dev-wronglab-03"
+   ]
+  },
+  "false_refusals": {
+   "A": [],
+   "B": [],
+   "C": [],
+   "D": [],
+   "REF": []
+  },
+  "missed_top1": {
+   "A": [
+    "dev-pen-mass-01",
+    "dev-pen-mass-02",
+    "dev-pen-measure-01"
+   ],
+   "B": [
+    "dev-pen-mass-02",
+    "dev-pen-measure-01",
+    "dev-pen-limits-02",
+    "dev-cir-ohm-01"
+   ],
+   "C": [
+    "dev-pen-mass-02",
+    "dev-pen-measure-01",
+    "dev-pen-limits-02"
+   ],
+   "D": [
+    "dev-pen-mass-01",
+    "dev-pen-mass-02",
+    "dev-pen-measure-01"
+   ],
+   "REF": [
+    "dev-pen-mass-01",
+    "dev-pen-mass-02",
+    "dev-pen-measure-01"
+   ]
+  }
+ },
+ "rows": [
+  {
+   "id": "dev-pen-mass-01",
+   "label": "ANSWERABLE",
+   "lab_id": "pendulum",
+   "question": "Khối lượng của vật nặng có làm chu kỳ con lắc thay đổi không?",
+   "relevant": [
+    "pendulum-overview:0"
+   ],
+   "A": [
+    "ctst-pendulum-limits:0",
+    "pendulum-overview:0"
+   ],
+   "B": [
+    "pendulum-overview:0",
+    "ctst-pendulum-limits:0"
+   ],
+   "C": [
+    "pendulum-overview:0",
+    "ctst-pendulum-limits:0"
+   ],
+   "D": [
+    "ctst-pendulum-limits:0",
+    "pendulum-overview:0"
+   ],
+   "REF": [
+    "ctst-pendulum-limits:0",
+    "pendulum-overview:0"
+   ]
+  },
+  {
+   "id": "dev-pen-mass-02",
+   "label": "ANSWERABLE",
+   "lab_id": "pendulum",
+   "question": "Nếu thay quả nặng khác nặng hơn, con lắc có dao động nhanh hơn không?",
+   "relevant": [
+    "pendulum-overview:0"
+   ],
+   "A": [
+    "ctst-period-measure:0",
+    "ctst-pendulum-limits:0"
+   ],
+   "B": [
+    "ctst-pendulum-limits:0",
+    "ctst-period-measure:0"
+   ],
+   "C": [
+    "ctst-pendulum-limits:0",
+    "ctst-period-measure:0"
+   ],
+   "D": [
+    "ctst-pendulum-limits:0",
+    "ctst-period-measure:0"
+   ],
+   "REF": [
+    "ctst-pendulum-limits:0",
+    "ctst-period-measure:0"
+   ]
+  },
+  {
+   "id": "dev-pen-measure-01",
+   "label": "ANSWERABLE",
+   "lab_id": "pendulum",
+   "question": "Muốn đo chu kỳ chính xác hơn thì nên đếm nhiều dao động rồi chia trung bình?",
+   "relevant": [
+    "ctst-period-measure:0"
+   ],
+   "A": [
+    "ctst-pendulum-limits:0",
+    "ctst-period-measure:0"
+   ],
+   "B": [
+    "ctst-pendulum-limits:0",
+    "ctst-period-measure:0"
+   ],
+   "C": [
+    "ctst-pendulum-limits:0",
+    "ctst-period-measure:0"
+   ],
+   "D": [
+    "ctst-pendulum-limits:0",
+    "ctst-period-measure:0"
+   ],
+   "REF": [
+    "ctst-pendulum-limits:0",
+    "ctst-period-measure:0"
+   ]
+  },
+  {
+   "id": "dev-pen-measure-02",
+   "label": "ANSWERABLE",
+   "lab_id": "pendulum",
+   "question": "Vì sao đo thời gian của 10 dao động lại tốt hơn đo 1 dao động?",
+   "relevant": [
+    "ctst-period-measure:0"
+   ],
+   "A": [
+    "ctst-period-measure:0"
+   ],
+   "B": [
+    "ctst-period-measure:0"
+   ],
+   "C": [
+    "ctst-period-measure:0"
+   ],
+   "D": [
+    "ctst-period-measure:0"
+   ],
+   "REF": [
+    "ctst-period-measure:0"
+   ]
+  },
+  {
+   "id": "dev-pen-limits-01",
+   "label": "ANSWERABLE",
+   "lab_id": "pendulum",
+   "question": "Khi làm thí nghiệm con lắc, vì sao chỉ nên thay đổi một yếu tố mỗi lần?",
+   "relevant": [
+    "ctst-pendulum-limits:0"
+   ],
+   "A": [
+    "ctst-pendulum-limits:0"
+   ],
+   "B": [
+    "ctst-pendulum-limits:0"
+   ],
+   "C": [
+    "ctst-pendulum-limits:0"
+   ],
+   "D": [
+    "ctst-pendulum-limits:0"
+   ],
+   "REF": [
+    "ctst-pendulum-limits:0"
+   ]
+  },
+  {
+   "id": "dev-pen-limits-02",
+   "label": "ANSWERABLE",
+   "lab_id": "pendulum",
+   "question": "Góc lệch ban đầu lớn thì mô hình con lắc đơn còn đúng không?",
+   "relevant": [
+    "ctst-pendulum-limits:0"
+   ],
+   "A": [
+    "ctst-pendulum-limits:0",
+    "pendulum-overview:0"
+   ],
+   "B": [
+    "pendulum-overview:0",
+    "ctst-pendulum-limits:0"
+   ],
+   "C": [
+    "pendulum-overview:0",
+    "ctst-pendulum-limits:0"
+   ],
+   "D": [
+    "ctst-pendulum-limits:0",
+    "pendulum-overview:0"
+   ],
+   "REF": [
+    "ctst-pendulum-limits:0",
+    "pendulum-overview:0"
+   ]
+  },
+  {
+   "id": "dev-pen-thcs-01",
+   "label": "ANSWERABLE",
+   "lab_id": "pendulum",
+   "question": "Quan sát con lắc dao động và đếm số dao động trong một phút",
+   "relevant": [
+    "pendulum-thcs-foundation:0"
+   ],
+   "A": [
+    "pendulum-thcs-foundation:0"
+   ],
+   "B": [
+    "pendulum-thcs-foundation:0"
+   ],
+   "C": [
+    "pendulum-thcs-foundation:0"
+   ],
+   "D": [
+    "pendulum-thcs-foundation:0"
+   ],
+   "REF": [
+    "pendulum-thcs-foundation:0"
+   ]
+  },
+  {
+   "id": "dev-cir-ohm-01",
+   "label": "ANSWERABLE",
+   "lab_id": "circuit",
+   "question": "Đồ thị I theo U của điện trở là đường gì?",
+   "relevant": [
+    "ctst-ohm-graph:0"
+   ],
+   "A": [
+    "ctst-ohm-graph:0",
+    "ctst-meter-wiring:0",
+    "circuit-thcs-foundation:0"
+   ],
+   "B": [
+    "circuit-thcs-foundation:0",
+    "ctst-ohm-graph:0",
+    "ctst-meter-wiring:0"
+   ],
+   "C": [
+    "ctst-ohm-graph:0",
+    "circuit-thcs-foundation:0",
+    "ctst-meter-wiring:0"
+   ],
+   "D": [
+    "ctst-ohm-graph:0",
+    "circuit-thcs-foundation:0",
+    "ctst-meter-wiring:0"
+   ],
+   "REF": [
+    "ctst-ohm-graph:0",
+    "circuit-thcs-foundation:0",
+    "ctst-meter-wiring:0"
+   ]
+  },
+  {
+   "id": "dev-cir-meter-01",
+   "label": "ANSWERABLE",
+   "lab_id": "circuit",
+   "question": "Mắc ampe kế và vôn kế thế nào cho đúng trước khi đọc số?",
+   "relevant": [
+    "ctst-meter-wiring:0"
+   ],
+   "A": [
+    "ctst-meter-wiring:0",
+    "ctst-ohm-graph:0"
+   ],
+   "B": [
+    "ctst-meter-wiring:0",
+    "ctst-ohm-graph:0"
+   ],
+   "C": [
+    "ctst-meter-wiring:0",
+    "ctst-ohm-graph:0"
+   ],
+   "D": [
+    "ctst-meter-wiring:0",
+    "ctst-ohm-graph:0"
+   ],
+   "REF": [
+    "ctst-meter-wiring:0",
+    "ctst-ohm-graph:0"
+   ]
+  },
+  {
+   "id": "dev-cir-src-01",
+   "label": "ANSWERABLE",
+   "lab_id": "circuit",
+   "question": "Suất điện động khác điện áp trên tải ở chỗ nào?",
+   "relevant": [
+    "ctst-source-voltage:0"
+   ],
+   "A": [
+    "ctst-source-voltage:0",
+    "circuit-overview:0"
+   ],
+   "B": [
+    "ctst-source-voltage:0",
+    "circuit-overview:0"
+   ],
+   "C": [
+    "ctst-source-voltage:0",
+    "circuit-overview:0"
+   ],
+   "D": [
+    "ctst-source-voltage:0",
+    "circuit-overview:0"
+   ],
+   "REF": [
+    "ctst-source-voltage:0",
+    "circuit-overview:0"
+   ]
+  },
+  {
+   "id": "dev-spr-01",
+   "label": "ANSWERABLE",
+   "lab_id": "spring",
+   "question": "Tăng khối lượng vật treo vào lò xo thì chu kỳ dao động lò xo thay đổi thế nào?",
+   "relevant": [
+    "spring-overview:0"
+   ],
+   "A": [
+    "spring-overview:0"
+   ],
+   "B": [
+    "spring-overview:0"
+   ],
+   "C": [
+    "spring-overview:0"
+   ],
+   "D": [
+    "spring-overview:0"
+   ],
+   "REF": [
+    "spring-overview:0"
+   ]
+  },
+  {
+   "id": "dev-mec-pulley-01",
+   "label": "ANSWERABLE",
+   "lab_id": "mechanics",
+   "question": "Ròng rọc lý tưởng giúp giảm lực kéo như thế nào?",
+   "relevant": [
+    "mechanics-thcs-foundation:0"
+   ],
+   "A": [
+    "mechanics-thcs-foundation:0"
+   ],
+   "B": [
+    "mechanics-thcs-foundation:0"
+   ],
+   "C": [
+    "mechanics-thcs-foundation:0"
+   ],
+   "D": [
+    "mechanics-thcs-foundation:0"
+   ],
+   "REF": [
+    "mechanics-thcs-foundation:0"
+   ]
+  },
+  {
+   "id": "dev-mec-force-01",
+   "label": "ANSWERABLE",
+   "lab_id": "mechanics",
+   "question": "Vật chịu nhiều lực cùng lúc, gia tốc của vật phụ thuộc vào đâu?",
+   "relevant": [
+    "ctst-net-force:0",
+    "mechanics-overview:0"
+   ],
+   "A": [
+    "ctst-net-force:0",
+    "mechanics-overview:0"
+   ],
+   "B": [
+    "mechanics-overview:0",
+    "ctst-net-force:0"
+   ],
+   "C": [
+    "mechanics-overview:0",
+    "ctst-net-force:0"
+   ],
+   "D": [
+    "ctst-net-force:0",
+    "mechanics-overview:0"
+   ],
+   "REF": [
+    "ctst-net-force:0",
+    "mechanics-overview:0"
+   ]
+  },
+  {
+   "id": "dev-chem-ph-01",
+   "label": "ANSWERABLE",
+   "lab_id": "chemistry",
+   "question": "Màu của chỉ thị có cho biết giá trị pH chính xác không?",
+   "relevant": [
+    "ctst-ph-indicator:0"
+   ],
+   "A": [
+    "ctst-ph-indicator:0"
+   ],
+   "B": [
+    "ctst-ph-indicator:0"
+   ],
+   "C": [
+    "ctst-ph-indicator:0"
+   ],
+   "D": [
+    "ctst-ph-indicator:0"
+   ],
+   "REF": [
+    "ctst-ph-indicator:0"
+   ]
+  },
+  {
+   "id": "dev-chem-tit-01",
+   "label": "ANSWERABLE",
+   "lab_id": "chemistry",
+   "question": "Khi chuẩn độ, thêm dung dịch từ buret xuống hay ngược lại có quan trọng không?",
+   "relevant": [
+    "ctst-titration-direction:0"
+   ],
+   "A": [
+    "ctst-titration-direction:0"
+   ],
+   "B": [
+    "ctst-titration-direction:0"
+   ],
+   "C": [
+    "ctst-titration-direction:0"
+   ],
+   "D": [
+    "ctst-titration-direction:0"
+   ],
+   "REF": [
+    "ctst-titration-direction:0"
+   ]
+  },
+  {
+   "id": "dev-cap-01",
+   "label": "ANSWERABLE",
+   "lab_id": "capacitor",
+   "question": "Hằng số thời gian RC cho biết tụ nạp xả nhanh hay chậm thế nào?",
+   "relevant": [
+    "capacitor-overview:0"
+   ],
+   "A": [
+    "capacitor-overview:0"
+   ],
+   "B": [
+    "capacitor-overview:0"
+   ],
+   "C": [
+    "capacitor-overview:0"
+   ],
+   "D": [
+    "capacitor-overview:0"
+   ],
+   "REF": [
+    "capacitor-overview:0"
+   ]
+  },
+  {
+   "id": "dev-wronglab-01",
+   "label": "WRONG_LAB",
+   "lab_id": "spring",
+   "question": "Chiều dài dây con lắc tăng gấp bốn thì chu kỳ tăng mấy lần?",
+   "relevant": [],
+   "A": [],
+   "B": [],
+   "C": [],
+   "D": [],
+   "REF": []
+  },
+  {
+   "id": "dev-wronglab-02",
+   "label": "WRONG_LAB",
+   "lab_id": "pendulum",
+   "question": "Độ cứng lò xo k ảnh hưởng chu kỳ dao động lò xo ra sao?",
+   "relevant": [],
+   "A": [
+    "ctst-period-measure:0"
+   ],
+   "B": [
+    "ctst-period-measure:0"
+   ],
+   "C": [
+    "ctst-period-measure:0"
+   ],
+   "D": [
+    "ctst-period-measure:0"
+   ],
+   "REF": [
+    "ctst-period-measure:0"
+   ]
+  },
+  {
+   "id": "dev-wronglab-03",
+   "label": "WRONG_LAB",
+   "lab_id": "circuit",
+   "question": "Chu kỳ con lắc phụ thuộc khối lượng không?",
+   "relevant": [],
+   "A": [
+    "circuit-overview:0"
+   ],
+   "B": [],
+   "C": [
+    "circuit-overview:0"
+   ],
+   "D": [
+    "circuit-overview:0"
+   ],
+   "REF": [
+    "circuit-overview:0"
+   ]
+  },
+  {
+   "id": "dev-oos-01",
+   "label": "OUT_OF_SCOPE",
+   "lab_id": "pendulum",
+   "question": "Giá bitcoin hôm nay bao nhiêu?",
+   "relevant": [],
+   "A": [],
+   "B": [],
+   "C": [],
+   "D": [],
+   "REF": []
+  },
+  {
+   "id": "dev-oos-02",
+   "label": "OUT_OF_SCOPE",
+   "lab_id": "chemistry",
+   "question": "Ngày mai thời tiết ở Hà Nội thế nào?",
+   "relevant": [],
+   "A": [],
+   "B": [],
+   "C": [],
+   "D": [],
+   "REF": []
+  },
+  {
+   "id": "dev-missing-01",
+   "label": "MISSING_EVIDENCE",
+   "lab_id": "pendulum",
+   "question": "Con lắc Foucault chứng minh Trái Đất tự quay như thế nào?",
+   "relevant": [],
+   "A": [],
+   "B": [],
+   "C": [],
+   "D": [],
+   "REF": []
+  },
+  {
+   "id": "dev-missing-02",
+   "label": "MISSING_EVIDENCE",
+   "lab_id": "pendulum",
+   "question": "Chu kỳ con lắc trên Mặt Trăng khác ở Trái Đất ra sao?",
+   "relevant": [],
+   "A": [],
+   "B": [],
+   "C": [],
+   "D": [],
+   "REF": []
+  },
+  {
+   "id": "dev-missing-03",
+   "label": "MISSING_EVIDENCE",
+   "lab_id": "chemistry",
+   "question": "Dung dịch đệm giữ pH ổn định nhờ cơ chế nào?",
+   "relevant": [],
+   "A": [
+    "ctst-titration-direction:0"
+   ],
+   "B": [
+    "ctst-titration-direction:0"
+   ],
+   "C": [
+    "ctst-titration-direction:0"
+   ],
+   "D": [
+    "ctst-titration-direction:0"
+   ],
+   "REF": [
+    "ctst-titration-direction:0"
+   ]
+  }
+ ]
+}

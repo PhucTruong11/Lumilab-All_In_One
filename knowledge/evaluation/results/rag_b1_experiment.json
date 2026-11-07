@@ -1,0 +1,134 @@
+{
+ "BASE dev": {
+  "hit@1": 0.8125,
+  "hit@3": 0.9375,
+  "recall@3": 0.9375,
+  "mrr": 0.875,
+  "crr": 0.625
+ },
+ "BASE heldout": {
+  "hit@1": 0.7778,
+  "hit@3": 0.8889,
+  "recall@3": 0.8889,
+  "mrr": 0.8148,
+  "crr": 0.8
+ },
+ "B gate=0.30 dev": {
+  "hit@1": 0.8125,
+  "hit@3": 0.9375,
+  "recall@3": 0.9375,
+  "mrr": 0.875,
+  "crr": 0.5
+ },
+ "B changed dev": {
+  "dev-pen-mass-01": [
+   [
+    "ctst-pendulum-limits:0",
+    "pendulum-overview:0"
+   ],
+   [
+    "ctst-pendulum-limits:0",
+    "pendulum-overview:0",
+    "ctst-period-measure:0"
+   ]
+  ],
+  "dev-pen-mass-02": [
+   [
+    "ctst-pendulum-limits:0"
+   ],
+   [
+    "ctst-pendulum-limits:0",
+    "ctst-period-measure:0"
+   ]
+  ],
+  "dev-pen-limits-01": [
+   [
+    "ctst-pendulum-limits:0"
+   ],
+   [
+    "ctst-pendulum-limits:0",
+    "pendulum-overview:0",
+    "ctst-period-measure:0"
+   ]
+  ],
+  "dev-pen-limits-02": [
+   [
+    "ctst-pendulum-limits:0",
+    "pendulum-overview:0"
+   ],
+   [
+    "ctst-pendulum-limits:0",
+    "pendulum-overview:0",
+    "ctst-period-measure:0"
+   ]
+  ],
+  "dev-wronglab-02": [
+   [
+    "ctst-period-measure:0"
+   ],
+   [
+    "ctst-period-measure:0",
+    "ctst-pendulum-limits:0"
+   ]
+  ],
+  "dev-missing-02": [
+   [],
+   [
+    "ctst-pendulum-limits:0",
+    "pendulum-overview:0",
+    "ctst-period-measure:0"
+   ]
+  ]
+ },
+ "B gate=0.30 heldout": {
+  "hit@1": 0.7778,
+  "hit@3": 0.8889,
+  "recall@3": 0.8889,
+  "mrr": 0.8148,
+  "crr": 0.6
+ },
+ "B changed heldout": {
+  "ho-pen-03": [
+   [
+    "ctst-pendulum-limits:0",
+    "pendulum-overview:0"
+   ],
+   [
+    "ctst-pendulum-limits:0",
+    "pendulum-overview:0",
+    "ctst-period-measure:0"
+   ]
+  ],
+  "ho-gas-01": [
+   [
+    "ctst-carbonate-gas:0"
+   ],
+   [
+    "ctst-carbonate-gas:0",
+    "gas-reaction-thcs-foundation:0"
+   ]
+  ],
+  "ho-missing-02": [
+   [],
+   [
+    "capacitor-overview:0"
+   ]
+  ]
+ },
+ "A stop+ dev": {
+  "hit@1": 0.8125,
+  "hit@3": 0.9375,
+  "recall@3": 0.9375,
+  "mrr": 0.875,
+  "crr": 0.625
+ },
+ "A changed dev": {},
+ "A stop+ heldout": {
+  "hit@1": 0.7778,
+  "hit@3": 0.8889,
+  "recall@3": 0.8889,
+  "mrr": 0.8148,
+  "crr": 0.8
+ },
+ "A changed heldout": {}
+}

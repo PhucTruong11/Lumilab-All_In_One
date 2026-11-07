@@ -1,0 +1,22 @@
+{
+ "generated_at": "2026-11-07T11:08:42.537602+00:00",
+ "provider": "mock fixed latency 120ms (NOT a real provider)",
+ "questions": 40,
+ "cache": {
+  "type": "in-memory LRU",
+  "capacity": 128,
+  "ttl_seconds": 600
+ },
+ "cold_ms": {
+  "p50": 124.5,
+  "p95": 126.68
+ },
+ "warm_ms": {
+  "p50": 2.16,
+  "p95": 2.63
+ },
+ "cache_hit_rate_warm_pass": 1.0,
+ "provider_calls_cold_pass": 40,
+ "provider_calls_saved_warm_pass": 40,
+ "speedup_p50": 57.7
+}
