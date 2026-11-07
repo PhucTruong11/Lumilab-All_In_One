@@ -15,6 +15,8 @@ Mốc M02 đang tích hợp trên nhánh `feat/full-web-engine-api` (Issue #5). 
 
 Verify ở B đã có route, recompute Python, scientific stages, schema và golden vectors từ A. Tài liệu phạm vi và stage đã chuyển, điều chỉnh cho B tại `docs/VERIFICATION.md` và `docs/VERIFY-STAGES.md`. Test golden hiện dùng cả TypeScript/Python; các nguồn vẫn draft nên mọi kết quả hợp lệ tiếp tục là preview/`INSUFFICIENT_DATA`, không `VERIFIED`.
 
+Task Verify #9 trên `feature/verifyData`: route runtime nay chặn preview nếu thiếu stage khoa học bắt buộc hoặc trùng tên stage. Kiểm HTTP tại defaults của cả 9 lab hiện hành và 2 model lưu trữ đều trả preview draft với facts/evidence rỗng. Ruff và 330 pytest Verify đạt sau chỉnh sửa cuối (1 cảnh báo Starlette); 74 unit TypeScript, check:web và build:web đạt. Toàn bộ API đạt 513 pytest, 9 skip khi không cấp DB test ở lượt trước chỉnh sửa cuối; ca Verify bị ảnh hưởng đã chạy lại. Nguồn/giả thiết vẫn cần T2/T4 duyệt trước khi mở `VERIFIED`.
+
 Kiểm Verify local 07/11/2026: 325 pytest tại `test_scientific_checks.py`, `test_foundation.py`, `test_expansion_routes.py` đạt (1 cảnh báo Starlette TestClient); 74 unit TypeScript và Ruff đạt. Docker proxy Verify con lắc trả preview, `facts={}`, `evidence=[]`, có `physics_invariants: pass`. Đây là kiểm tích hợp kỹ thuật, chưa phải duyệt nguồn hay chứng nhận khoa học.
 
 Web chạy local trên 5175, API trên 8002, DB B nếu bật là 15434. Không dùng dữ liệu hay volume repo A. Bạn làm UI/UX có thể bắt đầu tại `apps/web/src/`; giữ hợp đồng với engine và API. Các ca PostgreSQL sẽ được xác nhận bằng CI trước merge.
