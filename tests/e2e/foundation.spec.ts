@@ -1,13 +1,13 @@
 import { expect, test } from '@playwright/test';
 
-test('library has two subjects and three chapters per subject; a lesson links to the lab', async ({ page }) => {
+test('library has two subjects and links chapters and lessons to a lab', async ({ page }) => {
   await page.route('**/api/**', route => route.abort());
   await page.goto('/#lab/pendulum');
   await page.getByRole('button', { name: 'Thư viện bài học', exact: true }).click();
   await expect(page.locator('.subject-card')).toHaveCount(2);
   await page.locator('.subject-card.physics').click();
-  await expect(page.locator('.chapter-card')).toHaveCount(3);
-  await page.locator('.chapter-card').filter({ hasText: 'Dao động' }).getByRole('button').click();
+  await expect(page.locator('.chapter-card')).toHaveCount(6);
+  await page.locator('.chapter-card').filter({ has: page.getByRole('heading', { name: 'Dao động', exact: true }) }).getByRole('button').click();
   await page.locator('.lesson-list article').filter({ hasText: 'Con lắc đơn:' }).getByRole('button', { name: 'Xem bài học', exact: true }).click();
   await expect(page.getByRole('heading', { name: 'Kiến thức nền', exact: true })).toBeVisible();
   await page.getByLabel('Ghi chú của bạn', { exact: true }).fill('Giữ chiều dài, đổi khối lượng.');
@@ -23,7 +23,7 @@ test('library has two subjects and three chapters per subject; a lesson links to
   await page.getByRole('button', { name: 'Thư viện bài học', exact: true }).click();
   await page.getByRole('button', { name: 'Tất cả môn', exact: true }).click();
   await page.locator('.subject-card.chemistry').click();
-  await expect(page.locator('.chapter-card')).toHaveCount(3);
+  await expect(page.locator('.chapter-card')).toHaveCount(9);
   await expect(page.getByRole('heading', { name: 'Phản ứng tạo khí', exact: true })).toBeVisible();
 });
 

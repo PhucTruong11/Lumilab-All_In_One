@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "id": "alkali-water",
+  "title": "Na, K tác dụng với nước và màu ngọn lửa",
+  "subject": "chemistry",
+  "model_version": "alkali-water-flame-qualitative-v1",
+  "dataset_version": "lumilab-nine-draft-v1",
+  "implementation_status": "client",
+  "review_status": "draft",
+  "assumptions": [
+    "Hai quan sát độc lập. Phản ứng với nước cho hydroxide và hydrogen. Màu ngọn lửa đại diện cho ion Na⁺ hoặc K⁺.",
+    "Mô phỏng định tính, hình và màu mang tính minh họa."
+  ],
+  "sources": [
+    {
+      "label": "OpenStax Chemistry 2e §18.1, kim loại nhóm 1",
+      "url": "https://openstax.org/books/chemistry-2e/pages/18-1-periodicity"
+    },
+    {
+      "label": "SGK Hóa học 12 Kết nối tri thức, Bài 24, tr. 110–112",
+      "url": "https://taphuan.nxbgd.vn/tap-huan/doc-sach/sgk-hoa-hoc-12.4701708102#page=113"
+    }
+  ],
+  "parameter_schema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "metal",
+      "mode",
+      "observed"
+    ],
+    "properties": {
+      "metal": {
+        "type": "string",
+        "enum": [
+          "Na",
+          "K"
+        ],
+        "description": "Kim loại"
+      },
+      "mode": {
+        "type": "string",
+        "enum": [
+          "water",
+          "flame"
+        ],
+        "description": "Quan sát"
+      },
+      "observed": {
+        "type": "boolean",
+        "description": "Quan sát đã mở"
+      }
+    }
+  },
+  "defaults": {
+    "metal": "Na",
+    "mode": "water",
+    "observed": false
+  }
+}

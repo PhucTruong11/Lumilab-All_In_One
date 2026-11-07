@@ -25,8 +25,9 @@ test('engine keeps all three sessions when switching labs and restores a saved s
   await expect(page.getByTestId('ph-reading')).toHaveText('10.000');
   await expect(page.locator('.notebook tbody tr')).toHaveCount(1);
   await page.getByRole('button', { name: 'Thư viện bài học', exact: true }).click();
-  await page.getByRole('button', { name: 'Phòng thực hành', exact: true }).click();
-  await page.getByRole('button', { name: 'Mở bài thực hành Chuẩn độ axit–bazơ', exact: true }).click();
+  await page.getByRole('searchbox', { name: 'Tìm bài học' }).fill('chuẩn độ');
+  await page.locator('.search-result').first().click();
+  await page.getByRole('button', { name: 'Mở mô phỏng lưu trữ', exact: true }).click();
   await expect(page.getByTestId('base-volume-reading')).toContainText('25.05');
   await page.reload();
   await expect(page.getByTestId('base-volume-reading')).toContainText('25.05');
@@ -79,7 +80,7 @@ test('library search has empty/results states; activity draft import and quiz re
   await expect(page.getByText('Chưa có bài phù hợp.', { exact: false })).toBeVisible();
   await page.getByRole('searchbox', { name: 'Tìm bài học' }).fill('chuẩn độ');
   await page.locator('.search-result').first().click();
-  await expect(page.getByRole('button', { name: 'Mở lab chuẩn độ', exact: true })).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Mở mô phỏng lưu trữ', exact: true })).toBeVisible();
   await page.getByRole('button', { name: 'Không gian học tập', exact: true }).click();
   await page.getByLabel('Tệp bản nháp hoạt động').setInputFiles({ name: 'activity.json', mimeType: 'application/json', buffer: Buffer.from(JSON.stringify({ title: 'Thử nghiệm axit', goal: 'So sánh pH trước và sau tương đương.', lessonId: 'chemistry', minutes: 15, notes: '' })) });
   await expect(page.getByLabel('Tên hoạt động', { exact: true })).toHaveValue('Thử nghiệm axit');

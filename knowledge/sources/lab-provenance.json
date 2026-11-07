@@ -1,5 +1,5 @@
 {
-  "revision": "client-provenance-draft-2026-11-04",
+  "revision": "nine-labs-provenance-draft-v1",
   "scope": "Client reference inventory; not claim-level evidence or a runtime ingestion gate. The separate server KB remains draft.",
   "approval_note": "False means not approved by this project, not a general legal finding. Do not invent reviews or permissions. Check rights for the specific intended use and artifact.",
   "source_policies": [
@@ -16,6 +16,11 @@
       "book_notice_url": "https://openstax.org/books/chemistry-2e/pages/preface",
       "checked_on": "2026-11-01",
       "observed_terms": "Current pages state CC BY-NC-SA 4.0; Chemistry 2e also carries a separate prior-written-permission notice for LLM/generative-AI ingestion. Check the exact artifact and terms before reuse.",
+      "project_corpus_permission": "not_established"
+    },
+    {
+      "id": "nxbgdvn",
+      "policy_url": "https://taphuan.nxbgd.vn/tap-huan?grade=11",
       "project_corpus_permission": "not_established"
     }
   ],
@@ -487,6 +492,276 @@
       "open_evidence_gaps": [
         "Independent academic review of fixed conditions, idealization, constants and golden fixtures",
         "Curriculum/book mapping and intended source rights review pending"
+      ]
+    },
+    {
+      "lab_id": "spring-damped",
+      "title": "Con lắc lò xo tắt dần",
+      "config_path": "packages/lab-engine/labs/spring-damped/lab.json",
+      "model_version": "viscous-spring-underdamped-v1",
+      "dataset_version": "lumilab-nine-draft-v1",
+      "reference_sources": [
+        {
+          "title": "OpenStax University Physics §15.5",
+          "url": "https://openstax.org/books/university-physics-volume-1/pages/15-5-damped-oscillations",
+          "policy_id": "openstax"
+        },
+        {
+          "title": "SGK Vật lí 11 Kết nối tri thức, Bài 6, tr. 24–25",
+          "url": "https://taphuan.nxbgd.vn/tap-huan/doc-sach/sgk-vat-li-11.4701093133#page=25",
+          "policy_id": "nxbgdvn"
+        }
+      ],
+      "scientific_review": {
+        "status": "draft",
+        "reviewer": null,
+        "reviewed_on": null
+      },
+      "curriculum_review": {
+        "status": "pending",
+        "book_series": "Kết nối tri thức với cuộc sống",
+        "edition": null,
+        "grade": "11",
+        "lesson": "Bài 6",
+        "pages": "24–25",
+        "reviewer": null
+      },
+      "rights_review": {
+        "status": "pending",
+        "reviewer": null,
+        "grant_or_license_evidence": null,
+        "intended_current_use": "reference_links_and_model_cross_check",
+        "source_text_ingestion_approved_for_project": false
+      },
+      "rag_eligible": false,
+      "open_evidence_gaps": [
+        "Giáo viên rà lại phạm vi SGK và giới hạn mô hình.",
+        "Giữ tài liệu ngoài dự án ở mức dẫn nguồn."
+      ]
+    },
+    {
+      "lab_id": "inclined-plane",
+      "title": "Newton II và mặt phẳng nghiêng",
+      "config_path": "packages/lab-engine/labs/inclined-plane/lab.json",
+      "model_version": "rest-release-incline-v1",
+      "dataset_version": "lumilab-nine-draft-v1",
+      "reference_sources": [
+        {
+          "title": "OpenStax University Physics §6.2",
+          "url": "https://openstax.org/books/university-physics-volume-1/pages/6-2-friction",
+          "policy_id": "openstax"
+        },
+        {
+          "title": "SGK Vật lí 10 Kết nối tri thức, Bài 18, tr. 72–73",
+          "url": "https://taphuan.nxbgd.vn/tap-huan/doc-sach/sgk-vat-li-10.4700746482#page=73",
+          "policy_id": "nxbgdvn"
+        }
+      ],
+      "scientific_review": {
+        "status": "draft",
+        "reviewer": null,
+        "reviewed_on": null
+      },
+      "curriculum_review": {
+        "status": "pending",
+        "book_series": "Kết nối tri thức với cuộc sống",
+        "edition": null,
+        "grade": "10",
+        "lesson": "Bài 18",
+        "pages": "72–73",
+        "reviewer": null
+      },
+      "rights_review": {
+        "status": "pending",
+        "reviewer": null,
+        "grant_or_license_evidence": null,
+        "intended_current_use": "reference_links_and_model_cross_check",
+        "source_text_ingestion_approved_for_project": false
+      },
+      "rag_eligible": false,
+      "open_evidence_gaps": [
+        "Giáo viên rà lại phạm vi SGK và giới hạn mô hình.",
+        "Giữ tài liệu ngoài dự án ở mức dẫn nguồn."
+      ]
+    },
+    {
+      "lab_id": "pulley",
+      "title": "Ròng rọc và pa-lăng",
+      "config_path": "packages/lab-engine/labs/pulley/lab.json",
+      "model_version": "vertical-ideal-pulley-v1",
+      "dataset_version": "lumilab-nine-draft-v1",
+      "reference_sources": [
+        {
+          "title": "OpenStax Physics §9.3, Hình 9.11",
+          "url": "https://openstax.org/books/physics/pages/9-3-simple-machines",
+          "policy_id": "openstax"
+        },
+        {
+          "title": "SGK Vật lí 10 Kết nối tri thức, Bài 17, Hình 17.8, tr. 71 (lực căng)",
+          "url": "https://taphuan.nxbgd.vn/tap-huan/doc-sach/sgk-vat-li-10.4700746482#page=71",
+          "policy_id": "nxbgdvn"
+        }
+      ],
+      "scientific_review": {
+        "status": "draft",
+        "reviewer": null,
+        "reviewed_on": null
+      },
+      "curriculum_review": {
+        "status": "pending",
+        "book_series": "Kết nối tri thức với cuộc sống",
+        "edition": null,
+        "grade": "10",
+        "lesson": "Bài 17",
+        "pages": "71 (lực căng, ròng rọc cố định)",
+        "reviewer": null
+      },
+      "rights_review": {
+        "status": "pending",
+        "reviewer": null,
+        "grant_or_license_evidence": null,
+        "intended_current_use": "reference_links_and_model_cross_check",
+        "source_text_ingestion_approved_for_project": false
+      },
+      "rag_eligible": false,
+      "open_evidence_gaps": [
+        "Giáo viên rà lại phạm vi SGK và giới hạn mô hình.",
+        "Giữ tài liệu ngoài dự án ở mức dẫn nguồn."
+      ]
+    },
+    {
+      "lab_id": "alkali-water",
+      "title": "Na, K tác dụng với nước và màu ngọn lửa",
+      "config_path": "packages/lab-engine/labs/alkali-water/lab.json",
+      "model_version": "alkali-water-flame-qualitative-v1",
+      "dataset_version": "lumilab-nine-draft-v1",
+      "reference_sources": [
+        {
+          "title": "OpenStax Chemistry 2e §18.1, kim loại nhóm 1",
+          "url": "https://openstax.org/books/chemistry-2e/pages/18-1-periodicity",
+          "policy_id": "openstax"
+        },
+        {
+          "title": "SGK Hóa học 12 Kết nối tri thức, Bài 24, tr. 110–112",
+          "url": "https://taphuan.nxbgd.vn/tap-huan/doc-sach/sgk-hoa-hoc-12.4701708102#page=113",
+          "policy_id": "nxbgdvn"
+        }
+      ],
+      "scientific_review": {
+        "status": "draft",
+        "reviewer": null,
+        "reviewed_on": null
+      },
+      "curriculum_review": {
+        "status": "pending",
+        "book_series": "Kết nối tri thức với cuộc sống",
+        "edition": null,
+        "grade": "12",
+        "lesson": "Bài 24",
+        "pages": "110–112",
+        "reviewer": null
+      },
+      "rights_review": {
+        "status": "pending",
+        "reviewer": null,
+        "grant_or_license_evidence": null,
+        "intended_current_use": "reference_links_and_model_cross_check",
+        "source_text_ingestion_approved_for_project": false
+      },
+      "rag_eligible": false,
+      "open_evidence_gaps": [
+        "Giáo viên rà lại phạm vi SGK và giới hạn mô hình.",
+        "Giữ tài liệu ngoài dự án ở mức dẫn nguồn."
+      ]
+    },
+    {
+      "lab_id": "copper-nitric",
+      "title": "Đồng với HNO₃: NO và NO₂",
+      "config_path": "packages/lab-engine/labs/copper-nitric/lab.json",
+      "model_version": "copper-nitric-qualitative-v1",
+      "dataset_version": "lumilab-nine-draft-v1",
+      "reference_sources": [
+        {
+          "title": "OpenStax Chemistry 2e §18.9, copper with nitric acid",
+          "url": "https://openstax.org/books/chemistry-2e/pages/18-9-occurrence-preparation-and-compounds-of-oxygen",
+          "policy_id": "openstax"
+        },
+        {
+          "title": "SGK Hóa học 11 Kết nối tri thức, Bài 6, tr. 40",
+          "url": "https://taphuan.nxbgd.vn/tap-huan/doc-sach/sgk-hoa-hoc-11.4701111834#page=41",
+          "policy_id": "nxbgdvn"
+        }
+      ],
+      "scientific_review": {
+        "status": "draft",
+        "reviewer": null,
+        "reviewed_on": null
+      },
+      "curriculum_review": {
+        "status": "pending",
+        "book_series": "Kết nối tri thức với cuộc sống",
+        "edition": null,
+        "grade": "11",
+        "lesson": "Bài 6",
+        "pages": "40 (tính oxi hóa của HNO₃)",
+        "reviewer": null
+      },
+      "rights_review": {
+        "status": "pending",
+        "reviewer": null,
+        "grant_or_license_evidence": null,
+        "intended_current_use": "reference_links_and_model_cross_check",
+        "source_text_ingestion_approved_for_project": false
+      },
+      "rag_eligible": false,
+      "open_evidence_gaps": [
+        "Giáo viên rà lại phạm vi SGK và giới hạn mô hình.",
+        "Giữ tài liệu ngoài dự án ở mức dẫn nguồn."
+      ]
+    },
+    {
+      "lab_id": "chlorine-bleach",
+      "title": "Clo và tính tẩy màu trong điều kiện ẩm",
+      "config_path": "packages/lab-engine/labs/chlorine-bleach/lab.json",
+      "model_version": "chlorine-moisture-qualitative-v1",
+      "dataset_version": "lumilab-nine-draft-v1",
+      "reference_sources": [
+        {
+          "title": "OpenStax Chemistry 2e §18.11, HOCl",
+          "url": "https://openstax.org/books/chemistry-2e/pages/18-11-occurrence-preparation-and-properties-of-halogens",
+          "policy_id": "openstax"
+        },
+        {
+          "title": "SGK Hóa học 10 Kết nối tri thức, Bài 21, tr. 109, 111",
+          "url": "https://taphuan.nxbgd.vn/tap-huan/doc-sach/sgk-hoa-hoc-10.4700854983#page=109",
+          "policy_id": "nxbgdvn"
+        }
+      ],
+      "scientific_review": {
+        "status": "draft",
+        "reviewer": null,
+        "reviewed_on": null
+      },
+      "curriculum_review": {
+        "status": "pending",
+        "book_series": "Kết nối tri thức với cuộc sống",
+        "edition": null,
+        "grade": "10",
+        "lesson": "Bài 21",
+        "pages": "109 và 111",
+        "reviewer": null
+      },
+      "rights_review": {
+        "status": "pending",
+        "reviewer": null,
+        "grant_or_license_evidence": null,
+        "intended_current_use": "reference_links_and_model_cross_check",
+        "source_text_ingestion_approved_for_project": false
+      },
+      "rag_eligible": false,
+      "open_evidence_gaps": [
+        "Giáo viên rà lại phạm vi SGK và giới hạn mô hình.",
+        "Giữ tài liệu ngoài dự án ở mức dẫn nguồn."
       ]
     }
   ]

@@ -1,6 +1,17 @@
 import { activeLabIds, archivedLabIds, labDefinitions, type LabId } from '@lumilab/lab-engine';
 export const practiceIds: readonly LabId[] = activeLabIds;
 export const archivedPracticeIds: readonly LabId[] = archivedLabIds;
+export const practiceGroups: readonly { primary: LabId; title: string; modes: readonly LabId[] }[] = [
+  { primary: 'pendulum', title: 'Con lắc đơn', modes: ['pendulum'] },
+  { primary: 'spring', title: 'Con lắc lò xo', modes: ['spring', 'spring-damped'] },
+  { primary: 'mechanics', title: 'Newton II và mặt phẳng nghiêng', modes: ['mechanics', 'inclined-plane'] },
+  { primary: 'pulley', title: 'Ròng rọc và pa-lăng', modes: ['pulley'] },
+  { primary: 'parallel-circuit', title: 'Định luật Ohm, mạch nối tiếp và song song', modes: ['circuit', 'parallel-circuit'] },
+  { primary: 'capacitor', title: 'Nạp và xả tụ điện RC', modes: ['capacitor'] },
+  { primary: 'alkali-water', title: 'Na, K tác dụng với nước và màu ngọn lửa', modes: ['alkali-water'] },
+  { primary: 'copper-nitric', title: 'Đồng với HNO₃: NO và NO₂', modes: ['copper-nitric'] },
+  { primary: 'chlorine-bleach', title: 'Điều chế clo và tính tẩy màu', modes: ['chlorine-bleach'] },
+];
 export const practiceInfo: Record<LabId, { chapter: string; lead: string; action: string; label: string }> = {
   pendulum: { chapter: 'Dao động', lead: 'Điều gì làm chu kỳ thay đổi? Kéo quả nặng và thử từng giả thuyết.', action: 'Kéo quả nặng · đo chu kỳ', label: 'Mở lab con lắc' },
   spring: { chapter: 'Dao động', lead: 'Kéo rồi thả vật. So sánh khối lượng, độ cứng và nhịp dao động.', action: 'Thả vật · xem đồ thị x(t)', label: 'Mở lab con lắc lò xo' },
@@ -13,5 +24,11 @@ export const practiceInfo: Record<LabId, { chapter: string; lead: string; action
   'gas-reaction': { chapter: 'Phản ứng tạo khí', lead: 'Thêm bicarbonat vào axit. Thay lượng chất và so sánh thể tích CO₂.', action: 'Thêm chất · đo CO₂', label: 'Mở lab phản ứng tạo khí' },
   electrochemistry: { chapter: 'Điện hóa', lead: 'Đổi điện cực để khám phá chiều phản ứng và điện áp của pin.', action: 'Lắp điện cực · nối cầu muối', label: 'Mở lab pin điện hóa' },
   atomic: { chapter: 'Cấu tạo nguyên tử', lead: 'Lắp ghép proton, neutron và electron để hiểu nguyên tử, đồng vị và ion.', action: 'Mô hình hạt · so sánh p/n/e', label: 'Mở lab cấu tạo nguyên tử' },
+  'spring-damped': { chapter: 'Dao động', lead: 'Thay độ cản để quan sát biên độ và cơ năng giảm dần.', action: 'Đổi điều kiện · ghi kết quả', label: 'Mở lab Con lắc lò xo tắt dần' },
+  'inclined-plane': { chapter: 'Chuyển động và lực', lead: 'Đổi góc nghiêng và ma sát để tìm ngưỡng trượt.', action: 'Đổi điều kiện · ghi kết quả', label: 'Mở lab Newton II và mặt phẳng nghiêng' },
+  'pulley': { chapter: 'Chuyển động và lực', lead: 'Đếm nhánh dây đỡ để so lực kéo và quãng đường kéo.', action: 'Đổi điều kiện · ghi kết quả', label: 'Mở lab Ròng rọc và pa-lăng' },
+  'alkali-water': { chapter: 'Hóa học vô cơ', lead: 'Tách hiện tượng phản ứng với nước khỏi màu nhận biết ion.', action: 'Đổi điều kiện · ghi kết quả', label: 'Mở lab Na, K tác dụng với nước và màu ngọn lửa' },
+  'copper-nitric': { chapter: 'Hóa học vô cơ', lead: 'So sánh sản phẩm khí chính trong hai kịch bản đại diện.', action: 'Đổi điều kiện · ghi kết quả', label: 'Mở lab Đồng với HNO₃: NO và NO₂' },
+  'chlorine-bleach': { chapter: 'Hóa học vô cơ', lead: 'Xem nguyên lí tạo clo rồi so sánh giấy màu khô và ẩm.', action: 'Đổi điều kiện · ghi kết quả', label: 'Mở lab Clo và tính tẩy màu trong điều kiện ẩm' },
 };
 export function practiceTitle(id: LabId) { return labDefinitions[id].title; }

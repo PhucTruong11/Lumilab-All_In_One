@@ -1,15 +1,18 @@
 import { readFile } from 'node:fs/promises';
 import { expect, test } from '@playwright/test';
 
-const labs = ['pendulum', 'chemistry', 'circuit', 'mechanics', 'spring', 'parallel-circuit', 'capacitor', 'precipitation', 'gas-reaction'];
+const catalog = JSON.parse(await readFile(new URL('../../packages/lab-engine/labs/catalog.json', import.meta.url), 'utf8')) as {
+  active: string[];
+  archived: string[];
+};
+
+test.describe.configure({ mode: 'parallel' });
 test.skip(!process.env.LUMILAB_DATABASE_URL, 'Requires migrated PostgreSQL');
 
-test('each lab saves a server recomputation and restores its own session history after reload', async ({ page }) => {
-  test.setTimeout(60_000);
-  await page.goto('/#lab/pendulum');
-  const history = page.getByRole('region', { name: 'Lịch sử theo phiên trên máy chủ' });
-  for (const id of labs) {
-    await page.getByLabel('Chuyển bài thực hành').selectOption(id);
+for (const id of [...catalog.active, ...catalog.archived]) {
+  test(`saves and restores the server run and opens it in Lumi: ${id}`, async ({ page }) => {
+    await page.goto('/#lab/' + id);
+    const history = page.getByRole('region', { name: 'Lịch sử theo phiên trên máy chủ' });
     await page.getByRole('button', { name: 'Tính lại trên máy chủ' }).click();
     await page.getByText('Lịch sử theo phiên trên máy chủ', { exact: true }).click();
     const saved = page.waitForResponse(response =>
@@ -46,9 +49,8 @@ test('each lab saves a server recomputation and restores its own session history
     await expect(answer).toContainText('Dữ liệu chưa duyệt · Preview của lượt đã lưu');
     const [key, value] = Object.entries(run.result.preview)[0];
     await expect(answer).toContainText(key + ' = ' + (value === null ? '—' : String(value)));
-    await page.goto('/#lab/' + id);
-  }
-});
+  });
+}
 
 test('PostgreSQL isolates sessions and deduplicates concurrent retries', async ({ request }) => {
   const first = await request.post('/api/v1/sessions');

@@ -26,7 +26,13 @@
           "precipitation",
           "gas-reaction",
           "electrochemistry",
-          "atomic"
+          "atomic",
+          "spring-damped",
+          "inclined-plane",
+          "pulley",
+          "alkali-water",
+          "copper-nitric",
+          "chlorine-bleach"
         ]
       },
       "uniqueItems": true
@@ -46,7 +52,13 @@
           "precipitation",
           "gas-reaction",
           "electrochemistry",
-          "atomic"
+          "atomic",
+          "spring-damped",
+          "inclined-plane",
+          "pulley",
+          "alkali-water",
+          "copper-nitric",
+          "chlorine-bleach"
         ]
       },
       "uniqueItems": true
