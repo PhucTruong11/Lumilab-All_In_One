@@ -61,7 +61,7 @@ def titration(p, _time):
 def circuit(p, _time):
     slots = p["slots"]
     resistance = p["resistance_ohm"]
-    total = resistance + 20 * ("extraResistor" in slots) + 10 * ("bulb" in slots)
+    total = resistance + 20 * slots.count("extraResistor") + 10 * (slots.count("resistor10") + slots.count("bulb"))
     closed = "switchInstalled" not in slots or p["switchClosed"]
     valid = p["ammeter"] == "series" and p["voltmeter"] == "parallel"
     current = (p["voltage_V"] / total if closed else 0) if valid else None
@@ -70,7 +70,7 @@ def circuit(p, _time):
         "current_A": current,
         "resistorVoltage_V": None if current is None else current * resistance,
         "power_W": None if current is None else current * p["voltage_V"],
-        "bulbPower_W": None if current is None else current ** 2 * 10 * ("bulb" in slots),
+        "bulbPower_W": None if current is None else current ** 2 * 10 * slots.count("bulb"),
     }
 
 
@@ -155,7 +155,7 @@ def atomic(p, _time):
 MODELS = {
     "pendulum": ("pendulum-agm-v1", pendulum),
     "chemistry": ("ideal-strong-titration-ts-v1", titration),
-    "circuit": ("ideal-series-circuit-ts-v1", circuit),
+    "circuit": ("ideal-series-circuit-ts-v2", circuit),
     "mechanics": ("constant-force-motion-v1", mechanics),
     "spring": ("horizontal-hooke-oscillator-v1", spring),
     "electrochemistry": ("standard-galvanic-cell-v1", electrochemistry),

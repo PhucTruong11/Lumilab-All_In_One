@@ -5,6 +5,8 @@
   {"lab":"chemistry","parameters":{"baseVolume_ml":0},"expected":{"pH":1,"stage":"acid","remainingAcidMoles":0.0025}},
   {"lab":"chemistry","parameters":{"baseVolume_ml":50},"expected":{"pH":12.52287874528,"stage":"base","remainingBaseMoles":0.0025}},
   {"lab":"circuit","parameters":{"slots":["extraResistor","bulb",null]},"expected":{"valid":true,"closed":true,"totalResistance_ohm":50,"current_A":0.12,"resistorVoltage_V":2.4,"power_W":0.72,"bulbPower_W":0.144}},
+  {"lab":"circuit","parameters":{"slots":["bulb","bulb",null]},"expected":{"valid":true,"closed":true,"totalResistance_ohm":40,"current_A":0.15,"resistorVoltage_V":3,"power_W":0.9,"bulbPower_W":0.45}},
+  {"lab":"circuit","parameters":{"slots":["resistor10","extraResistor",null]},"expected":{"valid":true,"closed":true,"totalResistance_ohm":50,"current_A":0.12,"resistorVoltage_V":2.4,"power_W":0.72,"bulbPower_W":0}},
   {"lab":"circuit","parameters":{"slots":["switchInstalled",null,null],"switchClosed":false},"expected":{"valid":true,"closed":false,"current_A":0}},
   {"lab":"circuit","parameters":{"ammeter":"parallel"},"expected":{"valid":false,"current_A":null,"resistorVoltage_V":null}},
   {"lab":"mechanics","parameters":{"mass_kg":2,"force_N":-4,"initialVelocity_m_s":2},"time":3,"expected":{"acceleration_m_s2":-2,"velocity_m_s":-4,"position_m":-3,"kineticEnergy_J":16}},
