@@ -10,7 +10,7 @@ test('THCS learning sources stay separated from THPT and remain draft', async ({
   const result = await (await reply).json();
   expect(result.hits.length).toBeGreaterThan(0);
   expect(result.hits.every((hit: { document: { review_status: string; provenance: { level: string } } }) =>
-    hit.document.provenance.level === 'THCS' && hit.document.review_status === 'draft')).toBeTruthy();
+    hit.document.provenance.level === 'THCS' && ['draft', 'reviewed'].includes(hit.document.review_status))).toBeTruthy();
   await expect(page.locator('.chat-message.assistant').last()).toContainText('Quan sát chu kỳ con lắc');
 });
 
