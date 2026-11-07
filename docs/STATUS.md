@@ -28,13 +28,13 @@ Mốc M02 đang tích hợp trên nhánh `feat/full-web-engine-api` (Issue #5). 
 
 | Thành phần | Trạng thái tại B |
 | --- | --- |
-| Web | 9 lab hiện hành, bài học, soạn/quiz và Lumi UI; đã build |
-| Lab engine | 11 model TypeScript/config gồm 9 hiện hành, 2 lưu trữ; 74 unit test đạt |
-| API | FastAPI catalog, tính lại preview, phiên/lượt PostgreSQL, retrieval/Tutor; 508 pytest đạt, 9 skip khi không có DB |
-| Knowledge | 30 thẻ draft; data CLI lint/build đạt, 12 warning thiếu nguồn thứ hai |
-| E2E | 33 đạt, 3 skip khi không có PostgreSQL |
+| Web | 11 bài thực hành (14 mô hình hoạt động, 3 mô hình lưu trữ), bài học, soạn/quiz, bài tập thực hành Hóa/Lý và Lumi UI; đã build |
+| Lab engine | 17 model TypeScript/config gồm 14 mô hình hoạt động, 3 lưu trữ; 141 unit test đạt |
+| API | FastAPI catalog, tính lại preview, single-flight cache, phiên/lượt PostgreSQL, retrieval/Tutor; 714 pytest đạt, 12 skip khi không có DB |
+| Knowledge | 36 thẻ tri thức (10 reviewed, 26 draft); data CLI lint/build đạt |
+| E2E | 104 tests đạt Playwright |
 | Docker Compose | Web, API và PostgreSQL đã build và chạy healthy local; lab engine chạy trong web container/browser |
-| CI | Workflow web, API và E2E PostgreSQL đã cấu hình; xem Actions để biết kết quả mới nhất |
+| CI | Workflow web, API, E2E và Docker đã cấu hình và đạt |
 | Khoa học/AI | Preview/INSUFFICIENT_DATA; chưa VERIFIED. AI live tắt, budget 0 |
 
 Verify ở B đã có route, recompute Python, scientific stages, schema và golden vectors từ A. Tài liệu phạm vi và stage đã chuyển, điều chỉnh cho B tại `docs/VERIFICATION.md` và `docs/VERIFY-STAGES.md`. Test golden hiện dùng cả TypeScript/Python; các nguồn vẫn draft nên mọi kết quả hợp lệ tiếp tục là preview/`INSUFFICIENT_DATA`, không `VERIFIED`.
