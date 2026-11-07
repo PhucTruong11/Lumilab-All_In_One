@@ -1,7 +1,7 @@
-.lesson-list { display: grid; gap: 20px; }
+.lesson-list { display: grid; gap: 24px; row-gap: 24px; }
 .lesson-list .chapter-card { display: flex; flex-direction: column; align-items: flex-start; }
 .lesson-list .chapter-card .primary-button { margin-top: auto; }
 
 @media (max-width: 760px) {
-  .lesson-list { gap: 14px; }
+  .lesson-list { gap: 16px; row-gap: 16px; }
 }

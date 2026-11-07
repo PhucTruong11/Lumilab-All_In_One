@@ -73,20 +73,6 @@
       "token_scope": "model"
     },
     {
-      "id": "openrouter-candidate",
-      "provider": "openrouter",
-      "model": "REQUIRES_ACCOUNT_MODEL_SELECTION",
-      "role": "fallback",
-      "enabled": false,
-      "account_verified": false,
-      "policy_verified": false,
-      "quota_verified": false,
-      "minors_approved": false,
-      "free_only": true,
-      "api_key_env": "LUMILAB_OPENROUTER_API_KEY",
-      "local_url": null
-    },
-    {
       "id": "local-qwen",
       "provider": "local",
       "model": "Qwen3-4B-Instruct-2507",
