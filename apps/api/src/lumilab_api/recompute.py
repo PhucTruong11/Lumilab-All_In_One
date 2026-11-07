@@ -101,7 +101,7 @@ def recompute(
     result.checks_passed = ["schema", "model_scope", "server_recompute"]
     result.checks_skipped.remove("server_recompute")
     result.stage_checks = [StageCheck.model_validate(item) for item in
-                           check_science(lab_id, parameters, result.preview)]
+                           check_science(lab_id, parameters, result.preview, payload.elapsed_s)]
     for check in result.stage_checks:
         if check.status == "pass":
             result.checks_passed.append(check.stage)

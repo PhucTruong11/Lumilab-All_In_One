@@ -68,6 +68,34 @@ def test_pulley_rejects_unsupported_strands(client):
     assert response.json()["preview"] is None
 
 
+@pytest.mark.parametrize(("lab", "elapsed", "changes"), [
+    ("spring-damped", 1, {"time_s": 0.5}),
+    ("spring-damped", 1, {"displacement_m": 0.1}),
+    ("spring-damped", 1, {"envelope_m": 0.4}),
+    ("inclined-plane", 1, {"time_s": 0.5}),
+    ("inclined-plane", 1, {"state": "Đến cuối dốc"}),
+    ("pulley", 0, {"pull_N": 1, "work_J": 1}),
+    ("alkali-water", 0, {"detail": "Phản ứng tạo chất khác."}),
+    ("copper-nitric", 0, {"detail": "Khí không xuất hiện."}),
+    ("chlorine-bleach", 0, {"detail": "Giấy khô tẩy màu rõ."}),
+])
+def test_tampered_curriculum_reading_cannot_be_saved_as_preview(client, monkeypatch, lab, elapsed, changes):
+    config = json.loads((ROOT / f"packages/lab-engine/labs/{lab}/lab.json")
+                        .read_text(encoding="utf-8"))
+    original = recompute_module.MODELS[lab]
+    monkeypatch.setitem(recompute_module.MODELS, lab,
+                        (original[0], lambda parameters, time: original[1](parameters, time) | changes))
+    response = client.post(f"/api/v1/verification/labs/{lab}", json={
+        "model_version": config["model_version"], "dataset_version": config["dataset_version"],
+        "parameters": config["defaults"], "elapsed_s": elapsed,
+    })
+    assert response.status_code == 200
+    result = response.json()
+    assert result["status"] == "INVALID"
+    assert result["preview"] is None
+    assert result["facts"] == {} and result["evidence"] == []
+
+
 @pytest.mark.parametrize("lab", ["spring-damped", "inclined-plane", "pulley", "alkali-water",
                                  "copper-nitric", "chlorine-bleach"])
 def test_new_labs_retrieve_authored_drafts_only_when_enabled(client, lab):

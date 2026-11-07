@@ -1,5 +1,13 @@
 # Trạng thái repo B
 
+## Kiểm Verify dataset 9 bài · 07/11/2026
+
+Sáu mô hình mới giữ preview nháp. Cổng Verify nay ràng buộc thời điểm request với lò xo có cản và mặt phẳng nghiêng, đối chiếu quỹ đạo/trạng thái, công ròng rọc và diễn giải của ba kịch bản Hóa. Bộ golden chung tăng từ 19 lên 22 ca, thêm li độ thả âm, ngưỡng ma sát nghỉ và ròng rọc hai nhánh. Các ca cố ý sửa sai reading phải trả `INVALID`, `preview=null`, `facts={}`, `evidence=[]`.
+
+Web trình bày toàn bộ preview máy chủ và preview trong lịch sử bằng nhãn tiếng Việt, đơn vị và số làm tròn; file lịch sử JSON vẫn giữ số gốc. Kiểm Playwright riêng cho phản ứng sinh khí xác nhận nhãn thể tích CO₂ lý thuyết và không còn khối JSON thô trong mục số liệu mở rộng.
+
+Kiểm local sau sửa: Ruff đạt; API **674 passed, 10 skipped** khi không cấp DB test và thư viện tùy chọn; TypeScript **99 unit passed**; `check:web` và `build:web` đạt; Playwright headless **19 ca liên quan đạt**. Các ca PostgreSQL vẫn cần CI với DB test riêng. Đây là kiểm nhất quán kỹ thuật của model draft, chưa có duyệt nguồn/claim T2/T4 hoặc trạng thái `VERIFIED`.
+
 ## 9 bài hiện hành đã tích hợp vào main
 
 Phòng thực hành có 6 bài Vật lí và 3 bài Hóa vô cơ. Ba bài ghép có hai chế độ, tạo thành 12 mô hình hiện hành. Năm mô hình lưu trữ hỗ trợ phiên và nội dung cũ. Học liệu và kết quả khoa học ở trạng thái nháp. Chi tiết triển khai và kiểm thử tại [bàn giao 9 bài](tasks/NINE-LABS.md).
