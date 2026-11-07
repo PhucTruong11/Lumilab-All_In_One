@@ -7,7 +7,7 @@ import { ChemistryLab } from './ChemistryLab';
 import { CircuitLab } from './CircuitLab';
 import { LabSessionTools, LearningJourney, useLabClock } from './LabSessionTools';
 import { labDefinitions, type LabId } from '@lumilab/lab-engine';
-import { archivedPracticeIds, practiceGroups, practiceIds, practiceInfo } from '../data/practice';
+import { practiceGroups, practiceIds, practiceInfo } from '../data/practice';
 export type { LabId } from '@lumilab/lab-engine';
 
 const MechanicsLab = lazy(() => import('./MechanicsLab').then(m => ({ default: m.MechanicsLab })));
@@ -99,15 +99,6 @@ export function LabWorkspace({
                   ))}
               </optgroup>
             ))}
-            {archivedPracticeIds.length > 0 && (
-              <optgroup label="Bài lưu trữ — tương thích phiên cũ">
-                {archivedPracticeIds.map(id => (
-                  <option key={id} value={id}>
-                    {labDefinitions[id].title}
-                  </option>
-                ))}
-              </optgroup>
-            )}
           </select>
         </label>
       </div>
