@@ -1,12 +1,14 @@
 """Validate browser model inputs against the same repository schemas."""
 import json
+from collections.abc import Mapping
 from dataclasses import dataclass
+from datetime import date
 from math import isfinite
 from pathlib import Path
-from typing import Any
+from typing import Any, Literal
 
 from jsonschema import Draft7Validator
-from pydantic import Field
+from pydantic import BaseModel, ConfigDict, Field
 
 from lumilab_api.readings import MODELS
 from lumilab_api.scientific_checks import check_science, required_science_stages
@@ -20,6 +22,77 @@ class RecomputeInput(VerificationInput):
     elapsed_s: Number = 0
 
 
+ReviewStageStatus = Literal["pending", "draft", "reviewed", "approved"]
+
+
+class VerificationClaimItem(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    id: str = Field(min_length=1)
+    statement: str = Field(min_length=1)
+    source_refs: list[str]
+    reference_tests: list[str]
+    science_review: ReviewStageStatus
+
+
+class VerificationClaimRecord(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    schema_version: Literal[1]
+    knowledge_id: str = Field(min_length=1)
+    lab_id: str = Field(min_length=1)
+    model_version: str = Field(min_length=1)
+    dataset_version: str = Field(min_length=1)
+    status: Literal["draft", "reviewed", "approved"]
+    scope: dict[str, Any]
+    claims: list[VerificationClaimItem] = Field(min_length=1)
+    source_review: ReviewStageStatus
+    rights_review: ReviewStageStatus
+    reviewed_by: str | None = None
+    reviewed_on: date | None = None
+    verified_eligible: bool = False
+
+    def is_approved_for(
+        self, lab_id: str, model_version: str, dataset_version: str, parameters: Mapping[str, Any],
+    ) -> bool:
+        if not self.verified_eligible or self.status not in {"reviewed", "approved"}:
+            return False
+        if self.source_review not in {"reviewed", "approved"} or self.rights_review not in {"reviewed", "approved"}:
+            return False
+        if not self.reviewed_by or not self.reviewed_by.strip() or self.reviewed_on is None:
+            return False
+        if (self.lab_id, self.model_version, self.dataset_version) != (lab_id, model_version, dataset_version):
+            return False
+        if not all(
+            claim.science_review in {"reviewed", "approved"} and claim.source_refs and claim.reference_tests
+            for claim in self.claims
+        ):
+            return False
+        for key, value in parameters.items():
+            if key not in self.scope:
+                continue
+            bound = self.scope[key]
+            if isinstance(bound, list) and len(bound) == 2:
+                if not (isinstance(value, (int, float)) and bound[0] <= value <= bound[1]):
+                    return False
+            elif isinstance(bound, (int, float)):
+                if value != bound:
+                    return False
+        return True
+
+
+def load_verification_claims(knowledge_root: Path) -> dict[str, VerificationClaimRecord]:
+    verification_dir = knowledge_root / "verification"
+    if not verification_dir.is_dir():
+        return {}
+    claims: dict[str, VerificationClaimRecord] = {}
+    for path in sorted(verification_dir.glob("*.json")):
+        record = VerificationClaimRecord.model_validate_json(path.read_text(encoding="utf-8"))
+        existing = claims.get(record.lab_id)
+        if existing is not None and existing != record:
+            raise ValueError(f"Conflicting verification claim records for {record.lab_id}")
+        claims[record.lab_id] = record
+    return claims
+
+
 @dataclass(frozen=True)
 class RuntimeDefinition:
     model_version: str
@@ -28,9 +101,10 @@ class RuntimeDefinition:
     validator: Draft7Validator
     configuration: dict[str, Any]
     lifecycle: str
+    claim: VerificationClaimRecord | None = None
 
 
-def load_runtime_definitions(root: Path) -> dict[str, RuntimeDefinition]:
+def load_runtime_definitions(root: Path, knowledge_dir: Path | None = None) -> dict[str, RuntimeDefinition]:
     schema = json.loads((root / "schemas/runtime-lab.schema.json").read_text(encoding="utf-8"))
     index = json.loads((root / "labs/catalog.json").read_text(encoding="utf-8"))
     index_schema = json.loads((root / "schemas/catalog.schema.json").read_text(encoding="utf-8"))
@@ -38,6 +112,7 @@ def load_runtime_definitions(root: Path) -> dict[str, RuntimeDefinition]:
     ids = index["active"] + index["archived"]
     if len(ids) != len(set(ids)) or set(ids) != set(MODELS):
         raise ValueError("Runtime catalog must list each supported model exactly once")
+    claims = load_verification_claims(knowledge_dir or (root.parent.parent / "knowledge"))
     definitions = {}
     for lab_id, (version, _) in MODELS.items():
         raw = json.loads((root / "labs" / lab_id / "lab.json").read_text(encoding="utf-8"))
@@ -50,6 +125,7 @@ def load_runtime_definitions(root: Path) -> dict[str, RuntimeDefinition]:
         definitions[lab_id] = RuntimeDefinition(
             version, raw["dataset_version"], raw.get("duration_s", 86400), validator,
             raw, "archived" if lab_id in index["archived"] else "active",
+            claim=claims.get(lab_id),
         )
     return definitions
 
@@ -123,4 +199,23 @@ def recompute(
             or not required_stages.issubset(passed_stages)):
         result.code, result.layer = "SCIENTIFIC_CHECKS_INCOMPLETE", "science"
         result.preview = None
+        return result
+
+    if lab.claim is not None and lab.claim.is_approved_for(
+        lab_id, lab.model_version, lab.dataset_version, parameters,
+    ):
+        result.status = "VERIFIED"
+        result.code = "VERIFIED"
+        result.layer = "evidence"
+        result.checks_passed.append("reviewed_evidence")
+        result.checks_skipped.remove("reviewed_evidence")
+        result.facts = {
+            key: float(value)
+            for key, value in result.preview.items()
+            if type(value) in (int, float)
+        }
+        result.evidence = [f"{lab.claim.knowledge_id}:{claim.id}" for claim in lab.claim.claims]
+        result.limitations = [
+            "Verified within the declared ideal model scope and reviewed claim bounds."
+        ]
     return result

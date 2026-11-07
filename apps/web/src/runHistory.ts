@@ -9,16 +9,20 @@ export interface DraftLabRun extends PreviewInput {
   lab_id: LabId;
   request_id: string;
   saved_at: string;
-  status: 'INSUFFICIENT_DATA';
-  code: 'REVIEWED_EVIDENCE_REQUIRED';
+  status: 'INSUFFICIENT_DATA' | 'VERIFIED';
+  code: 'REVIEWED_EVIDENCE_REQUIRED' | 'VERIFIED';
   preview: Record<string, PreviewValue>;
+  facts?: Record<string, number>;
+  evidence?: string[];
 }
 
 function isDraftRun(value: unknown, id: LabId): value is DraftLabRun {
   if (!value || typeof value !== 'object') return false;
   const run = value as Partial<DraftLabRun>;
-  return run.schema_version === 1 && run.lab_id === id &&
-    run.status === 'INSUFFICIENT_DATA' && run.code === 'REVIEWED_EVIDENCE_REQUIRED' &&
+  const validStatus =
+    (run.status === 'INSUFFICIENT_DATA' && run.code === 'REVIEWED_EVIDENCE_REQUIRED') ||
+    (run.status === 'VERIFIED' && run.code === 'VERIFIED');
+  return run.schema_version === 1 && run.lab_id === id && validStatus &&
     typeof run.request_id === 'string' && !!run.request_id &&
     typeof run.saved_at === 'string' && Number.isFinite(Date.parse(run.saved_at)) &&
     typeof run.model_version === 'string' && typeof run.dataset_version === 'string' &&

@@ -113,8 +113,19 @@ def session_router(engine: Engine | None, labs: dict[str, RuntimeDefinition]) ->
             return stored(existing)
 
         result = recompute(payload.lab_id, labs[payload.lab_id], payload, request.state.request_id)
-        if (result.preview is None or result.status != "INSUFFICIENT_DATA"
-                or result.code != "REVIEWED_EVIDENCE_REQUIRED" or result.facts or result.evidence):
+        valid_draft = (
+            result.status == "INSUFFICIENT_DATA"
+            and result.code == "REVIEWED_EVIDENCE_REQUIRED"
+            and not result.facts
+            and not result.evidence
+        )
+        valid_verified = (
+            result.status == "VERIFIED"
+            and result.code == "VERIFIED"
+            and bool(result.facts)
+            and bool(result.evidence)
+        )
+        if result.preview is None or not (valid_draft or valid_verified):
             raise HTTPException(409 if result.code == "REVISION_MISMATCH" else 422)
         row = connection.execute(runs.insert().values(
             id=uuid4(), session_id=session_id, idempotency_key=payload.idempotency_key,

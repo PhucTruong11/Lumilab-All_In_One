@@ -1,5 +1,6 @@
 """HTTP contract regressions for draft calculation and retrieval integration."""
 import json
+from dataclasses import replace
 from pathlib import Path
 
 import pytest
@@ -100,9 +101,19 @@ def test_every_runtime_model_has_complete_science_stages_at_defaults():
                                    json=payload | {"parameters": config["defaults"]})
             assert response.status_code == 200, lab_id
             result = response.json()
-            assert result["code"] == "REVIEWED_EVIDENCE_REQUIRED", lab_id
-            assert result["preview"] is not None and result["facts"] == {}, lab_id
-            assert result["evidence"] == [], lab_id
+            if lab_id == "pendulum":
+                assert result["status"] == "VERIFIED", lab_id
+                assert result["code"] == "VERIFIED", lab_id
+                assert result["preview"] is not None and result["facts"], lab_id
+                assert result["evidence"] == [
+                    "VL-CONLAC-01:period-agm",
+                    "VL-CONLAC-01:length-ratio",
+                    "VL-CONLAC-01:small-angle-learning",
+                ], lab_id
+            else:
+                assert result["code"] == "REVIEWED_EVIDENCE_REQUIRED", lab_id
+                assert result["preview"] is not None and result["facts"] == {}, lab_id
+                assert result["evidence"] == [], lab_id
 
 
 def test_pendulum_dataset_length_comparison_stays_draft():
@@ -117,10 +128,43 @@ def test_pendulum_dataset_length_comparison_stays_draft():
                                    json=payload | {"parameters": parameters})
             assert response.status_code == 200
             result = response.json()
-            assert result["code"] == "REVIEWED_EVIDENCE_REQUIRED"
-            assert result["facts"] == {} and result["evidence"] == []
+            assert result["status"] == "VERIFIED"
+            assert result["code"] == "VERIFIED"
+            assert result["facts"]["period_s"] == result["preview"]["period_s"]
+            assert "VL-CONLAC-01:length-ratio" in result["evidence"]
             periods.append(result["preview"]["period_s"])
     assert periods[1] / periods[0] == pytest.approx(2, rel=2e-9)
+
+
+@pytest.mark.parametrize("overrides", [
+    {"verified_eligible": False},
+    {"status": "draft"},
+    {"source_review": "draft"},
+    {"rights_review": "pending"},
+    {"reviewed_by": None},
+    {"dataset_version": "2026-01-01-stale"},
+])
+def test_unapproved_or_mismatched_claim_record_stays_insufficient_data(overrides):
+    from lumilab_api.recompute import RecomputeInput, load_runtime_definitions, recompute
+
+    runtime = load_runtime_definitions(ROOT / "packages/lab-engine", ROOT / "knowledge")
+    lab = runtime["pendulum"]
+    modified_claim = lab.claim.model_copy(update=overrides)
+    unapproved_lab = replace(lab, claim=modified_claim)
+    result = recompute(
+        "pendulum",
+        unapproved_lab,
+        RecomputeInput(
+            model_version=lab.model_version,
+            dataset_version=lab.dataset_version,
+            parameters=lab.configuration["defaults"],
+        ),
+        "test-req",
+    )
+    assert result.status == "INSUFFICIENT_DATA"
+    assert result.code == "REVIEWED_EVIDENCE_REQUIRED"
+    assert result.facts == {} and result.evidence == []
+    assert "reviewed_evidence" in result.checks_skipped
 
 
 def test_runtime_catalog_keeps_archived_models_out_of_default_list():

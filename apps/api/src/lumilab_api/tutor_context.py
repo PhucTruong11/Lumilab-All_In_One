@@ -38,8 +38,8 @@ class DraftRunEvidence(BaseModel):
     lab_id: str
     model_version: str
     dataset_version: str
-    status: Literal["INSUFFICIENT_DATA"] = "INSUFFICIENT_DATA"
-    review_status: Literal["draft"] = "draft"
+    status: Literal["INSUFFICIENT_DATA", "VERIFIED"] = "INSUFFICIENT_DATA"
+    review_status: Literal["draft", "reviewed"] = "draft"
     notice: Literal[PREVIEW_NOTICE] = PREVIEW_NOTICE
     preview: dict[str, JsonValue]
 
@@ -82,8 +82,19 @@ def build_tutor_context(
         if stored is None or stored.run_id != task.run_id or stored.lab_id != task.lab_id:
             raise TutorContextError("Owned run not found for this task")
         result = stored.result
-        if (result.status != "INSUFFICIENT_DATA" or result.code != "REVIEWED_EVIDENCE_REQUIRED"
-                or result.preview is None or result.facts or result.evidence):
+        valid_draft = (
+            result.status == "INSUFFICIENT_DATA"
+            and result.code == "REVIEWED_EVIDENCE_REQUIRED"
+            and not result.facts
+            and not result.evidence
+        )
+        valid_verified = (
+            result.status == "VERIFIED"
+            and result.code == "VERIFIED"
+            and bool(result.facts)
+            and bool(result.evidence)
+        )
+        if result.preview is None or not (valid_draft or valid_verified):
             raise TutorContextError("This context version accepts draft preview only")
         if (result.model_version != stored.input.model_version
                 or result.dataset_version != stored.input.dataset_version):
@@ -96,7 +107,10 @@ def build_tutor_context(
             raise TutorContextError("Run preview exceeds context limit")
         run = DraftRunEvidence(
             run_id=stored.run_id, lab_id=stored.lab_id, model_version=result.model_version,
-            dataset_version=result.dataset_version, preview=json.loads(serialized),
+            dataset_version=result.dataset_version,
+            status=result.status,
+            review_status="reviewed" if valid_verified else "draft",
+            preview=json.loads(serialized),
         )
     return TutorContext(
         task=task.model_copy(deep=True), corpus_revision=retrieved.corpus_revision,

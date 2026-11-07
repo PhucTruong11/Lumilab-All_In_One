@@ -77,12 +77,16 @@ export function LumiChat({ active, labId, openLab }: { active: boolean; labId: L
       let source: string | undefined;
       try {
         const run = await getServerRun(savedRun.id, AbortSignal.any([controller.signal, AbortSignal.timeout(8000)]));
-        if (run.lab_id !== lessonId || run.run_id !== savedRun.id ||
-            run.result.status !== 'INSUFFICIENT_DATA' || run.result.code !== 'REVIEWED_EVIDENCE_REQUIRED' ||
+        const validRunStatus =
+          (run.result.status === 'INSUFFICIENT_DATA' && run.result.code === 'REVIEWED_EVIDENCE_REQUIRED') ||
+          (run.result.status === 'VERIFIED' && run.result.code === 'VERIFIED');
+        if (run.lab_id !== lessonId || run.run_id !== savedRun.id || !validRunStatus ||
             !isPreview(run.result.preview)) throw new Error('Invalid draft run');
         const title = lessons.find(item => item.id === run.lab_id)?.title ?? run.lab_id;
         source = title + ' · Lượt đã lưu trên máy chủ';
-        reply = 'Dữ liệu chưa duyệt · Preview của lượt đã lưu\n' +
+        reply = (run.result.status === 'VERIFIED'
+          ? 'Đã kiểm chứng (VERIFIED) · Số liệu của lượt đã lưu\n'
+          : 'Dữ liệu chưa duyệt · Preview của lượt đã lưu\n') +
           'Thời điểm mô phỏng ' + run.input.elapsed_s + ' s\n\n' +
           Object.entries(run.result.preview).map(([key, value]) =>
             key + ' = ' + (value === null ? '—' : String(value))).join('\n') +

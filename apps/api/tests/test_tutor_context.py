@@ -97,6 +97,18 @@ def test_context_rejects_wrong_lab_or_non_draft_run(inputs):
         build_tutor_context(task, retrieved, session_id=session_id, repository=repository)
 
 
+def test_context_accepts_verified_run_with_approved_evidence(inputs):
+    task, retrieved, repository, session_id, stored = inputs
+    stored.result.status = "VERIFIED"
+    stored.result.code = "VERIFIED"
+    stored.result.facts = {"current_A": 0.5}
+    stored.result.evidence = ["VL-CONLAC-01:period-agm"]
+    context = build_tutor_context(task, retrieved, session_id=session_id, repository=repository)
+    assert context.run.status == "VERIFIED"
+    assert context.run.review_status == "reviewed"
+    assert context.run.preview == {"current_A": 0.5}
+
+
 def test_gateway_keeps_preview_outside_provider_output(inputs):
     task, retrieved, repository, session_id, _ = inputs
     context = build_tutor_context(task, retrieved, session_id=session_id, repository=repository)

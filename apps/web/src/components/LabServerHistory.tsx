@@ -82,7 +82,7 @@ export function LabServerHistory({ id, preview }: { id: LabId; preview: DraftLab
       {!!items.length && <ol>{items.map(run => <li key={run.run_id}>
         <details>
           <summary><time dateTime={run.saved_at}>{new Date(run.saved_at).toLocaleString('vi-VN')}</time>
-            {' · Dữ liệu chưa duyệt'}</summary>
+            {run.result.status === 'VERIFIED' ? ' · Đã kiểm chứng (VERIFIED)' : ' · Dữ liệu chưa duyệt'}</summary>
           <p>Mô hình {run.input.model_version} · Dữ liệu {run.input.dataset_version} · {run.input.elapsed_s} s</p>
           <p>Thông số đã gửi</p>
           <pre style={{ whiteSpace: 'pre-wrap', overflowWrap: 'anywhere' }}>{JSON.stringify(run.input.parameters, null, 2)}</pre>

@@ -176,14 +176,20 @@
           "type": "string"
         },
         "status": {
-          "const": "INSUFFICIENT_DATA",
           "default": "INSUFFICIENT_DATA",
+          "enum": [
+            "INSUFFICIENT_DATA",
+            "VERIFIED"
+          ],
           "title": "Status",
           "type": "string"
         },
         "review_status": {
-          "const": "draft",
           "default": "draft",
+          "enum": [
+            "draft",
+            "reviewed"
+          ],
           "title": "Review Status",
           "type": "string"
         },

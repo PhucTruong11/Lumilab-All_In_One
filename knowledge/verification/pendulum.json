@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "knowledge_id": "VL-CONLAC-01",
+  "lab_id": "pendulum",
+  "model_version": "pendulum-agm-v1",
+  "dataset_version": "client-draft-2026-11-01",
+  "status": "approved",
+  "scope": {
+    "model": "Ideal point mass on an inextensible string without friction; nonlinear AGM period.",
+    "length_m": [0.3, 2],
+    "mass_kg": [0.1, 1],
+    "angle_deg": [0, 90],
+    "gravity_m_s2": 9.81,
+    "stationary_release": "At 0 degrees, period is undefined."
+  },
+  "claims": [
+    {
+      "id": "period-agm",
+      "statement": "The runtime period uses the nonlinear AGM model for nonzero release angles through 90 degrees.",
+      "source_refs": ["NIST DLMF §22.19", "NIST DLMF §19.8"],
+      "reference_tests": ["tests/golden/server-readings.json: pendulum angle_deg=90", "apps/api/tests/test_scientific_checks.py: pendulum invariants"],
+      "science_review": "approved"
+    },
+    {
+      "id": "length-ratio",
+      "statement": "For fixed nonzero angle and gravity, multiplying length by four doubles the ideal model period.",
+      "source_refs": ["NIST DLMF §22.19"],
+      "reference_tests": ["apps/api/tests/test_expansion_routes.py: test_pendulum_dataset_length_comparison_stays_draft"],
+      "science_review": "approved"
+    },
+    {
+      "id": "small-angle-learning",
+      "statement": "The learning card uses the small-angle approximation T ≈ 2π√(L/g) for nonzero release angles up to 10 degrees, where relative period error vs nonlinear AGM is below 0.2%.",
+      "source_refs": ["OS-UP1 §15.4", "NIST DLMF §22.19"],
+      "reference_tests": ["apps/api/tests/test_expansion_routes.py: test_pendulum_dataset_length_comparison_stays_draft"],
+      "science_review": "approved"
+    }
+  ],
+  "source_review": "approved",
+  "rights_review": "approved",
+  "reviewed_by": "Trương Trọng Phúc, Văn Nam",
+  "reviewed_on": "2026-11-08",
+  "verified_eligible": true
+}

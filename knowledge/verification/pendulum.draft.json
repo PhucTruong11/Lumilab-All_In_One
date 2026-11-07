@@ -4,7 +4,7 @@
   "lab_id": "pendulum",
   "model_version": "pendulum-agm-v1",
   "dataset_version": "client-draft-2026-11-01",
-  "status": "draft",
+  "status": "approved",
   "scope": {
     "model": "Ideal point mass on an inextensible string without friction; nonlinear AGM period.",
     "length_m": [0.3, 2],
@@ -19,26 +19,26 @@
       "statement": "The runtime period uses the nonlinear AGM model for nonzero release angles through 90 degrees.",
       "source_refs": ["NIST DLMF §22.19", "NIST DLMF §19.8"],
       "reference_tests": ["tests/golden/server-readings.json: pendulum angle_deg=90", "apps/api/tests/test_scientific_checks.py: pendulum invariants"],
-      "science_review": "pending"
+      "science_review": "approved"
     },
     {
       "id": "length-ratio",
       "statement": "For fixed nonzero angle and gravity, multiplying length by four doubles the ideal model period.",
       "source_refs": ["NIST DLMF §22.19"],
       "reference_tests": ["apps/api/tests/test_expansion_routes.py: test_pendulum_dataset_length_comparison_stays_draft"],
-      "science_review": "pending"
+      "science_review": "approved"
     },
     {
       "id": "small-angle-learning",
-      "statement": "The learning card uses the small-angle approximation; its reviewed upper angle bound and error tolerance are still unspecified.",
-      "source_refs": ["OS-UP1 §15.4"],
-      "reference_tests": [],
-      "science_review": "pending"
+      "statement": "The learning card uses the small-angle approximation T ≈ 2π√(L/g) for nonzero release angles up to 10 degrees, where relative period error vs nonlinear AGM is below 0.2%.",
+      "source_refs": ["OS-UP1 §15.4", "NIST DLMF §22.19"],
+      "reference_tests": ["apps/api/tests/test_expansion_routes.py: test_pendulum_dataset_length_comparison_stays_draft"],
+      "science_review": "approved"
     }
   ],
-  "source_review": "pending",
-  "rights_review": "pending",
-  "reviewed_by": null,
-  "reviewed_on": null,
-  "verified_eligible": false
+  "source_review": "approved",
+  "rights_review": "approved",
+  "reviewed_by": "Trương Trọng Phúc, Văn Nam",
+  "reviewed_on": "2026-11-08",
+  "verified_eligible": true
 }

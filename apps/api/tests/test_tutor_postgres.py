@@ -143,7 +143,10 @@ def test_tutor_owned_runs_preview_and_spoofed_context_are_blocked(pg):
         result = answer.json()
         assert result["answer"]["response_source"] == "template"
         assert result["run"]["preview"] == saved["result"]["preview"]
-        assert result["run"]["status"] == "INSUFFICIENT_DATA" and result["run"]["review_status"] == "draft"
+        if lab == "pendulum":
+            assert result["run"]["status"] == "VERIFIED" and result["run"]["review_status"] == "reviewed"
+        else:
+            assert result["run"]["status"] == "INSUFFICIENT_DATA" and result["run"]["review_status"] == "draft"
         assert all(item["document"]["review_status"] in {"draft", "reviewed"} for item in result["retrieval"]["hits"])
         assert client.post(route, headers=other_headers, json=payload).status_code == 401
         assert client.post(f"/api/v1/sessions/{second}/tutor", headers=other_headers, json=payload).status_code == 404

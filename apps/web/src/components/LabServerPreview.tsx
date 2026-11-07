@@ -88,8 +88,11 @@ export function LabServerPreview({ id }: { id: LabId }) {
       if (active.current === controller) {
         const run: DraftLabRun = {
           ...input, schema_version: 1, lab_id: id, request_id: previewResponse.requestId,
-          saved_at: new Date().toISOString(), status: 'INSUFFICIENT_DATA',
-          code: 'REVIEWED_EVIDENCE_REQUIRED', preview: previewResponse.values,
+          saved_at: new Date().toISOString(), status: previewResponse.status,
+          code: previewResponse.code, preview: previewResponse.values,
+          ...(previewResponse.status === 'VERIFIED'
+            ? { facts: previewResponse.facts, evidence: previewResponse.evidence }
+            : {}),
         };
         setResult(run);
         setVerification(previewResponse);
@@ -116,18 +119,21 @@ export function LabServerPreview({ id }: { id: LabId }) {
   }
 
   const historical = result && (result.parameters !== state.parameters || result.elapsed_s !== state.elapsed_s);
+  const isVerified = result?.status === 'VERIFIED';
   return <section className="learning-journey" aria-label="Kết quả tính lại từ máy chủ">
     <div className="journey-body">
       <div className="journey-links">
         <button className="secondary-button" onClick={calculate} disabled={pending}>Tính lại trên máy chủ</button>
-        <strong>Dữ liệu chưa duyệt</strong>
+        <strong>{isVerified ? 'Đã kiểm chứng (VERIFIED)' : 'Dữ liệu chưa duyệt'}</strong>
       </div>
       {storageNotice && <p role="status">{storageNotice}</p>}
       {pending && <p role="status">Đang tính lại…</p>}
       {error && <p role="alert">{error}</p>}
       {result && <div aria-label="Bản xem trước từ máy chủ" role="status">
         <strong>Bản xem trước từ máy chủ</strong>
-        <p>Trạng thái Verify: Thiếu bằng chứng đã duyệt. Đây là số liệu tính lại từ mô hình, chưa phải kết quả được chứng nhận.</p>
+        <p>{isVerified
+          ? 'Trạng thái Verify: Đã kiểm chứng khoa học (VERIFIED) trong phạm vi mô hình đã duyệt.'
+          : 'Trạng thái Verify: Thiếu bằng chứng đã duyệt. Đây là số liệu tính lại từ mô hình, chưa phải kết quả được chứng nhận.'}</p>
         <p>Thời điểm chụp: {numberFormat.format(result.elapsed_s)} s.{historical && ' Đây là kết quả của lượt đã gửi. Hãy tính lại để xem lượt hiện tại.'}</p>
         <dl>{highlights[id].map(([key, label, unit]) => {
           const value = result.preview[key];
@@ -139,7 +145,9 @@ export function LabServerPreview({ id }: { id: LabId }) {
           <ServerReadingDetails reading={result.preview} />
         </details>
         {verification && <details><summary>Các bước kiểm và giới hạn</summary>
-          <p>Mã kết quả: {result.code}. Không có bằng chứng đã duyệt cho lượt này.</p>
+          <p>{isVerified
+            ? `Mã kết quả: ${result.code}. Bằng chứng đã duyệt: ${(result.evidence ?? []).join(', ')}.`
+            : `Mã kết quả: ${result.code}. Không có bằng chứng đã duyệt cho lượt này.`}</p>
           <ul>{verification.stageChecks.map(check => <li key={check.stage}>
             <strong>{stageLabels[check.stage] || check.stage}: {stageStatusLabels[check.status] || check.status}</strong>
             {' · '}{check.reason}
@@ -149,7 +157,7 @@ export function LabServerPreview({ id }: { id: LabId }) {
           {verification.limitations.length > 0 && <p>Giới hạn từ API: {verification.limitations.join(' ')}</p>}
           <p>Giả thiết mô hình:</p>
           <ul>{engine.definition.assumptions.map(item => <li key={item}>{item}</li>)}</ul>
-          <p>Nguồn tham khảo mô hình (chưa duyệt cho Verify):</p>
+          <p>{isVerified ? 'Nguồn tham khảo mô hình (đã duyệt cho Verify):' : 'Nguồn tham khảo mô hình (chưa duyệt cho Verify):'}</p>
           <ul>{engine.definition.sources.map(source => <li key={source.url}>
             <a href={source.url} target="_blank" rel="noreferrer">{source.label}</a>
           </li>)}</ul>
@@ -165,7 +173,7 @@ export function LabServerPreview({ id }: { id: LabId }) {
         <ol>{history.map(run => <li key={run.request_id}>
           <details>
             <summary><time dateTime={run.saved_at}>{new Date(run.saved_at).toLocaleString('vi-VN')}</time>
-              {' · Dữ liệu chưa duyệt'}</summary>
+              {run.status === 'VERIFIED' ? ' · Đã kiểm chứng (VERIFIED)' : ' · Dữ liệu chưa duyệt'}</summary>
             <p>Mô hình {run.model_version} · Dữ liệu {run.dataset_version} · Thời điểm mô phỏng {numberFormat.format(run.elapsed_s)} s</p>
             <p>Thông số đã gửi</p>
             <pre style={{ whiteSpace: 'pre-wrap', overflowWrap: 'anywhere' }}>{JSON.stringify(run.parameters, null, 2)}</pre>

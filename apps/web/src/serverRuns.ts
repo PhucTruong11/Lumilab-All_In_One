@@ -9,9 +9,11 @@ export type ServerRun = {
   saved_at: string;
   input: PreviewInput;
   result: {
-    status: 'INSUFFICIENT_DATA';
-    code: 'REVIEWED_EVIDENCE_REQUIRED';
+    status: 'INSUFFICIENT_DATA' | 'VERIFIED';
+    code: 'REVIEWED_EVIDENCE_REQUIRED' | 'VERIFIED';
     preview: Record<string, PreviewValue>;
+    facts?: Record<string, number>;
+    evidence?: string[];
   };
 };
 export type ServerRunPage = { items: ServerRun[]; next_offset: number | null };

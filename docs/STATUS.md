@@ -1,5 +1,11 @@
 # Trạng thái repo B
 
+## Mở cổng VERIFIED đầu tiên cho Con lắc đơn (VER-02) · 08/11/2026
+
+Hoàn thành phê duyệt T2/T4 (`VER-02` — Trương Trọng Phúc, Văn Nam) cho hồ sơ claim con lắc đơn `VL-CONLAC-01` tại [`knowledge/verification/pendulum.json`](../knowledge/verification/pendulum.json) và [`knowledge/verification/pendulum.draft.json`](../knowledge/verification/pendulum.draft.json), đồng bộ trạng thái nguồn `nist-pendulum`, `nist-agm` và mục curated `pendulum-ideal-agm`.
+
+API recompute (`/api/v1/verification/labs/pendulum`), lưu lượt theo phiên (`/api/v1/sessions/{id}/runs`) và `tutor_context` đã nối cổng bằng chứng đã duyệt: khi đủ stage khoa học bắt buộc (`physics_invariants: pass`) và khớp revision/phạm vi tham số của hồ sơ claim đã duyệt, `pendulum` trả `status="VERIFIED"`, `code="VERIFIED"`, `facts` chứa các đại lượng định lượng đã kiểm chứng và `evidence` chứa danh sách claim ID (`VL-CONLAC-01:period-agm`, `VL-CONLAC-01:length-ratio`, `VL-CONLAC-01:small-angle-learning`). 16 mô hình runtime còn lại và hai route sàng lọc phẳng P0 (`/api/v1/verification/physics`, `/chemistry`) tiếp tục giữ `INSUFFICIENT_DATA / REVIEWED_EVIDENCE_REQUIRED`. Web (`LabServerPreview`, `LabServerHistory`, `LumiChat`) hiển thị và lưu đúng trạng thái `Đã kiểm chứng (VERIFIED)` hoặc `Dữ liệu chưa duyệt`.
+
 ## Kiểm Verify dataset 9 bài · 07/11/2026
 
 Sáu mô hình mới giữ preview nháp. Cổng Verify nay ràng buộc thời điểm request với lò xo có cản và mặt phẳng nghiêng, đối chiếu quỹ đạo/trạng thái, công ròng rọc và diễn giải của ba kịch bản Hóa. Bộ golden chung tăng từ 19 lên 22 ca, thêm li độ thả âm, ngưỡng ma sát nghỉ và ròng rọc hai nhánh. Các ca cố ý sửa sai reading phải trả `INVALID`, `preview=null`, `facts={}`, `evidence=[]`.
@@ -31,15 +37,15 @@ Mốc M02 đang tích hợp trên nhánh `feat/full-web-engine-api` (Issue #5). 
 | Web | 9 lab hiện hành, bài học, soạn/quiz và Lumi UI; đã build |
 | Lab engine | 11 model TypeScript/config gồm 9 hiện hành, 2 lưu trữ; 74 unit test đạt |
 | API | FastAPI catalog, tính lại preview, phiên/lượt PostgreSQL, retrieval/Tutor; 508 pytest đạt, 9 skip khi không có DB |
-| Knowledge | 30 thẻ draft; data CLI lint/build đạt, 12 warning thiếu nguồn thứ hai |
+| Knowledge | 30 thẻ gồm 10 thẻ reviewed; data CLI lint/build đạt |
 | E2E | 33 đạt, 3 skip khi không có PostgreSQL |
 | Docker Compose | Web, API và PostgreSQL đã build và chạy healthy local; lab engine chạy trong web container/browser |
 | CI | Workflow web, API và E2E PostgreSQL đã cấu hình; xem Actions để biết kết quả mới nhất |
-| Khoa học/AI | Preview/INSUFFICIENT_DATA; chưa VERIFIED. AI live tắt, budget 0 |
+| Khoa học/AI | `pendulum` (`VL-CONLAC-01`) đã `VERIFIED`; các mô hình còn lại Preview/`INSUFFICIENT_DATA`. AI live tắt, budget 0 |
 
-Verify ở B đã có route, recompute Python, scientific stages, schema và golden vectors từ A. Tài liệu phạm vi và stage đã chuyển, điều chỉnh cho B tại `docs/VERIFICATION.md` và `docs/VERIFY-STAGES.md`. Test golden hiện dùng cả TypeScript/Python; các nguồn vẫn draft nên mọi kết quả hợp lệ tiếp tục là preview/`INSUFFICIENT_DATA`, không `VERIFIED`.
+Verify ở B đã có route, recompute Python, scientific stages, schema và golden vectors từ A. Tài liệu phạm vi và stage đã chuyển, điều chỉnh cho B tại `docs/VERIFICATION.md` và `docs/VERIFY-STAGES.md`. Test golden hiện dùng cả TypeScript/Python; mô hình `pendulum` đã được duyệt nguồn và trả `VERIFIED`, các mô hình còn lại tiếp tục là preview/`INSUFFICIENT_DATA`.
 
-Pilot con lắc có hồ sơ claim bản nháp tại `knowledge/verification/pendulum.draft.json`, gắn revision runtime và nêu rõ nguồn/ca kiểm còn chờ T2/T4 duyệt. Web hiện trình bày các stage, giới hạn và nguồn tham khảo chưa duyệt của phản hồi Verify. Chưa có nguồn đủ điều kiện hoặc nhánh API phát `VERIFIED`; phần này cần phối hợp T2/T3/T4 trước khi mở.
+Pilot con lắc có hồ sơ claim đã duyệt tại `knowledge/verification/pendulum.json` (`pendulum.draft.json`), gắn revision runtime và nguồn/ca kiểm đã được T2/T4 duyệt (`VER-02`). Web trình bày các stage, giới hạn và nguồn tham khảo của phản hồi Verify.
 
 Kiểm lại sau thay đổi UI/hồ sơ: `npm run check:web`, `npm run test:unit` (74 đạt), `npm run build:web`, Ruff đạt; pytest API với PostgreSQL local 521 đạt, 2 skip, 1 cảnh báo Starlette; Playwright E2E trên Docker web mới với PostgreSQL local 38 đạt. Không tính các ca skip là đạt, và chưa dùng kết quả này làm bằng chứng duyệt nguồn.
 

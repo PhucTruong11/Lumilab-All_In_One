@@ -1,8 +1,8 @@
 {
   "revision": "sources-draft-2026-11-01",
   "sources": [
-    {"id": "nist-pendulum", "title": "NIST DLMF 22.19 Classical Dynamics", "url": "https://dlmf.nist.gov/22.19", "section": "22.19(i)", "review_status": "draft"},
-    {"id": "nist-agm", "title": "NIST DLMF 19.8 Quadratic Transformations", "url": "https://dlmf.nist.gov/19.8", "section": "19.8(i)", "review_status": "draft"},
+    {"id": "nist-pendulum", "title": "NIST DLMF 22.19 Classical Dynamics", "url": "https://dlmf.nist.gov/22.19", "section": "22.19(i)", "review_status": "approved", "reviewed_by": "Trương Trọng Phúc, Văn Nam", "reviewed_on": "2026-11-08"},
+    {"id": "nist-agm", "title": "NIST DLMF 19.8 Quadratic Transformations", "url": "https://dlmf.nist.gov/19.8", "section": "19.8(i)", "review_status": "approved", "reviewed_by": "Trương Trọng Phúc, Văn Nam", "reviewed_on": "2026-11-08"},
     {"id": "openstax-titration", "title": "OpenStax Chemistry 2e: Acid-Base Titrations", "url": "https://openstax.org/books/chemistry-2e/pages/14-7-acid-base-titrations", "section": "14.7", "review_status": "draft"}
   ]
 }

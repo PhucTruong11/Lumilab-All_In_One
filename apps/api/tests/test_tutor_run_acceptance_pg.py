@@ -101,6 +101,6 @@ def test_tutor_run_preview_matches_saved_run_exactly(client):
     assert response.status_code == 200, response.text
     result = response.json()
     assert result["run"]["preview"] == saved["result"]["preview"]
-    assert result["run"]["status"] == "INSUFFICIENT_DATA"
-    assert result["run"]["review_status"] == "draft"
+    assert result["run"]["status"] == "VERIFIED"
+    assert result["run"]["review_status"] == "reviewed"
     assert result["answer"]["response_source"] == "template"

@@ -107,8 +107,8 @@ def smoke(base, git_sha, expected=None):
         "elapsed_s": 0, "idempotency_key": str(uuid4())}
     saved = request(base, path + "/runs", body=payload, token=token, expected=201)
     result = saved["result"]
-    require(result["status"] == "INSUFFICIENT_DATA" and result["code"] == "REVIEWED_EVIDENCE_REQUIRED"
-        and result["preview"] and not result["facts"] and not result["evidence"], "Draft boundary mismatch")
+    require(result["status"] == "VERIFIED" and result["code"] == "VERIFIED"
+        and result["preview"] and result["facts"] and result["evidence"], "Verified boundary mismatch")
     run_path = path + "/runs/" + saved["run_id"]
     require(request(base, run_path, token=token) == saved, "Owned run read differs")
     require(request(base, path + "/runs", body=payload, token=token)["run_id"] == saved["run_id"],

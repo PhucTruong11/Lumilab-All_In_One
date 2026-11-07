@@ -168,10 +168,25 @@ def test_server_reading_matches_shared_frontend_vector(settings, vector):
         response = client.post(f"/api/v1/verification/labs/{lab_id}", json=payload)
     assert response.status_code == 200
     result = response.json()
-    assert result["status"] == "INSUFFICIENT_DATA"
-    assert result["code"] == "REVIEWED_EVIDENCE_REQUIRED"
-    assert result["facts"] == {}
-    assert result["evidence"] == []
+    if lab_id == "pendulum":
+        assert result["status"] == "VERIFIED"
+        assert result["code"] == "VERIFIED"
+        assert result["facts"] == {
+            key: value
+            for key, value in result["preview"].items()
+            if type(value) in (int, float)
+        }
+        assert result["evidence"] == [
+            "VL-CONLAC-01:period-agm",
+            "VL-CONLAC-01:length-ratio",
+            "VL-CONLAC-01:small-angle-learning",
+        ]
+        assert "reviewed_evidence" in result["checks_passed"]
+    else:
+        assert result["status"] == "INSUFFICIENT_DATA"
+        assert result["code"] == "REVIEWED_EVIDENCE_REQUIRED"
+        assert result["facts"] == {}
+        assert result["evidence"] == []
     assert result["request_id"] == response.headers["X-Request-ID"]
     assert "server_recompute" in result["checks_passed"]
     for key, expected in vector["expected"].items():

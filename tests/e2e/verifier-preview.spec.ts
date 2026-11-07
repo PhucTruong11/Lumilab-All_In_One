@@ -7,6 +7,7 @@ test('all seven labs display and persist real server readings as unreviewed prev
   test.setTimeout(60_000);
   await page.goto('/#lab/pendulum');
   for (const lab of labs) {
+    const isPendulum = lab === 'pendulum';
     await page.getByLabel('Chuyển bài thực hành').selectOption(lab);
     const panel = page.getByRole('region', { name: 'Kết quả tính lại từ máy chủ' });
     const responsePromise = page.waitForResponse(response =>
@@ -18,28 +19,48 @@ test('all seven labs display and persist real server readings as unreviewed prev
     const input = response.request().postDataJSON();
     expect(Object.keys(input).sort()).toEqual(['dataset_version', 'elapsed_s', 'model_version', 'parameters']);
     const body = await response.json();
-    expect(body).toMatchObject({
-      status: 'INSUFFICIENT_DATA', code: 'REVIEWED_EVIDENCE_REQUIRED', facts: {}, evidence: [],
-    });
-    await expect(panel.getByText('Dữ liệu chưa duyệt', { exact: true })).toBeVisible();
+    if (isPendulum) {
+      expect(body).toMatchObject({
+        status: 'VERIFIED',
+        code: 'VERIFIED',
+        evidence: [
+          'VL-CONLAC-01:period-agm',
+          'VL-CONLAC-01:length-ratio',
+          'VL-CONLAC-01:small-angle-learning',
+        ],
+      });
+      expect(body.facts).toEqual(body.preview);
+      await expect(panel.getByText('Đã kiểm chứng (VERIFIED)', { exact: true })).toBeVisible();
+    } else {
+      expect(body).toMatchObject({
+        status: 'INSUFFICIENT_DATA', code: 'REVIEWED_EVIDENCE_REQUIRED', facts: {}, evidence: [],
+      });
+      await expect(panel.getByText('Dữ liệu chưa duyệt', { exact: true })).toBeVisible();
+    }
     await expect(panel.getByText('Bản xem trước từ máy chủ', { exact: true })).toBeVisible();
     await panel.getByText('Các bước kiểm và giới hạn').click();
-    await expect(panel).toContainText('Thiếu bằng chứng đã duyệt');
+    await expect(panel).toContainText(isPendulum ? 'Bằng chứng đã duyệt' : 'Thiếu bằng chứng đã duyệt');
     for (const check of body.stage_checks) {
       await expect(panel).toContainText(check.reason);
     }
-    await expect(panel).toContainText('Nguồn tham khảo mô hình (chưa duyệt cho Verify)');
+    await expect(panel).toContainText(
+      isPendulum
+        ? 'Nguồn tham khảo mô hình (đã duyệt cho Verify)'
+        : 'Nguồn tham khảo mô hình (chưa duyệt cho Verify)'
+    );
     await panel.getByText('Xem toàn bộ số liệu máy chủ').click();
     const details = panel.getByRole('status', { name: 'Bản xem trước từ máy chủ' }).locator('details').first();
     await expect(details.locator('dt')).toHaveCount(Object.keys(body.preview).length);
     await expect(details.locator('pre')).toHaveCount(0);
-    await expect(panel).not.toContainText(/\bVERIFIED\b/);
+    if (!isPendulum) {
+      await expect(panel).not.toContainText(/\bVERIFIED\b/);
+    }
     await expect(panel.getByText('Lịch sử lượt thử (1/20)')).toBeVisible();
     await page.reload();
     await panel.getByText('Lịch sử lượt thử (1/20)').click();
     const saved = panel.getByRole('listitem');
     await saved.locator('summary').click();
-    await expect(saved).toContainText('Dữ liệu chưa duyệt');
+    await expect(saved).toContainText(isPendulum ? 'Đã kiểm chứng (VERIFIED)' : 'Dữ liệu chưa duyệt');
     await expect(saved.locator('pre').nth(0)).toHaveText(JSON.stringify(input.parameters, null, 2));
     await expect(saved.locator('dl dt')).toHaveCount(Object.keys(body.preview).length);
     const history = await page.evaluate(id =>
@@ -47,7 +68,8 @@ test('all seven labs display and persist real server readings as unreviewed prev
     expect(history).toHaveLength(1);
     expect(history[0]).toMatchObject({
       ...input, schema_version: 1, lab_id: lab, request_id: body.request_id,
-      status: 'INSUFFICIENT_DATA', code: 'REVIEWED_EVIDENCE_REQUIRED',
+      status: isPendulum ? 'VERIFIED' : 'INSUFFICIENT_DATA',
+      code: isPendulum ? 'VERIFIED' : 'REVIEWED_EVIDENCE_REQUIRED',
     });
     if (lab === 'atomic') {
       const download = page.waitForEvent('download');

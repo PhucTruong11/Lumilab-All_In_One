@@ -2,7 +2,7 @@
   "dataset_version": "kb-draft-2026-11-01",
   "entries": [
     {
-      "id": "pendulum-ideal-agm", "lab_id": "pendulum", "review_status": "draft", "reviewer": null,
+      "id": "pendulum-ideal-agm", "lab_id": "pendulum", "review_status": "approved", "reviewer": "Trương Trọng Phúc, Văn Nam", "reviewed_on": "2026-11-08",
       "source_ids": ["nist-pendulum", "nist-agm"],
       "assumptions": ["Point mass, massless inextensible string, no friction", "Release angle between 0 and 90 degrees"],
       "claims": ["T = 2*pi*sqrt(L/g) / AGM(1, cos(theta_0/2))", "Period is independent of mass in this model", "Zero release angle is stationary; limiting period is not an observed oscillation"]

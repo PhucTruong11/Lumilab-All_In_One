@@ -11,6 +11,7 @@ test.skip(!process.env.LUMILAB_DATABASE_URL, 'Requires migrated PostgreSQL');
 
 for (const id of [...catalog.active, ...catalog.archived]) {
   test(`saves and restores the server run and opens it in Lumi: ${id}`, async ({ page }) => {
+    const isPendulum = id === 'pendulum';
     await page.goto('/#lab/' + id);
     const history = page.getByRole('region', { name: 'Lịch sử theo phiên trên máy chủ' });
     await page.getByRole('button', { name: 'Tính lại trên máy chủ' }).click();
@@ -23,9 +24,21 @@ for (const id of [...catalog.active, ...catalog.archived]) {
     expect(response.status()).toBe(201);
     const run = await response.json();
     expect(run.lab_id).toBe(id);
-    expect(run.result).toMatchObject({
-      status: 'INSUFFICIENT_DATA', code: 'REVIEWED_EVIDENCE_REQUIRED', facts: {}, evidence: [],
-    });
+    if (isPendulum) {
+      expect(run.result).toMatchObject({
+        status: 'VERIFIED',
+        code: 'VERIFIED',
+        evidence: [
+          'VL-CONLAC-01:period-agm',
+          'VL-CONLAC-01:length-ratio',
+          'VL-CONLAC-01:small-angle-learning',
+        ],
+      });
+    } else {
+      expect(run.result).toMatchObject({
+        status: 'INSUFFICIENT_DATA', code: 'REVIEWED_EVIDENCE_REQUIRED', facts: {}, evidence: [],
+      });
+    }
     expect(run.result.preview).toBeTruthy();
     await expect(history.getByText('Đã lưu lượt thử theo phiên trên máy chủ.')).toBeVisible();
     await page.reload();
@@ -33,7 +46,7 @@ for (const id of [...catalog.active, ...catalog.archived]) {
     const row = history.getByRole('listitem');
     await expect(row).toHaveCount(1);
     await row.locator('summary').click();
-    await expect(row).toContainText('Dữ liệu chưa duyệt');
+    await expect(row).toContainText(isPendulum ? 'Đã kiểm chứng (VERIFIED)' : 'Dữ liệu chưa duyệt');
     expect(JSON.parse((await row.locator('pre').nth(1).textContent())!))
       .toEqual(JSON.parse(JSON.stringify(run.result.preview)));
     await page.getByText('Dự đoán & giải thích', { exact: false }).first().click();
@@ -46,7 +59,11 @@ for (const id of [...catalog.active, ...catalog.archived]) {
     await page.getByRole('button', { name: 'Gửi câu hỏi' }).click();
     expect((await detail).status()).toBe(200);
     const answer = page.locator('.chat-message.assistant').last();
-    await expect(answer).toContainText('Dữ liệu chưa duyệt · Preview của lượt đã lưu');
+    await expect(answer).toContainText(
+      isPendulum
+        ? 'Đã kiểm chứng (VERIFIED) · Số liệu của lượt đã lưu'
+        : 'Dữ liệu chưa duyệt · Preview của lượt đã lưu'
+    );
     const [key, value] = Object.entries(run.result.preview)[0];
     await expect(answer).toContainText(key + ' = ' + (value === null ? '—' : String(value)));
   });

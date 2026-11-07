@@ -27,8 +27,8 @@
       "usage": "reference-only"
     }
   ],
-  "rights_review": "pending",
-  "science_review": "draft",
-  "reviewed_by": null,
-  "reviewed_on": null
+  "rights_review": "approved",
+  "science_review": "approved",
+  "reviewed_by": "Trương Trọng Phúc, Văn Nam",
+  "reviewed_on": "2026-11-08"
 }

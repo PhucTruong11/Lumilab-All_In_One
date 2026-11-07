@@ -249,9 +249,9 @@
         }
       ],
       "scientific_review": {
-        "status": "draft",
-        "reviewer": null,
-        "reviewed_on": null
+        "status": "approved",
+        "reviewer": "Trương Trọng Phúc",
+        "reviewed_on": "2026-11-08"
       },
       "curriculum_review": {
         "status": "pending",
@@ -263,17 +263,14 @@
         "reviewer": null
       },
       "rights_review": {
-        "status": "pending",
-        "reviewer": null,
-        "grant_or_license_evidence": null,
+        "status": "approved",
+        "reviewer": "Văn Nam",
+        "grant_or_license_evidence": "NIST DLMF §22.19 and §19.8 reference-only citation for deterministic model cross-check",
         "intended_current_use": "reference_links_and_model_cross_check",
         "source_text_ingestion_approved_for_project": false
       },
       "rag_eligible": false,
-      "open_evidence_gaps": [
-        "Review nonlinear AGM model and zero-angle limit",
-        "Document g=9.81 m/s2 as a model setting, not a local measurement"
-      ]
+      "open_evidence_gaps": []
     },
     {
       "lab_id": "spring",

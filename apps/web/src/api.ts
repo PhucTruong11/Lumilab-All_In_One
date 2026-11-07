@@ -18,7 +18,11 @@ export type PreviewInput = {
 
 export type PreviewVerification = {
   requestId: string;
+  status: 'INSUFFICIENT_DATA' | 'VERIFIED';
+  code: 'REVIEWED_EVIDENCE_REQUIRED' | 'VERIFIED';
   values: Record<string, PreviewValue>;
+  facts: Record<string, number>;
+  evidence: string[];
   stageChecks: { stage: string; status: string; code: string; reason: string }[];
   limitations: string[];
   checksSkipped: string[];
@@ -57,7 +61,14 @@ export async function loadLabPreview(
     throw new Error('Máy chủ chưa hoàn thành các bước kiểm khoa học. Không có bản xem trước để lưu.');
   }
   if (result.code === 'MISSING_INPUT') throw new Error('Chưa đủ thông số để tính lại.' + fieldNote);
-  if (result.status !== 'INSUFFICIENT_DATA' || result.code !== 'REVIEWED_EVIDENCE_REQUIRED' ||
+  const validDraft = result.status === 'INSUFFICIENT_DATA' && result.code === 'REVIEWED_EVIDENCE_REQUIRED';
+  const validVerified = result.status === 'VERIFIED' && result.code === 'VERIFIED' &&
+    !!result.facts && typeof result.facts === 'object' && !Array.isArray(result.facts) &&
+    Object.keys(result.facts as object).length > 0 &&
+    Object.values(result.facts as Record<string, unknown>).every(v => typeof v === 'number' && Number.isFinite(v)) &&
+    Array.isArray(result.evidence) && result.evidence.length > 0 &&
+    result.evidence.every(item => typeof item === 'string');
+  if ((!validDraft && !validVerified) ||
       result.model_version !== input.model_version || result.dataset_version !== input.dataset_version ||
       typeof result.request_id !== 'string' || !result.request_id || !isPreview(result.preview) ||
       !Array.isArray(result.stage_checks) || !result.stage_checks.every(item =>
@@ -68,8 +79,14 @@ export async function loadLabPreview(
     throw new Error('Máy chủ chưa có bản xem trước phù hợp.');
   }
   return {
-    requestId: result.request_id, values: result.preview,
+    requestId: result.request_id,
+    status: result.status as PreviewVerification['status'],
+    code: result.code as PreviewVerification['code'],
+    values: result.preview,
+    facts: (validVerified ? result.facts : {}) as Record<string, number>,
+    evidence: (validVerified ? result.evidence : []) as string[],
     stageChecks: result.stage_checks as PreviewVerification['stageChecks'],
-    limitations: result.limitations as string[], checksSkipped: result.checks_skipped as string[],
+    limitations: result.limitations as string[],
+    checksSkipped: result.checks_skipped as string[],
   };
 }

@@ -64,7 +64,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     if config.rag_enabled and (compiled_index is None or not compiled_index.provider.semantic):
         raise ValueError("Semantic RAG disabled until a matching build artifact/model is available")
     catalog = load_catalog(config.knowledge_dir, config.contracts_dir)
-    runtime_labs = load_runtime_definitions(config.runtime_lab_dir)
+    runtime_labs = load_runtime_definitions(config.runtime_lab_dir, config.knowledge_dir)
     mapping = load_practice_map(config.contracts_dir)
     validate_mapping(mapping, runtime_labs)
     release = system_info(config, mapping, runtime_labs, registry, compiled_index)
@@ -150,7 +150,9 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     def runtime_catalog(include_archived: bool = False):
         return {"schema_version": "catalog-1.0", "items": [
             {**lab.configuration, "lifecycle": lab.lifecycle, "server_recompute": True,
-             "verification_notice": "Draft preview only; reviewed evidence is required"}
+             "verification_notice": "Verified model claim within declared scope"
+             if lab.claim and lab.claim.verified_eligible
+             else "Draft preview only; reviewed evidence is required"}
             for lab in runtime_labs.values() if include_archived or lab.lifecycle == "active"
         ]}
 
