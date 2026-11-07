@@ -314,3 +314,84 @@ def test_route_has_no_temperature_parameter():
     # unknown fields and exposes no temperature, so it cannot diverge
     # between two requests sharing a cache key.
     assert "temperature" not in Route.model_fields
+
+
+def test_expired_cache_entry_is_reclaimed_on_lookup(monkeypatch):
+    ctx, reg = _context()
+    state = {"calls": 0, "fail": False}
+    chunk_id = ctx.sources[0].chunk_id
+
+    class FlippableProvider:
+        def __init__(self, *args, **kwargs):
+            pass
+
+        def generate(self, messages, schema):
+            state["calls"] += 1
+            if state["fail"]:
+                raise ProviderFailure("down", retryable=False)
+            return Completion({"message": ANSWER, "citation_ids": [chunk_id]})
+
+    gw = _gateway(ctx, reg, FakeBudget(), FlippableProvider)
+    session = uuid4()
+    clock = {"now": 1000.0}
+    monkeypatch.setattr(gateway_module, "monotonic", lambda: clock["now"])
+    other = ctx.model_copy(deep=True)
+    other.task.question = "Một câu hỏi khác về con lắc?"
+    assert gw.generate(ctx, session_id=session).response_source == "llm"
+    assert gw.generate(other, session_id=session).response_source == "llm"
+    assert len(gw.cache) == 2
+    clock["now"] += 601  # both entries are now past the 600s TTL
+    state["fail"] = True
+    # The expired entry must not be served; the provider is tried and fails,
+    # so nothing new is stored for this key.
+    assert gw.generate(ctx, session_id=session).response_source == "template"
+    # The lookup must have reclaimed the expired slot instead of leaving the
+    # stale entry to crowd the LRU capacity: only the other entry remains.
+    assert len(gw.cache) == 1
+    state["fail"] = False
+    assert gw.generate(ctx, session_id=session).response_source == "llm"
+    assert len(gw.cache) == 2
+    assert gw.generate(ctx, session_id=session).response_source == "cache"
+
+
+def test_expired_mru_entry_is_reclaimed_before_valid_lru_eviction(monkeypatch):
+    ctx, reg = _context()
+    Provider, state = _cited_provider(ctx)
+    gw = _gateway(ctx, reg, FakeBudget(), Provider)
+    session = uuid4()
+    clock = {"now": 1000.0}
+    monkeypatch.setattr(gateway_module, "monotonic", lambda: clock["now"])
+
+    def variant(label):
+        item = ctx.model_copy(deep=True)
+        item.task.question = f"Khối lượng làm đổi chu kỳ không? ({label})"
+        return item
+
+    expiring = variant("sắp hết hạn")
+    victim = variant("nạn nhân LRU còn hạn")
+    fillers = [variant(f"lấp đầy {i}") for i in range(125)]
+    # t=1000: the soon-to-expire entry is written first.
+    assert gw.generate(expiring, session_id=session).response_source == "llm"
+    clock["now"] = 1200.0
+    # t=1200: the victim and the fillers are written 200s later, so they stay
+    # within the 600s TTL when the first entry has expired.
+    assert gw.generate(victim, session_id=session).response_source == "llm"
+    for filler in fillers:
+        assert gw.generate(filler, session_id=session).response_source == "llm"
+    assert len(gw.cache) == 127
+    clock["now"] = 1500.0
+    # A fresh hit promotes the expiring entry to the MRU end; the victim is
+    # now the least-recently-used entry. One more insert fills the cache.
+    assert gw.generate(expiring, session_id=session).response_source == "cache"
+    assert gw.generate(variant("lấp đầy cuối"), session_id=session).response_source == "llm"
+    assert len(gw.cache) == 128
+    clock["now"] = 1601.0
+    # The promoted entry is now expired (age 601) near the MRU end; every
+    # other entry is still valid. Inserting a new entry under capacity
+    # pressure must reclaim the expired entry instead of evicting the
+    # still-valid LRU victim.
+    assert gw.generate(variant("câu hỏi mới"), session_id=session).response_source == "llm"
+    assert len(gw.cache) == 128
+    assert gw.generate(victim, session_id=session).response_source == "cache"
+    assert gw.generate(fillers[0], session_id=session).response_source == "cache"
+    assert gw.generate(expiring, session_id=session).response_source == "llm"

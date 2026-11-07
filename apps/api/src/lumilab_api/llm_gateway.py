@@ -176,7 +176,12 @@ class Gateway:
             sort_keys=True, ensure_ascii=False).encode()).hexdigest()
         with self.lock:
             cached = self.cache.get(cache_key)
-            if not self.settings.prompt_guard_enabled and cached and monotonic() - cached[0] < self.settings.llm_cache_ttl_seconds:
+            if cached and monotonic() - cached[0] >= self.settings.llm_cache_ttl_seconds:
+                # Expired entries are never served; reclaim the slot now so
+                # stale entries cannot crowd out live ones below the LRU cap.
+                del self.cache[cache_key]
+                cached = None
+            if not self.settings.prompt_guard_enabled and cached:
                 self.cache.move_to_end(cache_key)
                 return cached[1].model_copy(deep=True, update={"response_source": "cache", "attempts": 0, "guard_attempts": 0, "input_tokens": 0, "output_tokens": 0, "latency_ms": 0})
         guard = screen_question(redact(context.task.question), settings=self.settings,
@@ -266,6 +271,17 @@ class Gateway:
                     input_tokens=completion.input_tokens, output_tokens=completion.output_tokens, latency_ms=latency_ms,
                     skill_id=skill_id, model=route.model, output=output)
                 with self.lock:
+                    if cache_key not in self.cache and len(self.cache) >= 128:
+                        # Capacity pressure: reclaim every expired entry
+                        # before evicting a live one. The scan is bounded
+                        # by the cache capacity. Each qualifying insert into
+                        # a full cache costs O(C), where C is the configured
+                        # entry capacity (currently 128).
+                        now = monotonic()
+                        expired_keys = [key for key, (stored_at, _answer) in self.cache.items()
+                                        if now - stored_at >= self.settings.llm_cache_ttl_seconds]
+                        for key in expired_keys:
+                            del self.cache[key]
                     self.cache[cache_key] = (monotonic(), answer.model_copy(deep=True))
                     self.cache.move_to_end(cache_key)
                     while len(self.cache) > 128:
