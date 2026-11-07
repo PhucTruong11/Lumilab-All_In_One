@@ -1,0 +1,516 @@
+/* LumiLab bench: emerald optical instruments, cyan tactile handles, amber log accents. */
+.lab-workspace {
+  --bench-paper: #f4f7f4;
+  --bench-surface: #ffffff;
+  --bench-stage: #edf5f0;
+  --bench-ink: #1b382b;
+  --bench-emerald: #1f7054;
+  --bench-cyan: #14798f;
+  --bench-amber: #c97a16;
+}
+
+.lab-workspace .workspace-heading { margin-bottom: 16px; }
+
+/* Segmented mode switcher for multi-mode labs */
+.mode-switch {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 5px;
+  margin-bottom: 16px;
+  background: #e6f0eb;
+  border: 1px solid #cfe0d6;
+  border-radius: 13px;
+}
+.mode-switch .secondary-button {
+  border: 0;
+  background: transparent;
+  color: #3d6350;
+  font-size: 12.5px;
+  font-weight: 600;
+  padding: 8px 14px;
+  border-radius: 9px;
+  transition: background 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
+}
+.mode-switch .secondary-button[aria-pressed="true"] {
+  background: #ffffff;
+  color: #185a42;
+  box-shadow: 0 2px 6px rgba(27, 56, 43, 0.1);
+}
+
+/* Experiment toolbar & guided scenario presets */
+.experiment-tools {
+  margin: 0 0 22px;
+  border: 1px solid #c8ddd1;
+  border-radius: 16px;
+  background: #ffffff;
+  box-shadow: 0 4px 16px rgba(27, 56, 43, 0.035);
+  overflow: hidden;
+}
+.experiment-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px 16px;
+  padding: 13px 18px;
+  background: linear-gradient(180deg, #eef7f2 0%, #e7f2ec 100%);
+  border-bottom: 1px solid #d6e7dd;
+}
+.experiment-status,
+.experiment-controls {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 9px;
+}
+.experiment-status { font-size: 13px; color: var(--bench-ink); }
+.phase-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #6e8b7c;
+  transition: background 0.2s ease, box-shadow 0.2s ease;
+}
+.phase-dot.running {
+  background: var(--bench-cyan);
+  box-shadow: 0 0 0 4px rgba(20, 121, 143, 0.18);
+}
+.preview-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: #7d5e24;
+  background: #fff6df;
+  border: 1px solid #f0dfaf;
+  padding: 2px 8px;
+  border-radius: 6px;
+}
+.inquiry-steps {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: 4px;
+}
+.inquiry-steps span {
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: #ffffff99;
+  border: 1px solid #cfe0d6;
+  color: #5e7a6b;
+  font-variant-numeric: tabular-nums;
+}
+.inquiry-steps span.is-done {
+  background: #dff2e8;
+  border-color: #84bfa1;
+  color: #195940;
+  font-weight: 600;
+}
+
+.experiment-controls button {
+  padding: 7px 12px;
+  border: 1px solid #c3d9cc;
+  border-radius: 9px;
+  background: #ffffff;
+  color: #2c5540;
+  font-size: 12px;
+  font-weight: 600;
+  min-height: 36px;
+  transition: border-color 0.15s ease, background 0.15s ease, color 0.15s ease;
+}
+.experiment-controls button:hover:not(:disabled),
+.experiment-controls button[aria-pressed="true"] {
+  border-color: var(--bench-cyan);
+  color: #0f6275;
+  background: #ecf8fb;
+}
+.experiment-time {
+  font-size: 13px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  min-width: 76px;
+  padding: 5px 10px;
+  border-radius: 8px;
+  background: #ffffffcc;
+  border: 1px solid #cde0d5;
+  color: var(--bench-ink);
+  text-align: center;
+}
+.playback-speed {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #345c48;
+}
+.playback-speed select {
+  border: 1px solid #c3d9cc;
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 7px 6px;
+  color: var(--bench-ink);
+  font: inherit;
+}
+
+.experiment-presets { padding: 0 18px; }
+.experiment-presets summary {
+  padding: 13px 0 11px;
+  font-size: 13px;
+  color: var(--bench-ink);
+  cursor: pointer;
+  font-weight: 650;
+}
+.experiment-presets summary span {
+  font-size: 11.5px;
+  color: #5b7566;
+  font-weight: 400;
+  margin-left: 10px;
+}
+.experiment-preset-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 11px;
+  padding-bottom: 4px;
+}
+.experiment-preset-list button {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  gap: 5px;
+  border: 1px solid #d7e4dc;
+  border-left: 3.5px solid #b8d0c2;
+  background: #fbfdfc;
+  border-radius: 10px;
+  padding: 11px 13px;
+  color: var(--bench-ink);
+  min-width: 0;
+  transition: border-color 0.15s ease, background 0.15s ease, transform 0.12s ease;
+}
+.preset-card-head {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  width: 100%;
+}
+.preset-step-num {
+  font-style: normal;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 5px;
+  background: #e6f1ec;
+  color: #26634b;
+  flex-shrink: 0;
+}
+.experiment-preset-list strong { font-size: 13px; font-weight: 650; }
+.experiment-preset-list button > span { font-size: 12px; line-height: 1.45; color: #567061; }
+.experiment-preset-list button:hover {
+  border-color: var(--bench-cyan);
+  background: #f4fafc;
+}
+.experiment-preset-list button[aria-pressed="true"] {
+  background: #edf8f3;
+  border-color: #28775c;
+  border-left-color: #1f7054;
+  box-shadow: 0 2px 8px rgba(31, 112, 84, 0.08);
+}
+.experiment-preset-list button[aria-pressed="true"] .preset-step-num {
+  background: #1f7054;
+  color: #ffffff;
+}
+.scenario-prompt {
+  margin: 10px 0 4px;
+  padding: 9px 12px;
+  border-radius: 9px;
+  background: #f0f8fa;
+  border: 1px solid #cbe4eb;
+  color: #154e5d;
+  font-size: 12px;
+  line-height: 1.5;
+}
+.scenario-prompt strong { color: #0f6275; }
+
+.interaction-hint {
+  padding: 11px 18px 12px;
+  font-size: 12px;
+  color: #486857;
+  background: #fafcfb;
+  border-top: 1px solid #eef3f0;
+}
+.experiment-notice {
+  padding: 0 18px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #126678;
+  background: #fafcfb;
+}
+
+/* Stage panel, prominent record button & instrument readouts */
+.lab-workspace .stage-panel {
+  border-color: #c2d8cc;
+  border-radius: 18px;
+  box-shadow: 0 6px 22px rgba(27, 56, 43, 0.045);
+}
+.lab-workspace .parameter-panel,
+.lab-workspace .chart-panel {
+  border-color: #cde0d5;
+  border-radius: 15px;
+  box-shadow: 0 4px 14px rgba(27, 56, 43, 0.03);
+}
+.lab-workspace .pendulum-canvas:focus-visible {
+  outline: 3px solid var(--bench-cyan);
+  outline-offset: -3px;
+}
+.lab-workspace .stage-actions {
+  border-top: 1px solid #e6eee9;
+  background: #fbfdfb;
+  padding: 15px 20px;
+}
+.lab-workspace .stage-actions .record-button {
+  border: 1px solid #ddb576;
+  background: #fff9ee;
+  color: #8a520d;
+  font-size: 12.5px;
+  font-weight: 650;
+  padding: 10px 15px;
+  border-radius: 10px;
+  transition: background 0.15s ease, border-color 0.15s ease, transform 0.1s ease;
+}
+.lab-workspace .stage-actions .record-button:hover:not(:disabled) {
+  background: #fff1d6;
+  border-color: #c98a2e;
+  color: #6e3f06;
+}
+.lab-workspace .stage-actions .record-button:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.lab-workspace .readings {
+  background: #f6faf8;
+  border-top: 1px solid #e2ece6;
+}
+.lab-workspace .readings strong {
+  color: var(--bench-ink);
+  overflow-wrap: anywhere;
+}
+.lab-workspace .readings-expanded {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.latest-record-row td {
+  background: #f2faf5;
+  color: #184d37;
+  font-weight: 600;
+}
+
+/* Tactile SVG interaction affordances & physics/chemistry animations */
+.svg-draggable,
+.svg-button {
+  transition: filter 0.15s ease, opacity 0.15s ease;
+}
+.svg-draggable:hover,
+.svg-button:hover {
+  filter: drop-shadow(0 2px 6px rgba(20, 121, 143, 0.24));
+}
+.tactile-grip {
+  stroke: #14798f;
+  transition: stroke-width 0.15s ease;
+}
+.svg-draggable:hover .tactile-grip,
+.svg-draggable:focus-visible .tactile-grip {
+  stroke: #0d5c6d;
+  stroke-width: 3.5px;
+}
+
+.current-fast { animation: current-flow 0.9s linear infinite; }
+.current-medium { animation: current-flow 1.6s linear infinite; }
+.current-slow { animation: current-flow 2.8s linear infinite; }
+.current-reverse { animation: current-flow-rev 1.5s linear infinite; }
+
+.chem-bubble { animation: chem-bubble-rise 2.1s ease-in infinite; }
+.chem-bubble-delayed { animation: chem-bubble-rise 2.4s ease-in 0.8s infinite; }
+.chem-bubble-fast { animation: chem-bubble-rise 1.4s ease-in 0.3s infinite; }
+.alkali-skitter { animation: alkali-skitter 2.8s ease-in-out infinite; }
+.flame-flicker {
+  transform-box: fill-box;
+  transform-origin: center bottom;
+  animation: flame-flicker 1.1s ease-in-out infinite alternate;
+}
+.pheno-ripple {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: pheno-ripple 2.4s ease-out infinite;
+}
+.gas-plume { animation: gas-plume 2.6s ease-in-out infinite alternate; }
+.chem-drip { animation: chem-drip 1.5s ease-in infinite; }
+.gas-stream { animation: current-flow 1.4s linear infinite; }
+
+@keyframes current-flow-rev { to { stroke-dashoffset: 58; } }
+@keyframes chem-bubble-rise {
+  0% { transform: translateY(0) scale(0.85); opacity: 0.9; }
+  80% { opacity: 0.75; }
+  100% { transform: translateY(-54px) scale(1.2); opacity: 0; }
+}
+@keyframes alkali-skitter {
+  0% { transform: translate(345px, 216px); }
+  35% { transform: translate(418px, 214px); }
+  70% { transform: translate(362px, 217px); }
+  100% { transform: translate(345px, 216px); }
+}
+@keyframes flame-flicker {
+  0% { transform: scaleX(0.96) scaleY(0.97); opacity: 0.9; }
+  100% { transform: scaleX(1.05) scaleY(1.04); opacity: 1; }
+}
+@keyframes pheno-ripple {
+  0% { transform: scale(0.75); opacity: 0.65; }
+  100% { transform: scale(1.25); opacity: 0; }
+}
+@keyframes gas-plume {
+  0% { opacity: 0.72; transform: translateY(2px); }
+  100% { opacity: 0.96; transform: translateY(-4px); }
+}
+@keyframes chem-drip {
+  0% { transform: translateY(0); opacity: 0.95; }
+  85% { opacity: 0.9; }
+  100% { transform: translateY(72px); opacity: 0; }
+}
+
+/* Precision numeric inputs */
+.precision-parameter .parameter-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.precision-parameter .parameter-heading label {
+  color: #2c5440;
+  font-size: 13px;
+  font-weight: 600;
+}
+.precision-parameter .parameter-value {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+.precision-parameter .parameter-value input {
+  width: 84px;
+  height: 34px;
+  padding: 5px 7px;
+  background: #f7fbf9;
+  border: 1px solid #bfd6c9;
+  border-radius: 7px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--bench-ink);
+  font-variant-numeric: tabular-nums;
+  cursor: text;
+}
+.precision-parameter .parameter-value input[aria-invalid="true"] { border-color: #b94030; background: #fff6f5; }
+.precision-parameter .parameter-value span { font-size: 12px; color: #526f60; min-width: 14px; }
+.precision-parameter input[type="range"] { height: 24px; margin: 0; }
+.precision-parameter .range-limits { font-size: 11px; }
+.parameter-error { font-size: 12px; color: #a32b22; margin-top: 6px; }
+.precision-parameter .preset-pill[aria-pressed="true"] {
+  background: #e2f2ea;
+  border-color: #4f9474;
+  color: #1c593e;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #2c5440;
+  margin-bottom: 14px;
+}
+.field select {
+  border: 1px solid #c5dacd;
+  border-radius: 9px;
+  padding: 9px 10px;
+  background: #f8fbf9;
+  color: var(--bench-ink);
+  font: inherit;
+  font-weight: 500;
+}
+.check-row {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: 14px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: #f4faf7;
+  border: 1px solid #d3e5db;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #244b38;
+  cursor: pointer;
+}
+.check-row input {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--bench-emerald);
+}
+
+/* Focus mode */
+.lab-workspace.is-focused .session-strip,
+.lab-workspace.is-focused .below-lab,
+.lab-workspace.is-focused .lab-support,
+.lab-workspace.is-focused .chart-panel,
+.lab-workspace.is-focused .experiment-presets {
+  display: none;
+}
+.lab-workspace.is-focused .stage-panel {
+  position: sticky;
+  top: 16px;
+}
+
+@media (min-width: 1100px) {
+  .lab-workspace .workbench-grid {
+    grid-template-columns: minmax(0, 1fr) 348px;
+    gap: 22px;
+  }
+}
+
+@media (max-width: 760px) {
+  .experiment-toolbar { align-items: flex-start; padding: 13px 14px; }
+  .inquiry-steps { width: 100%; margin-left: 0; margin-top: 2px; }
+  .experiment-controls { gap: 8px; width: 100%; }
+  .experiment-presets { padding: 0 14px; }
+  .experiment-presets summary span { display: block; margin: 4px 0 0; line-height: 1.45; }
+  .experiment-preset-list { grid-template-columns: 1fr; gap: 8px; }
+  .experiment-preset-list button { padding: 10px 12px; }
+  .experiment-controls button { min-height: 40px; }
+  .interaction-hint { padding: 11px 14px; }
+  .lab-workspace.is-focused .stage-panel { position: static; }
+  .lab-workspace .experiment-sidebar { grid-template-columns: 1fr; }
+  .precision-parameter .parameter-value input { min-height: 40px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .current-fast,
+  .current-medium,
+  .current-slow,
+  .current-reverse,
+  .chem-bubble,
+  .chem-bubble-delayed,
+  .chem-bubble-fast,
+  .alkali-skitter,
+  .flame-flicker,
+  .pheno-ripple,
+  .gas-plume,
+  .chem-drip,
+  .gas-stream {
+    animation: none !important;
+  }
+}
+.circuit-slots-form { border: 1px solid #d8e7dd; border-radius: 10px; padding: 10px 12px; margin: 14px 0 0; display: grid; gap: 8px; }
+.circuit-slots-form legend { font-size: 12px; font-weight: 650; color: #315d47; padding: 0 5px; }
+.circuit-slots-form label { display: flex; align-items: center; justify-content: space-between; gap: 10px; font-size: 12px; color: #3e624f; }
+.circuit-slots-form select { min-width: 155px; max-width: 70%; border: 1px solid #c9dcd0; border-radius: 8px; padding: 8px; background: white; color: #244535; }
+@media (max-width: 540px) { .circuit-slots-form select { min-height: 42px; } }

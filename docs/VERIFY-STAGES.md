@@ -3,7 +3,7 @@
 Chuyển và điều chỉnh từ `PhucTruong11/lumilab` tại commit `f5f233f8dc2ee21934e6b77c740e7959fecb102a`, file `docs/VERIFY-STAGES.md`. Các stage dưới đây mô tả code hiện có trong B.
 
 `apps/api/src/lumilab_api/scientific_checks.py` bổ sung hàm thuần
-`check_science(lab_id, parameters, reading)`. Đầu vào cần qua JSON Schema,
+`check_science(lab_id, parameters, reading, elapsed_s)`. Đầu vào cần qua JSON Schema,
 kiểm phiên bản và tính lại ở server trước. Hàm trả danh sách `stage`, `status`,
 `code`, `reason`; không duyệt học liệu, không tạo facts đáng tin cậy và không tự
 trả trạng thái cuối `VERIFIED`. Nhãn stage `pass` chỉ có nghĩa kiểm tra cụ thể
@@ -60,6 +60,7 @@ hỗ trợ. `equation_is_balanced()` kiểm hệ số nguyên dương của phư
 - Mạch hai tải: tổng trở nối tiếp/song song, dòng nhánh, KCL/KVL và công suất.
 - RC: hàm mũ ở thời điểm reading khai báo, dấu dòng nạp/xả, `Q = CU`,
   `E = CU²/2`. Caller vẫn phải ràng buộc thời điểm với snapshot đã tính lại.
+- Lò xo có cản: đối chiếu li độ, vận tốc, đường bao, chu kỳ và cơ năng tại thời điểm request; dốc: đối chiếu lực, quãng đường, vận tốc, thời gian dừng ở cuối dốc và nhãn trạng thái; ròng rọc: lực, dây kéo và công nâng tải. Các ca Hóa định tính đối chiếu cả phần diễn giải theo kịch bản, vẫn ghi `quantitative: skipped`.
 - Hai model cũ được giữ để đọc lịch sử: đếm hạt kiểm A/Z/điện tích và tổng
   electron; pin chuẩn kiểm hiệu điện thế chuẩn, dấu vôn kế và cầu muối.
 

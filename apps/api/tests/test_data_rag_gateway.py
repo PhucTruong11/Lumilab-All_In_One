@@ -101,9 +101,10 @@ def test_hybrid_lab_level_license_review_filter_and_abstention():
     for lab, query in [("pendulum", "khối lượng chu kỳ"), ("circuit", "ampe kế điện trở"), ("chemistry", "pH tương đương")]:
         result = index.retrieve(RetrievalQuery(lab_id=lab, query=query, retrieval_method="hybrid"))
         assert result.status == "FOUND" and all(hit.document.lab_id == lab for hit in result.hits)
-        assert all(hit.document.review_status == "draft" for hit in result.hits)
-        for changes in [{"include_drafts": False}, {"commercial": True}]:
-            assert not index.retrieve(RetrievalQuery(lab_id=lab, query=query, **changes)).hits
+        assert all(hit.document.review_status in {"draft", "reviewed"} for hit in result.hits)
+        assert all(h.document.review_status == "reviewed" and h.document.reviewer
+                   for h in index.retrieve(RetrievalQuery(lab_id=lab, query=query, include_drafts=False)).hits)
+        assert not index.retrieve(RetrievalQuery(lab_id=lab, query=query, commercial=True)).hits
         foundation = index.retrieve(RetrievalQuery(lab_id=lab, query=query, level="THCS"))
         assert all(h.document.provenance.level == "THCS" for h in foundation.hits)
     assert not index.retrieve(RetrievalQuery(lab_id="pendulum", query="bitcoin stock weather tomorrow")).hits
@@ -148,6 +149,11 @@ def context_fixture(reviewed=True):
             hit.document.provenance.academic_review_role = "teacher"
         source = reg.source("lumilab-authored")
         source.rights_status, source.allowed_uses = "approved", ["index", "send_llm"]
+    else:
+        for hit in result.hits:
+            hit.document.review_status = "draft"
+            hit.document.reviewer = None
+            hit.document.reviewed_at = None
     context = TutorContext(task=TutorTask(lab_id="pendulum", question="Khối lượng làm đổi chu kỳ không?"),
         corpus_revision=result.corpus_revision, retrieval_method=result.retrieval_method, sources=result.hits)
     return context, reg
@@ -221,7 +227,8 @@ def test_gateway_blocks_draft_sources_no_budget_and_gemini_for_teens():
     assert not budget.calls
     ctx, reg = context_fixture()
     assert gateway(ctx, reg, FakeBudget(True), never).generate(ctx, session_id=uuid4()).degraded_reason == "LIMIT"
-    assert not allowed_route().model_copy(update={"provider": "gemini"}).allowed("under18")
+    assert not allowed_route().model_copy(update={"provider": "gemini", "minors_approved": False}).allowed("under18")
+    assert allowed_route().model_copy(update={"provider": "gemini", "minors_approved": True}).allowed("under18")
     assert not allowed_route(free_only=True, input_usd_per_million=.1).allowed("under18")
 
 

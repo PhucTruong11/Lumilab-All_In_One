@@ -577,7 +577,17 @@
         "correctIndex": 1,
         "explanation": "Cần cả hai chất phản ứng; AgNO₃ đã hết nên không tạo thêm AgCl."
       }
-    ]
+    ],
+    "activity": {
+      "prediction": "Dự đoán chất giới hạn và khối lượng kết tủa AgCl khi trộn hai dung dịch 0,100 mol/L.",
+      "compare": "Ghi lượt 25 mL AgNO₃ với 10 mL NaCl, rồi so sánh với lượt chỉ có NaCl hoặc khi thêm tiếp chất đã dư.",
+      "reflection": "Giải thích vì sao lượng kết tủa phụ thuộc vào số mol nhỏ hơn theo tỉ lệ 1:1.",
+      "rubric": [
+        "Tính đúng số mol từng chất từ n = CV.",
+        "Xác định đúng chất giới hạn và khối lượng AgCl (g).",
+        "Giải thích vì sao thêm chất đang dư không tạo thêm kết tủa."
+      ]
+    }
   },
   {
     "id": "gas-reaction",
@@ -614,7 +624,7 @@
       "prompt": "Cho 25 mL HCl 0,1 M phản ứng với 0,42 g NaHCO₃ (M=84,0066 g/mol). Giả sử phản ứng hoàn toàn, tính số mol CO₂.",
       "unit": "mol",
       "answer": 0.0025,
-      "tolerance": 1e-05,
+      "tolerance": 0.00001,
       "hint": "So 0,1×0,025 mol HCl với 0,42/84,0066 mol NaHCO₃.",
       "explanation": "HCl có 0,0025 mol và là chất giới hạn. Theo tỉ lệ 1:1 tạo 0,0025 mol CO₂."
     },
@@ -631,7 +641,17 @@
         "correctIndex": 2,
         "explanation": "V = nRT/P nên tăng theo nhiệt độ tuyệt đối khi n, P cố định."
       }
-    ]
+    ],
+    "activity": {
+      "prediction": "Dự đoán chất nào quyết định thể tích khí CO₂ sinh ra ở 25 °C và 1 atm.",
+      "compare": "Ghi hai lượt có chất giới hạn khác nhau (HCl giới hạn so với NaHCO₃ giới hạn).",
+      "reflection": "Dùng phương trình khí lý tưởng V = nRT/P tại 298,15 K, 1 atm để giải thích thể tích CO₂.",
+      "rubric": [
+        "Tính đúng số mol HCl và NaHCO₃.",
+        "Nêu đúng chất giới hạn và số mol CO₂ tạo thành.",
+        "Tính thể tích khí ở 25 °C, 1 atm (không dùng 22,4 L/mol)."
+      ]
+    }
   },
   {
     "id": "electrochemistry",
@@ -677,7 +697,17 @@
         "correctIndex": 1,
         "explanation": "Oxi hóa là quá trình nhường electron."
       }
-    ]
+    ],
+    "activity": {
+      "prediction": "Dự đoán dấu số đọc vôn kế và chiều electron khi hoán đổi hai điện cực hoặc tháo cầu muối.",
+      "compare": "Ghi lượt Zn–Cu nối cầu muối, lượt đổi bên hai điện cực và lượt tháo cầu muối.",
+      "reflection": "Phân biệt điện áp phải trừ trái với suất điện động chuẩn và giải thích vai trò của cầu muối.",
+      "rubric": [
+        "Xác định đúng anode (oxi hóa) và cathode (khử).",
+        "Giải thích sự đổi dấu của U = E°phải − E°trái khi đảo bên.",
+        "Nêu rõ tháo cầu muối làm hở mạch nên vôn kế không hiển thị số đo."
+      ]
+    }
   },
   {
     "id": "atomic",
@@ -727,7 +757,17 @@
         "correctIndex": 2,
         "explanation": "Z là số proton trong hạt nhân."
       }
-    ]
+    ],
+    "activity": {
+      "prediction": "Dự đoán kí hiệu nguyên tố, số khối và điện tích khi thay đổi số proton, neutron hoặc electron.",
+      "compare": "Từ nguyên tử trung hòa, ghi một lượt chỉ đổi neutron và một lượt chỉ đổi electron.",
+      "reflection": "Giải thích vì sao proton quyết định nguyên tố, neutron đổi số khối A còn electron đổi điện tích q.",
+      "rubric": [
+        "Dùng đúng Z để xác định nguyên tố và A = Z + N để tính số khối.",
+        "Tính đúng điện tích q/e = Z − ne cho nguyên tử hoặc ion.",
+        "Nêu giới hạn mô hình đếm hạt và sơ đồ vỏ 2, 8, 8 minh họa."
+      ]
+    }
   },
   {
     "id": "spring-damped",

@@ -11,7 +11,7 @@ test('archived lab lessons are searchable, linked and included in the chapter qu
   await expect(page.getByText('Đúng rồi!', { exact: false })).toBeVisible();
   await page.getByRole('button', { name: 'Gợi ý & lời giải' }).click();
   await expect(page.getByText('N = 23 − 11 = 12 neutron.', { exact: true })).toBeVisible();
-  await page.getByRole('button', { name: 'Mở mô phỏng lưu trữ' }).click();
+  await page.getByRole('button', { name: 'Mở lab cấu tạo nguyên tử' }).click();
   await expect(page).toHaveURL(/#lab\/atomic$/);
   await page.getByText('Dự đoán & giải thích', { exact: true }).click();
   await page.getByRole('button', { name: 'Kiến thức & bài tập', exact: true }).click();

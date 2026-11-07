@@ -86,7 +86,7 @@ def recompute(
         return result
     if lab_id == "circuit":
         parts = [part for part in parameters["slots"] if part is not None]
-        if len(parts) != len(set(parts)):
+        if parts.count("switchInstalled") > 1:
             result.status, result.code, result.layer = "INVALID", "INVALID_MODEL_PARAMETERS", "input"
             result.fields = ["slots"]
             return result
@@ -101,7 +101,7 @@ def recompute(
     result.checks_passed = ["schema", "model_scope", "server_recompute"]
     result.checks_skipped.remove("server_recompute")
     result.stage_checks = [StageCheck.model_validate(item) for item in
-                           check_science(lab_id, parameters, result.preview)]
+                           check_science(lab_id, parameters, result.preview, payload.elapsed_s)]
     for check in result.stage_checks:
         if check.status == "pass":
             result.checks_passed.append(check.stage)

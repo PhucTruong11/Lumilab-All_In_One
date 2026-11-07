@@ -76,7 +76,9 @@ def test_retrieval_endpoint_production_mode_excludes_drafts(client):
         "lab_id": "pendulum", "query": "khối lượng chu kỳ",
         "retrieval_method": "hybrid", "include_drafts": False})
     assert response.status_code == 200
-    assert response.json()["status"] == "NO_MATCH"
+    body = response.json()
+    # Only teacher-reviewed cards may be served when drafts are excluded.
+    assert all(h["document"]["review_status"] == "reviewed" and h["document"]["reviewer"] for h in body["hits"])
 
 
 def test_retrieval_endpoint_unknown_lab_404(client):

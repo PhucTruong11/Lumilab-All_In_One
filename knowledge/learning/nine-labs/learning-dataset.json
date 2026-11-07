@@ -1,6 +1,6 @@
 {
   "schema_version": "nine-lab-learning-1.0",
-  "revision": "nine-lab-learning-draft-01",
+  "revision": "eleven-lab-learning-draft-01",
   "review_status": "draft",
   "owner": "Đạt",
   "split": "development",
@@ -5370,75 +5370,77 @@
       ]
     },
     {
-      "practice_id": "HH-KIEM-01",
+      "practice_id": "HH-CHUANDO-01",
       "runtime_ids": [
-        "alkali-water"
+        "chemistry"
       ],
-      "title": "Na, K tác dụng với nước và màu ngọn lửa",
+      "title": "Chuẩn độ axit–bazơ",
       "knowledge_profile": {
-        "id": "HH-KIEM-01-PROFILE",
-        "topic": "Kim loại kiềm",
+        "id": "HH-CHUANDO-01-PROFILE",
+        "topic": "Dung dịch và axit–bazơ",
         "difficulty": "cơ bản",
         "objectives": [
-          "Đọc sản phẩm mô hình khi Na/K gặp nước",
-          "Phân biệt phản ứng với nước và màu nhận biết ion"
+          "Xác định điểm tương đương theo tỉ lượng mol 1:1 giữa axit mạnh và bazơ mạnh",
+          "Phân biệt điểm tương đương (pH = 7 ở 25 °C) với điểm kết thúc theo màu phenolphthalein"
         ],
         "prerequisites": [
-          "Kí hiệu kim loại và ion",
-          "Đọc hệ số phương trình"
+          "Tính số mol từ nồng độ mol/L và thể tích (đổi mL sang L)",
+          "Đọc thang pH ở 25 °C cho dung dịch nước loãng"
         ],
         "learning_outcomes": [
           {
-            "id": "HH-KIEM-01-LO-1",
-            "description": "Đọc sản phẩm mô hình khi Na/K gặp nước"
+            "id": "HH-CHUANDO-01-LO-1",
+            "description": "Xác định điểm tương đương theo tỉ lượng mol 1:1 giữa axit mạnh và bazơ mạnh"
           },
           {
-            "id": "HH-KIEM-01-LO-2",
-            "description": "Phân biệt phản ứng với nước và màu nhận biết ion"
+            "id": "HH-CHUANDO-01-LO-2",
+            "description": "Phân biệt điểm tương đương (pH = 7 ở 25 °C) với điểm kết thúc theo màu phenolphthalein"
           }
         ],
         "concepts": [
           {
-            "id": "HH-KIEM-01-K-1",
-            "name": "Phản ứng với nước",
-            "definition": "Trong ca mô phỏng Na và K tạo hydroxide tương ứng và khí hydrogen.",
-            "formula": "2M + 2H₂O → 2MOH + H₂",
+            "id": "HH-CHUANDO-01-K-1",
+            "name": "Trung hòa và điểm tương đương",
+            "definition": "Trong phản ứng axit mạnh và bazơ mạnh một nấc tỉ lệ 1:1, điểm tương đương đạt được khi số mol bazơ thêm vào bằng số mol axit ban đầu.",
+            "formula": "H⁺ + OH⁻ → H₂O; n_axit = n_bazơ; C_a·V_a = C_b·V_b",
             "origin_notes": "Diễn giải học liệu/mô hình hiện có; nguồn ngoài dùng để đối chiếu phần được ghi.",
-            "conditions": "Chỉ xét M là Na hoặc K; phương trình cho tỉ lệ mol.",
+            "conditions": "Áp dụng cho các cặp HCl/HNO₃ 0,1 mol/L (25 mL) với NaOH/KOH 0,1 mol/L ở 25 °C.",
             "origin": "project_authored_from_lumilab",
             "source_ids": [
-              "HH-KIEM-01-SRC-DATA",
-              "HH-KIEM-01-SRC-EXT-1"
+              "HH-CHUANDO-01-SRC-DATA",
+              "HH-CHUANDO-01-SRC-EXT-1"
             ]
           },
           {
-            "id": "HH-KIEM-01-K-2",
-            "name": "Màu ngọn lửa",
-            "definition": "Chế độ nhận biết ion hiển thị màu vàng cho Na⁺ và tím nhạt cho K⁺.",
-            "formula": null,
+            "id": "HH-CHUANDO-01-K-2",
+            "name": "pH và màu chỉ thị phenolphthalein",
+            "definition": "Ở 25 °C, tại đúng 25 mL bazơ 0,1 mol/L thì pH = 7 và phenolphthalein không màu; chỉ thị chuyển hồng khi bazơ dư làm pH vượt khoảng 8,2–10.",
+            "formula": "pH = −log₁₀[H⁺]; pH + pOH = 14 (25 °C)",
             "origin_notes": "Diễn giải học liệu/mô hình hiện có; nguồn ngoài dùng để đối chiếu phần được ghi.",
-            "conditions": "Đây là quan sát riêng với phản ứng kim loại và nước.",
+            "conditions": "Màu chỉ thị trên mô phỏng là nội suy minh họa, không phải phép đo quang học.",
             "origin": "project_authored_from_lumilab",
             "source_ids": [
-              "HH-KIEM-01-SRC-DATA"
+              "HH-CHUANDO-01-SRC-DATA",
+              "HH-CHUANDO-01-SRC-EXT-1"
             ]
           },
           {
-            "id": "HH-KIEM-01-K-3",
-            "name": "Trạng thái quan sát",
-            "definition": "Trước khi nhấn Quan sát, các trường hiện tượng và sản phẩm chưa có dữ liệu.",
+            "id": "HH-CHUANDO-01-K-3",
+            "name": "Giới hạn mô hình chuẩn độ",
+            "definition": "Mô hình giả thiết dung dịch loãng lý tưởng ở 25 °C, thể tích cộng được, tính tự điện li của nước Kw = 10⁻¹⁴ quanh tương đương.",
             "formula": null,
             "origin_notes": "Diễn giải học liệu/mô hình hiện có; nguồn ngoài dùng để đối chiếu phần được ghi.",
-            "conditions": "Ảnh và màu mang tính minh họa định tính.",
+            "conditions": "Không suy rộng cho axit yếu, bazơ yếu hoặc chuẩn độ nhiều nấc.",
             "origin": "project_authored_from_lumilab",
             "source_ids": [
-              "HH-KIEM-01-SRC-DATA"
+              "HH-CHUANDO-01-SRC-DATA",
+              "HH-CHUANDO-01-SRC-SGK-1"
             ]
           }
         ],
         "sources": [
           {
-            "id": "HH-KIEM-01-SRC-DATA",
+            "id": "HH-CHUANDO-01-SRC-DATA",
             "title": "Học liệu, mô hình và ca chuẩn LumiLab",
             "publisher": "Nhóm LumiLab",
             "type": "project_dataset",
@@ -5446,80 +5448,66 @@
             "paths": [
               "docs/DATASET.md",
               "apps/web/src/data/demo-lessons.json",
-              "packages/lab-engine/labs/alkali-water/lab.json"
+              "packages/lab-engine/labs/chemistry/lab.json"
             ],
             "used_for": "Nội dung bài, thuật ngữ, giả thiết, điều khiển và phạm vi mô phỏng. Ca đối chiếu nằm trong từng hoạt động.",
-            "practice_id": "HH-KIEM-01"
+            "practice_id": "HH-CHUANDO-01"
           },
           {
-            "id": "HH-KIEM-01-SRC-SGK-1",
-            "title": "Hóa học 12",
+            "id": "HH-CHUANDO-01-SRC-SGK-1",
+            "title": "Hóa học 11",
             "publisher": "Nhà xuất bản Giáo dục Việt Nam",
-            "edition": "Kết nối tri thức với cuộc sống",
+            "edition": "Chân trời sáng tạo",
             "type": "textbook",
             "role": "reference_only",
-            "url": "https://taphuan.nxbgd.vn/tap-huan/doc-sach/sgk-hoa-hoc-12.4701708102#page=111",
-            "section": "tr. 110–111, Bảng 24.3, kim loại kiềm tác dụng với nước",
-            "used_for": "Hóa học 12, Bài 24, tr. 110–112 (Bảng 24.3 và Hình 24.3)",
-            "provenance_path": "docs/DATASET.md",
+            "url": "https://taphuan.nxbgd.vn/tap-huan/doc-sach/shs-hoa-hoc-11.4537016533#page=19",
+            "section": "Bài 2, tr. 15–18, mục pH và chuẩn độ acid–base",
+            "used_for": "Đối chiếu khái niệm chuẩn độ acid–base mạnh và vai trò chất chỉ thị phenolphthalein",
+            "provenance_path": "knowledge/retrieval/documents.json",
             "verification": "inherited_pending_page_recheck",
             "rights_status": "pending",
-            "practice_id": "HH-KIEM-01"
+            "practice_id": "HH-CHUANDO-01"
           },
           {
-            "id": "HH-KIEM-01-SRC-SGK-2",
-            "title": "Hóa học 12",
-            "publisher": "Nhà xuất bản Giáo dục Việt Nam",
-            "edition": "Kết nối tri thức với cuộc sống",
-            "type": "textbook",
-            "role": "reference_only",
-            "url": "https://taphuan.nxbgd.vn/tap-huan/doc-sach/sgk-hoa-hoc-12.4701708102#page=113",
-            "section": "tr. 112, Hình 24.3, màu ngọn lửa của ion",
-            "used_for": "Hóa học 12, Bài 24, tr. 110–112 (Bảng 24.3 và Hình 24.3)",
-            "provenance_path": "docs/DATASET.md",
-            "verification": "inherited_pending_page_recheck",
-            "rights_status": "pending",
-            "practice_id": "HH-KIEM-01"
-          },
-          {
-            "id": "HH-KIEM-01-SRC-EXT-1",
+            "id": "HH-CHUANDO-01-SRC-EXT-1",
             "title": "Chemistry 2e",
             "publisher": "OpenStax, Rice University",
             "type": "open_textbook",
             "role": "reference_only",
-            "url": "https://openstax.org/books/chemistry-2e/pages/18-1-periodicity",
-            "section": "§18.1 Periodicity",
+            "url": "https://openstax.org/books/chemistry-2e/pages/14-7-acid-base-titrations",
+            "section": "§14.7 Acid-Base Titrations",
             "used_for": [
-              "Phản ứng với nước"
+              "Trung hòa và điểm tương đương",
+              "pH và màu chỉ thị phenolphthalein"
             ],
             "verification": "section_located",
             "rights_status": "pending",
-            "practice_id": "HH-KIEM-01"
+            "practice_id": "HH-CHUANDO-01"
           }
         ],
         "runtime_models": [
           {
-            "id": "alkali-water",
-            "model_version": "alkali-water-flame-qualitative-v1",
-            "dataset_version": "lumilab-nine-draft-v1",
+            "id": "chemistry",
+            "model_version": "ideal-strong-titration-ts-v1",
+            "dataset_version": "client-draft-2026-11-01",
             "assumptions": [
-              "Hai quan sát độc lập. Phản ứng với nước cho hydroxide và hydrogen. Màu ngọn lửa đại diện cho ion Na⁺ hoặc K⁺.",
-              "Mô phỏng định tính, hình và màu mang tính minh họa."
+              "Axit/bazơ mạnh1:1, nồng độ0,1mol/L,25mL axit,25°C, Kw=10⁻¹⁴; dung dịch loãng lý tưởng, thể tích cộng được.",
+              "Phenolphthalein: màu nội suy pH8,2–10, không phải phép đo; không áp dụng axit yếu."
             ],
-            "config_path": "packages/lab-engine/labs/alkali-water/lab.json"
+            "config_path": "packages/lab-engine/labs/chemistry/lab.json"
           }
         ],
         "common_mistakes": [
-          "Gán màu nhận biết ion cho bọt khí hoặc coi trường trống là bằng chứng không phản ứng."
+          "Đồng nhất điểm kết thúc khi phenolphthalein chuyển hồng với điểm tương đương tại pH = 7."
         ],
         "practice_notes": [
-          "Phân loại kết quả của hai chế độ"
+          "Ghi số đo ở trước tương đương, đúng 25,00 mL và ngay sau tương đương để thấy bước nhảy pH."
         ],
         "simulation_scope": {
           "available": [
-            "Có bốn lượt quan sát được gắn đúng kim loại và chế độ. Dòng chưa quan sát không được dùng làm kết quả."
+            "Chọn cặp HCl/HNO₃ với NaOH/KOH và thể tích bazơ từ 0 đến 50 mL; đọc pH, giai đoạn dung dịch và lượng mol còn lại."
           ],
-          "missing_data_and_limits": "Thiếu thông số lượng chất, tốc độ và cường độ hiện tượng. Chỉ dùng kịch bản ảo."
+          "missing_data_and_limits": "Nồng độ cố định 0,1 mol/L và thể tích axit cố định 25 mL trong mô phỏng; không mô phỏng axit yếu hoặc sai số dụng cụ."
         },
         "review_status": "draft",
         "reviewer": null,
@@ -5527,139 +5515,185 @@
       },
       "existing_question_refs": [
         {
-          "id": "alkali-water-exercise",
+          "id": "chemistry-equivalence",
           "path": "apps/web/src/data/demo-lessons.json",
-          "lesson_id": "alkali-water",
+          "lesson_id": "chemistry",
           "section": "exercise",
-          "origin": "existing_target_dataset",
-          "outcome_id": "HH-KIEM-01-LO-1",
+          "origin": "lumilab_source_json",
+          "outcome_id": "HH-CHUANDO-01-LO-1",
           "rubric_id": "R-OBJECTIVE-1",
           "knowledge_ids": [
-            "HH-KIEM-01-K-1",
-            "HH-KIEM-01-K-2",
-            "HH-KIEM-01-K-3"
+            "HH-CHUANDO-01-K-1",
+            "HH-CHUANDO-01-K-2",
+            "HH-CHUANDO-01-K-3"
           ],
           "difficulty": "cơ bản"
         },
         {
-          "id": "alkali-water-quiz",
+          "id": "chemistry-equivalence-definition",
           "path": "apps/web/src/data/demo-lessons.json",
-          "lesson_id": "alkali-water",
+          "lesson_id": "chemistry",
           "section": "quiz",
-          "origin": "existing_target_dataset",
-          "outcome_id": "HH-KIEM-01-LO-2",
+          "origin": "lumilab_source_json",
+          "outcome_id": "HH-CHUANDO-01-LO-1",
           "rubric_id": "R-OBJECTIVE-1",
           "knowledge_ids": [
-            "HH-KIEM-01-K-1",
-            "HH-KIEM-01-K-2",
-            "HH-KIEM-01-K-3"
+            "HH-CHUANDO-01-K-1",
+            "HH-CHUANDO-01-K-2",
+            "HH-CHUANDO-01-K-3"
+          ],
+          "difficulty": "cơ bản"
+        },
+        {
+          "id": "chemistry-equivalence-color",
+          "path": "apps/web/src/data/demo-lessons.json",
+          "lesson_id": "chemistry",
+          "section": "quiz",
+          "origin": "lumilab_source_json",
+          "outcome_id": "HH-CHUANDO-01-LO-2",
+          "rubric_id": "R-OBJECTIVE-1",
+          "knowledge_ids": [
+            "HH-CHUANDO-01-K-1",
+            "HH-CHUANDO-01-K-2",
+            "HH-CHUANDO-01-K-3"
+          ],
+          "difficulty": "cơ bản"
+        },
+        {
+          "id": "chemistry-endpoint",
+          "path": "apps/web/src/data/demo-lessons.json",
+          "lesson_id": "chemistry",
+          "section": "quiz",
+          "origin": "lumilab_source_json",
+          "outcome_id": "HH-CHUANDO-01-LO-2",
+          "rubric_id": "R-OBJECTIVE-1",
+          "knowledge_ids": [
+            "HH-CHUANDO-01-K-1",
+            "HH-CHUANDO-01-K-2",
+            "HH-CHUANDO-01-K-3"
+          ],
+          "difficulty": "cơ bản"
+        },
+        {
+          "id": "chemistry-concentration",
+          "path": "apps/web/src/data/demo-lessons.json",
+          "lesson_id": "chemistry",
+          "section": "quiz",
+          "origin": "lumilab_source_json",
+          "outcome_id": "HH-CHUANDO-01-LO-1",
+          "rubric_id": "R-OBJECTIVE-1",
+          "knowledge_ids": [
+            "HH-CHUANDO-01-K-1",
+            "HH-CHUANDO-01-K-2",
+            "HH-CHUANDO-01-K-3"
           ],
           "difficulty": "cơ bản"
         }
       ],
       "questions": [
         {
-          "id": "HH-KIEM-01-Q-1",
+          "id": "HH-CHUANDO-01-Q-1",
           "type": "true_false",
-          "prompt": "Màu vàng của Na⁺ trong chế độ màu ngọn lửa là màu của H₂ sinh ra khi Na gặp nước.",
+          "prompt": "Trong mô hình chuẩn độ 25 mL axit mạnh 0,1 mol/L bằng bazơ mạnh 0,1 mol/L ở 25 °C, tại 25 mL bazơ thì pH = 7 và phenolphthalein đã chuyển hồng đậm.",
           "answer": {
             "value": false,
-            "explanation": "Hai chế độ có mục đích khác nhau. Vàng là màu đại diện của Na⁺ trong nhận biết ion."
+            "explanation": "Tại đúng 25 mL bazơ, dung dịch đạt điểm tương đương pH = 7 và phenolphthalein vẫn không màu (indicatorFraction = 0)."
           },
           "difficulty": "cơ bản",
-          "outcome_id": "HH-KIEM-01-LO-2",
+          "outcome_id": "HH-CHUANDO-01-LO-2",
           "knowledge_ids": [
-            "HH-KIEM-01-K-1",
-            "HH-KIEM-01-K-2",
-            "HH-KIEM-01-K-3"
+            "HH-CHUANDO-01-K-1",
+            "HH-CHUANDO-01-K-2",
+            "HH-CHUANDO-01-K-3"
           ],
           "rubric_id": "R-OBJECTIVE-1"
         },
         {
-          "id": "HH-KIEM-01-Q-2",
+          "id": "HH-CHUANDO-01-Q-2",
           "type": "fill_blank",
-          "prompt": "Theo phương trình cân bằng, 4 mol K phản ứng hoàn toàn tạo bao nhiêu mol H₂?",
+          "prompt": "Tại điểm tương đương khi nhỏ 25 mL KOH 0,1 mol/L vào 25 mL HNO₃ 0,1 mol/L, số mol muối KNO₃ tạo thành là bao nhiêu mol?",
           "answer": {
-            "value": 2,
-            "explanation": "Hệ số K:H₂ là 2:1 nên 4 mol K tương ứng 2 mol H₂. Đây là phép tính theo phương trình.",
+            "value": 0.0025,
+            "explanation": "n = C·V = 0,1 × 0,025 = 0,0025 mol.",
             "unit": "mol",
-            "absolute_tolerance": 0
+            "absolute_tolerance": 0.00001
           },
           "difficulty": "cơ bản",
-          "outcome_id": "HH-KIEM-01-LO-1",
+          "outcome_id": "HH-CHUANDO-01-LO-1",
           "knowledge_ids": [
-            "HH-KIEM-01-K-1",
-            "HH-KIEM-01-K-2",
-            "HH-KIEM-01-K-3"
+            "HH-CHUANDO-01-K-1",
+            "HH-CHUANDO-01-K-2",
+            "HH-CHUANDO-01-K-3"
           ],
           "rubric_id": "R-OBJECTIVE-1"
         },
         {
-          "id": "HH-KIEM-01-Q-3",
+          "id": "HH-CHUANDO-01-Q-3",
           "type": "multi_select",
-          "prompt": "Hai dòng nào thuộc chế độ màu ngọn lửa của ion?",
+          "prompt": "Chọn các nhận định đúng với các ca chuẩn của mô hình chuẩn độ axit–bazơ mạnh 0,1 mol/L ở 25 °C.",
           "answer": {
             "value": [
               "A",
+              "B",
               "C"
             ],
-            "explanation": "Màu vàng và tím nhạt thuộc chế độ nhận biết ion; các dòng hydroxide và khí thuộc chế độ nước."
+            "explanation": "Ở 0 mL bazơ pH = 1; ở 25 mL bazơ pH = 7; ở 50 mL bazơ bazơ dư 0,0025 mol trong 75 mL nên pH ≈ 12,523."
           },
           "difficulty": "cơ bản",
-          "outcome_id": "HH-KIEM-01-LO-2",
+          "outcome_id": "HH-CHUANDO-01-LO-1",
           "knowledge_ids": [
-            "HH-KIEM-01-K-1",
-            "HH-KIEM-01-K-2",
-            "HH-KIEM-01-K-3"
+            "HH-CHUANDO-01-K-1",
+            "HH-CHUANDO-01-K-2",
+            "HH-CHUANDO-01-K-3"
           ],
           "rubric_id": "R-OBJECTIVE-1",
           "options": [
             {
               "id": "A",
-              "text": "Na⁺, vàng"
+              "text": "Tại 0 mL bazơ, pH = 1 và axit còn 0,0025 mol"
             },
             {
               "id": "B",
-              "text": "NaOH và H₂"
+              "text": "Tại 25 mL bazơ, đạt tương đương với pH = 7"
             },
             {
               "id": "C",
-              "text": "K⁺, tím nhạt"
+              "text": "Tại 50 mL bazơ, bazơ dư 0,0025 mol và pH ≈ 12,523"
             },
             {
               "id": "D",
-              "text": "KOH và H₂"
+              "text": "Phenolphthalein đổi màu đúng tại pH = 7,00"
             }
           ]
         },
         {
-          "id": "HH-KIEM-01-Q-4",
+          "id": "HH-CHUANDO-01-Q-4",
           "type": "open_response",
-          "prompt": "Hai dòng ghi NaOH và H₂; Na⁺ màu vàng. Hãy giải thích mỗi dòng thuộc chế độ nào.",
+          "prompt": "Dựa vào ba mốc 0 mL, 25 mL và 50 mL bazơ, giải thích sự thay đổi giai đoạn dung dịch (acid, equivalence, base) và vì sao màu chỉ thị chỉ là minh họa.",
           "answer": {
-            "value": "NaOH và H₂ là sản phẩm ca Na với nước. Vàng là màu nhận biết Na⁺ ở chế độ riêng.",
-            "explanation": "Phân biệt mục đích và kết quả của hai quan sát.",
+            "value": "Ở 0 mL axit dư (pH = 1), ở 25 mL số mol bằng nhau nên trung hòa (pH = 7, không màu), ở 50 mL bazơ dư (pH ≈ 12,523). Màu phenolphthalein nội suy theo pH 8,2–10 nên điểm kết thúc theo màu khác điểm tương đương.",
+            "explanation": "Cần nêu đúng biến thiên số mol/pH qua ba mốc và phân biệt điểm tương đương với màu nội suy của chỉ thị.",
             "matching": "meaning_and_reasoning"
           },
           "difficulty": "trung bình",
-          "outcome_id": "HH-KIEM-01-LO-2",
+          "outcome_id": "HH-CHUANDO-01-LO-2",
           "knowledge_ids": [
-            "HH-KIEM-01-K-1",
-            "HH-KIEM-01-K-2",
-            "HH-KIEM-01-K-3"
+            "HH-CHUANDO-01-K-1",
+            "HH-CHUANDO-01-K-2",
+            "HH-CHUANDO-01-K-3"
           ],
-          "rubric_id": "HH-KIEM-01-Q-4-R"
+          "rubric_id": "HH-CHUANDO-01-Q-4-R"
         }
       ],
       "rubrics": [
         {
-          "id": "HH-KIEM-01-Q-4-R",
+          "id": "HH-CHUANDO-01-Q-4-R",
           "max_points": 4,
           "pass_points": 3,
           "require_nonzero_each_criterion": true,
           "criteria": [
             {
-              "criterion": "Gắn đúng NaOH và H₂ với ca nước.",
+              "criterion": "So sánh đúng trạng thái axit dư (0 mL), tương đương (25 mL, pH = 7) và bazơ dư (50 mL).",
               "levels": [
                 {
                   "points": 0,
@@ -5676,7 +5710,7 @@
               ]
             },
             {
-              "criterion": "Gắn đúng vàng với Na⁺ ở phép nhận biết riêng.",
+              "criterion": "Phân biệt điểm tương đương theo số mol với màu chỉ thị nội suy trong khoảng pH 8,2–10.",
               "levels": [
                 {
                   "points": 0,
@@ -5695,13 +5729,13 @@
           ]
         },
         {
-          "id": "HH-KIEM-01-A-1-R",
+          "id": "HH-CHUANDO-01-A-1-R",
           "max_points": 4,
           "pass_points": 3,
           "require_nonzero_each_criterion": true,
           "criteria": [
             {
-              "criterion": "Thực hiện các bước và giữ điều kiện đầu: Đặt lại về trạng thái chưa quan sát; mở bảng ghi.",
+              "criterion": "Thực hiện các bước và giữ điều kiện đầu: Đặt lại lab chuẩn độ ở 25 mL axit 0,1 mol/L và ghi các mốc 0 mL, 25 mL, 50 mL bazơ.",
               "levels": [
                 {
                   "points": 0,
@@ -5718,7 +5752,7 @@
               ]
             },
             {
-              "criterion": "Dùng kết quả để kiểm điều kiện hoàn thành: Có bốn lượt quan sát được gắn đúng kim loại và chế độ. Dòng chưa quan sát không được dùng làm kết quả.",
+              "criterion": "Dùng kết quả để kiểm điều kiện hoàn thành: Đối chiếu pH = 1 ở 0 mL, pH = 7 ở 25 mL và pH ≈ 12,523 ở 50 mL.",
               "levels": [
                 {
                   "points": 0,
@@ -5739,136 +5773,112 @@
       ],
       "activities": [
         {
-          "id": "HH-KIEM-01-A-1",
-          "title": "Phân loại kết quả của hai chế độ",
-          "description": "Hoạt động với chế độ alkali-water của bài Na, K tác dụng với nước và màu ngọn lửa.",
-          "runtime_id": "alkali-water",
-          "outcome_id": "HH-KIEM-01-LO-2",
+          "id": "HH-CHUANDO-01-A-1",
+          "title": "Khảo sát pH trước, tại và sau điểm tương đương",
+          "description": "Hoạt động với chế độ chemistry của bài Chuẩn độ axit–bazơ.",
+          "runtime_id": "chemistry",
+          "outcome_id": "HH-CHUANDO-01-LO-1",
           "knowledge_ids": [
-            "HH-KIEM-01-K-1",
-            "HH-KIEM-01-K-2",
-            "HH-KIEM-01-K-3"
+            "HH-CHUANDO-01-K-1",
+            "HH-CHUANDO-01-K-2",
+            "HH-CHUANDO-01-K-3"
           ],
           "prerequisites": [
-            "Kí hiệu kim loại và ion",
-            "Đọc hệ số phương trình"
+            "Tính số mol từ nồng độ mol/L và thể tích (đổi mL sang L)",
+            "Đọc thang pH ở 25 °C cho dung dịch nước loãng"
           ],
-          "initial_state": "Đặt lại về trạng thái chưa quan sát; mở bảng ghi.",
-          "parameter_schema_ref": "packages/lab-engine/labs/alkali-water/lab.json#/parameter_schema",
-          "actions": "Chọn Na và K trong chế độ nước, bấm Quan sát và ghi từng ca. Lặp trong chế độ màu ion.",
-          "invalid_actions_and_effect": "Không ghi khi chưa Quan sát; không dùng màu ở mode flame để mô tả sản phẩm khí.",
+          "initial_state": "Đặt lại lab chuẩn độ ở 25 mL axit 0,1 mol/L, bazơ 0,1 mol/L tại 25 °C.",
+          "parameter_schema_ref": "packages/lab-engine/labs/chemistry/lab.json#/parameter_schema",
+          "actions": "Ghi số đo ở 0 mL bazơ, 25 mL bazơ (tương đương) và 50 mL bazơ (bazơ dư).",
+          "invalid_actions_and_effect": "Nhập thể tích bazơ ngoài đoạn 0–50 mL sẽ bị chặn bởi giới hạn tham số.",
           "cases": [
             {
-              "path": "tests/golden/curriculum-labs.json",
-              "pointer": "/8",
+              "path": "tests/golden/server-readings.json",
+              "pointer": "/3",
               "parameters": {
-                "metal": "Na",
-                "mode": "water",
-                "observed": true
+                "baseVolume_ml": 0
               },
               "elapsed_s": 0
             },
             {
-              "path": "tests/golden/curriculum-labs.json",
-              "pointer": "/9",
+              "path": "tests/golden/server-readings.json",
+              "pointer": "/2",
               "parameters": {
-                "metal": "K",
-                "mode": "water",
-                "observed": true
+                "baseVolume_ml": 25,
+                "acid": "hno3",
+                "base": "koh"
               },
               "elapsed_s": 0
             },
             {
-              "path": "tests/golden/curriculum-labs.json",
-              "pointer": "/10",
+              "path": "tests/golden/server-readings.json",
+              "pointer": "/4",
               "parameters": {
-                "metal": "Na",
-                "mode": "flame",
-                "observed": true
-              },
-              "elapsed_s": 0
-            },
-            {
-              "path": "tests/golden/curriculum-labs.json",
-              "pointer": "/11",
-              "parameters": {
-                "metal": "K",
-                "mode": "flame",
-                "observed": true
-              },
-              "elapsed_s": 0
-            },
-            {
-              "path": "tests/golden/curriculum-labs.json",
-              "pointer": "/12",
-              "parameters": {
-                "metal": "Na",
-                "mode": "water",
-                "observed": false
+                "baseVolume_ml": 50
               },
               "elapsed_s": 0
             }
           ],
-          "expected_result": "Có bốn lượt quan sát được gắn đúng kim loại và chế độ. Dòng chưa quan sát không được dùng làm kết quả.",
-          "expected_failure": "Chưa đạt nếu vi phạm điều kiện: Không ghi khi chưa Quan sát; không dùng màu ở mode flame để mô tả sản phẩm khí.",
-          "feedback_on_success": "Đối chiếu số đọc hoặc hiện tượng vừa ghi với kết quả mong đợi và giải thích.",
-          "feedback_on_failure": "Chọn đúng chế độ, quan sát lại và gắn nhãn cho từng dòng.",
+          "expected_result": "Đối chiếu pH = 1 ở 0 mL, pH = 7 ở 25 mL (0,0025 mol muối) và pH ≈ 12,523 ở 50 mL.",
+          "expected_failure": "Chưa đạt nếu vi phạm điều kiện: Không ghi đủ mốc tương đương 25 mL hoặc nhầm màu chỉ thị với pH = 7.",
+          "feedback_on_success": "Đối chiếu số đọc pH và số mol vừa ghi với kết quả mong đợi và giải thích.",
+          "feedback_on_failure": "Kiểm tra lại thể tích bazơ tại 0 mL, 25 mL và 50 mL rồi ghi lại số đo.",
           "completed_state": "recorded_and_explained",
-          "completion_criteria": "Có bốn lượt quan sát được gắn đúng kim loại và chế độ. Dòng chưa quan sát không được dùng làm kết quả.",
-          "rubric_id": "HH-KIEM-01-A-1-R",
+          "completion_criteria": "Đối chiếu pH = 1 ở 0 mL, pH = 7 ở 25 mL và pH ≈ 12,523 ở 50 mL.",
+          "rubric_id": "HH-CHUANDO-01-A-1-R",
           "scoring": {
             "pass": "Đạt điểm ngưỡng của rubric và mỗi tiêu chí có điểm.",
             "fail": "Thiếu lượt hợp lệ, thiếu giải thích hoặc dưới ngưỡng."
           },
           "review_if_failed": [
-            "HH-KIEM-01-K-1",
-            "HH-KIEM-01-K-2",
-            "HH-KIEM-01-K-3"
+            "HH-CHUANDO-01-K-1",
+            "HH-CHUANDO-01-K-2",
+            "HH-CHUANDO-01-K-3"
           ]
         }
       ],
       "tutor_cases": [
         {
-          "id": "HH-KIEM-01-T-1",
-          "practice_id": "HH-KIEM-01",
-          "lab_id": "alkali-water",
+          "id": "HH-CHUANDO-01-T-1",
+          "practice_id": "HH-CHUANDO-01",
+          "lab_id": "chemistry",
           "category": "knowledge",
           "objective": "Trình bày đúng khái niệm và điều kiện áp dụng.",
           "context": {
-            "activity_id": "HH-KIEM-01-A-1",
-            "practice_id": "HH-KIEM-01",
-            "scenario": "Đặt lại về trạng thái chưa quan sát; mở bảng ghi.",
+            "activity_id": "HH-CHUANDO-01-A-1",
+            "practice_id": "HH-CHUANDO-01",
+            "scenario": "Đặt lại lab chuẩn độ ở 25 mL axit 0,1 mol/L, bazơ 0,1 mol/L tại 25 °C.",
             "rubric_id": null,
             "question_id": null,
             "student_answer_kind": null
           },
           "input": {
-            "lab_id": "alkali-water",
+            "lab_id": "chemistry",
             "mode": "explanation",
-            "question": "Quan sát màu ion và quan sát Na với nước khác nhau thế nào?",
+            "question": "Vì sao ở 25 mL bazơ pH bằng 7 nhưng phenolphthalein chưa hồng?",
             "include_drafts": true
           },
           "references": {
             "knowledge_ids": [
-              "HH-KIEM-01-K-1",
-              "HH-KIEM-01-K-2",
-              "HH-KIEM-01-K-3"
+              "HH-CHUANDO-01-K-1",
+              "HH-CHUANDO-01-K-2",
+              "HH-CHUANDO-01-K-3"
             ],
             "source_ids": [
-              "HH-KIEM-01-SRC-DATA"
+              "HH-CHUANDO-01-SRC-DATA"
             ],
-            "activity_id": "HH-KIEM-01-A-1",
+            "activity_id": "HH-CHUANDO-01-A-1",
             "question_id": null,
             "rubric_id": null
           },
-          "expected_behavior": "Nêu hai chế độ độc lập, sản phẩm hydroxide/H₂ ở ca nước, màu thuộc nhận biết ion.",
+          "expected_behavior": "Giải thích tại 25 mL số mol axit và bazơ bằng nhau (pH = 7), còn phenolphthalein chỉ chuyển hồng ở vùng pH 8,2–10.",
           "evaluation_criteria": [
             {
               "description": "Trình bày đúng khái niệm và điều kiện áp dụng.",
               "points": 1
             },
             {
-              "description": "Nêu hai chế độ độc lập, sản phẩm hydroxide/H₂ ở ca nước, màu thuộc nhận biết ion.",
+              "description": "Giải thích tại 25 mL số mol axit và bazơ bằng nhau (pH = 7), còn phenolphthalein chỉ chuyển hồng ở vùng pH 8,2–10.",
               "points": 1
             },
             {
@@ -5879,55 +5889,56 @@
           "pass_points": 3,
           "grading_method": "manual_semantic_review",
           "execution": {
-            "pilot_scope": false,
+            "pilot_scope": true,
             "expected_offline": [
-              "MVP_SCOPE_ONLY"
+              "LIVE_DISABLED",
+              "NO_RELEVANT_SOURCE"
             ],
             "status": "NOT_RUN",
             "actual": null
           }
         },
         {
-          "id": "HH-KIEM-01-T-2",
-          "practice_id": "HH-KIEM-01",
-          "lab_id": "alkali-water",
+          "id": "HH-CHUANDO-01-T-2",
+          "practice_id": "HH-CHUANDO-01",
+          "lab_id": "chemistry",
           "category": "practice_guidance",
           "objective": "Chỉ dẫn thao tác đúng trong mô phỏng, theo trạng thái hiện tại.",
           "context": {
-            "activity_id": "HH-KIEM-01-A-1",
-            "practice_id": "HH-KIEM-01",
-            "scenario": "Đặt lại về trạng thái chưa quan sát; mở bảng ghi.",
+            "activity_id": "HH-CHUANDO-01-A-1",
+            "practice_id": "HH-CHUANDO-01",
+            "scenario": "Đặt lại lab chuẩn độ ở 25 mL axit 0,1 mol/L, bazơ 0,1 mol/L tại 25 °C.",
             "rubric_id": null,
             "question_id": null,
             "student_answer_kind": null
           },
           "input": {
-            "lab_id": "alkali-water",
+            "lab_id": "chemistry",
             "mode": "explanation",
-            "question": "Em đã ghi Na trong chế độ nước. Bước tiếp theo để so Na và K?",
+            "question": "Em đã ghi mốc 0 mL bazơ. Em nên thử mốc thể tích nào tiếp theo để kiểm điểm tương đương?",
             "include_drafts": true
           },
           "references": {
             "knowledge_ids": [
-              "HH-KIEM-01-K-1",
-              "HH-KIEM-01-K-2",
-              "HH-KIEM-01-K-3"
+              "HH-CHUANDO-01-K-1",
+              "HH-CHUANDO-01-K-2",
+              "HH-CHUANDO-01-K-3"
             ],
             "source_ids": [
-              "HH-KIEM-01-SRC-DATA"
+              "HH-CHUANDO-01-SRC-DATA"
             ],
-            "activity_id": "HH-KIEM-01-A-1",
+            "activity_id": "HH-CHUANDO-01-A-1",
             "question_id": null,
             "rubric_id": null
           },
-          "expected_behavior": "Chọn K cùng chế độ, nhấn Quan sát và ghi; tách riêng bảng màu ion.",
+          "expected_behavior": "Hướng dẫn đặt thể tích bazơ 25 mL để quan sát điểm tương đương rồi so với 50 mL.",
           "evaluation_criteria": [
             {
               "description": "Chỉ dẫn thao tác đúng trong mô phỏng, theo trạng thái hiện tại.",
               "points": 1
             },
             {
-              "description": "Chọn K cùng chế độ, nhấn Quan sát và ghi; tách riêng bảng màu ion.",
+              "description": "Hướng dẫn đặt thể tích bazơ 25 mL để quan sát điểm tương đương rồi so với 50 mL.",
               "points": 1
             },
             {
@@ -5938,55 +5949,56 @@
           "pass_points": 3,
           "grading_method": "manual_semantic_review",
           "execution": {
-            "pilot_scope": false,
+            "pilot_scope": true,
             "expected_offline": [
-              "MVP_SCOPE_ONLY"
+              "LIVE_DISABLED",
+              "NO_RELEVANT_SOURCE"
             ],
             "status": "NOT_RUN",
             "actual": null
           }
         },
         {
-          "id": "HH-KIEM-01-T-3",
-          "practice_id": "HH-KIEM-01",
-          "lab_id": "alkali-water",
+          "id": "HH-CHUANDO-01-T-3",
+          "practice_id": "HH-CHUANDO-01",
+          "lab_id": "chemistry",
           "category": "error_diagnosis",
           "objective": "Phát hiện đúng nguyên nhân và hướng dẫn sửa trong phạm vi.",
           "context": {
-            "activity_id": "HH-KIEM-01-A-1",
-            "practice_id": "HH-KIEM-01",
-            "scenario": "Đặt lại về trạng thái chưa quan sát; mở bảng ghi.",
+            "activity_id": "HH-CHUANDO-01-A-1",
+            "practice_id": "HH-CHUANDO-01",
+            "scenario": "Đặt lại lab chuẩn độ ở 25 mL axit 0,1 mol/L, bazơ 0,1 mol/L tại 25 °C.",
             "rubric_id": null,
             "question_id": null,
             "student_answer_kind": null
           },
           "input": {
-            "lab_id": "alkali-water",
+            "lab_id": "chemistry",
             "mode": "explanation",
-            "question": "Chưa bấm Quan sát nên kết quả trống. Có phải Na không phản ứng?",
+            "question": "Sao em nhập 60 mL bazơ vào ô thể tích không được?",
             "include_drafts": true
           },
           "references": {
             "knowledge_ids": [
-              "HH-KIEM-01-K-1",
-              "HH-KIEM-01-K-2",
-              "HH-KIEM-01-K-3"
+              "HH-CHUANDO-01-K-1",
+              "HH-CHUANDO-01-K-2",
+              "HH-CHUANDO-01-K-3"
             ],
             "source_ids": [
-              "HH-KIEM-01-SRC-DATA"
+              "HH-CHUANDO-01-SRC-DATA"
             ],
-            "activity_id": "HH-KIEM-01-A-1",
+            "activity_id": "HH-CHUANDO-01-A-1",
             "question_id": null,
             "rubric_id": null
           },
-          "expected_behavior": "Giải thích trạng thái chưa quan sát, hướng dẫn thao tác ảo rồi mới đọc.",
+          "expected_behavior": "Chỉ ra giới hạn thể tích bazơ của mô phỏng là 0–50 mL.",
           "evaluation_criteria": [
             {
               "description": "Phát hiện đúng nguyên nhân và hướng dẫn sửa trong phạm vi.",
               "points": 1
             },
             {
-              "description": "Giải thích trạng thái chưa quan sát, hướng dẫn thao tác ảo rồi mới đọc.",
+              "description": "Chỉ ra giới hạn thể tích bazơ của mô phỏng là 0–50 mL.",
               "points": 1
             },
             {
@@ -5997,56 +6009,57 @@
           "pass_points": 3,
           "grading_method": "manual_semantic_review",
           "execution": {
-            "pilot_scope": false,
+            "pilot_scope": true,
             "expected_offline": [
-              "MVP_SCOPE_ONLY"
+              "LIVE_DISABLED",
+              "NO_RELEVANT_SOURCE"
             ],
             "status": "NOT_RUN",
             "actual": null
           }
         },
         {
-          "id": "HH-KIEM-01-T-4",
-          "practice_id": "HH-KIEM-01",
-          "lab_id": "alkali-water",
+          "id": "HH-CHUANDO-01-T-4",
+          "practice_id": "HH-CHUANDO-01",
+          "lab_id": "chemistry",
           "category": "exercise_help",
           "objective": "Đưa bước gợi ý phù hợp và tôn trọng yêu cầu chưa tiết lộ đáp án.",
           "context": {
-            "activity_id": "HH-KIEM-01-A-1",
-            "practice_id": "HH-KIEM-01",
-            "scenario": "Đặt lại về trạng thái chưa quan sát; mở bảng ghi.",
+            "activity_id": "HH-CHUANDO-01-A-1",
+            "practice_id": "HH-CHUANDO-01",
+            "scenario": "Đặt lại lab chuẩn độ ở 25 mL axit 0,1 mol/L, bazơ 0,1 mol/L tại 25 °C.",
             "rubric_id": null,
-            "question_id": "HH-KIEM-01-Q-2",
+            "question_id": "HH-CHUANDO-01-Q-2",
             "student_answer_kind": null
           },
           "input": {
-            "lab_id": "alkali-water",
+            "lab_id": "chemistry",
             "mode": "hint",
-            "question": "Gợi ý cách tính mol H₂ từ mol K, đừng cho đáp án.",
+            "question": "Gợi ý cách tính số mol muối ở điểm tương đương 25 mL, đừng nêu đáp số.",
             "include_drafts": true,
             "hint_level": 1
           },
           "references": {
             "knowledge_ids": [
-              "HH-KIEM-01-K-1",
-              "HH-KIEM-01-K-2",
-              "HH-KIEM-01-K-3"
+              "HH-CHUANDO-01-K-1",
+              "HH-CHUANDO-01-K-2",
+              "HH-CHUANDO-01-K-3"
             ],
             "source_ids": [
-              "HH-KIEM-01-SRC-DATA"
+              "HH-CHUANDO-01-SRC-DATA"
             ],
-            "activity_id": "HH-KIEM-01-A-1",
-            "question_id": "HH-KIEM-01-Q-2",
+            "activity_id": "HH-CHUANDO-01-A-1",
+            "question_id": "HH-CHUANDO-01-Q-2",
             "rubric_id": null
           },
-          "expected_behavior": "Gợi ý dùng tỉ lệ hệ số 2:1 từ phương trình.",
+          "expected_behavior": "Gợi ý đổi 25 mL sang 0,025 L rồi nhân với nồng độ 0,1 mol/L theo tỉ lệ 1:1, chưa nêu số 0,0025.",
           "evaluation_criteria": [
             {
               "description": "Đưa bước gợi ý phù hợp và tôn trọng yêu cầu chưa tiết lộ đáp án.",
               "points": 1
             },
             {
-              "description": "Gợi ý dùng tỉ lệ hệ số 2:1 từ phương trình.",
+              "description": "Gợi ý đổi 25 mL sang 0,025 L rồi nhân với nồng độ 0,1 mol/L theo tỉ lệ 1:1, chưa nêu số 0,0025.",
               "points": 1
             },
             {
@@ -6057,55 +6070,600 @@
           "pass_points": 3,
           "grading_method": "manual_semantic_review",
           "execution": {
-            "pilot_scope": false,
+            "pilot_scope": true,
             "expected_offline": [
-              "MVP_SCOPE_ONLY"
+              "LIVE_DISABLED",
+              "NO_RELEVANT_SOURCE"
             ],
             "status": "NOT_RUN",
             "actual": null
           }
         },
         {
-          "id": "HH-KIEM-01-T-5",
-          "practice_id": "HH-KIEM-01",
-          "lab_id": "alkali-water",
+          "id": "HH-CHUANDO-01-T-5",
+          "practice_id": "HH-CHUANDO-01",
+          "lab_id": "chemistry",
           "category": "answer_evaluation",
           "objective": "Đánh giá lập luận và mức độ đạt theo rubric, chấp nhận cách diễn đạt tương đương.",
           "context": {
-            "activity_id": "HH-KIEM-01-A-1",
-            "practice_id": "HH-KIEM-01",
-            "scenario": "Đặt lại về trạng thái chưa quan sát; mở bảng ghi.",
-            "rubric_id": "HH-KIEM-01-Q-4-R",
-            "question_id": "HH-KIEM-01-Q-4",
+            "activity_id": "HH-CHUANDO-01-A-1",
+            "practice_id": "HH-CHUANDO-01",
+            "scenario": "Đặt lại lab chuẩn độ ở 25 mL axit 0,1 mol/L, bazơ 0,1 mol/L tại 25 °C.",
+            "rubric_id": "HH-CHUANDO-01-Q-4-R",
+            "question_id": "HH-CHUANDO-01-Q-4",
             "student_answer_kind": "correct"
           },
           "input": {
-            "lab_id": "alkali-water",
+            "lab_id": "chemistry",
             "mode": "feedback",
-            "question": "Em ghi NaOH và H₂ ở chế độ nước, còn màu vàng là của ion Na⁺ trong chế độ riêng.",
+            "question": "Em viết: 0 mL axit dư pH = 1, 25 mL trung hòa pH = 7 chưa đổi màu, 50 mL bazơ dư pH khoảng 12,52.",
             "include_drafts": true
           },
           "references": {
             "knowledge_ids": [
-              "HH-KIEM-01-K-1",
-              "HH-KIEM-01-K-2",
-              "HH-KIEM-01-K-3"
+              "HH-CHUANDO-01-K-1",
+              "HH-CHUANDO-01-K-2",
+              "HH-CHUANDO-01-K-3"
             ],
             "source_ids": [
-              "HH-KIEM-01-SRC-DATA"
+              "HH-CHUANDO-01-SRC-DATA"
             ],
-            "activity_id": "HH-KIEM-01-A-1",
-            "question_id": "HH-KIEM-01-Q-4",
-            "rubric_id": "HH-KIEM-01-Q-4-R"
+            "activity_id": "HH-CHUANDO-01-A-1",
+            "question_id": "HH-CHUANDO-01-Q-4",
+            "rubric_id": "HH-CHUANDO-01-Q-4-R"
           },
-          "expected_behavior": "Xác nhận đúng cả hai phần, nhắc màu trong UI mang tính minh họa.",
+          "expected_behavior": "Xác nhận lập luận đúng cả ba mốc và sự khác nhau giữa điểm tương đương với màu chỉ thị.",
           "evaluation_criteria": [
             {
               "description": "Đánh giá lập luận và mức độ đạt theo rubric, chấp nhận cách diễn đạt tương đương.",
               "points": 1
             },
             {
-              "description": "Xác nhận đúng cả hai phần, nhắc màu trong UI mang tính minh họa.",
+              "description": "Xác nhận lập luận đúng cả ba mốc và sự khác nhau giữa điểm tương đương với màu chỉ thị.",
+              "points": 1
+            },
+            {
+              "description": "Giải thích dễ hiểu, bám giả thiết và không gán kết quả hoặc trạng thái khoa học ngoài dữ liệu tham chiếu.",
+              "points": 1
+            }
+          ],
+          "pass_points": 3,
+          "grading_method": "manual_semantic_review",
+          "execution": {
+            "pilot_scope": true,
+            "expected_offline": [
+              "LIVE_DISABLED",
+              "NO_RELEVANT_SOURCE"
+            ],
+            "status": "NOT_RUN",
+            "actual": null
+          }
+        },
+        {
+          "id": "HH-CHUANDO-01-T-6",
+          "practice_id": "HH-CHUANDO-01",
+          "lab_id": "chemistry",
+          "category": "limits",
+          "objective": "Nhận diện thông tin thiếu hoặc ngoài mô hình; không đặt số liệu hay nguồn.",
+          "context": {
+            "activity_id": "HH-CHUANDO-01-A-1",
+            "practice_id": "HH-CHUANDO-01",
+            "scenario": "Đặt lại lab chuẩn độ ở 25 mL axit 0,1 mol/L, bazơ 0,1 mol/L tại 25 °C.",
+            "rubric_id": null,
+            "question_id": null,
+            "student_answer_kind": null
+          },
+          "input": {
+            "lab_id": "chemistry",
+            "mode": "explanation",
+            "question": "Dùng mô phỏng này để tính pH chuẩn độ CH₃COOH bằng NaOH được không?",
+            "include_drafts": true
+          },
+          "references": {
+            "knowledge_ids": [
+              "HH-CHUANDO-01-K-1",
+              "HH-CHUANDO-01-K-2",
+              "HH-CHUANDO-01-K-3"
+            ],
+            "source_ids": [
+              "HH-CHUANDO-01-SRC-DATA"
+            ],
+            "activity_id": "HH-CHUANDO-01-A-1",
+            "question_id": null,
+            "rubric_id": null
+          },
+          "expected_behavior": "Nêu rõ mô hình chỉ áp dụng cho axit mạnh–bazơ mạnh 1:1, không tính cân bằng axit yếu.",
+          "evaluation_criteria": [
+            {
+              "description": "Nhận diện thông tin thiếu hoặc ngoài mô hình; không đặt số liệu hay nguồn.",
+              "points": 1
+            },
+            {
+              "description": "Nêu rõ mô hình chỉ áp dụng cho axit mạnh–bazơ mạnh 1:1, không tính cân bằng axit yếu.",
+              "points": 1
+            },
+            {
+              "description": "Giải thích dễ hiểu, bám giả thiết và không gán kết quả hoặc trạng thái khoa học ngoài dữ liệu tham chiếu.",
+              "points": 1
+            }
+          ],
+          "pass_points": 3,
+          "grading_method": "manual_semantic_review",
+          "execution": {
+            "pilot_scope": true,
+            "expected_offline": [
+              "LIVE_DISABLED",
+              "NO_RELEVANT_SOURCE"
+            ],
+            "status": "NOT_RUN",
+            "actual": null
+          }
+        }
+      ]
+    },
+    {
+      "practice_id": "HH-KETTUA-01",
+      "runtime_ids": [
+        "precipitation"
+      ],
+      "title": "Phản ứng tạo kết tủa AgCl",
+      "knowledge_profile": {
+        "id": "HH-KETTUA-01-PROFILE",
+        "topic": "Phản ứng tạo kết tủa",
+        "difficulty": "cơ bản",
+        "objectives": [
+          "Xác định chất giới hạn khi trộn dung dịch AgNO₃ 0,100 mol/L và NaCl 0,100 mol/L",
+          "Tính số mol và khối lượng kết tủa AgCl lý thuyết theo tỉ lệ 1:1"
+        ],
+        "prerequisites": [
+          "Tính số mol chất tan từ n = C·V",
+          "Nhận biết phương trình trao đổi ion tạo kết tủa AgCl"
+        ],
+        "learning_outcomes": [
+          {
+            "id": "HH-KETTUA-01-LO-1",
+            "description": "Xác định chất giới hạn khi trộn dung dịch AgNO₃ 0,100 mol/L và NaCl 0,100 mol/L"
+          },
+          {
+            "id": "HH-KETTUA-01-LO-2",
+            "description": "Tính số mol và khối lượng kết tủa AgCl lý thuyết theo tỉ lệ 1:1"
+          }
+        ],
+        "concepts": [
+          {
+            "id": "HH-KETTUA-01-K-1",
+            "name": "Phương trình tạo kết tủa AgCl",
+            "definition": "AgNO₃ và NaCl trong dung dịch phản ứng theo tỉ lệ mol 1:1 tạo kết tủa trắng AgCl và NaNO₃.",
+            "formula": "AgNO₃(aq) + NaCl(aq) → AgCl(s) + NaNO₃(aq); Ag⁺ + Cl⁻ → AgCl(s)",
+            "origin_notes": "Diễn giải học liệu/mô hình hiện có; nguồn ngoài dùng để đối chiếu phần được ghi.",
+            "conditions": "Hai dung dịch đầu đều có nồng độ cố định 0,100 mol/L ở 25 °C.",
+            "origin": "project_authored_from_lumilab",
+            "source_ids": [
+              "HH-KETTUA-01-SRC-DATA",
+              "HH-KETTUA-01-SRC-EXT-1"
+            ]
+          },
+          {
+            "id": "HH-KETTUA-01-K-2",
+            "name": "Chất giới hạn và khối lượng kết tủa",
+            "definition": "Số mol AgCl tạo thành bằng số mol nhỏ hơn giữa AgNO₃ và NaCl; khối lượng tính theo M(AgCl) = 143,32 g/mol.",
+            "formula": "n_AgCl = min(n_AgNO₃, n_NaCl); m_AgCl = n_AgCl × 143,32",
+            "origin_notes": "Diễn giải học liệu/mô hình hiện có; nguồn ngoài dùng để đối chiếu phần được ghi.",
+            "conditions": "Coi phản ứng xảy ra hoàn toàn theo hiệu suất lý thuyết.",
+            "origin": "project_authored_from_lumilab",
+            "source_ids": [
+              "HH-KETTUA-01-SRC-DATA",
+              "HH-KETTUA-01-SRC-EXT-2"
+            ]
+          },
+          {
+            "id": "HH-KETTUA-01-K-3",
+            "name": "Giới hạn mô hình kết tủa",
+            "definition": "Mô hình không giải tích số tan Ksp, tốc độ lắng hay tạo phức; đám mây trắng chỉ là minh họa định tính.",
+            "formula": null,
+            "origin_notes": "Diễn giải học liệu/mô hình hiện có; nguồn ngoài dùng để đối chiếu phần được ghi.",
+            "conditions": "Khi một trong hai thể tích bằng 0 mL thì không có kết tủa (m = 0 g).",
+            "origin": "project_authored_from_lumilab",
+            "source_ids": [
+              "HH-KETTUA-01-SRC-DATA",
+              "HH-KETTUA-01-SRC-SGK-1"
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "id": "HH-KETTUA-01-SRC-DATA",
+            "title": "Học liệu, mô hình và ca chuẩn LumiLab",
+            "publisher": "Nhóm LumiLab",
+            "type": "project_dataset",
+            "role": "primary",
+            "paths": [
+              "docs/DATASET.md",
+              "apps/web/src/data/demo-lessons.json",
+              "packages/lab-engine/labs/precipitation/lab.json"
+            ],
+            "used_for": "Nội dung bài, thuật ngữ, giả thiết, điều khiển và phạm vi mô phỏng. Ca đối chiếu nằm trong từng hoạt động.",
+            "practice_id": "HH-KETTUA-01"
+          },
+          {
+            "id": "HH-KETTUA-01-SRC-SGK-1",
+            "title": "Khoa học tự nhiên 8",
+            "publisher": "Nhà xuất bản Giáo dục Việt Nam",
+            "edition": "Chân trời sáng tạo",
+            "type": "textbook",
+            "role": "reference_only",
+            "url": "https://taphuan.nxbgd.vn/tap-huan/doc-sach/shs-khoa-hoc-tu-nhien-8.4539229607#page=63",
+            "section": "Bài 13, tr. 61–62, phản ứng dung dịch muối với muối",
+            "used_for": "Đối chiếu phản ứng tạo kết tủa trắng AgCl từ AgNO₃ và NaCl",
+            "provenance_path": "knowledge/retrieval/documents.json",
+            "verification": "inherited_pending_page_recheck",
+            "rights_status": "pending",
+            "practice_id": "HH-KETTUA-01"
+          },
+          {
+            "id": "HH-KETTUA-01-SRC-EXT-1",
+            "title": "Chemistry 2e",
+            "publisher": "OpenStax, Rice University",
+            "type": "open_textbook",
+            "role": "reference_only",
+            "url": "https://openstax.org/books/chemistry-2e/pages/4-2-classifying-chemical-reactions",
+            "section": "§4.2 Classifying Chemical Reactions",
+            "used_for": [
+              "Phương trình tạo kết tủa AgCl"
+            ],
+            "verification": "section_located",
+            "rights_status": "pending",
+            "practice_id": "HH-KETTUA-01"
+          },
+          {
+            "id": "HH-KETTUA-01-SRC-EXT-2",
+            "title": "Chemistry 2e",
+            "publisher": "OpenStax, Rice University",
+            "type": "open_textbook",
+            "role": "reference_only",
+            "url": "https://openstax.org/books/chemistry-2e/pages/4-4-reaction-yields",
+            "section": "§4.4 Reaction Yields",
+            "used_for": [
+              "Chất giới hạn và khối lượng kết tủa"
+            ],
+            "verification": "section_located",
+            "rights_status": "pending",
+            "practice_id": "HH-KETTUA-01"
+          }
+        ],
+        "runtime_models": [
+          {
+            "id": "precipitation",
+            "model_version": "ideal-agcl-precipitation-v1",
+            "dataset_version": "reaction-network-draft-2026-11-04",
+            "assumptions": [
+              "Hai dung dịch AgNO3 và NaCl riêng biệt đều có nồng độ cố định 0.100 mol/L, 25 °C; thể tích mỗi dung dịch từ 0 đến 50 mL; thể tích hỗn hợp cộng được.",
+              "AgNO3(aq) + NaCl(aq) → AgCl(s) + NaNO3(aq); phương trình ion Ag+(aq) + Cl-(aq) → AgCl(s); tỷ lệ mol 1:1.",
+              "Mô hình tính hiệu suất lý thuyết, coi chất giới hạn phản ứng hoàn toàn; không giải Ksp, hoạt độ ion, cân bằng tạo phức, tốc độ hay kích thước hạt. Không dùng để dự đoán cân bằng ở lượng vết.",
+              "Khối lượng mol AgCl lấy tròn 143.32 g/mol. Số mol = 0.100 mol/L × thể tích mL / 1000. Khối lượng kết tủa = số mol phản ứng × khối lượng mol.",
+              "Đám mây trắng là minh họa định tính AgCl, không đo độ đục hoặc thời gian lắng. Các hạt vẽ không tương ứng số phân tử thật.",
+              "Dung dịch bạc có nguy cơ và cần xử lý chất thải đúng quy trình; mô phỏng không hướng dẫn tự làm. Nguồn và mô hình chưa được duyệt học thuật: chỉ preview."
+            ],
+            "config_path": "packages/lab-engine/labs/precipitation/lab.json"
+          }
+        ],
+        "common_mistakes": [
+          "Cộng số mol hai chất thay vì lấy số mol của chất giới hạn khi tính khối lượng AgCl."
+        ],
+        "practice_notes": [
+          "So sánh ca có đủ hai chất phản ứng với ca một chất bằng 0 mL hoặc một chất dư."
+        ],
+        "simulation_scope": {
+          "available": [
+            "Điều chỉnh thể tích AgNO₃ và NaCl từ 0 đến 50 mL; đọc số mol từng chất, chất giới hạn và khối lượng AgCl (g)."
+          ],
+          "missing_data_and_limits": "Không tính cân bằng tan Ksp ở nồng độ vết, không mô phỏng tốc độ lắng hay đổi nồng độ đầu."
+        },
+        "review_status": "draft",
+        "reviewer": null,
+        "reviewed_at": null
+      },
+      "existing_question_refs": [
+        {
+          "id": "precipitate-mass",
+          "path": "apps/web/src/data/demo-lessons.json",
+          "lesson_id": "precipitation",
+          "section": "exercise",
+          "origin": "existing_target_dataset",
+          "outcome_id": "HH-KETTUA-01-LO-2",
+          "rubric_id": "R-OBJECTIVE-1",
+          "knowledge_ids": [
+            "HH-KETTUA-01-K-1",
+            "HH-KETTUA-01-K-2",
+            "HH-KETTUA-01-K-3"
+          ],
+          "difficulty": "cơ bản"
+        },
+        {
+          "id": "excess-salt",
+          "path": "apps/web/src/data/demo-lessons.json",
+          "lesson_id": "precipitation",
+          "section": "quiz",
+          "origin": "existing_target_dataset",
+          "outcome_id": "HH-KETTUA-01-LO-1",
+          "rubric_id": "R-OBJECTIVE-1",
+          "knowledge_ids": [
+            "HH-KETTUA-01-K-1",
+            "HH-KETTUA-01-K-2",
+            "HH-KETTUA-01-K-3"
+          ],
+          "difficulty": "cơ bản"
+        }
+      ],
+      "questions": [
+        {
+          "id": "HH-KETTUA-01-Q-1",
+          "type": "true_false",
+          "prompt": "Khi trộn 25 mL AgNO₃ 0,100 mol/L với 10 mL NaCl 0,100 mol/L, AgNO₃ là chất giới hạn.",
+          "answer": {
+            "value": false,
+            "explanation": "n(AgNO₃) = 0,0025 mol lớn hơn n(NaCl) = 0,001 mol nên NaCl mới là chất giới hạn."
+          },
+          "difficulty": "cơ bản",
+          "outcome_id": "HH-KETTUA-01-LO-1",
+          "knowledge_ids": [
+            "HH-KETTUA-01-K-1",
+            "HH-KETTUA-01-K-2",
+            "HH-KETTUA-01-K-3"
+          ],
+          "rubric_id": "R-OBJECTIVE-1"
+        },
+        {
+          "id": "HH-KETTUA-01-Q-2",
+          "type": "fill_blank",
+          "prompt": "Trộn 25 mL AgNO₃ 0,100 mol/L với 10 mL NaCl 0,100 mol/L, còn dư bao nhiêu mol AgNO₃ sau phản ứng hoàn toàn?",
+          "answer": {
+            "value": 0.0015,
+            "explanation": "n(AgNO₃) dư = 0,0025 − 0,0010 = 0,0015 mol.",
+            "unit": "mol",
+            "absolute_tolerance": 0.00001
+          },
+          "difficulty": "cơ bản",
+          "outcome_id": "HH-KETTUA-01-LO-2",
+          "knowledge_ids": [
+            "HH-KETTUA-01-K-1",
+            "HH-KETTUA-01-K-2",
+            "HH-KETTUA-01-K-3"
+          ],
+          "rubric_id": "R-OBJECTIVE-1"
+        },
+        {
+          "id": "HH-KETTUA-01-Q-3",
+          "type": "single_choice",
+          "prompt": "Ở lượt trộn 0 mL AgNO₃ với 50 mL NaCl 0,100 mol/L, kết quả nào khớp với mô hình?",
+          "answer": {
+            "value": "A",
+            "explanation": "Không có AgNO₃ (0 mol) nên AgNO₃ giới hạn và khối lượng kết tủa bằng 0 g."
+          },
+          "difficulty": "cơ bản",
+          "outcome_id": "HH-KETTUA-01-LO-1",
+          "knowledge_ids": [
+            "HH-KETTUA-01-K-1",
+            "HH-KETTUA-01-K-2",
+            "HH-KETTUA-01-K-3"
+          ],
+          "rubric_id": "R-OBJECTIVE-1",
+          "options": [
+            {
+              "id": "A",
+              "text": "0 g kết tủa, chất giới hạn là AgNO₃"
+            },
+            {
+              "id": "B",
+              "text": "0,7166 g kết tủa, chất giới hạn là NaCl"
+            }
+          ]
+        },
+        {
+          "id": "HH-KETTUA-01-Q-4",
+          "type": "open_response",
+          "prompt": "So sánh lượt (25 mL AgNO₃, 10 mL NaCl) với lượt (0 mL AgNO₃, 50 mL NaCl) và giải thích vai trò của chất giới hạn.",
+          "answer": {
+            "value": "Ở lượt 25 mL AgNO₃ và 10 mL NaCl, NaCl ít mol hơn (0,001 mol) nên quyết định tạo 0,14332 g AgCl và còn dư 0,0015 mol AgNO₃. Ở lượt 0 mL AgNO₃ và 50 mL NaCl, thiếu AgNO₃ nên không có kết tủa.",
+            "explanation": "Cần nêu đúng số mol chất giới hạn và khối lượng AgCl ở hai lượt.",
+            "matching": "meaning_and_reasoning"
+          },
+          "difficulty": "trung bình",
+          "outcome_id": "HH-KETTUA-01-LO-2",
+          "knowledge_ids": [
+            "HH-KETTUA-01-K-1",
+            "HH-KETTUA-01-K-2",
+            "HH-KETTUA-01-K-3"
+          ],
+          "rubric_id": "HH-KETTUA-01-Q-4-R"
+        }
+      ],
+      "rubrics": [
+        {
+          "id": "HH-KETTUA-01-Q-4-R",
+          "max_points": 4,
+          "pass_points": 3,
+          "require_nonzero_each_criterion": true,
+          "criteria": [
+            {
+              "criterion": "Xác định đúng NaCl giới hạn (0,001 mol) tạo 0,14332 g AgCl ở lượt 25 mL AgNO₃ + 10 mL NaCl.",
+              "levels": [
+                {
+                  "points": 0,
+                  "description": "Thiếu ý hoặc có sai sót làm sai kết luận."
+                },
+                {
+                  "points": 1,
+                  "description": "Nêu được một phần ý nhưng thiếu điều kiện, bằng chứng hoặc giải thích."
+                },
+                {
+                  "points": 2,
+                  "description": "Trình bày đầy đủ và lập luận nhất quán với ca hoặc điều kiện đã nêu."
+                }
+              ]
+            },
+            {
+              "criterion": "Giải thích đúng lượt 0 mL AgNO₃ + 50 mL NaCl không tạo kết tủa vì thiếu AgNO₃.",
+              "levels": [
+                {
+                  "points": 0,
+                  "description": "Thiếu ý hoặc có sai sót làm sai kết luận."
+                },
+                {
+                  "points": 1,
+                  "description": "Nêu được một phần ý nhưng thiếu điều kiện, bằng chứng hoặc giải thích."
+                },
+                {
+                  "points": 2,
+                  "description": "Trình bày đầy đủ và lập luận nhất quán với ca hoặc điều kiện đã nêu."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "HH-KETTUA-01-A-1-R",
+          "max_points": 4,
+          "pass_points": 3,
+          "require_nonzero_each_criterion": true,
+          "criteria": [
+            {
+              "criterion": "Thực hiện các bước và giữ điều kiện đầu: Đặt 25 mL AgNO₃, 10 mL NaCl rồi đổi sang 0 mL AgNO₃, 50 mL NaCl.",
+              "levels": [
+                {
+                  "points": 0,
+                  "description": "Thiếu ý hoặc có sai sót làm sai kết luận."
+                },
+                {
+                  "points": 1,
+                  "description": "Nêu được một phần ý nhưng thiếu điều kiện, bằng chứng hoặc giải thích."
+                },
+                {
+                  "points": 2,
+                  "description": "Trình bày đầy đủ và lập luận nhất quán với ca hoặc điều kiện đã nêu."
+                }
+              ]
+            },
+            {
+              "criterion": "Dùng kết quả để kiểm điều kiện hoàn thành: Ghi nhận 0,14332 g AgCl khi NaCl giới hạn và 0 g khi thiếu AgNO₃.",
+              "levels": [
+                {
+                  "points": 0,
+                  "description": "Thiếu ý hoặc có sai sót làm sai kết luận."
+                },
+                {
+                  "points": 1,
+                  "description": "Nêu được một phần ý nhưng thiếu điều kiện, bằng chứng hoặc giải thích."
+                },
+                {
+                  "points": 2,
+                  "description": "Trình bày đầy đủ và lập luận nhất quán với ca hoặc điều kiện đã nêu."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "activities": [
+        {
+          "id": "HH-KETTUA-01-A-1",
+          "title": "Đối chiếu chất giới hạn và khối lượng kết tủa AgCl",
+          "description": "Hoạt động với chế độ precipitation của bài Phản ứng tạo kết tủa AgCl.",
+          "runtime_id": "precipitation",
+          "outcome_id": "HH-KETTUA-01-LO-1",
+          "knowledge_ids": [
+            "HH-KETTUA-01-K-1",
+            "HH-KETTUA-01-K-2",
+            "HH-KETTUA-01-K-3"
+          ],
+          "prerequisites": [
+            "Tính số mol chất tan từ n = C·V",
+            "Nhận biết phương trình trao đổi ion tạo kết tủa AgCl"
+          ],
+          "initial_state": "Đặt lại về mặc định 25 mL AgNO₃ 0,100 mol/L và 10 mL NaCl 0,100 mol/L.",
+          "parameter_schema_ref": "packages/lab-engine/labs/precipitation/lab.json#/parameter_schema",
+          "actions": "Ghi lượt mặc định (25 mL AgNO₃, 10 mL NaCl), sau đó đặt 0 mL AgNO₃ và 50 mL NaCl rồi ghi lượt thứ hai.",
+          "invalid_actions_and_effect": "Chọn thể tích âm hoặc vượt 50 mL không hợp lệ với phạm vi dụng cụ.",
+          "cases": [
+            {
+              "path": "tests/golden/additional-labs.json",
+              "pointer": "/cases/6",
+              "parameters": {
+                "silverVolume_ml": 25,
+                "chlorideVolume_ml": 10
+              },
+              "elapsed_s": 0
+            },
+            {
+              "path": "tests/golden/additional-labs.json",
+              "pointer": "/cases/7",
+              "parameters": {
+                "silverVolume_ml": 0,
+                "chlorideVolume_ml": 50
+              },
+              "elapsed_s": 0
+            }
+          ],
+          "expected_result": "Ghi nhận 0,14332 g AgCl (NaCl giới hạn) ở lượt 1 và 0 g AgCl (AgNO₃ giới hạn) ở lượt 2.",
+          "expected_failure": "Chưa đạt nếu vi phạm điều kiện: Nhầm chất dư với chất giới hạn hoặc không đổi đúng thể tích đối chứng.",
+          "feedback_on_success": "Đối chiếu số mol và khối lượng AgCl vừa ghi với kết quả mong đợi và giải thích.",
+          "feedback_on_failure": "Đặt lại 25 mL AgNO₃, 10 mL NaCl rồi so với 0 mL AgNO₃, 50 mL NaCl.",
+          "completed_state": "recorded_and_explained",
+          "completion_criteria": "Ghi nhận 0,14332 g AgCl khi NaCl giới hạn và 0 g khi thiếu AgNO₃.",
+          "rubric_id": "HH-KETTUA-01-A-1-R",
+          "scoring": {
+            "pass": "Đạt điểm ngưỡng của rubric và mỗi tiêu chí có điểm.",
+            "fail": "Thiếu lượt hợp lệ, thiếu giải thích hoặc dưới ngưỡng."
+          },
+          "review_if_failed": [
+            "HH-KETTUA-01-K-1",
+            "HH-KETTUA-01-K-2",
+            "HH-KETTUA-01-K-3"
+          ]
+        }
+      ],
+      "tutor_cases": [
+        {
+          "id": "HH-KETTUA-01-T-1",
+          "practice_id": "HH-KETTUA-01",
+          "lab_id": "precipitation",
+          "category": "knowledge",
+          "objective": "Trình bày đúng khái niệm và điều kiện áp dụng.",
+          "context": {
+            "activity_id": "HH-KETTUA-01-A-1",
+            "practice_id": "HH-KETTUA-01",
+            "scenario": "Đặt lại về mặc định 25 mL AgNO₃ 0,100 mol/L và 10 mL NaCl 0,100 mol/L.",
+            "rubric_id": null,
+            "question_id": null,
+            "student_answer_kind": null
+          },
+          "input": {
+            "lab_id": "precipitation",
+            "mode": "explanation",
+            "question": "Làm sao biết AgNO₃ hay NaCl là chất giới hạn trong bài này?",
+            "include_drafts": true
+          },
+          "references": {
+            "knowledge_ids": [
+              "HH-KETTUA-01-K-1",
+              "HH-KETTUA-01-K-2",
+              "HH-KETTUA-01-K-3"
+            ],
+            "source_ids": [
+              "HH-KETTUA-01-SRC-DATA"
+            ],
+            "activity_id": "HH-KETTUA-01-A-1",
+            "question_id": null,
+            "rubric_id": null
+          },
+          "expected_behavior": "Giải thích tính số mol từng chất từ n = 0,100 × V(L); vì tỉ lệ phản ứng 1:1 nên chất có số mol nhỏ hơn là chất giới hạn.",
+          "evaluation_criteria": [
+            {
+              "description": "Trình bày đúng khái niệm và điều kiện áp dụng.",
+              "points": 1
+            },
+            {
+              "description": "Giải thích tính số mol từng chất từ n = 0,100 × V(L); vì tỉ lệ phản ứng 1:1 nên chất có số mol nhỏ hơn là chất giới hạn.",
               "points": 1
             },
             {
@@ -6125,46 +6683,283 @@
           }
         },
         {
-          "id": "HH-KIEM-01-T-6",
-          "practice_id": "HH-KIEM-01",
-          "lab_id": "alkali-water",
-          "category": "limits",
-          "objective": "Nhận diện thông tin thiếu hoặc ngoài mô hình; không đặt số liệu hay nguồn.",
+          "id": "HH-KETTUA-01-T-2",
+          "practice_id": "HH-KETTUA-01",
+          "lab_id": "precipitation",
+          "category": "practice_guidance",
+          "objective": "Chỉ dẫn thao tác đúng trong mô phỏng, theo trạng thái hiện tại.",
           "context": {
-            "activity_id": "HH-KIEM-01-A-1",
-            "practice_id": "HH-KIEM-01",
-            "scenario": "Đặt lại về trạng thái chưa quan sát; mở bảng ghi.",
+            "activity_id": "HH-KETTUA-01-A-1",
+            "practice_id": "HH-KETTUA-01",
+            "scenario": "Đặt lại về mặc định 25 mL AgNO₃ 0,100 mol/L và 10 mL NaCl 0,100 mol/L.",
             "rubric_id": null,
             "question_id": null,
             "student_answer_kind": null
           },
           "input": {
-            "lab_id": "alkali-water",
+            "lab_id": "precipitation",
             "mode": "explanation",
-            "question": "Cho thể tích khí ở lượt của em dù không biết lượng Na và điều kiện khí.",
+            "question": "Em đã ghi lượt 25 mL AgNO₃ và 10 mL NaCl. Tiếp theo em cần chỉnh gì?",
             "include_drafts": true
           },
           "references": {
             "knowledge_ids": [
-              "HH-KIEM-01-K-1",
-              "HH-KIEM-01-K-2",
-              "HH-KIEM-01-K-3"
+              "HH-KETTUA-01-K-1",
+              "HH-KETTUA-01-K-2",
+              "HH-KETTUA-01-K-3"
             ],
             "source_ids": [
-              "HH-KIEM-01-SRC-DATA"
+              "HH-KETTUA-01-SRC-DATA"
             ],
-            "activity_id": "HH-KIEM-01-A-1",
+            "activity_id": "HH-KETTUA-01-A-1",
             "question_id": null,
             "rubric_id": null
           },
-          "expected_behavior": "Nêu thiếu lượng chất và điều kiện khí; không gán thể tích cho mô hình định tính.",
+          "expected_behavior": "Hướng dẫn chỉnh AgNO₃ về 0 mL và NaCl lên 50 mL rồi ghi số đo đối chứng.",
+          "evaluation_criteria": [
+            {
+              "description": "Chỉ dẫn thao tác đúng trong mô phỏng, theo trạng thái hiện tại.",
+              "points": 1
+            },
+            {
+              "description": "Hướng dẫn chỉnh AgNO₃ về 0 mL và NaCl lên 50 mL rồi ghi số đo đối chứng.",
+              "points": 1
+            },
+            {
+              "description": "Giải thích dễ hiểu, bám giả thiết và không gán kết quả hoặc trạng thái khoa học ngoài dữ liệu tham chiếu.",
+              "points": 1
+            }
+          ],
+          "pass_points": 3,
+          "grading_method": "manual_semantic_review",
+          "execution": {
+            "pilot_scope": false,
+            "expected_offline": [
+              "MVP_SCOPE_ONLY"
+            ],
+            "status": "NOT_RUN",
+            "actual": null
+          }
+        },
+        {
+          "id": "HH-KETTUA-01-T-3",
+          "practice_id": "HH-KETTUA-01",
+          "lab_id": "precipitation",
+          "category": "error_diagnosis",
+          "objective": "Phát hiện đúng nguyên nhân và hướng dẫn sửa trong phạm vi.",
+          "context": {
+            "activity_id": "HH-KETTUA-01-A-1",
+            "practice_id": "HH-KETTUA-01",
+            "scenario": "Đặt lại về mặc định 25 mL AgNO₃ 0,100 mol/L và 10 mL NaCl 0,100 mol/L.",
+            "rubric_id": null,
+            "question_id": null,
+            "student_answer_kind": null
+          },
+          "input": {
+            "lab_id": "precipitation",
+            "mode": "explanation",
+            "question": "Sao tăng AgNO₃ từ 25 mL lên 40 mL mà khối lượng AgCl vẫn là 0,14332 g?",
+            "include_drafts": true
+          },
+          "references": {
+            "knowledge_ids": [
+              "HH-KETTUA-01-K-1",
+              "HH-KETTUA-01-K-2",
+              "HH-KETTUA-01-K-3"
+            ],
+            "source_ids": [
+              "HH-KETTUA-01-SRC-DATA"
+            ],
+            "activity_id": "HH-KETTUA-01-A-1",
+            "question_id": null,
+            "rubric_id": null
+          },
+          "expected_behavior": "Chỉ ra NaCl (10 mL = 0,001 mol) đang là chất giới hạn nên thêm AgNO₃ đang dư không làm tăng kết tủa.",
+          "evaluation_criteria": [
+            {
+              "description": "Phát hiện đúng nguyên nhân và hướng dẫn sửa trong phạm vi.",
+              "points": 1
+            },
+            {
+              "description": "Chỉ ra NaCl (10 mL = 0,001 mol) đang là chất giới hạn nên thêm AgNO₃ đang dư không làm tăng kết tủa.",
+              "points": 1
+            },
+            {
+              "description": "Giải thích dễ hiểu, bám giả thiết và không gán kết quả hoặc trạng thái khoa học ngoài dữ liệu tham chiếu.",
+              "points": 1
+            }
+          ],
+          "pass_points": 3,
+          "grading_method": "manual_semantic_review",
+          "execution": {
+            "pilot_scope": false,
+            "expected_offline": [
+              "MVP_SCOPE_ONLY"
+            ],
+            "status": "NOT_RUN",
+            "actual": null
+          }
+        },
+        {
+          "id": "HH-KETTUA-01-T-4",
+          "practice_id": "HH-KETTUA-01",
+          "lab_id": "precipitation",
+          "category": "exercise_help",
+          "objective": "Đưa bước gợi ý phù hợp và tôn trọng yêu cầu chưa tiết lộ đáp án.",
+          "context": {
+            "activity_id": "HH-KETTUA-01-A-1",
+            "practice_id": "HH-KETTUA-01",
+            "scenario": "Đặt lại về mặc định 25 mL AgNO₃ 0,100 mol/L và 10 mL NaCl 0,100 mol/L.",
+            "rubric_id": null,
+            "question_id": "HH-KETTUA-01-Q-2",
+            "student_answer_kind": null
+          },
+          "input": {
+            "lab_id": "precipitation",
+            "mode": "hint",
+            "question": "Gợi ý cách tính số mol AgNO₃ còn dư ở lượt 25 mL AgNO₃ và 10 mL NaCl, đừng giải ra số cuối.",
+            "include_drafts": true,
+            "hint_level": 1
+          },
+          "references": {
+            "knowledge_ids": [
+              "HH-KETTUA-01-K-1",
+              "HH-KETTUA-01-K-2",
+              "HH-KETTUA-01-K-3"
+            ],
+            "source_ids": [
+              "HH-KETTUA-01-SRC-DATA"
+            ],
+            "activity_id": "HH-KETTUA-01-A-1",
+            "question_id": "HH-KETTUA-01-Q-2",
+            "rubric_id": null
+          },
+          "expected_behavior": "Gợi ý lấy số mol AgNO₃ ban đầu trừ số mol NaCl đã phản ứng theo tỉ lệ 1:1, chưa nêu kết quả 0,0015.",
+          "evaluation_criteria": [
+            {
+              "description": "Đưa bước gợi ý phù hợp và tôn trọng yêu cầu chưa tiết lộ đáp án.",
+              "points": 1
+            },
+            {
+              "description": "Gợi ý lấy số mol AgNO₃ ban đầu trừ số mol NaCl đã phản ứng theo tỉ lệ 1:1, chưa nêu kết quả 0,0015.",
+              "points": 1
+            },
+            {
+              "description": "Giải thích dễ hiểu, bám giả thiết và không gán kết quả hoặc trạng thái khoa học ngoài dữ liệu tham chiếu.",
+              "points": 1
+            }
+          ],
+          "pass_points": 3,
+          "grading_method": "manual_semantic_review",
+          "execution": {
+            "pilot_scope": false,
+            "expected_offline": [
+              "MVP_SCOPE_ONLY"
+            ],
+            "status": "NOT_RUN",
+            "actual": null
+          }
+        },
+        {
+          "id": "HH-KETTUA-01-T-5",
+          "practice_id": "HH-KETTUA-01",
+          "lab_id": "precipitation",
+          "category": "answer_evaluation",
+          "objective": "Đánh giá lập luận và mức độ đạt theo rubric, chấp nhận cách diễn đạt tương đương.",
+          "context": {
+            "activity_id": "HH-KETTUA-01-A-1",
+            "practice_id": "HH-KETTUA-01",
+            "scenario": "Đặt lại về mặc định 25 mL AgNO₃ 0,100 mol/L và 10 mL NaCl 0,100 mol/L.",
+            "rubric_id": "HH-KETTUA-01-Q-4-R",
+            "question_id": "HH-KETTUA-01-Q-4",
+            "student_answer_kind": "correct"
+          },
+          "input": {
+            "lab_id": "precipitation",
+            "mode": "feedback",
+            "question": "Em giải thích: lượt đầu NaCl 0,001 mol giới hạn nên tạo 0,14332 g AgCl, lượt hai không có AgNO₃ nên kết tủa bằng 0 g.",
+            "include_drafts": true
+          },
+          "references": {
+            "knowledge_ids": [
+              "HH-KETTUA-01-K-1",
+              "HH-KETTUA-01-K-2",
+              "HH-KETTUA-01-K-3"
+            ],
+            "source_ids": [
+              "HH-KETTUA-01-SRC-DATA"
+            ],
+            "activity_id": "HH-KETTUA-01-A-1",
+            "question_id": "HH-KETTUA-01-Q-4",
+            "rubric_id": "HH-KETTUA-01-Q-4-R"
+          },
+          "expected_behavior": "Xác nhận lập luận đúng theo hai tiêu chí và nhắc giả thiết phản ứng hoàn toàn.",
+          "evaluation_criteria": [
+            {
+              "description": "Đánh giá lập luận và mức độ đạt theo rubric, chấp nhận cách diễn đạt tương đương.",
+              "points": 1
+            },
+            {
+              "description": "Xác nhận lập luận đúng theo hai tiêu chí và nhắc giả thiết phản ứng hoàn toàn.",
+              "points": 1
+            },
+            {
+              "description": "Giải thích dễ hiểu, bám giả thiết và không gán kết quả hoặc trạng thái khoa học ngoài dữ liệu tham chiếu.",
+              "points": 1
+            }
+          ],
+          "pass_points": 3,
+          "grading_method": "manual_semantic_review",
+          "execution": {
+            "pilot_scope": false,
+            "expected_offline": [
+              "MVP_SCOPE_ONLY"
+            ],
+            "status": "NOT_RUN",
+            "actual": null
+          }
+        },
+        {
+          "id": "HH-KETTUA-01-T-6",
+          "practice_id": "HH-KETTUA-01",
+          "lab_id": "precipitation",
+          "category": "limits",
+          "objective": "Nhận diện thông tin thiếu hoặc ngoài mô hình; không đặt số liệu hay nguồn.",
+          "context": {
+            "activity_id": "HH-KETTUA-01-A-1",
+            "practice_id": "HH-KETTUA-01",
+            "scenario": "Đặt lại về mặc định 25 mL AgNO₃ 0,100 mol/L và 10 mL NaCl 0,100 mol/L.",
+            "rubric_id": null,
+            "question_id": null,
+            "student_answer_kind": null
+          },
+          "input": {
+            "lab_id": "precipitation",
+            "mode": "explanation",
+            "question": "Từ mô phỏng này em suy ra nồng độ ion Ag⁺ còn lại theo Ksp ở cân bằng được không?",
+            "include_drafts": true
+          },
+          "references": {
+            "knowledge_ids": [
+              "HH-KETTUA-01-K-1",
+              "HH-KETTUA-01-K-2",
+              "HH-KETTUA-01-K-3"
+            ],
+            "source_ids": [
+              "HH-KETTUA-01-SRC-DATA"
+            ],
+            "activity_id": "HH-KETTUA-01-A-1",
+            "question_id": null,
+            "rubric_id": null
+          },
+          "expected_behavior": "Nêu rõ mô hình tính theo hiệu suất lý thuyết hoàn toàn, không giải cân bằng Ksp ở lượng vết.",
           "evaluation_criteria": [
             {
               "description": "Nhận diện thông tin thiếu hoặc ngoài mô hình; không đặt số liệu hay nguồn.",
               "points": 1
             },
             {
-              "description": "Nêu thiếu lượng chất và điều kiện khí; không gán thể tích cho mô hình định tính.",
+              "description": "Nêu rõ mô hình tính theo hiệu suất lý thuyết hoàn toàn, không giải cân bằng Ksp ở lượng vết.",
               "points": 1
             },
             {
@@ -6186,77 +6981,77 @@
       ]
     },
     {
-      "practice_id": "HH-HNO3-01",
+      "practice_id": "HH-TAOKHI-01",
       "runtime_ids": [
-        "copper-nitric"
+        "gas-reaction"
       ],
-      "title": "Đồng với HNO₃: NO và NO₂",
+      "title": "Phản ứng axit và muối bicarbonat",
       "knowledge_profile": {
-        "id": "HH-HNO3-01-PROFILE",
-        "topic": "Oxi hóa–khử",
-        "difficulty": "trung bình",
+        "id": "HH-TAOKHI-01-PROFILE",
+        "topic": "Phản ứng tạo khí",
+        "difficulty": "cơ bản",
         "objectives": [
-          "Đối chiếu sản phẩm khí trong hai ca đại diện",
-          "Giải thích sự thay đổi quan sát khi NO gặp không khí"
+          "Xác định chất giới hạn giữa dung dịch HCl 0,100 mol/L và NaHCO₃ rắn theo tỉ lệ 1:1:1",
+          "Tính thể tích khí CO₂ lý tưởng ở 298,15 K (25 °C) và 1 atm"
         ],
         "prerequisites": [
-          "Cân bằng phương trình hóa học",
-          "Phân biệt công thức NO và NO₂"
+          "Tính số mol từ khối lượng m/M và từ nồng độ C·V",
+          "Áp dụng phương trình khí lý tưởng PV = nRT"
         ],
         "learning_outcomes": [
           {
-            "id": "HH-HNO3-01-LO-1",
-            "description": "Đối chiếu sản phẩm khí trong hai ca đại diện"
+            "id": "HH-TAOKHI-01-LO-1",
+            "description": "Xác định chất giới hạn giữa dung dịch HCl 0,100 mol/L và NaHCO₃ rắn theo tỉ lệ 1:1:1"
           },
           {
-            "id": "HH-HNO3-01-LO-2",
-            "description": "Giải thích sự thay đổi quan sát khi NO gặp không khí"
+            "id": "HH-TAOKHI-01-LO-2",
+            "description": "Tính thể tích khí CO₂ lý tưởng ở 298,15 K (25 °C) và 1 atm"
           }
         ],
         "concepts": [
           {
-            "id": "HH-HNO3-01-K-1",
-            "name": "Ca axit loãng",
-            "definition": "Mô hình đại diện cho khí NO không màu lúc mới sinh.",
-            "formula": "3Cu + 8HNO₃ → 3Cu(NO₃)₂ + 2NO + 4H₂O",
+            "id": "HH-TAOKHI-01-K-1",
+            "name": "Tỉ lượng phản ứng axit–bicarbonat",
+            "definition": "HCl phản ứng với NaHCO₃ theo tỉ lệ mol 1:1:1 tạo NaCl, H₂O và khí CO₂; số mol CO₂ bằng số mol nhỏ hơn của hai chất đầu.",
+            "formula": "HCl(aq) + NaHCO₃(s) → NaCl(aq) + H₂O(l) + CO₂(g); n_CO₂ = min(C·V_HCl, m/84,0066)",
             "origin_notes": "Diễn giải học liệu/mô hình hiện có; nguồn ngoài dùng để đối chiếu phần được ghi.",
-            "conditions": "Kịch bản định tính dành cho Cu.",
+            "conditions": "Nồng độ HCl cố định 0,100 mol/L; khối lượng mol NaHCO₃ lấy 84,0066 g/mol.",
             "origin": "project_authored_from_lumilab",
             "source_ids": [
-              "HH-HNO3-01-SRC-DATA",
-              "HH-HNO3-01-SRC-EXT-1"
+              "HH-TAOKHI-01-SRC-DATA",
+              "HH-TAOKHI-01-SRC-EXT-1"
             ]
           },
           {
-            "id": "HH-HNO3-01-K-2",
-            "name": "Ca axit đặc",
-            "definition": "Mô hình đại diện cho khí NO₂ nâu đỏ.",
-            "formula": "Cu + 4HNO₃ → Cu(NO₃)₂ + 2NO₂ + 2H₂O",
+            "id": "HH-TAOKHI-01-K-2",
+            "name": "Thể tích khí CO₂ ở 25 °C và 1 atm",
+            "definition": "Thể tích CO₂ khô được tính bằng phương trình khí lý tưởng tại T = 298,15 K và P = 1 atm (khoảng 24,465 L/mol, không dùng 22,4 L/mol).",
+            "formula": "V = nRT/P",
             "origin_notes": "Diễn giải học liệu/mô hình hiện có; nguồn ngoài dùng để đối chiếu phần được ghi.",
-            "conditions": "Nhãn loãng/đặc là kịch bản rời rạc.",
+            "conditions": "R = 0,082057366080960 L·atm/(mol·K); đổi L sang mL bằng cách nhân 1000.",
             "origin": "project_authored_from_lumilab",
             "source_ids": [
-              "HH-HNO3-01-SRC-DATA",
-              "HH-HNO3-01-SRC-EXT-1"
+              "HH-TAOKHI-01-SRC-DATA",
+              "HH-TAOKHI-01-SRC-EXT-2"
             ]
           },
           {
-            "id": "HH-HNO3-01-K-3",
-            "name": "Tiếp xúc không khí",
-            "definition": "NO có thể bị oxi hóa thành NO₂. Ca loãng sau tiếp xúc vẫn giữ NO là sản phẩm ban đầu của kịch bản.",
-            "formula": "2NO + O₂ → 2NO₂",
+            "id": "HH-TAOKHI-01-K-3",
+            "name": "Giới hạn mô hình tạo khí",
+            "definition": "Mô hình chỉ tính lượng khí lý thuyết cuối phản ứng, bỏ qua CO₂ hòa tan trong nước, áp suất hơi nước và tốc độ sủi bọt.",
+            "formula": null,
             "origin_notes": "Diễn giải học liệu/mô hình hiện có; nguồn ngoài dùng để đối chiếu phần được ghi.",
-            "conditions": "Không suy tỉ lệ chuyển hóa hoặc thời điểm đổi màu.",
+            "conditions": "Bọt khí trên màn hình là minh họa định tính.",
             "origin": "project_authored_from_lumilab",
             "source_ids": [
-              "HH-HNO3-01-SRC-DATA",
-              "HH-HNO3-01-SRC-EXT-1"
+              "HH-TAOKHI-01-SRC-DATA",
+              "HH-TAOKHI-01-SRC-SGK-1"
             ]
           }
         ],
         "sources": [
           {
-            "id": "HH-HNO3-01-SRC-DATA",
+            "id": "HH-TAOKHI-01-SRC-DATA",
             "title": "Học liệu, mô hình và ca chuẩn LumiLab",
             "publisher": "Nhóm LumiLab",
             "type": "project_dataset",
@@ -6264,67 +7059,83 @@
             "paths": [
               "docs/DATASET.md",
               "apps/web/src/data/demo-lessons.json",
-              "packages/lab-engine/labs/copper-nitric/lab.json"
+              "packages/lab-engine/labs/gas-reaction/lab.json"
             ],
             "used_for": "Nội dung bài, thuật ngữ, giả thiết, điều khiển và phạm vi mô phỏng. Ca đối chiếu nằm trong từng hoạt động.",
-            "practice_id": "HH-HNO3-01"
+            "practice_id": "HH-TAOKHI-01"
           },
           {
-            "id": "HH-HNO3-01-SRC-SGK-1",
-            "title": "Hóa học 11",
+            "id": "HH-TAOKHI-01-SRC-SGK-1",
+            "title": "Khoa học tự nhiên 8",
             "publisher": "Nhà xuất bản Giáo dục Việt Nam",
-            "edition": "Kết nối tri thức với cuộc sống",
+            "edition": "Chân trời sáng tạo",
             "type": "textbook",
             "role": "reference_only",
-            "url": "https://taphuan.nxbgd.vn/tap-huan/doc-sach/sgk-hoa-hoc-11.4701111834#page=41",
-            "section": "Bài 6, tr. 40, tính oxi hóa của nitric acid",
-            "used_for": "Hóa học 11, Bài 6, tr. 40 (tính oxi hóa của HNO₃)",
-            "provenance_path": "docs/DATASET.md",
+            "url": "https://taphuan.nxbgd.vn/tap-huan/doc-sach/shs-khoa-hoc-tu-nhien-8.4539229607#page=63",
+            "section": "Bài 13, tr. 61–62, muối phản ứng với dung dịch acid tạo khí CO₂",
+            "used_for": "Đối chiếu phản ứng giữa muối carbonate/bicarbonate với dung dịch acid sinh khí CO₂",
+            "provenance_path": "knowledge/retrieval/documents.json",
             "verification": "inherited_pending_page_recheck",
             "rights_status": "pending",
-            "practice_id": "HH-HNO3-01"
+            "practice_id": "HH-TAOKHI-01"
           },
           {
-            "id": "HH-HNO3-01-SRC-EXT-1",
+            "id": "HH-TAOKHI-01-SRC-EXT-1",
             "title": "Chemistry 2e",
             "publisher": "OpenStax, Rice University",
             "type": "open_textbook",
             "role": "reference_only",
-            "url": "https://openstax.org/books/chemistry-2e/pages/18-9-occurrence-preparation-and-compounds-of-oxygen",
-            "section": "§18.9 Occurrence, Preparation, and Compounds of Oxygen",
+            "url": "https://openstax.org/books/chemistry-2e/pages/4-2-classifying-chemical-reactions",
+            "section": "§4.2 Classifying Chemical Reactions & §4.4 Reaction Yields",
             "used_for": [
-              "Ca axit loãng",
-              "Ca axit đặc",
-              "Tiếp xúc không khí"
+              "Tỉ lượng phản ứng axit–bicarbonat"
             ],
             "verification": "section_located",
             "rights_status": "pending",
-            "practice_id": "HH-HNO3-01"
+            "practice_id": "HH-TAOKHI-01"
+          },
+          {
+            "id": "HH-TAOKHI-01-SRC-EXT-2",
+            "title": "Chemistry 2e",
+            "publisher": "OpenStax, Rice University",
+            "type": "open_textbook",
+            "role": "reference_only",
+            "url": "https://openstax.org/books/chemistry-2e/pages/9-2-relating-pressure-volume-amount-and-temperature-the-ideal-gas-law",
+            "section": "§9.2 The Ideal Gas Law",
+            "used_for": [
+              "Thể tích khí CO₂ ở 25 °C và 1 atm"
+            ],
+            "verification": "section_located",
+            "rights_status": "pending",
+            "practice_id": "HH-TAOKHI-01"
           }
         ],
         "runtime_models": [
           {
-            "id": "copper-nitric",
-            "model_version": "copper-nitric-qualitative-v1",
-            "dataset_version": "lumilab-nine-draft-v1",
+            "id": "gas-reaction",
+            "model_version": "ideal-bicarbonate-gas-v1",
+            "dataset_version": "reaction-network-draft-2026-11-04",
             "assumptions": [
-              "Hai kịch bản đại diện chỉ xét đồng và HNO₃ loãng hoặc đặc. Thực tế sản phẩm phụ thuộc điều kiện.",
-              "NO ban đầu không màu, có thể chuyển thành NO₂ trong không khí. Mô phỏng không định lượng mức chuyển hóa."
+              "HCl 0.100 mol/L, thể tích từ 0 đến 50 mL; NaHCO3 tinh khiết từ 0 đến 1 g; khối lượng mol NaHCO3 quy ước 84.0066 g/mol.",
+              "HCl(aq) + NaHCO3(s) → NaCl(aq) + CO2(g) + H2O(l); tỷ lệ mol HCl:NaHCO3:CO2 là 1:1:1; coi chất giới hạn phản ứng hoàn toàn.",
+              "Khí CO2 khô lý tưởng ở nhiệt độ cố định 298.15 K (25 °C), áp suất 1 atm. Dùng R = 0.082057366080960 L·atm/(mol·K), V = nRT/P; đầu ra khí mL.",
+              "Đây là lượng khí lý thuyết; không giải động học, nhiệt phản ứng, CO2 hòa tan, áp suất hơi nước, độ kín, hiệu suất thu khí hay kích thước bọt. Bọt khí chỉ là minh họa hiện tượng, không là số đo tốc độ.",
+              "Mô phỏng không phải hướng dẫn thực hành với axit ngoài đời; dữ liệu và mô hình chưa duyệt học thuật, chỉ preview."
             ],
-            "config_path": "packages/lab-engine/labs/copper-nitric/lab.json"
+            "config_path": "packages/lab-engine/labs/gas-reaction/lab.json"
           }
         ],
         "common_mistakes": [
-          "Thấy nâu đỏ sau khi gặp không khí rồi gán NO₂ là khí ban đầu của ca loãng."
+          "Nhân số mol với 22,4 L/mol thay vì tính theo 298,15 K và 1 atm (24,465 L/mol)."
         ],
         "practice_notes": [
-          "Đối chiếu khí ban đầu và sau gặp không khí"
+          "Đối chiếu hai ca đảo vai trò chất giới hạn giữa HCl và NaHCO₃."
         ],
         "simulation_scope": {
           "available": [
-            "Đủ ba lượt, phân biệt NO ban đầu không màu, khả năng nâu đỏ sau tiếp xúc và NO₂ nâu đỏ ở ca đặc."
+            "Thay thể tích HCl (0–50 mL) và khối lượng NaHCO₃ (0–1 g); đọc số mol phản ứng, chất giới hạn và thể tích CO₂ (mL)."
           ],
-          "missing_data_and_limits": "Thiếu nồng độ định lượng, hiệu suất, thời gian và số đo thành phần khí. Chỉ dùng kịch bản ảo."
+          "missing_data_and_limits": "Không tính tốc độ thoát khí theo thời gian, độ tan CO₂ trong dung dịch hay biến thiên nhiệt độ."
         },
         "review_status": "draft",
         "reviewer": null,
@@ -6332,139 +7143,140 @@
       },
       "existing_question_refs": [
         {
-          "id": "copper-nitric-exercise",
+          "id": "gas-moles",
           "path": "apps/web/src/data/demo-lessons.json",
-          "lesson_id": "copper-nitric",
+          "lesson_id": "gas-reaction",
           "section": "exercise",
           "origin": "existing_target_dataset",
-          "outcome_id": "HH-HNO3-01-LO-2",
+          "outcome_id": "HH-TAOKHI-01-LO-1",
           "rubric_id": "R-OBJECTIVE-1",
           "knowledge_ids": [
-            "HH-HNO3-01-K-1",
-            "HH-HNO3-01-K-2",
-            "HH-HNO3-01-K-3"
+            "HH-TAOKHI-01-K-1",
+            "HH-TAOKHI-01-K-2",
+            "HH-TAOKHI-01-K-3"
           ],
-          "difficulty": "trung bình"
+          "difficulty": "cơ bản"
         },
         {
-          "id": "copper-nitric-quiz",
+          "id": "gas-condition",
           "path": "apps/web/src/data/demo-lessons.json",
-          "lesson_id": "copper-nitric",
+          "lesson_id": "gas-reaction",
           "section": "quiz",
           "origin": "existing_target_dataset",
-          "outcome_id": "HH-HNO3-01-LO-1",
+          "outcome_id": "HH-TAOKHI-01-LO-2",
           "rubric_id": "R-OBJECTIVE-1",
           "knowledge_ids": [
-            "HH-HNO3-01-K-1",
-            "HH-HNO3-01-K-2",
-            "HH-HNO3-01-K-3"
+            "HH-TAOKHI-01-K-1",
+            "HH-TAOKHI-01-K-2",
+            "HH-TAOKHI-01-K-3"
           ],
-          "difficulty": "trung bình"
+          "difficulty": "cơ bản"
         }
       ],
       "questions": [
         {
-          "id": "HH-HNO3-01-Q-1",
+          "id": "HH-TAOKHI-01-Q-1",
           "type": "true_false",
-          "prompt": "Màu nâu đỏ sau tiếp xúc không khí chứng minh khí sinh ra ban đầu ở ca loãng là NO₂.",
+          "prompt": "Ở 25 °C (298,15 K) và 1 atm, 0,001 mol CO₂ lý tưởng trong mô hình chiếm thể tích 22,4 mL.",
           "answer": {
             "value": false,
-            "explanation": "NO ban đầu có thể bị oxi hóa thành NO₂ sau tiếp xúc không khí."
+            "explanation": "Ở 298,15 K và 1 atm, 0,001 mol khí lý tưởng chiếm khoảng 24,465 mL; 22,4 mL ứng với 0 °C và 1 atm."
           },
           "difficulty": "cơ bản",
-          "outcome_id": "HH-HNO3-01-LO-2",
+          "outcome_id": "HH-TAOKHI-01-LO-2",
           "knowledge_ids": [
-            "HH-HNO3-01-K-1",
-            "HH-HNO3-01-K-2",
-            "HH-HNO3-01-K-3"
+            "HH-TAOKHI-01-K-1",
+            "HH-TAOKHI-01-K-2",
+            "HH-TAOKHI-01-K-3"
           ],
           "rubric_id": "R-OBJECTIVE-1"
         },
         {
-          "id": "HH-HNO3-01-Q-2",
+          "id": "HH-TAOKHI-01-Q-2",
           "type": "fill_blank",
-          "prompt": "Theo phương trình ca loãng, nếu 3 mol Cu phản ứng hết với axit dư thì tạo bao nhiêu mol NO theo lý thuyết?",
+          "prompt": "Cho 50 mL HCl 0,100 mol/L tác dụng với 0,0840066 g NaHCO₃ (0,001 mol). Thể tích CO₂ thu được ở 25 °C, 1 atm là bao nhiêu mL (làm tròn 2 chữ số thập phân)?",
           "answer": {
-            "value": 2,
-            "explanation": "Hệ số Cu:NO là 3:2. Đây là tỉ lệ theo phương trình, không phải số đo của mô phỏng.",
-            "unit": "mol",
-            "absolute_tolerance": 0
+            "value": 24.47,
+            "explanation": "NaHCO₃ giới hạn (0,001 mol), V = 0,001 × 0,082057366 × 298,15 × 1000 ≈ 24,47 mL.",
+            "unit": "mL",
+            "absolute_tolerance": 0.05
           },
           "difficulty": "cơ bản",
-          "outcome_id": "HH-HNO3-01-LO-1",
+          "outcome_id": "HH-TAOKHI-01-LO-2",
           "knowledge_ids": [
-            "HH-HNO3-01-K-1",
-            "HH-HNO3-01-K-2",
-            "HH-HNO3-01-K-3"
+            "HH-TAOKHI-01-K-1",
+            "HH-TAOKHI-01-K-2",
+            "HH-TAOKHI-01-K-3"
           ],
           "rubric_id": "R-OBJECTIVE-1"
         },
         {
-          "id": "HH-HNO3-01-Q-3",
+          "id": "HH-TAOKHI-01-Q-3",
           "type": "multi_select",
-          "prompt": "Chọn mô tả đúng đối với hai kịch bản đại diện trong mô hình.",
+          "prompt": "Chọn các phát biểu đúng với ba ca chuẩn của mô hình HCl + NaHCO₃.",
           "answer": {
             "value": [
               "A",
+              "B",
               "C"
             ],
-            "explanation": "Ca loãng có NO không màu lúc đầu; ca đặc có NO₂ nâu đỏ."
+            "explanation": "Cả A, B, C đều khớp số mol chất giới hạn và thể tích CO₂ trong fixture."
           },
           "difficulty": "cơ bản",
-          "outcome_id": "HH-HNO3-01-LO-1",
+          "outcome_id": "HH-TAOKHI-01-LO-1",
           "knowledge_ids": [
-            "HH-HNO3-01-K-1",
-            "HH-HNO3-01-K-2",
-            "HH-HNO3-01-K-3"
+            "HH-TAOKHI-01-K-1",
+            "HH-TAOKHI-01-K-2",
+            "HH-TAOKHI-01-K-3"
           ],
           "rubric_id": "R-OBJECTIVE-1",
           "options": [
             {
               "id": "A",
-              "text": "NO ở ca loãng lúc đầu"
+              "text": "25 mL HCl (0,0025 mol) + 0,420033 g NaHCO₃ (0,005 mol): HCl giới hạn, V ≈ 61,16 mL"
             },
             {
               "id": "B",
-              "text": "Ca loãng lúc đầu luôn nâu đỏ"
+              "text": "50 mL HCl (0,005 mol) + 0,0840066 g NaHCO₃ (0,001 mol): NaHCO₃ giới hạn, V ≈ 24,47 mL"
             },
             {
               "id": "C",
-              "text": "NO₂ ở ca đặc"
+              "text": "0 mL HCl + 0,0840066 g NaHCO₃: không sinh khí CO₂ (0 mL)"
             },
             {
               "id": "D",
-              "text": "Hai ca có cùng khí chính ban đầu"
+              "text": "Cứ tăng khối lượng NaHCO₃ thì thể tích CO₂ luôn tăng vô hạn dù giữ nguyên HCl"
             }
           ]
         },
         {
-          "id": "HH-HNO3-01-Q-4",
+          "id": "HH-TAOKHI-01-Q-4",
           "type": "open_response",
-          "prompt": "Dùng ca loãng trước và sau tiếp xúc không khí để giải thích vì sao màu có thể thay đổi.",
+          "prompt": "Dựa vào hai ca (25 mL HCl; 0,420033 g NaHCO₃) và (50 mL HCl; 0,0840066 g NaHCO₃), giải thích vì sao chất giới hạn đổi vai trò và cách tính thể tích CO₂.",
           "answer": {
-            "value": "Ban đầu NO không màu. Khi gặp O₂, NO có thể chuyển thành NO₂ nâu đỏ theo 2NO + O₂ → 2NO₂.",
-            "explanation": "Đổi màu là quan sát ở bước sau và mô hình không cho phần trăm chuyển hóa.",
+            "value": "Ca 1 có 0,0025 mol HCl < 0,005 mol NaHCO₃ nên HCl giới hạn, tạo 0,0025 mol CO₂ (≈ 61,16 mL). Ca 2 có 0,005 mol HCl > 0,001 mol NaHCO₃ nên NaHCO₃ giới hạn, tạo 0,001 mol CO₂ (≈ 24,47 mL) theo V = nRT/P ở 298,15 K, 1 atm.",
+            "explanation": "Cần so sánh đúng số mol hai chất ở mỗi ca và nêu công thức khí lý tưởng tại 25 °C, 1 atm.",
             "matching": "meaning_and_reasoning"
           },
           "difficulty": "trung bình",
-          "outcome_id": "HH-HNO3-01-LO-2",
+          "outcome_id": "HH-TAOKHI-01-LO-1",
           "knowledge_ids": [
-            "HH-HNO3-01-K-1",
-            "HH-HNO3-01-K-2",
-            "HH-HNO3-01-K-3"
+            "HH-TAOKHI-01-K-1",
+            "HH-TAOKHI-01-K-2",
+            "HH-TAOKHI-01-K-3"
           ],
-          "rubric_id": "HH-HNO3-01-Q-4-R"
+          "rubric_id": "HH-TAOKHI-01-Q-4-R"
         }
       ],
       "rubrics": [
         {
-          "id": "HH-HNO3-01-Q-4-R",
+          "id": "HH-TAOKHI-01-Q-4-R",
           "max_points": 4,
           "pass_points": 3,
           "require_nonzero_each_criterion": true,
           "criteria": [
             {
-              "criterion": "Nêu NO ban đầu không màu.",
+              "criterion": "So sánh đúng số mol HCl và NaHCO₃ để chỉ ra HCl giới hạn ở ca 1 (0,0025 mol) và NaHCO₃ giới hạn ở ca 2 (0,001 mol).",
               "levels": [
                 {
                   "points": 0,
@@ -6481,7 +7293,7 @@
               ]
             },
             {
-              "criterion": "Giải thích vai trò O₂ và sự xuất hiện NO₂ nâu đỏ ở bước sau.",
+              "criterion": "Liên hệ số mol CO₂ với thể tích ≈ 61,16 mL và ≈ 24,47 mL qua V = nRT/P ở 298,15 K, 1 atm.",
               "levels": [
                 {
                   "points": 0,
@@ -6500,13 +7312,13 @@
           ]
         },
         {
-          "id": "HH-HNO3-01-A-1-R",
+          "id": "HH-TAOKHI-01-A-1-R",
           "max_points": 4,
           "pass_points": 3,
           "require_nonzero_each_criterion": true,
           "criteria": [
             {
-              "criterion": "Thực hiện các bước và giữ điều kiện đầu: Đặt lại ca loãng, chưa quan sát.",
+              "criterion": "Thực hiện các bước và giữ điều kiện đầu: Thử lần lượt ca HCl giới hạn, ca NaHCO₃ giới hạn và ca 0 mL HCl.",
               "levels": [
                 {
                   "points": 0,
@@ -6523,7 +7335,7 @@
               ]
             },
             {
-              "criterion": "Dùng kết quả để kiểm điều kiện hoàn thành: Đủ ba lượt, phân biệt NO ban đầu không màu, khả năng nâu đỏ sau tiếp xúc và NO₂ nâu đỏ ở ca đặc.",
+              "criterion": "Dùng kết quả để kiểm điều kiện hoàn thành: Đối chiếu ba thể tích CO₂ (≈ 61,16 mL; ≈ 24,47 mL; 0 mL) và chất giới hạn tương ứng.",
               "levels": [
                 {
                   "points": 0,
@@ -6544,116 +7356,113 @@
       ],
       "activities": [
         {
-          "id": "HH-HNO3-01-A-1",
-          "title": "Đối chiếu khí ban đầu và sau gặp không khí",
-          "description": "Hoạt động với chế độ copper-nitric của bài Đồng với HNO₃: NO và NO₂.",
-          "runtime_id": "copper-nitric",
-          "outcome_id": "HH-HNO3-01-LO-2",
+          "id": "HH-TAOKHI-01-A-1",
+          "title": "Khảo sát chất giới hạn và thể tích khí CO₂",
+          "description": "Hoạt động với chế độ gas-reaction của bài Phản ứng axit và muối bicarbonat.",
+          "runtime_id": "gas-reaction",
+          "outcome_id": "HH-TAOKHI-01-LO-1",
           "knowledge_ids": [
-            "HH-HNO3-01-K-1",
-            "HH-HNO3-01-K-2",
-            "HH-HNO3-01-K-3"
+            "HH-TAOKHI-01-K-1",
+            "HH-TAOKHI-01-K-2",
+            "HH-TAOKHI-01-K-3"
           ],
           "prerequisites": [
-            "Cân bằng phương trình hóa học",
-            "Phân biệt công thức NO và NO₂"
+            "Tính số mol từ khối lượng m/M và từ nồng độ C·V",
+            "Áp dụng phương trình khí lý tưởng PV = nRT"
           ],
-          "initial_state": "Đặt lại ca loãng, chưa quan sát.",
-          "parameter_schema_ref": "packages/lab-engine/labs/copper-nitric/lab.json#/parameter_schema",
-          "actions": "Quan sát và ghi ca loãng chưa gặp không khí, bật lựa chọn tiếp xúc để ghi lượt thứ hai; chuyển ca đặc và ghi lượt thứ ba.",
-          "invalid_actions_and_effect": "Tùy chọn tiếp xúc chỉ áp dụng cho ca loãng trong UI. Không coi màu sau tiếp xúc là kết quả ban đầu.",
+          "initial_state": "Đặt lại về mặc định 25 mL HCl 0,100 mol/L và 0,3 g NaHCO₃ ở 25 °C, 1 atm.",
+          "parameter_schema_ref": "packages/lab-engine/labs/gas-reaction/lab.json#/parameter_schema",
+          "actions": "Ghi ca (25 mL HCl, 0,420033 g NaHCO₃), ca (50 mL HCl, 0,0840066 g NaHCO₃) và ca đối chứng (0 mL HCl).",
+          "invalid_actions_and_effect": "Nhập khối lượng NaHCO₃ ngoài 0–1 g hoặc thể tích HCl ngoài 0–50 mL sẽ bị từ chối.",
           "cases": [
             {
-              "path": "tests/golden/curriculum-labs.json",
-              "pointer": "/13",
+              "path": "tests/golden/additional-labs.json",
+              "pointer": "/cases/8",
               "parameters": {
-                "acid": "dilute",
-                "air": false,
-                "observed": true
+                "acidVolume_ml": 25,
+                "bicarbonateMass_g": 0.420033
               },
               "elapsed_s": 0
             },
             {
-              "path": "tests/golden/curriculum-labs.json",
-              "pointer": "/14",
+              "path": "tests/golden/additional-labs.json",
+              "pointer": "/cases/9",
               "parameters": {
-                "acid": "dilute",
-                "air": true,
-                "observed": true
+                "acidVolume_ml": 50,
+                "bicarbonateMass_g": 0.0840066
               },
               "elapsed_s": 0
             },
             {
-              "path": "tests/golden/curriculum-labs.json",
-              "pointer": "/15",
+              "path": "tests/golden/additional-labs.json",
+              "pointer": "/cases/10",
               "parameters": {
-                "acid": "concentrated",
-                "air": false,
-                "observed": true
+                "acidVolume_ml": 0,
+                "bicarbonateMass_g": 0.0840066
               },
               "elapsed_s": 0
             }
           ],
-          "expected_result": "Đủ ba lượt, phân biệt NO ban đầu không màu, khả năng nâu đỏ sau tiếp xúc và NO₂ nâu đỏ ở ca đặc.",
-          "expected_failure": "Chưa đạt nếu vi phạm điều kiện: Tùy chọn tiếp xúc chỉ áp dụng cho ca loãng trong UI. Không coi màu sau tiếp xúc là kết quả ban đầu.",
-          "feedback_on_success": "Đối chiếu số đọc hoặc hiện tượng vừa ghi với kết quả mong đợi và giải thích.",
-          "feedback_on_failure": "Trở về ca loãng, tắt tiếp xúc và quan sát lại để lấy đối chứng.",
+          "expected_result": "Đối chiếu ba thể tích CO₂ (≈ 61,16 mL; ≈ 24,47 mL; 0 mL) và chất giới hạn tương ứng.",
+          "expected_failure": "Chưa đạt nếu vi phạm điều kiện: Dùng 22,4 L/mol hoặc không phân biệt chất giới hạn giữa hai ca đầu.",
+          "feedback_on_success": "Đối chiếu thể tích CO₂ và chất giới hạn vừa ghi với kết quả mong đợi.",
+          "feedback_on_failure": "Kiểm tra lại số mol HCl và NaHCO₃ ở từng ca rồi ghi lại.",
           "completed_state": "recorded_and_explained",
-          "completion_criteria": "Đủ ba lượt, phân biệt NO ban đầu không màu, khả năng nâu đỏ sau tiếp xúc và NO₂ nâu đỏ ở ca đặc.",
-          "rubric_id": "HH-HNO3-01-A-1-R",
+          "completion_criteria": "Đối chiếu ba thể tích CO₂ (≈ 61,16 mL; ≈ 24,47 mL; 0 mL) và chất giới hạn tương ứng.",
+          "rubric_id": "HH-TAOKHI-01-A-1-R",
           "scoring": {
             "pass": "Đạt điểm ngưỡng của rubric và mỗi tiêu chí có điểm.",
             "fail": "Thiếu lượt hợp lệ, thiếu giải thích hoặc dưới ngưỡng."
           },
           "review_if_failed": [
-            "HH-HNO3-01-K-1",
-            "HH-HNO3-01-K-2",
-            "HH-HNO3-01-K-3"
+            "HH-TAOKHI-01-K-1",
+            "HH-TAOKHI-01-K-2",
+            "HH-TAOKHI-01-K-3"
           ]
         }
       ],
       "tutor_cases": [
         {
-          "id": "HH-HNO3-01-T-1",
-          "practice_id": "HH-HNO3-01",
-          "lab_id": "copper-nitric",
+          "id": "HH-TAOKHI-01-T-1",
+          "practice_id": "HH-TAOKHI-01",
+          "lab_id": "gas-reaction",
           "category": "knowledge",
           "objective": "Trình bày đúng khái niệm và điều kiện áp dụng.",
           "context": {
-            "activity_id": "HH-HNO3-01-A-1",
-            "practice_id": "HH-HNO3-01",
-            "scenario": "Đặt lại ca loãng, chưa quan sát.",
+            "activity_id": "HH-TAOKHI-01-A-1",
+            "practice_id": "HH-TAOKHI-01",
+            "scenario": "Đặt lại về mặc định 25 mL HCl 0,100 mol/L và 0,3 g NaHCO₃ ở 25 °C, 1 atm.",
             "rubric_id": null,
             "question_id": null,
             "student_answer_kind": null
           },
           "input": {
-            "lab_id": "copper-nitric",
+            "lab_id": "gas-reaction",
             "mode": "explanation",
-            "question": "NO và NO₂ xuất hiện ở những ca nào?",
+            "question": "Vì sao bài này không lấy số mol CO₂ nhân 22,4 L/mol?",
             "include_drafts": true
           },
           "references": {
             "knowledge_ids": [
-              "HH-HNO3-01-K-1",
-              "HH-HNO3-01-K-2",
-              "HH-HNO3-01-K-3"
+              "HH-TAOKHI-01-K-1",
+              "HH-TAOKHI-01-K-2",
+              "HH-TAOKHI-01-K-3"
             ],
             "source_ids": [
-              "HH-HNO3-01-SRC-DATA"
+              "HH-TAOKHI-01-SRC-DATA"
             ],
-            "activity_id": "HH-HNO3-01-A-1",
+            "activity_id": "HH-TAOKHI-01-A-1",
             "question_id": null,
             "rubric_id": null
           },
-          "expected_behavior": "Nêu ca loãng tạo NO ban đầu, ca đặc tạo NO₂ và giới hạn ca đại diện.",
+          "expected_behavior": "Giải thích mô hình tính ở 25 °C (298,15 K) và 1 atm theo V = nRT/P nên thể tích mol khoảng 24,465 L/mol, không phải điều kiện 0 °C, 1 atm.",
           "evaluation_criteria": [
             {
               "description": "Trình bày đúng khái niệm và điều kiện áp dụng.",
               "points": 1
             },
             {
-              "description": "Nêu ca loãng tạo NO ban đầu, ca đặc tạo NO₂ và giới hạn ca đại diện.",
+              "description": "Giải thích mô hình tính ở 25 °C (298,15 K) và 1 atm theo V = nRT/P nên thể tích mol khoảng 24,465 L/mol, không phải điều kiện 0 °C, 1 atm.",
               "points": 1
             },
             {
@@ -6673,46 +7482,46 @@
           }
         },
         {
-          "id": "HH-HNO3-01-T-2",
-          "practice_id": "HH-HNO3-01",
-          "lab_id": "copper-nitric",
+          "id": "HH-TAOKHI-01-T-2",
+          "practice_id": "HH-TAOKHI-01",
+          "lab_id": "gas-reaction",
           "category": "practice_guidance",
           "objective": "Chỉ dẫn thao tác đúng trong mô phỏng, theo trạng thái hiện tại.",
           "context": {
-            "activity_id": "HH-HNO3-01-A-1",
-            "practice_id": "HH-HNO3-01",
-            "scenario": "Đặt lại ca loãng, chưa quan sát.",
+            "activity_id": "HH-TAOKHI-01-A-1",
+            "practice_id": "HH-TAOKHI-01",
+            "scenario": "Đặt lại về mặc định 25 mL HCl 0,100 mol/L và 0,3 g NaHCO₃ ở 25 °C, 1 atm.",
             "rubric_id": null,
             "question_id": null,
             "student_answer_kind": null
           },
           "input": {
-            "lab_id": "copper-nitric",
+            "lab_id": "gas-reaction",
             "mode": "explanation",
-            "question": "Sau ca loãng chưa gặp không khí, làm gì để kiểm sự đổi màu?",
+            "question": "Em đã ghi ca 25 mL HCl và 0,42 g NaHCO₃. Làm sao thử ca NaHCO₃ là chất giới hạn?",
             "include_drafts": true
           },
           "references": {
             "knowledge_ids": [
-              "HH-HNO3-01-K-1",
-              "HH-HNO3-01-K-2",
-              "HH-HNO3-01-K-3"
+              "HH-TAOKHI-01-K-1",
+              "HH-TAOKHI-01-K-2",
+              "HH-TAOKHI-01-K-3"
             ],
             "source_ids": [
-              "HH-HNO3-01-SRC-DATA"
+              "HH-TAOKHI-01-SRC-DATA"
             ],
-            "activity_id": "HH-HNO3-01-A-1",
+            "activity_id": "HH-TAOKHI-01-A-1",
             "question_id": null,
             "rubric_id": null
           },
-          "expected_behavior": "Giữ ca loãng, bật tiếp xúc, quan sát lại và ghi riêng trước/sau.",
+          "expected_behavior": "Hướng dẫn tăng HCl lên 50 mL và giảm NaHCO₃ xuống khoảng 0,084 g rồi ghi số đo.",
           "evaluation_criteria": [
             {
               "description": "Chỉ dẫn thao tác đúng trong mô phỏng, theo trạng thái hiện tại.",
               "points": 1
             },
             {
-              "description": "Giữ ca loãng, bật tiếp xúc, quan sát lại và ghi riêng trước/sau.",
+              "description": "Hướng dẫn tăng HCl lên 50 mL và giảm NaHCO₃ xuống khoảng 0,084 g rồi ghi số đo.",
               "points": 1
             },
             {
@@ -6732,46 +7541,46 @@
           }
         },
         {
-          "id": "HH-HNO3-01-T-3",
-          "practice_id": "HH-HNO3-01",
-          "lab_id": "copper-nitric",
+          "id": "HH-TAOKHI-01-T-3",
+          "practice_id": "HH-TAOKHI-01",
+          "lab_id": "gas-reaction",
           "category": "error_diagnosis",
           "objective": "Phát hiện đúng nguyên nhân và hướng dẫn sửa trong phạm vi.",
           "context": {
-            "activity_id": "HH-HNO3-01-A-1",
-            "practice_id": "HH-HNO3-01",
-            "scenario": "Đặt lại ca loãng, chưa quan sát.",
+            "activity_id": "HH-TAOKHI-01-A-1",
+            "practice_id": "HH-TAOKHI-01",
+            "scenario": "Đặt lại về mặc định 25 mL HCl 0,100 mol/L và 0,3 g NaHCO₃ ở 25 °C, 1 atm.",
             "rubric_id": null,
             "question_id": null,
             "student_answer_kind": null
           },
           "input": {
-            "lab_id": "copper-nitric",
+            "lab_id": "gas-reaction",
             "mode": "explanation",
-            "question": "Sao không bật tùy chọn NO gặp không khí ở ca đặc?",
+            "question": "Tại sao ở 25 mL HCl, tăng NaHCO₃ từ 0,3 g lên 0,5 g mà thể tích CO₂ không vượt 61,16 mL?",
             "include_drafts": true
           },
           "references": {
             "knowledge_ids": [
-              "HH-HNO3-01-K-1",
-              "HH-HNO3-01-K-2",
-              "HH-HNO3-01-K-3"
+              "HH-TAOKHI-01-K-1",
+              "HH-TAOKHI-01-K-2",
+              "HH-TAOKHI-01-K-3"
             ],
             "source_ids": [
-              "HH-HNO3-01-SRC-DATA"
+              "HH-TAOKHI-01-SRC-DATA"
             ],
-            "activity_id": "HH-HNO3-01-A-1",
+            "activity_id": "HH-TAOKHI-01-A-1",
             "question_id": null,
             "rubric_id": null
           },
-          "expected_behavior": "Giải thích đó là thao tác của ca loãng trong UI; ca đặc đã đại diện cho NO₂.",
+          "expected_behavior": "Chỉ ra 25 mL HCl 0,100 M chỉ có 0,0025 mol nên HCl đã hết, NaHCO₃ thêm vào bị dư.",
           "evaluation_criteria": [
             {
               "description": "Phát hiện đúng nguyên nhân và hướng dẫn sửa trong phạm vi.",
               "points": 1
             },
             {
-              "description": "Giải thích đó là thao tác của ca loãng trong UI; ca đặc đã đại diện cho NO₂.",
+              "description": "Chỉ ra 25 mL HCl 0,100 M chỉ có 0,0025 mol nên HCl đã hết, NaHCO₃ thêm vào bị dư.",
               "points": 1
             },
             {
@@ -6791,47 +7600,47 @@
           }
         },
         {
-          "id": "HH-HNO3-01-T-4",
-          "practice_id": "HH-HNO3-01",
-          "lab_id": "copper-nitric",
+          "id": "HH-TAOKHI-01-T-4",
+          "practice_id": "HH-TAOKHI-01",
+          "lab_id": "gas-reaction",
           "category": "exercise_help",
           "objective": "Đưa bước gợi ý phù hợp và tôn trọng yêu cầu chưa tiết lộ đáp án.",
           "context": {
-            "activity_id": "HH-HNO3-01-A-1",
-            "practice_id": "HH-HNO3-01",
-            "scenario": "Đặt lại ca loãng, chưa quan sát.",
+            "activity_id": "HH-TAOKHI-01-A-1",
+            "practice_id": "HH-TAOKHI-01",
+            "scenario": "Đặt lại về mặc định 25 mL HCl 0,100 mol/L và 0,3 g NaHCO₃ ở 25 °C, 1 atm.",
             "rubric_id": null,
-            "question_id": "HH-HNO3-01-Q-2",
+            "question_id": "HH-TAOKHI-01-Q-2",
             "student_answer_kind": null
           },
           "input": {
-            "lab_id": "copper-nitric",
+            "lab_id": "gas-reaction",
             "mode": "hint",
-            "question": "Gợi ý tính mol NO theo mol Cu trong phương trình ca loãng.",
+            "question": "Gợi ý cho em tính thể tích CO₂ khi có 0,001 mol NaHCO₃ phản ứng hết, đừng nêu kết quả.",
             "include_drafts": true,
             "hint_level": 1
           },
           "references": {
             "knowledge_ids": [
-              "HH-HNO3-01-K-1",
-              "HH-HNO3-01-K-2",
-              "HH-HNO3-01-K-3"
+              "HH-TAOKHI-01-K-1",
+              "HH-TAOKHI-01-K-2",
+              "HH-TAOKHI-01-K-3"
             ],
             "source_ids": [
-              "HH-HNO3-01-SRC-DATA"
+              "HH-TAOKHI-01-SRC-DATA"
             ],
-            "activity_id": "HH-HNO3-01-A-1",
-            "question_id": "HH-HNO3-01-Q-2",
+            "activity_id": "HH-TAOKHI-01-A-1",
+            "question_id": "HH-TAOKHI-01-Q-2",
             "rubric_id": null
           },
-          "expected_behavior": "Gợi ý xác định hệ số Cu và NO trong phương trình ca loãng, chưa tính kết quả.",
+          "expected_behavior": "Gợi ý thay n = 0,001 mol, R = 0,082057366, T = 298,15 K, P = 1 atm vào V = nRT/P rồi đổi ra mL, chưa nêu 24,47 mL.",
           "evaluation_criteria": [
             {
               "description": "Đưa bước gợi ý phù hợp và tôn trọng yêu cầu chưa tiết lộ đáp án.",
               "points": 1
             },
             {
-              "description": "Gợi ý xác định hệ số Cu và NO trong phương trình ca loãng, chưa tính kết quả.",
+              "description": "Gợi ý thay n = 0,001 mol, R = 0,082057366, T = 298,15 K, P = 1 atm vào V = nRT/P rồi đổi ra mL, chưa nêu 24,47 mL.",
               "points": 1
             },
             {
@@ -6851,46 +7660,46 @@
           }
         },
         {
-          "id": "HH-HNO3-01-T-5",
-          "practice_id": "HH-HNO3-01",
-          "lab_id": "copper-nitric",
+          "id": "HH-TAOKHI-01-T-5",
+          "practice_id": "HH-TAOKHI-01",
+          "lab_id": "gas-reaction",
           "category": "answer_evaluation",
           "objective": "Đánh giá lập luận và mức độ đạt theo rubric, chấp nhận cách diễn đạt tương đương.",
           "context": {
-            "activity_id": "HH-HNO3-01-A-1",
-            "practice_id": "HH-HNO3-01",
-            "scenario": "Đặt lại ca loãng, chưa quan sát.",
-            "rubric_id": "HH-HNO3-01-Q-4-R",
-            "question_id": "HH-HNO3-01-Q-4",
-            "student_answer_kind": "partial"
+            "activity_id": "HH-TAOKHI-01-A-1",
+            "practice_id": "HH-TAOKHI-01",
+            "scenario": "Đặt lại về mặc định 25 mL HCl 0,100 mol/L và 0,3 g NaHCO₃ ở 25 °C, 1 atm.",
+            "rubric_id": "HH-TAOKHI-01-Q-4-R",
+            "question_id": "HH-TAOKHI-01-Q-4",
+            "student_answer_kind": "correct"
           },
           "input": {
-            "lab_id": "copper-nitric",
+            "lab_id": "gas-reaction",
             "mode": "feedback",
-            "question": "Em nói khí NO lúc đầu không màu. Em chưa giải thích vì sao sau đó có màu.",
+            "question": "Em nêu: ca 1 HCl giới hạn cho 0,0025 mol khí (61,16 mL), ca 2 NaHCO₃ giới hạn cho 0,001 mol khí (24,47 mL) ở 298,15 K, 1 atm.",
             "include_drafts": true
           },
           "references": {
             "knowledge_ids": [
-              "HH-HNO3-01-K-1",
-              "HH-HNO3-01-K-2",
-              "HH-HNO3-01-K-3"
+              "HH-TAOKHI-01-K-1",
+              "HH-TAOKHI-01-K-2",
+              "HH-TAOKHI-01-K-3"
             ],
             "source_ids": [
-              "HH-HNO3-01-SRC-DATA"
+              "HH-TAOKHI-01-SRC-DATA"
             ],
-            "activity_id": "HH-HNO3-01-A-1",
-            "question_id": "HH-HNO3-01-Q-4",
-            "rubric_id": "HH-HNO3-01-Q-4-R"
+            "activity_id": "HH-TAOKHI-01-A-1",
+            "question_id": "HH-TAOKHI-01-Q-4",
+            "rubric_id": "HH-TAOKHI-01-Q-4-R"
           },
-          "expected_behavior": "Công nhận đúng phần đầu, yêu cầu thêm vai trò O₂ và NO₂ ở bước sau.",
+          "expected_behavior": "Xác nhận lập luận đúng cả hai ca và điều kiện khí lý tưởng.",
           "evaluation_criteria": [
             {
               "description": "Đánh giá lập luận và mức độ đạt theo rubric, chấp nhận cách diễn đạt tương đương.",
               "points": 1
             },
             {
-              "description": "Công nhận đúng phần đầu, yêu cầu thêm vai trò O₂ và NO₂ ở bước sau.",
+              "description": "Xác nhận lập luận đúng cả hai ca và điều kiện khí lý tưởng.",
               "points": 1
             },
             {
@@ -6910,46 +7719,46 @@
           }
         },
         {
-          "id": "HH-HNO3-01-T-6",
-          "practice_id": "HH-HNO3-01",
-          "lab_id": "copper-nitric",
+          "id": "HH-TAOKHI-01-T-6",
+          "practice_id": "HH-TAOKHI-01",
+          "lab_id": "gas-reaction",
           "category": "limits",
           "objective": "Nhận diện thông tin thiếu hoặc ngoài mô hình; không đặt số liệu hay nguồn.",
           "context": {
-            "activity_id": "HH-HNO3-01-A-1",
-            "practice_id": "HH-HNO3-01",
-            "scenario": "Đặt lại ca loãng, chưa quan sát.",
+            "activity_id": "HH-TAOKHI-01-A-1",
+            "practice_id": "HH-TAOKHI-01",
+            "scenario": "Đặt lại về mặc định 25 mL HCl 0,100 mol/L và 0,3 g NaHCO₃ ở 25 °C, 1 atm.",
             "rubric_id": null,
             "question_id": null,
             "student_answer_kind": null
           },
           "input": {
-            "lab_id": "copper-nitric",
+            "lab_id": "gas-reaction",
             "mode": "explanation",
-            "question": "Sau đúng 10 giây sẽ có bao nhiêu phần trăm NO bị oxi hóa?",
+            "question": "Từ số đọc mô phỏng có biết bao nhiêu mL CO₂ đã hòa tan lại vào nước trong bình không?",
             "include_drafts": true
           },
           "references": {
             "knowledge_ids": [
-              "HH-HNO3-01-K-1",
-              "HH-HNO3-01-K-2",
-              "HH-HNO3-01-K-3"
+              "HH-TAOKHI-01-K-1",
+              "HH-TAOKHI-01-K-2",
+              "HH-TAOKHI-01-K-3"
             ],
             "source_ids": [
-              "HH-HNO3-01-SRC-DATA"
+              "HH-TAOKHI-01-SRC-DATA"
             ],
-            "activity_id": "HH-HNO3-01-A-1",
+            "activity_id": "HH-TAOKHI-01-A-1",
             "question_id": null,
             "rubric_id": null
           },
-          "expected_behavior": "Nêu mô hình không có động học hay điều kiện định lượng; không tạo phần trăm.",
+          "expected_behavior": "Nêu rõ mô hình coi toàn bộ CO₂ tạo thành là khí khô lý tưởng, không tính lượng CO₂ hòa tan hay áp suất hơi nước.",
           "evaluation_criteria": [
             {
               "description": "Nhận diện thông tin thiếu hoặc ngoài mô hình; không đặt số liệu hay nguồn.",
               "points": 1
             },
             {
-              "description": "Nêu mô hình không có động học hay điều kiện định lượng; không tạo phần trăm.",
+              "description": "Nêu rõ mô hình coi toàn bộ CO₂ tạo thành là khí khô lý tưởng, không tính lượng CO₂ hòa tan hay áp suất hơi nước.",
               "points": 1
             },
             {
@@ -6971,76 +7780,76 @@
       ]
     },
     {
-      "practice_id": "HH-CHLORINE-01",
+      "practice_id": "HH-DIENHOA-01",
       "runtime_ids": [
-        "chlorine-bleach"
+        "electrochemistry"
       ],
-      "title": "Điều chế clo và tính tẩy màu",
+      "title": "Pin điện hóa",
       "knowledge_profile": {
-        "id": "HH-CHLORINE-01-PROFILE",
-        "topic": "Halogen và oxi hóa–khử",
-        "difficulty": "trung bình",
+        "id": "HH-DIENHOA-01-PROFILE",
+        "topic": "Điện hóa",
+        "difficulty": "cơ bản",
         "objectives": [
-          "Giải thích bán phản ứng tạo Cl₂ trong mô hình",
-          "Dùng đối chứng khô/ẩm để giải thích vai trò của nước và HOCl"
+          "Xác định anode, cathode, chiều electron và phản ứng tổng quát từ các cặp Zn²⁺/Zn, Cu²⁺/Cu, Ag⁺/Ag",
+          "Phân biệt suất điện động chuẩn E°pin với điện áp vôn kế U = E°phải − E°trái và vai trò của cầu muối"
         ],
         "prerequisites": [
-          "Đọc bán phản ứng oxi hóa",
-          "Phân biệt mẫu thử và đối chứng"
+          "Phân biệt quá trình oxi hóa (nhường electron) và khử (nhận electron)",
+          "So sánh thế điện cực chuẩn E°"
         ],
         "learning_outcomes": [
           {
-            "id": "HH-CHLORINE-01-LO-1",
-            "description": "Giải thích bán phản ứng tạo Cl₂ trong mô hình"
+            "id": "HH-DIENHOA-01-LO-1",
+            "description": "Xác định anode, cathode, chiều electron và phản ứng tổng quát từ các cặp Zn²⁺/Zn, Cu²⁺/Cu, Ag⁺/Ag"
           },
           {
-            "id": "HH-CHLORINE-01-LO-2",
-            "description": "Dùng đối chứng khô/ẩm để giải thích vai trò của nước và HOCl"
+            "id": "HH-DIENHOA-01-LO-2",
+            "description": "Phân biệt suất điện động chuẩn E°pin với điện áp vôn kế U = E°phải − E°trái và vai trò của cầu muối"
           }
         ],
         "concepts": [
           {
-            "id": "HH-CHLORINE-01-K-1",
-            "name": "Nguyên lý tạo clo",
-            "definition": "Ion chloride nhường electron trong bán phản ứng minh họa.",
-            "formula": "2Cl⁻ → Cl₂ + 2e⁻",
+            "id": "HH-DIENHOA-01-K-1",
+            "name": "Anode, cathode và chiều electron",
+            "definition": "Điện cực có thế khử chuẩn E° nhỏ hơn đóng vai trò anode (oxi hóa, nhường electron); điện cực có E° lớn hơn là cathode (khử, nhận electron).",
+            "formula": "E°(Zn²⁺/Zn) = −0,76 V; E°(Cu²⁺/Cu) = +0,34 V; E°(Ag⁺/Ag) = +0,80 V",
             "origin_notes": "Diễn giải học liệu/mô hình hiện có; nguồn ngoài dùng để đối chiếu phần được ghi.",
-            "conditions": "Chế độ nguyên lý chỉ biểu diễn bán phản ứng.",
+            "conditions": "Điều kiện chuẩn 25 °C, hoạt độ ion bằng 1, thế chuẩn làm tròn 0,01 V.",
             "origin": "project_authored_from_lumilab",
             "source_ids": [
-              "HH-CHLORINE-01-SRC-DATA"
+              "HH-DIENHOA-01-SRC-DATA",
+              "HH-DIENHOA-01-SRC-EXT-1"
             ]
           },
           {
-            "id": "HH-CHLORINE-01-K-2",
-            "name": "Môi trường có nước",
-            "definition": "Trong cách viết phân tử của học liệu, nước tham gia cân bằng tạo HOCl; HOCl có tính oxi hóa.",
-            "formula": "Cl₂ + H₂O ⇌ HCl + HOCl",
+            "id": "HH-DIENHOA-01-K-2",
+            "name": "Điện áp vôn kế và suất điện động chuẩn",
+            "definition": "Suất điện động chuẩn E°pin = |E°phải − E°trái| ≥ 0, còn điện áp vôn kế lý tưởng lấy chốt đỏ bên phải trừ chốt đen bên trái: U = E°phải − E°trái.",
+            "formula": "U = E°phải − E°trái; E°pin = E°cathode − E°anode",
             "origin_notes": "Diễn giải học liệu/mô hình hiện có; nguồn ngoài dùng để đối chiếu phần được ghi.",
-            "conditions": "Mô hình minh họa vai trò của HOCl trong tẩy màu.",
+            "conditions": "Khi hai điện cực giống nhau (ví dụ Cu–Cu), U = 0 V và không có phản ứng oxi hóa–khử ròng.",
             "origin": "project_authored_from_lumilab",
             "source_ids": [
-              "HH-CHLORINE-01-SRC-DATA",
-              "HH-CHLORINE-01-SRC-EXT-1"
+              "HH-DIENHOA-01-SRC-DATA",
+              "HH-DIENHOA-01-SRC-EXT-1"
             ]
           },
           {
-            "id": "HH-CHLORINE-01-K-3",
-            "name": "Đối chứng khô",
-            "definition": "Giấy khô trong môi trường khô là đối chứng; giấy ẩm nhạt rõ trong ca minh họa.",
+            "id": "HH-DIENHOA-01-K-3",
+            "name": "Vai trò cầu muối và giới hạn mô hình",
+            "definition": "Khi tháo cầu muối, mạch điện hóa hở nên số đọc trên vôn kế bị khóa (meterVoltage_V = null) dù hiệu thế lý thuyết vẫn xác định.",
             "formula": null,
             "origin_notes": "Diễn giải học liệu/mô hình hiện có; nguồn ngoài dùng để đối chiếu phần được ghi.",
-            "conditions": "Kết quả là mô tả màu định tính, không phải độ nhạt đo được.",
+            "conditions": "Mô hình không tính điện trở trong, sự suy giảm nồng độ theo thời gian hay phương trình Nernst ngoài chuẩn.",
             "origin": "project_authored_from_lumilab",
             "source_ids": [
-              "HH-CHLORINE-01-SRC-DATA",
-              "HH-CHLORINE-01-SRC-EXT-1"
+              "HH-DIENHOA-01-SRC-DATA"
             ]
           }
         ],
         "sources": [
           {
-            "id": "HH-CHLORINE-01-SRC-DATA",
+            "id": "HH-DIENHOA-01-SRC-DATA",
             "title": "Học liệu, mô hình và ca chuẩn LumiLab",
             "publisher": "Nhóm LumiLab",
             "type": "project_dataset",
@@ -7048,81 +7857,52 @@
             "paths": [
               "docs/DATASET.md",
               "apps/web/src/data/demo-lessons.json",
-              "packages/lab-engine/labs/chlorine-bleach/lab.json"
+              "packages/lab-engine/labs/electrochemistry/lab.json"
             ],
             "used_for": "Nội dung bài, thuật ngữ, giả thiết, điều khiển và phạm vi mô phỏng. Ca đối chiếu nằm trong từng hoạt động.",
-            "practice_id": "HH-CHLORINE-01"
+            "practice_id": "HH-DIENHOA-01"
           },
           {
-            "id": "HH-CHLORINE-01-SRC-SGK-1",
-            "title": "Hóa học 10",
-            "publisher": "Nhà xuất bản Giáo dục Việt Nam",
-            "edition": "Kết nối tri thức với cuộc sống",
-            "type": "textbook",
-            "role": "reference_only",
-            "url": "https://taphuan.nxbgd.vn/tap-huan/doc-sach/sgk-hoa-hoc-10.4700854983#page=109",
-            "section": "tr. 109, Hình 21.6, giấy màu khô và ẩm",
-            "used_for": "Hóa học 10, Bài 21, tr. 109 (Hình 21.6) và tr. 111 (nguyên lý điều chế)",
-            "provenance_path": "docs/DATASET.md",
-            "verification": "inherited_pending_page_recheck",
-            "rights_status": "pending",
-            "practice_id": "HH-CHLORINE-01"
-          },
-          {
-            "id": "HH-CHLORINE-01-SRC-SGK-2",
-            "title": "Hóa học 10",
-            "publisher": "Nhà xuất bản Giáo dục Việt Nam",
-            "edition": "Kết nối tri thức với cuộc sống",
-            "type": "textbook",
-            "role": "reference_only",
-            "url": "https://taphuan.nxbgd.vn/tap-huan/doc-sach/sgk-hoa-hoc-10.4700854983#page=111",
-            "section": "tr. 111, mục Điều chế chlorine",
-            "used_for": "Hóa học 10, Bài 21, tr. 109 (Hình 21.6) và tr. 111 (nguyên lý điều chế)",
-            "provenance_path": "docs/DATASET.md",
-            "verification": "inherited_pending_page_recheck",
-            "rights_status": "pending",
-            "practice_id": "HH-CHLORINE-01"
-          },
-          {
-            "id": "HH-CHLORINE-01-SRC-EXT-1",
+            "id": "HH-DIENHOA-01-SRC-EXT-1",
             "title": "Chemistry 2e",
             "publisher": "OpenStax, Rice University",
             "type": "open_textbook",
             "role": "reference_only",
-            "url": "https://openstax.org/books/chemistry-2e/pages/18-11-occurrence-preparation-and-properties-of-halogens",
-            "section": "§18.11 Occurrence, Preparation, and Properties of Halogens",
+            "url": "https://openstax.org/books/chemistry-2e/pages/17-3-electrode-and-cell-potentials",
+            "section": "§17.3 Electrode and Cell Potentials",
             "used_for": [
-              "Môi trường có nước",
-              "Đối chứng khô"
+              "Anode, cathode và chiều electron",
+              "Điện áp vôn kế và suất điện động chuẩn"
             ],
             "verification": "section_located",
             "rights_status": "pending",
-            "practice_id": "HH-CHLORINE-01"
+            "practice_id": "HH-DIENHOA-01"
           }
         ],
         "runtime_models": [
           {
-            "id": "chlorine-bleach",
-            "model_version": "chlorine-moisture-qualitative-v1",
-            "dataset_version": "lumilab-nine-draft-v1",
+            "id": "electrochemistry",
+            "model_version": "standard-galvanic-cell-v1",
+            "dataset_version": "client-expansion-draft-2026-11-01",
             "assumptions": [
-              "Điều chế chỉ minh họa bán phản ứng oxi hóa chloride. Giấy màu khô trong môi trường khô là đối chứng.",
-              "Quan sát độ nhạt mang tính định tính và giới hạn trong điều kiện đã chọn."
+              "Điện cựcZn²⁺/Zn,Cu²⁺/Cu,Ag⁺/Ag ở25°C, hoạt độ ion1; E°làm tròn0,01V.",
+              "Vôn kế lý tưởng đỏ bên phải/đen bên trái: U=E°phải−E°trái; không tính dòng điện hoặc động học.",
+              "Chiều electron minh họa trường hợp nối tải. Tháo cầu muối khóa số đọc mô phỏng, không mô phỏng quá độ thật."
             ],
-            "config_path": "packages/lab-engine/labs/chlorine-bleach/lab.json"
+            "config_path": "packages/lab-engine/labs/electrochemistry/lab.json"
           }
         ],
         "common_mistakes": [
-          "Dùng hai điều kiện khác nhau cùng lúc hoặc coi ô màu là phép đo định lượng."
+          "Nhầm dấu của điện áp vôn kế U = E°phải − E°trái với suất điện động E°pin hoặc quên cân bằng số electron trao đổi (như Zn + 2Ag⁺)."
         ],
         "practice_notes": [
-          "So sánh giấy màu khô và ẩm"
+          "Kiểm tra sự đổi dấu khi đảo điện cực trái/phải và trạng thái vôn kế khi tháo cầu muối."
         ],
         "simulation_scope": {
           "available": [
-            "Có hai kết quả so sánh đúng và lời giải thích vai trò của nước/HOCl."
+            "Chọn điện cực trái/phải trong bộ Zn, Cu, Ag và bật/tắt cầu muối; đọc U, E°pin, anode, cathode và phương trình phản ứng."
           ],
-          "missing_data_and_limits": "Thiếu số đo màu theo thời gian và mô hình dụng cụ. Chỉ minh họa nguyên lý và quan sát ảo."
+          "missing_data_and_limits": "Chỉ có 3 cặp điện cực chuẩn ở 25 °C; không có nồng độ khác 1 M hay dòng điện thực qua tải."
         },
         "review_status": "draft",
         "reviewer": null,
@@ -7130,132 +7910,128 @@
       },
       "existing_question_refs": [
         {
-          "id": "chlorine-bleach-exercise",
+          "id": "cell-potential",
           "path": "apps/web/src/data/demo-lessons.json",
-          "lesson_id": "chlorine-bleach",
+          "lesson_id": "electrochemistry",
           "section": "exercise",
           "origin": "existing_target_dataset",
-          "outcome_id": "HH-CHLORINE-01-LO-1",
+          "outcome_id": "HH-DIENHOA-01-LO-2",
           "rubric_id": "R-OBJECTIVE-1",
           "knowledge_ids": [
-            "HH-CHLORINE-01-K-1",
-            "HH-CHLORINE-01-K-2",
-            "HH-CHLORINE-01-K-3"
+            "HH-DIENHOA-01-K-1",
+            "HH-DIENHOA-01-K-2",
+            "HH-DIENHOA-01-K-3"
           ],
-          "difficulty": "trung bình"
+          "difficulty": "cơ bản"
         },
         {
-          "id": "chlorine-bleach-quiz",
+          "id": "oxidation",
           "path": "apps/web/src/data/demo-lessons.json",
-          "lesson_id": "chlorine-bleach",
+          "lesson_id": "electrochemistry",
           "section": "quiz",
           "origin": "existing_target_dataset",
-          "outcome_id": "HH-CHLORINE-01-LO-2",
+          "outcome_id": "HH-DIENHOA-01-LO-1",
           "rubric_id": "R-OBJECTIVE-1",
           "knowledge_ids": [
-            "HH-CHLORINE-01-K-1",
-            "HH-CHLORINE-01-K-2",
-            "HH-CHLORINE-01-K-3"
+            "HH-DIENHOA-01-K-1",
+            "HH-DIENHOA-01-K-2",
+            "HH-DIENHOA-01-K-3"
           ],
-          "difficulty": "trung bình"
+          "difficulty": "cơ bản"
         }
       ],
       "questions": [
         {
-          "id": "HH-CHLORINE-01-Q-1",
+          "id": "HH-DIENHOA-01-Q-1",
           "type": "true_false",
-          "prompt": "Trong bán phản ứng tạo Cl₂, ion chloride nhận electron.",
+          "prompt": "Khi đặt Ag ở bên trái, Zn ở bên phải và tháo cầu muối, suất điện động lý thuyết E°pin = 1,56 V nhưng số đọc vôn kế là null (không hiển thị).",
           "answer": {
-            "value": false,
-            "explanation": "Electron nằm ở phía sản phẩm, nên ion chloride nhường electron."
+            "value": true,
+            "explanation": "Hiệu thế chuẩn của cặp Zn–Ag là 1,56 V (voltage_V = −1,56 V do Zn ở phải), nhưng tháo cầu muối làm hở mạch nên meterVoltage_V = null."
           },
           "difficulty": "cơ bản",
-          "outcome_id": "HH-CHLORINE-01-LO-1",
+          "outcome_id": "HH-DIENHOA-01-LO-2",
           "knowledge_ids": [
-            "HH-CHLORINE-01-K-1",
-            "HH-CHLORINE-01-K-2",
-            "HH-CHLORINE-01-K-3"
+            "HH-DIENHOA-01-K-1",
+            "HH-DIENHOA-01-K-2",
+            "HH-DIENHOA-01-K-3"
           ],
           "rubric_id": "R-OBJECTIVE-1"
         },
         {
-          "id": "HH-CHLORINE-01-Q-2",
+          "id": "HH-DIENHOA-01-Q-2",
           "type": "fill_blank",
-          "prompt": "Trong bán phản ứng tạo Cl₂, số oxi hóa của mỗi nguyên tử clo tăng bao nhiêu đơn vị khi chuyển từ Cl⁻ sang Cl₂?",
+          "prompt": "Trong phản ứng hoàn chỉnh của pin Zn–Ag: Zn + 2Ag⁺ → Zn²⁺ + 2Ag, số electron trao đổi là bao nhiêu?",
           "answer": {
-            "value": 1,
-            "explanation": "Số oxi hóa đi từ −1 trong ion chloride lên 0 trong đơn chất. Hiệu bằng +1.",
-            "unit": "đơn vị số oxi hóa",
+            "value": 2,
+            "explanation": "Mỗi nguyên tử Zn nhường 2 electron cho 2 ion Ag⁺.",
+            "unit": "electron",
             "absolute_tolerance": 0
           },
           "difficulty": "cơ bản",
-          "outcome_id": "HH-CHLORINE-01-LO-1",
+          "outcome_id": "HH-DIENHOA-01-LO-1",
           "knowledge_ids": [
-            "HH-CHLORINE-01-K-1",
-            "HH-CHLORINE-01-K-2",
-            "HH-CHLORINE-01-K-3"
+            "HH-DIENHOA-01-K-1",
+            "HH-DIENHOA-01-K-2",
+            "HH-DIENHOA-01-K-3"
           ],
           "rubric_id": "R-OBJECTIVE-1"
         },
         {
-          "id": "HH-CHLORINE-01-Q-3",
+          "id": "HH-DIENHOA-01-Q-3",
           "type": "single_choice",
-          "prompt": "Ca nào là đối chứng phù hợp khi đánh giá ảnh hưởng của nước trong mô hình?",
+          "prompt": "Khi chọn cả hai điện cực trái và phải đều là Cu và nối cầu muối, kết quả nào đúng?",
           "answer": {
             "value": "B",
-            "explanation": "Giấy và môi trường khô tạo ca so sánh với giấy ẩm trong cùng chế độ."
+            "explanation": "Hai điện cực cùng bản chất ở cùng điều kiện chuẩn có E° bằng nhau nên U = 0 V và không có electron trao đổi ròng."
           },
           "difficulty": "cơ bản",
-          "outcome_id": "HH-CHLORINE-01-LO-2",
+          "outcome_id": "HH-DIENHOA-01-LO-2",
           "knowledge_ids": [
-            "HH-CHLORINE-01-K-1",
-            "HH-CHLORINE-01-K-2",
-            "HH-CHLORINE-01-K-3"
+            "HH-DIENHOA-01-K-1",
+            "HH-DIENHOA-01-K-2",
+            "HH-DIENHOA-01-K-3"
           ],
           "rubric_id": "R-OBJECTIVE-1",
           "options": [
             {
               "id": "A",
-              "text": "Chế độ nguyên lý tạo clo"
+              "text": "U = 0,68 V và electron đi từ trái sang phải"
             },
             {
               "id": "B",
-              "text": "Giấy khô trong môi trường khô"
-            },
-            {
-              "id": "C",
-              "text": "Một lượt giấy ẩm khác"
+              "text": "U = 0 V, không có anode/cathode và số electron trao đổi bằng 0"
             }
           ]
         },
         {
-          "id": "HH-CHLORINE-01-Q-4",
+          "id": "HH-DIENHOA-01-Q-4",
           "type": "open_response",
-          "prompt": "Dùng hai quan sát khô và ẩm để giải thích vai trò của nước.",
+          "prompt": "Dựa vào ca (trái = Ag, phải = Zn, tháo cầu muối) và ca (trái = Cu, phải = Cu, nối cầu muối), giải thích dấu điện áp, chiều phản ứng và trạng thái vôn kế.",
           "answer": {
-            "value": "Ca khô không tẩy rõ; ca ẩm nhạt rõ. Nước tham gia tạo HOCl, chất oxi hóa được dùng để giải thích sự nhạt màu trong ca ẩm.",
-            "explanation": "So hai ca trong cùng chế độ và nối quan sát với cân bằng có nước.",
+            "value": "Ở ca Ag trái – Zn phải, Zn có E° nhỏ hơn (−0,76 V < +0,80 V) nên Zn là anode (bên phải), Ag là cathode (bên trái), phản ứng Zn + 2Ag⁺ → Zn²⁺ + 2Ag, U = −1,56 V, E°pin = 1,56 V nhưng tháo cầu muối nên vôn kế không hiện số. Ở ca Cu–Cu nối cầu muối, hai cực giống nhau nên U = 0 V.",
+            "explanation": "Cần nêu đúng vai trò điện cực/phản ứng ở ca Ag–Zn, lý do vôn kế ẩn số khi tháo cầu muối và kết quả 0 V ở ca Cu–Cu.",
             "matching": "meaning_and_reasoning"
           },
           "difficulty": "trung bình",
-          "outcome_id": "HH-CHLORINE-01-LO-2",
+          "outcome_id": "HH-DIENHOA-01-LO-2",
           "knowledge_ids": [
-            "HH-CHLORINE-01-K-1",
-            "HH-CHLORINE-01-K-2",
-            "HH-CHLORINE-01-K-3"
+            "HH-DIENHOA-01-K-1",
+            "HH-DIENHOA-01-K-2",
+            "HH-DIENHOA-01-K-3"
           ],
-          "rubric_id": "HH-CHLORINE-01-Q-4-R"
+          "rubric_id": "HH-DIENHOA-01-Q-4-R"
         }
       ],
       "rubrics": [
         {
-          "id": "HH-CHLORINE-01-Q-4-R",
+          "id": "HH-DIENHOA-01-Q-4-R",
           "max_points": 4,
           "pass_points": 3,
           "require_nonzero_each_criterion": true,
           "criteria": [
             {
-              "criterion": "Đối chiếu đúng kết quả khô và ẩm.",
+              "criterion": "Xác định đúng Zn là anode (bên phải), Ag là cathode (bên trái), U = −1,56 V, E°pin = 1,56 V và tháo cầu muối làm vôn kế không hiển thị số.",
               "levels": [
                 {
                   "points": 0,
@@ -7272,7 +8048,7 @@
               ]
             },
             {
-              "criterion": "Liên hệ nước với HOCl và giải thích xu hướng màu.",
+              "criterion": "Giải thích đúng ca hai điện cực Cu giống nhau cho U = 0 V và không có electron trao đổi.",
               "levels": [
                 {
                   "points": 0,
@@ -7291,13 +8067,13 @@
           ]
         },
         {
-          "id": "HH-CHLORINE-01-A-1-R",
+          "id": "HH-DIENHOA-01-A-1-R",
           "max_points": 4,
           "pass_points": 3,
           "require_nonzero_each_criterion": true,
           "criteria": [
             {
-              "criterion": "Thực hiện các bước và giữ điều kiện đầu: Chọn chế độ tẩy màu và đặt về chưa quan sát.",
+              "criterion": "Thực hiện các bước và giữ điều kiện đầu: Thử ca (trái Ag, phải Zn, tháo cầu muối) và ca (trái Cu, phải Cu, nối cầu muối).",
               "levels": [
                 {
                   "points": 0,
@@ -7314,7 +8090,7 @@
               ]
             },
             {
-              "criterion": "Dùng kết quả để kiểm điều kiện hoàn thành: Có hai kết quả so sánh đúng và lời giải thích vai trò của nước/HOCl.",
+              "criterion": "Dùng kết quả để kiểm điều kiện hoàn thành: Nhận ra sự khác nhau giữa E°pin = 1,56 V, U = −1,56 V, meterVoltage_V = null và ca cân bằng 0 V.",
               "levels": [
                 {
                   "points": 0,
@@ -7335,116 +8111,106 @@
       ],
       "activities": [
         {
-          "id": "HH-CHLORINE-01-A-1",
-          "title": "So sánh giấy màu khô và ẩm",
-          "description": "Hoạt động với chế độ chlorine-bleach của bài Điều chế clo và tính tẩy màu.",
-          "runtime_id": "chlorine-bleach",
-          "outcome_id": "HH-CHLORINE-01-LO-2",
+          "id": "HH-DIENHOA-01-A-1",
+          "title": "Khảo sát cực tính pin điện hóa và vai trò cầu muối",
+          "description": "Hoạt động với chế độ electrochemistry của bài Pin điện hóa.",
+          "runtime_id": "electrochemistry",
+          "outcome_id": "HH-DIENHOA-01-LO-2",
           "knowledge_ids": [
-            "HH-CHLORINE-01-K-1",
-            "HH-CHLORINE-01-K-2",
-            "HH-CHLORINE-01-K-3"
+            "HH-DIENHOA-01-K-1",
+            "HH-DIENHOA-01-K-2",
+            "HH-DIENHOA-01-K-3"
           ],
           "prerequisites": [
-            "Đọc bán phản ứng oxi hóa",
-            "Phân biệt mẫu thử và đối chứng"
+            "Phân biệt quá trình oxi hóa (nhường electron) và khử (nhận electron)",
+            "So sánh thế điện cực chuẩn E°"
           ],
-          "initial_state": "Chọn chế độ tẩy màu và đặt về chưa quan sát.",
-          "parameter_schema_ref": "packages/lab-engine/labs/chlorine-bleach/lab.json#/parameter_schema",
-          "actions": "Ghi ca khô, chuyển giấy ẩm rồi quan sát và ghi. Xem chế độ nguyên lý để nhận diện bán phản ứng.",
-          "invalid_actions_and_effect": "Không dùng ca nguyên lý làm đối chứng cho ca tẩy màu. Tùy chọn độ ẩm chỉ dùng trong chế độ tẩy màu.",
+          "initial_state": "Đặt lại về mặc định trái = Zn, phải = Cu, cầu muối đang nối (U = 1,10 V).",
+          "parameter_schema_ref": "packages/lab-engine/labs/electrochemistry/lab.json#/parameter_schema",
+          "actions": "Chọn trái = Ag, phải = Zn và tháo cầu muối để ghi lượt 1; chọn trái = Cu, phải = Cu và nối cầu muối để ghi lượt 2.",
+          "invalid_actions_and_effect": "Chỉ hỗ trợ ba điện cực zn, cu, ag trong danh mục chuẩn.",
           "cases": [
             {
-              "path": "tests/golden/curriculum-labs.json",
-              "pointer": "/16",
+              "path": "tests/golden/server-readings.json",
+              "pointer": "/11",
               "parameters": {
-                "mode": "formation",
-                "damp": false,
-                "observed": true
+                "left": "ag",
+                "right": "zn",
+                "bridgeConnected": false
               },
               "elapsed_s": 0
             },
             {
-              "path": "tests/golden/curriculum-labs.json",
-              "pointer": "/17",
+              "path": "tests/golden/server-readings.json",
+              "pointer": "/12",
               "parameters": {
-                "mode": "bleach",
-                "damp": false,
-                "observed": true
-              },
-              "elapsed_s": 0
-            },
-            {
-              "path": "tests/golden/curriculum-labs.json",
-              "pointer": "/18",
-              "parameters": {
-                "mode": "bleach",
-                "damp": true,
-                "observed": true
+                "left": "cu",
+                "right": "cu",
+                "bridgeConnected": true
               },
               "elapsed_s": 0
             }
           ],
-          "expected_result": "Có hai kết quả so sánh đúng và lời giải thích vai trò của nước/HOCl.",
-          "expected_failure": "Chưa đạt nếu vi phạm điều kiện: Không dùng ca nguyên lý làm đối chứng cho ca tẩy màu. Tùy chọn độ ẩm chỉ dùng trong chế độ tẩy màu.",
-          "feedback_on_success": "Đối chiếu số đọc hoặc hiện tượng vừa ghi với kết quả mong đợi và giải thích.",
-          "feedback_on_failure": "Giữ cùng chế độ và ghi hai ca chỉ khác điều kiện khô/ẩm.",
+          "expected_result": "Lượt 1 có E°pin = 1,56 V, U = −1,56 V, vôn kế ẩn số đo, phản ứng Zn + 2Ag⁺ → Zn²⁺ + 2Ag; lượt 2 có U = 0 V.",
+          "expected_failure": "Chưa đạt nếu vi phạm điều kiện: Quên tháo/nối cầu muối đúng yêu cầu hoặc nhầm dấu điện áp.",
+          "feedback_on_success": "Đối chiếu điện áp, vai trò điện cực và phương trình vừa ghi với kết quả mong đợi.",
+          "feedback_on_failure": "Kiểm tra lại vị trí điện cực trái/phải và trạng thái cầu muối ở hai lượt.",
           "completed_state": "recorded_and_explained",
-          "completion_criteria": "Có hai kết quả so sánh đúng và lời giải thích vai trò của nước/HOCl.",
-          "rubric_id": "HH-CHLORINE-01-A-1-R",
+          "completion_criteria": "Nhận ra sự khác nhau giữa E°pin = 1,56 V, U = −1,56 V, meterVoltage_V = null và ca cân bằng 0 V.",
+          "rubric_id": "HH-DIENHOA-01-A-1-R",
           "scoring": {
             "pass": "Đạt điểm ngưỡng của rubric và mỗi tiêu chí có điểm.",
             "fail": "Thiếu lượt hợp lệ, thiếu giải thích hoặc dưới ngưỡng."
           },
           "review_if_failed": [
-            "HH-CHLORINE-01-K-1",
-            "HH-CHLORINE-01-K-2",
-            "HH-CHLORINE-01-K-3"
+            "HH-DIENHOA-01-K-1",
+            "HH-DIENHOA-01-K-2",
+            "HH-DIENHOA-01-K-3"
           ]
         }
       ],
       "tutor_cases": [
         {
-          "id": "HH-CHLORINE-01-T-1",
-          "practice_id": "HH-CHLORINE-01",
-          "lab_id": "chlorine-bleach",
+          "id": "HH-DIENHOA-01-T-1",
+          "practice_id": "HH-DIENHOA-01",
+          "lab_id": "electrochemistry",
           "category": "knowledge",
           "objective": "Trình bày đúng khái niệm và điều kiện áp dụng.",
           "context": {
-            "activity_id": "HH-CHLORINE-01-A-1",
-            "practice_id": "HH-CHLORINE-01",
-            "scenario": "Chọn chế độ tẩy màu và đặt về chưa quan sát.",
+            "activity_id": "HH-DIENHOA-01-A-1",
+            "practice_id": "HH-DIENHOA-01",
+            "scenario": "Đặt lại về mặc định trái = Zn, phải = Cu, cầu muối đang nối (U = 1,10 V).",
             "rubric_id": null,
             "question_id": null,
             "student_answer_kind": null
           },
           "input": {
-            "lab_id": "chlorine-bleach",
+            "lab_id": "electrochemistry",
             "mode": "explanation",
-            "question": "HOCl liên quan gì tới kết quả của giấy ẩm?",
+            "question": "Vì sao khi đổi Zn sang bên phải và Ag sang bên trái thì điện áp lại mang dấu âm (−1,56 V)?",
             "include_drafts": true
           },
           "references": {
             "knowledge_ids": [
-              "HH-CHLORINE-01-K-1",
-              "HH-CHLORINE-01-K-2",
-              "HH-CHLORINE-01-K-3"
+              "HH-DIENHOA-01-K-1",
+              "HH-DIENHOA-01-K-2",
+              "HH-DIENHOA-01-K-3"
             ],
             "source_ids": [
-              "HH-CHLORINE-01-SRC-DATA"
+              "HH-DIENHOA-01-SRC-DATA"
             ],
-            "activity_id": "HH-CHLORINE-01-A-1",
+            "activity_id": "HH-DIENHOA-01-A-1",
             "question_id": null,
             "rubric_id": null
           },
-          "expected_behavior": "Giải thích nước tham gia cân bằng tạo HOCl và vai trò oxi hóa làm nhạt màu.",
+          "expected_behavior": "Giải thích vôn kế tính U = E°phải − E°trái = −0,76 − 0,80 = −1,56 V, trong khi suất điện động chuẩn E°pin vẫn là 1,56 V.",
           "evaluation_criteria": [
             {
               "description": "Trình bày đúng khái niệm và điều kiện áp dụng.",
               "points": 1
             },
             {
-              "description": "Giải thích nước tham gia cân bằng tạo HOCl và vai trò oxi hóa làm nhạt màu.",
+              "description": "Giải thích vôn kế tính U = E°phải − E°trái = −0,76 − 0,80 = −1,56 V, trong khi suất điện động chuẩn E°pin vẫn là 1,56 V.",
               "points": 1
             },
             {
@@ -7464,46 +8230,46 @@
           }
         },
         {
-          "id": "HH-CHLORINE-01-T-2",
-          "practice_id": "HH-CHLORINE-01",
-          "lab_id": "chlorine-bleach",
+          "id": "HH-DIENHOA-01-T-2",
+          "practice_id": "HH-DIENHOA-01",
+          "lab_id": "electrochemistry",
           "category": "practice_guidance",
           "objective": "Chỉ dẫn thao tác đúng trong mô phỏng, theo trạng thái hiện tại.",
           "context": {
-            "activity_id": "HH-CHLORINE-01-A-1",
-            "practice_id": "HH-CHLORINE-01",
-            "scenario": "Chọn chế độ tẩy màu và đặt về chưa quan sát.",
+            "activity_id": "HH-DIENHOA-01-A-1",
+            "practice_id": "HH-DIENHOA-01",
+            "scenario": "Đặt lại về mặc định trái = Zn, phải = Cu, cầu muối đang nối (U = 1,10 V).",
             "rubric_id": null,
             "question_id": null,
             "student_answer_kind": null
           },
           "input": {
-            "lab_id": "chlorine-bleach",
+            "lab_id": "electrochemistry",
             "mode": "explanation",
-            "question": "Em vừa ghi giấy khô. Cần thử tiếp thế nào?",
+            "question": "Em đang ở mặc định Zn–Cu. Làm sao chuyển sang ca kiểm tháo cầu muối của cặp Ag–Zn?",
             "include_drafts": true
           },
           "references": {
             "knowledge_ids": [
-              "HH-CHLORINE-01-K-1",
-              "HH-CHLORINE-01-K-2",
-              "HH-CHLORINE-01-K-3"
+              "HH-DIENHOA-01-K-1",
+              "HH-DIENHOA-01-K-2",
+              "HH-DIENHOA-01-K-3"
             ],
             "source_ids": [
-              "HH-CHLORINE-01-SRC-DATA"
+              "HH-DIENHOA-01-SRC-DATA"
             ],
-            "activity_id": "HH-CHLORINE-01-A-1",
+            "activity_id": "HH-DIENHOA-01-A-1",
             "question_id": null,
             "rubric_id": null
           },
-          "expected_behavior": "Giữ chế độ tẩy màu, chuyển giấy ẩm, Quan sát, ghi và đối chiếu.",
+          "expected_behavior": "Hướng dẫn chọn điện cực trái là Ag, điện cực phải là Zn rồi nhấn Tháo cầu muối và ghi số đo.",
           "evaluation_criteria": [
             {
               "description": "Chỉ dẫn thao tác đúng trong mô phỏng, theo trạng thái hiện tại.",
               "points": 1
             },
             {
-              "description": "Giữ chế độ tẩy màu, chuyển giấy ẩm, Quan sát, ghi và đối chiếu.",
+              "description": "Hướng dẫn chọn điện cực trái là Ag, điện cực phải là Zn rồi nhấn Tháo cầu muối và ghi số đo.",
               "points": 1
             },
             {
@@ -7523,46 +8289,46 @@
           }
         },
         {
-          "id": "HH-CHLORINE-01-T-3",
-          "practice_id": "HH-CHLORINE-01",
-          "lab_id": "chlorine-bleach",
+          "id": "HH-DIENHOA-01-T-3",
+          "practice_id": "HH-DIENHOA-01",
+          "lab_id": "electrochemistry",
           "category": "error_diagnosis",
           "objective": "Phát hiện đúng nguyên nhân và hướng dẫn sửa trong phạm vi.",
           "context": {
-            "activity_id": "HH-CHLORINE-01-A-1",
-            "practice_id": "HH-CHLORINE-01",
-            "scenario": "Chọn chế độ tẩy màu và đặt về chưa quan sát.",
+            "activity_id": "HH-DIENHOA-01-A-1",
+            "practice_id": "HH-DIENHOA-01",
+            "scenario": "Đặt lại về mặc định trái = Zn, phải = Cu, cầu muối đang nối (U = 1,10 V).",
             "rubric_id": null,
             "question_id": null,
             "student_answer_kind": null
           },
           "input": {
-            "lab_id": "chlorine-bleach",
+            "lab_id": "electrochemistry",
             "mode": "explanation",
-            "question": "Em đang ở chế độ nguyên lý và không đổi được độ ẩm.",
+            "question": "Sao em bấm Tháo cầu muối thì vôn kế hiện dấu gạch ngang (—)?",
             "include_drafts": true
           },
           "references": {
             "knowledge_ids": [
-              "HH-CHLORINE-01-K-1",
-              "HH-CHLORINE-01-K-2",
-              "HH-CHLORINE-01-K-3"
+              "HH-DIENHOA-01-K-1",
+              "HH-DIENHOA-01-K-2",
+              "HH-DIENHOA-01-K-3"
             ],
             "source_ids": [
-              "HH-CHLORINE-01-SRC-DATA"
+              "HH-DIENHOA-01-SRC-DATA"
             ],
-            "activity_id": "HH-CHLORINE-01-A-1",
+            "activity_id": "HH-DIENHOA-01-A-1",
             "question_id": null,
             "rubric_id": null
           },
-          "expected_behavior": "Giải thích điều khiển độ ẩm chỉ áp dụng trong tẩy màu; hướng dẫn chuyển chế độ ảo.",
+          "expected_behavior": "Chỉ ra tháo cầu muối làm mạch hở nên vôn kế không hiển thị số đo (meterVoltage_V = null).",
           "evaluation_criteria": [
             {
               "description": "Phát hiện đúng nguyên nhân và hướng dẫn sửa trong phạm vi.",
               "points": 1
             },
             {
-              "description": "Giải thích điều khiển độ ẩm chỉ áp dụng trong tẩy màu; hướng dẫn chuyển chế độ ảo.",
+              "description": "Chỉ ra tháo cầu muối làm mạch hở nên vôn kế không hiển thị số đo (meterVoltage_V = null).",
               "points": 1
             },
             {
@@ -7582,47 +8348,47 @@
           }
         },
         {
-          "id": "HH-CHLORINE-01-T-4",
-          "practice_id": "HH-CHLORINE-01",
-          "lab_id": "chlorine-bleach",
+          "id": "HH-DIENHOA-01-T-4",
+          "practice_id": "HH-DIENHOA-01",
+          "lab_id": "electrochemistry",
           "category": "exercise_help",
           "objective": "Đưa bước gợi ý phù hợp và tôn trọng yêu cầu chưa tiết lộ đáp án.",
           "context": {
-            "activity_id": "HH-CHLORINE-01-A-1",
-            "practice_id": "HH-CHLORINE-01",
-            "scenario": "Chọn chế độ tẩy màu và đặt về chưa quan sát.",
+            "activity_id": "HH-DIENHOA-01-A-1",
+            "practice_id": "HH-DIENHOA-01",
+            "scenario": "Đặt lại về mặc định trái = Zn, phải = Cu, cầu muối đang nối (U = 1,10 V).",
             "rubric_id": null,
-            "question_id": "HH-CHLORINE-01-Q-2",
+            "question_id": "HH-DIENHOA-01-Q-2",
             "student_answer_kind": null
           },
           "input": {
-            "lab_id": "chlorine-bleach",
+            "lab_id": "electrochemistry",
             "mode": "hint",
-            "question": "Gợi ý tìm độ tăng số oxi hóa của clo, chưa tính số cuối.",
+            "question": "Gợi ý cách tìm số electron trao đổi trong phản ứng giữa Zn và Ag⁺, đừng nêu đáp số.",
             "include_drafts": true,
             "hint_level": 1
           },
           "references": {
             "knowledge_ids": [
-              "HH-CHLORINE-01-K-1",
-              "HH-CHLORINE-01-K-2",
-              "HH-CHLORINE-01-K-3"
+              "HH-DIENHOA-01-K-1",
+              "HH-DIENHOA-01-K-2",
+              "HH-DIENHOA-01-K-3"
             ],
             "source_ids": [
-              "HH-CHLORINE-01-SRC-DATA"
+              "HH-DIENHOA-01-SRC-DATA"
             ],
-            "activity_id": "HH-CHLORINE-01-A-1",
-            "question_id": "HH-CHLORINE-01-Q-2",
+            "activity_id": "HH-DIENHOA-01-A-1",
+            "question_id": "HH-DIENHOA-01-Q-2",
             "rubric_id": null
           },
-          "expected_behavior": "Gợi ý xác định số oxi hóa của ion đơn nguyên tử và đơn chất, rồi lấy giá trị sau trừ giá trị trước.",
+          "expected_behavior": "Gợi ý viết bán phản ứng Zn → Zn²⁺ + ne và Ag⁺ + 1e → Ag rồi tìm bội chung nhỏ nhất để cân bằng điện tích, chưa nêu số 2.",
           "evaluation_criteria": [
             {
               "description": "Đưa bước gợi ý phù hợp và tôn trọng yêu cầu chưa tiết lộ đáp án.",
               "points": 1
             },
             {
-              "description": "Gợi ý xác định số oxi hóa của ion đơn nguyên tử và đơn chất, rồi lấy giá trị sau trừ giá trị trước.",
+              "description": "Gợi ý viết bán phản ứng Zn → Zn²⁺ + ne và Ag⁺ + 1e → Ag rồi tìm bội chung nhỏ nhất để cân bằng điện tích, chưa nêu số 2.",
               "points": 1
             },
             {
@@ -7642,46 +8408,46 @@
           }
         },
         {
-          "id": "HH-CHLORINE-01-T-5",
-          "practice_id": "HH-CHLORINE-01",
-          "lab_id": "chlorine-bleach",
+          "id": "HH-DIENHOA-01-T-5",
+          "practice_id": "HH-DIENHOA-01",
+          "lab_id": "electrochemistry",
           "category": "answer_evaluation",
           "objective": "Đánh giá lập luận và mức độ đạt theo rubric, chấp nhận cách diễn đạt tương đương.",
           "context": {
-            "activity_id": "HH-CHLORINE-01-A-1",
-            "practice_id": "HH-CHLORINE-01",
-            "scenario": "Chọn chế độ tẩy màu và đặt về chưa quan sát.",
-            "rubric_id": "HH-CHLORINE-01-Q-4-R",
-            "question_id": "HH-CHLORINE-01-Q-4",
-            "student_answer_kind": "contradictory"
+            "activity_id": "HH-DIENHOA-01-A-1",
+            "practice_id": "HH-DIENHOA-01",
+            "scenario": "Đặt lại về mặc định trái = Zn, phải = Cu, cầu muối đang nối (U = 1,10 V).",
+            "rubric_id": "HH-DIENHOA-01-Q-4-R",
+            "question_id": "HH-DIENHOA-01-Q-4",
+            "student_answer_kind": "correct"
           },
           "input": {
-            "lab_id": "chlorine-bleach",
+            "lab_id": "electrochemistry",
             "mode": "feedback",
-            "question": "Em nghĩ ca ẩm nhạt hơn do không có nước và không liên quan HOCl.",
+            "question": "Em viết: ca Ag trái – Zn phải có Zn là anode, U = −1,56 V, E° = 1,56 V và vôn kế ẩn số vì tháo cầu muối; ca Cu–Cu cho 0 V.",
             "include_drafts": true
           },
           "references": {
             "knowledge_ids": [
-              "HH-CHLORINE-01-K-1",
-              "HH-CHLORINE-01-K-2",
-              "HH-CHLORINE-01-K-3"
+              "HH-DIENHOA-01-K-1",
+              "HH-DIENHOA-01-K-2",
+              "HH-DIENHOA-01-K-3"
             ],
             "source_ids": [
-              "HH-CHLORINE-01-SRC-DATA"
+              "HH-DIENHOA-01-SRC-DATA"
             ],
-            "activity_id": "HH-CHLORINE-01-A-1",
-            "question_id": "HH-CHLORINE-01-Q-4",
-            "rubric_id": "HH-CHLORINE-01-Q-4-R"
+            "activity_id": "HH-DIENHOA-01-A-1",
+            "question_id": "HH-DIENHOA-01-Q-4",
+            "rubric_id": "HH-DIENHOA-01-Q-4-R"
           },
-          "expected_behavior": "Chỉ ra kết luận mâu thuẫn với điều kiện ca ẩm; yêu cầu giải thích nước và HOCl dựa trên đối chứng.",
+          "expected_behavior": "Xác nhận lập luận đúng đầy đủ cả hai ca.",
           "evaluation_criteria": [
             {
               "description": "Đánh giá lập luận và mức độ đạt theo rubric, chấp nhận cách diễn đạt tương đương.",
               "points": 1
             },
             {
-              "description": "Chỉ ra kết luận mâu thuẫn với điều kiện ca ẩm; yêu cầu giải thích nước và HOCl dựa trên đối chứng.",
+              "description": "Xác nhận lập luận đúng đầy đủ cả hai ca.",
               "points": 1
             },
             {
@@ -7701,46 +8467,795 @@
           }
         },
         {
-          "id": "HH-CHLORINE-01-T-6",
-          "practice_id": "HH-CHLORINE-01",
-          "lab_id": "chlorine-bleach",
+          "id": "HH-DIENHOA-01-T-6",
+          "practice_id": "HH-DIENHOA-01",
+          "lab_id": "electrochemistry",
           "category": "limits",
           "objective": "Nhận diện thông tin thiếu hoặc ngoài mô hình; không đặt số liệu hay nguồn.",
           "context": {
-            "activity_id": "HH-CHLORINE-01-A-1",
-            "practice_id": "HH-CHLORINE-01",
-            "scenario": "Chọn chế độ tẩy màu và đặt về chưa quan sát.",
+            "activity_id": "HH-DIENHOA-01-A-1",
+            "practice_id": "HH-DIENHOA-01",
+            "scenario": "Đặt lại về mặc định trái = Zn, phải = Cu, cầu muối đang nối (U = 1,10 V).",
             "rubric_id": null,
             "question_id": null,
             "student_answer_kind": null
           },
           "input": {
-            "lab_id": "chlorine-bleach",
+            "lab_id": "electrochemistry",
             "mode": "explanation",
-            "question": "Tính phần trăm độ nhạt sau 30 giây từ khung màu.",
+            "question": "Nếu nồng độ Zn²⁺ giảm xuống 0,001 M thì mô phỏng có tính lại điện áp theo Nernst không?",
             "include_drafts": true
           },
           "references": {
             "knowledge_ids": [
-              "HH-CHLORINE-01-K-1",
-              "HH-CHLORINE-01-K-2",
-              "HH-CHLORINE-01-K-3"
+              "HH-DIENHOA-01-K-1",
+              "HH-DIENHOA-01-K-2",
+              "HH-DIENHOA-01-K-3"
             ],
             "source_ids": [
-              "HH-CHLORINE-01-SRC-DATA"
+              "HH-DIENHOA-01-SRC-DATA"
             ],
-            "activity_id": "HH-CHLORINE-01-A-1",
+            "activity_id": "HH-DIENHOA-01-A-1",
             "question_id": null,
             "rubric_id": null
           },
-          "expected_behavior": "Nêu khung màu là minh họa định tính; thiếu phép đo màu, thời gian và dữ liệu hiệu chuẩn.",
+          "expected_behavior": "Nêu rõ mô hình cố định điều kiện chuẩn (hoạt độ bằng 1 ở 25 °C), không giải phương trình Nernst khi đổi nồng độ.",
           "evaluation_criteria": [
             {
               "description": "Nhận diện thông tin thiếu hoặc ngoài mô hình; không đặt số liệu hay nguồn.",
               "points": 1
             },
             {
-              "description": "Nêu khung màu là minh họa định tính; thiếu phép đo màu, thời gian và dữ liệu hiệu chuẩn.",
+              "description": "Nêu rõ mô hình cố định điều kiện chuẩn (hoạt độ bằng 1 ở 25 °C), không giải phương trình Nernst khi đổi nồng độ.",
+              "points": 1
+            },
+            {
+              "description": "Giải thích dễ hiểu, bám giả thiết và không gán kết quả hoặc trạng thái khoa học ngoài dữ liệu tham chiếu.",
+              "points": 1
+            }
+          ],
+          "pass_points": 3,
+          "grading_method": "manual_semantic_review",
+          "execution": {
+            "pilot_scope": false,
+            "expected_offline": [
+              "MVP_SCOPE_ONLY"
+            ],
+            "status": "NOT_RUN",
+            "actual": null
+          }
+        }
+      ]
+    },
+    {
+      "practice_id": "HH-NGUYENTU-01",
+      "runtime_ids": [
+        "atomic"
+      ],
+      "title": "Cấu tạo nguyên tử",
+      "knowledge_profile": {
+        "id": "HH-NGUYENTU-01-PROFILE",
+        "topic": "Cấu tạo nguyên tử",
+        "difficulty": "cơ bản",
+        "objectives": [
+          "Xác định số hiệu nguyên tử Z, số khối A và kí hiệu nguyên tố (Z từ 1 đến 18) từ số proton và neutron",
+          "Tính điện tích hạt q/e = Z − ne để phân biệt nguyên tử trung hòa với ion"
+        ],
+        "prerequisites": [
+          "Biết điện tích quy ước của proton (+1), neutron (0) và electron (−1)",
+          "Đọc bảng tuần hoàn 18 nguyên tố đầu tiên (H đến Ar)"
+        ],
+        "learning_outcomes": [
+          {
+            "id": "HH-NGUYENTU-01-LO-1",
+            "description": "Xác định số hiệu nguyên tử Z, số khối A và kí hiệu nguyên tố (Z từ 1 đến 18) từ số proton và neutron"
+          },
+          {
+            "id": "HH-NGUYENTU-01-LO-2",
+            "description": "Tính điện tích hạt q/e = Z − ne để phân biệt nguyên tử trung hòa với ion"
+          }
+        ],
+        "concepts": [
+          {
+            "id": "HH-NGUYENTU-01-K-1",
+            "name": "Số hiệu nguyên tử Z và số khối A",
+            "definition": "Số proton trong hạt nhân quyết định số hiệu nguyên tử Z và tên nguyên tố; số khối A bằng tổng số proton Z và số neutron N.",
+            "formula": "Z = n_p; A = Z + N",
+            "origin_notes": "Diễn giải học liệu/mô hình hiện có; nguồn ngoài dùng để đối chiếu phần được ghi.",
+            "conditions": "Mô hình hỗ trợ Z từ 1 (H) đến 18 (Ar) và N từ 0 đến 24.",
+            "origin": "project_authored_from_lumilab",
+            "source_ids": [
+              "HH-NGUYENTU-01-SRC-DATA",
+              "HH-NGUYENTU-01-SRC-EXT-1"
+            ]
+          },
+          {
+            "id": "HH-NGUYENTU-01-K-2",
+            "name": "Điện tích nguyên tử và ion",
+            "definition": "Điện tích tương đối theo đơn vị e bằng số proton trừ số electron: bằng 0 là nguyên tử trung hòa, dương là cation, âm là anion.",
+            "formula": "q/e = Z − n_e",
+            "origin_notes": "Diễn giải học liệu/mô hình hiện có; nguồn ngoài dùng để đối chiếu phần được ghi.",
+            "conditions": "Số electron trong mô hình nằm trong khoảng 0 đến 18.",
+            "origin": "project_authored_from_lumilab",
+            "source_ids": [
+              "HH-NGUYENTU-01-SRC-DATA",
+              "HH-NGUYENTU-01-SRC-EXT-1"
+            ]
+          },
+          {
+            "id": "HH-NGUYENTU-01-K-3",
+            "name": "Giới hạn mô hình đếm hạt và lớp vỏ",
+            "definition": "Sơ đồ phân bố electron theo lớp 2, 8, 8 chỉ là minh họa đếm hạt cho 18 electron đầu; mô hình không đánh giá độ bền hạt nhân hay sự tồn tại thực nghiệm của đồng vị.",
+            "formula": null,
+            "origin_notes": "Diễn giải học liệu/mô hình hiện có; nguồn ngoài dùng để đối chiếu phần được ghi.",
+            "conditions": "Không coi vòng tròn trên hình là quỹ đạo chuyển động thật của electron.",
+            "origin": "project_authored_from_lumilab",
+            "source_ids": [
+              "HH-NGUYENTU-01-SRC-DATA"
+            ]
+          }
+        ],
+        "sources": [
+          {
+            "id": "HH-NGUYENTU-01-SRC-DATA",
+            "title": "Học liệu, mô hình và ca chuẩn LumiLab",
+            "publisher": "Nhóm LumiLab",
+            "type": "project_dataset",
+            "role": "primary",
+            "paths": [
+              "docs/DATASET.md",
+              "apps/web/src/data/demo-lessons.json",
+              "packages/lab-engine/labs/atomic/lab.json"
+            ],
+            "used_for": "Nội dung bài, thuật ngữ, giả thiết, điều khiển và phạm vi mô phỏng. Ca đối chiếu nằm trong từng hoạt động.",
+            "practice_id": "HH-NGUYENTU-01"
+          },
+          {
+            "id": "HH-NGUYENTU-01-SRC-EXT-1",
+            "title": "Chemistry 2e",
+            "publisher": "OpenStax, Rice University",
+            "type": "open_textbook",
+            "role": "reference_only",
+            "url": "https://openstax.org/books/chemistry-2e/pages/2-3-atomic-structure-and-symbolism",
+            "section": "§2.3 Atomic Structure and Symbolism",
+            "used_for": [
+              "Số hiệu nguyên tử Z và số khối A",
+              "Điện tích nguyên tử và ion"
+            ],
+            "verification": "section_located",
+            "rights_status": "pending",
+            "practice_id": "HH-NGUYENTU-01"
+          }
+        ],
+        "runtime_models": [
+          {
+            "id": "atomic",
+            "model_version": "atomic-particle-counts-v1",
+            "dataset_version": "client-expansion-draft-2026-11-01",
+            "assumptions": [
+              "Mô hình đếm hạtZ1–18,A=Z+N,q/e=Z−ne; không kiểm đồng vị bền hoặc tồn tại thực nghiệm.",
+              "Sơ đồ lớp vỏ2,8,8 là minh họa cho phạm vi18electron, không quỹ đạo thật, không phép đo cấu trúc lượng tử."
+            ],
+            "config_path": "packages/lab-engine/labs/atomic/lab.json"
+          }
+        ],
+        "common_mistakes": [
+          "Nhầm đổi số neutron hoặc electron sẽ làm đổi tên nguyên tố, hoặc coi mọi tổ hợp (Z, N) tạo được trên thanh trượt đều là đồng vị bền ngoài tự nhiên."
+        ],
+        "practice_notes": [
+          "So sánh nguyên tử Na mặc định (11p, 12n, 11e) với ion Cl⁻ (17p, 18n, 18e)."
+        ],
+        "simulation_scope": {
+          "available": [
+            "Điều chỉnh số proton (1–18), neutron (0–24) và electron (0–18); đọc kí hiệu nguyên tố, Z, A, điện tích q/e và số hạt trên từng lớp 2, 8, 8."
+          ],
+          "missing_data_and_limits": "Chỉ đếm hạt cho Z ≤ 18; không kiểm tra độ bền hạt nhân, nguyên tử khối trung bình hay cấu hình phân lớp s, p, d."
+        },
+        "review_status": "draft",
+        "reviewer": null,
+        "reviewed_at": null
+      },
+      "existing_question_refs": [
+        {
+          "id": "neutrons",
+          "path": "apps/web/src/data/demo-lessons.json",
+          "lesson_id": "atomic",
+          "section": "exercise",
+          "origin": "existing_target_dataset",
+          "outcome_id": "HH-NGUYENTU-01-LO-1",
+          "rubric_id": "R-OBJECTIVE-1",
+          "knowledge_ids": [
+            "HH-NGUYENTU-01-K-1",
+            "HH-NGUYENTU-01-K-2",
+            "HH-NGUYENTU-01-K-3"
+          ],
+          "difficulty": "cơ bản"
+        },
+        {
+          "id": "atomic-number",
+          "path": "apps/web/src/data/demo-lessons.json",
+          "lesson_id": "atomic",
+          "section": "quiz",
+          "origin": "existing_target_dataset",
+          "outcome_id": "HH-NGUYENTU-01-LO-1",
+          "rubric_id": "R-OBJECTIVE-1",
+          "knowledge_ids": [
+            "HH-NGUYENTU-01-K-1",
+            "HH-NGUYENTU-01-K-2",
+            "HH-NGUYENTU-01-K-3"
+          ],
+          "difficulty": "cơ bản"
+        }
+      ],
+      "questions": [
+        {
+          "id": "HH-NGUYENTU-01-Q-1",
+          "type": "true_false",
+          "prompt": "Khi giữ nguyên 11 proton và 12 neutron nhưng giảm từ 11 xuống 10 electron, nguyên tố đổi từ Na sang Ne.",
+          "answer": {
+            "value": false,
+            "explanation": "Số proton vẫn bằng 11 nên nguyên tố vẫn là Na (tạo ion Na⁺ có điện tích +1)."
+          },
+          "difficulty": "cơ bản",
+          "outcome_id": "HH-NGUYENTU-01-LO-2",
+          "knowledge_ids": [
+            "HH-NGUYENTU-01-K-1",
+            "HH-NGUYENTU-01-K-2",
+            "HH-NGUYENTU-01-K-3"
+          ],
+          "rubric_id": "R-OBJECTIVE-1"
+        },
+        {
+          "id": "HH-NGUYENTU-01-Q-2",
+          "type": "fill_blank",
+          "prompt": "Hạt có 17 proton, 18 neutron và 18 electron có số khối A bằng bao nhiêu?",
+          "answer": {
+            "value": 35,
+            "explanation": "A = Z + N = 17 + 18 = 35.",
+            "unit": "u",
+            "absolute_tolerance": 0
+          },
+          "difficulty": "cơ bản",
+          "outcome_id": "HH-NGUYENTU-01-LO-1",
+          "knowledge_ids": [
+            "HH-NGUYENTU-01-K-1",
+            "HH-NGUYENTU-01-K-2",
+            "HH-NGUYENTU-01-K-3"
+          ],
+          "rubric_id": "R-OBJECTIVE-1"
+        },
+        {
+          "id": "HH-NGUYENTU-01-Q-3",
+          "type": "multi_select",
+          "prompt": "Với ca chuẩn 17 proton, 18 neutron và 18 electron, những thông tin nào khớp kết quả mô hình?",
+          "answer": {
+            "value": [
+              "A",
+              "B",
+              "C"
+            ],
+            "explanation": "Z = 17 là Cl, A = 17 + 18 = 35, q/e = 17 − 18 = −1 và 18 electron xếp vào [2, 8, 8]."
+          },
+          "difficulty": "cơ bản",
+          "outcome_id": "HH-NGUYENTU-01-LO-2",
+          "knowledge_ids": [
+            "HH-NGUYENTU-01-K-1",
+            "HH-NGUYENTU-01-K-2",
+            "HH-NGUYENTU-01-K-3"
+          ],
+          "rubric_id": "R-OBJECTIVE-1",
+          "options": [
+            {
+              "id": "A",
+              "text": "Kí hiệu nguyên tố là Cl (Z = 17), số khối A = 35"
+            },
+            {
+              "id": "B",
+              "text": "Điện tích tương đối q/e = −1"
+            },
+            {
+              "id": "C",
+              "text": "Phân bố số hạt trên ba lớp minh họa là [2, 8, 8]"
+            },
+            {
+              "id": "D",
+              "text": "Hạt đang trung hòa về điện vì số neutron bằng số electron"
+            }
+          ]
+        },
+        {
+          "id": "HH-NGUYENTU-01-Q-4",
+          "type": "open_response",
+          "prompt": "Dựa vào ca 17 proton, 18 neutron, 18 electron, giải thích cách xác định kí hiệu nguyên tố, số khối, điện tích và ý nghĩa của mảng lớp vỏ [2, 8, 8].",
+          "answer": {
+            "value": "17 proton xác định Z = 17 (Cl); tổng 17 proton và 18 neutron cho số khối A = 35; 17 proton trừ 18 electron cho điện tích q/e = −1 (ion Cl⁻). Mảng [2, 8, 8] biểu diễn 18 electron xếp vào 3 lớp minh họa, không phải quỹ đạo thật.",
+            "explanation": "Cần nêu đủ cách tính Z, A, q/e và giới hạn minh họa của lớp vỏ.",
+            "matching": "meaning_and_reasoning"
+          },
+          "difficulty": "trung bình",
+          "outcome_id": "HH-NGUYENTU-01-LO-2",
+          "knowledge_ids": [
+            "HH-NGUYENTU-01-K-1",
+            "HH-NGUYENTU-01-K-2",
+            "HH-NGUYENTU-01-K-3"
+          ],
+          "rubric_id": "HH-NGUYENTU-01-Q-4-R"
+        }
+      ],
+      "rubrics": [
+        {
+          "id": "HH-NGUYENTU-01-Q-4-R",
+          "max_points": 4,
+          "pass_points": 3,
+          "require_nonzero_each_criterion": true,
+          "criteria": [
+            {
+              "criterion": "Tính đúng Z = 17 (Cl), số khối A = 35 và điện tích q/e = −1 từ 17p, 18n, 18e.",
+              "levels": [
+                {
+                  "points": 0,
+                  "description": "Thiếu ý hoặc có sai sót làm sai kết luận."
+                },
+                {
+                  "points": 1,
+                  "description": "Nêu được một phần ý nhưng thiếu điều kiện, bằng chứng hoặc giải thích."
+                },
+                {
+                  "points": 2,
+                  "description": "Trình bày đầy đủ và lập luận nhất quán với ca hoặc điều kiện đã nêu."
+                }
+              ]
+            },
+            {
+              "criterion": "Nêu đúng ý nghĩa phân bố [2, 8, 8] là sơ đồ đếm hạt minh họa, không phải quỹ đạo lượng tử thật.",
+              "levels": [
+                {
+                  "points": 0,
+                  "description": "Thiếu ý hoặc có sai sót làm sai kết luận."
+                },
+                {
+                  "points": 1,
+                  "description": "Nêu được một phần ý nhưng thiếu điều kiện, bằng chứng hoặc giải thích."
+                },
+                {
+                  "points": 2,
+                  "description": "Trình bày đầy đủ và lập luận nhất quán với ca hoặc điều kiện đã nêu."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "HH-NGUYENTU-01-A-1-R",
+          "max_points": 4,
+          "pass_points": 3,
+          "require_nonzero_each_criterion": true,
+          "criteria": [
+            {
+              "criterion": "Thực hiện các bước và giữ điều kiện đầu: Từ trạng thái mặc định (11p, 12n, 11e), chỉnh sang 17p, 18n, 18e và ghi số đo.",
+              "levels": [
+                {
+                  "points": 0,
+                  "description": "Thiếu ý hoặc có sai sót làm sai kết luận."
+                },
+                {
+                  "points": 1,
+                  "description": "Nêu được một phần ý nhưng thiếu điều kiện, bằng chứng hoặc giải thích."
+                },
+                {
+                  "points": 2,
+                  "description": "Trình bày đầy đủ và lập luận nhất quán với ca hoặc điều kiện đã nêu."
+                }
+              ]
+            },
+            {
+              "criterion": "Dùng kết quả để kiểm điều kiện hoàn thành: Đối chiếu Cl, Z = 17, A = 35, q/e = −1 và lớp vỏ [2, 8, 8].",
+              "levels": [
+                {
+                  "points": 0,
+                  "description": "Thiếu ý hoặc có sai sót làm sai kết luận."
+                },
+                {
+                  "points": 1,
+                  "description": "Nêu được một phần ý nhưng thiếu điều kiện, bằng chứng hoặc giải thích."
+                },
+                {
+                  "points": 2,
+                  "description": "Trình bày đầy đủ và lập luận nhất quán với ca hoặc điều kiện đã nêu."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "activities": [
+        {
+          "id": "HH-NGUYENTU-01-A-1",
+          "title": "Xác định số khối, điện tích và lớp vỏ của hạt Cl⁻",
+          "description": "Hoạt động với chế độ atomic của bài Cấu tạo nguyên tử.",
+          "runtime_id": "atomic",
+          "outcome_id": "HH-NGUYENTU-01-LO-2",
+          "knowledge_ids": [
+            "HH-NGUYENTU-01-K-1",
+            "HH-NGUYENTU-01-K-2",
+            "HH-NGUYENTU-01-K-3"
+          ],
+          "prerequisites": [
+            "Biết điện tích quy ước của proton (+1), neutron (0) và electron (−1)",
+            "Đọc bảng tuần hoàn 18 nguyên tố đầu tiên (H đến Ar)"
+          ],
+          "initial_state": "Đặt lại về nguyên tử Na trung hòa mặc định: 11 proton, 12 neutron, 11 electron.",
+          "parameter_schema_ref": "packages/lab-engine/labs/atomic/lab.json#/parameter_schema",
+          "actions": "Chỉnh số proton = 17, số neutron = 18, số electron = 18 rồi ghi kết quả.",
+          "invalid_actions_and_effect": "Chọn số proton ngoài 1–18, neutron ngoài 0–24 hoặc electron ngoài 0–18 không nằm trong phạm vi mô hình.",
+          "cases": [
+            {
+              "path": "tests/golden/server-readings.json",
+              "pointer": "/13",
+              "parameters": {
+                "protons": 17,
+                "neutrons": 18,
+                "electrons": 18
+              },
+              "elapsed_s": 0
+            }
+          ],
+          "expected_result": "Đối chiếu Cl, Z = 17, A = 35, q/e = −1 và lớp vỏ [2, 8, 8].",
+          "expected_failure": "Chưa đạt nếu vi phạm điều kiện: Nhầm số neutron với số electron khi tính điện tích hoặc số khối.",
+          "feedback_on_success": "Đối chiếu Z, A, điện tích và lớp vỏ vừa ghi với kết quả mong đợi.",
+          "feedback_on_failure": "Kiểm tra lại công thức A = Z + N và q/e = Z − ne rồi ghi lại.",
+          "completed_state": "recorded_and_explained",
+          "completion_criteria": "Đối chiếu Cl, Z = 17, A = 35, q/e = −1 và lớp vỏ [2, 8, 8].",
+          "rubric_id": "HH-NGUYENTU-01-A-1-R",
+          "scoring": {
+            "pass": "Đạt điểm ngưỡng của rubric và mỗi tiêu chí có điểm.",
+            "fail": "Thiếu lượt hợp lệ, thiếu giải thích hoặc dưới ngưỡng."
+          },
+          "review_if_failed": [
+            "HH-NGUYENTU-01-K-1",
+            "HH-NGUYENTU-01-K-2",
+            "HH-NGUYENTU-01-K-3"
+          ]
+        }
+      ],
+      "tutor_cases": [
+        {
+          "id": "HH-NGUYENTU-01-T-1",
+          "practice_id": "HH-NGUYENTU-01",
+          "lab_id": "atomic",
+          "category": "knowledge",
+          "objective": "Trình bày đúng khái niệm và điều kiện áp dụng.",
+          "context": {
+            "activity_id": "HH-NGUYENTU-01-A-1",
+            "practice_id": "HH-NGUYENTU-01",
+            "scenario": "Đặt lại về nguyên tử Na trung hòa mặc định: 11 proton, 12 neutron, 11 electron.",
+            "rubric_id": null,
+            "question_id": null,
+            "student_answer_kind": null
+          },
+          "input": {
+            "lab_id": "atomic",
+            "mode": "explanation",
+            "question": "Hạt nào quyết định tên nguyên tố và hạt nào làm thay đổi điện tích?",
+            "include_drafts": true
+          },
+          "references": {
+            "knowledge_ids": [
+              "HH-NGUYENTU-01-K-1",
+              "HH-NGUYENTU-01-K-2",
+              "HH-NGUYENTU-01-K-3"
+            ],
+            "source_ids": [
+              "HH-NGUYENTU-01-SRC-DATA"
+            ],
+            "activity_id": "HH-NGUYENTU-01-A-1",
+            "question_id": null,
+            "rubric_id": null
+          },
+          "expected_behavior": "Giải thích số proton (Z) quyết định nguyên tố, còn hiệu số proton trừ electron (Z − ne) quyết định điện tích.",
+          "evaluation_criteria": [
+            {
+              "description": "Trình bày đúng khái niệm và điều kiện áp dụng.",
+              "points": 1
+            },
+            {
+              "description": "Giải thích số proton (Z) quyết định nguyên tố, còn hiệu số proton trừ electron (Z − ne) quyết định điện tích.",
+              "points": 1
+            },
+            {
+              "description": "Giải thích dễ hiểu, bám giả thiết và không gán kết quả hoặc trạng thái khoa học ngoài dữ liệu tham chiếu.",
+              "points": 1
+            }
+          ],
+          "pass_points": 3,
+          "grading_method": "manual_semantic_review",
+          "execution": {
+            "pilot_scope": false,
+            "expected_offline": [
+              "MVP_SCOPE_ONLY"
+            ],
+            "status": "NOT_RUN",
+            "actual": null
+          }
+        },
+        {
+          "id": "HH-NGUYENTU-01-T-2",
+          "practice_id": "HH-NGUYENTU-01",
+          "lab_id": "atomic",
+          "category": "practice_guidance",
+          "objective": "Chỉ dẫn thao tác đúng trong mô phỏng, theo trạng thái hiện tại.",
+          "context": {
+            "activity_id": "HH-NGUYENTU-01-A-1",
+            "practice_id": "HH-NGUYENTU-01",
+            "scenario": "Đặt lại về nguyên tử Na trung hòa mặc định: 11 proton, 12 neutron, 11 electron.",
+            "rubric_id": null,
+            "question_id": null,
+            "student_answer_kind": null
+          },
+          "input": {
+            "lab_id": "atomic",
+            "mode": "explanation",
+            "question": "Em đang ở mặc định 11p, 12n, 11e. Làm sao tạo hạt Cl⁻ có số khối 35?",
+            "include_drafts": true
+          },
+          "references": {
+            "knowledge_ids": [
+              "HH-NGUYENTU-01-K-1",
+              "HH-NGUYENTU-01-K-2",
+              "HH-NGUYENTU-01-K-3"
+            ],
+            "source_ids": [
+              "HH-NGUYENTU-01-SRC-DATA"
+            ],
+            "activity_id": "HH-NGUYENTU-01-A-1",
+            "question_id": null,
+            "rubric_id": null
+          },
+          "expected_behavior": "Hướng dẫn chỉnh proton lên 17, neutron lên 18 và electron lên 18 rồi ghi số đo.",
+          "evaluation_criteria": [
+            {
+              "description": "Chỉ dẫn thao tác đúng trong mô phỏng, theo trạng thái hiện tại.",
+              "points": 1
+            },
+            {
+              "description": "Hướng dẫn chỉnh proton lên 17, neutron lên 18 và electron lên 18 rồi ghi số đo.",
+              "points": 1
+            },
+            {
+              "description": "Giải thích dễ hiểu, bám giả thiết và không gán kết quả hoặc trạng thái khoa học ngoài dữ liệu tham chiếu.",
+              "points": 1
+            }
+          ],
+          "pass_points": 3,
+          "grading_method": "manual_semantic_review",
+          "execution": {
+            "pilot_scope": false,
+            "expected_offline": [
+              "MVP_SCOPE_ONLY"
+            ],
+            "status": "NOT_RUN",
+            "actual": null
+          }
+        },
+        {
+          "id": "HH-NGUYENTU-01-T-3",
+          "practice_id": "HH-NGUYENTU-01",
+          "lab_id": "atomic",
+          "category": "error_diagnosis",
+          "objective": "Phát hiện đúng nguyên nhân và hướng dẫn sửa trong phạm vi.",
+          "context": {
+            "activity_id": "HH-NGUYENTU-01-A-1",
+            "practice_id": "HH-NGUYENTU-01",
+            "scenario": "Đặt lại về nguyên tử Na trung hòa mặc định: 11 proton, 12 neutron, 11 electron.",
+            "rubric_id": null,
+            "question_id": null,
+            "student_answer_kind": null
+          },
+          "input": {
+            "lab_id": "atomic",
+            "mode": "explanation",
+            "question": "Sao em kéo thanh trượt proton lên 20 để tạo Ca không được?",
+            "include_drafts": true
+          },
+          "references": {
+            "knowledge_ids": [
+              "HH-NGUYENTU-01-K-1",
+              "HH-NGUYENTU-01-K-2",
+              "HH-NGUYENTU-01-K-3"
+            ],
+            "source_ids": [
+              "HH-NGUYENTU-01-SRC-DATA"
+            ],
+            "activity_id": "HH-NGUYENTU-01-A-1",
+            "question_id": null,
+            "rubric_id": null
+          },
+          "expected_behavior": "Chỉ ra mô hình giới hạn số proton từ 1 đến 18 (từ H đến Ar).",
+          "evaluation_criteria": [
+            {
+              "description": "Phát hiện đúng nguyên nhân và hướng dẫn sửa trong phạm vi.",
+              "points": 1
+            },
+            {
+              "description": "Chỉ ra mô hình giới hạn số proton từ 1 đến 18 (từ H đến Ar).",
+              "points": 1
+            },
+            {
+              "description": "Giải thích dễ hiểu, bám giả thiết và không gán kết quả hoặc trạng thái khoa học ngoài dữ liệu tham chiếu.",
+              "points": 1
+            }
+          ],
+          "pass_points": 3,
+          "grading_method": "manual_semantic_review",
+          "execution": {
+            "pilot_scope": false,
+            "expected_offline": [
+              "MVP_SCOPE_ONLY"
+            ],
+            "status": "NOT_RUN",
+            "actual": null
+          }
+        },
+        {
+          "id": "HH-NGUYENTU-01-T-4",
+          "practice_id": "HH-NGUYENTU-01",
+          "lab_id": "atomic",
+          "category": "exercise_help",
+          "objective": "Đưa bước gợi ý phù hợp và tôn trọng yêu cầu chưa tiết lộ đáp án.",
+          "context": {
+            "activity_id": "HH-NGUYENTU-01-A-1",
+            "practice_id": "HH-NGUYENTU-01",
+            "scenario": "Đặt lại về nguyên tử Na trung hòa mặc định: 11 proton, 12 neutron, 11 electron.",
+            "rubric_id": null,
+            "question_id": "HH-NGUYENTU-01-Q-2",
+            "student_answer_kind": null
+          },
+          "input": {
+            "lab_id": "atomic",
+            "mode": "hint",
+            "question": "Gợi ý cách tính số khối A khi biết 17 proton và 18 neutron, đừng nêu đáp số.",
+            "include_drafts": true,
+            "hint_level": 1
+          },
+          "references": {
+            "knowledge_ids": [
+              "HH-NGUYENTU-01-K-1",
+              "HH-NGUYENTU-01-K-2",
+              "HH-NGUYENTU-01-K-3"
+            ],
+            "source_ids": [
+              "HH-NGUYENTU-01-SRC-DATA"
+            ],
+            "activity_id": "HH-NGUYENTU-01-A-1",
+            "question_id": "HH-NGUYENTU-01-Q-2",
+            "rubric_id": null
+          },
+          "expected_behavior": "Gợi ý cộng số proton với số neutron trong hạt nhân (A = Z + N), chưa nêu số 35.",
+          "evaluation_criteria": [
+            {
+              "description": "Đưa bước gợi ý phù hợp và tôn trọng yêu cầu chưa tiết lộ đáp án.",
+              "points": 1
+            },
+            {
+              "description": "Gợi ý cộng số proton với số neutron trong hạt nhân (A = Z + N), chưa nêu số 35.",
+              "points": 1
+            },
+            {
+              "description": "Giải thích dễ hiểu, bám giả thiết và không gán kết quả hoặc trạng thái khoa học ngoài dữ liệu tham chiếu.",
+              "points": 1
+            }
+          ],
+          "pass_points": 3,
+          "grading_method": "manual_semantic_review",
+          "execution": {
+            "pilot_scope": false,
+            "expected_offline": [
+              "MVP_SCOPE_ONLY"
+            ],
+            "status": "NOT_RUN",
+            "actual": null
+          }
+        },
+        {
+          "id": "HH-NGUYENTU-01-T-5",
+          "practice_id": "HH-NGUYENTU-01",
+          "lab_id": "atomic",
+          "category": "answer_evaluation",
+          "objective": "Đánh giá lập luận và mức độ đạt theo rubric, chấp nhận cách diễn đạt tương đương.",
+          "context": {
+            "activity_id": "HH-NGUYENTU-01-A-1",
+            "practice_id": "HH-NGUYENTU-01",
+            "scenario": "Đặt lại về nguyên tử Na trung hòa mặc định: 11 proton, 12 neutron, 11 electron.",
+            "rubric_id": "HH-NGUYENTU-01-Q-4-R",
+            "question_id": "HH-NGUYENTU-01-Q-4",
+            "student_answer_kind": "correct"
+          },
+          "input": {
+            "lab_id": "atomic",
+            "mode": "feedback",
+            "question": "Em viết: 17p cho Cl, A = 17 + 18 = 35, điện tích 17 − 18 = −1 và lớp vỏ [2, 8, 8] là minh họa đếm hạt.",
+            "include_drafts": true
+          },
+          "references": {
+            "knowledge_ids": [
+              "HH-NGUYENTU-01-K-1",
+              "HH-NGUYENTU-01-K-2",
+              "HH-NGUYENTU-01-K-3"
+            ],
+            "source_ids": [
+              "HH-NGUYENTU-01-SRC-DATA"
+            ],
+            "activity_id": "HH-NGUYENTU-01-A-1",
+            "question_id": "HH-NGUYENTU-01-Q-4",
+            "rubric_id": "HH-NGUYENTU-01-Q-4-R"
+          },
+          "expected_behavior": "Xác nhận lập luận đúng đầy đủ các đại lượng và giới hạn mô hình.",
+          "evaluation_criteria": [
+            {
+              "description": "Đánh giá lập luận và mức độ đạt theo rubric, chấp nhận cách diễn đạt tương đương.",
+              "points": 1
+            },
+            {
+              "description": "Xác nhận lập luận đúng đầy đủ các đại lượng và giới hạn mô hình.",
+              "points": 1
+            },
+            {
+              "description": "Giải thích dễ hiểu, bám giả thiết và không gán kết quả hoặc trạng thái khoa học ngoài dữ liệu tham chiếu.",
+              "points": 1
+            }
+          ],
+          "pass_points": 3,
+          "grading_method": "manual_semantic_review",
+          "execution": {
+            "pilot_scope": false,
+            "expected_offline": [
+              "MVP_SCOPE_ONLY"
+            ],
+            "status": "NOT_RUN",
+            "actual": null
+          }
+        },
+        {
+          "id": "HH-NGUYENTU-01-T-6",
+          "practice_id": "HH-NGUYENTU-01",
+          "lab_id": "atomic",
+          "category": "limits",
+          "objective": "Nhận diện thông tin thiếu hoặc ngoài mô hình; không đặt số liệu hay nguồn.",
+          "context": {
+            "activity_id": "HH-NGUYENTU-01-A-1",
+            "practice_id": "HH-NGUYENTU-01",
+            "scenario": "Đặt lại về nguyên tử Na trung hòa mặc định: 11 proton, 12 neutron, 11 electron.",
+            "rubric_id": null,
+            "question_id": null,
+            "student_answer_kind": null
+          },
+          "input": {
+            "lab_id": "atomic",
+            "mode": "explanation",
+            "question": "Em đặt 1 proton và 24 neutron trên thanh trượt thì đồng vị này có bền trong tự nhiên không?",
+            "include_drafts": true
+          },
+          "references": {
+            "knowledge_ids": [
+              "HH-NGUYENTU-01-K-1",
+              "HH-NGUYENTU-01-K-2",
+              "HH-NGUYENTU-01-K-3"
+            ],
+            "source_ids": [
+              "HH-NGUYENTU-01-SRC-DATA"
+            ],
+            "activity_id": "HH-NGUYENTU-01-A-1",
+            "question_id": null,
+            "rubric_id": null
+          },
+          "expected_behavior": "Nêu rõ mô hình chỉ đếm hạt theo quy tắc số học, không kiểm tra độ bền hạt nhân hay sự tồn tại thực nghiệm của đồng vị.",
+          "evaluation_criteria": [
+            {
+              "description": "Nhận diện thông tin thiếu hoặc ngoài mô hình; không đặt số liệu hay nguồn.",
+              "points": 1
+            },
+            {
+              "description": "Nêu rõ mô hình chỉ đếm hạt theo quy tắc số học, không kiểm tra độ bền hạt nhân hay sự tồn tại thực nghiệm của đồng vị.",
               "points": 1
             },
             {

@@ -30,8 +30,9 @@ test('all seven labs display and persist real server readings as unreviewed prev
     }
     await expect(panel).toContainText('Nguồn tham khảo mô hình (chưa duyệt cho Verify)');
     await panel.getByText('Xem toàn bộ số liệu máy chủ').click();
-    await expect(panel.getByRole('status', { name: 'Bản xem trước từ máy chủ' }).locator('pre')).toBeVisible();
-    expect(await panel.getByRole('status', { name: 'Bản xem trước từ máy chủ' }).locator('pre').textContent()).toBe(JSON.stringify(body.preview, null, 2));
+    const details = panel.getByRole('status', { name: 'Bản xem trước từ máy chủ' }).locator('details').first();
+    await expect(details.locator('dt')).toHaveCount(Object.keys(body.preview).length);
+    await expect(details.locator('pre')).toHaveCount(0);
     await expect(panel).not.toContainText(/\bVERIFIED\b/);
     await expect(panel.getByText('Lịch sử lượt thử (1/20)')).toBeVisible();
     await page.reload();
@@ -40,7 +41,7 @@ test('all seven labs display and persist real server readings as unreviewed prev
     await saved.locator('summary').click();
     await expect(saved).toContainText('Dữ liệu chưa duyệt');
     await expect(saved.locator('pre').nth(0)).toHaveText(JSON.stringify(input.parameters, null, 2));
-    expect(await saved.locator('pre').nth(1).textContent()).toBe(JSON.stringify(body.preview, null, 2));
+    await expect(saved.locator('dl dt')).toHaveCount(Object.keys(body.preview).length);
     const history = await page.evaluate(id =>
       JSON.parse(localStorage.getItem('lumilab-preview-history-v1-' + id)!), lab);
     expect(history).toHaveLength(1);
@@ -75,6 +76,17 @@ test('invalid, unsupported and incomplete science responses do not create previe
     await expect(panel.getByText('Lịch sử lượt thử (0/20)')).toBeVisible();
     await page.unroute(path);
   }
+});
+
+test('gas reaction shows labeled theoretical readings instead of raw JSON', async ({ page }) => {
+  await page.goto('/#lab/gas-reaction');
+  const panel = page.getByRole('region', { name: 'Kết quả tính lại từ máy chủ' });
+  await panel.getByRole('button', { name: 'Tính lại trên máy chủ' }).click();
+  await panel.getByText('Xem toàn bộ số liệu máy chủ').click();
+  const details = panel.getByRole('status', { name: 'Bản xem trước từ máy chủ' }).locator('details').first();
+  await expect(details.getByText('Thể tích CO₂ lý thuyết ở 25°C, 1 atm')).toBeVisible();
+  await expect(details).not.toContainText('carbonDioxideVolume_ml');
+  await expect(details.locator('pre')).toHaveCount(0);
 });
 
 test('changing a pendulum parameter marks the server result as an older snapshot', async ({ page }) => {

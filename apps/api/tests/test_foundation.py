@@ -188,7 +188,7 @@ def test_recompute_rejects_stale_forged_and_invalid_inputs(settings):
         stale = client.post(route, json=payload | {"dataset_version": "old"}).json()
         assert stale["code"] == "REVISION_MISMATCH" and stale["preview"] is None
         assert client.post(route, json=payload | {"facts": {"current_A": 42}}).status_code == 422
-        invalid = runtime_payload("circuit", {"slots": ["bulb", "bulb", None]})
+        invalid = runtime_payload("circuit", {"slots": ["switchInstalled", "switchInstalled", None]})
         result = client.post(route, json=invalid).json()
         assert result["status"] == "INVALID" and result["preview"] is None
         missing = client.post(route, json=payload | {"parameters": {}}).json()
@@ -222,12 +222,13 @@ def test_local_retrieval_provenance_and_draft_filter(settings, lab_id, question,
         assert any(phrase in hit["document"]["text"] for hit in result["hits"])
         for hit in result["hits"]:
             doc = hit["document"]
-            assert doc["review_status"] == "draft"
+            assert doc["review_status"] in {"draft", "reviewed"}
             assert doc["lab_id"] == lab_id
-            assert doc["reviewer"] is None
+            assert (doc["reviewer"] is None) == (doc["review_status"] == "draft")
             assert doc["references"][0]["url"].startswith("https://")
         reviewed = client.post("/api/v1/retrieval/query", json=payload | {"include_drafts": False}).json()
-        assert reviewed["hits"] == [] and reviewed["status"] == "NO_MATCH"
+        # Production mode serves only teacher-reviewed cards.
+        assert all(h["document"]["review_status"] == "reviewed" and h["document"]["reviewer"] for h in reviewed["hits"])
 
 
 def test_local_retrieval_empty_unsupported_and_injection(settings):

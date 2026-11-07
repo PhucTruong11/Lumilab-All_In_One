@@ -10,15 +10,15 @@
     "spring-damped",
     "inclined-plane",
     "pulley",
+    "chemistry",
+    "precipitation",
+    "gas-reaction",
+    "electrochemistry",
+    "atomic"
+  ],
+  "archived": [
     "alkali-water",
     "copper-nitric",
     "chlorine-bleach"
-  ],
-  "archived": [
-    "electrochemistry",
-    "atomic",
-    "chemistry",
-    "precipitation",
-    "gas-reaction"
   ]
 }

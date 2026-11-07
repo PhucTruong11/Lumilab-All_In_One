@@ -26,8 +26,8 @@ export function LumiSavedRuns({ lessonId, selected, onSelect, disabled }: {
     return () => controller.abort();
   }, [lessonId, refresh]);
 
-  return <div className="lumi-tools">
-    <label>Lượt đã lưu trên máy chủ <select aria-label="Lượt đã lưu trên máy chủ" value={selected}
+  return <div className="lumi-saved-runs">
+    <label className="inline-select">Lượt đã lưu trên máy chủ <select aria-label="Lượt đã lưu trên máy chủ" value={selected}
       disabled={disabled} onChange={event => onSelect(event.target.value)}>
       <option value="">Không đính kèm lượt đã lưu</option>
       {items.filter(run => run.lab_id === lessonId).map((run, index) =>

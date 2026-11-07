@@ -8,7 +8,7 @@ import re
 from collections import Counter
 from collections.abc import Callable, Mapping
 from dataclasses import dataclass
-from math import cos, exp, isclose, isfinite, log10, pi, sin, sqrt, tan
+from math import atan2, cos, exp, isclose, isfinite, log10, pi, sin, sqrt, tan
 from sys import float_info
 from typing import Any
 
@@ -325,7 +325,7 @@ def _physics_checks(lab_id: str, p: Mapping[str, Any], r: Mapping[str, Any]) -> 
     if lab_id == "circuit":
         resistance, voltage = _number(p, "resistance_ohm", positive=True), _number(p, "voltage_V")
         slots = p.get("slots", [])
-        total = resistance + 20 * ("extraResistor" in slots) + 10 * ("bulb" in slots)
+        total = resistance + 20 * slots.count("extraResistor") + 10 * (slots.count("resistor10") + slots.count("bulb"))
         closed = "switchInstalled" not in slots or p["switchClosed"]
         valid = p["ammeter"] == "series" and p["voltmeter"] == "parallel"
         _field(r, "totalResistance_ohm", total)
@@ -335,7 +335,7 @@ def _physics_checks(lab_id: str, p: Mapping[str, Any], r: Mapping[str, Any]) -> 
         _field(r, "current_A", current)
         _field(r, "resistorVoltage_V", None if current is None else current * resistance)
         _field(r, "power_W", None if current is None else voltage * current)
-        _field(r, "bulbPower_W", None if current is None else current ** 2 * 10 * ("bulb" in slots))
+        _field(r, "bulbPower_W", None if current is None else current ** 2 * 10 * slots.count("bulb"))
         return "Series resistance, meter placement, open switch, Ohm law and power agree."
     if lab_id == "parallel-circuit":
         voltage = _number(p, "voltage_V")
@@ -400,32 +400,60 @@ def _physics_checks(lab_id: str, p: Mapping[str, Any], r: Mapping[str, Any]) -> 
     raise _CheckFailure("unsupported", "MODEL_UNSUPPORTED", "No independent invariants for this model.")
 
 
-def _curriculum_physics(lab_id: str, p: Mapping[str, Any], r: Mapping[str, Any]) -> str:
+def _curriculum_physics(
+    lab_id: str, p: Mapping[str, Any], r: Mapping[str, Any], elapsed_s: float | None,
+) -> str:
     mass = p["mass_kg"]
     if lab_id == "pulley":
         _field(r, "weight_N", mass * 9.81)
         _field(r, "pull_N", mass * 9.81 / p["strands"])
         _field(r, "rope_m", p["lift_m"] * p["strands"])
-        _field(r, "work_J", r["pull_N"] * r["rope_m"])
+        _field(r, "work_J", mass * 9.81 * p["lift_m"])
         return "Supporting strands balance the load; input work equals gravitational work."
     if lab_id == "inclined-plane":
         angle = p["angle_deg"] * pi / 180
         _field(r, "normal_N", mass * 9.81 * cos(angle))
         _field(r, "downhill_N", mass * 9.81 * sin(angle))
         stationary = tan(angle) <= p["static_friction"] + 1e-12
-        expected_friction = r["downhill_N"] if stationary else 0.8 * p["static_friction"] * r["normal_N"]
+        normal = mass * 9.81 * cos(angle)
+        downhill = mass * 9.81 * sin(angle)
+        expected_friction = downhill if stationary else 0.8 * p["static_friction"] * normal
         _field(r, "friction_N", expected_friction)
-        _field(r, "acceleration_m_s2", (r["downhill_N"] - r["friction_N"]) / mass)
+        acceleration = (downhill - expected_friction) / mass
+        _field(r, "acceleration_m_s2", acceleration)
+        time = _number(r, "time_s")
+        arrival = sqrt(10 / acceleration) if acceleration > 0 else float("inf")
+        if time < 0 or time > arrival + 1e-10:
+            raise _CheckFailure("invalid", "SIMULATION_TIME_MISMATCH", "Ramp time exceeds the modeled trip.")
+        if elapsed_s is not None:
+            _field(r, "time_s", min(elapsed_s, arrival))
+        state = ("Đứng yên" if stationary else "Sẵn sàng trượt" if time == 0 else
+                 "Đến cuối dốc" if time >= arrival else "Đang trượt")
+        _field(r, "state", state)
         distance = _number(r, "position_m")
         if not 0 <= distance <= 5:
             raise _CheckFailure("invalid", "RAMP_BOUNDS", "Position is outside the 5 m ramp.")
-        acceleration = r["acceleration_m_s2"]
-        _field(r, "position_m", acceleration * _number(r, "time_s") ** 2 / 2)
+        _field(r, "position_m", acceleration * time ** 2 / 2)
         _field(r, "velocity_m_s", sqrt(2 * acceleration * distance))
         return "Normal force, friction, acceleration and rest-release kinematics agree."
     initial = p["displacement_m"]
     stiffness = p["stiffness_N_m"]
+    time = _number(r, "time_s")
+    if time < 0:
+        raise _CheckFailure("invalid", "SIMULATION_TIME_MISMATCH", "Spring time must be nonnegative.")
+    if elapsed_s is not None:
+        _field(r, "time_s", elapsed_s)
+    natural = sqrt(stiffness / mass)
+    decay = p["damping_ratio"] * natural
+    omega = sqrt(natural ** 2 - decay ** 2)
+    phase = atan2(decay, omega)
+    envelope = abs(initial) * natural / omega * exp(-decay * time)
+    _field(r, "envelope_m", envelope)
     x, v = _number(r, "displacement_m"), _number(r, "velocity_m_s")
+    expected_x = initial * natural / omega * exp(-decay * time) * cos(omega * time - phase)
+    expected_v = -initial * natural ** 2 / omega * exp(-decay * time) * sin(omega * time)
+    _expect(x, expected_x, "displacement_m")
+    _expect(v, expected_v, "velocity_m_s")
     energy = (mass * v ** 2 + stiffness * x ** 2) / 2
     _field(r, "energy_J", energy)
     initial_energy = stiffness * initial ** 2 / 2
@@ -438,7 +466,7 @@ def _curriculum_physics(lab_id: str, p: Mapping[str, Any], r: Mapping[str, Any])
     else:
         period = _number(r, "period_s", positive=True)
         _expect(period ** 2 * stiffness * (1 - p["damping_ratio"] ** 2), 4 * pi ** 2 * mass, "period")
-    if r["time_s"] == 0:
+    if time == 0:
         _field(r, "displacement_m", initial)
         _field(r, "velocity_m_s", 0)
     return "Mechanical energy, damped period, envelope and release conditions agree."
@@ -448,40 +476,52 @@ def _curriculum_chemistry(lab_id: str, p: Mapping[str, Any], r: Mapping[str, Any
     equation = None
     if not p["observed"]:
         product, appearance = None, None
+        detail = "Chọn điều kiện, dự đoán hiện tượng rồi quan sát."
     elif lab_id == "alkali-water":
         metal = p["metal"]
         if p["mode"] == "water":
             product, appearance = metal + "OH và H₂", "Bọt khí"
             equation = f"2{metal} + 2H₂O → 2{metal}OH + H₂"
+            detail = "Hydrogen thoát ra và dung dịch có tính kiềm."
             if not equation_is_balanced({metal: 2, "H2O": 2}, {metal + "OH": 2, "H2": 1}):
                 raise _CheckFailure("invalid", "UNBALANCED_CATALOG", "Alkali equation is not balanced.")
         else:
             product, appearance = metal + "⁺", {"Na": "Vàng", "K": "Tím nhạt"}[metal]
+            detail = "Màu minh họa của ion trong phép thử ngọn lửa riêng."
     elif lab_id == "copper-nitric":
         if p["acid"] == "dilute":
             product, appearance = "NO", "Có thể chuyển nâu đỏ" if p["air"] else "Không màu"
             equation = "3Cu + 8HNO₃ → 3Cu(NO₃)₂ + 2NO + 4H₂O"
+            detail = ("NO ban đầu không màu. Khi gặp oxygen, một phần có thể chuyển thành NO₂: "
+                      "2NO + O₂ → 2NO₂." if p["air"] else
+                      "Kịch bản đại diện cho đồng với axit loãng. Khí NO ban đầu không màu.")
         else:
             product, appearance = "NO₂", "Nâu đỏ"
             equation = "Cu + 4HNO₃ → Cu(NO₃)₂ + 2NO₂ + 2H₂O"
+            detail = "Kịch bản đại diện cho đồng với axit đặc. Sản phẩm khí chính của mô hình là NO₂."
     elif p["mode"] == "formation":
         product, appearance = "Cl₂", "Minh họa oxi hóa"
         equation = "2Cl⁻ → Cl₂ + 2e⁻"
+        detail = "Hai ion chloride nhường hai electron để tạo một phân tử clo."
     elif p["damp"]:
         product, appearance = "HOCl", "Giấy màu nhạt rõ"
         equation = "Cl₂ + H₂O ⇌ HCl + HOCl"
+        detail = "HOCl tạo trong môi trường có nước và oxi hóa chất màu trong mô hình."
         if not equation_is_balanced({"Cl2": 1, "H2O": 1}, {"HCl": 1, "HOCl": 1}):
             raise _CheckFailure("invalid", "UNBALANCED_CATALOG", "Chlorine equation is not balanced.")
     else:
         product, appearance = None, "Không thấy tẩy màu rõ"
+        detail = "Đối chứng dùng giấy khô trong điều kiện khô. Kết luận giới hạn trong kịch bản này."
     _field(r, "product", product)
     _field(r, "appearance", appearance)
     _field(r, "equation", equation)
+    _field(r, "detail", detail)
     return "Observation matches the explicit draft scenario. No reaction rate or yield is inferred."
 
 
 def check_science(
     lab_id: str, parameters: Mapping[str, Any], reading: Mapping[str, Any],
+    elapsed_s: float | None = None,
 ) -> list[dict[str, str]]:
     """Return stage evidence, never a final review/VERIFIED decision.
 
@@ -489,7 +529,7 @@ def check_science(
     unsupported reaction conditions return explicit stages rather than approval.
     """
     if lab_id in {"spring-damped", "inclined-plane", "pulley"}:
-        return [_stage("physics_invariants", lambda: _curriculum_physics(lab_id, parameters, reading))]
+        return [_stage("physics_invariants", lambda: _curriculum_physics(lab_id, parameters, reading, elapsed_s))]
     if lab_id in _QUALITATIVE_CHEMISTRY_LABS:
         return [
             _stage("simulation", lambda: _curriculum_chemistry(lab_id, parameters, reading)),

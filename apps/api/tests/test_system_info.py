@@ -36,8 +36,8 @@ def test_system_contract_reports_actual_versions_without_credentials(tmp_path):
     assert data["git_sha"] == "a" * 40 and "must-not-escape" not in response.text
     assert data["retrieval"]["fingerprint"] == compiled["fingerprint"]
     assert data["retrieval"]["matches_corpus"] and data["corpus_revision"] == corpus.revision
-    assert len(data["mapping"]["practices"]) == 9
-    assert sum(r["lifecycle"] == "active" for r in data["runtimes"]) == 12
+    assert len(data["mapping"]["practices"]) == 11
+    assert sum(r["lifecycle"] == "active" for r in data["runtimes"]) == 14
     assert {r["id"] for r in data["runtimes"] if r["tutor_pilot"]} == {"pendulum", "circuit", "chemistry"}
 
     # An otherwise valid old artifact must be distinguishable from current source content.

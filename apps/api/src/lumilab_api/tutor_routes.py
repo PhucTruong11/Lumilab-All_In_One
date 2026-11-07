@@ -66,6 +66,15 @@ def tutor_router(engine, compiled_index, gateway: Gateway, lab_ids: set[str]):
                 else:
                     retrieved = compiled_index.retrieve(RetrievalQuery(lab_id=payload.lab_id,
                         query=payload.question, level=payload.level, include_drafts=payload.include_drafts, retrieval_method="hybrid"))
+                    if payload.level == "THPT" and not any(h.document.review_status == "reviewed" for h in retrieved.hits):
+                        thcs = compiled_index.retrieve(RetrievalQuery(lab_id=payload.lab_id,
+                            query=payload.question, level="THCS", include_drafts=payload.include_drafts, retrieval_method="hybrid"))
+                        rev_thcs = [h for h in thcs.hits if h.document.review_status == "reviewed"]
+                        if rev_thcs:
+                            seen = {h.chunk_id for h in retrieved.hits}
+                            merged = [*retrieved.hits, *(h for h in rev_thcs if h.chunk_id not in seen)][:5]
+                            retrieved = RetrievalResponse(corpus_revision=retrieved.corpus_revision,
+                                retrieval_method=retrieved.retrieval_method, status="FOUND", hits=merged)
                 context = build_tutor_context(task, retrieved, session_id=session_id,
                     repository=OwnedRunRepository(connection, session_id))
         except SQLAlchemyError:

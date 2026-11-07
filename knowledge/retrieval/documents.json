@@ -638,9 +638,9 @@
         "khối lượng",
         "dao động"
       ],
-      "review_status": "draft",
-      "reviewer": null,
-      "reviewed_at": null,
+      "review_status": "reviewed",
+      "reviewer": "Huỳnh Minh Phước",
+      "reviewed_at": "2026-11-07",
       "origin": "project-authored",
       "external_material_use": "reference-only",
       "references": [
@@ -675,7 +675,8 @@
           "curriculum": "Mapping lớp/năm/trang pending; học liệu tự biên soạn"
         },
         "constants": {},
-        "equation": null
+        "equation": null,
+        "academic_review_role": "teacher"
       }
     },
     {
@@ -741,9 +742,9 @@
         "nồng độ",
         "mol"
       ],
-      "review_status": "draft",
-      "reviewer": null,
-      "reviewed_at": null,
+      "review_status": "reviewed",
+      "reviewer": "Huỳnh Minh Phước",
+      "reviewed_at": "2026-11-07",
       "origin": "project-authored",
       "external_material_use": "reference-only",
       "references": [
@@ -778,7 +779,8 @@
           "curriculum": "Mapping lớp/năm/trang pending; học liệu tự biên soạn"
         },
         "equation": null,
-        "constants": {}
+        "constants": {},
+        "academic_review_role": "teacher"
       }
     },
     {
@@ -1004,9 +1006,9 @@
         "bấm giờ",
         "thời gian"
       ],
-      "review_status": "draft",
-      "reviewer": null,
-      "reviewed_at": null,
+      "review_status": "reviewed",
+      "reviewer": "Huỳnh Minh Phước",
+      "reviewed_at": "2026-11-07",
       "origin": "project-authored",
       "external_material_use": "reference-only",
       "references": [
@@ -1041,7 +1043,8 @@
           "model_scope": "Đối chiếu SGV, chưa đọc được nội dung reader SGK Vật lí 11; kỹ thuật đo chu kỳ không chứng nhận cả lab là bài thực hành SGK.",
           "curriculum_evidence": "Đã đọc trang online; chưa duyệt giáo viên, năm in chưa xác định.",
           "formula": "T = delta_t/N; f = 1/T"
-        }
+        },
+        "academic_review_role": "teacher"
       }
     },
     {
@@ -1057,9 +1060,9 @@
         "khối lượng",
         "phi tuyến"
       ],
-      "review_status": "draft",
-      "reviewer": null,
-      "reviewed_at": null,
+      "review_status": "reviewed",
+      "reviewer": "Huỳnh Minh Phước",
+      "reviewed_at": "2026-11-07",
       "origin": "project-authored",
       "external_material_use": "reference-only",
       "references": [
@@ -1094,7 +1097,8 @@
           "model_scope": "SGV cung cấp nền dao động; công thức con lắc và hiệu chỉnh góc lớn dựa NIST, là mở rộng của LumiLab, chưa mapping bài thực hành con lắc riêng trong SGK.",
           "curriculum_evidence": "Đã đọc trang online; chưa duyệt giáo viên, năm in chưa xác định.",
           "formula": "T_small ≈ 2*pi*sqrt(L/g)"
-        }
+        },
+        "academic_review_role": "teacher"
       }
     },
     {
@@ -1110,9 +1114,9 @@
         "công tắc",
         "mạch kín"
       ],
-      "review_status": "draft",
-      "reviewer": null,
-      "reviewed_at": null,
+      "review_status": "reviewed",
+      "reviewer": "Huỳnh Minh Phước",
+      "reviewed_at": "2026-11-07",
       "origin": "project-authored",
       "external_material_use": "reference-only",
       "references": [
@@ -1146,7 +1150,8 @@
         "conditions": {
           "model_scope": "Bài SGK dùng bóng đèn/pin; lab có điện trở và nguồn với tham số riêng, không sao chép sơ đồ hoặc số đo của sách.",
           "curriculum_evidence": "Đã đọc trang online; chưa duyệt giáo viên, năm in chưa xác định."
-        }
+        },
+        "academic_review_role": "teacher"
       }
     },
     {
@@ -1162,9 +1167,9 @@
         "cường độ",
         "hiệu điện thế"
       ],
-      "review_status": "draft",
-      "reviewer": null,
-      "reviewed_at": null,
+      "review_status": "reviewed",
+      "reviewer": "Huỳnh Minh Phước",
+      "reviewed_at": "2026-11-07",
       "origin": "project-authored",
       "external_material_use": "reference-only",
       "references": [
@@ -1199,7 +1204,8 @@
           "model_scope": "SGK là đoạn dây dẫn Ohmic; lab circuit có thêm điện trở trong và biến trở, nên U trên tải có thể khác suất điện động nguồn.",
           "curriculum_evidence": "Đã đọc trang online; chưa duyệt giáo viên, năm in chưa xác định.",
           "formula": "I = U/R"
-        }
+        },
+        "academic_review_role": "teacher"
       }
     },
     {
@@ -1268,9 +1274,9 @@
         "biến trở",
         "nguồn"
       ],
-      "review_status": "draft",
-      "reviewer": null,
-      "reviewed_at": null,
+      "review_status": "reviewed",
+      "reviewer": "Huỳnh Minh Phước",
+      "reviewed_at": "2026-11-07",
       "origin": "project-authored",
       "external_material_use": "reference-only",
       "references": [
@@ -1305,7 +1311,8 @@
           "model_scope": "Đã đọc hướng dẫn SGV; chưa xác minh số bài/trang tương ứng trong SGK Vật lí 11 vì reader SGK không tải nội dung.",
           "curriculum_evidence": "Đã đọc trang online; chưa duyệt giáo viên, năm in chưa xác định.",
           "formula": "U = E - I*r"
-        }
+        },
+        "academic_review_role": "teacher"
       }
     },
     {
@@ -1321,9 +1328,9 @@
         "trung tính",
         "màu"
       ],
-      "review_status": "draft",
-      "reviewer": null,
-      "reviewed_at": null,
+      "review_status": "reviewed",
+      "reviewer": "Huỳnh Minh Phước",
+      "reviewed_at": "2026-11-07",
       "origin": "project-authored",
       "external_material_use": "reference-only",
       "references": [
@@ -1357,7 +1364,8 @@
         "conditions": {
           "model_scope": "Lab giới hạn acid/base mạnh một nấc và có pH số; nhận biết chỉ thị ở THCS không đòi dùng toàn bộ mô hình cân bằng THPT.",
           "curriculum_evidence": "Đã đọc trang online; chưa duyệt giáo viên, năm in chưa xác định."
-        }
+        },
+        "academic_review_role": "teacher"
       }
     },
     {
@@ -1374,9 +1382,9 @@
         "HCl",
         "NaOH"
       ],
-      "review_status": "draft",
-      "reviewer": null,
-      "reviewed_at": null,
+      "review_status": "reviewed",
+      "reviewer": "Huỳnh Minh Phước",
+      "reviewed_at": "2026-11-07",
       "origin": "project-authored",
       "external_material_use": "reference-only",
       "references": [
@@ -1421,7 +1429,8 @@
             "NaCl": 1,
             "H2O": 1
           }
-        }
+        },
+        "academic_review_role": "teacher"
       }
     },
     {
@@ -1437,9 +1446,9 @@
         "chiều đổi màu",
         "nồng độ"
       ],
-      "review_status": "draft",
-      "reviewer": null,
-      "reviewed_at": null,
+      "review_status": "reviewed",
+      "reviewer": "Huỳnh Minh Phước",
+      "reviewed_at": "2026-11-07",
       "origin": "project-authored",
       "external_material_use": "reference-only",
       "references": [
@@ -1484,7 +1493,8 @@
             "NaCl": 1,
             "H2O": 1
           }
-        }
+        },
+        "academic_review_role": "teacher"
       }
     },
     {

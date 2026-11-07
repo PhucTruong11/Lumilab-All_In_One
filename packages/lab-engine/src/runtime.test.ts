@@ -42,12 +42,22 @@ describe('runtime config, state machine and portable sessions', () => {
     }
     expect(() => engine.restore('x'.repeat(64001))).toThrow(); expect(() => engine.restore('{')).toThrow();
     engine.setParameters({ ammeter: 'parallel' }); expect(() => engine.record()).toThrow();
-    expect(() => engine.setParameters({ slots: ['bulb', 'bulb', null] })).toThrow();
+    expect(() => engine.setParameters({ slots: ['switchInstalled', 'switchInstalled', null] })).toThrow();
   });
   it('restores paused and allows continuing without running autonomously', () => {
     const engine = createLabEngine('pendulum'); engine.run(); engine.step(.2);
     const restored = createLabEngine('pendulum'); restored.restore(engine.serialize());
     expect(restored.snapshot().phase).toBe('paused'); expect(restored.snapshot().elapsed_s).toBe(.2);
     restored.run(); restored.step(.1); expect(restored.snapshot().elapsed_s).toBeCloseTo(.3);
+  });
+  it('restores a valid circuit v1 session, then writes v2', () => {
+    const engine = createLabEngine('circuit');
+    const old = JSON.parse(engine.serialize()); old.model_version = 'ideal-series-circuit-ts-v1';
+    old.parameters.slots = ['bulb', 'extraResistor', null];
+    engine.restore(JSON.stringify(old));
+    expect(engine.snapshot().reading.current_A).toBeCloseTo(.12);
+    expect(JSON.parse(engine.serialize()).model_version).toBe('ideal-series-circuit-ts-v2');
+    old.parameters.slots = ['bulb', 'bulb', null];
+    expect(() => engine.restore(JSON.stringify(old))).toThrow();
   });
 });
