@@ -70,6 +70,18 @@ docker compose -f docker/compose.yml stop
 
 Không dùng `down -v` để sửa lỗi vì thao tác đó xóa volume dữ liệu. Nếu đổi mật khẩu DB sau khi volume đã tạo, biến môi trường mới không tự đổi mật khẩu trong PostgreSQL hiện có; cần xử lý migration/backup riêng. Khi chạy Compose, dừng Vite và Uvicorn local trước để không trùng cổng 5175/8002.
 
+### Thử AI live trên máy người lớn
+
+Chỉ dùng profile này cho người phát triển từ 18 tuổi trở lên trên máy local; ba cổng vẫn chỉ bind `127.0.0.1`. Root `.env` cần có key Gemini và Groq phía server; không đưa key vào Git hoặc `VITE_*`. Kiểm metadata Groq rồi chạy profile tường minh:
+
+```powershell
+.\.venv\Scripts\python.exe -m lumilab_api.provider_check --output .local/groq-models.json
+docker compose --env-file .env -f docker/compose.yml -f docker/compose.live.yml up -d --build --wait web
+Invoke-RestMethod http://127.0.0.1:8002/api/v1/tutor/status
+```
+
+Profile giữ trần sự kiện 20 lượt đã ghi trong PostgreSQL và giới hạn 5 lượt mỗi phiên/ngày, tối đa 2 lần thử cho mỗi câu. Không xóa hoặc đặt lại bộ đếm khi hết lượt. Câu hỏi đáp cơ bản có thể dùng kiến thức model khi không có đoạn nguồn phù hợp; phản hồi không có citation là **AI chưa kiểm duyệt**. Các chế độ hướng dẫn thực hành vẫn cần nguồn đã duyệt và quyền gửi. Xem [runbook](docs/LLM-RUNBOOK.md). Để quay về chế độ mặc định, chạy `docker compose -f docker/compose.yml up -d --force-recreate --wait web`.
+
 ## Phát triển trực tiếp trên máy
 
 Cần Node.js 24 và Python 3.13. Cách này hữu ích khi sửa giao diện hoặc API với hot reload; Docker vẫn có thể chỉ chạy DB.

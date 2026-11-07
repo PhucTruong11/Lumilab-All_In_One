@@ -6,12 +6,12 @@
 
 Python chạy từ root đọc `.env`; biến môi trường process được ưu tiên. Chỉ tạo `.env` từ [mẫu](../.env.example) nếu file chưa có, giữ key server-side và không ghi key vào log/PR. Khởi động lại API sau khi đổi cấu hình, registry hoặc metadata. `LUMILAB_LLM_MODEL` không thay lựa chọn route: gateway chọn từ [providers.json](../knowledge/pipeline/providers.json).
 
-Compose hiện chỉ truyền DB URL và các cờ tắt AI/RAG; `--env-file` phục vụ nội suy, không tự đưa mọi biến/key trong file vào container. [Compose](../docker/compose.yml) chưa có override bật live. Đường dẫn artifact trong container là `/workspace/retrieval-index/index.json`; Python trực tiếp mặc định dùng `.local/retrieval/index.json`. Profile Chroma HTTP chưa tự nối với `PersistentClient` của API. [Runbook RAG](DATA-RAG-TUTOR.md)
+Compose mặc định chỉ truyền DB URL và các cờ tắt AI/RAG; `--env-file` phục vụ nội suy, không tự đưa mọi biến/key trong file vào container. [Profile live local](../docker/compose.live.yml) truyền riêng hai key server, đặt audience `adults` và giữ cap sự kiện 20 đã ghi trong PostgreSQL; chỉ dùng để thử nghiệm bởi người lớn trên máy local. Đường dẫn artifact trong container là `/workspace/retrieval-index/index.json`; Python trực tiếp mặc định dùng `.local/retrieval/index.json`. Profile Chroma HTTP chưa tự nối với `PersistentClient` của API. [Runbook RAG](DATA-RAG-TUTOR.md)
 
 | Biến `LUMILAB_…` | Mặc định trong Settings | Ý nghĩa |
 | --- | --- | --- |
 | `LLM_ENABLED`, `LLM_EVENT_CAP` | `false`, `0` | Không cho gọi live khi chưa có ngân sách. Event cap tối đa 20. |
-| `LLM_AUDIENCE` | `under18` | Phải đúng đối tượng thực. Gemini bị chặn ở `under18`; provider khác cần `minors_approved`. |
+| `LLM_AUDIENCE` | `under18` | Phải đúng đối tượng thực. Gemini bị chặn cứng ở `under18`; Groq cần `minors_approved` sau khi team duyệt ứng dụng, profile thử local đặt `adults`. |
 | `GEMINI_API_KEY`, `GROQ_API_KEY` | Không có | Credential server; các model cùng provider dùng key tương ứng. |
 | `LLM_ALLOW_MODEL_FALLBACK`, `LLM_ALLOW_PROVIDER_FALLBACK` | `false`, `false` | Cho chuyển model cùng provider hoặc chuyển provider theo route đã đủ điều kiện. |
 | `LLM_TIMEOUT_SECONDS`, `LLM_TOTAL_TIMEOUT_SECONDS` | `8`, `18` | Deadline mỗi chat transport và deadline chung cho guard/chat. |
@@ -31,7 +31,9 @@ Các giá trị khác và giới hạn validation ở [settings.py](../apps/api/
 
 API chỉ khởi động live khi có DB URL, event cap dương và ít nhất một chat route được phép. Route cần `enabled`, `account_verified`, `policy_verified`, `quota_verified`; `free_only` loại route có giá khai báo khác 0. Trước khi gọi còn cần key hợp lệ, PostgreSQL thực sự truy cập được, học liệu `reviewed`, provenance và quyền `send_llm`. Có key không tự đáp ứng các điều kiện này.
 
-Phạm vi gateway hiện là `pendulum`, `circuit`, `chemistry`; `chemistry` nay thuộc runtime lưu trữ. PR Dataset #13 đã thêm runtime/học liệu mới nhưng chưa mở rộng pilot gateway. Những bài mới vẫn có thể nhận template với `MVP_SCOPE_ONLY`. API xác thực token/hạn phiên và quyền `run_id` trước khi dựng context. Không nhận facts, preview hoặc đường dẫn skill do client gán. Model chỉ sinh hướng dẫn định tính với ID citation đã cấp; số đo giữ từ server. Output hợp lệ vẫn là `DRAFT_GUIDANCE`, không cấp `VERIFIED`.
+Phạm vi gateway hiện là `pendulum`, `circuit`, `chemistry`; `chemistry` nay thuộc runtime lưu trữ. PR Dataset #13 đã thêm runtime/học liệu mới nhưng chưa mở rộng pilot gateway. Những bài mới vẫn có thể nhận template với `MVP_SCOPE_ONLY`. API xác thực token/hạn phiên và quyền `run_id` trước khi dựng context. Không nhận facts, preview hoặc đường dẫn skill do client gán. Chế độ `qa` trên profile người lớn có thể giải thích kiến thức phổ thông không có RAG, với citation rỗng và trạng thái AI chưa kiểm duyệt; các mode thực hành chỉ dùng nguồn đã duyệt. Model không đặt số đo; output hợp lệ vẫn là `DRAFT_GUIDANCE`, không cấp `VERIFIED`.
+
+Điều khoản [Gemini API](https://ai.google.dev/gemini-api/terms) cấm dùng API trong ứng dụng hướng tới hoặc có khả năng được người dưới 18 tuổi truy cập. [Groq Services Agreement](https://console.groq.com/docs/legal/services-agreement) yêu cầu người dùng dịch vụ từ 18 tuổi và nêu rõ trách nhiệm của khách hàng nếu ứng dụng có người dùng chưa đủ tuổi thành niên. Vì vậy registry hiện chưa đánh dấu Groq được phép cho audience `under18`; nhóm cần chốt điều kiện sử dụng, dữ liệu và biện pháp bảo vệ trước khi đổi cờ `minors_approved`. Không đổi audience thành `adults` cho một triển khai dành cho học sinh.
 
 Với Groq chat được bật, startup kiểm manifest local mới và đúng key/model. Lệnh dưới **gọi GET metadata Groq**, không sinh nội dung; chạy tường minh khi cần kiểm key, không thêm vào CI/health:
 

@@ -15,7 +15,7 @@ export function LumiSavedRuns({ lessonId, selected, onSelect, disabled }: {
       .then(page => {
         if (!controller.signal.aborted) {
           setItems(page.items);
-          setNotice(page.items.length ? 'Chọn trong 20 lượt gần nhất của phiên này.' : 'Phiên này chưa có lượt đã lưu cho bài đang hỏi.');
+          setNotice(page.items.length ? 'Chọn trong 20 lượt gần nhất của phiên này.' : 'Phiên này chưa có lượt đã lưu cho chủ đề hiện tại.');
         }
       }).catch(() => {
         if (!controller.signal.aborted) {

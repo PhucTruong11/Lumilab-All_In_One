@@ -281,7 +281,7 @@
           "type": "integer"
         },
         "prompt_version": {
-          "default": "lumi-seven-blocks-v4-context-guard",
+          "default": "lumi-seven-blocks-v6-adult-direct-qa",
           "title": "Prompt Version",
           "type": "string"
         },

@@ -2,6 +2,7 @@ import { apiBase } from './api';
 
 export interface RetrievalHit {
   chunk_id: string;
+  score?: number | null;
   document: {
     title: string; text: string; lab_id: string; review_status: 'draft' | 'cross_checked' | 'reviewed';
     reviewer: string | null; reviewed_at: string | null;

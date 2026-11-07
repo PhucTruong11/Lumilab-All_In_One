@@ -1,0 +1,15 @@
+# Local adult-developer opt-in only. Base Compose remains offline for students and CI.
+services:
+  api:
+    environment:
+      LUMILAB_LLM_ENABLED: "true"
+      LUMILAB_LLM_AUDIENCE: "adults"
+      LUMILAB_LLM_EVENT_CAP: "20"
+      LUMILAB_LLM_RESERVED_DEMO: "0"
+      LUMILAB_LLM_SESSION_DAILY: "5"
+      LUMILAB_LLM_MAX_ATTEMPTS: "2"
+      LUMILAB_GEMINI_API_KEY: ${LUMILAB_GEMINI_API_KEY:?Set a server-side Gemini key in the root .env}
+      LUMILAB_GROQ_API_KEY: ${LUMILAB_GROQ_API_KEY:?Set a server-side Groq key in the root .env}
+      LUMILAB_GROQ_MODEL_MANIFEST: /workspace/groq-models.json
+    volumes:
+      - ../.local/groq-models.json:/workspace/groq-models.json:ro

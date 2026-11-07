@@ -228,7 +228,8 @@ def test_gateway_blocks_draft_sources_no_budget_and_gemini_for_teens():
     ctx, reg = context_fixture()
     assert gateway(ctx, reg, FakeBudget(True), never).generate(ctx, session_id=uuid4()).degraded_reason == "LIMIT"
     assert not allowed_route().model_copy(update={"provider": "gemini", "minors_approved": False}).allowed("under18")
-    assert allowed_route().model_copy(update={"provider": "gemini", "minors_approved": True}).allowed("under18")
+    assert not allowed_route().model_copy(update={"provider": "gemini", "minors_approved": True}).allowed("under18")
+    assert allowed_route().model_copy(update={"provider": "groq", "minors_approved": True}).allowed("under18")
     assert not allowed_route(free_only=True, input_usd_per_million=.1).allowed("under18")
 
 

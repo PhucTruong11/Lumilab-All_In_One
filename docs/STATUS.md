@@ -1,5 +1,11 @@
 # Trạng thái repo B
 
+## Lumi hỏi đáp gọn · 08/11/2026
+
+Màn Lumi cho hỏi trực tiếp, tự xác định chủ đề trong học liệu hiện có. Câu trả lời Tutor hiển thị nội dung chính; số đo và học liệu tham khảo nằm trong mục mở rộng. Compose mặc định vẫn tắt AI và dùng câu trả lời mẫu. Profile Docker riêng cho thử nghiệm người lớn bật AI live với cap sự kiện 20; mode `qa` có thể trả lời kiến thức phổ thông khi không có RAG phù hợp, không gắn citation giả hoặc trạng thái kiểm duyệt. Các mode thực hành vẫn cần nguồn được duyệt. Gemini bị chặn ở audience `under18`; Groq vẫn chưa có cờ duyệt cho audience này. Nhãn trên web lấy trạng thái AI từ API; số đo và khoa học vẫn giữ preview, không `VERIFIED`.
+
+Không gian học tập có nút tạo quiz theo mục tiêu: tra cứu RAG trong môn/chương đã chọn, lấy câu trắc nghiệm và đáp án từ ngân hàng tác giả, rồi cho làm thử/tải đề như trước. Tutor chỉ đề xuất thêm câu hỏi thảo luận không chấm điểm khi AI live thực sự trả lời; giáo viên cần duyệt trước khi dùng. Soạn thực hành gọi Tutor theo đúng lab được chọn và đưa gợi ý cùng mã nguồn vào file hoạt động. Không gửi một lab khác sang Tutor để giả vờ hỗ trợ bài ngoài pilot.
+
 ## Kiểm Verify dataset 9 bài · 07/11/2026
 
 Sáu mô hình mới giữ preview nháp. Cổng Verify nay ràng buộc thời điểm request với lò xo có cản và mặt phẳng nghiêng, đối chiếu quỹ đạo/trạng thái, công ròng rọc và diễn giải của ba kịch bản Hóa. Bộ golden chung tăng từ 19 lên 22 ca, thêm li độ thả âm, ngưỡng ma sát nghỉ và ròng rọc hai nhánh. Các ca cố ý sửa sai reading phải trả `INVALID`, `preview=null`, `facts={}`, `evidence=[]`.

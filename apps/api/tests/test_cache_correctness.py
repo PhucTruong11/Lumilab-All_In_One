@@ -153,7 +153,7 @@ def test_cache_miss_when_model_changes():
 def test_cache_key_includes_routes_so_provider_change_misses():
     ctx, reg = _context()
     Provider, state = _cited_provider(ctx)
-    gw = _gateway(ctx, reg, FakeBudget(), Provider)
+    gw = _gateway(ctx, reg, FakeBudget(), Provider, llm_audience="adults")
     session = uuid4()
     gw.generate(ctx, session_id=session)
     # Same gateway, but routes list replaced -> different key material.

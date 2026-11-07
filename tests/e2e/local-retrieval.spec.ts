@@ -9,12 +9,13 @@ test('Lumi retrieves local passages with sources and review labels for every sam
     'parallel-circuit': 'dòng nhánh song song', capacitor: 'nạp xả tụ điện',
     precipitation: 'kết tủa AgCl', 'gas-reaction': 'bicarbonat CO2',
   };
-  for (const [id, query] of Object.entries(queries)) {
-    await page.getByLabel('Bài đang hỏi', { exact: true }).selectOption(id);
+  for (const [index, [id, query]] of Object.entries(queries).entries()) {
     await page.getByLabel('Hỏi Lumi', { exact: true }).fill(query);
     await page.getByRole('button', { name: 'Gửi câu hỏi' }).click();
+    await expect(page.locator('.chat-message.assistant')).toHaveCount(index + 1);
     const answer = page.locator('.chat-message.assistant').last();
     await expect(answer).toContainText('Dữ liệu chưa duyệt');
+    await answer.locator('.retrieval-box > summary').click();
     await answer.locator('.retrieval-details').first().locator('summary').click();
     await expect(answer.getByRole('link').first()).toHaveAttribute('href', /^https:\/\//);
     await expect(answer).toContainText('Mã đoạn ' + id + '-overview');

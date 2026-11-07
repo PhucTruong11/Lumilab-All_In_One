@@ -38,6 +38,7 @@ for (const id of [...catalog.active, ...catalog.archived]) {
       .toEqual(JSON.parse(JSON.stringify(run.result.preview)));
     await page.getByText('Dự đoán & giải thích', { exact: false }).first().click();
     await page.getByRole('button', { name: 'Hỏi Lumi về lượt thử' }).click();
+    await page.getByLabel('Dùng lượt thử hiện tại', { exact: true }).check();
     const selector = page.getByLabel('Lượt đã lưu trên máy chủ', { exact: true });
     await expect(selector.locator('option')).toHaveCount(2);
     await selector.selectOption(run.run_id);
