@@ -63,7 +63,7 @@ jobs:
       - run: npx playwright install --with-deps chromium
       - run: python -m lumilab_api.run_schema
       - run: python -m lumilab_api.data_cli build --include-drafts
-      - run: python -m pytest apps/api/tests/test_tutor_postgres.py -q
+      - run: python -m pytest apps/api/tests/test_tutor_postgres.py apps/api/tests/test_tutor_run_acceptance_pg.py -q
       - run: npm run test:e2e
 
   docker:

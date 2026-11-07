@@ -29,9 +29,9 @@ Mốc M02 đang tích hợp trên nhánh `feat/full-web-engine-api` (Issue #5). 
 | Thành phần | Trạng thái tại B |
 | --- | --- |
 | Web | 11 bài thực hành (14 mô hình hoạt động, 3 mô hình lưu trữ), bài học, soạn/quiz, bài tập thực hành Hóa/Lý và Lumi UI; đã build |
-| Lab engine | 17 model TypeScript/config gồm 14 mô hình hoạt động, 3 lưu trữ; 141 unit test đạt |
-| API | FastAPI catalog, tính lại preview, single-flight cache, phiên/lượt PostgreSQL, retrieval/Tutor; 714 pytest đạt, 12 skip khi không có DB |
-| Knowledge | 36 thẻ tri thức (24 reviewed, 12 draft); data CLI lint/build đạt |
+| Lab engine | 17 model TypeScript/config gồm 14 mô hình hoạt động, 3 lưu trữ; 148 unit test đạt |
+| API | FastAPI catalog, tính lại preview, single-flight cache, phiên/lượt PostgreSQL, retrieval/Tutor; 743 pytest đạt, 12 skip khi không có DB |
+| Knowledge | 36 thẻ tri thức (10 reviewed, 26 draft); data CLI lint/build đạt |
 | E2E | 104 tests đạt Playwright |
 | Docker Compose | Web, API và PostgreSQL đã build và chạy healthy local; lab engine chạy trong web container/browser |
 | CI | Workflow web, API, E2E và Docker đã cấu hình và đạt |

@@ -587,9 +587,9 @@
         "công",
         "pulley"
       ],
-      "review_status": "reviewed",
-      "reviewer": "Huỳnh Minh Phước",
-      "reviewed_at": "2026-11-08",
+      "review_status": "draft",
+      "reviewer": null,
+      "reviewed_at": null,
       "origin": "project-authored",
       "external_material_use": "reference-only",
       "references": [
@@ -624,8 +624,7 @@
           "curriculum": "Mapping lớp/năm/trang pending; học liệu tự biên soạn"
         },
         "constants": {},
-        "equation": null,
-        "academic_review_role": "teacher"
+        "equation": null
       }
     },
     {
@@ -796,9 +795,9 @@
         "màu trắng",
         "ion"
       ],
-      "review_status": "reviewed",
-      "reviewer": "Huỳnh Minh Phước",
-      "reviewed_at": "2026-11-08",
+      "review_status": "draft",
+      "reviewer": null,
+      "reviewed_at": null,
       "origin": "project-authored",
       "external_material_use": "reference-only",
       "references": [
@@ -833,8 +832,7 @@
           "curriculum": "Mapping lớp/năm/trang pending; học liệu tự biên soạn"
         },
         "constants": {},
-        "equation": null,
-        "academic_review_role": "teacher"
+        "equation": null
       }
     },
     {
@@ -849,9 +847,9 @@
         "bọt khí",
         "CO2"
       ],
-      "review_status": "reviewed",
-      "reviewer": "Huỳnh Minh Phước",
-      "reviewed_at": "2026-11-08",
+      "review_status": "draft",
+      "reviewer": null,
+      "reviewed_at": null,
       "origin": "project-authored",
       "external_material_use": "reference-only",
       "references": [
@@ -886,8 +884,7 @@
           "curriculum": "Mapping lớp/năm/trang pending; học liệu tự biên soạn"
         },
         "constants": {},
-        "equation": null,
-        "academic_review_role": "teacher"
+        "equation": null
       }
     },
     {
@@ -903,9 +900,9 @@
         "lực cản",
         "xe"
       ],
-      "review_status": "reviewed",
-      "reviewer": "Huỳnh Minh Phước",
-      "reviewed_at": "2026-11-08",
+      "review_status": "draft",
+      "reviewer": null,
+      "reviewed_at": null,
       "origin": "project-authored",
       "external_material_use": "reference-only",
       "references": [
@@ -940,8 +937,7 @@
           "model_scope": "Lab mechanics là mô hình một chiều với lực kéo và lực cản được cấu hình; không tự suy lực căng từ quả nặng treo.",
           "curriculum_evidence": "Đã đọc trang online; chưa duyệt giáo viên, năm in chưa xác định.",
           "formula": "a = F_net/m"
-        },
-        "academic_review_role": "teacher"
+        }
       }
     },
     {
@@ -957,9 +953,9 @@
         "hệ xe",
         "trọng lực"
       ],
-      "review_status": "reviewed",
-      "reviewer": "Huỳnh Minh Phước",
-      "reviewed_at": "2026-11-08",
+      "review_status": "draft",
+      "reviewer": null,
+      "reviewed_at": null,
       "origin": "project-authored",
       "external_material_use": "reference-only",
       "references": [
@@ -994,8 +990,7 @@
           "model_scope": "SGK có hệ xe–dây–ròng rọc; engine hiện chỉ có xe chịu lực cho trước, chưa mô phỏng ròng rọc hoặc lợi về lực.",
           "curriculum_evidence": "Đã đọc trang online; chưa duyệt giáo viên, năm in chưa xác định.",
           "formula": "a = m*g/(M+m); T = M*a"
-        },
-        "academic_review_role": "teacher"
+        }
       }
     },
     {
@@ -1226,9 +1221,9 @@
         "tổng dòng",
         "nút nối"
       ],
-      "review_status": "reviewed",
-      "reviewer": "Huỳnh Minh Phước",
-      "reviewed_at": "2026-11-08",
+      "review_status": "draft",
+      "reviewer": null,
+      "reviewed_at": null,
       "origin": "project-authored",
       "external_material_use": "reference-only",
       "references": [
@@ -1263,8 +1258,7 @@
           "model_scope": "Lab hai điện trở chỉ giải hai cấu hình đã hỗ trợ; không phải trình giải mọi sơ đồ kéo thả.",
           "curriculum_evidence": "Đã đọc trang online; chưa duyệt giáo viên, năm in chưa xác định.",
           "formula": "1/R_eq = 1/R1 + 1/R2; I = I1 + I2"
-        },
-        "academic_review_role": "teacher"
+        }
       }
     },
     {
@@ -1516,9 +1510,9 @@
         "NaCl",
         "chất giới hạn"
       ],
-      "review_status": "reviewed",
-      "reviewer": "Huỳnh Minh Phước",
-      "reviewed_at": "2026-11-08",
+      "review_status": "draft",
+      "reviewer": null,
+      "reviewed_at": null,
       "origin": "project-authored",
       "external_material_use": "reference-only",
       "references": [
@@ -1562,8 +1556,7 @@
             "AgCl": 1,
             "NaNO3": 1
           }
-        },
-        "academic_review_role": "teacher"
+        }
       }
     },
     {
@@ -1580,9 +1573,9 @@
         "chất giới hạn",
         "hydrogen"
       ],
-      "review_status": "reviewed",
-      "reviewer": "Huỳnh Minh Phước",
-      "reviewed_at": "2026-11-08",
+      "review_status": "draft",
+      "reviewer": null,
+      "reviewed_at": null,
       "origin": "project-authored",
       "external_material_use": "reference-only",
       "references": [
@@ -1628,8 +1621,7 @@
             "CO2": 1,
             "H2O": 1
           }
-        },
-        "academic_review_role": "teacher"
+        }
       }
     },
     {
@@ -1644,9 +1636,9 @@
         "biên độ",
         "cơ năng"
       ],
-      "review_status": "reviewed",
-      "reviewer": "Huỳnh Minh Phước",
-      "reviewed_at": "2026-11-08",
+      "review_status": "draft",
+      "reviewer": null,
+      "reviewed_at": null,
       "origin": "project-authored",
       "external_material_use": "reference-only",
       "references": [
@@ -1678,8 +1670,7 @@
         "curriculum_status": "pending",
         "units": {},
         "conditions": {},
-        "constants": {},
-        "academic_review_role": "teacher"
+        "constants": {}
       }
     },
     {
@@ -1694,9 +1685,9 @@
         "newton",
         "gia tốc"
       ],
-      "review_status": "reviewed",
-      "reviewer": "Huỳnh Minh Phước",
-      "reviewed_at": "2026-11-08",
+      "review_status": "draft",
+      "reviewer": null,
+      "reviewed_at": null,
       "origin": "project-authored",
       "external_material_use": "reference-only",
       "references": [
@@ -1728,8 +1719,7 @@
         "curriculum_status": "pending",
         "units": {},
         "conditions": {},
-        "constants": {},
-        "academic_review_role": "teacher"
+        "constants": {}
       }
     },
     {
@@ -1744,9 +1734,9 @@
         "nhánh dây",
         "lợi về lực"
       ],
-      "review_status": "reviewed",
-      "reviewer": "Huỳnh Minh Phước",
-      "reviewed_at": "2026-11-08",
+      "review_status": "draft",
+      "reviewer": null,
+      "reviewed_at": null,
       "origin": "project-authored",
       "external_material_use": "reference-only",
       "references": [
@@ -1778,8 +1768,7 @@
         "curriculum_status": "pending",
         "units": {},
         "conditions": {},
-        "constants": {},
-        "academic_review_role": "teacher"
+        "constants": {}
       }
     },
     {
@@ -1794,9 +1783,9 @@
         "kim loại kiềm",
         "màu ngọn lửa"
       ],
-      "review_status": "reviewed",
-      "reviewer": "Huỳnh Minh Phước",
-      "reviewed_at": "2026-11-08",
+      "review_status": "draft",
+      "reviewer": null,
+      "reviewed_at": null,
       "origin": "project-authored",
       "external_material_use": "reference-only",
       "references": [
@@ -1828,8 +1817,7 @@
         "curriculum_status": "pending",
         "units": {},
         "conditions": {},
-        "constants": {},
-        "academic_review_role": "teacher"
+        "constants": {}
       }
     },
     {
@@ -1845,9 +1833,9 @@
         "NO2",
         "khí nâu đỏ"
       ],
-      "review_status": "reviewed",
-      "reviewer": "Huỳnh Minh Phước",
-      "reviewed_at": "2026-11-08",
+      "review_status": "draft",
+      "reviewer": null,
+      "reviewed_at": null,
       "origin": "project-authored",
       "external_material_use": "reference-only",
       "references": [
@@ -1879,8 +1867,7 @@
         "curriculum_status": "pending",
         "units": {},
         "conditions": {},
-        "constants": {},
-        "academic_review_role": "teacher"
+        "constants": {}
       }
     },
     {
@@ -1896,9 +1883,9 @@
         "giấy ẩm",
         "chloride"
       ],
-      "review_status": "reviewed",
-      "reviewer": "Huỳnh Minh Phước",
-      "reviewed_at": "2026-11-08",
+      "review_status": "draft",
+      "reviewer": null,
+      "reviewed_at": null,
       "origin": "project-authored",
       "external_material_use": "reference-only",
       "references": [
@@ -1930,8 +1917,7 @@
         "curriculum_status": "pending",
         "units": {},
         "conditions": {},
-        "constants": {},
-        "academic_review_role": "teacher"
+        "constants": {}
       }
     }
   ]
