@@ -1,0 +1,34 @@
+{
+  "id": "CONLAC-CHUKY-01",
+  "version": "0.1-draft",
+  "topic": "Con lắc đơn",
+  "language": "vi",
+  "title": "Chiều dài dây ảnh hưởng thế nào đến chu kỳ con lắc?",
+  "text": "Ở cùng một nơi, con lắc đơn lý tưởng dao động chậm hơn khi dây dài hơn. Trong xấp xỉ góc nhỏ, chu kỳ tỉ lệ với căn bậc hai của chiều dài dây: T ≈ 2π√(L/g), với T tính bằng giây, L bằng mét và g bằng mét trên giây bình phương.",
+  "assumptions": [
+    "Vật treo được coi là chất điểm. Dây nhẹ, không dãn và bỏ qua ma sát.",
+    "Biên độ góc nhỏ và khác không.",
+    "Khi so sánh hai lượt, giữ cùng gia tốc trọng trường g."
+  ],
+  "knowledge_id": "VL-CONLAC-01",
+  "sources": [
+    {
+      "id": "NXB-VL11",
+      "locator": "Bài 2, mục I, trang in 10",
+      "url": "https://taphuan.nxbgd.vn/tap-huan/doc-sach/sgk-vat-li-11.4701093133#page=11",
+      "supports": "Định nghĩa chu kỳ",
+      "usage": "reference-only"
+    },
+    {
+      "id": "OS-UP1",
+      "locator": "§15.4 Pendulums, phương trình 15.19",
+      "url": "https://openstax.org/books/university-physics-volume-1/pages/15-4-pendulums",
+      "supports": "Công thức chu kỳ và giả thiết góc nhỏ",
+      "usage": "reference-only"
+    }
+  ],
+  "rights_review": "pending",
+  "science_review": "draft",
+  "reviewed_by": null,
+  "reviewed_on": null
+}
