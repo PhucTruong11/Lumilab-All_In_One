@@ -13,6 +13,7 @@ import { AppBoundary } from './components/AppBoundary';
 import { PracticeCatalog } from './components/PracticeCatalog';
 import { isLabId } from '@lumilab/lab-engine';
 import './practice.css';
+import './experiment.css';
 
 type View = 'lab' | 'library' | 'workspace' | 'lumi';
 const tabs: { id: View; label: string }[] = [

@@ -53,7 +53,7 @@ export interface LabSnapshot<K extends LabId> {
 const ajv = new Ajv({ allErrors: true, strictNumbers: true });
 const checkDefinition = ajv.compile(configSchema);
 const checkSession = ajv.compile(sessionSchema);
-const versions: Record<LabId, string> = { pendulum: 'pendulum-agm-v1', chemistry: 'ideal-strong-titration-ts-v1', circuit: 'ideal-series-circuit-ts-v1', mechanics: 'constant-force-motion-v1', spring: 'horizontal-hooke-oscillator-v1', electrochemistry: 'standard-galvanic-cell-v1', atomic: 'atomic-particle-counts-v1', 'parallel-circuit': 'ideal-two-resistor-network-v1', capacitor: 'ideal-rc-step-v1', precipitation: 'ideal-agcl-precipitation-v1', 'gas-reaction': 'ideal-bicarbonate-gas-v1',
+const versions: Record<LabId, string> = { pendulum: 'pendulum-agm-v1', chemistry: 'ideal-strong-titration-ts-v1', circuit: 'ideal-series-circuit-ts-v2', mechanics: 'constant-force-motion-v1', spring: 'horizontal-hooke-oscillator-v1', electrochemistry: 'standard-galvanic-cell-v1', atomic: 'atomic-particle-counts-v1', 'parallel-circuit': 'ideal-two-resistor-network-v1', capacitor: 'ideal-rc-step-v1', precipitation: 'ideal-agcl-precipitation-v1', 'gas-reaction': 'ideal-bicarbonate-gas-v1',
   'spring-damped': 'viscous-spring-underdamped-v1',
   'inclined-plane': 'rest-release-incline-v1',
   'pulley': 'vertical-ideal-pulley-v1',
@@ -208,7 +208,12 @@ export class BrowserLabEngine<K extends LabId> {
     const value: unknown = JSON.parse(json);
     if (!checkSession(value)) throw new Error(`Tệp phiên không hợp lệ: ${ajv.errorsText(checkSession.errors)}`);
     const session = value as { lab_id: string; model_version: string; dataset_version: string; parameters: unknown; elapsed_s: number; presentation: Presentation; notes: LabSnapshot<K>['notes']; records: { parameters: unknown; elapsed_s: number }[] };
-    if (session.lab_id !== this.id || session.model_version !== this.modelVersion || session.dataset_version !== this.definition.dataset_version) throw new Error('Phiên khác bài hoặc phiên bản mô hình/học liệu');
+    const oldCircuit = this.id === 'circuit' && session.model_version === 'ideal-series-circuit-ts-v1';
+    if (session.lab_id !== this.id || (!oldCircuit && session.model_version !== this.modelVersion) || session.dataset_version !== this.definition.dataset_version) throw new Error('Phiên khác bài hoặc phiên bản mô hình/học liệu');
+    if (oldCircuit && [session.parameters, ...session.records.map(row => row.parameters)].some(value => {
+      const slots = (value as CircuitParameters).slots;
+      return !Array.isArray(slots) || new Set(slots.filter(Boolean)).size !== slots.filter(Boolean).length;
+    })) throw new Error('Phiên mạch cũ có linh kiện trùng');
     if (session.elapsed_s > (this.definition.duration_s ?? 86400) || session.records.some(row => row.elapsed_s > (this.definition.duration_s ?? 86400))) throw new Error('Time outside lab duration');
     const parameters = this.parameters(session.parameters);
     const records = session.records.map((row, index) => { const p = this.parameters(row.parameters); return { id: index + 1, parameters: p, elapsed_s: row.elapsed_s, reading: calculate(this.id, p, row.elapsed_s) }; });

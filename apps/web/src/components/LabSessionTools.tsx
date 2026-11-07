@@ -4,14 +4,16 @@ import { sessionKey, useLab, useSessionContext } from '../labSession';
 import { downloadText } from '../data/learning';
 import { archivedPracticeIds, practiceInfo } from '../data/practice';
 
-export function useLabClock(id: LabId) {
+export function useLabClock(id: LabId, speed = 1) {
   const { engine, state } = useLab(id);
+  const speedRef = useRef(speed);
+  useEffect(() => { speedRef.current = speed; }, [speed]);
   useEffect(() => {
     if (state.phase !== 'running') return;
     let frame = 0, last = 0;
     function tick(now: number) {
       if (!last) last = now;
-      if (now - last >= 1000 / 30) { engine.step(Math.min((now - last) / 1000, .1)); last = now; }
+      if (now - last >= 1000 / 30) { engine.step(Math.min((now - last) / 1000, .1) * speedRef.current); last = now; }
       frame = requestAnimationFrame(tick);
     }
     const hidden = () => { if (document.hidden) engine.pause(); };

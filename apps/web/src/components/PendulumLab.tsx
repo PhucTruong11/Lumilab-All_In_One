@@ -3,6 +3,7 @@ import { lazy, Suspense, useCallback, useState } from 'react';
 import { pendulumAngleAtTime, type PendulumParameters } from '@lumilab/lab-engine';
 import { PendulumCanvas, type PendulumVisualOptions } from './PendulumCanvas';
 import { useLab } from '../labSession';
+import { LabSlider } from './ExpandedLabParts';
 
 const Chart = lazy(() => import('./PendulumChart').then(module => ({ default: module.PendulumChart })));
 
@@ -131,7 +132,7 @@ export function PendulumLab() {
             <button className="secondary-button" onClick={reset}>
               ↺ Đặt lại
             </button>
-            <button className="record-button" onClick={record}>
+            <button className="record-button" onClick={record} disabled={dampingEnabled}>
               ＋ Ghi số đo
             </button>
           </div>
@@ -171,98 +172,12 @@ export function PendulumLab() {
               <span>g = 9,81 m/s² (Chuẩn Trái Đất)</span>
             </div>
 
-            <label className="parameter">
-              <span>
-                Chiều dài dây <output>{parameters.length_m.toFixed(2)} m</output>
-              </span>
-              <input
-                aria-label="Chiều dài dây"
-                type="range"
-                min="0.3"
-                max="2"
-                step="0.01"
-                value={parameters.length_m}
-                onChange={event => change('length_m', Number(event.target.value))}
-              />
-              <span className="range-limits">
-                <span>0,30 m</span>
-                <span>2,00 m</span>
-              </span>
-              <div className="preset-row">
-                {[0.5, 1.0, 1.5, 2.0].map(val => (
-                  <button
-                    key={val}
-                    type="button"
-                    className={`preset-pill ${Math.abs(parameters.length_m - val) < 0.01 ? 'active' : ''}`}
-                    onClick={() => change('length_m', val)}
-                  >
-                    {val.toFixed(1)} m
-                  </button>
-                ))}
-              </div>
-            </label>
-
-            <label className="parameter">
-              <span>
-                Khối lượng <output>{parameters.mass_kg.toFixed(2)} kg</output>
-              </span>
-              <input
-                aria-label="Khối lượng"
-                type="range"
-                min="0.1"
-                max="1"
-                step="0.05"
-                value={parameters.mass_kg}
-                onChange={event => change('mass_kg', Number(event.target.value))}
-              />
-              <span className="range-limits">
-                <span>0,10 kg</span>
-                <span>1,00 kg</span>
-              </span>
-              <div className="preset-row">
-                {[0.1, 0.2, 0.5, 1.0].map(val => (
-                  <button
-                    key={val}
-                    type="button"
-                    className={`preset-pill ${Math.abs(parameters.mass_kg - val) < 0.01 ? 'active' : ''}`}
-                    onClick={() => change('mass_kg', val)}
-                  >
-                    {val.toFixed(1)} kg
-                  </button>
-                ))}
-              </div>
-            </label>
-
-            <label className="parameter">
-              <span>
-                Góc thả biên độ <output>{parameters.angle_deg}°</output>
-              </span>
-              <input
-                aria-label="Góc thả"
-                type="range"
-                min="0"
-                max="90"
-                step="1"
-                value={parameters.angle_deg}
-                onChange={event => change('angle_deg', Number(event.target.value))}
-              />
-              <span className="range-limits">
-                <span>0°</span>
-                <span>90°</span>
-              </span>
-              <div className="preset-row">
-                {[5, 15, 30, 45, 60].map(val => (
-                  <button
-                    key={val}
-                    type="button"
-                    className={`preset-pill ${parameters.angle_deg === val ? 'active' : ''}`}
-                    onClick={() => change('angle_deg', val)}
-                  >
-                    {val === 5 ? '5° (Nhỏ)' : `${val}°`}
-                  </button>
-                ))}
-              </div>
-            </label>
+            <LabSlider label="Chiều dài dây" unit="m" min={.3} max={2} step={.01} value={parameters.length_m}
+              onChange={value => change('length_m', value)} presets={[.5, 1, 1.5, 2]}/>
+            <LabSlider label="Khối lượng" unit="kg" min={.1} max={1} step={.05} value={parameters.mass_kg}
+              onChange={value => change('mass_kg', value)} presets={[.1, .2, .5, 1]}/>
+            <LabSlider label="Góc thả" unit="°" min={0} max={90} step={1} value={parameters.angle_deg}
+              onChange={value => change('angle_deg', value)} presets={[5, 15, 30, 45, 60]}/>
 
             <fieldset className="materials">
               <legend>Quả nặng</legend>
@@ -286,11 +201,12 @@ export function PendulumLab() {
                     onChange={e => setDampingEnabled(e.target.checked)}
                   />
                   <span className="toggle-slider" />
-                  <span>Lực cản môi trường (Tắt dần)</span>
+                  <span>Minh họa lực cản (tắt dần)</span>
                 </label>
               </div>
               {dampingEnabled && (
                 <div className="damping-slider-wrap">
+                  <p className="lab-notice">Chỉ minh họa trên hình và đồ thị; chưa hỗ trợ ghi số đo có cản. Tính lại trên máy chủ vẫn dùng mô hình không ma sát.</p>
                   <div className="damping-labels">
                     <span>Hệ số cản b: <strong>{dampingCoeff.toFixed(3)} N·s/m</strong></span>
                     <span className="sub-hint">
@@ -391,7 +307,7 @@ export function PendulumLab() {
                 </thead>
                 <tbody>
                   {records.map((row, index) => (
-                    <tr key={`${row.id}-${index}`}>
+                    <tr key={`${row.id}-${index}`} className={index === records.length - 1 ? 'latest-record-row' : undefined}>
                       <td>{row.parameters.length_m.toFixed(2)}</td>
                       <td>{row.parameters.mass_kg.toFixed(2)}</td>
                       <td>{row.parameters.angle_deg}</td>

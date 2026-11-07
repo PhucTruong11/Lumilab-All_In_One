@@ -1,5 +1,5 @@
 import { useLab } from '../labSession';
-import { ExpandedFooter } from './ExpandedLabParts';
+import { ExpandedFooter, ObserveOnStage } from './ExpandedLabParts';
 
 export function ChlorineLab() {
   const { engine, state } = useLab('chlorine-bleach');
@@ -11,199 +11,308 @@ export function ChlorineLab() {
 
   return (
     <>
-    <div className="workbench-grid interactive-lab">
-      <section className="stage-panel" aria-label="Bàn thí nghiệm điều chế khí clo">
-        <div className="panel-title">
-          <h2>Điều chế & Thử tính tẩy màu của khí Clo (Cl₂)</h2>
-          <span className="mode-chip">
-            <i /> Thí nghiệm đối chứng giấy khô & giấy ẩm
-          </span>
-        </div>
+      <div className="workbench-grid interactive-lab">
+        <section className="stage-panel" aria-label="Bàn thí nghiệm điều chế khí clo">
+          <div className="panel-title">
+            <h2>Điều chế & Thử tính tẩy màu của khí Clo (Cl₂)</h2>
+            <span className="mode-chip">
+              <i /> {params.mode === 'bleach' ? 'Đối chứng giấy màu khô & ẩm' : 'Nguyên lí oxi hóa tạo Cl₂'}
+            </span>
+          </div>
 
-        <svg
-          className="interactive-stage"
-          viewBox="0 0 760 460"
-          aria-label="Hệ thống điều chế và thử tính tẩy màu của Clo"
-        >
-          <defs>
-            <linearGradient id="chlorine-bg" x2="1" y2="1">
-              <stop stopColor="#fcfdfb" />
-              <stop offset="1" stopColor="#f3f7f0" />
-            </linearGradient>
-            <linearGradient id="cl2-gas-color" x1="0" y1="1" x2="0" y2="0">
-              <stop offset="0%" stopColor="#eab308" stopOpacity={isGenerating ? '0.45' : '0.05'} />
-              <stop offset="100%" stopColor="#84cc16" stopOpacity={isGenerating ? '0.65' : '0.05'} />
-            </linearGradient>
-          </defs>
-
-          {/* Background */}
-          <rect x="10" y="5" width="740" height="442" rx="22" fill="url(#chlorine-bg)" />
-
-          {/* Bàn làm việc */}
-          <path d="M40 400h680" stroke="#cbd5e1" strokeWidth="6" />
-
-          {/* Cụm 1: Bình cầu điều chế khí Clo (trái) */}
-          <g transform="translate(180 230)">
-            {/* Bình cầu đáy tròn */}
-            <circle cx="0" cy="80" r="65" fill="#ffffff50" stroke="#64748b" strokeWidth="4" />
-            {/* Tinh thể thuốc tím KMnO4 màu tím sẫm ở đáy */}
-            <ellipse cx="0" cy="120" rx="36" ry="14" fill="#581c87" stroke="#3b0764" strokeWidth="2" />
-            <text x="0" y="125" textAnchor="middle" fill="#ffffff" fontSize="10">
-              KMnO₄
-            </text>
-
-            {/* Khí Clo màu vàng lục bốc lên trong bình cầu */}
-            <circle cx="0" cy="70" r="55" fill="url(#cl2-gas-color)" />
-
-            {/* Phễu nhỏ giọt chứa axit HCl đặc */}
-            <rect x="-8" y="-70" width="16" height="85" fill="#f8fafc" stroke="#64748b" strokeWidth="2" />
-            <path d="M-18 -110h36l-18 40z" fill="#f8fafc" stroke="#64748b" strokeWidth="2" />
-            <text x="25" y="-90" fontSize="11" fill="#475569">
-              Minh họa dụng cụ ảo
-            </text>
-            <text x="0" y="170" textAnchor="middle" fill="#475569" fontSize="12" fontWeight="bold">
-              1. Bình điều chế Cl₂
-            </text>
-          </g>
-
-          {/* Ống dẫn khí Clo sang 2 nhánh đối chứng */}
-          <path
-            d="M180 180H360v120"
-            fill="none"
-            stroke={isGenerating ? '#84cc16' : '#94a3b8'}
-            strokeWidth="5"
-          />
-
-          {/* Cụm 2: Bình thử tính tẩy màu (giữa) */}
-          <g transform="translate(420 220)">
-            <rect x="-35" y="0" width="70" height="150" rx="10" fill="#ffffff40" stroke="#64748b" strokeWidth="3" />
-            {/* Khí vàng lục tràn vào bình thử */}
-            <rect x="-32" y="5" width="64" height="140" rx="8" fill="url(#cl2-gas-color)" />
-
-            {/* Mẩu giấy quỳ / giấy màu thử nghiệm */}
-            <rect
-              x="-12"
-              y="35"
-              width="24"
-              height="80"
-              rx="3"
-              fill={
-                isBleached
-                  ? '#ffffff'
-                  : stripType === 'wet'
-                  ? '#ec4899'
-                  : '#dc2626'
-              }
-              stroke="#64748b"
-              strokeWidth="2"
-            />
-            <text x="0" y="80" textAnchor="middle" fill={isBleached ? '#94a3b8' : '#ffffff'} fontSize="10" fontWeight="bold">
-              {isBleached ? 'TẨY TRẮNG' : stripType === 'wet' ? 'GIẤY ẨM' : 'GIẤY KHÔ'}
-            </text>
-
-            <text x="0" y="180" textAnchor="middle" fill="#334155" fontSize="12" fontWeight="bold">
-              2. Ống thử tẩy màu
-            </text>
-            <text x="0" y="200" textAnchor="middle" fill="#64748b" fontSize="11">
-              {stripType === 'wet' ? 'Mẫu giấy màu ẨM' : 'Mẫu giấy màu KHÔ'}
-            </text>
-          </g>
-
-          {/* Ống dẫn khí dư sang cốc hấp thụ xút NaOH (phải) */}
-          <path
-            d="M455 250H600v70"
-            fill="none"
-            stroke={isGenerating ? '#84cc16' : '#94a3b8'}
-            strokeWidth="4"
-          />
-
-          {/* Cụm 3: Cốc đựng NaOH hấp thụ khí Clo dư */}
-          <g transform="translate(600 320)">
-            <rect x="-30" y="0" width="60" height="75" rx="6" fill="#ffffff50" stroke="#64748b" strokeWidth="3" />
-            <rect x="-27" y="20" width="54" height="52" fill="#cffafe" opacity="0.8" />
-            <text x="0" y="50" textAnchor="middle" fill="#0e7490" fontSize="10" fontWeight="bold">
-              NaOH
-            </text>
-            <text x="0" y="100" textAnchor="middle" fill="#475569" fontSize="11">
-              3. Cốc khử độc Cl₂
-            </text>
-          </g>
-        </svg>
-
-        <div className="stage-actions">
-          <button className="record-button" disabled={!params.observed} onClick={() => engine.record()}>Ghi quan sát</button>
-          <button className="secondary-button" onClick={() => engine.reset()}>Đặt lại</button>
-          <button
-            type="button"
-            className="primary-button"
-            aria-label="Quan sát" onClick={() => engine.setParameters({ observed: true })}
+          <svg
+            className="interactive-stage"
+            viewBox="0 0 760 530"
+            aria-label="Hệ thống điều chế và thử tính tẩy màu của Clo"
           >
-            {isGenerating ? '✓ Đã mở quan sát' : '▶ Quan sát kịch bản clo'}
-          </button>
-        </div>
+            <defs>
+              <linearGradient id="chlorine-bg" x2="1" y2="1">
+                <stop stopColor="#f6faf8" />
+                <stop offset="1" stopColor="#edf5ef" />
+              </linearGradient>
+              <linearGradient id="cl2-gas-color" x1="0" y1="1" x2="0" y2="0">
+                <stop offset="0%" stopColor="#eab308" stopOpacity={isGenerating ? '0.52' : '0.04'} />
+                <stop offset="100%" stopColor="#84cc16" stopOpacity={isGenerating ? '0.72' : '0.04'} />
+              </linearGradient>
+            </defs>
 
-        <div className="readings readings-expanded" aria-label="Kết quả quan sát Clo">
-          <div><span>Sản phẩm trong mô hình</span><strong>{reading.product ?? '—'}</strong></div>
-          <div><span>Hiện tượng</span><strong data-testid="chem-observation">{reading.appearance ?? '—'}</strong></div>
-          <div><span>Giấy màu</span><strong>{params.damp ? 'Ẩm' : 'Khô'}</strong></div>
-          <div><span>Phạm vi</span><strong>Định tính</strong></div>
-        </div>
-      </section>
+            <rect x="10" y="5" width="740" height="520" rx="22" fill="url(#chlorine-bg)" />
+            <path d="M40 402h680" stroke="#b9cec3" strokeWidth="6" strokeLinecap="round" />
 
-      <aside className="experiment-sidebar">
-        <section className="parameter-panel">
-          <div className="panel-title">
-            <h2>Mẫu thử & Hóa chất</h2>
-            <span>SGK Hóa học 10</span>
-          </div>
+            {/* Cluster 1: Cl2 Generator Flask + Interactive HCl Dropping Funnel */}
+            <g transform="translate(175 230)">
+              <circle cx="0" cy="82" r="66" fill="#ffffff66" stroke="#5c7d6d" strokeWidth="4" />
+              <ellipse cx="0" cy="122" rx="38" ry="14" fill="#581c87" stroke="#3b0764" strokeWidth="2" />
+              <text x="0" y="126" textAnchor="middle" fill="#ffffff" fontSize="10" fontWeight="700">
+                KMnO₄
+              </text>
 
-          <fieldset className="materials">
-            <legend>Loại giấy màu đối chứng</legend>
-            {[
-              ['wet', '1. Giấy màu ẨM (Có nước)'],
-              ['dry', '2. Giấy màu KHÔ (Không có nước)'],
-            ].map(([typeKey, label]) => (
-              <button
-                key={typeKey}
-                type="button"
-                aria-pressed={stripType === typeKey}
-                onClick={() => update({ damp: typeKey === 'wet' })}
-                style={{ width: '100%', justifyContent: 'flex-start' }}
+              {/* Yellow-green Cl2 gas filling generator */}
+              <circle cx="0" cy="74" r="56" fill="url(#cl2-gas-color)" className={isGenerating ? 'gas-plume' : undefined} />
+
+              {/* Animated HCl drop falling when generating */}
+              {isGenerating && <circle cx="0" cy="24" r="4" fill="#38bdf8" className="chem-drip" />}
+
+              {/* Dropping funnel + interactive tap */}
+              <rect x="-8" y="-72" width="16" height="88" fill="#f8fafc" stroke="#5c7d6d" strokeWidth="2.2" />
+              <path d="M-22 -118h44l-14 46h-16z" fill="#e0f2fe" stroke="#5c7d6d" strokeWidth="2.2" />
+              <g
+                role="button"
+                tabIndex={0}
+                aria-label="Khóa phễu nhỏ giọt HCl"
+                className="svg-button"
+                onClick={() => engine.setParameters({ observed: true })}
+                onKeyDown={e => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    engine.setParameters({ observed: true });
+                  }
+                }}
               >
-                {label}
-              </button>
-            ))}
-          </fieldset>
+                <rect x="-24" y="-44" width="48" height="24" rx="6" fill="transparent" />
+                <line
+                  x1={isGenerating ? '0' : '-16'}
+                  y1={isGenerating ? '-42' : '-32'}
+                  x2={isGenerating ? '0' : '16'}
+                  y2={isGenerating ? '-22' : '-32'}
+                  stroke="#14798f"
+                  strokeWidth="5"
+                  strokeLinecap="round"
+                />
+                <circle cx="0" cy="-32" r="5" fill="#fff" stroke="#14798f" strokeWidth="2" />
+              </g>
+              <text x="30" y="-92" fontSize="11" fontWeight="700" fill="#1b382b">
+                HCl đặc
+              </text>
+              <text x="30" y="-76" fontSize="10.5" fill="#0f6275">
+                {isGenerating ? 'Đang nhỏ giọt' : 'Chạm khóa để mở'}
+              </text>
+              <text x="0" y="172" textAnchor="middle" fill="#1b382b" fontSize="12" fontWeight="700">
+                1. Bình điều chế Cl₂
+              </text>
+            </g>
 
-          <label className="parameter"><span>Chế độ</span><select aria-label="Chế độ clo" value={params.mode}
-            onChange={e => update({ mode: e.target.value as 'formation' | 'bleach' })}>
-            <option value="formation">Nguyên lí tạo clo</option><option value="bleach">Tính tẩy màu</option>
-          </select></label>
+            {/* Delivery Tube 1 -> 2 with animated Cl2 gas flow */}
+            <path d="M175 180H405v52" fill="none" stroke="#7c9689" strokeWidth="6" strokeLinejoin="round" />
+            {isGenerating && (
+              <path
+                d="M175 180H405v52"
+                fill="none"
+                stroke="#a3e635"
+                strokeWidth="3.5"
+                strokeDasharray="7 16"
+                className="gas-stream"
+              />
+            )}
 
-          <div style={{ marginTop: '16px', padding: '12px', background: '#fefce8', borderRadius: '10px', fontSize: '13px', color: '#854d0e' }}>
-            <strong>Phương trình phản ứng:</strong>
-            <p style={{ marginTop: '4px', fontFamily: 'monospace', fontSize: '11px', fontWeight: 'bold' }}>
-              {reading.equation ?? '—'}
-            </p>
-            <p style={{ marginTop: '6px', fontFamily: 'monospace', fontSize: '11px', color: '#0284c7', fontWeight: 'bold' }}>
-              ↳ {params.mode === 'bleach' ? 'Vai trò của nước trong mô hình tẩy màu.' : 'Oxi hóa ion chloride.'}
-            </p>
+            {/* Cluster 2: Interactive Bleaching Test Jar */}
+            <g
+              transform="translate(420 220)"
+              className="svg-button"
+              role="button"
+              tabIndex={0}
+              aria-label="Đổi giấy khô hoặc ẩm"
+              onClick={() => update({ damp: !params.damp })}
+              onKeyDown={e => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  update({ damp: !params.damp });
+                }
+              }}
+            >
+              <rect x="-42" y="0" width="84" height="154" rx="12" fill="#ffffff66" stroke="#14798f" strokeWidth="2.8" />
+              <rect x="-38" y="4" width="76" height="146" rx="9" fill="url(#cl2-gas-color)" />
+
+              {/* Colored litmus / dye paper strip */}
+              <rect
+                x="-15"
+                y="32"
+                width="30"
+                height="86"
+                rx="4"
+                fill={isBleached ? '#f8fafc' : stripType === 'wet' ? '#ec4899' : '#dc2626'}
+                stroke={isBleached ? '#94a3b8' : '#9d174d'}
+                strokeWidth="2"
+                className="flask-liquid"
+              />
+              {/* Water droplets shown on wet paper */}
+              {stripType === 'wet' && (
+                <g fill={isBleached ? '#38bdf8' : '#bae6fd'}>
+                  <circle cx="-6" cy="48" r="2.6" />
+                  <circle cx="7" cy="64" r="3" />
+                  <circle cx="-5" cy="94" r="2.5" />
+                </g>
+              )}
+              <text x="0" y="80" textAnchor="middle" fill={isBleached ? '#475569' : '#ffffff'} fontSize="9.5" fontWeight="700">
+                {isBleached ? 'MẤT MÀU' : stripType === 'wet' ? 'GIẤY ẨM' : 'GIẤY KHÔ'}
+              </text>
+
+              <text x="0" y="176" textAnchor="middle" fill="#1b382b" fontSize="12" fontWeight="700">
+                2. Bình thử tẩy màu
+              </text>
+              <text x="0" y="194" textAnchor="middle" fill="#0f6275" fontSize="11" fontWeight="600">
+                {stripType === 'wet' ? 'Giấy ẨM (chạm để đổi khô ⇄)' : 'Giấy KHÔ (chạm để đổi ẩm ⇄)'}
+              </text>
+            </g>
+
+            {/* Delivery Tube 2 -> 3 (Exhaust Scrubber) */}
+            <path d="M462 248H605v88" fill="none" stroke="#7c9689" strokeWidth="5" strokeLinejoin="round" />
+            {isGenerating && (
+              <path
+                d="M462 248H605v88"
+                fill="none"
+                stroke="#a3e635"
+                strokeWidth="3"
+                strokeDasharray="6 16"
+                className="gas-stream"
+              />
+            )}
+
+            {/* Cluster 3: NaOH Safety Scrubber Beaker */}
+            <g transform="translate(605 320)">
+              <rect x="-34" y="0" width="68" height="78" rx="8" fill="#ffffff70" stroke="#5c7d6d" strokeWidth="3" />
+              <rect x="-30" y="22" width="60" height="52" rx="5" fill="#bae6fd" opacity="0.85" />
+              {isGenerating && (
+                <g>
+                  <circle cx="-6" cy="54" r="3.2" fill="#fff" className="chem-bubble" />
+                  <circle cx="8" cy="48" r="3.8" fill="#fff" className="chem-bubble-fast" />
+                </g>
+              )}
+              <text x="0" y="54" textAnchor="middle" fill="#0c4a6e" fontSize="11" fontWeight="700">
+                dd NaOH
+              </text>
+              <text x="0" y="100" textAnchor="middle" fill="#355d48" fontSize="11.5" fontWeight="700">
+                3. Cốc hấp thụ khí độc
+              </text>
+            </g>
+
+            {/* Top Explanation Banner when observing */}
+            {isGenerating && (
+              <g transform="translate(380 58)">
+                <rect x="-220" y="-24" width="440" height="42" rx="12" fill="#ffffffeb" stroke="#a3e635" strokeWidth="1.8" />
+                <text x="0" y="2" textAnchor="middle" fill="#1b382b" fontSize="13.5" fontWeight="700">
+                  {params.mode === 'formation'
+                    ? 'Oxi hóa Cl⁻ tạo khí Cl₂ vàng lục · Khí dư được giữ lại ở cốc NaOH'
+                    : isBleached
+                    ? 'Cl₂ + H₂O ⇌ HCl + HOCl → HOCl oxi hóa làm nhạt rõ màu giấy ẩm!'
+                    : 'Giấy khô không có H₂O tạo HOCl → Không thấy hiện tượng tẩy màu rõ.'}
+                </text>
+              </g>
+            )}
+
+            <ObserveOnStage observed={params.observed} onObserve={() => engine.setParameters({ observed: true })} />
+          </svg>
+
+          <div className="stage-actions">
+            <button
+              type="button"
+              className="primary-button"
+              aria-label="Quan sát"
+              disabled={isGenerating}
+              onClick={() => engine.setParameters({ observed: true })}
+            >
+              {isGenerating ? '✓ Đã mở quan sát' : '▶ Quan sát kịch bản clo'}
+            </button>
+            <button className="secondary-button" onClick={() => engine.reset()}>
+              ↺ Đặt lại
+            </button>
+            <button className="record-button" disabled={!params.observed} onClick={() => engine.record()}>
+              Ghi quan sát
+            </button>
+          </div>
+
+          <div className="readings readings-expanded" aria-label="Kết quả quan sát Clo">
+            <div>
+              <span>Sản phẩm trong mô hình</span>
+              <strong>{reading.product ?? '—'}</strong>
+            </div>
+            <div>
+              <span>Hiện tượng</span>
+              <strong data-testid="chem-observation">{reading.appearance ?? '—'}</strong>
+            </div>
+            <div>
+              <span>Giấy màu</span>
+              <strong>{params.damp ? 'Ẩm' : 'Khô'}</strong>
+            </div>
+            <div>
+              <span>Phạm vi</span>
+              <strong>Định tính</strong>
+            </div>
           </div>
         </section>
 
-        <section className="chart-panel">
-          <div className="panel-title">
-            <h2>Giải thích bản chất khoa học</h2>
-            <span>Bản chất tính tẩy màu của Clo</span>
-          </div>
-          <div style={{ padding: '14px', background: '#f8faf9', borderRadius: '12px', fontSize: '12.5px', lineHeight: '1.6', color: '#2d4b3b' }}>
-            <p>{reading.detail}</p>
-          </div>
-        </section>
-      </aside>
-    </div>
-    <ExpandedFooter id="chlorine-bleach" formulas={<p>Quan sát định tính trong phạm vi kịch bản nháp đã chọn.</p>}
-      columns={['Chế độ', 'Giấy', 'Sản phẩm', 'Hiện tượng']} rows={state.records.map(row => [row.parameters.mode, row.parameters.damp ? 'Ẩm' : 'Khô', row.reading.product ?? '—', row.reading.appearance ?? '—'])} onClear={() => engine.clearRecords()}/>
+        <aside className="experiment-sidebar">
+          <section className="parameter-panel">
+            <div className="panel-title">
+              <h2>Mẫu thử & Hóa chất</h2>
+              <span>SGK Hóa học 10</span>
+            </div>
+
+            <fieldset className="materials" style={{ flexDirection: 'column', gap: '8px' }}>
+              <legend>Loại giấy màu đối chứng</legend>
+              {[
+                ['wet', '1. Giấy màu ẨM (Có nước)'],
+                ['dry', '2. Giấy màu KHÔ (Không có nước)'],
+              ].map(([typeKey, label]) => (
+                <button
+                  key={typeKey}
+                  type="button"
+                  aria-pressed={stripType === typeKey}
+                  onClick={() => update({ damp: typeKey === 'wet' })}
+                  style={{ width: '100%', justifyContent: 'flex-start' }}
+                >
+                  {label}
+                </button>
+              ))}
+            </fieldset>
+
+            <label className="field" style={{ marginTop: '14px' }}>
+              <span>Chế độ</span>
+              <select
+                aria-label="Chế độ clo"
+                value={params.mode}
+                onChange={e => update({ mode: e.target.value as 'formation' | 'bleach' })}
+              >
+                <option value="formation">Nguyên lí tạo clo</option>
+                <option value="bleach">Tính tẩy màu</option>
+              </select>
+            </label>
+
+            <div style={{ marginTop: '16px', padding: '12px', background: '#f7fee7', border: '1px solid #bef264', borderRadius: '10px', fontSize: '13px', color: '#3f6212' }}>
+              <strong>Phương trình phản ứng:</strong>
+              <p style={{ marginTop: '4px', fontFamily: 'monospace', fontSize: '11.5px', fontWeight: 'bold' }}>
+                {reading.equation ?? '—'}
+              </p>
+              <p style={{ marginTop: '6px', fontSize: '11.5px', color: '#0f6275', fontWeight: 600 }}>
+                ↳ {params.mode === 'bleach' ? 'Vai trò của nước trong mô hình tẩy màu.' : 'Oxi hóa ion chloride.'}
+              </p>
+            </div>
+          </section>
+
+          <section className="chart-panel">
+            <div className="panel-title">
+              <h2>Giải thích bản chất khoa học</h2>
+              <span>Bản chất tính tẩy màu của Clo</span>
+            </div>
+            <div style={{ padding: '14px', background: '#f4faf7', borderRadius: '12px', fontSize: '12.5px', lineHeight: '1.6', color: '#244b38' }}>
+              <p>{reading.detail}</p>
+            </div>
+          </section>
+        </aside>
+      </div>
+
+      <ExpandedFooter
+        id="chlorine-bleach"
+        formulas={<p>Quan sát định tính trong phạm vi kịch bản nháp đã chọn.</p>}
+        columns={['Chế độ', 'Giấy', 'Sản phẩm', 'Hiện tượng']}
+        rows={state.records.map(row => [
+          row.parameters.mode,
+          row.parameters.damp ? 'Ẩm' : 'Khô',
+          row.reading.product ?? '—',
+          row.reading.appearance ?? '—',
+        ])}
+        onClear={() => engine.clearRecords()}
+      />
     </>
   );
 }

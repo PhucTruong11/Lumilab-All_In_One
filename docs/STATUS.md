@@ -1,5 +1,9 @@
 # Trạng thái repo B
 
+## Nâng cấp tương tác bàn thực hành
+
+Nhánh `codex/lab-interaction-upgrade` bổ sung 36 cấu hình mẫu cho 12 chế độ, nhập số có kiểm giới hạn, tốc độ phát/chạy từng bước, chế độ tập trung và thao tác trực tiếp/bàn phím cho ròng rọc, dốc nghiêng và bàn Hóa. Mạch nối tiếp v2 mở rộng ba ô lắp với bóng/điện trở lặp, điện trở 10 Ω, tính tổng công suất bóng đồng nhất ở engine/API/Verify và nhập được phiên v1 hợp lệ. Bàn lab được đặt trước công cụ phụ để hiển thị sớm hơn trên mobile. Kiểm local mới: 114 unit, 650 pytest (2 skip), 52 E2E trên DB test riêng và 7 E2E trên Docker đều đạt; CI/review còn riêng. [Hướng dẫn và giới hạn](LAB-INTERACTIONS.md); [đặc tả](../specs/007-tactile-labs/spec.md). Trạng thái nguồn vẫn draft; con lắc có cản vẫn chỉ minh họa, không ghi số đo có cản.
+
 ## 9 bài hiện hành đã tích hợp vào main
 
 Phòng thực hành có 6 bài Vật lí và 3 bài Hóa vô cơ. Ba bài ghép có hai chế độ, tạo thành 12 mô hình hiện hành. Năm mô hình lưu trữ hỗ trợ phiên và nội dung cũ. Học liệu và kết quả khoa học ở trạng thái nháp. Chi tiết triển khai và kiểm thử tại [bàn giao 9 bài](tasks/NINE-LABS.md).

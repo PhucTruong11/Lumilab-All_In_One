@@ -200,6 +200,18 @@ def test_original_circuit_validity_open_switch_and_power(closed, ammeter):
                  "physics_invariants")["status"] == "invalid"
 
 
+def test_two_series_bulbs_use_combined_power_in_science_check():
+    parameters = {"slots": ["bulb", "bulb", None], "resistance_ohm": 20,
+                  "voltage_V": 6, "switchClosed": True, "ammeter": "series", "voltmeter": "parallel"}
+    reading = circuit(parameters, 0)
+    assert reading["totalResistance_ohm"] == 40
+    assert reading["current_A"] == pytest.approx(0.15)
+    assert reading["bulbPower_W"] == pytest.approx(0.45)
+    assert_pass(check_science("circuit", parameters, reading))
+    wrong = {**reading, "bulbPower_W": reading["bulbPower_W"] / 2}
+    assert stage(check_science("circuit", parameters, wrong), "physics_invariants")["status"] == "invalid"
+
+
 def test_wrong_small_angle_period_is_rejected_at_90_degrees():
     parameters = {"length_m": 1, "mass_kg": .2, "angle_deg": 90, "gravity_m_s2": 9.81}
     reading = pendulum(parameters, 0)

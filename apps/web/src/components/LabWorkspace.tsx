@@ -1,4 +1,5 @@
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense, useState } from 'react';
+import { ExperimentTools } from './ExperimentTools';
 import { LabServerPreview } from './LabServerPreview';
 import { AppBoundary } from './AppBoundary';
 import { PendulumLab } from './PendulumLab';
@@ -58,13 +59,15 @@ export function LabWorkspace({
   onLesson: () => void;
   onLumi: () => void;
 }) {
-  useLabClock(labId);
+  const [speed, setSpeed] = useState(1);
+  const [focused, setFocused] = useState(false);
+  useLabClock(labId, speed);
   const lab = labDefinitions[labId];
   const Renderer = renderers[labId];
   const group = practiceGroups.find(item => item.modes.includes(labId));
 
   return (
-    <>
+    <div className={`lab-workspace${focused ? ' is-focused' : ''}`}>
       <div className="workspace-heading">
         <div>
           <button className="lab-back" onClick={onCatalog}>
@@ -113,14 +116,17 @@ export function LabWorkspace({
         {group.modes.map(id => <button key={id} className="secondary-button" aria-pressed={labId === id}
           onClick={() => onSelect(id)}>{labDefinitions[id].title}</button>)}
       </nav>}
-      <LabSessionTools key={labId} id={labId} />
       <AppBoundary key={`renderer-${labId}`}>
         <Suspense fallback={<div className="lab-opening" role="status">Đang mở bàn thực hành…</div>}>
           <Renderer />
         </Suspense>
       </AppBoundary>
-      <LabServerPreview key={'preview-' + labId} id={labId} />
-      <LearningJourney key={`journey-${labId}`} id={labId} onLesson={onLesson} onLumi={onLumi} />
-    </>
+      <ExperimentTools key={`tools-${labId}`} id={labId} speed={speed} onSpeed={setSpeed} focused={focused} onFocus={() => setFocused(value => !value)}/>
+      <div className="lab-support">
+        <LabSessionTools key={labId} id={labId} />
+        <LabServerPreview key={'preview-' + labId} id={labId} />
+        <LearningJourney key={`journey-${labId}`} id={labId} onLesson={onLesson} onLumi={onLumi} />
+      </div>
+    </div>
   );
 }

@@ -325,7 +325,7 @@ def _physics_checks(lab_id: str, p: Mapping[str, Any], r: Mapping[str, Any]) -> 
     if lab_id == "circuit":
         resistance, voltage = _number(p, "resistance_ohm", positive=True), _number(p, "voltage_V")
         slots = p.get("slots", [])
-        total = resistance + 20 * ("extraResistor" in slots) + 10 * ("bulb" in slots)
+        total = resistance + 20 * slots.count("extraResistor") + 10 * (slots.count("resistor10") + slots.count("bulb"))
         closed = "switchInstalled" not in slots or p["switchClosed"]
         valid = p["ammeter"] == "series" and p["voltmeter"] == "parallel"
         _field(r, "totalResistance_ohm", total)
@@ -335,7 +335,7 @@ def _physics_checks(lab_id: str, p: Mapping[str, Any], r: Mapping[str, Any]) -> 
         _field(r, "current_A", current)
         _field(r, "resistorVoltage_V", None if current is None else current * resistance)
         _field(r, "power_W", None if current is None else voltage * current)
-        _field(r, "bulbPower_W", None if current is None else current ** 2 * 10 * ("bulb" in slots))
+        _field(r, "bulbPower_W", None if current is None else current ** 2 * 10 * slots.count("bulb"))
         return "Series resistance, meter placement, open switch, Ohm law and power agree."
     if lab_id == "parallel-circuit":
         voltage = _number(p, "voltage_V")

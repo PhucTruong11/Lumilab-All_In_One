@@ -3,12 +3,12 @@
   "id": "circuit",
   "title": "Mạch điện",
   "subject": "physics",
-  "model_version": "ideal-series-circuit-ts-v1",
+  "model_version": "ideal-series-circuit-ts-v2",
   "dataset_version": "client-draft-2026-11-01",
   "implementation_status": "client",
   "review_status": "draft",
   "assumptions": [
-    "Tải nối tiếp DC, dây/đồng hồ lý tưởng; bóng10Ω và điện trở phụ20Ω cố định.",
+    "Tải nối tiếp DC, dây/đồng hồ lý tưởng; bóng 10 Ω, điện trở 10 Ω hoặc 20 Ω cố định. Nhiều tải cùng loại trong ba ô, tối đa một công tắc.",
     "V đo R chính; sai cách mắc khóa số đo, không mô phỏng ngắn mạch; không mạng tải song song."
   ],
   "sources": [
@@ -65,6 +65,7 @@
           "enum": [
             null,
             "extraResistor",
+            "resistor10",
             "bulb",
             "switchInstalled"
           ]
@@ -89,10 +90,12 @@
   },
   "constants": {
     "extra_resistor_ohm": 20,
-    "bulb_resistance_ohm": 10
+    "bulb_resistance_ohm": 10,
+    "resistor_10_ohm": 10
   },
   "constant_units": {
     "extra_resistor_ohm": "ohm",
-    "bulb_resistance_ohm": "ohm"
+    "bulb_resistance_ohm": "ohm",
+    "resistor_10_ohm": "ohm"
   }
 }
