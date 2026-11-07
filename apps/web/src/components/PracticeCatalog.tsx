@@ -69,6 +69,68 @@ function Preview({ id }: { id: LabId }) {
           <path d="M170 60h32M170 78h32" stroke="#14798f" strokeWidth="4.5" strokeLinecap="round" />
           <path d="M218 98q16-56 58-62" fill="none" stroke="#1f7054" strokeWidth="2.5" />
         </g>
+      ) : id === 'circuit' ? (
+        <g>
+          <path d="M90 51V32h145v70H90V73" fill="none" stroke="currentColor" strokeWidth="3" />
+          <path d="M80 54h20M85 69h10" stroke="currentColor" strokeWidth="3" />
+          <rect x="146" y="23" width="40" height="19" rx="4" fill="#c97a16" opacity=".7" />
+          <circle cx="211" cy="102" r="15" fill="#edf6f2" stroke="currentColor" strokeWidth="2" />
+          <text x="211" y="107" textAnchor="middle" fill="currentColor" fontSize="14" fontWeight="700">A</text>
+        </g>
+      ) : id === 'chemistry' ? (
+        <g>
+          <path d="M218 16v99m-16 0h32M218 32h-34" stroke="currentColor" strokeWidth="2.5" opacity=".35" strokeLinecap="round" />
+          <rect x="178" y="16" width="12" height="52" rx="3" fill="currentColor" opacity=".45" />
+          <path d="M174 58h20" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
+          <circle cx="184" cy="74" r="2.5" fill="#d94e8f" />
+          <path d="M171 80v8l-19 26h64l-19-26v-8" fill="none" stroke="currentColor" strokeWidth="2.2" />
+          <path d="M159 104h50l7 10h-64z" fill="#d94e8f" opacity=".35" />
+          <rect x="82" y="60" width="34" height="54" rx="6" fill="currentColor" opacity=".2" />
+          <path d="M89 60v-8h20v8" fill="none" stroke="currentColor" strokeWidth="2" />
+          <text x="99" y="92" textAnchor="middle" fill="currentColor" fontSize="10" fontWeight="600">pH</text>
+        </g>
+      ) : id === 'precipitation' ? (
+        <g>
+          <rect x="74" y="48" width="28" height="42" rx="5" fill="currentColor" opacity=".22" transform="rotate(-18 88 69)" />
+          <rect x="218" y="48" width="28" height="42" rx="5" fill="currentColor" opacity=".22" transform="rotate(18 232 69)" />
+          <path d="M126 52v54q0 8 8 8h52q8 0 8-8V52" fill="none" stroke="currentColor" strokeWidth="2.5" />
+          <path d="M128 74h64v32q0 6-6 6h-52q-6 0-6-6z" fill="currentColor" opacity=".16" />
+          <path d="M130 101q30-6 60 0v7q0 5-5 5h-50q-5 0-5-5z" fill="#ffffff" stroke="currentColor" strokeWidth="1.5" />
+          <circle cx="145" cy="94" r="3" fill="#ffffff" stroke="currentColor" strokeWidth="1.2" />
+          <circle cx="160" cy="91" r="3.5" fill="#ffffff" stroke="currentColor" strokeWidth="1.2" />
+          <circle cx="175" cy="95" r="3" fill="#ffffff" stroke="currentColor" strokeWidth="1.2" />
+          <text x="160" y="42" textAnchor="middle" fill="currentColor" fontSize="10" fontWeight="600">AgCl↓</text>
+        </g>
+      ) : id === 'gas-reaction' ? (
+        <g>
+          <path d="M122 50v56q0 8 8 8h56q8 0 8-8V50" fill="none" stroke="currentColor" strokeWidth="2.5" />
+          <path d="M124 78h68v28q0 6-6 6h-56q-6 0-6-6z" fill="currentColor" opacity=".2" />
+          <circle cx="144" cy="88" r="3.5" fill="#ffffff" stroke="currentColor" strokeWidth="1.5" />
+          <circle cx="160" cy="76" r="4.5" fill="#ffffff" stroke="currentColor" strokeWidth="1.5" />
+          <circle cx="173" cy="84" r="3" fill="#ffffff" stroke="currentColor" strokeWidth="1.5" />
+          <circle cx="154" cy="60" r="4" fill="#ffffff" stroke="currentColor" strokeWidth="1.5" />
+          <circle cx="168" cy="52" r="3" fill="#ffffff" stroke="currentColor" strokeWidth="1.5" />
+          <path d="M180 50V32h44v24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" opacity=".55" />
+          <rect x="212" y="56" width="24" height="44" rx="4" fill="currentColor" opacity=".22" stroke="currentColor" strokeWidth="1.8" />
+          <text x="158" y="36" textAnchor="middle" fill="currentColor" fontSize="10" fontWeight="600">CO₂↑</text>
+        </g>
+      ) : id === 'electrochemistry' ? (
+        <g>
+          <path d="M85 60v45h55V60m45 0v45h55V60" fill="none" stroke="currentColor" strokeWidth="2" />
+          <path d="M112 75V30h101v45M130 84V55h68v29" fill="none" stroke="currentColor" strokeWidth="3" opacity=".5" />
+          <path d="M111 65v33m102-33v33" stroke="currentColor" strokeWidth="9" opacity=".5" />
+          <circle cx="162" cy="30" r="15" fill="#f2edf8" stroke="currentColor" strokeWidth="2" />
+          <text x="162" y="35" textAnchor="middle" fontSize="13" fill="currentColor" fontWeight="700">V</text>
+        </g>
+      ) : id === 'atomic' ? (
+        <g>
+          <circle cx="160" cy="65" r="15" fill="currentColor" opacity=".45" />
+          <ellipse cx="160" cy="65" rx="62" ry="26" stroke="currentColor" fill="none" opacity=".35" />
+          <ellipse cx="160" cy="65" rx="62" ry="26" stroke="currentColor" fill="none" opacity=".35" transform="rotate(60 160 65)" />
+          <ellipse cx="160" cy="65" rx="62" ry="26" stroke="currentColor" fill="none" opacity=".35" transform="rotate(120 160 65)" />
+          <circle cx="222" cy="65" r="5" fill="currentColor" />
+          <circle cx="130" cy="111" r="5" fill="currentColor" />
+        </g>
       ) : id === 'alkali-water' ? (
         <g>
           <path d="M88 54v44q0 16 16 16h112q16 0 16-16V54" fill="#fff" fillOpacity=".65" stroke="currentColor" strokeWidth="2.5" />

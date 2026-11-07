@@ -6,20 +6,20 @@ async function drag(page: Page, from: Locator, x: number, y: number) {
 }
 test('practice navigation opens the nine-lab catalog with subject and search filters', async ({ page }) => {
   await page.goto('/'); await expect(page.getByRole('heading', { name: 'Phòng thực hành', exact: true })).toBeVisible();
-  await expect(page.locator('.practice-card')).toHaveCount(9);
+  await expect(page.locator('.practice-card')).toHaveCount(11);
   const filter = page.getByRole('group', { name: 'Lọc môn thực hành' });
   await filter.getByRole('button', { name: 'Vật lí', exact: true }).click(); await expect(page.locator('.practice-card')).toHaveCount(6);
-  await filter.getByRole('button', { name: 'Hóa học', exact: true }).click(); await expect(page.locator('.practice-card')).toHaveCount(3);
+  await filter.getByRole('button', { name: 'Hóa học', exact: true }).click(); await expect(page.locator('.practice-card')).toHaveCount(5);
   await filter.getByRole('button', { name: 'Tất cả', exact: true }).click();
   await page.getByRole('searchbox', { name: 'Tìm bài thực hành' }).fill('lo xo'); await expect(page.locator('.practice-card')).toHaveCount(1);
   await page.getByRole('searchbox', { name: 'Tìm bài thực hành' }).fill('xyz không có'); await expect(page.getByText('Chưa tìm thấy bài phù hợp')).toBeVisible();
   await page.getByRole('button', { name: 'Xóa bộ lọc' }).click();
   await page.getByRole('button', { name: 'Mở bài thực hành Định luật II Newton', exact: true }).click();
-  await page.getByRole('button', { name: 'Phòng thực hành', exact: true }).click(); await expect(page.locator('.practice-card')).toHaveCount(9);
+  await page.getByRole('button', { name: 'Phòng thực hành', exact: true }).click(); await expect(page.locator('.practice-card')).toHaveCount(11);
 });
 
 test('every lesson includes theory, formulas, exercise and the corresponding working lab', async ({ page }) => {
-  const labs = [["pendulum", "Con lắc đơn"], ["spring", "Con lắc lò xo"], ["mechanics", "Định luật II Newton"], ["pulley", "Ròng rọc và pa-lăng"], ["parallel-circuit", "Mạch nối tiếp và song song"], ["capacitor", "Tụ điện: nạp và phóng điện"], ["alkali-water", "Na, K tác dụng với nước và màu ngọn lửa"], ["copper-nitric", "Đồng với HNO₃: NO và NO₂"], ["chlorine-bleach", "Clo và tính tẩy màu trong điều kiện ẩm"]];
+  const labs = [["pendulum", "Con lắc đơn"], ["spring", "Con lắc lò xo"], ["mechanics", "Định luật II Newton"], ["pulley", "Ròng rọc và pa-lăng"], ["parallel-circuit", "Mạch nối tiếp và song song"], ["capacitor", "Tụ điện: nạp và phóng điện"], ["chemistry", "Chuẩn độ axit–bazơ"], ["precipitation", "Phản ứng tạo kết tủa AgCl"], ["gas-reaction", "Phản ứng axit và muối bicarbonat"], ["electrochemistry", "Pin điện hóa"], ["atomic", "Cấu tạo nguyên tử"]];
   await page.goto('/');
   for (const [id, title] of labs) {
     await page.getByTestId(`practice-card-${id}`).getByRole('button', { name: 'Xem bài học', exact: true }).click();
@@ -27,7 +27,7 @@ test('every lesson includes theory, formulas, exercise and the corresponding wor
     await expect(page.getByRole('heading', { name: 'Công thức cần nhớ', exact: true })).toBeVisible();
     await expect(page.getByRole('heading', { name: 'Thử vận dụng', exact: true })).toBeVisible();
     await expect(page.getByLabel('Ghi chú của bạn', { exact: true })).toBeVisible();
-    if (['pulley', 'alkali-water', 'copper-nitric', 'chlorine-bleach'].includes(id)) {
+    if (['pulley', 'precipitation', 'gas-reaction', 'electrochemistry', 'atomic'].includes(id)) {
       await page.getByText('Thực hành có hướng dẫn', { exact: true }).click();
       await expect(page.getByRole('heading', { name: 'Tiêu chí tự đánh giá' })).toBeVisible();
     }

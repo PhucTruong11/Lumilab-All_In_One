@@ -2,7 +2,7 @@ import { expect, test } from '@playwright/test';
 
 test('three grouped lessons open both original and extended models', async ({ page }) => {
   await page.goto('/');
-  await expect(page.locator('.practice-card')).toHaveCount(9);
+  await expect(page.locator('.practice-card')).toHaveCount(11);
   const pairs = [
     ['spring', 'Con lắc lò xo tắt dần', 'spring-damped'],
     ['mechanics', 'Newton II và mặt phẳng nghiêng', 'inclined-plane'],
