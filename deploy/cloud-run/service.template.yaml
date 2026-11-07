@@ -1,0 +1,33 @@
+# TEMPLATE ONLY. Replace all values marked REPLACE before review/apply.
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: lumilab-staging-REPLACE
+spec:
+  template:
+    metadata:
+      annotations:
+        autoscaling.knative.dev/minScale: "0"
+        autoscaling.knative.dev/maxScale: "1"
+        run.googleapis.com/cpu-throttling: "true"
+        run.googleapis.com/startup-cpu-boost: "false"
+    spec:
+      serviceAccountName: lumilab-runtime@PROJECT_REPLACE.iam.gserviceaccount.com
+      containerConcurrency: 4
+      timeoutSeconds: 20
+      containers:
+        - image: REGION_REPLACE-docker.pkg.dev/PROJECT_REPLACE/lumilab/api@sha256:DIGEST_REPLACE
+          ports:
+            - containerPort: 8000
+          resources:
+            limits:
+              cpu: "1"
+              memory: 512Mi
+          env:
+            - name: LUMILAB_LLM_ENABLED
+              value: "false"
+            - name: LUMILAB_LLM_EVENT_CAP
+              value: "0"
+            - name: LUMILAB_RAG_ENABLED
+              value: "false"
+# DATABASE_URL intentionally absent until DB/TLS/Secret Manager is chosen.
