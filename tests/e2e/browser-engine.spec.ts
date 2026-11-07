@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test';
 
 test('a failed chart module does not take down the experiment or its controls', async ({ page }) => {
-  await page.route('**/PendulumChart.tsx*', route => route.abort());
+  await page.route('**/*PendulumChart*', route => route.abort());
   await page.goto('/#lab/pendulum');
   await expect(page.getByText('Chưa mở được đồ thị.', { exact: false })).toBeVisible();
   await page.getByRole('slider', { name: 'Chiều dài dây', exact: true }).press('End');
