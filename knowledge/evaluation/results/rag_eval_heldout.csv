@@ -1,0 +1,15 @@
+id,label,lab_id,relevant,A,B,C,D,REF
+ho-pen-01,ANSWERABLE,pendulum,pendulum-overview:0,ctst-pendulum-limits:0,ctst-pendulum-limits:0,ctst-pendulum-limits:0,ctst-pendulum-limits:0,ctst-pendulum-limits:0
+ho-pen-02,ANSWERABLE,pendulum,ctst-period-measure:0,ctst-period-measure:0|ctst-pendulum-limits:0,ctst-period-measure:0|ctst-pendulum-limits:0,ctst-period-measure:0|ctst-pendulum-limits:0,ctst-period-measure:0|ctst-pendulum-limits:0,ctst-period-measure:0|ctst-pendulum-limits:0
+ho-pen-03,ANSWERABLE,pendulum,ctst-pendulum-limits:0,ctst-pendulum-limits:0|pendulum-overview:0,pendulum-overview:0|ctst-pendulum-limits:0,pendulum-overview:0|ctst-pendulum-limits:0,ctst-pendulum-limits:0|pendulum-overview:0,ctst-pendulum-limits:0|pendulum-overview:0
+ho-cir-01,ANSWERABLE,circuit,circuit-overview:0,circuit-overview:0|ctst-source-voltage:0,ctst-source-voltage:0|circuit-overview:0,ctst-source-voltage:0|circuit-overview:0,circuit-overview:0|ctst-source-voltage:0,circuit-overview:0|ctst-source-voltage:0
+ho-par-01,ANSWERABLE,parallel-circuit,ctst-parallel-branches:0,ctst-parallel-branches:0,ctst-parallel-branches:0,ctst-parallel-branches:0,ctst-parallel-branches:0,ctst-parallel-branches:0
+ho-gas-01,ANSWERABLE,gas-reaction,ctst-carbonate-gas:0,ctst-carbonate-gas:0,ctst-carbonate-gas:0,ctst-carbonate-gas:0,ctst-carbonate-gas:0,ctst-carbonate-gas:0
+ho-pre-01,ANSWERABLE,precipitation,precipitation-overview:0,precipitation-overview:0,precipitation-overview:0,precipitation-overview:0,precipitation-overview:0,precipitation-overview:0
+ho-mec-01,ANSWERABLE,mechanics,ctst-pulley-context:0,ctst-pulley-context:0|ctst-net-force:0,ctst-pulley-context:0|ctst-net-force:0,ctst-pulley-context:0|ctst-net-force:0,ctst-pulley-context:0|ctst-net-force:0,ctst-pulley-context:0|ctst-net-force:0
+ho-chem-01,ANSWERABLE,chemistry,ctst-neutralization:0,ctst-ph-indicator:0|ctst-neutralization:0|chemistry-thcs-foundation:0,chemistry-thcs-foundation:0|ctst-ph-indicator:0|ctst-neutralization:0,chemistry-thcs-foundation:0|ctst-ph-indicator:0|ctst-neutralization:0,ctst-ph-indicator:0|chemistry-thcs-foundation:0|ctst-neutralization:0,ctst-ph-indicator:0|chemistry-thcs-foundation:0|ctst-neutralization:0
+ho-wronglab-01,WRONG_LAB,mechanics,,,,,,
+ho-wronglab-02,WRONG_LAB,chemistry,,,,,,
+ho-oos-01,OUT_OF_SCOPE,circuit,,,,,,
+ho-missing-01,MISSING_EVIDENCE,spring,,spring-overview:0,spring-overview:0,spring-overview:0,spring-overview:0,spring-overview:0
+ho-missing-02,MISSING_EVIDENCE,capacitor,,,,,,

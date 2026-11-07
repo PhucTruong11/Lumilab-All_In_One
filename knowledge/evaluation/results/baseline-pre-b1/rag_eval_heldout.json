@@ -1,0 +1,435 @@
+{
+ "set": "heldout",
+ "generated_at": "2026-11-07T11:00:35.328889+00:00",
+ "corpus_fingerprint": "45725db93c40b71627cf6fb4cfcd9fa4eccf593d946b5cb10ba1d3ee218b7da5",
+ "embedding_id": "token-hash-v1-512",
+ "config": {
+  "min_cosine": 0.12,
+  "min_bm25": 0.05,
+  "note": "C/D weighted score fusion (experimental); REF = production RRF via CompiledIndex.retrieve (top-3)"
+ },
+ "answerable_cases": 9,
+ "refusal_cases": 5,
+ "summary": {
+  "A": {
+   "hit@1": 0.6667,
+   "hit@3": 0.7778,
+   "hit@5": 0.7778,
+   "recall@1": 0.6667,
+   "recall@3": 0.7778,
+   "recall@5": 0.7778,
+   "mrr": 0.7222,
+   "crr": 0.8
+  },
+  "B": {
+   "hit@1": 0.5556,
+   "hit@3": 0.7778,
+   "hit@5": 0.7778,
+   "recall@1": 0.5556,
+   "recall@3": 0.7778,
+   "recall@5": 0.7778,
+   "mrr": 0.6481,
+   "crr": 0.8
+  },
+  "C": {
+   "hit@1": 0.5556,
+   "hit@3": 0.7778,
+   "hit@5": 0.7778,
+   "recall@1": 0.5556,
+   "recall@3": 0.7778,
+   "recall@5": 0.7778,
+   "mrr": 0.6481,
+   "crr": 0.8
+  },
+  "D": {
+   "hit@1": 0.6667,
+   "hit@3": 0.7778,
+   "hit@5": 0.7778,
+   "recall@1": 0.6667,
+   "recall@3": 0.7778,
+   "recall@5": 0.7778,
+   "mrr": 0.7037,
+   "crr": 0.8
+  },
+  "REF": {
+   "hit@1": 0.6667,
+   "hit@3": 0.7778,
+   "hit@5": 0.7778,
+   "recall@1": 0.6667,
+   "recall@3": 0.7778,
+   "recall@5": 0.7778,
+   "mrr": 0.7037,
+   "crr": 0.8
+  }
+ },
+ "failures": {
+  "false_answers": {
+   "A": [
+    "ho-missing-01"
+   ],
+   "B": [
+    "ho-missing-01"
+   ],
+   "C": [
+    "ho-missing-01"
+   ],
+   "D": [
+    "ho-missing-01"
+   ],
+   "REF": [
+    "ho-missing-01"
+   ]
+  },
+  "wrong_lab_hits": {
+   "A": [],
+   "B": [],
+   "C": [],
+   "D": [],
+   "REF": []
+  },
+  "false_refusals": {
+   "A": [
+    "ho-cir-01"
+   ],
+   "B": [
+    "ho-cir-01"
+   ],
+   "C": [
+    "ho-cir-01"
+   ],
+   "D": [
+    "ho-cir-01"
+   ],
+   "REF": [
+    "ho-cir-01"
+   ]
+  },
+  "missed_top1": {
+   "A": [
+    "ho-pen-01",
+    "ho-chem-01"
+   ],
+   "B": [
+    "ho-pen-01",
+    "ho-pen-03",
+    "ho-chem-01"
+   ],
+   "C": [
+    "ho-pen-01",
+    "ho-pen-03",
+    "ho-chem-01"
+   ],
+   "D": [
+    "ho-pen-01",
+    "ho-chem-01"
+   ],
+   "REF": [
+    "ho-pen-01",
+    "ho-chem-01"
+   ]
+  }
+ },
+ "rows": [
+  {
+   "id": "ho-pen-01",
+   "label": "ANSWERABLE",
+   "lab_id": "pendulum",
+   "question": "Đổi vật treo sang vật nặng gấp đôi, chu kỳ con lắc có đổi không?",
+   "relevant": [
+    "pendulum-overview:0"
+   ],
+   "A": [
+    "ctst-pendulum-limits:0"
+   ],
+   "B": [
+    "ctst-pendulum-limits:0"
+   ],
+   "C": [
+    "ctst-pendulum-limits:0"
+   ],
+   "D": [
+    "ctst-pendulum-limits:0"
+   ],
+   "REF": [
+    "ctst-pendulum-limits:0"
+   ]
+  },
+  {
+   "id": "ho-pen-02",
+   "label": "ANSWERABLE",
+   "lab_id": "pendulum",
+   "question": "Đo chu kỳ bằng cách bấm giờ 20 dao động rồi chia cho 20 có được không?",
+   "relevant": [
+    "ctst-period-measure:0"
+   ],
+   "A": [
+    "ctst-period-measure:0",
+    "ctst-pendulum-limits:0"
+   ],
+   "B": [
+    "ctst-period-measure:0",
+    "ctst-pendulum-limits:0"
+   ],
+   "C": [
+    "ctst-period-measure:0",
+    "ctst-pendulum-limits:0"
+   ],
+   "D": [
+    "ctst-period-measure:0",
+    "ctst-pendulum-limits:0"
+   ],
+   "REF": [
+    "ctst-period-measure:0",
+    "ctst-pendulum-limits:0"
+   ]
+  },
+  {
+   "id": "ho-pen-03",
+   "label": "ANSWERABLE",
+   "lab_id": "pendulum",
+   "question": "Thả con lắc từ góc rất lớn thì công thức chu kỳ còn tin được không?",
+   "relevant": [
+    "ctst-pendulum-limits:0"
+   ],
+   "A": [
+    "ctst-pendulum-limits:0",
+    "pendulum-overview:0"
+   ],
+   "B": [
+    "pendulum-overview:0",
+    "ctst-pendulum-limits:0"
+   ],
+   "C": [
+    "pendulum-overview:0",
+    "ctst-pendulum-limits:0"
+   ],
+   "D": [
+    "ctst-pendulum-limits:0",
+    "pendulum-overview:0"
+   ],
+   "REF": [
+    "ctst-pendulum-limits:0",
+    "pendulum-overview:0"
+   ]
+  },
+  {
+   "id": "ho-cir-01",
+   "label": "ANSWERABLE",
+   "lab_id": "circuit",
+   "question": "Điện trở càng lớn thì dòng điện qua nó thế nào nếu giữ nguyên hiệu điện thế?",
+   "relevant": [
+    "circuit-overview:0"
+   ],
+   "A": [],
+   "B": [],
+   "C": [],
+   "D": [],
+   "REF": []
+  },
+  {
+   "id": "ho-par-01",
+   "label": "ANSWERABLE",
+   "lab_id": "parallel-circuit",
+   "question": "Hai nhánh mắc song song thì điện áp hai đầu mỗi nhánh có bằng nhau không?",
+   "relevant": [
+    "ctst-parallel-branches:0"
+   ],
+   "A": [
+    "ctst-parallel-branches:0"
+   ],
+   "B": [
+    "ctst-parallel-branches:0"
+   ],
+   "C": [
+    "ctst-parallel-branches:0"
+   ],
+   "D": [
+    "ctst-parallel-branches:0"
+   ],
+   "REF": [
+    "ctst-parallel-branches:0"
+   ]
+  },
+  {
+   "id": "ho-gas-01",
+   "label": "ANSWERABLE",
+   "lab_id": "gas-reaction",
+   "question": "Axit gặp muối carbonate thì sinh khí gì, phân biệt với khí hidro thế nào?",
+   "relevant": [
+    "ctst-carbonate-gas:0"
+   ],
+   "A": [
+    "ctst-carbonate-gas:0"
+   ],
+   "B": [
+    "ctst-carbonate-gas:0"
+   ],
+   "C": [
+    "ctst-carbonate-gas:0"
+   ],
+   "D": [
+    "ctst-carbonate-gas:0"
+   ],
+   "REF": [
+    "ctst-carbonate-gas:0"
+   ]
+  },
+  {
+   "id": "ho-pre-01",
+   "label": "ANSWERABLE",
+   "lab_id": "precipitation",
+   "question": "Phản ứng giữa bạc nitrat và muối clorua tạo kết tủa gì?",
+   "relevant": [
+    "precipitation-overview:0"
+   ],
+   "A": [
+    "precipitation-overview:0"
+   ],
+   "B": [
+    "precipitation-overview:0"
+   ],
+   "C": [
+    "precipitation-overview:0"
+   ],
+   "D": [
+    "precipitation-overview:0"
+   ],
+   "REF": [
+    "precipitation-overview:0"
+   ]
+  },
+  {
+   "id": "ho-mec-01",
+   "label": "ANSWERABLE",
+   "lab_id": "mechanics",
+   "question": "Trong thí nghiệm kéo xe, ròng rọc dùng để đổi hướng lực kéo phải không?",
+   "relevant": [
+    "ctst-pulley-context:0"
+   ],
+   "A": [
+    "ctst-pulley-context:0",
+    "ctst-net-force:0"
+   ],
+   "B": [
+    "ctst-pulley-context:0",
+    "ctst-net-force:0"
+   ],
+   "C": [
+    "ctst-pulley-context:0",
+    "ctst-net-force:0"
+   ],
+   "D": [
+    "ctst-pulley-context:0",
+    "ctst-net-force:0"
+   ],
+   "REF": [
+    "ctst-pulley-context:0",
+    "ctst-net-force:0"
+   ]
+  },
+  {
+   "id": "ho-chem-01",
+   "label": "ANSWERABLE",
+   "lab_id": "chemistry",
+   "question": "Trung hoà axit bằng bazơ có chỉ cần so thể tích hai dung dịch không?",
+   "relevant": [
+    "ctst-neutralization:0"
+   ],
+   "A": [
+    "ctst-ph-indicator:0",
+    "ctst-neutralization:0",
+    "chemistry-thcs-foundation:0"
+   ],
+   "B": [
+    "chemistry-thcs-foundation:0",
+    "ctst-ph-indicator:0",
+    "ctst-neutralization:0"
+   ],
+   "C": [
+    "chemistry-thcs-foundation:0",
+    "ctst-ph-indicator:0",
+    "ctst-neutralization:0"
+   ],
+   "D": [
+    "ctst-ph-indicator:0",
+    "chemistry-thcs-foundation:0",
+    "ctst-neutralization:0"
+   ],
+   "REF": [
+    "ctst-ph-indicator:0",
+    "chemistry-thcs-foundation:0",
+    "ctst-neutralization:0"
+   ]
+  },
+  {
+   "id": "ho-wronglab-01",
+   "label": "WRONG_LAB",
+   "lab_id": "mechanics",
+   "question": "Con lắc dao động một lần hết bao lâu thì gọi là chu kỳ?",
+   "relevant": [],
+   "A": [],
+   "B": [],
+   "C": [],
+   "D": [],
+   "REF": []
+  },
+  {
+   "id": "ho-wronglab-02",
+   "label": "WRONG_LAB",
+   "lab_id": "chemistry",
+   "question": "Ampe kế mắc nối tiếp hay song song với đoạn mạch cần đo?",
+   "relevant": [],
+   "A": [],
+   "B": [],
+   "C": [],
+   "D": [],
+   "REF": []
+  },
+  {
+   "id": "ho-oos-01",
+   "label": "OUT_OF_SCOPE",
+   "lab_id": "circuit",
+   "question": "Công thức nấu phở bò ngon là gì?",
+   "relevant": [],
+   "A": [],
+   "B": [],
+   "C": [],
+   "D": [],
+   "REF": []
+  },
+  {
+   "id": "ho-missing-01",
+   "label": "MISSING_EVIDENCE",
+   "lab_id": "spring",
+   "question": "Dao động tắt dần của lò xo trong dầu nhớt diễn ra thế nào?",
+   "relevant": [],
+   "A": [
+    "spring-overview:0"
+   ],
+   "B": [
+    "spring-overview:0"
+   ],
+   "C": [
+    "spring-overview:0"
+   ],
+   "D": [
+    "spring-overview:0"
+   ],
+   "REF": [
+    "spring-overview:0"
+   ]
+  },
+  {
+   "id": "ho-missing-02",
+   "label": "MISSING_EVIDENCE",
+   "lab_id": "capacitor",
+   "question": "Tụ điện trong mạch xoay chiều cản dòng điện ra sao?",
+   "relevant": [],
+   "A": [],
+   "B": [],
+   "C": [],
+   "D": [],
+   "REF": []
+  }
+ ]
+}

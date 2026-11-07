@@ -1,0 +1,19 @@
+--- a/apps/api/src/lumilab_api/retrieval_terms.py
++++ b/apps/api/src/lumilab_api/retrieval_terms.py
+@@ -2,7 +2,7 @@
+ import re
+ import unicodedata
+ 
+-PROFILE = 'vi-en-science-v3'
++PROFILE = 'vi-en-science-v4'
+ # Phrase equivalences are general domain vocabulary, not case IDs or answer labels.
+ ALIASES = {
+     # Keep compound meanings intact: 'công thức' must not match 'thực vật',
+@@ -41,6 +41,7 @@
+ STOP = set(('la va cua thi khi voi nhung mot cac cho minh ban em nay do sao vi gi '
+     'co khong the nao phai duoc de hay neu se van nhu bang tai '
+     'tang giam hon doi thay thi ngay mai '
++    'cang giu lon nguyen no qua '
+     'how why what which does do is are was were the a an and or of to through there '
+     'in on at for by as be should would can could when with that this it its '
+     'affect affects change changes required same near than then').split())
