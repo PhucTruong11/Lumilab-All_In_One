@@ -18,6 +18,7 @@ RUN npm run build:web
 FROM nginx:stable-alpine
 ARG BUILD_SHA=unknown
 LABEL org.opencontainers.image.revision=$BUILD_SHA
-COPY docker/nginx.conf /etc/nginx/conf.d/default.conf
+ARG NGINX_CONF=docker/nginx.conf
+COPY ${NGINX_CONF} /etc/nginx/conf.d/default.conf
 COPY --from=build /workspace/apps/web/dist /usr/share/nginx/html
 EXPOSE 80

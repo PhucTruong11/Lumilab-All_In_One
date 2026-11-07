@@ -1,0 +1,48 @@
+# TEMPLATE ONLY. Replace every *_REPLACE value; do not apply before quota/cost/secret review.
+# One Cloud Run service: Nginx (web + HTTPS ingress) -> API sidecar on localhost:8000.
+# Web image: docker build -f docker/web.Dockerfile --build-arg NGINX_CONF=docker/nginx.cloudrun.conf --build-arg BUILD_SHA=<sha> .
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: lumilab-staging-REPLACE
+  annotations:
+    run.googleapis.com/ingress: all
+spec:
+  template:
+    metadata:
+      annotations:
+        autoscaling.knative.dev/minScale: "0"
+        autoscaling.knative.dev/maxScale: "1"
+        run.googleapis.com/cpu-throttling: "true"
+        run.googleapis.com/startup-cpu-boost: "false"
+        run.googleapis.com/container-dependencies: '{"web":["api"]}'
+    spec:
+      serviceAccountName: lumilab-runtime@PROJECT_REPLACE.iam.gserviceaccount.com
+      containerConcurrency: 4
+      timeoutSeconds: 30
+      containers:
+        - name: web
+          image: REGION_REPLACE-docker.pkg.dev/PROJECT_REPLACE/lumilab/web@sha256:WEB_DIGEST_REPLACE
+          ports:
+            - containerPort: 80
+          resources:
+            limits: { cpu: "0.5", memory: 128Mi }
+        - name: api
+          image: REGION_REPLACE-docker.pkg.dev/PROJECT_REPLACE/lumilab/api@sha256:API_DIGEST_REPLACE
+          resources:
+            limits: { cpu: "1", memory: 512Mi }
+          env:
+            - name: LUMILAB_ENV
+              value: production
+            - name: LUMILAB_ALLOWED_ORIGINS
+              value: '["https://HOST_REPLACE"]'
+            - name: LUMILAB_RAG_ARTIFACT_PATH
+              value: /workspace/retrieval-index/index.json
+            # Live AI is OFF at launch. Enable only after quota, data-sharing approval and acceptance results.
+            - name: LUMILAB_LLM_ENABLED
+              value: "false"
+            - name: LUMILAB_LLM_EVENT_CAP
+              value: "0"
+            - name: LUMILAB_DATABASE_URL
+              valueFrom:
+                secretKeyRef: { name: lumilab-database-url, key: latest }
