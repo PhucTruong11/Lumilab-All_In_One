@@ -458,7 +458,6 @@
 }
 
 /* Focus mode */
-.lab-workspace.is-focused .session-strip,
 .lab-workspace.is-focused .below-lab,
 .lab-workspace.is-focused .lab-support,
 .lab-workspace.is-focused .chart-panel,

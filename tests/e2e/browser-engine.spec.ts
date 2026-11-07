@@ -7,8 +7,8 @@ test('a failed chart module does not take down the experiment or its controls', 
   await page.getByRole('slider', { name: 'Chiều dài dây', exact: true }).press('End');
   await expect(page.getByRole('slider', { name: 'Chiều dài dây', exact: true })).toHaveValue('2');
   await expect(page.getByTestId('period-reading')).toBeVisible();
-  await page.getByRole('button', { name: 'Lưu phiên', exact: true }).click();
-  await expect(page.getByRole('status').filter({ hasText: 'Đã lưu phiên' })).toBeVisible();
+  await expect(page.getByRole('region', { name: 'Quản lý phiên thí nghiệm' })).toHaveCount(0);
+  await expect.poll(() => page.evaluate(() => Boolean(localStorage.getItem('lumilab-session-v1-pendulum')))).toBe(true);
 });
 
 test('engine keeps all three sessions when switching labs and restores a saved session on reload', async ({ page }) => {
@@ -17,8 +17,6 @@ test('engine keeps all three sessions when switching labs and restores a saved s
   await page.getByRole('button', { name: 'Ghi số đo', exact: false }).click();
   await page.getByText('Dự đoán & giải thích', { exact: true }).click();
   await page.getByLabel('Trước khi thử, bạn dự đoán gì?').fill('Sau tương đương chỉ thị sẽ hồng.');
-  await page.getByRole('button', { name: 'Lưu phiên', exact: true }).click();
-  await expect(page.getByRole('status').filter({ hasText: 'Đã lưu phiên' })).toBeVisible();
   await page.getByRole('combobox', { name: 'Chuyển bài thực hành' }).selectOption('circuit');
   await page.getByRole('slider', { name: 'Điện áp nguồn', exact: true }).press('End');
   await page.getByRole('combobox', { name: 'Chuyển bài thực hành' }).selectOption('chemistry');
@@ -36,21 +34,16 @@ test('engine keeps all three sessions when switching labs and restores a saved s
   await expect(page.getByLabel('Trước khi thử, bạn dự đoán gì?')).toHaveValue('Sau tương đương chỉ thị sẽ hồng.');
 });
 
-test('invalid imports and blocked storage keep the current lab; valid JSON export can be restored', async ({ page }) => {
+test('invalid saved data opens a default lab and blocked storage does not break controls', async ({ page }) => {
   await page.goto('/#lab/circuit');
+  await page.evaluate(() => localStorage.setItem('lumilab-session-v1-circuit', '{"lab_id":"fake"}'));
+  await page.reload();
+  await expect(page.getByRole('status').filter({ hasText: 'Bản lưu trên máy không đọc được' })).toBeVisible();
   await page.getByRole('slider', { name: 'Điện áp nguồn', exact: true }).press('End');
-  await page.getByLabel('Tệp phiên thí nghiệm').setInputFiles({ name: 'wrong.json', mimeType: 'application/json', buffer: Buffer.from('{"lab_id":"fake","reading":{"current_A":999}}') });
-  await expect(page.getByRole('status').filter({ hasText: 'Tệp không hợp lệ' })).toBeVisible();
-  await expect(page.getByTestId('current-reading')).toContainText('0.600');
-  const downloadEvent = page.waitForEvent('download');
-  await page.getByRole('button', { name: 'Xuất phiên', exact: true }).click();
-  const download = await downloadEvent; const path = (await download.path())!;
-  await page.getByRole('button', { name: 'Đặt lại', exact: false }).click();
-  await page.getByLabel('Tệp phiên thí nghiệm').setInputFiles(path);
   await expect(page.getByTestId('current-reading')).toContainText('0.600');
   await page.evaluate(() => { Storage.prototype.setItem = () => { throw new DOMException('Blocked', 'QuotaExceededError'); }; });
-  await page.getByRole('button', { name: 'Lưu phiên', exact: true }).click();
-  await expect(page.getByRole('status').filter({ hasText: 'Không thực hiện được' })).toBeVisible();
+  await page.getByRole('slider', { name: 'Điện áp nguồn', exact: true }).press('Home');
+  await page.getByRole('slider', { name: 'Điện áp nguồn', exact: true }).press('End');
   await expect(page.getByTestId('current-reading')).toContainText('0.600');
 });
 

@@ -41,15 +41,11 @@ test('circuit kit supports repeated bulbs, a 10 Ω resistor and an old saved ses
     elapsed_s: 0, presentation: { side: 1, material: 'steel' },
     notes: { prediction: '', reflection: '' }, records: [],
   };
-  await page.locator('input[aria-label="Tệp phiên thí nghiệm"]').setInputFiles({
-    name: 'mach-cu.json', mimeType: 'application/json', buffer: Buffer.from(JSON.stringify(oldSession)),
-  });
+  await page.evaluate(saved => localStorage.setItem('lumilab-session-v1-circuit', saved), JSON.stringify(oldSession));
+  await page.reload();
   await expect(page.getByTestId('total-resistance-reading')).toContainText('50');
   await expect(page.getByTestId('current-reading')).toContainText('0.120');
-  const download = page.waitForEvent('download');
-  await page.getByRole('button', { name: 'Xuất phiên' }).click();
-  const exported = JSON.parse(readFileSync(await (await download).path()!, 'utf8').replace(/^\uFEFF/, ''));
-  expect(exported.model_version).toBe('ideal-series-circuit-ts-v2');
+  await expect.poll(() => page.evaluate(() => JSON.parse(localStorage.getItem('lumilab-session-v1-circuit')!).model_version)).toBe('ideal-series-circuit-ts-v2');
   expect(errors).toEqual([]);
 });
 

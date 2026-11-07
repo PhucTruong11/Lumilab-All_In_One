@@ -1,7 +1,6 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { labDefinitions, type LabId } from '@lumilab/lab-engine';
 import { sessionKey, useLab, useLabSpeed, useSessionContext } from '../labSession';
-import { downloadText } from '../data/learning';
 import { archivedPracticeIds, practiceInfo } from '../data/practice';
 
 export function useLabClock(id: LabId, externalSpeed?: number) {
@@ -39,25 +38,11 @@ export function useLabClock(id: LabId, externalSpeed?: number) {
   }, [engine, state.phase]);
 }
 
-export function LabSessionTools({ id }: { id: LabId }) {
+export function LabSessionPersistence({ id }: { id: LabId }) {
   const { engine, state } = useLab(id);
   const { warnings } = useSessionContext();
-  const [notice, setNotice] = useState(
-    warnings[id] || 'Phiên đang giữ trong trình duyệt. Lưu để mở lại sau.'
-  );
-  const file = useRef<HTMLInputElement>(null);
-  const report = (action: () => void, success: string) => {
-    try {
-      action();
-      setNotice(success);
-    } catch {
-      setNotice(
-        'Không thực hiện được. Phiên hiện tại vẫn được giữ; hãy kiểm tra tệp hoặc quyền lưu trên máy.'
-      );
-    }
-  };
 
-  // Auto-persist session to localStorage so user measurements and parameters are preserved
+  // Preserve measurements and parameters when the page reloads.
   useEffect(() => {
     try {
       localStorage.setItem(sessionKey(id), engine.serialize());
@@ -66,69 +51,7 @@ export function LabSessionTools({ id }: { id: LabId }) {
     }
   }, [id, engine, state.records, state.notes, state.parameters]);
 
-  return (
-    <section className="session-strip" aria-label="Quản lý phiên thí nghiệm">
-      <div className="session-identity">
-        <span className="session-dot" />
-        <span>
-          Phiên của bạn <small>{state.records.length}/20 số đo</small>
-        </span>
-      </div>
-      <div className="session-buttons">
-        <button
-          onClick={() =>
-            report(
-              () => localStorage.setItem(sessionKey(id), engine.serialize()),
-              'Đã lưu phiên trên máy này. Tải lại trang sẽ khôi phục bản vừa lưu.'
-            )
-          }
-        >
-          Lưu phiên
-        </button>
-        <button onClick={() => downloadText(`LumiLab-${id}-session.json`, engine.serialize())}>
-          Xuất phiên
-        </button>
-        <button onClick={() => file.current?.click()}>Nhập phiên</button>
-        <button
-          onClick={() =>
-            report(() => {
-              const saved = localStorage.getItem(sessionKey(id));
-              if (!saved) throw new Error('No saved session');
-              engine.restore(saved);
-            }, 'Đã khôi phục bản lưu trên máy này.')
-          }
-        >
-          Khôi phục bản lưu
-        </button>
-        <input
-          ref={file}
-          aria-label="Tệp phiên thí nghiệm"
-          type="file"
-          accept=".json,application/json"
-          hidden
-          onChange={async event => {
-            const input = event.currentTarget;
-            const uploaded = input.files?.[0];
-            if (!uploaded) return;
-            try {
-              if (uploaded.size > 64000) throw new Error('Large file');
-              engine.restore((await uploaded.text()).replace(/^\uFEFF/, ''));
-              setNotice(
-                'Đã nhập phiên; số đo được tính lại. Bấm Lưu phiên nếu muốn giữ sau khi tải lại.'
-              );
-            } catch {
-              setNotice(
-                'Tệp không hợp lệ, khác bài hoặc khác phiên bản. Phiên hiện tại chưa bị thay đổi.'
-              );
-            } finally {
-              input.value = '';
-            }
-          }}
-        />
-      </div>
-      <p role="status">{notice}</p>
-    </section>
-  );
+  return warnings[id] ? <p className="lab-notice" role="status">{warnings[id]}</p> : null;
 }
 
 export function LearningJourney({
@@ -202,7 +125,7 @@ export function LearningJourney({
             Hỏi Lumi về lượt thử
           </button>
           {archivedPracticeIds.includes(id) && <span>Mô phỏng lưu trữ, tương thích phiên cũ.</span>}
-          <span>{labDefinitions[id].title} · Lưu cùng phiên</span>
+          <span>{labDefinitions[id].title} · Ghi chú tự lưu trên máy này</span>
         </div>
       </div>
     </details>
