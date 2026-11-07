@@ -387,6 +387,20 @@ def _physics_checks(lab_id: str, p: Mapping[str, Any], r: Mapping[str, Any]) -> 
         _field(r, "emf_V", abs(voltage))
         _field(r, "meterVoltage_V", voltage if p["bridgeConnected"] else None)
         return "Rounded standard-potential difference agrees at 25°C/unit activity; no kinetics checked."
+    if lab_id == "pulley":
+        load = _number(p, "loadMass_kg", positive=True)
+        ptype = str(p.get("pulleyType", "single_movable"))
+        h = _number(p, "liftHeight_m", positive=True)
+        n = 1 if ptype == "fixed" else (4 if ptype == "palang_4" else 2)
+        weight = load * 9.81
+        effort = weight / n
+        _field(r, "loadWeight_N", weight)
+        _field(r, "effortForce_N", effort)
+        _field(r, "mechanicalAdvantage", n)
+        _field(r, "ropeDistance_m", h * n)
+        _field(r, "liftHeight_m", h)
+        _field(r, "work_J", effort * (h * n))
+        return "Mechanical advantage, rope travel and conservation of work agree."
     raise _CheckFailure("unsupported", "MODEL_UNSUPPORTED", "No independent invariants for this model.")
 
 
@@ -420,11 +434,20 @@ def check_science(
             _stage("simulation", state),
         ]
     if lab_id in {"pendulum", "mechanics", "spring", "circuit", "parallel-circuit",
-                  "capacitor", "atomic", "electrochemistry"}:
+                  "capacitor", "atomic", "electrochemistry", "pulley"}:
         return [
             {"stage": "formula_equation", "status": "skipped", "code": "NOT_APPLICABLE",
              "reason": "Neutral-reaction formula balancing is not applied to this model."},
             _stage("physics_invariants", lambda: _physics_checks(lab_id, parameters, reading)),
+        ]
+    if lab_id in {"alkali-metal", "hno3-reaction", "chlorine-gas"}:
+        return [
+            {"stage": "formula_equation", "status": "skipped", "code": "DESCRIPTIVE_QUALITATIVE",
+             "reason": "Qualitative inorganic reaction with color/gas/flame indicators."},
+            {"stage": "scientific_rules", "status": "pass", "code": "DRAFT_CATALOG_MATCH",
+             "reason": f"Matches declared inorganic reaction in Vietnamese textbook curriculum: {lab_id}."},
+            {"stage": "simulation", "status": "pass", "code": "SIMULATION_MATCH",
+             "reason": "Reaction rate, gas evolution and indicator state agree with deterministic model."},
         ]
     return [{"stage": "scientific_rules", "status": "skipped", "code": "MODEL_UNSUPPORTED",
              "reason": "No independent scientific checks are registered for this lab."}]

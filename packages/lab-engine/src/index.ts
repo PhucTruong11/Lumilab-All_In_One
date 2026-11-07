@@ -23,3 +23,4 @@ export function validateParameters(lab: LabDefinition, parameters: Record<string
 }
 
 export * from './additional-models';
+export * from './new-curriculum-models';

@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "hno3-reaction",
+  "title": "Kim loại tác dụng với axit nitric",
+  "subject": "chemistry",
+  "model_version": "copper-nitric-acid-gas-v1",
+  "dataset_version": "client-expansion-draft-2026-11-01",
+  "implementation_status": "client",
+  "review_status": "draft",
+  "assumptions": [
+    "Axit nitric loãng phản ứng với Cu sinh NO không màu, hóa nâu trong không khí.",
+    "Axit nitric đặc phản ứng với Cu sinh NO2 màu nâu đỏ ngay lập tức."
+  ],
+  "sources": [
+    {
+      "label": "Nitric acid · SGK Hóa học 11 & OpenStax Chemistry 2e §18.9",
+      "url": "https://openstax.org/books/chemistry-2e/pages/18-9-occurrence-preparation-and-compounds-of-oxygen"
+    }
+  ],
+  "parameter_schema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "concentration",
+      "copperMass_g",
+      "acidVolume_ml"
+    ],
+    "properties": {
+      "concentration": {
+        "type": "string",
+        "enum": ["dilute", "concentrated"],
+        "description": "Nồng độ HNO3: loãng (dilute) sinh NO, đặc (concentrated) sinh NO2"
+      },
+      "copperMass_g": {
+        "type": "number",
+        "minimum": 0.1,
+        "maximum": 3,
+        "description": "g"
+      },
+      "acidVolume_ml": {
+        "type": "number",
+        "minimum": 5,
+        "maximum": 50,
+        "description": "mL"
+      }
+    }
+  },
+  "defaults": {
+    "concentration": "dilute",
+    "copperMass_g": 0.64,
+    "acidVolume_ml": 20
+  }
+}

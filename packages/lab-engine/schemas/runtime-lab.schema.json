@@ -34,7 +34,11 @@
         "parallel-circuit",
         "capacitor",
         "precipitation",
-        "gas-reaction"
+        "gas-reaction",
+        "pulley",
+        "alkali-metal",
+        "hno3-reaction",
+        "chlorine-gas"
       ]
     },
     "title": {

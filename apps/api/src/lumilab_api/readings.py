@@ -8,6 +8,7 @@ from math import cos, hypot, log10, pi, sin, sqrt
 from sys import float_info
 
 from lumilab_api.additional_readings import capacitor, gas_reaction, parallel_circuit, precipitation
+from lumilab_api.new_curriculum_readings import alkali_metal, chlorine_gas, hno3_reaction, pulley
 
 
 def pendulum(p, _time):
@@ -163,4 +164,8 @@ MODELS = {
     "capacitor": ("ideal-rc-step-v1", capacitor),
     "precipitation": ("ideal-agcl-precipitation-v1", precipitation),
     "gas-reaction": ("ideal-bicarbonate-gas-v1", gas_reaction),
+    "pulley": ("ideal-pulley-system-v1", pulley),
+    "alkali-metal": ("alkali-metal-water-flame-v1", alkali_metal),
+    "hno3-reaction": ("copper-nitric-acid-gas-v1", hno3_reaction),
+    "chlorine-gas": ("chlorine-preparation-bleaching-v1", chlorine_gas),
 }

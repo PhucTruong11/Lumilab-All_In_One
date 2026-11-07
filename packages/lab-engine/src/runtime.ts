@@ -18,13 +18,21 @@ import parallelCircuitConfig from '../labs/parallel-circuit/lab.json';
 import capacitorConfig from '../labs/capacitor/lab.json';
 import precipitationConfig from '../labs/precipitation/lab.json';
 import gasReactionConfig from '../labs/gas-reaction/lab.json';
+import pulleyConfig from '../labs/pulley/lab.json';
+import alkaliConfig from '../labs/alkali-metal/lab.json';
+import hno3Config from '../labs/hno3-reaction/lab.json';
+import chlorineConfig from '../labs/chlorine-gas/lab.json';
+import {
+  pulleyReading, alkaliReading, hno3Reading, chlorineReading,
+  type PulleyParameters, type AlkaliParameters, type Hno3Parameters, type ChlorineParameters
+} from './new-curriculum-models';
 import { circuitReading, type CircuitParameters } from './circuit';
 
-export const labIds = ['pendulum', 'chemistry', 'circuit', 'mechanics', 'spring', 'electrochemistry', 'atomic', 'parallel-circuit', 'capacitor', 'precipitation', 'gas-reaction'] as const;
+export const labIds = ['pendulum', 'chemistry', 'circuit', 'mechanics', 'spring', 'electrochemistry', 'atomic', 'parallel-circuit', 'capacitor', 'precipitation', 'gas-reaction', 'pulley', 'alkali-metal', 'hno3-reaction', 'chlorine-gas'] as const;
 export type LabId = typeof labIds[number];
 export function isLabId(value: string): value is LabId { return (labIds as readonly string[]).includes(value); }
-export interface ParameterMap { pendulum: PendulumParameters; chemistry: TitrationParameters; circuit: CircuitParameters; mechanics: MechanicsParameters; spring: SpringParameters; electrochemistry: ElectrochemistryParameters; atomic: AtomicParameters; 'parallel-circuit': ParallelCircuitParameters; capacitor: CapacitorParameters; precipitation: PrecipitationParameters; 'gas-reaction': GasReactionParameters }
-export interface ReadingMap { pendulum: ReturnType<typeof pendulumReading>; chemistry: ReturnType<typeof titrationReading>; circuit: ReturnType<typeof circuitReading>; mechanics: ReturnType<typeof mechanicsReading>; spring: ReturnType<typeof springReading>; electrochemistry: ReturnType<typeof electrochemistryReading>; atomic: ReturnType<typeof atomicReading>; 'parallel-circuit': ReturnType<typeof parallelCircuitReading>; capacitor: ReturnType<typeof capacitorReading>; precipitation: ReturnType<typeof precipitationReading>; 'gas-reaction': ReturnType<typeof gasReactionReading> }
+export interface ParameterMap { pendulum: PendulumParameters; chemistry: TitrationParameters; circuit: CircuitParameters; mechanics: MechanicsParameters; spring: SpringParameters; electrochemistry: ElectrochemistryParameters; atomic: AtomicParameters; 'parallel-circuit': ParallelCircuitParameters; capacitor: CapacitorParameters; precipitation: PrecipitationParameters; 'gas-reaction': GasReactionParameters; pulley: PulleyParameters; 'alkali-metal': AlkaliParameters; 'hno3-reaction': Hno3Parameters; 'chlorine-gas': ChlorineParameters }
+export interface ReadingMap { pendulum: ReturnType<typeof pendulumReading>; chemistry: ReturnType<typeof titrationReading>; circuit: ReturnType<typeof circuitReading>; mechanics: ReturnType<typeof mechanicsReading>; spring: ReturnType<typeof springReading>; electrochemistry: ReturnType<typeof electrochemistryReading>; atomic: ReturnType<typeof atomicReading>; 'parallel-circuit': ReturnType<typeof parallelCircuitReading>; capacitor: ReturnType<typeof capacitorReading>; precipitation: ReturnType<typeof precipitationReading>; 'gas-reaction': ReturnType<typeof gasReactionReading>; pulley: ReturnType<typeof pulleyReading>; 'alkali-metal': ReturnType<typeof alkaliReading>; 'hno3-reaction': ReturnType<typeof hno3Reading>; 'chlorine-gas': ReturnType<typeof chlorineReading> }
 export interface RuntimeLabDefinition {
   schema_version: '1.0'; id: LabId; title: string; subject: 'physics' | 'chemistry';
   model_version: string; dataset_version: string; implementation_status: 'client'; review_status: 'draft';
@@ -45,7 +53,7 @@ export interface LabSnapshot<K extends LabId> {
 const ajv = new Ajv({ allErrors: true, strictNumbers: true });
 const checkDefinition = ajv.compile(configSchema);
 const checkSession = ajv.compile(sessionSchema);
-const versions: Record<LabId, string> = { pendulum: 'pendulum-agm-v1', chemistry: 'ideal-strong-titration-ts-v1', circuit: 'ideal-series-circuit-ts-v1', mechanics: 'constant-force-motion-v1', spring: 'horizontal-hooke-oscillator-v1', electrochemistry: 'standard-galvanic-cell-v1', atomic: 'atomic-particle-counts-v1', 'parallel-circuit': 'ideal-two-resistor-network-v1', capacitor: 'ideal-rc-step-v1', precipitation: 'ideal-agcl-precipitation-v1', 'gas-reaction': 'ideal-bicarbonate-gas-v1' };
+const versions: Record<LabId, string> = { pendulum: 'pendulum-agm-v1', chemistry: 'ideal-strong-titration-ts-v1', circuit: 'ideal-series-circuit-ts-v1', mechanics: 'constant-force-motion-v1', spring: 'horizontal-hooke-oscillator-v1', electrochemistry: 'standard-galvanic-cell-v1', atomic: 'atomic-particle-counts-v1', 'parallel-circuit': 'ideal-two-resistor-network-v1', capacitor: 'ideal-rc-step-v1', precipitation: 'ideal-agcl-precipitation-v1', 'gas-reaction': 'ideal-bicarbonate-gas-v1', pulley: 'ideal-pulley-system-v1', 'alkali-metal': 'alkali-metal-water-flame-v1', 'hno3-reaction': 'copper-nitric-acid-gas-v1', 'chlorine-gas': 'chlorine-preparation-bleaching-v1' };
 function clone<T>(value: T): T { return structuredClone(value); }
 function freeze<T>(value: T): T {
   if (value && typeof value === 'object' && !Object.isFrozen(value)) { Object.values(value).forEach(freeze); Object.freeze(value); }
@@ -54,7 +62,7 @@ function freeze<T>(value: T): T {
 export function validateLabDefinition(value: unknown): RuntimeLabDefinition {
   if (!checkDefinition(value)) throw new Error(`Lab config: ${ajv.errorsText(checkDefinition.errors)}`);
   const definition = value as unknown as RuntimeLabDefinition;
-  if (definition.subject !== (['chemistry', 'electrochemistry', 'atomic', 'precipitation', 'gas-reaction'].includes(definition.id) ? 'chemistry' : 'physics')) throw new Error('Subject/model mismatch');
+  if (definition.subject !== (['chemistry', 'electrochemistry', 'atomic', 'precipitation', 'gas-reaction', 'alkali-metal', 'hno3-reaction', 'chlorine-gas'].includes(definition.id) ? 'chemistry' : 'physics')) throw new Error('Subject/model mismatch');
   if (versions[definition.id] !== definition.model_version) throw new Error('Unsupported model version');
   const validate = ajv.compile(definition.parameter_schema as AnySchema);
   if (!validate(definition.defaults)) throw new Error(`Invalid lab defaults: ${ajv.errorsText(validate.errors)}`);
@@ -65,6 +73,7 @@ export const labDefinitions: Record<LabId, RuntimeLabDefinition> = freeze({
   pendulum: validateLabDefinition(pendulumConfig), chemistry: validateLabDefinition(chemistryConfig), circuit: validateLabDefinition(circuitConfig),
   mechanics: validateLabDefinition(mechanicsConfig), spring: validateLabDefinition(springConfig), electrochemistry: validateLabDefinition(electrochemistryConfig), atomic: validateLabDefinition(atomicConfig),
   'parallel-circuit': validateLabDefinition(parallelCircuitConfig), capacitor: validateLabDefinition(capacitorConfig), precipitation: validateLabDefinition(precipitationConfig), 'gas-reaction': validateLabDefinition(gasReactionConfig),
+  pulley: validateLabDefinition(pulleyConfig), 'alkali-metal': validateLabDefinition(alkaliConfig), 'hno3-reaction': validateLabDefinition(hno3Config), 'chlorine-gas': validateLabDefinition(chlorineConfig),
 });
 const checkCatalog = ajv.compile(catalogSchema);
 if (!checkCatalog(catalog) || catalog.active.length + catalog.archived.length !== labIds.length || new Set([...catalog.active, ...catalog.archived]).size !== labIds.length ||
@@ -85,6 +94,10 @@ function calculate<K extends LabId>(id: K, parameters: ParameterMap[K], elapsed_
     case 'capacitor': reading = capacitorReading(parameters as CapacitorParameters, elapsed_s); break;
     case 'precipitation': reading = precipitationReading(parameters as PrecipitationParameters); break;
     case 'gas-reaction': reading = gasReactionReading(parameters as GasReactionParameters); break;
+    case 'pulley': reading = pulleyReading(parameters as PulleyParameters); break;
+    case 'alkali-metal': reading = alkaliReading(parameters as AlkaliParameters); break;
+    case 'hno3-reaction': reading = hno3Reading(parameters as Hno3Parameters); break;
+    case 'chlorine-gas': reading = chlorineReading(parameters as ChlorineParameters); break;
     default: throw new Error('Unsupported lab');
   }
   return reading as ReadingMap[K];

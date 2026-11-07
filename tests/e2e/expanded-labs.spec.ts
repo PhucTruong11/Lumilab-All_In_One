@@ -19,7 +19,17 @@ test('practice navigation opens the nine-lab catalog with subject and search fil
 });
 
 test('every lesson includes theory, formulas, exercise and the corresponding working lab', async ({ page }) => {
-  const labs = [['pendulum','Con lắc đơn'],['spring','Con lắc lò xo'],['mechanics','Định luật II Newton'],['circuit','Mạch điện'],['chemistry','Chuẩn độ axit–bazơ'],['parallel-circuit','Mạch nối tiếp và song song'],['capacitor','Tụ điện: nạp và phóng điện'],['precipitation','Phản ứng tạo kết tủa AgCl'],['gas-reaction','Phản ứng axit và muối bicarbonat']];
+  const labs = [
+    ['pendulum', 'Con lắc đơn'],
+    ['spring', 'Con lắc lò xo'],
+    ['mechanics', 'Định luật II Newton'],
+    ['pulley', 'Hệ ròng rọc cơ học & Pa-lăng'],
+    ['circuit', 'Mạch điện'],
+    ['capacitor', 'Tụ điện: nạp và phóng điện'],
+    ['alkali-metal', 'Kim loại kiềm tác dụng với nước & Thử màu ngọn lửa'],
+    ['hno3-reaction', 'Kim loại tác dụng với axit nitric'],
+    ['chlorine-gas', 'Điều chế và tính tẩy màu của khí clo'],
+  ];
   await page.goto('/');
   for (const [id, title] of labs) {
     await page.getByTestId(`practice-card-${id}`).getByRole('button', { name: 'Xem bài học', exact: true }).click();

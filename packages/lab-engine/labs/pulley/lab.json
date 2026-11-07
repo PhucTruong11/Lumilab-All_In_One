@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "pulley",
+  "title": "Hệ ròng rọc cơ học & Pa-lăng",
+  "subject": "physics",
+  "model_version": "ideal-pulley-system-v1",
+  "dataset_version": "client-expansion-draft-2026-11-01",
+  "implementation_status": "client",
+  "review_status": "draft",
+  "assumptions": [
+    "Dây nhẹ không dãn, ròng rọc lý tưởng bỏ qua ma sát và khối lượng ròng rọc động.",
+    "Tải đứng yên hoặc chuyển động đều, các nhánh dây thẳng đứng."
+  ],
+  "sources": [
+    {
+      "label": "Ròng rọc và Pa-lăng · SGK Vật lí 10 & OpenStax Physics §9.3",
+      "url": "https://openstax.org/books/physics/pages/9-3-simple-machines"
+    }
+  ],
+  "parameter_schema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "loadMass_kg",
+      "pulleyType",
+      "liftHeight_m"
+    ],
+    "properties": {
+      "loadMass_kg": {
+        "type": "number",
+        "minimum": 0.5,
+        "maximum": 20,
+        "description": "kg"
+      },
+      "pulleyType": {
+        "type": "string",
+        "enum": ["fixed", "single_movable", "palang_4"],
+        "description": "Loại ròng rọc: cố định (n=1), ròng rọc động (n=2), pa-lăng 4 nhánh (n=4)"
+      },
+      "liftHeight_m": {
+        "type": "number",
+        "minimum": 0.1,
+        "maximum": 2,
+        "description": "m"
+      }
+    }
+  },
+  "defaults": {
+    "loadMass_kg": 2,
+    "pulleyType": "single_movable",
+    "liftHeight_m": 0.5
+  }
+}

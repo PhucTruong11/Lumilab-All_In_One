@@ -270,12 +270,10 @@ export function PendulumLab() {
                 <button
                   key={key}
                   type="button"
+                  aria-label={label}
                   aria-pressed={material === key}
                   onClick={() => engine.setPresentation({ material: key })}
-                >
-                  <i className={`material-dot ${key}`} />
-                  {label}
-                </button>
+                ><i className={`material-dot ${key}`}/>{label}</button>
               ))}
             </fieldset>
 

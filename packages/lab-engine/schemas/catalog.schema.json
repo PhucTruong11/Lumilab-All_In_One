@@ -26,7 +26,11 @@
           "precipitation",
           "gas-reaction",
           "electrochemistry",
-          "atomic"
+          "atomic",
+          "pulley",
+          "alkali-metal",
+          "hno3-reaction",
+          "chlorine-gas"
         ]
       },
       "uniqueItems": true
@@ -46,7 +50,11 @@
           "precipitation",
           "gas-reaction",
           "electrochemistry",
-          "atomic"
+          "atomic",
+          "pulley",
+          "alkali-metal",
+          "hno3-reaction",
+          "chlorine-gas"
         ]
       },
       "uniqueItems": true

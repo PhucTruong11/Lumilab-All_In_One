@@ -8,84 +8,157 @@ export interface Lesson {
   exercise: { id: string; prompt: string; unit: string; answer: number; tolerance: number; hint: string; explanation: string };
   quiz: Question[];
 }
+
 export const subjects = [
   { id: 'physics', name: 'Vật lí', symbol: '↔', description: 'Từ chuyển động đến những quy luật của tự nhiên.', chapters: [
-    { id: 'oscillations', name: 'Dao động', description: 'Chu kỳ, tần số và con lắc đơn.', lessonIds: ['pendulum', 'spring'] },
-    { id: 'electricity', name: 'Dòng điện và mạch điện', description: 'Định luật Ôm và cách mắc dụng cụ đo.', lessonIds: ['circuit', 'parallel-circuit', 'capacitor'] },
-    { id: 'mechanics', name: 'Chuyển động và lực', description: 'Vận tốc, gia tốc và hợp lực.', lessonIds: ['mechanics'] },
+    { id: 'oscillations', name: 'Dao động cơ học', description: 'Chu kỳ, tần số, con lắc đơn và con lắc lò xo.', lessonIds: ['pendulum', 'spring'] },
+    { id: 'mechanics', name: 'Chuyển động và lực', description: 'Định luật II Newton, mặt phẳng nghiêng và máy cơ đơn giản.', lessonIds: ['mechanics', 'pulley'] },
+    { id: 'electricity', name: 'Dòng điện và mạch điện', description: 'Định luật Ôm đoạn mạch và quá trình nạp - xả tụ RC.', lessonIds: ['circuit', 'capacitor'] },
   ] },
-  { id: 'chemistry', name: 'Hóa học', symbol: '⚗', description: 'Hiểu sự biến đổi của chất qua từng quan sát.', chapters: [
-    { id: 'solutions', name: 'Dung dịch và axit–bazơ', description: 'Nồng độ, trung hòa và chuẩn độ.', lessonIds: ['chemistry'] },
-    { id: 'precipitation', name: 'Phản ứng tạo kết tủa', description: 'Dung dịch, chất giới hạn và kết tủa.', lessonIds: ['precipitation'] },
-    { id: 'gas-reactions', name: 'Phản ứng tạo khí', description: 'Axit, bicarbonat và lượng CO₂.', lessonIds: ['gas-reaction'] },
+  { id: 'chemistry', name: 'Hóa học', symbol: '⚗', description: 'Biến đổi của chất và thực nghiệm trực quan.', chapters: [
+    { id: 'inorganic', name: 'Hóa học vô cơ thực nghiệm', description: 'Kim loại kiềm, axit nitric oxi hóa mạnh và khí clo.', lessonIds: ['alkali-metal', 'hno3-reaction', 'chlorine-gas'] },
   ] },
 ];
 
-// Draft illustrations, not an asserted sequence for a particular SGK edition.
-const added: Lesson[] = [
-  { id: 'mechanics', subjectId: 'physics', chapterId: 'mechanics', title: 'Lực thay đổi chuyển động thế nào?', lead: 'Liên hệ hợp lực với gia tốc trong một tình huống đơn giản.',
-    knowledge: [{ title: 'Vận tốc và gia tốc', text: 'Gia tốc mô tả sự thay đổi vận tốc theo thời gian. Vận tốc thay đổi về độ lớn hoặc hướng đều có thể tạo gia tốc.' }, { title: 'Hợp lực', text: 'Trong hệ quy chiếu quán tính, gia tốc của vật cùng hướng với hợp lực. Mô hình ở đây xét vật có khối lượng không đổi.' }],
-    formulas: [{ expression: 'ΣF = ma', description: 'Hợp lực theo N, m theo kg, a theo m/s².' }, { expression: 'a = Δv/Δt', description: 'Gia tốc trung bình; các vận tốc phải xét theo cùng hệ quy chiếu.' }],
-    exercise: { id: 'force', prompt: 'Vật có khối lượng 2 kg chịu hợp lực 6 N trong hệ quy chiếu quán tính. Tính độ lớn gia tốc.', unit: 'm/s²', answer: 3, tolerance: .01, hint: 'Dùng a = ΣF/m.', explanation: 'a = 6/2 = 3 m/s², cùng hướng với hợp lực.' },
-    quiz: [{ id: 'force-direction', stem: 'Trong hệ quy chiếu quán tính, gia tốc cùng hướng với đại lượng nào?', options: ['Vận tốc trong mọi trường hợp', 'Hợp lực', 'Trọng lực trong mọi trường hợp', 'Quãng đường'], correctIndex: 1, explanation: 'Theo ΣF = ma với m dương, gia tốc cùng hướng hợp lực.' }] },
-  { id: 'electrochemistry', subjectId: 'chemistry', chapterId: 'electrochemistry', title: 'Electron đi đâu trong pin điện hóa?', lead: 'Nhận biết quá trình oxi hóa và khử trong pin galvanic.',
-    knowledge: [{ title: 'Oxi hóa và khử', text: 'Oxi hóa là quá trình nhường electron; khử là quá trình nhận electron.' }, { title: 'Hai điện cực', text: 'Trong pin galvanic, oxi hóa xảy ra ở anode và khử ở cathode. Electron đi qua mạch ngoài từ anode sang cathode; không nhầm với chiều dòng điện quy ước.' }],
-    formulas: [{ expression: 'E°pin = E°cathode − E°anode', description: 'Dùng các thế khử chuẩn, cùng đơn vị V, trong điều kiện chuẩn tương ứng. Không áp dụng trực tiếp cho mọi nồng độ.' }],
-    exercise: { id: 'cell-potential', prompt: 'Cho thế khử chuẩn cathode là 0,34 V và anode là −0,76 V. Tính suất điện động chuẩn của pin.', unit: 'V', answer: 1.1, tolerance: .01, hint: 'Lấy 0,34 trừ (−0,76).', explanation: 'E°pin = 0,34 − (−0,76) = 1,10 V.' },
-    quiz: [{ id: 'oxidation', stem: 'Quá trình oxi hóa là gì?', options: ['Nhận electron', 'Nhường electron', 'Luôn tạo kết tủa', 'Luôn tạo khí'], correctIndex: 1, explanation: 'Oxi hóa là quá trình nhường electron.' }] },
-  { id: 'atomic', subjectId: 'chemistry', chapterId: 'atomic', title: 'Bên trong một nguyên tử', lead: 'Đọc số proton, neutron và electron từ kí hiệu nguyên tử.',
-    knowledge: [{ title: 'Hạt cấu tạo', text: 'Hạt nhân chứa proton và neutron. Electron nằm ngoài hạt nhân; nguyên tử trung hòa có số electron bằng số proton.' }, { title: 'Số khối và số hiệu nguyên tử', text: 'Số hiệu nguyên tử Z là số proton. Số khối A là tổng số proton và neutron; A không phải nguyên tử khối trung bình.' }],
-    formulas: [{ expression: 'N = A − Z', description: 'N là số neutron, A là số khối, Z là số proton.' }, { expression: 'ne = Z (nguyên tử trung hòa)', description: 'Không áp dụng cho ion đã nhận hoặc mất electron.' }],
-    exercise: { id: 'neutrons', prompt: 'Nguyên tử có số khối A = 23 và số hiệu nguyên tử Z = 11. Hạt nhân có bao nhiêu neutron?', unit: 'neutron', answer: 12, tolerance: 0, hint: 'Tính N = A − Z.', explanation: 'N = 23 − 11 = 12 neutron.' },
-    quiz: [{ id: 'atomic-number', stem: 'Số hiệu nguyên tử Z cho biết điều gì?', options: ['Số neutron', 'Tổng proton và neutron', 'Số proton', 'Khối lượng tính theo kg'], correctIndex: 2, explanation: 'Z là số proton trong hạt nhân.' }] },
-];
+const pendulumLesson = originalLessons.find(l => l.id === 'pendulum')!;
+const circuitLesson = originalLessons.find(l => l.id === 'circuit')!;
+
 const springLesson: Lesson = {
   id: 'spring', subjectId: 'physics', chapterId: 'oscillations', title: 'Con lắc lò xo: nhịp dao động đến từ đâu?', lead: 'Khám phá quan hệ giữa chu kỳ, khối lượng và độ cứng lò xo ngang.',
   knowledge: [
-    { title: 'Lực kéo về', text: 'Trong giới hạn Hooke, lực đàn hồi ngược chiều li độ: F = −kx. Mô hình dùng lò xo ngang không ma sát, vật được thả từ nghỉ.' },
-    { title: 'Chu kỳ và năng lượng', text: 'Với biên độ khác0, T = 2π√(m/k). Tăng khối lượng làm T tăng; tăng độ cứng làm T giảm. Đổi biên độ không làm đổi chu kỳ trong mô hình Hooke lý tưởng. Tại vị trí cân bằng khi thả từ nghỉ, vật đứng yên nên không đo được chu kỳ dao động.' },
-    { title: 'Cách kiểm tra bằng lab', text: 'Giữ độ cứng, kéo vật đến cùng li độ rồi thay khối lượng và ghi hai lượt. Tiếp theo giữ khối lượng, đổi độ cứng. So sánh đồ thị x(t) và số đo T.' },
+    { title: 'Lực kéo về', text: 'Trong giới hạn đàn hồi, lực kéo về tỉ lệ với độ biến dạng: F = −kx. Con lắc lò xo nằm ngang dao động điều hòa quanh vị trí cân bằng.' },
+    { title: 'Chu kỳ dao động', text: 'T = 2π√(m/k). Chu kỳ tỉ lệ thuận với căn bậc hai khối lượng và tỉ lệ nghịch với căn bậc hai độ cứng k; không phụ thuộc biên độ dao động nhỏ.' },
+    { title: 'Bảo toàn cơ năng', text: 'Khi bỏ qua ma sát, động năng và thế năng đàn hồi biến thiên tuần hoàn nhưng cơ năng toàn phần E = ½kA² được bảo toàn.' },
   ],
   formulas: [
-    { expression: 'T = 2π√(m/k)', description: 'm theo kg, k theo N/m, T theo s; dao động có biên độ khác0.' },
-    { expression: 'x(t) = x₀cos(√(k/m)t)', description: 'Thả từ li độx₀ với vận tốc ban đầu0; x theo m, t theo s.' },
-    { expression: 'E = ½kx₀²', description: 'Tổng động năng và thế năng bảo toàn khi không ma sát; E theo J.' },
+    { expression: 'T = 2π√(m/k)', description: 'm theo kg, k theo N/m, T theo s.' },
+    { expression: 'E = ½kA²', description: 'A theo m, k theo N/m, E theo J.' },
   ],
-  exercise: { id: 'spring-period', prompt: 'Một vật0,5kg gắn với lò xo ngang có độ cứng20N/m, dao động lý tưởng với biên độ0,2m. Tính chu kỳ, làm tròn đến0,001s.', unit: 's', answer: .993, tolerance: .005, hint: 'Dùng T=2π√(m/k); biên độ không xuất hiện trong công thức chu kỳ của lò xo Hooke.', explanation: 'T=2π√(0,5/20)≈0,993s. Nếu tăng khối lượng lên2kg và giữ k, chu kỳ tăng2lần.' },
+  exercise: { id: 'spring-period', prompt: 'Một vật 0,5 kg gắn với lò xo ngang có độ cứng 20 N/m. Tính chu kỳ dao động (làm tròn 0,001 s).', unit: 's', answer: 0.993, tolerance: 0.005, hint: 'Dùng công thức T = 2π√(m/k).', explanation: 'T = 2π√(0,5/20) ≈ 0,993 s.' },
   quiz: [
-    { id: 'spring-mass', stem: 'Giữ k, tăng khối lượng4lần thì chu kỳ lò xo lý tưởng có biên độ khác0 thay đổi thế nào?', options: ['Tăng2lần', 'Tăng4lần', 'Giảm2lần', 'Không đổi'], correctIndex: 0, explanation: 'T tỉ lệ√m, nên √4=2.' },
-    { id: 'spring-stiffness', stem: 'Giữ m, tăng độ cứng4lần thì chu kỳ lò xo lý tưởng thay đổi thế nào?', options: ['Tăng2lần', 'Giảm2lần', 'Giảm4lần', 'Không đổi'], correctIndex: 1, explanation: 'T tỉ lệ1/√k, nên T mới bằng một nửa.' },
+    { id: 'spring-k', stem: 'Tăng độ cứng của lò xo lên 4 lần thì chu kỳ dao động thay đổi thế nào?', options: ['Tăng 2 lần', 'Giảm 2 lần', 'Không đổi', 'Giảm 4 lần'], correctIndex: 1, explanation: 'T tỉ lệ nghịch với căn k nên khi k tăng 4 lần thì T giảm 2 lần.' },
   ],
 };
-const reactionNetworkLessons: Lesson[] = [
-  { id: 'parallel-circuit', subjectId: 'physics', chapterId: 'electricity', title: 'Hai điện trở: nối tiếp hay song song?', lead: 'Đọc dòng nhánh và điện trở tương đương khi đổi cách nối.',
-    knowledge: [{ title: 'Nối tiếp', text: 'Dòng điện đi lần lượt qua hai điện trở nên có cùng cường độ. Điện áp nguồn bằng tổng điện áp hai điện trở.' }, { title: 'Song song', text: 'Hai nhánh nối cùng hai nút nên có cùng điện áp. Dòng nguồn bằng tổng dòng qua hai nhánh. Giữ điện áp nguồn, điện trở tương đương song song nhỏ hơn từng điện trở.' }],
-    formulas: [{ expression: 'Rnt = R₁ + R₂; I = U/Rnt', description: 'Nguồn, dây và công tắc lý tưởng; mạch kín.' }, { expression: 'Rss = R₁R₂/(R₁ + R₂); I = I₁ + I₂', description: 'Hai điện trở song song; I₁ = U/R₁, I₂ = U/R₂.' }],
-    exercise: { id: 'parallel-resistance', prompt: 'Hai điện trở 20 Ω và 30 Ω mắc song song với nguồn lý tưởng 6 V, mạch kín. Tính dòng điện toàn mạch.', unit: 'A', answer: .5, tolerance: .001, hint: 'Tính Rss = 20×30/(20+30), sau đó I = 6/Rss.', explanation: 'Rss = 12 Ω, I = 6/12 = 0,5 A. Dòng nhánh là 0,3 A và 0,2 A.' },
-    quiz: [{ id: 'parallel-voltage', stem: 'Hai điện trở mắc song song có đại lượng nào bằng nhau?', options: ['Dòng điện trong mọi trường hợp', 'Điện áp hai đầu', 'Công suất trong mọi trường hợp', 'Điện trở'], correctIndex: 1, explanation: 'Hai nhánh nối chung hai nút nên cùng điện áp.' }] },
-  { id: 'capacitor', subjectId: 'physics', chapterId: 'electricity', title: 'Tụ điện nạp và xả thế nào?', lead: 'Quan sát quá trình RC lý tưởng bằng điện áp theo thời gian.',
-    knowledge: [{ title: 'Hằng số thời gian', text: 'Tích RC đặc trưng tốc độ nạp/xả. Tăng R hoặc C làm biến đổi chậm hơn. Đổi thông số trong lab bắt đầu lại quá trình từ t = 0.' }, { title: 'Điều kiện đầu', text: 'Chế độ nạp bắt đầu từ tụ chưa tích điện. Chế độ xả bắt đầu từ tụ có điện áp bằng U nguồn và ngắt nguồn. Dòng xả âm theo chiều tham chiếu của dòng nạp. Đây là bài mở rộng, cần giáo viên đối chiếu chương trình.' }],
-    formulas: [{ expression: 'τ = RC; Uc = U(1 − e^(−t/τ))', description: 'Nạp từ Uc(0)=0. C đổi từ µF sang F; τ theo s.' }, { expression: 'Uc = Ue^(−t/τ); E = ½CUc²', description: 'Xả từ Uc(0)=U; tụ lý tưởng, không rò.' }],
-    exercise: { id: 'rc-time', prompt: 'R = 1000 Ω, C = 1000 µF. Tính hằng số thời gian của mạch RC.', unit: 's', answer: 1, tolerance: .001, hint: '1000 µF = 0,001 F. Nhân R với C theo đơn vị SI.', explanation: 'τ = 1000×0,001 = 1 s. Sau 1 s, tụ nạp đạt khoảng 63,2% U.' },
-    quiz: [{ id: 'rc-capacitance', stem: 'Giữ R, tăng C hai lần thì τ thay đổi ra sao?', options: ['Giảm hai lần', 'Không đổi', 'Tăng hai lần', 'Tăng bốn lần'], correctIndex: 2, explanation: 'τ = RC nên tỉ lệ thuận với C.' }] },
-  { id: 'precipitation', subjectId: 'chemistry', chapterId: 'precipitation', title: 'Dung dịch trong suốt tạo kết tủa trắng', lead: 'Tìm chất giới hạn trong phản ứng AgNO₃–NaCl.',
-    knowledge: [{ title: 'Tạo chất ít tan', text: 'Khi trộn dung dịch AgNO₃ với NaCl, AgCl trắng ít tan được tạo thành. Lab dùng mô hình phản ứng hoàn toàn theo tỉ lệ mol 1:1, bỏ qua độ tan còn lại.' }, { title: 'Chất giới hạn', text: 'Lượng AgCl tính từ số mol nhỏ hơn của hai chất. Chỉ thêm chất đã dư sẽ không làm tăng kết tủa trong mô hình. Độ đục trên hình là minh họa lượng sản phẩm, không phải đo quang.' }, { title: 'An toàn', text: 'Muối bạc và chất thải chứa bạc cần được xử lý đúng quy định trong phòng thí nghiệm. Không tự làm theo hình minh họa tại nhà.' }],
-    formulas: [{ expression: 'AgNO₃ + NaCl → AgCl↓ + NaNO₃', description: 'Dung dịch nước, nồng độ cố định 0,1 mol/L.' }, { expression: 'n = CV; mAgCl = min(nAgNO₃, nNaCl) × 143,32', description: 'V theo L, n theo mol, m theo g. Khối lượng mol dùng trong mô hình 143,32 g/mol.' }],
-    exercise: { id: 'precipitate-mass', prompt: 'Trộn 10 mL AgNO₃ 0,1 M với 20 mL NaCl 0,1 M. Giả sử phản ứng hoàn toàn, M(AgCl)=143,32 g/mol. Tính khối lượng AgCl.', unit: 'g', answer: .14332, tolerance: .0001, hint: 'Tính mol từng chất, chọn số nhỏ hơn theo tỉ lệ 1:1.', explanation: 'nAgNO₃=0,001 mol; nNaCl=0,002 mol. AgNO₃ giới hạn; m=0,001×143,32=0,14332 g.' },
-    quiz: [{ id: 'excess-salt', stem: 'AgNO₃ đã hết. Thêm NaCl tạo thêm AgCl trong mô hình này không?', options: ['Có, luôn tăng', 'Không', 'Tùy màu cốc', 'Tăng gấp đôi'], correctIndex: 1, explanation: 'Cần cả hai chất phản ứng; AgNO₃ đã hết nên không tạo thêm AgCl.' }] },
-  { id: 'gas-reaction', subjectId: 'chemistry', chapterId: 'gas-reactions', title: 'Axit và bicarbonat: CO₂ đến từ đâu?', lead: 'Thay lượng chất và dự đoán thể tích khí ở cùng điều kiện.',
-    knowledge: [{ title: 'Phản ứng sinh khí', text: 'HCl phản ứng với NaHCO₃ tạo NaCl, nước và CO₂. Mô hình xét sản phẩm cuối khi phản ứng hoàn toàn, không tính tốc độ sủi bọt hoặc khí hòa tan.' }, { title: 'Lượng chất và điều kiện khí', text: 'Tỉ lệ HCl:NaHCO₃:CO₂ bằng 1:1:1. Thể tích khí phụ thuộc số mol, nhiệt độ và áp suất. Lab dùng khí lý tưởng tại 25°C và 1 atm; không dùng 22,4 L/mol ở điều kiện này.' }, { title: 'An toàn', text: 'Khí sinh ra có thể gây tăng áp trong bình kín. Hình ảnh chỉ minh họa, không hướng dẫn tự làm thí nghiệm ngoài phòng học.' }],
-    formulas: [{ expression: 'HCl + NaHCO₃ → NaCl + H₂O + CO₂↑', description: 'HCl cố định 0,1 M, NaHCO₃ tinh khiết theo mô hình.' }, { expression: 'nCO₂ = min(CV, m/84,0066); V = nRT/P', description: 'Vaxit theo L; khí tại 298,15 K, 1 atm. R = 0,082057366 L·atm/(mol·K).' }],
-    exercise: { id: 'gas-moles', prompt: 'Cho 25 mL HCl 0,1 M phản ứng với 0,42 g NaHCO₃ (M=84,0066 g/mol). Giả sử phản ứng hoàn toàn, tính số mol CO₂.', unit: 'mol', answer: .0025, tolerance: .00001, hint: 'So 0,1×0,025 mol HCl với 0,42/84,0066 mol NaHCO₃.', explanation: 'HCl có 0,0025 mol và là chất giới hạn. Theo tỉ lệ 1:1 tạo 0,0025 mol CO₂.' },
-    quiz: [{ id: 'gas-condition', stem: 'Cùng số mol CO₂, giữ áp suất và tăng nhiệt độ tuyệt đối thì thể tích khí lý tưởng?', options: ['Giảm', 'Không đổi', 'Tăng', 'Luôn bằng 22,4 L'], correctIndex: 2, explanation: 'V = nRT/P nên tăng theo nhiệt độ tuyệt đối khi n, P cố định.' }] },
+
+const mechanicsLesson: Lesson = {
+  id: 'mechanics', subjectId: 'physics', chapterId: 'mechanics', title: 'Định luật II Newton & Mặt phẳng nghiêng', lead: 'Liên hệ giữa lực, khối lượng, ma sát và gia tốc chuyển động.',
+  knowledge: [
+    { title: 'Định luật II Newton', text: 'Gia tốc của một vật cùng hướng với hợp lực tác dụng và có độ lớn tỉ lệ thuận với hợp lực, tỉ lệ nghịch với khối lượng: a = F_net / m.' },
+    { title: 'Lực ma sát trượt', text: 'Khi vật chuyển động trên bề mặt phẳng, lực ma sát trượt cản trở chuyển động: F_ms = μ·N, với N là áp lực lên bề mặt.' },
+    { title: 'Mặt phẳng nghiêng', text: 'Thành phần trọng lực kéo vật xuống dốc là P·sin(α), áp lực nén vuông góc là N = P·cos(α). Gia tốc khi trượt xuống: a = g·(sin α − μ·cos α).' },
+  ],
+  formulas: [
+    { expression: 'ΣF = ma', description: 'F theo N, m theo kg, a theo m/s².' },
+    { expression: 'a = (F − μmg)/m', description: 'Chuyển động có ma sát trên mặt phẳng ngang.' },
+  ],
+  exercise: { id: 'force', prompt: 'Vật 2 kg chịu lực kéo 6 N, bỏ qua ma sát. Tính độ lớn gia tốc.', unit: 'm/s²', answer: 3, tolerance: 0.01, hint: 'a = F/m.', explanation: 'a = 6 / 2 = 3 m/s².' },
+  quiz: [
+    { id: 'force-direction', stem: 'Gia tốc của vật cùng hướng với đại lượng nào?', options: ['Vận tốc ban đầu', 'Hợp lực tác dụng', 'Quãng đường', 'Trọng lượng'], correctIndex: 1, explanation: 'Theo định luật II Newton, gia tốc luôn cùng hướng với hợp lực.' },
+  ],
+};
+
+const pulleyLesson: Lesson = {
+  id: 'pulley', subjectId: 'physics', chapterId: 'mechanics', title: 'Hệ ròng rọc cơ học & Pa-lăng', lead: 'Cân bằng lực, lợi về lực và định luật bảo toàn công trong máy cơ đơn giản.',
+  knowledge: [
+    { title: 'Ròng rọc cố định', text: 'Ròng rọc cố định chỉ đổi hướng của lực kéo, không cho lợi về lực (lực kéo F = P, quãng đường kéo s = h).' },
+    { title: 'Ròng rọc động', text: 'Ròng rọc động cho lợi 2 lần về lực (F = P/2), nhưng thiệt 2 lần về đường đi (s = 2h).' },
+    { title: 'Hệ pa-lăng và định luật về công', text: 'Pa-lăng gồm n đoạn dây nâng cho lợi n lần về lực (F = P/n) nhưng quãng đường kéo tăng n lần (s = n·h). Không một máy cơ đơn giản nào cho ta lợi về công: A = F·s = P·h.' },
+  ],
+  formulas: [
+    { expression: 'F = P / n', description: 'P = mg, n là số đoạn dây chịu tải.' },
+    { expression: 'A = F · s = P · h', description: 'Định luật về công (khi bỏ qua ma sát và trọng lượng ròng rọc).' },
+  ],
+  exercise: { id: 'pulley-force', prompt: 'Dùng một ròng rọc động (n = 2) lý tưởng để nâng vật nặng 40 kg (g = 9,81 m/s²). Tính lực kéo cần thiết.', unit: 'N', answer: 196.2, tolerance: 0.5, hint: 'P = m·g; F = P / 2.', explanation: 'Trọng lượng P = 40 × 9,81 = 392,4 N. Lực kéo F = 392,4 / 2 = 196,2 N.' },
+  quiz: [
+    { id: 'pulley-work', stem: 'Dùng pa-lăng được lợi 4 lần về lực thì công thực hiện thay đổi thế nào?', options: ['Tăng 4 lần', 'Giảm 4 lần', 'Không đổi', 'Tăng 2 lần'], correctIndex: 2, explanation: 'Theo định luật về công, không máy cơ đơn giản nào cho lợi về công.' },
+  ],
+};
+
+const capacitorLesson: Lesson = {
+  id: 'capacitor', subjectId: 'physics', chapterId: 'electricity', title: 'Quá trình nạp - xả tụ điện (Mạch RC)', lead: 'Quan sát sự biến thiên điện áp và dòng điện theo thời gian nạp và xả.',
+  knowledge: [
+    { title: 'Hằng số thời gian τ', text: 'Hằng số thời gian τ = R·C đặc trưng cho tốc độ nạp hoặc xả của tụ. Sau thời gian t = τ, điện áp nạp đạt khoảng 63,2% điện áp nguồn.' },
+    { title: 'Quá trình xả tụ', text: 'Khi ngắt nguồn và nối tụ qua điện trở, điện tích phóng qua R, điện áp tụ giảm dần theo hàm mũ: U_c(t) = U₀·e^(−t/τ).' },
+  ],
+  formulas: [
+    { expression: 'τ = R · C', description: 'R theo Ω, C theo F, τ theo s.' },
+    { expression: 'U_c(t) = U · (1 − e^(−t/τ))', description: 'Điện áp tụ trong quá trình nạp từ điện áp 0.' },
+  ],
+  exercise: { id: 'rc-time', prompt: 'Mạch RC gồm R = 2000 Ω và C = 500 µF. Tính hằng số thời gian τ.', unit: 's', answer: 1.0, tolerance: 0.01, hint: 'Đổi 500 µF = 0,0005 F; τ = R · C.', explanation: 'τ = 2000 × 0,0005 = 1,0 s.' },
+  quiz: [
+    { id: 'rc-rate', stem: 'Tăng điện trở R trong mạch RC làm cho thời gian nạp đầy tụ:', options: ['Nhanh hơn', 'Lâu hơn (chậm hơn)', 'Không đổi', 'Điện áp giảm'], correctIndex: 1, explanation: 'Tăng R làm tăng τ = RC, dòng nạp nhỏ hơn nên tụ nạp chậm hơn.' },
+  ],
+};
+
+const alkaliLesson: Lesson = {
+  id: 'alkali-metal', subjectId: 'chemistry', chapterId: 'inorganic', title: 'Kim loại kiềm tác dụng với nước & Thử màu ngọn lửa', lead: 'Phản ứng mãnh liệt của Na, K với nước sinh khí H₂ và màu quang phổ đặc trưng.',
+  knowledge: [
+    { title: 'Kim loại kiềm tác dụng với nước', text: 'Các kim loại nhóm IA (Na, K) có tính khử rất mạnh. Khi tiếp xúc với nước, chúng khử nước giải phóng H₂: 2M + 2H₂O → 2MOH + H₂↑. Phản ứng tỏa nhiệt mạnh làm kim loại nóng chảy thành giọt tròn chạy trên mặt nước; K tỏa nhiệt đủ làm H₂ bốc cháy ngọn lửa tím.' },
+    { title: 'Nhận biết môi trường kiềm', text: 'Dung dịch sản phẩm MOH chứa ion OH⁻ làm quỳ tím hóa xanh hoặc phenolphtalein chuyển sang màu hồng tím đặc trưng.' },
+    { title: 'Thử màu ngọn lửa (Flame test)', text: 'Khi đốt hợp chất kim loại kiềm trên ngọn lửa đèn khí Bunsen không màu, các electron bị kích thích phát xạ bức xạ đặc trưng: Natri phát ánh sáng màu vàng chói (bước sóng 589 nm), Kali phát ánh sáng tím hoa cà (766 nm).' },
+  ],
+  formulas: [
+    { expression: '2Na + 2H₂O → 2NaOH + H₂↑', description: 'Natri tác dụng mãnh liệt với nước.' },
+    { expression: '2K + 2H₂O → 2KOH + H₂↑', description: 'Kali phản ứng rất mãnh liệt, bốc cháy ngọn lửa tím.' },
+  ],
+  exercise: { id: 'na-mol', prompt: 'Cho 2,3 g Na (M = 23 g/mol) phản ứng hoàn toàn với nước dư. Tính thể tích khí H₂ thoát ra ở đktc 25°C, 1 bar (dùng 24,79 L/mol).', unit: 'L', answer: 1.2395, tolerance: 0.05, hint: 'n(Na) = 2,3/23 = 0,1 mol. n(H₂) = n(Na)/2 = 0,05 mol. V = 0,05 × 24,79 L.', explanation: 'V(H₂) = 0,05 × 24,79 = 1,2395 L.' },
+  quiz: [
+    { id: 'na-flame', stem: 'Khi đưa hợp chất của Natri vào ngọn lửa không màu, ngọn lửa nhuốm màu gì?', options: ['Màu đỏ tươi', 'Màu vàng tươi', 'Màu tím hoa cà', 'Màu xanh lục'], correctIndex: 1, explanation: 'Ion Na⁺ phát xạ ánh sáng màu vàng tươi đặc trưng ở vạch 589 nm.' },
+  ],
+};
+
+const hno3Lesson: Lesson = {
+  id: 'hno3-reaction', subjectId: 'chemistry', chapterId: 'inorganic', title: 'Kim loại tác dụng với axit HNO₃ sinh NO₂ / NO', lead: 'Tính oxi hóa rất mạnh của axit nitric và sự phụ thuộc sản phẩm khử vào nồng độ.',
+  knowledge: [
+    { title: 'Tính oxi hóa của HNO₃', text: 'Axit nitric là chất oxi hóa rất mạnh. Khi phản ứng với kim loại như đồng (Cu), nitơ (+5) trong HNO₃ bị khử xuống các mức oxi hóa thấp hơn thay vì sinh khí H₂.' },
+    { title: 'Ảnh hưởng của nồng độ axit', text: 'Với Cu tác dụng HNO₃ đặc: sinh khí nitơ đioxit NO₂ màu nâu đỏ, mùi hắc độc hại. Với HNO₃ loãng: sinh khí nitơ monoxit NO không màu, khí này gặp oxi không khí ở miệng ống nghiệm lập tức hóa nâu đỏ tạo NO₂.' },
+    { title: 'Màu dung dịch và an toàn', text: 'Dung dịch thu được có màu xanh đặc trưng của ion Cu²⁺. Trong thực nghiệm, miệng ống nghiệm luôn phải nút bằng bông tẩm dung dịch kiềm (NaOH) để hấp thụ khí NO/NO₂ độc hại.' },
+  ],
+  formulas: [
+    { expression: 'Cu + 4HNO₃(đặc) → Cu(NO₃)₂ + 2NO₂↑ + 2H₂O', description: 'NO₂ là chất khí màu nâu đỏ.' },
+    { expression: '3Cu + 8HNO₃(loãng) → 3Cu(NO₃)₂ + 2NO↑ + 4H₂O', description: 'NO không màu, hóa nâu đỏ ngoài không khí: 2NO + O₂ → 2NO₂.' },
+  ],
+  exercise: { id: 'cu-no2', prompt: 'Hòa tan hết 6,4 g Cu (M = 64 g/mol) trong HNO₃ đặc dư. Tính số mol khí NO₂ sinh ra.', unit: 'mol', answer: 0.2, tolerance: 0.01, hint: 'n(Cu) = 0,1 mol. Theo tỉ lệ phương trình, n(NO₂) = 2 · n(Cu).', explanation: 'n(Cu) = 6,4 / 64 = 0,1 mol. n(NO₂) = 0,1 × 2 = 0,2 mol.' },
+  quiz: [
+    { id: 'hno3-gas-color', stem: 'Khí NO₂ thoát ra khi cho Cu tác dụng với HNO₃ đặc có màu gì?', options: ['Không màu', 'Màu vàng lục', 'Màu nâu đỏ', 'Màu tím đậm'], correctIndex: 2, explanation: 'NO₂ là chất khí màu nâu đỏ đặc trưng và có mùi hắc độc hại.' },
+  ],
+};
+
+const chlorineLesson: Lesson = {
+  id: 'chlorine-gas', subjectId: 'chemistry', chapterId: 'inorganic', title: 'Điều chế và thử tính tẩy màu của khí Clo', lead: 'Phản ứng oxi hóa khử điều chế Cl₂ trong phòng thí nghiệm và cơ chế tẩy màu của clo ẩm.',
+  knowledge: [
+    { title: 'Điều chế Cl₂ trong phòng thí nghiệm', text: 'Cho axit clohiđric đặc tác dụng với chất oxi hóa mạnh như KMnO₄ hoặc MnO₂: 2KMnO₄ + 16HCl(đặc) → 2KCl + 2MnCl₂ + 5Cl₂↑ + 8H₂O. Khí clo thu được có màu vàng lục, mùi xốc và độc.' },
+    { title: 'Tính tẩy màu của khí clo ẩm', text: 'Khí clo khô KHÔNG có tính tẩy màu. Khi có mặt nước, clo phản ứng thuận nghịch tạo axit hipoclorơ: Cl₂ + H₂O ⇌ HCl + HClO. Axit HClO có tính oxi hóa rất mạnh, phá hủy các chất màu hữu cơ nên làm mất màu cánh hoa hoặc giấy màu ẩm.' },
+    { title: 'An toàn phòng thí nghiệm', text: 'Khí clo rất độc, phá hủy niêm mạc hô hấp. Bình thu khí clo luôn được đậy bằng bông tẩm dung dịch kiềm (NaOH) để giữ khí clo dư thừa: Cl₂ + 2NaOH → NaCl + NaClO + H₂O.' },
+  ],
+  formulas: [
+    { expression: '2KMnO₄ + 16HCl(đặc) → 2KCl + 2MnCl₂ + 5Cl₂↑ + 8H₂O', description: 'Điều chế khí clo trong phòng thí nghiệm.' },
+    { expression: 'Cl₂ + H₂O ⇌ HCl + HClO', description: 'HClO (axit hipoclorơ) là tác nhân oxi hóa gây tẩy màu.' },
+  ],
+  exercise: { id: 'cl2-mol', prompt: 'Điều chế khí clo từ 31,6 g KMnO₄ (M = 158 g/mol) với lượng dư HCl đặc. Tính số mol khí Cl₂ thu được.', unit: 'mol', answer: 0.5, tolerance: 0.02, hint: 'n(KMnO₄) = 31,6 / 158 = 0,2 mol. Theo phương trình 2 mol KMnO₄ sinh 5 mol Cl₂.', explanation: 'n(Cl₂) = 0,2 × (5/2) = 0,5 mol.' },
+  quiz: [
+    { id: 'cl2-bleach', stem: 'Chất nào trực tiếp gây ra tính tẩy màu khi cho khí clo tiếp xúc với giấy màu ẩm?', options: ['Khí Cl₂ nguyên chất', 'Axit HCl', 'Axit hipoclorơ HClO', 'Khí oxi O₂'], correctIndex: 2, explanation: 'HClO có tính oxi hóa rất mạnh, làm phá hủy cấu trúc hợp chất màu hữu cơ.' },
+  ],
+};
+
+export const lessons: Lesson[] = [
+  pendulumLesson,
+  springLesson,
+  mechanicsLesson,
+  pulleyLesson,
+  circuitLesson,
+  capacitorLesson,
+  alkaliLesson,
+  hno3Lesson,
+  chlorineLesson,
 ];
-export const lessons: Lesson[] = [...originalLessons, ...added.filter(item => item.id === 'mechanics'), springLesson, ...reactionNetworkLessons];
+
 export const lessonById = (id: string) => lessons.find(lesson => lesson.id === id)!;
-export const legacyLabLink = (id: string) => id === 'circuit' || id === 'chemistry';
+export const legacyLabLink = (id: string) => id === 'circuit';
 
 export function downloadText(name: string, text: string, type = 'text/plain;charset=utf-8') {
   const url = URL.createObjectURL(new Blob(type === 'application/json' ? [text] : ['\uFEFF', text], { type }));
-  const anchor = document.createElement('a'); anchor.href = url; anchor.download = name; anchor.click();
+  const a = document.createElement('a'); a.href = url; a.download = name; a.click();
   setTimeout(() => URL.revokeObjectURL(url), 1000);
 }
 
