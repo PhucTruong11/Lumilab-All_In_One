@@ -17,6 +17,12 @@ const highlights: Record<LabId, [key: string, label: string, unit: string][]> = 
   capacitor: [['capacitorVoltage_V', 'Điện áp tụ', 'V'], ['timeConstant_s', 'Hằng số thời gian', 's']],
   precipitation: [['precipitateMass_g', 'Khối lượng AgCl', 'g']],
   'gas-reaction': [['carbonDioxideVolume_ml', 'Thể tích CO₂', 'mL']],
+  'spring-damped': [["displacement_m", "Li độ", "m"], ["energy_J", "Cơ năng", "J"]],
+  'inclined-plane': [["state", "Trạng thái", ""], ["acceleration_m_s2", "Gia tốc", "m/s²"]],
+  'pulley': [["pull_N", "Lực kéo", "N"], ["rope_m", "Dây cần kéo", "m"]],
+  'alkali-water': [["appearance", "Quan sát", ""], ["product", "Sản phẩm", ""]],
+  'copper-nitric': [["appearance", "Quan sát", ""], ["product", "Sản phẩm", ""]],
+  'chlorine-bleach': [["appearance", "Quan sát", ""], ["product", "Sản phẩm", ""]],
   atomic: [['symbol', 'Nguyên tố', ''], ['massNumber', 'Số khối', ''], ['charge_e', 'Điện tích', 'e']],
 };
 const numberFormat = new Intl.NumberFormat('vi-VN', { maximumSignificantDigits: 8 });

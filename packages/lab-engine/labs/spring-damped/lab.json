@@ -1,0 +1,67 @@
+{
+  "schema_version": "1.0",
+  "id": "spring-damped",
+  "title": "Con lắc lò xo tắt dần",
+  "subject": "physics",
+  "model_version": "viscous-spring-underdamped-v1",
+  "dataset_version": "lumilab-nine-draft-v1",
+  "implementation_status": "client",
+  "review_status": "draft",
+  "duration_s": 12,
+  "assumptions": [
+    "Lò xo ngang Hooke, lực cản nhớt tỉ lệ với vận tốc, thả từ nghỉ. Chỉ xét 0 ≤ ζ ≤ 0,9.",
+    "Tại ζ = 0 thu được dao động lý tưởng. Khi ζ > 0, công của lực cản làm cơ năng giảm."
+  ],
+  "sources": [
+    {
+      "label": "OpenStax University Physics §15.5",
+      "url": "https://openstax.org/books/university-physics-volume-1/pages/15-5-damped-oscillations"
+    },
+    {
+      "label": "SGK Vật lí 11 Kết nối tri thức, Bài 6, tr. 24–25",
+      "url": "https://taphuan.nxbgd.vn/tap-huan/doc-sach/sgk-vat-li-11.4701093133#page=25"
+    }
+  ],
+  "parameter_schema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "mass_kg",
+      "stiffness_N_m",
+      "displacement_m",
+      "damping_ratio"
+    ],
+    "properties": {
+      "mass_kg": {
+        "type": "number",
+        "minimum": 0.1,
+        "maximum": 2,
+        "description": "Khối lượng (kg)"
+      },
+      "stiffness_N_m": {
+        "type": "number",
+        "minimum": 5,
+        "maximum": 100,
+        "description": "Độ cứng (N/m)"
+      },
+      "displacement_m": {
+        "type": "number",
+        "minimum": -0.4,
+        "maximum": 0.4,
+        "description": "Li độ thả (m)"
+      },
+      "damping_ratio": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 0.9,
+        "description": "Tỉ số cản ζ"
+      }
+    }
+  },
+  "defaults": {
+    "mass_kg": 0.5,
+    "stiffness_N_m": 20,
+    "displacement_m": 0.2,
+    "damping_ratio": 0.2
+  }
+}

@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "pulley",
+  "title": "Ròng rọc và pa-lăng",
+  "subject": "physics",
+  "model_version": "vertical-ideal-pulley-v1",
+  "dataset_version": "lumilab-nine-draft-v1",
+  "implementation_status": "client",
+  "review_status": "draft",
+  "assumptions": [
+    "Cụm tải nâng chậm đều bằng dây nhẹ không dãn và ròng rọc không ma sát. Các nhánh đỡ thẳng đứng.",
+    "m là khối lượng toàn bộ cụm nâng. Không dùng mô hình này để suy ra tải an toàn của thiết bị thật."
+  ],
+  "sources": [
+    {
+      "label": "OpenStax Physics §9.3, Hình 9.11",
+      "url": "https://openstax.org/books/physics/pages/9-3-simple-machines"
+    },
+    {
+      "label": "SGK Vật lí 10 Kết nối tri thức, Bài 17, Hình 17.8, tr. 71 (lực căng)",
+      "url": "https://taphuan.nxbgd.vn/tap-huan/doc-sach/sgk-vat-li-10.4700746482#page=71"
+    }
+  ],
+  "parameter_schema": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+      "mass_kg",
+      "strands",
+      "lift_m"
+    ],
+    "properties": {
+      "mass_kg": {
+        "type": "number",
+        "minimum": 1,
+        "maximum": 20,
+        "description": "Khối lượng cụm tải (kg)"
+      },
+      "strands": {
+        "type": "integer",
+        "enum": [
+          1,
+          2,
+          4
+        ],
+        "description": "Số nhánh dây đỡ"
+      },
+      "lift_m": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 2,
+        "description": "Độ cao nâng (m)"
+      }
+    }
+  },
+  "defaults": {
+    "mass_kg": 10,
+    "strands": 2,
+    "lift_m": 1
+  }
+}

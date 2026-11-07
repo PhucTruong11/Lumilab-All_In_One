@@ -7,12 +7,18 @@
     "circuit",
     "parallel-circuit",
     "capacitor",
-    "chemistry",
-    "precipitation",
-    "gas-reaction"
+    "spring-damped",
+    "inclined-plane",
+    "pulley",
+    "alkali-water",
+    "copper-nitric",
+    "chlorine-bleach"
   ],
   "archived": [
     "electrochemistry",
-    "atomic"
+    "atomic",
+    "chemistry",
+    "precipitation",
+    "gas-reaction"
   ]
 }

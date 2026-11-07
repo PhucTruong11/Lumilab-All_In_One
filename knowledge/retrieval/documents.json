@@ -1,5 +1,5 @@
 {
-  "revision": "authored-ctst-reference-draft-2026-11-06",
+  "revision": "authored-nine-labs-draft-v1",
   "documents": [
     {
       "id": "pendulum-overview",
@@ -1612,6 +1612,302 @@
             "H2O": 1
           }
         }
+      }
+    },
+    {
+      "id": "spring-damped-overview",
+      "lab_id": "spring-damped",
+      "title": "Con lắc lò xo tắt dần",
+      "text": "Thay độ cản để quan sát biên độ và cơ năng giảm dần. Lò xo ngang Hooke, lực cản nhớt tỉ lệ với vận tốc, thả từ nghỉ. Chỉ xét 0 ≤ ζ ≤ 0,9. Tại ζ = 0 thu được dao động lý tưởng. Khi ζ > 0, công của lực cản làm cơ năng giảm. ω₀ = √(k/m); ωd = ω₀√(1 − ζ²) T = 2π/ωd khi vật còn dao động trong mô hình.",
+      "keywords": [
+        "lò xo",
+        "tắt dần",
+        "lực cản",
+        "biên độ",
+        "cơ năng"
+      ],
+      "review_status": "draft",
+      "reviewer": null,
+      "reviewed_at": null,
+      "origin": "project-authored",
+      "external_material_use": "reference-only",
+      "references": [
+        {
+          "label": "OpenStax University Physics §15.5",
+          "url": "https://openstax.org/books/university-physics-volume-1/pages/15-5-damped-oscillations",
+          "authority": "OpenStax"
+        },
+        {
+          "label": "SGK Vật lí 11 Kết nối tri thức, Bài 6, tr. 24–25",
+          "url": "https://taphuan.nxbgd.vn/tap-huan/doc-sach/sgk-vat-li-11.4701093133#page=25",
+          "authority": "NXBGDVN"
+        }
+      ],
+      "assumptions": [
+        "Lò xo ngang Hooke, lực cản nhớt tỉ lệ với vận tốc, thả từ nghỉ. Chỉ xét 0 ≤ ζ ≤ 0,9.",
+        "Tại ζ = 0 thu được dao động lý tưởng. Khi ζ > 0, công của lực cản làm cơ năng giảm."
+      ],
+      "provenance": {
+        "source_id": "lumilab-authored",
+        "book": "LumiLab học liệu tự biên soạn",
+        "chapter": "oscillations",
+        "section": "spring-damped-overview",
+        "license": "LicenseRef-LumiLab-Draft",
+        "commit": null,
+        "level": "THPT",
+        "source_language": "vi",
+        "curriculum_series": "Kết nối tri thức với cuộc sống",
+        "curriculum_status": "pending",
+        "units": {},
+        "conditions": {},
+        "constants": {}
+      }
+    },
+    {
+      "id": "inclined-plane-overview",
+      "lab_id": "inclined-plane",
+      "title": "Newton II và mặt phẳng nghiêng",
+      "text": "Đổi góc nghiêng và ma sát để tìm ngưỡng trượt. Thả vật từ nghỉ trên dốc dài 5 m, g = 9,81 m/s², không có lực kéo. Ma sát trượt dùng μₖ = 0,8 μₛ để so sánh. Vật chỉ trượt khi tan α lớn hơn μₛ. Tại mép dốc, hiển thị vận tốc ngay trước khi rời dốc. N = mg cos α; F∥ = mg sin α; a = (F∥ − f)/m Ma sát nghỉ cân bằng F∥ đến ngưỡng μₛN. Khi trượt, f = μₖN.",
+      "keywords": [
+        "mặt phẳng nghiêng",
+        "ma sát",
+        "phản lực",
+        "newton",
+        "gia tốc"
+      ],
+      "review_status": "draft",
+      "reviewer": null,
+      "reviewed_at": null,
+      "origin": "project-authored",
+      "external_material_use": "reference-only",
+      "references": [
+        {
+          "label": "OpenStax University Physics §6.2",
+          "url": "https://openstax.org/books/university-physics-volume-1/pages/6-2-friction",
+          "authority": "OpenStax"
+        },
+        {
+          "label": "SGK Vật lí 10 Kết nối tri thức, Bài 18, tr. 72–73",
+          "url": "https://taphuan.nxbgd.vn/tap-huan/doc-sach/sgk-vat-li-10.4700746482#page=73",
+          "authority": "NXBGDVN"
+        }
+      ],
+      "assumptions": [
+        "Thả vật từ nghỉ trên dốc dài 5 m, g = 9,81 m/s², không có lực kéo. Ma sát trượt dùng μₖ = 0,8 μₛ để so sánh.",
+        "Vật chỉ trượt khi tan α lớn hơn μₛ. Tại mép dốc, hiển thị vận tốc ngay trước khi rời dốc."
+      ],
+      "provenance": {
+        "source_id": "lumilab-authored",
+        "book": "LumiLab học liệu tự biên soạn",
+        "chapter": "mechanics",
+        "section": "inclined-plane-overview",
+        "license": "LicenseRef-LumiLab-Draft",
+        "commit": null,
+        "level": "THPT",
+        "source_language": "vi",
+        "curriculum_series": "Kết nối tri thức với cuộc sống",
+        "curriculum_status": "pending",
+        "units": {},
+        "conditions": {},
+        "constants": {}
+      }
+    },
+    {
+      "id": "pulley-overview",
+      "lab_id": "pulley",
+      "title": "Ròng rọc và pa-lăng",
+      "text": "Đếm nhánh dây đỡ để so lực kéo và quãng đường kéo. Cụm tải nâng chậm đều bằng dây nhẹ không dãn và ròng rọc không ma sát. Các nhánh đỡ thẳng đứng. m là khối lượng toàn bộ cụm nâng. Không dùng mô hình này để suy ra tải an toàn của thiết bị thật. F = mg/n; s = nh; W = F·s = mgh n là số nhánh dây đỡ cụm tải, h là độ cao nâng.",
+      "keywords": [
+        "ròng rọc",
+        "pa-lăng",
+        "lực căng",
+        "nhánh dây",
+        "lợi về lực"
+      ],
+      "review_status": "draft",
+      "reviewer": null,
+      "reviewed_at": null,
+      "origin": "project-authored",
+      "external_material_use": "reference-only",
+      "references": [
+        {
+          "label": "OpenStax Physics §9.3, Hình 9.11",
+          "url": "https://openstax.org/books/physics/pages/9-3-simple-machines",
+          "authority": "OpenStax"
+        },
+        {
+          "label": "SGK Vật lí 10 Kết nối tri thức, Bài 17, Hình 17.8, tr. 71 (lực căng)",
+          "url": "https://taphuan.nxbgd.vn/tap-huan/doc-sach/sgk-vat-li-10.4700746482#page=71",
+          "authority": "NXBGDVN"
+        }
+      ],
+      "assumptions": [
+        "Cụm tải nâng chậm đều bằng dây nhẹ không dãn và ròng rọc không ma sát. Các nhánh đỡ thẳng đứng.",
+        "m là khối lượng toàn bộ cụm nâng. Không dùng mô hình này để suy ra tải an toàn của thiết bị thật."
+      ],
+      "provenance": {
+        "source_id": "lumilab-authored",
+        "book": "LumiLab học liệu tự biên soạn",
+        "chapter": "mechanics",
+        "section": "pulley-overview",
+        "license": "LicenseRef-LumiLab-Draft",
+        "commit": null,
+        "level": "THPT",
+        "source_language": "vi",
+        "curriculum_series": "Kết nối tri thức với cuộc sống",
+        "curriculum_status": "pending",
+        "units": {},
+        "conditions": {},
+        "constants": {}
+      }
+    },
+    {
+      "id": "alkali-water-overview",
+      "lab_id": "alkali-water",
+      "title": "Na, K tác dụng với nước và màu ngọn lửa",
+      "text": "Tách hiện tượng phản ứng với nước khỏi màu nhận biết ion. Hai quan sát độc lập. Phản ứng với nước cho hydroxide và hydrogen. Màu ngọn lửa đại diện cho ion Na⁺ hoặc K⁺. Mô phỏng định tính, hình và màu mang tính minh họa. 2M + 2H₂O → 2MOH + H₂ M chỉ nhận hai giá trị Na và K trong bài.",
+      "keywords": [
+        "natri",
+        "kali",
+        "hydrogen",
+        "kim loại kiềm",
+        "màu ngọn lửa"
+      ],
+      "review_status": "draft",
+      "reviewer": null,
+      "reviewed_at": null,
+      "origin": "project-authored",
+      "external_material_use": "reference-only",
+      "references": [
+        {
+          "label": "OpenStax Chemistry 2e §18.1, kim loại nhóm 1",
+          "url": "https://openstax.org/books/chemistry-2e/pages/18-1-periodicity",
+          "authority": "OpenStax"
+        },
+        {
+          "label": "SGK Hóa học 12 Kết nối tri thức, Bài 24, tr. 110–112",
+          "url": "https://taphuan.nxbgd.vn/tap-huan/doc-sach/sgk-hoa-hoc-12.4701708102#page=113",
+          "authority": "NXBGDVN"
+        }
+      ],
+      "assumptions": [
+        "Hai quan sát độc lập. Phản ứng với nước cho hydroxide và hydrogen. Màu ngọn lửa đại diện cho ion Na⁺ hoặc K⁺.",
+        "Mô phỏng định tính, hình và màu mang tính minh họa."
+      ],
+      "provenance": {
+        "source_id": "lumilab-authored",
+        "book": "LumiLab học liệu tự biên soạn",
+        "chapter": "inorganic",
+        "section": "alkali-water-overview",
+        "license": "LicenseRef-LumiLab-Draft",
+        "commit": null,
+        "level": "THPT",
+        "source_language": "vi",
+        "curriculum_series": "Kết nối tri thức với cuộc sống",
+        "curriculum_status": "pending",
+        "units": {},
+        "conditions": {},
+        "constants": {}
+      }
+    },
+    {
+      "id": "copper-nitric-overview",
+      "lab_id": "copper-nitric",
+      "title": "Đồng với HNO₃: NO và NO₂",
+      "text": "So sánh sản phẩm khí chính trong hai kịch bản đại diện. Hai kịch bản đại diện chỉ xét đồng và HNO₃ loãng hoặc đặc. Thực tế sản phẩm phụ thuộc điều kiện. NO ban đầu không màu, có thể chuyển thành NO₂ trong không khí. Mô phỏng không định lượng mức chuyển hóa. 2NO + O₂ → 2NO₂ NO có thể bị oxi hóa tiếp sau khi thoát ra không khí.",
+      "keywords": [
+        "đồng",
+        "axit nitric",
+        "HNO3",
+        "NO",
+        "NO2",
+        "khí nâu đỏ"
+      ],
+      "review_status": "draft",
+      "reviewer": null,
+      "reviewed_at": null,
+      "origin": "project-authored",
+      "external_material_use": "reference-only",
+      "references": [
+        {
+          "label": "OpenStax Chemistry 2e §18.9, copper with nitric acid",
+          "url": "https://openstax.org/books/chemistry-2e/pages/18-9-occurrence-preparation-and-compounds-of-oxygen",
+          "authority": "OpenStax"
+        },
+        {
+          "label": "SGK Hóa học 11 Kết nối tri thức, Bài 6, tr. 40",
+          "url": "https://taphuan.nxbgd.vn/tap-huan/doc-sach/sgk-hoa-hoc-11.4701111834#page=41",
+          "authority": "NXBGDVN"
+        }
+      ],
+      "assumptions": [
+        "Hai kịch bản đại diện chỉ xét đồng và HNO₃ loãng hoặc đặc. Thực tế sản phẩm phụ thuộc điều kiện.",
+        "NO ban đầu không màu, có thể chuyển thành NO₂ trong không khí. Mô phỏng không định lượng mức chuyển hóa."
+      ],
+      "provenance": {
+        "source_id": "lumilab-authored",
+        "book": "LumiLab học liệu tự biên soạn",
+        "chapter": "inorganic",
+        "section": "copper-nitric-overview",
+        "license": "LicenseRef-LumiLab-Draft",
+        "commit": null,
+        "level": "THPT",
+        "source_language": "vi",
+        "curriculum_series": "Kết nối tri thức với cuộc sống",
+        "curriculum_status": "pending",
+        "units": {},
+        "conditions": {},
+        "constants": {}
+      }
+    },
+    {
+      "id": "chlorine-bleach-overview",
+      "lab_id": "chlorine-bleach",
+      "title": "Clo và tính tẩy màu trong điều kiện ẩm",
+      "text": "Xem nguyên lí tạo clo rồi so sánh giấy màu khô và ẩm. Điều chế chỉ minh họa bán phản ứng oxi hóa chloride. Giấy màu khô trong môi trường khô là đối chứng. Quan sát độ nhạt mang tính định tính và giới hạn trong điều kiện đã chọn. Cl₂ + H₂O ⇌ HCl + HOCl HOCl có tính oxi hóa và làm mất màu chất màu trong ca minh họa.",
+      "keywords": [
+        "clo",
+        "chlorine",
+        "HOCl",
+        "tẩy màu",
+        "giấy ẩm",
+        "chloride"
+      ],
+      "review_status": "draft",
+      "reviewer": null,
+      "reviewed_at": null,
+      "origin": "project-authored",
+      "external_material_use": "reference-only",
+      "references": [
+        {
+          "label": "OpenStax Chemistry 2e §18.11, HOCl",
+          "url": "https://openstax.org/books/chemistry-2e/pages/18-11-occurrence-preparation-and-properties-of-halogens",
+          "authority": "OpenStax"
+        },
+        {
+          "label": "SGK Hóa học 10 Kết nối tri thức, Bài 21, tr. 109, 111",
+          "url": "https://taphuan.nxbgd.vn/tap-huan/doc-sach/sgk-hoa-hoc-10.4700854983#page=109",
+          "authority": "NXBGDVN"
+        }
+      ],
+      "assumptions": [
+        "Điều chế chỉ minh họa bán phản ứng oxi hóa chloride. Giấy màu khô trong môi trường khô là đối chứng.",
+        "Quan sát độ nhạt mang tính định tính và giới hạn trong điều kiện đã chọn."
+      ],
+      "provenance": {
+        "source_id": "lumilab-authored",
+        "book": "LumiLab học liệu tự biên soạn",
+        "chapter": "inorganic",
+        "section": "chlorine-bleach-overview",
+        "license": "LicenseRef-LumiLab-Draft",
+        "commit": null,
+        "level": "THPT",
+        "source_language": "vi",
+        "curriculum_series": "Kết nối tri thức với cuộc sống",
+        "curriculum_status": "pending",
+        "units": {},
+        "conditions": {},
+        "constants": {}
       }
     }
   ]
