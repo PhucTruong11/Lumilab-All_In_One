@@ -40,7 +40,7 @@ test('practice draft persists, quiz can be answered and question/answer files ar
   await page.getByRole('button', { name: 'Tạo quiz', exact: true }).click();
   await page.getByRole('combobox', { name: 'Môn học', exact: true }).selectOption('chemistry');
   await page.getByRole('combobox', { name: 'Chương', exact: true }).selectOption('precipitation');
-  await page.getByRole('button', { name: 'Tạo bộ quiz', exact: true }).click();
+  await page.getByRole('button', { name: 'Tạo bộ quiz mẫu', exact: true }).click();
   await expect(page.locator('.quiz-question')).toHaveCount(1);
   await page.getByRole('radio').nth(1).check();
   await page.getByRole('button', { name: 'Xem kết quả & giải thích', exact: true }).click();
@@ -53,7 +53,20 @@ test('practice draft persists, quiz can be answered and question/answer files ar
   expect((await key).suggestedFilename()).toBe('LumiLab-dap-an.txt');
 });
 
-test('Lumi chat preserves its conversation, honors selected sources and opens the knowledge tree', async ({ page }) => {
+test('workspace builds a topic quiz from RAG and keeps authored answer keys', async ({ page }) => {
+  await page.goto('/#lumi');
+  await page.getByRole('button', { name: 'Không gian học tập', exact: true }).click();
+  await page.getByRole('button', { name: 'Tạo quiz', exact: true }).click();
+  await page.getByRole('combobox', { name: 'Chương', exact: true }).selectOption('oscillations');
+  await page.getByLabel('Mục tiêu hoặc chủ đề quiz').fill('chu kỳ con lắc và khối lượng');
+  await page.getByRole('button', { name: 'Tạo đề theo học liệu' }).click();
+  await expect(page.locator('.quiz-question').first()).toBeVisible();
+  await expect(page.getByRole('status').last()).toContainText('câu có đáp án từ ngân hàng bài học');
+  await page.getByRole('button', { name: 'Xem kết quả & giải thích' }).click();
+  await expect(page.locator('.quiz-question .hint-box').first()).toContainText('Đáp án');
+});
+
+test('Lumi answers without a source or lesson selection and preserves the conversation', async ({ page }) => {
   const errors: string[] = [];
   page.on('pageerror', error => errors.push(error.message));
   await page.goto('/#lab/pendulum');
@@ -62,17 +75,22 @@ test('Lumi chat preserves its conversation, honors selected sources and opens th
   await page.getByLabel('Hỏi Lumi', { exact: true }).fill('Vì sao khối lượng không đổi chu kỳ?');
   await page.getByRole('button', { name: 'Gửi câu hỏi', exact: true }).click();
   await expect(page.locator('.chat-message.assistant')).toContainText('khối lượng không làm đổi chu kỳ');
-  await page.getByRole('button', { name: 'Thu gọn nguồn học tập', exact: true }).click();
   await expect(page.locator('.sources-panel')).toHaveCount(0);
-  await page.getByRole('button', { name: 'Hiện nguồn học tập', exact: true }).click();
-  for (const checkbox of await page.getByRole('checkbox').all()) await checkbox.uncheck();
+  await expect(page.getByLabel('Bài đang hỏi', { exact: true })).toHaveCount(0);
+  await expect(page.locator('.knowledge-tree')).toHaveCount(0);
   await page.getByLabel('Hỏi Lumi', { exact: true }).fill('Công thức nào?');
   await page.getByRole('button', { name: 'Gửi câu hỏi', exact: true }).click();
-  await expect(page.locator('.chat-message.assistant').last()).toContainText('chưa chọn nguồn');
-  await page.getByRole('button', { name: 'Cây kiến thức', exact: true }).click();
-  await expect(page.locator('.knowledge-tree')).toContainText('Phản ứng tạo kết tủa');
+  await expect(page.locator('.chat-message.assistant').last()).toContainText('T ≈');
+  await page.getByLabel('Hỏi Lumi', { exact: true }).fill('Định luật Ôm dùng thế nào?');
+  await page.getByRole('button', { name: 'Gửi câu hỏi', exact: true }).click();
+  await expect(page.locator('.chat-message.assistant').last()).toContainText('điện');
   await page.getByRole('button', { name: 'Thư viện bài học', exact: true }).click();
   await page.getByRole('button', { name: '✦ Lumi', exact: true }).click();
-  await expect(page.locator('.chat-message.user')).toHaveCount(2);
+  await expect(page.locator('.chat-message.user')).toHaveCount(3);
+  await page.setViewportSize({ width: 390, height: 844 });
+  await expect(page.getByLabel('Hỏi Lumi', { exact: true })).toBeVisible();
+  const chatBox = await page.locator('.chat-panel').boundingBox();
+  expect(chatBox).not.toBeNull();
+  expect(chatBox!.x + chatBox!.width).toBeLessThanOrEqual(391);
   expect(errors).toEqual([]);
 });

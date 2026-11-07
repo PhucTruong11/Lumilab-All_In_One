@@ -23,6 +23,7 @@ from test_cache_correctness import FakeBudget, _context, _route  # noqa: E402
 
 from lumilab_api.data_pipeline import Registry, compile_artifact  # noqa: E402
 from lumilab_api.llm_gateway import Gateway  # noqa: E402
+from lumilab_api.llm_providers import Completion  # noqa: E402
 from lumilab_api.main import create_app  # noqa: E402
 from lumilab_api.retrieval import Corpus  # noqa: E402
 from lumilab_api.settings import Settings  # noqa: E402
@@ -124,6 +125,82 @@ def test_tutor_template_needs_source_when_retrieval_empty():
     answer = _template_gateway(empty, reg).generate(empty, session_id=uuid4())
     assert answer.status == "NEEDS_SOURCE"
     assert answer.degraded_reason == "NO_RELEVANT_SOURCE"
+
+
+@pytest.mark.parametrize("lab_id,question,expected", [
+    ("circuit", "Mạch điện là gì", "mạch điện gồm nguồn"),
+    ("circuit", "Mạch điện nối tiếp là sao", "cùng một đường đi"),
+    ("pendulum", "Con lắc đơn là gì?", "vật nặng treo bằng dây"),
+])
+def test_tutor_basic_qa_answers_without_rag(lab_id, question, expected):
+    ctx, reg = _context()
+    basic = TutorContext(task=TutorTask(lab_id=lab_id, question=question, mode="qa"),
+                         corpus_revision=ctx.corpus_revision,
+                         retrieval_method=ctx.retrieval_method, sources=[])
+    answer = _template_gateway(basic, reg).generate(basic, session_id=uuid4())
+    assert answer.degraded_reason == "FOUNDATION_TEMPLATE"
+    assert expected in answer.output.message.lower()
+    assert answer.output.citation_ids == []
+    assert answer.output.follow_up is None
+
+
+def test_tutor_qa_reports_disabled_ai_without_claiming_missing_evidence():
+    ctx, reg = _context(question="Mạch điện nối tiếp có đặc điểm gì?", lab_id="circuit", query="nối tiếp")
+    ctx = ctx.model_copy(update={"task": TutorTask(lab_id="circuit", question="Mạch điện nối tiếp có đặc điểm gì?", mode="qa")})
+    answer = _template_gateway(ctx, reg).generate(ctx, session_id=uuid4())
+    assert answer.degraded_reason == "LIVE_DISABLED"
+    assert "AI" in answer.output.message
+    assert "học liệu" not in answer.output.message.lower()
+    assert answer.output.citation_ids == []
+
+
+def test_adult_live_qa_can_answer_without_rag_or_citation():
+    ctx, reg = _context()
+    question = TutorContext(task=TutorTask(lab_id="circuit", question="Mạch điện nối tiếp là sao", mode="qa"),
+                            corpus_revision=ctx.corpus_revision, retrieval_method=ctx.retrieval_method, sources=[])
+    calls = []
+
+    class Provider:
+        def __init__(self, *_args, **_kwargs):
+            pass
+
+        def generate(self, messages, _schema):
+            calls.append(messages)
+            return Completion({"message": "Mạch nối tiếp chỉ có một đường đi cho dòng điện.",
+                               "citation_ids": []})
+
+    gateway = Gateway(Settings(_env_file=None, knowledge_dir=ROOT / "knowledge",
+                               llm_enabled=True, llm_audience="adults"),
+                      reg, [_route()], FakeBudget(), provider_factory=Provider)
+    answer = gateway.generate(question, session_id=uuid4())
+    assert answer.response_source == "llm"
+    assert answer.output.citation_ids == []
+    assert len(calls) == 1
+    assert '"rag": []' in calls[0][1]["content"]
+
+
+def test_adult_live_qa_does_not_send_draft_passages():
+    ctx, reg = _context(question="Mạch điện nối tiếp là sao", lab_id="circuit", query="nối tiếp")
+    ctx = ctx.model_copy(update={"task": TutorTask(lab_id="circuit", question="Mạch điện nối tiếp là sao", mode="qa")})
+    for hit in ctx.sources:
+        hit.document.review_status = "draft"
+    calls = []
+
+    class Provider:
+        def __init__(self, *_args, **_kwargs):
+            pass
+
+        def generate(self, messages, _schema):
+            calls.append(messages)
+            return Completion({"message": "Các phần tử trong mạch nối tiếp nằm trên cùng đường dòng điện.",
+                               "citation_ids": []})
+
+    gateway = Gateway(Settings(_env_file=None, knowledge_dir=ROOT / "knowledge",
+                               llm_enabled=True, llm_audience="adults"),
+                      reg, [_route()], FakeBudget(), provider_factory=Provider)
+    answer = gateway.generate(ctx, session_id=uuid4())
+    assert answer.response_source == "llm"
+    assert '"rag": []' in calls[0][1]["content"]
 
 
 def test_tutor_template_refuses_draft_sources_for_live_path():

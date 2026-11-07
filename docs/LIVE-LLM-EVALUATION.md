@@ -2,6 +2,10 @@
 
 Repo B đã có `benchmark_runner.py` để so ba chế độ `no_rag`, `rag` và `rag_tools`, cùng `live_system_eval.py` cho smoke nhiều model. Runtime, runner và dữ liệu benchmark thuộc nhóm 20 file đã đối chiếu theo blob Git với A. [Cách đo ở A](https://github.com/PhucTruong11/lumilab/blob/f5f233f8dc2ee21934e6b77c740e7959fecb102a/docs/LIVE-LLM-EVALUATION.md)
 
+## Smoke local người lớn · 08/11/2026
+
+Profile [`docker/compose.live.yml`](../docker/compose.live.yml) chạy trên `127.0.0.1`, audience `adults`. Endpoint `/api/v1/tutor/status` trả `live_enabled=true`, PostgreSQL giữ cap sự kiện 20 và tối đa 2 lần thử cho mỗi câu. Một câu tự soạn “Mạch điện nối tiếp là sao” gửi qua Tutor API với `include_drafts=false` trả `response_source=llm`, model `gemini-3.5-flash-lite`, `attempts=1`, status `DRAFT_GUIDANCE`, không gắn citation. Bộ đếm sự kiện tăng từ 14 lên 15/20; không reset bộ đếm. Đây là smoke tích hợp một câu, chưa phải benchmark chất lượng hoặc duyệt khoa học. Gemini bị chặn với audience `under18`; Groq chưa được team duyệt cho audience này.
+
 ## Kết quả lịch sử của repo A
 
 Đợt 06/11/2026 dùng hai câu khoa học tự soạn, chạy một lượt mỗi chế độ `closed_book` và `server_tools` cho từng model. Các số dưới đây thuộc phép đo của A. [Báo cáo gốc](https://github.com/PhucTruong11/lumilab/blob/f5f233f8dc2ee21934e6b77c740e7959fecb102a/docs/evaluation/LIVE-SYSTEM-2026-11-06.md)

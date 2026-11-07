@@ -1,74 +1,104 @@
 import { useEffect, useRef, useState } from 'react';
-import { lessons, subjects, downloadText } from '../data/learning';
+import { lessons, downloadText } from '../data/learning';
 import type { LabId } from '@lumilab/lab-engine';
 import { useEngines, useLab } from '../labSession';
 import { LumiSavedRuns } from './LumiSavedRuns';
 import { askServerTutor, getServerRun } from '../serverRuns';
-import { isPreview } from '../api';
+import { apiBase, isPreview } from '../api';
 import { retrieveLearning, type RetrievalResponse } from '../retrieval';
 import { labContext } from '../data/labContext';
 
-interface Message { role: 'user' | 'assistant'; text: string; source?: string; retrieval?: RetrievalResponse; tutorSource?: string }
+interface Message { role: 'user' | 'assistant'; text: string; source?: string; retrieval?: RetrievalResponse; tutorSource?: string; notice?: string; runPreview?: string }
+const topics: [string, RegExp][] = [
+  ['spring-damped', /tắt dần|lực cản|ma sát dao động/],
+  ['inclined-plane', /mặt phẳng nghiêng|mặt dốc|dốc nghiêng|ma sát nghỉ/],
+  ['pulley', /ròng rọc|pa-lăng|palăng/],
+  ['alkali-water', /kim loại kiềm|natri|kali|na\b.*nước|k\b.*nước|màu ngọn lửa/],
+  ['copper-nitric', /hno3|hno₃|axit nitric|đồng.*nitric|no₂|no2/],
+  ['chlorine-bleach', /clo|chlorine|tẩy màu|nước javen/],
+  ['electrochemistry', /pin điện hóa|điện cực|electron|anot|catot/],
+  ['atomic', /nguyên tử|hạt nhân|proton|neutron|electron nguyên tử/],
+  ['parallel-circuit', /song song|dòng nhánh|hai điện trở/],
+  ['circuit', /mạch|điện trở|ampe|vôn|ohm|ôm|nối tiếp|công tắc|dòng điện|hiệu điện thế/],
+  ['capacitor', /tụ điện|điện dung|nạp xả|phóng điện/],
+  ['chemistry', /chuẩn độ|axit|acid|bazơ|base|hcl|naoh|\bph\b|trung hòa|trung hoà|chỉ thị|tương đương/],
+  ['precipitation', /kết tủa|agcl|agno3/],
+  ['gas-reaction', /bicarbonat|co2|co₂|khí cacbonic/],
+  ['spring', /lò xo|độ cứng|đàn hồi/],
+  ['pendulum', /con lắc|chu kỳ|chiều dài dây|góc thả|khối lượng/],
+  ['mechanics', /hợp lực|gia tốc|newton|chuyển động/],
+];
+function lessonFor(question: string, fallback = '') {
+  const query = question.toLocaleLowerCase('vi');
+  const title = lessons.find(item => query.includes(item.title.toLocaleLowerCase('vi')));
+  return title?.id ?? topics.find(([id, pattern]) => pattern.test(query) && lessons.some(item => item.id === id))?.[0] ?? fallback;
+}
 export function LumiChat({ active, labId, openLab }: { active: boolean; labId: LabId; openLab: () => void }) {
   const engines = useEngines();
   useLab(labId);
   const context = labContext(engines, labId);
   const [serverTutor, setServerTutor] = useState(false);
+  const [liveTutorEnabled, setLiveTutorEnabled] = useState<boolean | null | undefined>();
   const [retrieve, setRetrieve] = useState(false);
   const [retrievalMethod, setRetrievalMethod] = useState<'lexical' | 'vector' | 'hybrid'>('lexical');
   const [includeDrafts, setIncludeDrafts] = useState(true);
   const [learningLevel, setLearningLevel] = useState<'THCS' | 'THPT'>('THPT');
-  const [attach, setAttach] = useState(true);
+  const [attach, setAttach] = useState(false);
   const [mode, setMode] = useState<'qa' | 'hint' | 'explain' | 'feedback'>('qa');
   const [level, setLevel] = useState(1);
-  useEffect(() => { setLessonId(lessons.some(item => item.id === labId) ? labId : 'pendulum'); setLevel(1); }, [labId]);
+  useEffect(() => { setLessonId(lessons.some(item => item.id === labId) ? labId : 'pendulum'); lastRouted.current = ''; setLevel(1); }, [labId]);
   const [messages, setMessages] = useState<Message[]>([]);
   const [savedRun, setSavedRun] = useState({ lessonId: '', id: '' });
   const [waiting, setWaiting] = useState(false);
   const pendingRun = useRef<AbortController | null>(null);
+  const lastRouted = useRef('');
   const [input, setInput] = useState('');
-  const [sources, setSources] = useState(lessons.map(lesson => lesson.id));
   const [lessonId, setLessonId] = useState('pendulum');
-  const [panel, setPanel] = useState(true);
-  const [sourceTab, setSourceTab] = useState<'sources' | 'tree'>('sources');
   const end = useRef<HTMLDivElement>(null);
   useEffect(() => { if (messages.length) end.current?.scrollIntoView({ block: 'nearest', behavior: 'auto' }); }, [messages]);
   useEffect(() => () => {
     pendingRun.current?.abort();
     pendingRun.current = null;
   }, []);
+  useEffect(() => {
+    if (!serverTutor) return;
+    const controller = new AbortController();
+    setLiveTutorEnabled(undefined);
+    fetch(apiBase + '/api/v1/tutor/status', { signal: controller.signal })
+      .then(response => { if (!response.ok) throw new Error('Tutor status unavailable'); return response.json(); })
+      .then((status: { live_enabled: boolean }) => setLiveTutorEnabled(status.live_enabled))
+      .catch(() => { if (!controller.signal.aborted) setLiveTutorEnabled(null); });
+    return () => controller.abort();
+  }, [serverTutor]);
 
   async function send(question: string) {
     const text = question.trim().slice(0, 800);
     if (!text || pendingRun.current) return;
+    const refersToRun = /lượt|số đo|kết quả|dữ liệu/.test(text.toLocaleLowerCase('vi'));
+    const activeLessonId = lessonFor(text) || (attach && refersToRun && savedRun.id ? savedRun.lessonId : '') || lastRouted.current || (attach ? labId : '');
+    if (activeLessonId) { setLessonId(activeLessonId); lastRouted.current = activeLessonId; }
+    if (!activeLessonId) {
+      setMessages(previous => [...previous.slice(-38), { role: 'user', text }, { role: 'assistant', text: 'Mình chưa xác định được chủ đề trong học liệu hiện có. Bạn hãy nêu rõ hiện tượng hoặc tên chủ đề để Lumi tìm đúng nội dung.' }]);
+      setInput('');
+      return;
+    }
     if (serverTutor) {
-      if (!sources.includes(lessonId)) {
-        setMessages(previous => [...previous.slice(-38), { role: 'user', text }, { role: 'assistant', text: 'Bài đang hỏi chưa chọn nguồn. Hãy chọn nguồn của bài trước.' }]);
-        setInput(''); return;
-      }
-      let activeLessonId = lessonId;
-      if (!(savedRun.id && savedRun.lessonId === lessonId)) {
-        const q = text.toLocaleLowerCase('vi');
-        if (/mạch|điện trở|ampe|vôn|ohm|ôm|nối tiếp|song song|công tắc|suất điện động|dòng điện|hiệu điện thế/.test(q) && sources.includes('circuit')) activeLessonId = 'circuit';
-        else if (/chuẩn độ|axit|acid|bazơ|base|hcl|naoh|\bph\b|phenolphthalein|trung hòa|trung hoà|chỉ thị|tương đương/.test(q) && sources.includes('chemistry')) activeLessonId = 'chemistry';
-        else if (/con lắc đơn|chiều dài dây|góc thả/.test(q) && sources.includes('pendulum')) activeLessonId = 'pendulum';
-        if (activeLessonId !== lessonId) setLessonId(activeLessonId);
-      }
       const controller = new AbortController(); pendingRun.current = controller; setWaiting(true); setInput('');
       let answer: Message;
       try {
         const result = await askServerTutor({ lab_id: activeLessonId, question: text,
           mode: mode === 'explain' ? 'explanation' : mode, hint_level: level,
-          run_id: savedRun.lessonId === activeLessonId && savedRun.id ? savedRun.id : null,
+          run_id: attach && savedRun.lessonId === activeLessonId && savedRun.id ? savedRun.id : null,
           include_drafts: includeDrafts, level: learningLevel,
           history: messages.slice(-4).map(item => ({ role: item.role, text: item.text.slice(0, 1000) })),
         }, AbortSignal.any([controller.signal, AbortSignal.timeout(20000)]));
         const cleanMessage = result.answer.output.message.replace(/^Preview từ mô hình nháp[^.]*\.\s*/i, '');
-        answer = { role: 'assistant', retrieval: result.retrieval,
+        const cited = new Set(result.answer.output.citation_ids);
+        answer = { role: 'assistant', retrieval: cited.size ? { ...result.retrieval, hits: result.retrieval.hits.filter(hit => cited.has(hit.chunk_id)) } : undefined,
           tutorSource: result.answer.response_source === 'llm' ? 'LLM · ' + result.answer.model : result.answer.response_source === 'cache' ? 'Phản hồi lưu đệm' : 'Hướng dẫn theo mẫu',
-          text: result.answer.notice + '\n\n' + cleanMessage +
-            (result.answer.output.follow_up ? '\n\n' + result.answer.output.follow_up : '') +
-            (result.run ? '\n\nPreview lượt đã lưu · dữ liệu chưa duyệt\n' + Object.entries(result.run.preview).map(([key, value]) => key + ' = ' + String(value)).join('\n') : ''),
+          notice: result.answer.notice ? 'Dữ liệu chưa duyệt' : undefined,
+          text: cleanMessage + (mode !== 'qa' && result.answer.output.follow_up ? '\n\n' + result.answer.output.follow_up : ''),
+          runPreview: result.run ? Object.entries(result.run.preview).map(([key, value]) => key + ' = ' + String(value)).join('\n') : undefined,
         };
       } catch {
         answer = { role: 'assistant', text: 'Gia sư máy chủ chưa sẵn sàng. Em vẫn có thể dùng bài học và thí nghiệm trên máy; hãy thử lại khi API và phiên hoạt động.' };
@@ -77,7 +107,7 @@ export function LumiChat({ active, labId, openLab }: { active: boolean; labId: L
       pendingRun.current = null; setWaiting(false);
       setMessages(previous => [...previous.slice(-38), { role: 'user', text }, answer]); return;
     }
-    if (savedRun.id && savedRun.lessonId === lessonId) {
+    if (attach && refersToRun && savedRun.id && savedRun.lessonId === activeLessonId) {
       const controller = new AbortController();
       pendingRun.current = controller;
       setWaiting(true);
@@ -86,7 +116,7 @@ export function LumiChat({ active, labId, openLab }: { active: boolean; labId: L
       let source: string | undefined;
       try {
         const run = await getServerRun(savedRun.id, AbortSignal.any([controller.signal, AbortSignal.timeout(8000)]));
-        if (run.lab_id !== lessonId || run.run_id !== savedRun.id ||
+        if (run.lab_id !== activeLessonId || run.run_id !== savedRun.id ||
             run.result.status !== 'INSUFFICIENT_DATA' || run.result.code !== 'REVIEWED_EVIDENCE_REQUIRED' ||
             !isPreview(run.result.preview)) throw new Error('Invalid draft run');
         const title = lessons.find(item => item.id === run.lab_id)?.title ?? run.lab_id;
@@ -106,19 +136,13 @@ export function LumiChat({ active, labId, openLab }: { active: boolean; labId: L
       return;
     }
     if (retrieve) {
-      if (!sources.includes(lessonId)) {
-        setMessages(previous => [...previous.slice(-38), { role: 'user', text },
-          { role: 'assistant', text: 'Bài đang hỏi chưa chọn nguồn. Hãy chọn bài trong Nguồn học tập.' }]);
-        setInput('');
-        return;
-      }
       const controller = new AbortController();
       pendingRun.current = controller;
       setWaiting(true);
       setInput('');
       let answer: Message;
       try {
-        const retrieval = await retrieveLearning(lessonId, text, includeDrafts,
+        const retrieval = await retrieveLearning(activeLessonId, text, includeDrafts,
           AbortSignal.any([controller.signal, AbortSignal.timeout(8000)]), retrievalMethod, learningLevel);
         answer = {
           role: 'assistant', retrieval,
@@ -134,8 +158,8 @@ export function LumiChat({ active, labId, openLab }: { active: boolean; labId: L
       setMessages(previous => [...previous.slice(-38), { role: 'user', text }, answer]);
       return;
     }
-    const lesson = lessons.find(item => item.id === lessonId && sources.includes(item.id));
-    let reply = sources.length ? 'Bài đang hỏi chưa có trong nguồn được chọn. Hãy chọn nguồn tương ứng hoặc đổi bài đang hỏi.' : 'Bạn chưa chọn nguồn nào. Mở Nguồn học tập và chọn một bài để Lumi dùng nội dung mẫu.';
+    const lesson = lessons.find(item => item.id === activeLessonId);
+    let reply = 'Mình chưa có câu trả lời phù hợp trong nội dung hiện có. Bạn có thể hỏi rõ hơn về hiện tượng, công thức hoặc bài thực hành.';
     if (lesson) {
       const normalized = text.toLocaleLowerCase('vi');
       if (/công thức|tính|formula/.test(normalized)) reply = lesson.formulas.map(item => `${item.expression}\n${item.description}`).join('\n\n') + '\n\nBạn muốn áp dụng công thức vào tình huống nào?';
@@ -143,21 +167,21 @@ export function LumiChat({ active, labId, openLab }: { active: boolean; labId: L
       else if (/khối lượng|chu kỳ/.test(normalized) && lesson.id === 'pendulum') reply = 'Trong mô hình con lắc lý tưởng, khối lượng không làm đổi chu kỳ. Hãy giữ chiều dài và góc thả, ghi hai lần đo với hai khối lượng khác nhau. Sau đó so sánh T.\n\nNếu góc thả lớn, cần tính ảnh hưởng của biên độ; công thức góc nhỏ là một xấp xỉ.';
       else reply = `${lesson.knowledge.slice(0, 2).map(item => `${item.title}\n${item.text}`).join('\n\n')}\n\nBạn đang vướng ở khái niệm, công thức hay cách làm bài?`;
     }
-    if (lesson && attach && lessonId === labId) {
+    if (lesson && attach && activeLessonId === labId) {
       if (mode === 'hint') reply = level === 1 ? 'Em muốn kiểm tra ảnh hưởng của yếu tố nào? Hãy nêu một dự đoán trước khi đổi thông số.' : level === 2 ? 'Thử chỉ thay đổi một yếu tố, giữ các yếu tố còn lại. Ghi lại hai lượt để đối chiếu; nếu đổi nhiều yếu tố, chưa thể biết nguyên nhân.' : `${context.guidance}\n\nSố đo hiện tại:\n${context.facts}`;
       else if (mode === 'explain' || /số đo|lượt thử|đang chạy|thí nghiệm hiện tại/.test(text.toLocaleLowerCase('vi'))) reply = `Lượt thử hiện tại:\n${context.facts}\n\n${context.guidance}\n\nEm thay đổi đại lượng nào giữa hai lần đo?`;
       else if (mode === 'feedback') reply = `Dự đoán đã ghi: ${context.prediction || 'chưa có'}.\nKết luận đã ghi: ${context.reflection || 'chưa có'}.\nĐã ghi ${context.records} lượt.\n\n${context.records < 2 ? 'Hãy ghi ít nhất hai lượt có điều kiện khác nhau để đối chiếu.' : 'Đã có nhiều lượt; hãy chỉ ra thông số được thay đổi và số liệu hỗ trợ kết luận.'} Nhận xét này theo mẫu, chưa chấm mức hiểu của em từ văn bản tự do.\n\n${context.facts}`;
     }
-    setMessages(previous => [...previous.slice(-38), { role: 'user', text }, { role: 'assistant', text: reply, source: lesson ? `${lesson.title}${attach && lessonId === labId ? ' · Số đo từ lượt thử' : ''}` : undefined }]);
+    setMessages(previous => [...previous.slice(-38), { role: 'user', text }, { role: 'assistant', text: reply, source: lesson ? `${lesson.title}${attach && activeLessonId === labId ? ' · Số đo từ lượt thử' : ''}` : undefined }]);
     setInput('');
   }
-  return <section className="lumi-page"><div className="workspace-heading"><div><p className="breadcrumb">Một nơi để đặt câu hỏi</p><h1>Cùng Lumi khám phá</h1><p>Kết nối bài học, câu hỏi và điều bạn vừa quan sát.</p></div><div className="button-row"><button className="secondary-button" disabled={!messages.length} onClick={() => downloadText('LumiLab-hoi-dap.txt', messages.map(m => `${m.role === 'user' ? 'Bạn' : 'Lumi'}: ${m.text}${m.source ? '\nNguồn: ' + m.source : ''}`).join('\n\n'))}>Tải hội thoại</button><button className="secondary-button" disabled={waiting} onClick={() => { setMessages([]); setLevel(1); }}>Cuộc trò chuyện mới</button></div></div><div className={`lumi-layout ${panel ? '' : 'sources-collapsed'}`}>
-    {panel && <aside className="sources-panel"><div className="panel-title"><h2>Nguồn học tập</h2><button className="text-button" onClick={() => setPanel(false)} aria-label="Thu gọn nguồn học tập">← Thu gọn</button></div><div className="segmented small"><button aria-pressed={sourceTab === 'sources'} onClick={() => setSourceTab('sources')}>Nguồn ({sources.length}/{lessons.length})</button><button aria-pressed={sourceTab === 'tree'} onClick={() => setSourceTab('tree')}>Cây kiến thức</button></div>{sourceTab === 'sources' ? <><div className="sources-subhead"><p className="content-note">Chọn bài dùng khi hỏi Lumi.</p><button type="button" className="text-button" onClick={() => setSources(sources.length === lessons.length ? [] : lessons.map(item => item.id))}>{sources.length === lessons.length ? 'Bỏ chọn hết' : 'Chọn tất cả'}</button></div><div className="sources-list">{lessons.map(item => <label className={`source-row ${lessonId === item.id ? 'active-lesson' : ''}`} key={item.id}><input type="checkbox" checked={sources.includes(item.id)} onChange={event => setSources(previous => event.target.checked ? [...previous, item.id] : previous.filter(id => id !== item.id))}/><span><strong>{item.title}</strong><small>{item.subjectId === 'physics' ? 'Vật lí' : 'Hóa học'} · Học liệu mẫu</small></span></label>)}</div></> : <div className="knowledge-tree">{subjects.map(subject => <details key={subject.id} open><summary>{subject.symbol} {subject.name}</summary>{subject.chapters.map(chapter => <details key={chapter.id}><summary>{chapter.name}</summary>{chapter.lessonIds.map(id => <button key={id} onClick={() => { setLessonId(id); setSources(previous => previous.includes(id) ? previous : [...previous, id]); }}>{lessons.find(item => item.id === id)?.title}</button>)}</details>)}</details>)}<p className="content-note">Lộ trình mẫu: đọc kiến thức → dự đoán → thực hành khi có lab → làm bài vận dụng.</p></div>}</aside>}
-    <section className="chat-panel" aria-label="Chat với Lumi"><div className="chat-topbar"><div>{!panel && <button className="secondary-button" onClick={() => setPanel(true)}>Hiện nguồn học tập</button>}<span className="soft-tag">✦ Lumi</span></div><span className="chat-disclosure">{serverTutor ? 'Gia sư máy chủ · AI + RAG' : retrieve ? 'Tra cứu học liệu có nguồn · RAG' : 'Theo kịch bản · Chưa kết nối AI'}</span></div>
+  return <section className="lumi-page"><div className="workspace-heading"><div><p className="breadcrumb">Một nơi để đặt câu hỏi</p><h1>Cùng Lumi khám phá</h1><p>Đặt câu hỏi trực tiếp; Lumi tự tìm bài phù hợp trong nội dung hiện có.</p></div><div className="button-row"><button className="secondary-button" disabled={!messages.length} onClick={() => downloadText('LumiLab-hoi-dap.txt', messages.map(m => `${m.role === 'user' ? 'Bạn' : 'Lumi'}: ${m.text}${m.source ? '\nNguồn: ' + m.source : ''}`).join('\n\n'))}>Tải hội thoại</button><button className="secondary-button" disabled={waiting} onClick={() => { setMessages([]); lastRouted.current = ''; setLevel(1); }}>Cuộc trò chuyện mới</button></div></div><div className="lumi-layout sources-collapsed">
+
+    <section className="chat-panel" aria-label="Chat với Lumi"><div className="chat-topbar"><div><span className="soft-tag">✦ Lumi</span></div><span className="chat-disclosure">{serverTutor ? liveTutorEnabled === true ? 'Gia sư máy chủ · AI bật khi đủ điều kiện' : liveTutorEnabled === false ? 'Gia sư máy chủ · AI tắt, dùng mẫu' : liveTutorEnabled === null ? 'Gia sư máy chủ · Không rõ trạng thái AI' : 'Gia sư máy chủ · Đang kiểm tra AI' : retrieve ? 'Tra cứu học liệu có nguồn · RAG' : 'Theo kịch bản · Chưa kết nối AI'}</span></div>
     <div className="lumi-tools">
       <label className="snapshot-toggle"><input type="checkbox" checked={attach} onChange={event => setAttach(event.target.checked)}/>Dùng lượt thử hiện tại</label>
-      <label><input type="checkbox" checked={serverTutor} disabled={waiting} onChange={event => setServerTutor(event.target.checked)}/>Hỏi gia sư máy chủ</label>
-      <label><input type="checkbox" checked={retrieve} disabled={waiting} onChange={event => setRetrieve(event.target.checked)}/>Tra cứu học liệu có nguồn</label>
+      <label><input type="checkbox" checked={serverTutor} disabled={waiting} onChange={event => { setServerTutor(event.target.checked); if (event.target.checked) setRetrieve(false); }}/>Hỏi gia sư máy chủ</label>
+      <label><input type="checkbox" checked={retrieve} disabled={waiting} onChange={event => { setRetrieve(event.target.checked); if (event.target.checked) setServerTutor(false); }}/>Tra cứu học liệu có nguồn</label>
       {(retrieve || serverTutor) && <label className="inline-select">Bậc học<select aria-label="Bậc học" value={learningLevel} disabled={waiting} onChange={e => setLearningLevel(e.target.value as 'THCS' | 'THPT')}><option value="THPT">THPT</option><option value="THCS">THCS · học liệu nền</option></select></label>}
       {(retrieve || serverTutor) && <label><input type="checkbox" checked={includeDrafts} disabled={waiting} onChange={event => setIncludeDrafts(event.target.checked)}/>Cho phép học liệu chưa duyệt</label>}
       {retrieve && <label className="inline-select">Cách truy xuất<select aria-label="Cách truy xuất" value={retrievalMethod} disabled={waiting} onChange={e => setRetrievalMethod(e.target.value as 'lexical' | 'vector' | 'hybrid')}><option value="lexical">Từ khóa local</option><option value="vector">Vector local</option><option value="hybrid">Kết hợp BM25 + vector</option></select></label>}
@@ -166,18 +190,21 @@ export function LumiChat({ active, labId, openLab }: { active: boolean; labId: L
         {mode === 'hint' && <button className="text-button" disabled={level === 3} onClick={() => { setLevel(previous => Math.min(3, previous + 1)); }}>Tăng mức gợi ý ({level}/3)</button>}
       </div>
     </div>
-    <div className="lumi-context-strip">
+    {attach && <div className="lumi-context-strip">
       {active && <LumiSavedRuns key={lessonId} lessonId={lessonId} selected={savedRun.lessonId === lessonId ? savedRun.id : ''} onSelect={id => setSavedRun({ lessonId, id })} disabled={waiting}/>}
       {attach && !(savedRun.id && savedRun.lessonId === lessonId) && <details className="lumi-snapshot"><summary>Đang dùng: {lessons.find(item => item.id === labId)?.title} · {context.records} số đo</summary><p data-testid="lumi-lab-facts">{context.facts}</p><div>{context.sources.map(source => <a key={source.url} href={source.url} target="_blank" rel="noreferrer">{source.label}</a>)}<button className="text-button" onClick={openLab}>Trở lại thí nghiệm</button></div><p className="content-note">Số liệu tính tại máy; nguồn mô hình đang chờ duyệt học thuật.</p></details>}
-    </div>
-    <div className="chat-messages" aria-live="polite">{messages.length === 0 ? <div className="lumi-welcome"><span className="lumi-orb">✦</span><h2>Hôm nay bạn tò mò điều gì?</h2><p>Bắt đầu bằng một câu hỏi, một công thức hoặc điều chưa rõ trong bài học.</p><div className="suggestion-grid">{['Tóm tắt kiến thức bài đang chọn', 'Nhắc lại công thức cần nhớ', 'Cho mình một bài tập vận dụng'].map(text => <button key={text} onClick={() => send(text)}>{text} ↗</button>)}</div></div> : messages.map((message, index) => <div className={`chat-message ${message.role}`} key={index}>
+    </div>}
+    <div className="chat-messages" aria-live="polite">{messages.length === 0 ? <div className="lumi-welcome"><span className="lumi-orb">✦</span><h2>Hôm nay bạn tò mò điều gì?</h2><p>Bắt đầu bằng một câu hỏi, một công thức hoặc điều chưa rõ trong bài học.</p><div className="suggestion-grid">{['Vì sao khối lượng không đổi chu kỳ con lắc?', 'Định luật Ôm dùng thế nào?', 'Cho mình một bài tập về lò xo'].map(text => <button key={text} onClick={() => send(text)}>{text} ↗</button>)}</div></div> : messages.map((message, index) => <div className={`chat-message ${message.role}`} key={index}>
       <div className="message-header">
         <span className="message-author">{message.role === 'user' ? 'Bạn' : '✦ Lumi'}</span>
         {message.tutorSource && <span className="message-source">{message.tutorSource}</span>}
         {!message.tutorSource && message.source && <span className="message-source">Học liệu: {message.source}</span>}
       </div>
       <p className="message-body">{message.text}</p>
-      {message.retrieval && <div className="retrieval-box" aria-label="Học liệu truy xuất">
+      {message.notice && <small className="message-notice">{message.notice}</small>}
+      {message.runPreview && <details className="lumi-answer-detail"><summary>Preview lượt đã lưu · dữ liệu chưa duyệt</summary><pre>{message.runPreview}</pre></details>}
+      {message.retrieval && <details className="retrieval-box" aria-label="Học liệu truy xuất">
+        <summary>Học liệu tham khảo ({message.retrieval.hits.length})</summary>
         <div className="retrieval-header">
           <span className="retrieval-badge">Học liệu tham chiếu ({message.retrieval.hits.length})</span>
           <small>Kho {message.retrieval.corpus_revision} · {message.retrieval.retrieval_method === 'local-lexical' ? 'Truy xuất từ khóa local' : message.retrieval.retrieval_method.startsWith('local-hybrid') ? 'Truy xuất kết hợp BM25 + vector' : message.retrieval.retrieval_method === 'local-hash-vector' ? 'Vector băm từ khóa local' : 'Vector ngữ nghĩa local'}</small>
@@ -203,7 +230,7 @@ export function LumiChat({ active, labId, openLab }: { active: boolean; labId: L
             </details>
           </article>)}
         </div>
-      </div>}
-    </div>)}<div ref={end}/></div><form className="chat-composer" onSubmit={event => { event.preventDefault(); send(input); }}><div className="composer-top"><label className="chat-context"><span>Bài đang hỏi</span><select aria-label="Bài đang hỏi" disabled={waiting} value={lessonId} onChange={event => { setLessonId(event.target.value); setSavedRun({ lessonId: '', id: '' }); }}>{lessons.map(item => <option key={item.id} value={item.id}>{item.title}{sources.includes(item.id) ? '' : ' (chưa chọn nguồn)'}</option>)}</select></label><span className="composer-hint">{serverTutor ? 'Gia sư dùng học liệu có nguồn; tự động chuyển bài khi câu hỏi thuộc thí nghiệm khác.' : 'Enter để gửi · Shift+Enter xuống dòng'}</span></div><div className="chat-input-row"><label className="sr-only" htmlFor="lumi-question">Hỏi Lumi</label><textarea id="lumi-question" rows={2} placeholder="Hỏi Lumi về bài học, công thức hoặc số đo thí nghiệm…" value={input} maxLength={800} onChange={event => setInput(event.target.value)} onKeyDown={event => { if (event.key === 'Enter' && !event.shiftKey && !event.nativeEvent.isComposing) { event.preventDefault(); send(input); } }}/><button className="primary-button" aria-label="Gửi câu hỏi" disabled={waiting || !input.trim()}>{waiting ? '…' : '↑'}</button></div></form></section>
+      </details>}
+    </div>)}<div ref={end}/></div><form className="chat-composer" onSubmit={event => { event.preventDefault(); send(input); }}><div className="composer-top"><span className="composer-hint">{serverTutor ? 'Lumi tự tìm chủ đề phù hợp · Enter để gửi' : 'Enter để gửi · Shift+Enter xuống dòng'}</span></div><div className="chat-input-row"><label className="sr-only" htmlFor="lumi-question">Hỏi Lumi</label><textarea id="lumi-question" rows={2} placeholder="Hỏi Lumi về bài học, công thức hoặc số đo thí nghiệm…" value={input} maxLength={800} onChange={event => setInput(event.target.value)} onKeyDown={event => { if (event.key === 'Enter' && !event.shiftKey && !event.nativeEvent.isComposing) { event.preventDefault(); send(input); } }}/><button className="primary-button" aria-label="Gửi câu hỏi" disabled={waiting || !input.trim()}>{waiting ? '…' : '↑'}</button></div></form></section>
   </div></section>;
 }

@@ -60,6 +60,8 @@ test('Lumi local vector retrieves cited draft content and excludes drafts on req
   await page.getByLabel('Hỏi Lumi', { exact: true }).fill('kết tủa AgCl chất giới hạn'); await page.getByRole('button', { name: 'Gửi câu hỏi' }).click();
   const answer = page.locator('.chat-message.assistant').last();
   await expect(answer).toContainText('Vector băm từ khóa local'); await expect(answer).toContainText('Dữ liệu chưa duyệt');
+  await answer.locator('.retrieval-box > summary').click();
+  await answer.locator('.retrieval-details').first().locator('summary').click();
   await expect(answer.getByRole('link').first()).toHaveAttribute('href', /^https:\/\//);
   await page.getByLabel('Cho phép học liệu chưa duyệt', { exact: true }).uncheck();
   await page.getByLabel('Hỏi Lumi', { exact: true }).fill('kết tủa AgCl'); await page.getByRole('button', { name: 'Gửi câu hỏi' }).click();
