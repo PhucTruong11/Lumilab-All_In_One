@@ -1,6 +1,6 @@
 # LumiLab B
 
-LumiLab là phòng thí nghiệm ảo Vật lí và Hóa học cho THPT. Bản hiện tại có web React/TypeScript, 9 lab đang dùng, lab engine chạy trong trình duyệt và API FastAPI tính lại số đo. Học liệu và kết quả khoa học vẫn ở trạng thái **draft/preview**; chưa có `VERIFIED` hoặc AI live. Xem [trạng thái triển khai](docs/STATUS.md) và [contract](docs/CONTRACT.md) trước khi tích hợp thêm chức năng.
+LumiLab là phòng thí nghiệm ảo Vật lí và Hóa học cho THPT. Bản hiện tại có web React/TypeScript, 9 lab đang dùng, lab engine chạy trong trình duyệt và API FastAPI tính lại số đo. Học liệu và kết quả khoa học vẫn ở trạng thái **draft/preview**; chưa có `VERIFIED` hoặc AI live. Xem [trạng thái triển khai](docs/STATUS.md), [contract](docs/CONTRACT.md) và [phạm vi Verify](docs/VERIFICATION.md) trước khi tích hợp thêm chức năng.
 
 ## Bắt đầu nhanh cho team
 
