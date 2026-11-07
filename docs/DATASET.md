@@ -70,7 +70,7 @@ Các trang SGK dưới đây là **số trang in trên sách**. Mã bản điệ
 
 ### 3. Điều chế và tính tẩy màu của khí clo — `HH-CHLORINE-01`
 
-- **Kiến thức:** Phần điều chế minh họa nguyên lí oxi hóa ion chloride thành Cl₂ ở mức phương trình. Trong môi trường có nước, cân bằng `Cl₂ + H₂O ⇌ HCl + HOCl` viết theo cách biểu diễn phân tử trong SGK. HOCl có tính oxi hóa, làm mất màu chất màu trong thí nghiệm minh họa.
+- **Kiến thức:** Phần điều chế minh họa nguyên lí oxi hóa ion chloride thành Cl₂ ở mức phương trình. Trong môi trường có nước, phs6OCl có tính oxi hóa, làm mất màu chất màu trong thí nghiệm minh họa.
 - **Mô phỏng và ca kiểm:** So sánh giấy màu ẩm với đối chứng giấy màu khô trong điều kiện khô của mô hình. Kết quả cần thể hiện giấy ẩm mất màu rõ hơn và giải thích vai trò của nước; giới hạn kết luận trong ca đối chứng đã mô tả.
 - **SGK:** Hóa học 10, Bài 21 *Nhóm halogen*, [tr. 109, Hình 21.6, giấy màu khô và ẩm](https://taphuan.nxbgd.vn/tap-huan/doc-sach/sgk-hoa-hoc-10.4700854983#page=109); [tr. 111, mục Điều chế chlorine](https://taphuan.nxbgd.vn/tap-huan/doc-sach/sgk-hoa-hoc-10.4700854983#page=111).
 - **OpenStax:** *Chemistry 2e*, [§18.11 Occurrence, Preparation, and Properties of Halogens](https://openstax.org/books/chemistry-2e/pages/18-11-occurrence-preparation-and-properties-of-halogens), đối chiếu HOCl và tính tẩy màu. Tham chiếu an toàn: [NIOSH — Chlorine](https://www.cdc.gov/niosh/npg/npgd0115.html).
