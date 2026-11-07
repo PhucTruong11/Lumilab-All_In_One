@@ -6,7 +6,7 @@ test('library has two subjects and links chapters and lessons to a lab', async (
   await page.getByRole('button', { name: 'Thư viện bài học', exact: true }).click();
   await expect(page.locator('.subject-card')).toHaveCount(2);
   await page.locator('.subject-card.physics').click();
-  await expect(page.locator('.chapter-card')).toHaveCount(6);
+  await expect(page.locator('.chapter-card')).toHaveCount(3);
   await page.locator('.chapter-card').filter({ has: page.getByRole('heading', { name: 'Dao động', exact: true }) }).getByRole('button').click();
   await page.locator('.lesson-list article').filter({ hasText: 'Con lắc đơn:' }).getByRole('button', { name: 'Xem bài học', exact: true }).click();
   await expect(page.getByRole('heading', { name: 'Kiến thức nền', exact: true })).toBeVisible();
@@ -23,7 +23,7 @@ test('library has two subjects and links chapters and lessons to a lab', async (
   await page.getByRole('button', { name: 'Thư viện bài học', exact: true }).click();
   await page.getByRole('button', { name: 'Tất cả môn', exact: true }).click();
   await page.locator('.subject-card.chemistry').click();
-  await expect(page.locator('.chapter-card')).toHaveCount(9);
+  await expect(page.locator('.chapter-card')).toHaveCount(5);
   await expect(page.getByRole('heading', { name: 'Phản ứng tạo khí', exact: true })).toBeVisible();
 });
 

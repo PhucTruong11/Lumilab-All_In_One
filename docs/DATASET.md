@@ -87,9 +87,10 @@ Các trang SGK dưới đây là **số trang in trên sách**. Mã bản điệ
 
 ### 5. Cấu tạo nguyên tử — `HH-NGUYENTU-01` (`atomic`)
 
-- **Kiến thức:** Mô hình đếm hạt trong miền `Z` từ 1 đến 18 (H đến Ar), `N` từ 0 đến 24, `n_e` từ 0 đến 18. Số hiệu nguyên tử `Z = n_p` xác định nguyên tố; số khối `A = Z + N`; điện tích tương đối `q/e = Z − n_e`. Sơ đồ lớp vỏ `2, 8, 8` minh họa phân bố hạt cho tối đa 18 electron, không phải quỹ đạo lượng tử và không đánh giá độ bền đồng vị.
-- **Mô phỏng và ca kiểm:** Đối chiếu nguyên tử `Na` trung hòa mặc định (`11p, 12n, 11e` → `Z = 11, A = 23, q/e = 0`, vỏ `[2, 8, 1]`), ion `Na⁺` (`11p, 12n, 10e` → `q/e = +1`) và ion `Cl⁻` (`17p, 18n, 18e` → `Cl, Z = 17, A = 35, q/e = −1`, vỏ `[2, 8, 8]`).
-- **OpenStax:** *Chemistry 2e*, [§2.3 Atomic Structure and Symbolism](https://openstax.org/books/chemistry-2e/pages/2-3-atomic-structure-and-symbolism).
+- **Kiến thức:** Phần điều chế minh họa nguyên lí oxi hóa ion chloride thành Cl₂ ở mức phương trình. Trong môi trường có nước, phs6OCl có tính oxi hóa, làm mất màu chất màu trong thí nghiệm minh họa.
+- **Mô phỏng và ca kiểm:** So sánh giấy màu ẩm với đối chứng giấy màu khô trong điều kiện khô của mô hình. Kết quả cần thể hiện giấy ẩm mất màu rõ hơn và giải thích vai trò của nước; giới hạn kết luận trong ca đối chứng đã mô tả.
+- **SGK:** Hóa học 10, Bài 21 *Nhóm halogen*, [tr. 109, Hình 21.6, giấy màu khô và ẩm](https://taphuan.nxbgd.vn/tap-huan/doc-sach/sgk-hoa-hoc-10.4700854983#page=109); [tr. 111, mục Điều chế chlorine](https://taphuan.nxbgd.vn/tap-huan/doc-sach/sgk-hoa-hoc-10.4700854983#page=111).
+- **OpenStax:** *Chemistry 2e*, [§18.11 Occurrence, Preparation, and Properties of Halogens](https://openstax.org/books/chemistry-2e/pages/18-11-occurrence-preparation-and-properties-of-halogens), đối chiếu HOCl và tính tẩy màu. Tham chiếu an toàn: [NIOSH — Chlorine](https://www.cdc.gov/niosh/npg/npgd0115.html).
 
 ## Trạng thái và bàn giao dataset
 

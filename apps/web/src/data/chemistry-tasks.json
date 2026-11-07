@@ -1,0 +1,220 @@
+{
+  "source_revision": "eleven-lab-learning-draft-01",
+  "tasks": [
+    {
+      "id": "HH-CHUANDO-01-A-1",
+      "title": "Khảo sát pH trước, tại và sau điểm tương đương",
+      "runtime_id": "chemistry",
+      "initial_state": "Đặt lại lab chuẩn độ ở 25 mL axit 0,1 mol/L, bazơ 0,1 mol/L tại 25 °C.",
+      "actions": "Ghi số đo ở 0 mL bazơ, 25 mL bazơ (tương đương) và 50 mL bazơ (bazơ dư).",
+      "expected_result": "Đối chiếu pH = 1 ở 0 mL, pH = 7 ở 25 mL (0,0025 mol muối) và pH ≈ 12,523 ở 50 mL.",
+      "feedback_on_failure": "Kiểm tra lại thể tích bazơ tại 0 mL, 25 mL và 50 mL rồi ghi lại số đo.",
+      "cases": [
+        {
+          "parameters": {
+            "baseVolume_ml": 0
+          },
+          "elapsed_s": 0
+        },
+        {
+          "parameters": {
+            "baseVolume_ml": 25,
+            "acid": "hno3",
+            "base": "koh"
+          },
+          "elapsed_s": 0
+        },
+        {
+          "parameters": {
+            "baseVolume_ml": 50
+          },
+          "elapsed_s": 0
+        }
+      ]
+    },
+    {
+      "id": "HH-KETTUA-01-A-1",
+      "title": "Đối chiếu chất giới hạn và khối lượng kết tủa AgCl",
+      "runtime_id": "precipitation",
+      "initial_state": "Đặt lại về mặc định 25 mL AgNO₃ 0,100 mol/L và 10 mL NaCl 0,100 mol/L.",
+      "actions": "Ghi lượt mặc định (25 mL AgNO₃, 10 mL NaCl), sau đó đặt 0 mL AgNO₃ và 50 mL NaCl rồi ghi lượt thứ hai.",
+      "expected_result": "Ghi nhận 0,14332 g AgCl (NaCl giới hạn) ở lượt 1 và 0 g AgCl (AgNO₃ giới hạn) ở lượt 2.",
+      "feedback_on_failure": "Đặt lại 25 mL AgNO₃, 10 mL NaCl rồi so với 0 mL AgNO₃, 50 mL NaCl.",
+      "cases": [
+        {
+          "parameters": {
+            "silverVolume_ml": 25,
+            "chlorideVolume_ml": 10
+          },
+          "elapsed_s": 0
+        },
+        {
+          "parameters": {
+            "silverVolume_ml": 0,
+            "chlorideVolume_ml": 50
+          },
+          "elapsed_s": 0
+        }
+      ]
+    },
+    {
+      "id": "HH-TAOKHI-01-A-1",
+      "title": "Khảo sát chất giới hạn và thể tích khí CO₂",
+      "runtime_id": "gas-reaction",
+      "initial_state": "Đặt lại về mặc định 25 mL HCl 0,100 mol/L và 0,3 g NaHCO₃ ở 25 °C, 1 atm.",
+      "actions": "Ghi ca (25 mL HCl, 0,420033 g NaHCO₃), ca (50 mL HCl, 0,0840066 g NaHCO₃) và ca đối chứng (0 mL HCl).",
+      "expected_result": "Đối chiếu ba thể tích CO₂ (≈ 61,16 mL; ≈ 24,47 mL; 0 mL) và chất giới hạn tương ứng.",
+      "feedback_on_failure": "Kiểm tra lại số mol HCl và NaHCO₃ ở từng ca rồi ghi lại.",
+      "cases": [
+        {
+          "parameters": {
+            "acidVolume_ml": 25,
+            "bicarbonateMass_g": 0.420033
+          },
+          "elapsed_s": 0
+        },
+        {
+          "parameters": {
+            "acidVolume_ml": 50,
+            "bicarbonateMass_g": 0.0840066
+          },
+          "elapsed_s": 0
+        },
+        {
+          "parameters": {
+            "acidVolume_ml": 0,
+            "bicarbonateMass_g": 0.0840066
+          },
+          "elapsed_s": 0
+        }
+      ]
+    },
+    {
+      "id": "HH-DIENHOA-01-A-1",
+      "title": "Khảo sát cực tính pin điện hóa và vai trò cầu muối",
+      "runtime_id": "electrochemistry",
+      "initial_state": "Đặt lại về mặc định trái = Zn, phải = Cu, cầu muối đang nối (U = 1,10 V).",
+      "actions": "Chọn trái = Ag, phải = Zn và tháo cầu muối để ghi lượt 1; chọn trái = Cu, phải = Cu và nối cầu muối để ghi lượt 2.",
+      "expected_result": "Lượt 1 có E°pin = 1,56 V, U = −1,56 V, vôn kế ẩn số đo, phản ứng Zn + 2Ag⁺ → Zn²⁺ + 2Ag; lượt 2 có U = 0 V.",
+      "feedback_on_failure": "Kiểm tra lại vị trí điện cực trái/phải và trạng thái cầu muối ở hai lượt.",
+      "cases": [
+        {
+          "parameters": {
+            "left": "ag",
+            "right": "zn",
+            "bridgeConnected": false
+          },
+          "elapsed_s": 0
+        },
+        {
+          "parameters": {
+            "left": "cu",
+            "right": "cu",
+            "bridgeConnected": true
+          },
+          "elapsed_s": 0
+        }
+      ]
+    },
+    {
+      "id": "HH-NGUYENTU-01-A-1",
+      "title": "Xác định số khối, điện tích và lớp vỏ của hạt Cl⁻",
+      "runtime_id": "atomic",
+      "initial_state": "Đặt lại về nguyên tử Na trung hòa mặc định: 11 proton, 12 neutron, 11 electron.",
+      "actions": "Chỉnh số proton = 17, số neutron = 18, số electron = 18 rồi ghi kết quả.",
+      "expected_result": "Đối chiếu Cl, Z = 17, A = 35, q/e = −1 và lớp vỏ [2, 8, 8].",
+      "feedback_on_failure": "Kiểm tra lại công thức A = Z + N và q/e = Z − ne rồi ghi lại.",
+      "cases": [
+        {
+          "parameters": {
+            "protons": 17,
+            "neutrons": 18,
+            "electrons": 18
+          },
+          "elapsed_s": 0
+        }
+      ]
+    },
+    {
+      "id": "HH-KIEM-01-A-1",
+      "title": "So sánh phản ứng kim loại kiềm với nước và màu ngọn lửa",
+      "runtime_id": "alkali-water",
+      "initial_state": "Đặt lại về thí nghiệm kim loại kiềm với nước.",
+      "actions": "Quan sát Na phản ứng với nước, sau đó chuyển sang thử màu ngọn lửa Kali (K).",
+      "expected_result": "Na nóng chảy thành viên tròn chạy trên mặt nước sinh bọt khí H₂; ngọn lửa K có màu tím đặc trưng.",
+      "feedback_on_failure": "Chọn đúng kim loại (Na hoặc K) và chế độ quan sát tương ứng.",
+      "cases": [
+        {
+          "parameters": {
+            "metal": "Na",
+            "mode": "water",
+            "observed": true
+          },
+          "elapsed_s": 0
+        },
+        {
+          "parameters": {
+            "metal": "K",
+            "mode": "flame",
+            "observed": true
+          },
+          "elapsed_s": 0
+        }
+      ]
+    },
+    {
+      "id": "HH-NITRIC-01-A-1",
+      "title": "So sánh Cu tác dụng với HNO₃ đặc và loãng",
+      "runtime_id": "copper-nitric",
+      "initial_state": "Đặt lại về thí nghiệm Cu tác dụng với HNO₃.",
+      "actions": "Quan sát Cu phản ứng với HNO₃ đặc (sinh khí NO₂ nâu đỏ), sau đó chuyển sang HNO₃ loãng (sinh khí NO không màu hóa nâu ngoài không khí).",
+      "expected_result": "HNO₃ đặc phản ứng mãnh liệt sinh khí NO₂ màu nâu đỏ; HNO₃ loãng sinh khí NO không màu chuyển nâu khi gặp không khí.",
+      "feedback_on_failure": "Chọn kịch bản axit đặc/loãng và mở quan sát.",
+      "cases": [
+        {
+          "parameters": {
+            "acid": "concentrated",
+            "air": true,
+            "observed": true
+          },
+          "elapsed_s": 0
+        },
+        {
+          "parameters": {
+            "acid": "dilute",
+            "air": true,
+            "observed": true
+          },
+          "elapsed_s": 0
+        }
+      ]
+    },
+    {
+      "id": "HH-CLO-01-A-1",
+      "title": "Khảo sát tính tẩy màu của khí clo trong điều kiện ẩm",
+      "runtime_id": "chlorine-bleach",
+      "initial_state": "Đặt lại về thí nghiệm điều chế và tính chất của clo.",
+      "actions": "Quan sát khí clo tiếp xúc với giấy màu ẩm (bị mất màu do HClO), sau đó so sánh với giấy màu khô đối chứng (không mất màu).",
+      "expected_result": "Khí clo ẩm làm mất màu giấy quỳ/giấy màu do tạo axit hipoclorơ (HClO) có tính oxi hóa mạnh; khí clo khô không làm mất màu.",
+      "feedback_on_failure": "Đổi trạng thái giấy ẩm/khô để đối chiếu hiện tượng tẩy màu.",
+      "cases": [
+        {
+          "parameters": {
+            "mode": "bleach",
+            "damp": true,
+            "observed": true
+          },
+          "elapsed_s": 0
+        },
+        {
+          "parameters": {
+            "mode": "bleach",
+            "damp": false,
+            "observed": true
+          },
+          "elapsed_s": 0
+        }
+      ]
+    }
+  ]
+}
