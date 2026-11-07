@@ -52,6 +52,7 @@ test('leaving the pendulum pauses time and Lumi explains actual engine facts', a
   await page.getByRole('button', { name: 'Chạy thí nghiệm', exact: false }).click();
   await expect(page.locator('.stage-clock output')).not.toHaveText('0.0');
   await page.getByRole('button', { name: '✦ Lumi', exact: true }).click();
+  await page.getByLabel('Dùng lượt thử hiện tại', { exact: true }).check();
   await page.getByRole('combobox', { name: 'Chế độ Lumi' }).selectOption('explain');
   await page.getByLabel('Hỏi Lumi', { exact: true }).fill('Giải thích lượt thử hiện tại');
   await page.getByRole('button', { name: 'Gửi câu hỏi' }).click();
@@ -81,7 +82,7 @@ test('library search has empty/results states; activity draft import and quiz re
   await expect(page.getByTestId('ph-reading')).toBeVisible();
   await page.getByRole('button', { name: 'Không gian học tập', exact: true }).click();
   await page.getByRole('button', { name: 'Tạo quiz', exact: true }).click();
-  await page.getByRole('button', { name: 'Tạo bộ quiz', exact: true }).click();
+  await page.getByRole('button', { name: 'Tạo bộ quiz mẫu', exact: true }).click();
   await page.getByRole('radio').first().check();
   await page.getByRole('button', { name: 'Xem kết quả & giải thích' }).click();
   await page.getByRole('button', { name: 'Làm lại', exact: true }).click();
