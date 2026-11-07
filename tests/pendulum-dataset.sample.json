@@ -1,0 +1,24 @@
+{
+  "version": "0.1-draft",
+  "split": "development",
+  "retrieval_cases": [
+    {
+      "id": "RET-CONLAC-01",
+      "query": "Khi dây dài hơn, con lắc đơn dao động nhanh hơn hay chậm hơn?",
+      "expected_card_ids": ["CONLAC-CHUKY-01"]
+    }
+  ],
+  "tutor_cases": [
+    {
+      "id": "TUTOR-CONLAC-01",
+      "question": "Hai con lắc đơn lý tưởng được thả ở cùng góc nhỏ và cùng một nơi. Nếu dây của con lắc thứ hai dài gấp bốn lần, chu kỳ của nó thay đổi thế nào?",
+      "evidence_card_ids": ["CONLAC-CHUKY-01"],
+      "expected_answer": "Trong xấp xỉ góc nhỏ, chu kỳ của con lắc thứ hai khoảng gấp đôi vì T tỉ lệ với √L khi g giữ nguyên.",
+      "rubric": [
+        { "criterion": "Nêu chu kỳ xấp xỉ gấp đôi", "points": 1 },
+        { "criterion": "Giải thích bằng tỉ lệ với căn bậc hai của chiều dài", "points": 1 },
+        { "criterion": "Nêu điều kiện góc nhỏ và cùng gia tốc trọng trường", "points": 1 }
+      ]
+    }
+  ]
+}
