@@ -4,7 +4,7 @@ LumiLab là phòng thí nghiệm ảo Vật lí và Hóa học cho THPT. Bản h
 
 ## Bắt đầu nhanh cho team
 
-Tài liệu liên quan gồm [RAG và Tutor](docs/DATA-RAG-TUTOR.md), [LLM gateway](docs/LLM-DATA-REVIEW.md) và [coding skills, specs, Spec Kit](docs/TOOLS-AND-SKILLS.md).
+Tài liệu liên quan gồm [RAG và Tutor](docs/DATA-RAG-TUTOR.md), [LLM gateway](docs/LLM-DATA-REVIEW.md), [runbook Gemini/Groq](docs/LLM-RUNBOOK.md), [nghiệm thu/backup/rollback](docs/OPERATIONS.md), [sổ chuyển giao A → B](docs/MIGRATION-LEDGER.md) và [coding skills, specs, Spec Kit](docs/TOOLS-AND-SKILLS.md).
 
 Làm việc trên branch/commit của **repo B** đã chứa `docker/compose.yml`, `docker/web.Dockerfile` và toàn bộ `apps/`, `packages/`, `knowledge/`. Chạy các lệnh dưới đây từ root repo. Cần Docker Desktop (hoặc Docker Engine + Compose v2) đang chạy và các cổng local **5175, 8002, 15434** còn trống. Lần build đầu cần mạng để tải image và dependencies.
 
