@@ -42,7 +42,7 @@ class Route(BaseModel):
     def allowed(self, audience: str) -> bool:
         if not all([self.enabled, self.account_verified, self.policy_verified, self.quota_verified]):
             return False
-        if audience == "under18" and (self.provider == "gemini" or not self.minors_approved):
+        if audience == "under18" and not self.minors_approved:
             return False
         if self.free_only and (self.input_usd_per_million or self.output_usd_per_million):
             return False

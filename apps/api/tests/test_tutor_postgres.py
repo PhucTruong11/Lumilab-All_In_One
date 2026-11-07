@@ -144,7 +144,7 @@ def test_tutor_owned_runs_preview_and_spoofed_context_are_blocked(pg):
         assert result["answer"]["response_source"] == "template"
         assert result["run"]["preview"] == saved["result"]["preview"]
         assert result["run"]["status"] == "INSUFFICIENT_DATA" and result["run"]["review_status"] == "draft"
-        assert all(item["document"]["review_status"] == "draft" for item in result["retrieval"]["hits"])
+        assert all(item["document"]["review_status"] in {"draft", "reviewed"} for item in result["retrieval"]["hits"])
         assert client.post(route, headers=other_headers, json=payload).status_code == 401
         assert client.post(f"/api/v1/sessions/{second}/tutor", headers=other_headers, json=payload).status_code == 404
         for extra in [{"preview":{"pH":999}}, {"skill_path":"../../evil"}, {"facts":{"x":1}},

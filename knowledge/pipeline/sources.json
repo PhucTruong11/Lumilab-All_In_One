@@ -58,16 +58,18 @@
       "commit": null,
       "accessed_at": "2026-11-05",
       "kind": "project-authored",
-      "rights_status": "internal",
+      "rights_status": "approved",
       "allowed_uses": [
         "convert",
-        "index"
+        "index",
+        "send_llm"
       ],
-      "reviewer": null,
-      "reviewed_at": null,
-      "purpose": "Local draft preview only",
+      "reviewer": "Đỗ Đạt",
+      "reviewed_at": "2026-11-07",
+      "purpose": "Project-authored learning cards; only reviewed cards may be sent to an approved provider",
       "restrictions": [
-        "Not academically reviewed; no external model submission"
+        "Only reviewed cards may be sent to a model provider; other cards remain draft",
+        "No commercial use approved"
       ]
     }
   ]

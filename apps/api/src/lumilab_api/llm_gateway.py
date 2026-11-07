@@ -156,12 +156,17 @@ class Gateway:
         if not self.settings.llm_enabled:
             return fallback("LIVE_DISABLED")
         # Every submitted passage needs both academic and provider-use approval.
-        for hit in context.sources:
-            doc = hit.document
-            if doc.review_status != "reviewed" or doc.provenance is None:
-                return fallback("REVIEWED_SOURCES_REQUIRED")
-            if not self.registry.source(doc.provenance.source_id).permits("send_llm"):
+        reviewed_sources = [hit for hit in context.sources
+            if hit.document.review_status == "reviewed" and hit.document.provenance is not None]
+        if not reviewed_sources:
+            return fallback("REVIEWED_SOURCES_REQUIRED")
+        for hit in reviewed_sources:
+            if hit.document.provenance is None or not self.registry.source(hit.document.provenance.source_id).permits("send_llm"):
                 return fallback("SOURCE_PROVIDER_USE_NOT_APPROVED")
+        if len(reviewed_sources) != len(context.sources):
+            context = context.model_copy(update={"sources": reviewed_sources})
+            messages, skill_id, skill_revision = assemble_prompt(context, history or [],
+                self.settings.knowledge_dir / "tutor-skills")
         routes = [route for route in self.routes if route.role != 'guard'
             and context.task.mode in route.modes and route.allowed(self.settings.llm_audience)]
         hard = context.task.mode in {"explanation", "feedback"} and len(context.task.question) > 180
@@ -219,7 +224,8 @@ class Gateway:
                     reservation = self.budget.reserve(session_id, route.id,
                         estimated_microusd=reserve_cost, demo=self.settings.llm_demo_mode,
                         model=route.provider + "/" + route.model, model_rpm=route.rpm_limit, model_rpd=route.rpd_limit,
-                        provider=route.provider, estimated_tokens=len(encoded)+self.settings.llm_max_output_tokens,
+                        provider=route.provider,
+                        estimated_tokens=max(1, len(encoded) // 3) + self.settings.llm_max_output_tokens,
                         **route_token_budget(route,self.settings))
                 except BudgetDenied as exc:
                     if str(exc) in {'MODEL_RATE_LIMIT_EXCEEDED','MODEL_TOKEN_LIMIT_EXCEEDED','PROVIDER_TOKEN_LIMIT_EXCEEDED','PROVIDER_HEADER_LIMIT_EXCEEDED'}:
@@ -252,7 +258,10 @@ class Gateway:
                         "request_id":request_id,"route":route.id,"attempt":attempts,
                         "latency_ms":int((perf_counter() - started) * 1000)}))
                     if completion is None:
-                        if isinstance(exc, (OSError, TimeoutError)) or (isinstance(exc, ProviderFailure) and exc.retryable):
+                        if isinstance(exc, (OSError, TimeoutError)) or (
+                            isinstance(exc, ProviderFailure)
+                            and (exc.retryable or (route.provider == "groq" and exc.status_code == 400))
+                        ):
                             break  # transport is not retried on the same model
                         return fallback("PROVIDER_CONFIGURATION_OR_RESPONSE_ERROR")
                     continue  # exactly one schema/citation repair is allowed, after another reservation
