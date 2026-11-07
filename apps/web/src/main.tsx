@@ -14,6 +14,7 @@ import { PracticeCatalog } from "./components/PracticeCatalog";
 import { parseRoute, tabs, type View } from "./routing";
 import "./practice.css";
 import "./select.css";
+import "./library-layout.css";
 import "./experiment.css";
 
 function App() {
