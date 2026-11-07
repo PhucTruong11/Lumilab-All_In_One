@@ -1,6 +1,6 @@
 # Kế hoạch Verify và UI/UX theo dataset LumiLab
 
-Dựa trên [DATASET.md v0.4](../DATASET.md) và [catalog runtime hiện tại](../../packages/lab-engine/labs/catalog.json). Đây là backlog đề xuất. Mã kiến thức trong dataset là mã nội dung. ID runtime dùng để chạy mô hình và gọi Verify. Chốt ánh xạ hai mã trước khi nối giao diện và API.
+Dựa trên [DATASET.md v0.4](../DATASET.md) tại thời điểm lập kế hoạch. Đây là backlog lịch sử; phần đã triển khai cho 9 bài và trạng thái test mới xem ở [NINE-LABS.md](NINE-LABS.md) và [STATUS.md](../STATUS.md). Mã kiến thức trong dataset là mã nội dung, còn ID runtime dùng để chạy mô hình và gọi Verify.
 
 Khi triển khai, đối chiếu giả thiết và số đo trong [phạm vi khoa học của runtime](../../SCIENCE.md) và luồng snapshot trong [hướng dẫn lab engine](../LAB-ENGINE.md).
 

@@ -4,17 +4,27 @@ Chuyển và điều chỉnh từ `PhucTruong11/lumilab` tại commit `f5f233f8d
 
 Hiện có 17 bộ tính Python đối chiếu TypeScript. Danh mục gồm 12 mô hình thuộc 9 bài và 5 mô hình lưu trữ. Route runtime kiểm schema/revision, tính lại và chạy scientific_checks cho catalog đã hỗ trợ. Các bước ghi stage/status/code/reason trong stage_checks. Schema, bảo toàn nguyên tố của phương trình catalog, điều kiện cố định, định lượng và bất biến đã có kiểm thử. Parser chỉ hỗ trợ công thức trung hòa phẳng; ionic charge_balance ghi skipped; units chuyển tường minh theo tên trường, chưa có pint runtime.
 
-Dữ liệu/nguồn chưa duyệt nên kết quả hợp lệ vẫn INSUFFICIENT_DATA/REVIEWED_EVIDENCE_REQUIRED, preview có số đọc, facts/evidence rỗng. Kết quả vi phạm invariant không được trả preview để lưu. Chưa có nhánh tự động nâng VERIFIED. Xem [các stage đang chạy và giới hạn](VERIFY-STAGES.md) và [contract của B](CONTRACT.md).
+Dữ liệu/nguồn chưa duyệt nên kết quả hợp lệ vẫn INSUFFICIENT_DATA/REVIEWED_EVIDENCE_REQUIRED, preview có số đọc, facts/evidence rỗng. Kết quả vi phạm invariant không được trả preview để lưu. API hiện giữ cổng bằng chứng ở trạng thái chờ một cách cố định; chưa nạp hồ sơ nguồn đã duyệt, chưa đánh giá claim theo nguồn và chưa có nhánh nâng VERIFIED. Xem [các stage đang chạy và giới hạn](VERIFY-STAGES.md) và [contract của B](CONTRACT.md).
 
 Route runtime chỉ trả preview khi các stage bắt buộc của từng mô hình đều `pass`. Các mô hình kiểm bất biến dùng `physics_invariants`. Các bài phản ứng có định lượng cần `formula_equation`, `scientific_rules`, `quantitative` và `simulation`. Ba bài Hóa định tính cần `simulation` để đối chiếu hiện tượng và phương trình với kịch bản. Stage `quantitative` của ba bài này ghi `skipped` vì mô hình chỉ trả quan sát định tính.
 
-Thiếu stage bắt buộc hoặc lặp tên stage trả `INSUFFICIENT_DATA/SCIENTIFIC_CHECKS_INCOMPLETE` với `preview=null`. Các stage đạt yêu cầu cho phép xem preview nháp. Trạng thái duyệt evidence vẫn được kiểm riêng.
+Với sáu mô hình thuộc dataset 9 bài, Verify còn đối chiếu thời điểm mô phỏng với request, quỹ đạo/biên độ lò xo có cản, trạng thái vật trên dốc, công nâng tải trực tiếp và phần diễn giải của ba kịch bản Hóa. Đây là kiểm tính nhất quán của mô hình nháp, chưa xác nhận nguồn hay hiện tượng thực nghiệm.
+
+Thiếu stage bắt buộc hoặc lặp tên stage trả `INSUFFICIENT_DATA/SCIENTIFIC_CHECKS_INCOMPLETE` với `preview=null`. Các stage đạt yêu cầu cho phép xem preview nháp; chúng không thay thế bước duyệt evidence đang chờ triển khai.
 
 Pilot dataset `VL-CONLAC-01` ánh xạ tới runtime `pendulum`. Ca hai chiều dài 0,4 m và 1,6 m ở cùng góc 10° và cùng `g` kiểm tỉ lệ chu kỳ 2 qua route; cả hai vẫn là preview draft. Công thức góc nhỏ trong dataset chỉ được dùng trong miền góc nhỏ, còn runtime AGM hỗ trợ đến 90°.
 
 Hồ sơ claim của pilot nằm ở [`knowledge/verification/pendulum.draft.json`](../knowledge/verification/pendulum.draft.json). Hồ sơ gắn đúng `lab_id`, `model_version`, `dataset_version`, giả thiết, phạm vi tham số, nguồn tham khảo và ca hồi quy với từng claim. Đây là tài liệu **draft**, không được API nạp làm bằng chứng đã duyệt. T2 cần xác nhận công thức AGM, ca đối chiếu độc lập, miền và sai số của xấp xỉ góc nhỏ; T4 cần kiểm vị trí nguồn, quyền sử dụng và phạm vi claim. Chỉ khi có reviewer/date thật, nguồn được duyệt cho đúng mục đích, ca chuẩn và các stage bắt buộc đạt thì T2/T3/T4 mới có thể nối cổng `VERIFIED` với route và lưu run. Hiện không có cổng đó; sửa nhãn trong hồ sơ không tự nâng trạng thái.
 
 Web đọc `stage_checks`, `checks_skipped` và `limitations` của phản hồi draft, hiển thị giả thiết cùng liên kết nguồn của cấu hình runtime với nhãn chưa duyệt. Kết quả được gắn phiên bản và thời điểm snapshot; đổi tham số hoặc thời điểm sẽ báo kết quả thuộc lượt cũ. Phản hồi `INVALID`, `UNSUPPORTED`, thiếu stage hoặc sai revision không được lưu thành preview.
+
+Nút **Xem toàn bộ số liệu máy chủ** trình bày đối tượng `preview` bằng nhãn tiếng Việt, đơn vị và số làm tròn; các số trong đó do Python recompute tại API tạo ra, không đọc từ một file kết quả tĩnh. Ví dụ `gas-reaction` ghi thể tích CO₂ là lý thuyết của khí khô lý tưởng ở 25°C và 1 atm. Lịch sử JSON tải về giữ giá trị gốc để đối chiếu kỹ thuật. Cách hiển thị không thay công thức hoặc trạng thái Verify.
+
+## Việc còn cần làm để xét chứng nhận
+
+- Mới có hồ sơ claim nháp cho `pendulum`; sáu mô hình mới chưa có hồ sơ theo từng claim nối nguồn, điều kiện, revision, ca đối chiếu độc lập và sai số. Bộ 22 golden cases là kiểm hồi quy kỹ thuật, chưa phải hồ sơ duyệt khoa học.
+- T2 cần kiểm các giả thiết và giá trị chuẩn trong phạm vi từng mô hình; T4 cần kiểm vị trí nguồn và quyền dùng cho đúng loại nội dung. Ghi reviewer/ngày thực tế sau review; không suy ra quyền nhập văn bản nguồn vào corpus chỉ từ liên kết tham khảo.
+- T3 chỉ nối cổng evidence và nhánh `VERIFIED` sau khi có hồ sơ được duyệt, kiểm stage bắt buộc và ca PostgreSQL/CI trên revision cuối. Hiện mọi kết quả hợp lệ vẫn là preview nháp.
 
 Hai route P0 body phẳng giữ tương thích sàng lọc; route runtime /labs/ID mới có các stage mở rộng. Nguồn RAG và LLM không quyết định kết quả Verify. Chưa hỗ trợ mọi chất, ion, phương trình hay điều kiện phản ứng.
 
@@ -57,7 +67,7 @@ Từ root repo B, chạy:
 
 ```powershell
 .\.venv\Scripts\python.exe -m ruff check apps/api
-.\.venv\Scripts\python.exe -m pytest apps/api/tests/test_scientific_checks.py apps/api/tests/test_foundation.py apps/api/tests/test_expansion_routes.py -q
+.\.venv\Scripts\python.exe -m pytest apps/api/tests/test_scientific_checks.py apps/api/tests/test_foundation.py apps/api/tests/test_expansion_routes.py apps/api/tests/test_curriculum_labs.py -q
 npm run test:unit
 ```
 

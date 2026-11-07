@@ -13,6 +13,7 @@ export interface ParsedRoute {
   view: View;
   labOpen: boolean;
   labId?: LabId;
+  taskId?: string;
 }
 
 export function parseRoute(hash: string): ParsedRoute | null {
@@ -20,7 +21,7 @@ export function parseRoute(hash: string): ParsedRoute | null {
   if (!raw) {
     return { view: 'lab', labOpen: false };
   }
-  const [segment, id] = raw.split('/');
+  const [segment, id, task] = raw.split('/');
   if (tabs.some(tab => tab.id === segment)) {
     const view = segment as View;
     if (view === 'lab') {
@@ -29,6 +30,7 @@ export function parseRoute(hash: string): ParsedRoute | null {
         view: 'lab',
         labOpen: open,
         labId: open ? (id as LabId) : undefined,
+        taskId: open && task ? decodeURIComponent(task) : undefined,
       };
     }
     return { view, labOpen: false };

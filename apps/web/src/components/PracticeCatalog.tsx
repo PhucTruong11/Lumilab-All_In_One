@@ -213,7 +213,6 @@ export function PracticeCatalog({ onOpen, onLesson }: { onOpen: (id: LabId) => v
             <article key={id} data-testid={`practice-card-${id}`} className={`practice-card ${definition.subject}`}>
               <div className="practice-art">
                 <span>{definition.subject === 'physics' ? 'Vật lí' : 'Hóa học'}</span>
-                <em>{modes.length > 1 ? `${modes.length} chế độ` : 'Tương tác trực tiếp'}</em>
                 <Preview id={id} />
               </div>
               <div className="practice-card-body">

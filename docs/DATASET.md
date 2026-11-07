@@ -6,7 +6,11 @@
 
 Danh mục gồm **6 bài Vật lí và 5 bài Hóa học**. Mỗi bài có mô phỏng, phép tính độc lập và học liệu tiếng Việt. Các mục dưới đây ghi căn cứ, giới hạn và ca đối chiếu khoa học.
 
-Các trang SGK dưới đây là **số trang in trên sách**. Mã bản điện tử nằm trong đường dẫn của Nhà xuất bản Giáo dục Việt Nam (NXBGDVN). Các SGK THPT/THCS được dẫn theo bộ *Kết nối tri thức với cuộc sống* và *Chân trời sáng tạo*. Mục OpenStax dẫn thẳng đến phần dùng để đối chiếu. Các nguồn được ghi ở trạng thái `reference-only`; quyền đưa nội dung nguồn vào corpus là `pending`.
+`lab.json` của từng mô hình lưu cấu hình, phiên bản, giới hạn tham số, giả thiết và liên kết nguồn; đây không phải file chứa sẵn mọi kết quả thí nghiệm. Engine TypeScript tính số đọc trên trình duyệt, còn API dùng bộ tính Python để tính lại từ tham số và thời điểm người dùng gửi. API trả đối tượng preview dạng JSON cho lượt đó; màn hình số liệu trình bày tên đại lượng bằng tiếng Việt, đơn vị và số làm tròn. File lịch sử JSON tải về giữ giá trị gốc để đối chiếu kỹ thuật. Kết quả vẫn là `draft/preview`.
+
+Danh mục hiện có 12 mô hình đang mở cho 9 bài và 5 mô hình lưu trữ. `gas-reaction` (HCl + NaHCO₃) thuộc nhóm lưu trữ, không phải một trong ba bài Hóa hiện hành của dataset 9 bài. Thể tích CO₂ ở model này là giá trị lý thuyết của khí khô lý tưởng tại 298,15 K và 1 atm, không phải lượng khí đo được hay chứng nhận khoa học.
+
+Các trang SGK dưới đây là **số trang in trên sách**. Mã bản điện tử nằm trong đường dẫn của Nhà xuất bản Giáo dục Việt Nam (NXBGDVN). Các SGK THPT/THCS được dẫn theo bộ *Kết nối tri thức với cuộc sống* và *Chân trời sáng tạo*; Khoa học tự nhiên 9 là nguồn bổ trợ THCS. Mục OpenStax dẫn thẳng đến phần dùng để đối chiếu. Các nguồn được ghi ở trạng thái `reference-only`; quyền đưa nội dung nguồn vào corpus là `pending`.
 
 ## Vật lí — 6 bài
 

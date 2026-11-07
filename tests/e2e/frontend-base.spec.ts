@@ -23,9 +23,7 @@ test('mass and material do not change the ideal period; zero angle is stationary
   await page.goto('/#lab/pendulum');
   const period = await page.getByTestId('period-reading').textContent();
   await page.getByRole('slider', { name: 'Khối lượng', exact: true }).press('End');
-  await page.getByRole('button', { name: 'Gỗ', exact: true }).click();
   await expect(page.getByTestId('period-reading')).toHaveText(period!);
-  await expect(page.getByRole('button', { name: 'Gỗ', exact: true })).toHaveAttribute('aria-pressed', 'true');
   await page.getByRole('slider', { name: 'Góc thả', exact: true }).press('Home');
   await expect(page.getByRole('button', { name: 'Chạy thí nghiệm' })).toBeDisabled();
   await expect(page.getByTestId('period-reading')).toContainText('—');

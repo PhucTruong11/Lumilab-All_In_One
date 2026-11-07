@@ -28,6 +28,15 @@ describe('hash routing and root navigation', () => {
     });
   });
 
+  it('supports taskId parameter in hash', () => {
+    expect(parseRoute('#lab/pendulum/task-1')).toEqual({
+      view: 'lab',
+      labOpen: true,
+      labId: 'pendulum',
+      taskId: 'task-1',
+    });
+  });
+
   it('falls back to catalog when labId is invalid or missing', () => {
     expect(parseRoute('#lab/unknown-lab')).toEqual({
       view: 'lab',
