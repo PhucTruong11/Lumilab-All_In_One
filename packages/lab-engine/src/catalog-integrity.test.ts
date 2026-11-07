@@ -4,7 +4,7 @@ import { practiceGroups, practiceIds, practiceInfo } from '../../../apps/web/src
 import { activeLabIds, archivedLabIds, isLabId, labDefinitions, labIds } from './runtime';
 
 it('every available lesson has complete learning content and an actual matching runtime lab', () => {
-  expect(lessons).toHaveLength(17); expect(practiceIds).toHaveLength(12);
+  expect(lessons).toHaveLength(17); expect(practiceIds).toHaveLength(14);
   expect(new Set(lessons.map(item => item.id)).size).toBe(17);
   expect(lessons.filter(item => item.subjectId === 'physics')).toHaveLength(9);
   expect(lessons.filter(item => item.subjectId === 'chemistry')).toHaveLength(8);
@@ -40,9 +40,9 @@ it('every available lesson has complete learning content and an actual matching 
 it('active and archived catalogs partition runtime IDs without losing compatible models', () => {
   expect(new Set([...activeLabIds, ...archivedLabIds]).size).toBe(labIds.length);
   expect(activeLabIds.length + archivedLabIds.length).toBe(labIds.length);
-  expect(archivedLabIds).toEqual(['electrochemistry', 'atomic', 'chemistry', 'precipitation', 'gas-reaction']);
+  expect(archivedLabIds).toEqual(['alkali-water', 'copper-nitric', 'chlorine-bleach']);
   expect(practiceIds).toEqual(activeLabIds);
-  expect(practiceGroups).toHaveLength(9);
+  expect(practiceGroups).toHaveLength(11);
   expect(practiceGroups.flatMap(group => group.modes).sort()).toEqual([...activeLabIds].sort());
   for (const group of practiceGroups) {
     expect(group.modes).toContain(group.primary);
