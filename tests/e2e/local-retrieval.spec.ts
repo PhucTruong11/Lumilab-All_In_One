@@ -15,6 +15,7 @@ test('Lumi retrieves local passages with sources and review labels for every sam
     await page.getByRole('button', { name: 'Gửi câu hỏi' }).click();
     const answer = page.locator('.chat-message.assistant').last();
     await expect(answer).toContainText('Dữ liệu chưa duyệt');
+    await answer.locator('.retrieval-details').first().locator('summary').click();
     await expect(answer.getByRole('link').first()).toHaveAttribute('href', /^https:\/\//);
     await expect(answer).toContainText('Mã đoạn ' + id + '-overview');
     await expect(answer).not.toContainText('VERIFIED');
