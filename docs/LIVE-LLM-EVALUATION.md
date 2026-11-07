@@ -17,6 +17,8 @@ Prompt Guard của A có 1 ca phát hiện đúng, 1 ca cho qua đúng, 1 ca ch�
 
 ## Preflight trên B
 
+Các lượt preflight và baseline dưới đây dùng corpus trước PR Dataset #13. Main đã nhận corpus `authored-nine-labs-draft-v1` và các runtime mới; cần build lại artifact, kiểm quyền/review và preflight mới trước khi đo live trên dữ liệu đó. Không dùng kết quả retrieval cũ để xác nhận corpus mới. [Bàn giao 9 bài](tasks/NINE-LABS.md) · [Runbook LLM](LLM-RUNBOOK.md)
+
 Lần đầu ngày **07/11/2026**, receipt mẫu chọn `dev-circuit-ohm` và dự kiến 3 lần gọi. Chỉ mục tìm được `circuit-overview:0`. Lúc đó B chưa cấu hình key và DB cho bộ đếm.
 
 Lần kiểm lại cùng ngày dùng key local của A theo yêu cầu. B lưu cấu hình trong `.env` được Git bỏ qua. PostgreSQL của B dùng volume hiện có và đã kiểm đủ bốn bảng ngân sách. Metadata xác nhận Gemini thấy cả hai model đã cấu hình và Groq thấy Qwen cùng GPT-OSS-120B. Phép kiểm metadata xác nhận key và model. Quota cần đối chiếu đúng project hoặc organization. [Gemini Rate Limits](https://ai.google.dev/gemini-api/docs/rate-limits) · [Groq Rate Limits](https://console.groq.com/docs/rate-limits)

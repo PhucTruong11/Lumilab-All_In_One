@@ -1,8 +1,10 @@
 # Trạng thái repo B
 
-## 9 bài hiện hành trên nhánh dataset
+## 9 bài hiện hành đã tích hợp vào main
 
 Phòng thực hành có 6 bài Vật lí và 3 bài Hóa vô cơ. Ba bài ghép có hai chế độ, tạo thành 12 mô hình hiện hành. Năm mô hình lưu trữ hỗ trợ phiên và nội dung cũ. Học liệu và kết quả khoa học ở trạng thái nháp. Chi tiết triển khai và kiểm thử tại [bàn giao 9 bài](tasks/NINE-LABS.md).
+
+PR Dataset #13 đã merge tại `02d92f2`. Nhánh runbook đã sync main và bổ sung [vận hành LLM](LLM-RUNBOOK.md), [nghiệm thu/backup/rollback](OPERATIONS.md), [sổ chuyển giao](MIGRATION-LEDGER.md). Kiểm local trong lượt này: toàn bộ API trên DB khôi phục riêng đạt **633 passed, 2 skipped** (Chroma/Pint tùy chọn), Ruff đạt; backup custom dump/restore có checksum và đủ sáu bảng khớp số dòng trước khi chạy test. Đây là kiểm local; review/CI của PR runbook và deployment là các bước riêng. LLM live vẫn tắt, cap 0.
 
 ## Lịch sử tích hợp
 
