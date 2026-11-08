@@ -1,12 +1,12 @@
-# LumiLab B
+# LumiLab
 
 LumiLab là phòng thí nghiệm ảo Vật lí và Hóa học cho THPT. Bản hiện tại có web React/TypeScript, 9 lab đang dùng, lab engine chạy trong trình duyệt và API FastAPI tính lại số đo. Học liệu và kết quả khoa học vẫn ở trạng thái **draft/preview**; chưa có `VERIFIED` hoặc AI live. Xem [trạng thái triển khai](docs/STATUS.md), [contract](docs/CONTRACT.md) và [phạm vi Verify](docs/VERIFICATION.md) trước khi tích hợp thêm chức năng.
 
 ## Bắt đầu nhanh cho team
 
-Tài liệu liên quan gồm [RAG và Tutor](docs/DATA-RAG-TUTOR.md), [LLM gateway](docs/LLM-DATA-REVIEW.md), [runbook Gemini/Groq](docs/LLM-RUNBOOK.md), [nghiệm thu/backup/rollback](docs/OPERATIONS.md), [sổ chuyển giao A → B](docs/MIGRATION-LEDGER.md) và [coding skills, specs, Spec Kit](docs/TOOLS-AND-SKILLS.md).
+Tài liệu liên quan gồm [RAG và Tutor](docs/DATA-RAG-TUTOR.md), [LLM gateway](docs/LLM-DATA-REVIEW.md), [runbook Gemini/Groq](docs/LLM-RUNBOOK.md), [nghiệm thu/backup/rollback](docs/OPERATIONS.md), [sổ chuyển giao](docs/MIGRATION-LEDGER.md) và [coding skills, specs, Spec Kit](docs/TOOLS-AND-SKILLS.md).
 
-Làm việc trên branch/commit của **repo B** đã chứa `docker/compose.yml`, `docker/web.Dockerfile` và toàn bộ `apps/`, `packages/`, `knowledge/`. Chạy các lệnh dưới đây từ root repo. Cần Docker Desktop (hoặc Docker Engine + Compose v2) đang chạy và các cổng local **5175, 8002, 15434** còn trống. Lần build đầu cần mạng để tải image và dependencies.
+Làm việc trên branch/commit đã chứa `docker/compose.yml`, `docker/web.Dockerfile` và toàn bộ `apps/`, `packages/`, `knowledge/`. Chạy các lệnh dưới đây từ root repo. Cần Docker Desktop (hoặc Docker Engine + Compose v2) đang chạy và các cổng local **5175, 8002, 15434** còn trống. Lần build đầu cần mạng để tải image và dependencies.
 
 **Windows PowerShell:**
 
@@ -21,7 +21,7 @@ docker compose -f docker/compose.yml up -d --build --wait web
 docker compose -f docker/compose.yml ps
 ```
 
-Mở **http://127.0.0.1:5175**. API docs: **http://127.0.0.1:8002/docs**. `up ... web` cũng khởi động API và PostgreSQL vì chúng là dependencies. Lab engine là mã client nằm trong web image, **không có service lab riêng**. Nginx trong web container chuyển `/api/*` sang API container; API tạo schema ban đầu sau khi DB khỏe. Compose giữ dữ liệu DB trong volume `lumilab-b-dev_postgres_data`, tách khỏi repo A.
+Mở **http://127.0.0.1:5175**. API docs: **http://127.0.0.1:8002/docs**. `up ... web` cũng khởi động API và PostgreSQL vì chúng là dependencies. Lab engine là mã client nằm trong web image, **không có service lab riêng**. Nginx trong web container chuyển `/api/*` sang API container; API tạo schema ban đầu sau khi DB khỏe. Compose giữ dữ liệu DB trong volume `lumilab-b-dev_postgres_data`.
 
 Các bài có [cấu hình thử nhanh, nhập số chính xác và hướng dẫn thao tác](docs/LAB-INTERACTIONS.md). Với mô hình có thời gian, dùng tốc độ phát hoặc tiến từng bước để quan sát; đổi cấu hình mẫu vẫn giữ sổ đo.
 
@@ -112,7 +112,7 @@ $env:LUMILAB_DATABASE_URL='postgresql+psycopg://lumilab:lumilab_local_only@127.0
 .\.venv\Scripts\python.exe -m lumilab_api.run_schema
 ```
 
-Khởi động Uvicorn trong **cùng terminal** đã đặt `LUMILAB_DATABASE_URL`. File `.env.example` ở root liệt kê cấu hình cho chế độ này; nếu tạo `.env` thật, Git sẽ bỏ qua nó. Không dùng DB/volume của repo A.
+Khởi động Uvicorn trong **cùng terminal** đã đặt `LUMILAB_DATABASE_URL`. File `.env.example` ở root liệt kê cấu hình cho chế độ này; nếu tạo `.env` thật, Git sẽ bỏ qua nó.
 
 ## Kiểm tra trước PR
 
@@ -134,7 +134,7 @@ $env:Path = "$PWD\.venv\Scripts;$env:Path"
 npm run test:e2e
 ```
 
-Các ca lưu phiên cần PostgreSQL; CI chạy chúng với DB test. Không coi kết quả test từ repo A là bằng chứng cho B. Xem [`AGENTS.md`](AGENTS.md) và hướng dẫn trong từng module trước khi sửa contract, engine, API hoặc trạng thái khoa học.
+Các ca lưu phiên cần PostgreSQL; CI chạy chúng với DB test. Xem [`AGENTS.md`](AGENTS.md) và hướng dẫn trong từng module trước khi sửa contract, engine, API hoặc trạng thái khoa học.
 
 ## Vị trí cần sửa
 
@@ -148,7 +148,7 @@ Các ca lưu phiên cần PostgreSQL; CI chạy chúng với DB test. Không coi
 | Container và cấu hình triển khai local | `docker/` |
 | Cấu hình triển khai Cloud (AWS, Cloud Run) | `deploy/` |
 
-Mỗi người làm trên branch riêng, ghi rõ file mình sửa và đưa diff nhỏ qua PR. Thay contract phải cập nhật schema, TypeScript consumer, Python producer và test cùng lúc. Registry/UI chỉ công bố lab đã chạy ở B. Nguồn chưa duyệt không được nâng thành `VERIFIED`; AI live và provider key không được bật chỉ để làm demo.
+Mỗi người làm trên branch riêng, ghi rõ file mình sửa và đưa diff nhỏ qua PR. Thay contract phải cập nhật schema, TypeScript consumer, Python producer và test cùng lúc. Registry/UI chỉ công bố lab đã có implementation. Nguồn chưa duyệt không được nâng thành `VERIFIED`; AI live và provider key không được bật chỉ để làm demo.
 
 ## Giới hạn của bản Compose này
 

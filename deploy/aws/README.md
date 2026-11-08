@@ -1,6 +1,6 @@
 # Hướng dẫn Triển khai LumiLab trên AWS (All-in-One)
 
-Tài liệu này hướng dẫn triển khai toàn diện hệ sinh thái LumiLab B (Web, Backend API, Database PostgreSQL) lên nền tảng Amazon Web Services (AWS) với mức chi phí tối ưu (tận dụng AWS Free Tier hoặc AWS Student/Educate Credits $100).
+Tài liệu này hướng dẫn triển khai toàn diện hệ sinh thái LumiLab (Web, Backend API, Database PostgreSQL) lên nền tảng Amazon Web Services (AWS) với mức chi phí tối ưu (tận dụng AWS Free Tier hoặc AWS Student/Educate Credits $100).
 
 ---
 
