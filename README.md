@@ -146,9 +146,18 @@ Các ca lưu phiên cần PostgreSQL; CI chạy chúng với DB test. Không coi
 | API, kiểm chứng và phiên | `apps/api/` |
 | Học liệu draft và nguồn | `knowledge/` |
 | Container và cấu hình triển khai local | `docker/` |
+| Cấu hình triển khai Cloud (AWS, Cloud Run) | `deploy/` |
 
 Mỗi người làm trên branch riêng, ghi rõ file mình sửa và đưa diff nhỏ qua PR. Thay contract phải cập nhật schema, TypeScript consumer, Python producer và test cùng lúc. Registry/UI chỉ công bố lab đã chạy ở B. Nguồn chưa duyệt không được nâng thành `VERIFIED`; AI live và provider key không được bật chỉ để làm demo.
 
 ## Giới hạn của bản Compose này
 
 Đây là stack **phát triển local**: các cổng chỉ bind vào `127.0.0.1`, DB dùng mật khẩu mẫu local, chưa có HTTPS, backup hay cấu hình public hosting. Muốn triển khai ra server cần cấu hình domain/TLS, secret, backup, giám sát và kiểm lại quyền nguồn trước khi mở truy cập ngoài máy.
+
+## Triển khai Cloud (AWS All-in-One)
+
+Dự án hỗ trợ mẫu triển khai tự động trọn gói lên AWS (S3 Web, CloudFront CDN HTTPS, EC2 Docker API, RDS PostgreSQL 15) tối ưu chi phí (AWS Free Tier / AWS Credits):
+
+- **Template CloudFormation:** [`deploy/aws/lumilab-cloudformation.yaml`](deploy/aws/lumilab-cloudformation.yaml)
+- **Hướng dẫn chi tiết:** Xem [`deploy/aws/README.md`](deploy/aws/README.md) để biết quy trình tạo stack tự động, tải bản build web lên S3 và kiểm tra toàn diện các endpoint qua CloudFront.
+- **Mẫu tham khảo Cloud Run:** Xem [`deploy/cloud-run/README.md`](deploy/cloud-run/README.md) khi triển khai dạng serverless trên GCP.
