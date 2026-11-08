@@ -787,7 +787,7 @@ export function PracticeCatalog({
       </p>
 
       <div className="practice-grid">
-        {shown.map(({ primary: id, title, modes }) => {
+        {shown.map(({ primary: id, title }) => {
           const definition = labDefinitions[id];
           const info = practiceInfo[id];
           return (
@@ -807,11 +807,11 @@ export function PracticeCatalog({
                 <h2>{title}</h2>
                 <p>{info.lead}</p>
                 <span className="practice-action">
-                  {modes.length > 1
+                  {/* {modes.length > 1
                     ? modes
                         .map((mode) => labDefinitions[mode].title)
                         .join(" · ")
-                    : info.action}
+                    : info.action} */}
                 </span>
                 <div className="practice-card-buttons">
                   <button
