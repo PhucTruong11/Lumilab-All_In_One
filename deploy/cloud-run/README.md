@@ -1,10 +1,10 @@
 # Cloud Run — template chuẩn bị, chưa deploy
 
-Thư mục này chứa mẫu Cloud Run cho API LumiLab B. Web và PostgreSQL cần cấu hình môi trường đích riêng. [Chạy local bằng Docker Compose](../../README.md) · [Cấu hình LLM](../../docs/LLM-DATA-REVIEW.md)
+Thư mục này chứa mẫu Cloud Run cho API LumiLab. Web và PostgreSQL cần cấu hình môi trường đích riêng. [Chạy local bằng Docker Compose](../../README.md) · [Cấu hình LLM](../../docs/LLM-DATA-REVIEW.md)
 
 ## Trước khi áp dụng
 
-**[MỞ]** T5 xác minh project/billing/credit, region/quota, rubric gốc, owner account và chính sách chi phí. Chưa có các thông tin này thì chỉ build/test local, không chạy deploy. Artifact Registry/build/scan/egress/logs/secrets/DB có phí riêng; free compute không là bill toàn hệ thống bằng0.
+**[MỞ]** Nhóm triển khai xác minh project/billing/credit, region/quota, yêu cầu nghiệm thu, owner account và chính sách chi phí. Chưa có các thông tin này thì chỉ build/test local, không chạy deploy. Artifact Registry/build/scan/egress/logs/secrets/DB có phí riêng; free compute không là bill toàn hệ thống bằng0.
 
 **[ĐỀ XUẤT]** Bắt đầu API lean1vCPU/512Mi, min0/max1, concurrency4, request-based CPU, timeout20s. Chưa có Torch/embedding. Hai service staging/production có revision image digest, service account least privilege và secret riêng. Region quyết theo credit/quota/giá/latency đo được, không tự chọn giáTier1 cho mọi vùng.
 

@@ -10,6 +10,6 @@ documents.json gồm thẻ tự biên soạn dựa trên phạm vi mô hình đ�
 
 Luồng hiện tại là JSON → chia đoạn → chuẩn hóa từ khóa tiếng Việt → lọc theo lab và trạng thái duyệt → lấy tối đa ba đoạn → Lumi hiển thị đoạn và nguồn. Mặc định trả `local-lexical`. Gửi `retrieval_method: "vector"` để dùng vector local: mặc định là **feature hashing trên token** và cosine similarity, trả `local-hash-vector`. Đây là baseline từ khóa có vector, chưa hiểu ngữ nghĩa hay từ đồng nghĩa.
 
-Vector mặc định chạy trong bộ nhớ, không cần package/model/API mới. Adapter sentence-transformers chỉ nhận model đã có trên đĩa, không tải model; adapter Chroma là tùy chọn local, import khi yêu cầu vector đầu tiên. Xem [VECTOR-RETRIEVAL.md](../../docs/VECTOR-RETRIEVAL.md) để cấu hình và biết giới hạn. Chưa tích hợp LLM sinh câu trả lời từ nguồn.
+Vector mặc định chạy trong bộ nhớ, không cần package/model/API mới. Adapter sentence-transformers chỉ nhận model đã có trên đĩa, không tải model; adapter Chroma là tùy chọn local, import khi yêu cầu vector đầu tiên. Xem [VECTOR-RETRIEVAL.md](../../docs/VECTOR-RETRIEVAL.md) để cấu hình và biết giới hạn. Tutor dùng kết quả truy xuất theo chế độ và quyền nguồn; học liệu draft không được coi là nguồn đã duyệt.
 
 Kho truy xuất này có revision riêng. Thay trạng thái của học liệu yêu cầu review và không đổi trạng thái của kết quả verifier.

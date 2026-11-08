@@ -1,10 +1,10 @@
 # LumiLab
 
-LumiLab là phòng thí nghiệm ảo Vật lí và Hóa học cho THPT. Bản hiện tại có web React/TypeScript, 9 lab đang dùng, lab engine chạy trong trình duyệt và API FastAPI tính lại số đo. Học liệu và kết quả khoa học vẫn ở trạng thái **draft/preview**; chưa có `VERIFIED` hoặc AI live. Xem [trạng thái triển khai](docs/STATUS.md), [contract](docs/CONTRACT.md) và [phạm vi Verify](docs/VERIFICATION.md) trước khi tích hợp thêm chức năng.
+LumiLab là phòng thí nghiệm ảo Vật lí và Hóa học cho THPT. Hệ thống có web React/TypeScript, lab engine chạy trong trình duyệt và API FastAPI tính lại số đo. Học liệu và kết quả khoa học vẫn ở trạng thái **draft/preview**, chưa có `VERIFIED`; AI live tắt mặc định và chỉ có profile thử nghiệm local dành cho người lớn. Xem [kiến trúc](docs/ARCHITECTURE.md), [contract](docs/CONTRACT.md) và [phạm vi Verify](docs/VERIFICATION.md) trước khi tích hợp thêm chức năng.
 
 ## Bắt đầu nhanh cho team
 
-Tài liệu liên quan gồm [RAG và Tutor](docs/DATA-RAG-TUTOR.md), [LLM gateway](docs/LLM-DATA-REVIEW.md), [runbook Gemini/Groq](docs/LLM-RUNBOOK.md), [nghiệm thu/backup/rollback](docs/OPERATIONS.md), [sổ chuyển giao](docs/MIGRATION-LEDGER.md) và [coding skills, specs, Spec Kit](docs/TOOLS-AND-SKILLS.md).
+Tài liệu liên quan gồm [RAG và Tutor](docs/DATA-RAG-TUTOR.md), [LLM gateway](docs/LLM-DATA-REVIEW.md), [runbook Gemini/Groq](docs/LLM-RUNBOOK.md), [nghiệm thu/backup/rollback](docs/OPERATIONS.md) và [coding skills, specs, Spec Kit](docs/TOOLS-AND-SKILLS.md).
 
 Làm việc trên branch/commit đã chứa `docker/compose.yml`, `docker/web.Dockerfile` và toàn bộ `apps/`, `packages/`, `knowledge/`. Chạy các lệnh dưới đây từ root repo. Cần Docker Desktop (hoặc Docker Engine + Compose v2) đang chạy và các cổng local **5175, 8002, 15434** còn trống. Lần build đầu cần mạng để tải image và dependencies.
 
@@ -21,7 +21,7 @@ docker compose -f docker/compose.yml up -d --build --wait web
 docker compose -f docker/compose.yml ps
 ```
 
-Mở **http://127.0.0.1:5175**. API docs: **http://127.0.0.1:8002/docs**. `up ... web` cũng khởi động API và PostgreSQL vì chúng là dependencies. Lab engine là mã client nằm trong web image, **không có service lab riêng**. Nginx trong web container chuyển `/api/*` sang API container; API tạo schema ban đầu sau khi DB khỏe. Compose giữ dữ liệu DB trong volume `lumilab-b-dev_postgres_data`.
+Mở **http://127.0.0.1:5175**. API docs: **http://127.0.0.1:8002/docs**. `up ... web` cũng khởi động API và PostgreSQL vì chúng là dependencies. Lab engine là mã client nằm trong web image, **không có service lab riêng**. Nginx trong web container chuyển `/api/*` sang API container; API tạo schema ban đầu sau khi DB khỏe. Compose giữ dữ liệu DB trong named volume riêng.
 
 Các bài có [cấu hình thử nhanh, nhập số chính xác và hướng dẫn thao tác](docs/LAB-INTERACTIONS.md). Với mô hình có thời gian, dùng tốc độ phát hoặc tiến từng bước để quan sát; đổi cấu hình mẫu vẫn giữ sổ đo.
 
@@ -68,7 +68,7 @@ docker compose -f docker/compose.yml logs --tail=100 web api db
 docker compose -f docker/compose.yml stop
 ```
 
-Không dùng `down -v` để sửa lỗi vì thao tác đó xóa volume dữ liệu. Nếu đổi mật khẩu DB sau khi volume đã tạo, biến môi trường mới không tự đổi mật khẩu trong PostgreSQL hiện có; cần xử lý migration/backup riêng. Khi chạy Compose, dừng Vite và Uvicorn local trước để không trùng cổng 5175/8002.
+Không dùng `down -v` để sửa lỗi vì thao tác đó xóa volume dữ liệu. Nếu đổi mật khẩu DB sau khi volume đã tạo, biến môi trường mới không tự đổi mật khẩu trong PostgreSQL hiện có; cần sao lưu và điều chỉnh DB riêng. Khi chạy Compose, dừng Vite và Uvicorn local trước để không trùng cổng 5175/8002.
 
 ### Thử AI live trên máy người lớn
 
