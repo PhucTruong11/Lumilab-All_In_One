@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import type { PointerEvent } from 'react';
-import { pendulumAngleAtTime, type PendulumParameters } from '@lumilab/lab-engine';
+import { pendulumDisplayState, type PendulumParameters } from '@lumilab/lab-engine';
 
 const W = 760, H = 420, PX = 148, pivot = { x: W / 2, y: 56 };
 const materials = {
@@ -122,11 +122,8 @@ export function PendulumCanvas({
 
       const length = parameters.length_m * PX;
       const bCoeff = visualOptions.dampingEnabled ? (visualOptions.dampingCoeff ?? 0.05) : 0;
-      const beta = bCoeff / (2 * parameters.mass_kg);
-      const decay = visualOptions.dampingEnabled ? Math.exp(-beta * elapsed.current) : 1;
-
-      const rawAngleDeg = side * pendulumAngleAtTime(parameters, elapsed.current);
-      const thetaDeg = rawAngleDeg * decay;
+      const motion = pendulumDisplayState(parameters, elapsed.current, side, bCoeff);
+      const thetaDeg = motion.angle_deg;
       const thetaRad = (thetaDeg * Math.PI) / 180;
       const bobX = pivot.x + length * Math.sin(thetaRad);
       const bobY = pivot.y + length * Math.cos(thetaRad);
@@ -249,20 +246,7 @@ export function PendulumCanvas({
       // Physics vector calculations
       const g = parameters.gravity_m_s2;
       const m = parameters.mass_kg;
-      const hMax = parameters.length_m * (1 - Math.cos((parameters.angle_deg * Math.PI) / 180));
-      const initialTotalE = m * g * hMax;
-      const totalE = visualOptions.dampingEnabled ? initialTotalE * (decay * decay) : initialTotalE;
-      const hCurrent = parameters.length_m * (1 - Math.cos(thetaRad));
-      const potE = m * g * hCurrent;
-      const kinE = Math.max(0, totalE - potE);
-      const speed = Math.sqrt((2 * kinE) / m);
-
-      // Direction via finite difference
-      const dtEps = 0.005;
-      const nextRawAngleDeg = side * pendulumAngleAtTime(parameters, elapsed.current + dtEps);
-      const nextDecay = visualOptions.dampingEnabled ? Math.exp(-beta * (elapsed.current + dtEps)) : 1;
-      const nextAngleDeg = nextRawAngleDeg * nextDecay;
-      const motionSign = nextAngleDeg >= thetaDeg ? 1 : -1;
+      const { kinetic_j: kinE, potential_j: potE, speed_m_s: speed, motionSign } = motion;
 
       // Vectors: Gravity P, Tension T, Velocity v, Air resistance Fc
       if (visualOptions.showVectors !== false) {
@@ -318,10 +302,10 @@ export function PendulumCanvas({
         ctx.roundRect(barX, barY, barW, barH, 4);
         ctx.fill();
 
-        const safeTotal = totalE > 0 ? totalE : 1e-6;
-        const kinRatio = Math.min(1, Math.max(0, kinE / safeTotal));
+        const safeInitial = motion.initial_j > 0 ? motion.initial_j : 1;
+        const kinRatio = Math.min(1, Math.max(0, kinE / safeInitial));
         const kinW = Math.round(barW * kinRatio);
-        const potW = barW - kinW;
+        const potW = Math.min(barW - kinW, Math.round(barW * potE / safeInitial));
 
         // Kinetic part (green)
         if (kinW > 0) {
@@ -430,7 +414,9 @@ export function PendulumCanvas({
       }}
       onPointerDown={event => {
         const p = point(event);
-        const theta = (side * pendulumAngleAtTime(parameters, time) * Math.PI) / 180;
+        const motion = pendulumDisplayState(parameters, time, side,
+          visualOptions.dampingEnabled ? (visualOptions.dampingCoeff ?? .05) : 0);
+        const theta = motion.angle_deg * Math.PI / 180;
         const x = pivot.x + parameters.length_m * PX * Math.sin(theta);
         const y = pivot.y + parameters.length_m * PX * Math.cos(theta);
         if (Math.hypot(p.x - x, p.y - y) > 42) return;

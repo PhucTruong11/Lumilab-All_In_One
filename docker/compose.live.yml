@@ -4,9 +4,13 @@ services:
     environment:
       LUMILAB_LLM_ENABLED: "true"
       LUMILAB_LLM_AUDIENCE: "adults"
-      LUMILAB_LLM_EVENT_CAP: "20"
+      LUMILAB_ENV: development
+      LUMILAB_LLM_LOCAL_UNLIMITED: ${LUMILAB_LLM_LOCAL_UNLIMITED:-false}
+      # Keep reservations on the same PostgreSQL ledger used by the host API.
+      LUMILAB_LLM_EVENT_ID: ${LUMILAB_LLM_EVENT_ID:-sgu-hackathon-2026}
+      LUMILAB_LLM_EVENT_CAP: ${LUMILAB_LLM_EVENT_CAP:-20}
       LUMILAB_LLM_RESERVED_DEMO: "0"
-      LUMILAB_LLM_SESSION_DAILY: "5"
+      LUMILAB_LLM_SESSION_DAILY: ${LUMILAB_LLM_SESSION_DAILY:-30}
       LUMILAB_LLM_MAX_ATTEMPTS: "2"
       LUMILAB_GEMINI_API_KEY: ${LUMILAB_GEMINI_API_KEY:?Set a server-side Gemini key in the root .env}
       LUMILAB_GROQ_API_KEY: ${LUMILAB_GROQ_API_KEY:?Set a server-side Groq key in the root .env}

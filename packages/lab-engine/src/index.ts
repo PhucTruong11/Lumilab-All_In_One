@@ -1,6 +1,7 @@
 import type { LabDefinition } from '@lumilab/contracts';
 export { defaultPendulum, pendulumPeriod, pendulumReading, pendulumAngleAtTime } from './pendulum';
 export type { PendulumParameters } from './pendulum';
+export { pendulumDisplayState } from './pendulum-display';
 export * from './titration';
 export * from './circuit';
 export * from './runtime';

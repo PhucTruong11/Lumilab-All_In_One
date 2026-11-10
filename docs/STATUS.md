@@ -1,5 +1,15 @@
 # Trạng thái repo B
 
+## Con lắc tắt dần trên bàn thực hành · 09/11/2026
+
+Canvas, số đọc và đồ thị dùng chung trạng thái minh họa của engine. Thanh cơ năng chuẩn hóa theo năng lượng ban đầu và giảm về 0 khi biên độ nhỏ hơn 0,05°. Giao diện tự tạm dừng tại ngưỡng hiển thị, tránh góc `-0.0` và vòng lặp thanh năng lượng. Thay góc/chiều dài vẫn mở lượt mới và giữ thao tác kéo thả/bàn phím. Chế độ lực cản là minh họa biên độ mũ, còn Verify máy chủ và sổ đo thuộc mô hình AGM lý tưởng không cản. Giả thiết và ngưỡng nằm trong [phạm vi khoa học](../SCIENCE.md).
+
+## Lumi hỏi đáp trên toàn bộ catalog · 09/11/2026
+
+Lumi nhận câu hỏi cho 14 runtime hiện hành và 3 runtime lưu trữ. Ví dụ, `AgCl` và “bạc clorua” chọn bài kết tủa, câu “Nó có tan trong nước không?” giữ ngữ cảnh trước đó. Khi chưa nhận ra bài, chế độ hỏi đáp máy chủ gửi câu hỏi kiến thức chung. Câu trả lời có thể dùng chữ số trong công thức và hằng số. Số đo của lượt thực hành vẫn do API kiểm và trả riêng. Các mode hướng dẫn thực hành tiếp tục dùng ba pilot và yêu cầu nguồn đủ quyền.
+
+Kiểm local trên nhánh `codex/lumi-all-labs-qa` đạt 800 test API với DB test PostgreSQL riêng (2 test thư viện tùy chọn bỏ qua), 170 unit TypeScript và 29 ca Playwright kiểm lại Lumi, lượt đã lưu và các luồng liên quan sau lần sửa cuối. Web build và kiểm schema đạt. Các test sinh câu trả lời sử dụng provider giả lập. Chất lượng câu trả lời live còn cần đánh giá khi có ngân sách sự kiện.
+
 ## Lumi hỏi đáp gọn · 08/11/2026
 
 Màn Lumi cho hỏi trực tiếp, tự xác định chủ đề trong học liệu hiện có. Câu trả lời Tutor hiển thị nội dung chính; số đo và học liệu tham khảo nằm trong mục mở rộng. Compose mặc định vẫn tắt AI và dùng câu trả lời mẫu. Profile Docker riêng cho thử nghiệm người lớn bật AI live với cap sự kiện 20; mode `qa` có thể trả lời kiến thức phổ thông khi không có RAG phù hợp, không gắn citation giả hoặc trạng thái kiểm duyệt. Các mode thực hành vẫn cần nguồn được duyệt. Gemini bị chặn ở audience `under18`; Groq vẫn chưa có cờ duyệt cho audience này. Nhãn trên web lấy trạng thái AI từ API; số đo và khoa học vẫn giữ preview, không `VERIFIED`.

@@ -7,32 +7,9 @@ import { askServerTutor, getServerRun } from '../serverRuns';
 import { apiBase, isPreview } from '../api';
 import { retrieveLearning, type RetrievalResponse } from '../retrieval';
 import { labContext } from '../data/labContext';
+import { routeLumiQuestion } from '../data/lumiRouting';
 
 interface Message { role: 'user' | 'assistant'; text: string; source?: string; retrieval?: RetrievalResponse; tutorSource?: string; notice?: string; runPreview?: string }
-const topics: [string, RegExp][] = [
-  ['spring-damped', /tắt dần|lực cản|ma sát dao động/],
-  ['inclined-plane', /mặt phẳng nghiêng|mặt dốc|dốc nghiêng|ma sát nghỉ/],
-  ['pulley', /ròng rọc|pa-lăng|palăng/],
-  ['alkali-water', /kim loại kiềm|natri|kali|na\b.*nước|k\b.*nước|màu ngọn lửa/],
-  ['copper-nitric', /hno3|hno₃|axit nitric|đồng.*nitric|no₂|no2/],
-  ['chlorine-bleach', /clo|chlorine|tẩy màu|nước javen/],
-  ['electrochemistry', /pin điện hóa|điện cực|electron|anot|catot/],
-  ['atomic', /nguyên tử|hạt nhân|proton|neutron|electron nguyên tử/],
-  ['parallel-circuit', /song song|dòng nhánh|hai điện trở/],
-  ['circuit', /mạch|điện trở|ampe|vôn|ohm|ôm|nối tiếp|công tắc|dòng điện|hiệu điện thế/],
-  ['capacitor', /tụ điện|điện dung|nạp xả|phóng điện/],
-  ['chemistry', /chuẩn độ|axit|acid|bazơ|base|hcl|naoh|\bph\b|trung hòa|trung hoà|chỉ thị|tương đương/],
-  ['precipitation', /kết tủa|agcl|agno3/],
-  ['gas-reaction', /bicarbonat|co2|co₂|khí cacbonic/],
-  ['spring', /lò xo|độ cứng|đàn hồi/],
-  ['pendulum', /con lắc|chu kỳ|chiều dài dây|góc thả|khối lượng/],
-  ['mechanics', /hợp lực|gia tốc|newton|chuyển động/],
-];
-function lessonFor(question: string, fallback = '') {
-  const query = question.toLocaleLowerCase('vi');
-  const title = lessons.find(item => query.includes(item.title.toLocaleLowerCase('vi')));
-  return title?.id ?? topics.find(([id, pattern]) => pattern.test(query) && lessons.some(item => item.id === id))?.[0] ?? fallback;
-}
 export function LumiChat({ active, labId, openLab }: { active: boolean; labId: LabId; openLab: () => void }) {
   const engines = useEngines();
   useLab(labId);
@@ -75,10 +52,12 @@ export function LumiChat({ active, labId, openLab }: { active: boolean; labId: L
     const text = question.trim().slice(0, 800);
     if (!text || pendingRun.current) return;
     const refersToRun = /lượt|số đo|kết quả|dữ liệu/.test(text.toLocaleLowerCase('vi'));
-    const activeLessonId = lessonFor(text) || (attach && refersToRun && savedRun.id ? savedRun.lessonId : '') || lastRouted.current || (attach ? labId : '');
-    if (activeLessonId) { setLessonId(activeLessonId); lastRouted.current = activeLessonId; }
-    if (!activeLessonId) {
-      setMessages(previous => [...previous.slice(-38), { role: 'user', text }, { role: 'assistant', text: 'Mình chưa xác định được chủ đề trong học liệu hiện có. Bạn hãy nêu rõ hiện tượng hoặc tên chủ đề để Lumi tìm đúng nội dung.' }]);
+    const runLessonId = attach && refersToRun ? savedRun.lessonId || labId : '';
+    const activeLessonId = routeLumiQuestion(text, runLessonId || lastRouted.current || (attach ? labId : ''));
+    if (activeLessonId) setLessonId(activeLessonId);
+    lastRouted.current = activeLessonId;
+    if (!activeLessonId && !(serverTutor && mode === 'qa')) {
+      setMessages(previous => [...previous.slice(-38), { role: 'user', text }, { role: 'assistant', text: 'Chưa tìm thấy học liệu hoặc chủ đề lab phù hợp. Bạn hãy thêm tên hiện tượng, chất hoặc bài lab để Lumi hiểu đúng câu hỏi.' }]);
       setInput('');
       return;
     }
@@ -86,7 +65,7 @@ export function LumiChat({ active, labId, openLab }: { active: boolean; labId: L
       const controller = new AbortController(); pendingRun.current = controller; setWaiting(true); setInput('');
       let answer: Message;
       try {
-        const result = await askServerTutor({ lab_id: activeLessonId, question: text,
+        const result = await askServerTutor({ lab_id: activeLessonId || null, question: text,
           mode: mode === 'explain' ? 'explanation' : mode, hint_level: level,
           run_id: attach && savedRun.lessonId === activeLessonId && savedRun.id ? savedRun.id : null,
           include_drafts: includeDrafts, level: learningLevel,
@@ -96,7 +75,7 @@ export function LumiChat({ active, labId, openLab }: { active: boolean; labId: L
         const cited = new Set(result.answer.output.citation_ids);
         answer = { role: 'assistant', retrieval: cited.size ? { ...result.retrieval, hits: result.retrieval.hits.filter(hit => cited.has(hit.chunk_id)) } : undefined,
           tutorSource: result.answer.response_source === 'llm' ? 'LLM · ' + result.answer.model : result.answer.response_source === 'cache' ? 'Phản hồi lưu đệm' : 'Hướng dẫn theo mẫu',
-          notice: result.answer.notice ? 'Dữ liệu chưa duyệt' : undefined,
+          notice: result.answer.notice && (result.answer.response_source === 'template' || cited.size) ? 'Dữ liệu chưa duyệt' : undefined,
           text: cleanMessage + (mode !== 'qa' && result.answer.output.follow_up ? '\n\n' + result.answer.output.follow_up : ''),
           runPreview: result.run ? Object.entries(result.run.preview).map(([key, value]) => key + ' = ' + String(value)).join('\n') : undefined,
         };

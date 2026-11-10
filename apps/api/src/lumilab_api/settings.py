@@ -1,7 +1,7 @@
 from pathlib import Path
 from typing import Literal
 
-from pydantic import Field, SecretStr
+from pydantic import Field, SecretStr, model_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -16,7 +16,8 @@ class Settings(BaseSettings):
     runtime_lab_dir: Path = Path("packages/lab-engine")
     database_url: SecretStr | None = None
     llm_enabled: bool = False
-    llm_event_cap: int = Field(default=0, ge=0, le=20)
+    llm_event_cap: int = Field(default=0, ge=0, le=200)
+    llm_local_unlimited: bool = False
     rag_enabled: bool = False
     rag_artifact_path: Path = Path(".local/retrieval/index.json")
     rag_chroma_path: Path | None = None
@@ -41,7 +42,7 @@ class Settings(BaseSettings):
     prompt_guard_timeout_seconds: float = Field(default=2, gt=0, le=2)
     prompt_guard_threshold: float = Field(default=.5, gt=0, lt=1)
     llm_session_rpm: int = Field(default=4, ge=1, le=10)
-    llm_session_daily: int = Field(default=10, ge=1, le=20)
+    llm_session_daily: int = Field(default=10, ge=1, le=30)
     llm_cache_ttl_seconds: int = Field(default=600, ge=0, le=3600)
     llm_max_input_bytes: int = Field(default=24000, ge=1000, le=32000)
     llm_timeout_seconds: float = Field(default=8, gt=0, le=8)
@@ -50,3 +51,9 @@ class Settings(BaseSettings):
     mistral_api_key: SecretStr | None = None
     groq_api_key: SecretStr | None = None
     openrouter_api_key: SecretStr | None = None
+
+    @model_validator(mode="after")
+    def local_limits_scope(self):
+        if self.llm_local_unlimited and self.env != "development":
+            raise ValueError("Unlimited local attempts require env=development")
+        return self

@@ -9,7 +9,7 @@ import {
   XAxis,
   YAxis,
 } from 'recharts';
-import { pendulumAngleAtTime, pendulumPeriod, type PendulumParameters } from '@lumilab/lab-engine';
+import { pendulumDisplayState, pendulumPeriod, type PendulumParameters } from '@lumilab/lab-engine';
 
 export type PendulumChartTab = 'angle' | 'energy' | 'speed';
 
@@ -23,35 +23,18 @@ interface Props {
 
 export function PendulumChart({ parameters, side, currentTime, dampingEnabled, dampingCoeff }: Props) {
   const [tab, setTab] = useState<PendulumChartTab>('angle');
+  const windowDuration = 2 * pendulumPeriod(parameters);
+  const windowStart = dampingEnabled ? Math.floor((currentTime ?? 0) / windowDuration) * windowDuration : 0;
 
   const { data, duration } = useMemo(() => {
-    const dur = 2 * pendulumPeriod(parameters);
-    const m = parameters.mass_kg;
-    const g = parameters.gravity_m_s2;
-    const L = parameters.length_m;
-    const hMax = L * (1 - Math.cos((parameters.angle_deg * Math.PI) / 180));
-    const baseTotalE = m * g * hMax;
-
+    const dur = windowDuration;
     const b = dampingEnabled ? (dampingCoeff ?? 0.05) : 0;
-    const beta = b / (2 * m);
 
     const points = Array.from({ length: 121 }, (_, index) => {
-      const time = (index * dur) / 120;
-      const decay = dampingEnabled ? Math.exp(-beta * time) : 1;
-      const rawAngle = side * pendulumAngleAtTime(parameters, time);
-      const angle = rawAngle * decay;
-      const rad = (angle * Math.PI) / 180;
-      const totalE = baseTotalE * (decay * decay);
-      const h = L * (1 - Math.cos(rad));
-      const potE = m * g * h;
-      const kinE = Math.max(0, totalE - potE);
-
-      const dt = 0.004;
-      const nextRawAngle = side * pendulumAngleAtTime(parameters, time + dt);
-      const nextDecay = dampingEnabled ? Math.exp(-beta * (time + dt)) : 1;
-      const nextAngle = nextRawAngle * nextDecay;
-      const sign = nextAngle >= angle ? 1 : -1;
-      const speed = Math.sqrt((2 * kinE) / m) * sign;
+      const time = windowStart + (index * dur) / 120;
+      const motion = pendulumDisplayState(parameters, time, side, b);
+      const { angle_deg: angle, total_j: totalE, potential_j: potE, kinetic_j: kinE } = motion;
+      const speed = motion.speed_m_s * motion.motionSign;
 
       return {
         time: Math.round(time * 1000) / 1000,
@@ -64,10 +47,12 @@ export function PendulumChart({ parameters, side, currentTime, dampingEnabled, d
     });
 
     return { data: points, duration: dur };
-  }, [parameters, side, dampingEnabled, dampingCoeff]);
+  }, [parameters, side, dampingEnabled, dampingCoeff, windowStart, windowDuration]);
 
   const currentMarker =
-    currentTime !== undefined && duration > 0 ? ((currentTime % duration) + duration) % duration : null;
+    currentTime !== undefined && duration > 0
+      ? dampingEnabled ? currentTime : ((currentTime % duration) + duration) % duration
+      : null;
 
   return (
     <div className="pendulum-chart-box">

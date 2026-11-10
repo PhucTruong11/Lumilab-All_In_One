@@ -281,7 +281,7 @@
           "type": "integer"
         },
         "prompt_version": {
-          "default": "lumi-seven-blocks-v6-adult-direct-qa",
+          "default": "lumi-seven-blocks-v7-all-labs-qa",
           "title": "Prompt Version",
           "type": "string"
         },

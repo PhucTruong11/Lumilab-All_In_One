@@ -13,17 +13,20 @@ class BudgetDenied(RuntimeError):
 
 class PostgresBudget:
     def __init__(self, engine, *, event_id: str, event_cap: int, daily_microusd: int,
-                 session_rpm: int = 3, session_daily: int = 10, reserved_demo: int = 5):
+                 session_rpm: int = 3, session_daily: int = 10, reserved_demo: int = 5,
+                 local_unlimited: bool = False):
         self.engine, self.event_id, self.event_cap = engine, event_id, event_cap
         self.daily_microusd, self.session_rpm, self.session_daily = daily_microusd, session_rpm, session_daily
         self.reserved_demo = reserved_demo
+        self.local_unlimited = local_unlimited
 
     def reserve(self, session_id, route, *, estimated_microusd: int, demo: bool = False,
                 model: str | None = None, model_rpm: int | None = None, model_rpd: int | None = None,
                 provider: str | None = None, estimated_tokens: int = 0, provider_tpm=None, provider_tpd=None,
                 model_tpm=None, model_tpd=None):
         from .run_schema import llm_attempts, llm_counters, llm_headers, llm_tokens
-        if self.engine is None or self.event_cap <= 0 or estimated_microusd < 0 or estimated_tokens < 0:
+        if (self.engine is None or (self.event_cap <= 0 and not self.local_unlimited)
+                or estimated_microusd < 0 or estimated_tokens < 0):
             raise BudgetDenied("LIVE_BUDGET_DISABLED")
         now = datetime.now(UTC)
         day, minute = now.strftime("%Y-%m-%d"), now.strftime("%Y-%m-%dT%H:%M")
@@ -31,6 +34,9 @@ class PostgresBudget:
                 ("day:" + self.event_id + ":" + day, None, self.daily_microusd),
                 ("session-day:" + str(session_id) + ":" + day, self.session_daily, None),
                 ("session-minute:" + str(session_id) + ":" + minute, self.session_rpm, None)]
+        if self.local_unlimited:
+            # Keep the same durable counters, then append provider limits normally.
+            keys = [(key, None, cost_cap) for key, _cap, cost_cap in keys]
         if model and model_rpm:
             keys.append(("model-minute:" + model + ":" + minute, model_rpm, None))
         if model and model_rpd:

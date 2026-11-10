@@ -41,7 +41,7 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     registry = load_registry(config.knowledge_dir / "pipeline/sources.json")
     routes = [Route.model_validate(item) for item in json.loads(
         (config.knowledge_dir / "pipeline/providers.json").read_text(encoding="utf-8"))["routes"]]
-    if config.llm_enabled and (config.llm_event_cap <= 0 or config.database_url is None
+    if config.llm_enabled and ((config.llm_event_cap <= 0 and not config.llm_local_unlimited) or config.database_url is None
             or not any(route.role != 'guard' and route.allowed(config.llm_audience) for route in routes)):
         raise ValueError("Live LLM disabled until durable budget, policy, quota and provider are configured")
     compiled_index = None
@@ -172,7 +172,8 @@ def create_app(settings: Settings | None = None) -> FastAPI:
     app.include_router(retrieval_router(config.knowledge_dir, set(runtime_labs), compiled_index=compiled_index, source_registry=registry))
     budget = PostgresBudget(engine, event_id=config.llm_event_id, event_cap=config.llm_event_cap,
         daily_microusd=config.llm_daily_microusd, session_rpm=config.llm_session_rpm,
-        session_daily=config.llm_session_daily, reserved_demo=config.llm_reserved_demo)
+        session_daily=config.llm_session_daily, reserved_demo=config.llm_reserved_demo,
+        local_unlimited=config.llm_local_unlimited)
     gateway = Gateway(config, registry, routes, budget)
     @app.get("/api/v1/tutor/status", tags=["Lumi Tutor"])
     def tutor_status():

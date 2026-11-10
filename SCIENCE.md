@@ -20,4 +20,10 @@ Xem giả thiết, phiên bản và đơn vị trong [cấu hình từng lab](pa
 
 ## Duyệt mô hình và bằng chứng
 
+### Minh họa lực cản trên bàn con lắc
+
+Tùy chọn lực cản của bàn `pendulum` dùng biên độ mũ `A(t) = A₀ exp(−bt/2m)`, với `b` theo N·s/m và `t` theo giây, áp lên quỹ đạo AGM lý tưởng. Đây là minh họa xấp xỉ, chưa giải phương trình con lắc phi tuyến có cản. Chu kỳ trong sổ đo và phép tính lại Python vẫn thuộc `pendulum-agm-v1` không cản. Chế độ minh họa khóa nút ghi số đo trên bàn.
+
+Trạng thái hiển thị dùng chung cho Canvas, số đọc và đồ thị. Cơ năng minh họa lấy từ biên độ còn lại `E(t) = 2mgL sin²(A(t)/2)`, với góc đổi sang radian, thế năng từ góc tức thời, động năng bằng phần còn lại. Thanh năng lượng chuẩn hóa theo năng lượng ban đầu để thể hiện tiêu tán. Khi biên độ cả chu kỳ dưới 0,05° (nửa bước hiển thị 0,1°), giao diện quy về trạng thái nghỉ và tạm dừng đồng hồ. Đây là ngưỡng hiển thị, không khẳng định vật lý dừng chính xác sau thời gian hữu hạn. Các tham số giữ phạm vi của mô hình gốc và hệ số cản UI từ 0,01 đến 0,20 N·s/m. Kiểm hồi quy gồm không dừng tại lần qua cân bằng, năng lượng không âm/giảm dần và bảo toàn mô hình lý tưởng.
+
 Ghi riêng giả thiết mô hình, đơn vị, phạm vi, ca kiểm và vị trí trích dẫn cho từng kết luận. Tính số đo từ engine và kiểm độc lập ở API. Trạng thái hiện tại là `draft`. Verify trả preview cho kết quả phù hợp, với `INSUFFICIENT_DATA / REVIEWED_EVIDENCE_REQUIRED` khi thiếu bằng chứng được duyệt. [Phạm vi Verify](docs/VERIFICATION.md)
