@@ -1,6 +1,6 @@
 import { ChartBoundary } from './AppBoundary';
-import { lazy, Suspense, useCallback, useState } from 'react';
-import { pendulumAngleAtTime, type PendulumParameters } from '@lumilab/lab-engine';
+import { lazy, Suspense, useCallback, useEffect, useState } from 'react';
+import { pendulumDisplayState, type PendulumParameters } from '@lumilab/lab-engine';
 import { PendulumCanvas, type PendulumVisualOptions } from './PendulumCanvas';
 import { useLab, useLabSpeed } from '../labSession';
 import { LabSlider } from './ExpandedLabParts';
@@ -41,19 +41,10 @@ export function PendulumLab() {
     engine.record();
   }
 
-  // Telemetry instant values with optional damping
-  const b = dampingEnabled ? dampingCoeff : 0;
-  const beta = b / (2 * parameters.mass_kg);
-  const decay = dampingEnabled ? Math.exp(-beta * time) : 1;
-  const rawAngle = parameters.angle_deg === 0 ? 0 : side * pendulumAngleAtTime(parameters, time);
-  const currentAngle = rawAngle * decay;
-  const hMax = parameters.length_m * (1 - Math.cos((parameters.angle_deg * Math.PI) / 180));
-  const baseTotalE = parameters.mass_kg * parameters.gravity_m_s2 * hMax;
-  const totalE = dampingEnabled ? baseTotalE * (decay * decay) : baseTotalE;
-  const hCurrent = parameters.length_m * (1 - Math.cos((currentAngle * Math.PI) / 180));
-  const potE = parameters.mass_kg * parameters.gravity_m_s2 * hCurrent;
-  const kinE = Math.max(0, totalE - potE);
-  const currentSpeed = Math.sqrt((2 * kinE) / parameters.mass_kg);
+  const motion = pendulumDisplayState(parameters, time, side, dampingEnabled ? dampingCoeff : 0);
+  useEffect(() => {
+    if (dampingEnabled && motion.atRest && running) engine.pause();
+  }, [dampingEnabled, motion.atRest, running, engine]);
 
   return (
     <>
@@ -63,7 +54,7 @@ export function PendulumLab() {
             <h2>Bàn thí nghiệm</h2>
             <span className="mode-chip">
               <i />{' '}
-              {running
+              {dampingEnabled && motion.atRest ? 'Đã tắt dần · dưới độ phân giải' : running
                 ? 'Đang dao động'
                 : parameters.angle_deg === 0
                 ? 'Ở vị trí cân bằng'
@@ -131,7 +122,7 @@ export function PendulumLab() {
             <button
               className="primary-button"
               onClick={() => (running ? engine.pause() : engine.run())}
-              disabled={parameters.angle_deg === 0}
+              disabled={motion.atRest}
             >
               {running ? 'Ⅱ Tạm dừng' : '▶ Chạy thí nghiệm'}
             </button>
@@ -186,13 +177,13 @@ export function PendulumLab() {
             <div>
               <span>Góc lệch θ</span>
               <strong>
-                {parameters.angle_deg === 0 ? '0.0' : currentAngle.toFixed(1)} <small>°</small>
+                {(Math.abs(motion.angle_deg) < .05 ? 0 : motion.angle_deg).toFixed(1)} <small>°</small>
               </strong>
             </div>
             <div>
               <span>Vận tốc v</span>
               <strong>
-                {parameters.angle_deg === 0 ? '0.00' : currentSpeed.toFixed(2)} <small>m/s</small>
+                {motion.speed_m_s.toFixed(2)} <small>m/s</small>
               </strong>
             </div>
           </div>
@@ -226,6 +217,7 @@ export function PendulumLab() {
               </div>
               {dampingEnabled && (
                 <div className="damping-slider-wrap">
+                  <p className="content-note">Minh họa tắt dần. Máy chủ kiểm mô hình con lắc không cản. Biên độ dưới 0,05° được hiển thị đứng yên.</p>
                   <div className="damping-labels">
                     <span>Hệ số cản b: <strong>{dampingCoeff.toFixed(3)} N·s/m</strong></span>
                     <span className="sub-hint">

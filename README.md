@@ -80,7 +80,9 @@ docker compose --env-file .env -f docker/compose.yml -f docker/compose.live.yml 
 Invoke-RestMethod http://127.0.0.1:8002/api/v1/tutor/status
 ```
 
-Profile giữ trần sự kiện 20 lượt đã ghi trong PostgreSQL và giới hạn 5 lượt mỗi phiên/ngày, tối đa 2 lần thử cho mỗi câu. Không xóa hoặc đặt lại bộ đếm khi hết lượt. Câu hỏi đáp cơ bản có thể dùng kiến thức model khi không có đoạn nguồn phù hợp; phản hồi không có citation là **AI chưa kiểm duyệt**. Các chế độ hướng dẫn thực hành vẫn cần nguồn đã duyệt và quyền gửi. Xem [runbook](docs/LLM-RUNBOOK.md). Để quay về chế độ mặc định, chạy `docker compose -f docker/compose.yml up -d --force-recreate --wait web`.
+Profile đọc trần sự kiện từ `LUMILAB_LLM_EVENT_CAP` (mặc định 20) và giới hạn 30 lần thử mỗi phiên/ngày, tối đa 2 lần thử cho mỗi câu. Bộ đếm được ghi bền trong PostgreSQL. Câu hỏi đáp cơ bản có thể dùng kiến thức model khi không có đoạn nguồn phù hợp; phản hồi không có citation là **AI chưa kiểm duyệt**. Các chế độ hướng dẫn thực hành vẫn cần nguồn đã duyệt và quyền gửi. Xem [runbook](docs/LLM-RUNBOOK.md). Để quay về chế độ mặc định, chạy `docker compose -f docker/compose.yml up -d --force-recreate --wait web`.
+
+Để dùng local làm bản dự phòng demo, có thể đặt `LUMILAB_LLM_LOCAL_UNLIMITED=true` trong root `.env` rồi khởi động lại profile live. Chế độ này bỏ giới hạn số lượt sự kiện và phiên của ứng dụng, tiếp tục ghi bộ đếm, giữ quota provider/token, trần chi phí và giới hạn retry/deadline. Chỉ được bật với `LUMILAB_ENV=development`; mẫu deploy production mặc định tắt cờ này.
 
 ## Phát triển trực tiếp trên máy
 

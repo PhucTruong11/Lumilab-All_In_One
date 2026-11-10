@@ -127,6 +127,28 @@ def new_session(client):
     return credentials["session_id"], {"Authorization": "Bearer " + credentials["session_token"]}
 
 
+def test_qa_all_labs_and_unscoped_keep_authentication_and_run_boundaries(pg):
+    _, client = pg
+    session, headers = new_session(client)
+    _, other_headers = new_session(client)
+    url = f'/api/v1/sessions/{session}/tutor'
+    catalog = json.loads((ROOT / 'packages/lab-engine/labs/catalog.json').read_text('utf-8'))
+    for lab in [*catalog['active'], *catalog['archived'], None]:
+        payload = {'lab_id': lab, 'question': 'Giải thích khái niệm trong bài này', 'mode': 'qa'}
+        response = client.post(url, headers=headers, json=payload)
+        assert response.status_code == 200, response.text
+        result = response.json()
+        assert result['answer']['degraded_reason'] == 'LIVE_DISABLED'
+        assert result['answer']['attempts'] == 0 and result['run'] is None
+        if lab is None:
+            assert result['retrieval']['hits'] == []
+            assert client.post(url, headers=other_headers, json=payload).status_code == 401
+            assert client.post(url, json=payload).status_code == 401
+            assert client.post(url, headers=headers, json={**payload, 'mode': 'hint'}).status_code == 422
+            assert client.post(url, headers=headers, json={**payload, 'run_id': str(uuid4())}).status_code == 422
+    assert client.post(url, headers=headers, json={**payload, 'lab_id': 'invented'}).status_code == 404
+
+
 def test_tutor_owned_runs_preview_and_spoofed_context_are_blocked(pg):
     _, client = pg
     first, headers = new_session(client)
@@ -194,3 +216,28 @@ def test_daily_cost_limit_demo_reserve_and_storage_failure_fail_closed(pg):
     reserve.reserve(session, "fixture", estimated_microusd=0, demo=True)
     with pytest.raises(BudgetDenied):
         PostgresBudget(None, event_id="test", event_cap=2, daily_microusd=0).reserve(session,"fixture",estimated_microusd=0)
+
+
+def test_local_unlimited_keeps_accounting_and_provider_limits(pg):
+    engine, client = pg
+    session, _ = new_session(client)
+    event = 'pytest-' + uuid4().hex
+    model = 'fixture/' + uuid4().hex
+    budget = PostgresBudget(engine, event_id=event, event_cap=1, daily_microusd=0,
+        session_rpm=1, session_daily=1, reserved_demo=0, local_unlimited=True)
+    for _ in range(3):
+        budget.reserve(session, 'fixture', estimated_microusd=0, model=model, model_rpd=3)
+    with engine.connect() as connection:
+        assert connection.execute(select(llm_counters.c.attempts).where(
+            llm_counters.c.key == 'event:' + event)).scalar_one() == 3
+    with pytest.raises(BudgetDenied, match='MODEL_RATE_LIMIT'):
+        budget.reserve(session, 'fixture', estimated_microusd=0, model=model, model_rpd=3)
+    with pytest.raises(BudgetDenied, match='LIVE_BUDGET_DISABLED'):
+        PostgresBudget(None, event_id=event, event_cap=0, daily_microusd=0,
+            local_unlimited=True).reserve(session, 'fixture', estimated_microusd=0)
+
+
+def test_local_unlimited_cannot_be_enabled_for_production():
+    from pydantic import ValidationError
+    with pytest.raises(ValidationError, match='development'):
+        Settings(_env_file=None, env='production', llm_local_unlimited=True)

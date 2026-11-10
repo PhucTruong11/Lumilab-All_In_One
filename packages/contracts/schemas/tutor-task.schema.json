@@ -1,11 +1,45 @@
 {
   "additionalProperties": false,
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "lab_id": {
+            "type": "null"
+          }
+        },
+        "required": [
+          "lab_id"
+        ]
+      },
+      "then": {
+        "properties": {
+          "mode": {
+            "const": "qa"
+          },
+          "run_id": {
+            "type": "null"
+          }
+        },
+        "required": [
+          "mode"
+        ]
+      }
+    }
+  ],
   "properties": {
     "lab_id": {
-      "maxLength": 32,
-      "minLength": 1,
-      "title": "Lab Id",
-      "type": "string"
+      "anyOf": [
+        {
+          "maxLength": 32,
+          "minLength": 1,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Lab Id"
     },
     "question": {
       "maxLength": 800,

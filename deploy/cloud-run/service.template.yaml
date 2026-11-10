@@ -28,6 +28,8 @@ spec:
               value: "false"
             - name: LUMILAB_LLM_EVENT_CAP
               value: "0"
+            - name: LUMILAB_LLM_SESSION_DAILY
+              value: "30"
             - name: LUMILAB_RAG_ENABLED
               value: "false"
 # DATABASE_URL intentionally absent until DB/TLS/Secret Manager is chosen.

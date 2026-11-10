@@ -92,7 +92,7 @@ export type TutorResult = {
   retrieval: import('./retrieval').RetrievalResponse;
   run: { run_id: string; lab_id: string; notice: string; preview: Record<string, PreviewValue> } | null;
 };
-export async function askServerTutor(input: { lab_id: string; question: string;
+export async function askServerTutor(input: { lab_id: string | null; question: string;
   mode: 'qa' | 'hint' | 'explanation' | 'feedback'; hint_level: number;
   run_id: string | null; include_drafts: boolean;
   level?: 'THCS' | 'THPT';

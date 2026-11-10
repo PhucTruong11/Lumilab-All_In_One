@@ -43,6 +43,8 @@ spec:
               value: "false"
             - name: LUMILAB_LLM_EVENT_CAP
               value: "0"
+            - name: LUMILAB_LLM_SESSION_DAILY
+              value: "30"
             - name: LUMILAB_DATABASE_URL
               valueFrom:
                 secretKeyRef: { name: lumilab-database-url, key: latest }

@@ -12,5 +12,6 @@ OpenAPI của API chạy tại `http://127.0.0.1:8002/docs`. TypeScript contract
 - `POST /api/v1/sessions`, `POST/GET /api/v1/sessions/{session_id}/runs`: cần PostgreSQL và Bearer token phiên; server kiểm ownership và tính lại trước khi lưu.
 - `POST /api/v1/retrieval/query`: lọc theo lab, level, review và cách truy xuất; nguồn draft có nhãn.
 - `POST /api/v1/sessions/{session_id}/tutor`: đọc run thuộc phiên. Mặc định phản hồi template, không gọi AI live.
+  `mode=qa` hỗ trợ mọi runtime đã triển khai. `lab_id` vẫn bắt buộc nhưng có thể là `null` khi hỏi kiến thức chung; trường hợp này `run_id` phải `null`/không gửi và không lấy RAG theo lab. Ví dụ: `{"lab_id":null,"question":"H2O là gì?","mode":"qa"}`. `lab_id=null` với mode thực hành hoặc có run trả 422; lab không tồn tại trả 404. Token phiên vẫn bắt buộc. Các request có lab cũ giữ tương thích; triển khai API mới trước web mới.
 
 Lỗi HTTP có `{error:{code,message},request_id}`. Không coi thiếu DB/index là đầu vào khoa học sai. Đổi field chung phải sửa schema, producer, consumer và test cùng lúc.

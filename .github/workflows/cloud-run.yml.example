@@ -50,7 +50,7 @@ jobs:
           REGION: ${{ vars.GCP_REGION }}
           RUNTIME_SA: ${{ vars.GCP_RUNTIME_SERVICE_ACCOUNT }}
         run: |
-          gcloud run deploy lumilab-staging --project "$PROJECT" --region "$REGION" --image "$IMAGE" --service-account "$RUNTIME_SA" --port 8000 --cpu 1 --memory 512Mi --min 0 --max 1 --concurrency 4 --timeout 20 --cpu-throttling --no-cpu-boost --update-env-vars LUMILAB_LLM_ENABLED=false,LUMILAB_RAG_ENABLED=false,LUMILAB_LLM_EVENT_CAP=0 --quiet
+          gcloud run deploy lumilab-staging --project "$PROJECT" --region "$REGION" --image "$IMAGE" --service-account "$RUNTIME_SA" --port 8000 --cpu 1 --memory 512Mi --min 0 --max 1 --concurrency 4 --timeout 20 --cpu-throttling --no-cpu-boost --update-env-vars LUMILAB_LLM_ENABLED=false,LUMILAB_RAG_ENABLED=false,LUMILAB_LLM_EVENT_CAP=0,LUMILAB_LLM_SESSION_DAILY=30 --quiet
           url=$(gcloud run services describe lumilab-staging --project "$PROJECT" --region "$REGION" --format='value(status.url)')
           token=$(gcloud auth print-identity-token --audiences="$url")
           curl --fail --max-time 30 -H "Authorization: Bearer $token" "$url/health"
@@ -74,7 +74,7 @@ jobs:
           REGION: ${{ vars.GCP_REGION }}
           RUNTIME_SA: ${{ vars.GCP_RUNTIME_SERVICE_ACCOUNT }}
         run: |
-          gcloud run deploy lumilab-production --project "$PROJECT" --region "$REGION" --image "$IMAGE" --service-account "$RUNTIME_SA" --port 8000 --cpu 1 --memory 512Mi --min 0 --max 1 --concurrency 4 --timeout 20 --cpu-throttling --no-cpu-boost --update-env-vars LUMILAB_LLM_ENABLED=false,LUMILAB_RAG_ENABLED=false,LUMILAB_LLM_EVENT_CAP=0 --quiet
+          gcloud run deploy lumilab-production --project "$PROJECT" --region "$REGION" --image "$IMAGE" --service-account "$RUNTIME_SA" --port 8000 --cpu 1 --memory 512Mi --min 0 --max 1 --concurrency 4 --timeout 20 --cpu-throttling --no-cpu-boost --update-env-vars LUMILAB_LLM_ENABLED=false,LUMILAB_RAG_ENABLED=false,LUMILAB_LLM_EVENT_CAP=0,LUMILAB_LLM_SESSION_DAILY=30 --quiet
           url=$(gcloud run services describe lumilab-production --project "$PROJECT" --region "$REGION" --format='value(status.url)')
           token=$(gcloud auth print-identity-token --audiences="$url")
           curl --fail --max-time 30 -H "Authorization: Bearer $token" "$url/health"

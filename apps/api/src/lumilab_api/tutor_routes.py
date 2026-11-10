@@ -54,15 +54,16 @@ def tutor_router(engine, compiled_index, gateway: Gateway, lab_ids: set[str]):
         response.headers["Cache-Control"] = "no-store"
         if engine is None:
             raise HTTPException(503)
-        if payload.lab_id not in lab_ids:
+        if payload.lab_id is not None and payload.lab_id not in lab_ids:
             raise HTTPException(404)
         task = TutorTask.model_validate(payload.model_dump(exclude={"history", "include_drafts", "level"}))
         try:
             # Close the ownership transaction before any provider/budget reservation.
             with engine.begin() as connection:
                 authorize(connection, session_id, credentials)
-                if compiled_index is None:
-                    retrieved = RetrievalResponse(corpus_revision="index-unavailable", status="NO_MATCH", hits=[])
+                if compiled_index is None or payload.lab_id is None:
+                    retrieved = RetrievalResponse(corpus_revision=compiled_index.artifact['corpus_revision']
+                        if compiled_index else "index-unavailable", status="NO_MATCH", hits=[])
                 else:
                     retrieved = compiled_index.retrieve(RetrievalQuery(lab_id=payload.lab_id,
                         query=payload.question, level=payload.level, include_drafts=payload.include_drafts, retrieval_method="hybrid"))

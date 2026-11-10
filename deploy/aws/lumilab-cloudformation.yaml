@@ -200,6 +200,7 @@ Resources:
           LUMILAB_DATABASE_URL=postgresql+psycopg://lumilab:${DBPassword}@${PostgresDB.Endpoint.Address}:5432/lumilab?sslmode=require
           LUMILAB_LLM_ENABLED=false
           LUMILAB_LLM_EVENT_CAP=0
+          LUMILAB_LLM_SESSION_DAILY=30
           LUMILAB_ALLOWED_ORIGINS=["*"]
           ENVEOF
 

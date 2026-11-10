@@ -10,13 +10,14 @@ Compose mặc định chỉ truyền DB URL và các cờ tắt AI/RAG; `--env-f
 
 | Biến `LUMILAB_…` | Mặc định trong Settings | Ý nghĩa |
 | --- | --- | --- |
-| `LLM_ENABLED`, `LLM_EVENT_CAP` | `false`, `0` | Không cho gọi live khi chưa có ngân sách. Event cap tối đa 20. |
+| `LLM_ENABLED`, `LLM_EVENT_CAP` | `false`, `0` | Không cho gọi live khi chưa có ngân sách. Event cap cấu hình tối đa 200 lần thử, gồm lượt lỗi và retry. |
+| `LLM_LOCAL_UNLIMITED` | `false` | Opt-in cho `ENV=development`: bỏ trần số lượt sự kiện/phiên/ngày/phút của ứng dụng, vẫn ghi bộ đếm PostgreSQL, giữ trần chi phí, quota provider/token và deadline/retry. Cấu hình này bị từ chối ở production. |
 | `LLM_AUDIENCE` | `under18` | Phải đúng đối tượng thực. Gemini bị chặn cứng ở `under18`; Groq cần `minors_approved` sau khi team duyệt ứng dụng, profile thử local đặt `adults`. |
 | `GEMINI_API_KEY`, `GROQ_API_KEY` | Không có | Credential server; các model cùng provider dùng key tương ứng. |
 | `LLM_ALLOW_MODEL_FALLBACK`, `LLM_ALLOW_PROVIDER_FALLBACK` | `false`, `false` | Cho chuyển model cùng provider hoặc chuyển provider theo route đã đủ điều kiện. |
 | `LLM_TIMEOUT_SECONDS`, `LLM_TOTAL_TIMEOUT_SECONDS` | `8`, `18` | Deadline mỗi chat transport và deadline chung cho guard/chat. |
 | `LLM_MAX_ATTEMPTS`, `LLM_MAX_OUTPUT_TOKENS` | `4`, `384` | Tổng lượt chat, gồm lượt sửa output; giới hạn output mỗi lượt. |
-| `LLM_SESSION_RPM`, `LLM_SESSION_DAILY` | `4`, `10` | Trần provider attempts theo phiên/phút và phiên/ngày UTC. |
+| `LLM_SESSION_RPM`, `LLM_SESSION_DAILY` | `4`, `10` | Trần provider attempts theo phiên/phút và phiên/ngày UTC. Profile local người lớn dùng 30 lần thử/phiên/ngày, gồm retry. |
 | `LLM_EVENT_ID`, `LLM_RESERVED_DEMO`, `LLM_DEMO_MODE` | `sgu-hackathon-2026`, `5`, `false` | Ngân sách sự kiện dùng bền qua các phiên; lượt thường giữ lại phần demo. |
 | `LLM_DAILY_MICROUSD` | `0` | Trần chi phí dự trữ mỗi ngày, đơn vị một phần triệu USD. Giá route bằng 0 vẫn chịu các trần lượt/token. |
 | `GROQ_SHARED_TPM`, `GROQ_SHARED_TPD` | `8000`, `200000` | Trần token chung do ứng dụng đặt, không cộng hạn mức từng model. |
@@ -31,7 +32,9 @@ Các giá trị khác và giới hạn validation ở [settings.py](../apps/api/
 
 API chỉ khởi động live khi có DB URL, event cap dương và ít nhất một chat route được phép. Route cần `enabled`, `account_verified`, `policy_verified`, `quota_verified`; `free_only` loại route có giá khai báo khác 0. Trước khi gọi còn cần key hợp lệ, PostgreSQL thực sự truy cập được, học liệu `reviewed`, provenance và quyền `send_llm`. Có key không tự đáp ứng các điều kiện này.
 
-Phạm vi gateway hiện là `pendulum`, `circuit`, `chemistry`; `chemistry` nay thuộc runtime lưu trữ. PR Dataset #13 đã thêm runtime/học liệu mới nhưng chưa mở rộng pilot gateway. Những bài mới vẫn có thể nhận template với `MVP_SCOPE_ONLY`. API xác thực token/hạn phiên và quyền `run_id` trước khi dựng context. Không nhận facts, preview hoặc đường dẫn skill do client gán. Chế độ `qa` trên profile người lớn có thể giải thích kiến thức phổ thông không có RAG, với citation rỗng và trạng thái AI chưa kiểm duyệt; các mode thực hành chỉ dùng nguồn đã duyệt. Model không đặt số đo; output hợp lệ vẫn là `DRAFT_GUIDANCE`, không cấp `VERIFIED`.
+Chế độ `qa` hỗ trợ mọi runtime đã triển khai trong catalog (14 hiện hành, 3 lưu trữ). Câu hỏi không xác định được lab gửi `lab_id=null`, không đính kèm run/RAG của bài khác, và có thể nhận giải thích kiến thức phổ thông từ model. Các mode `hint`, `explanation`, `feedback` vẫn chỉ mở ở ba pilot `pendulum`, `circuit`, `chemistry` và cần nguồn được duyệt, có quyền gửi provider. `tutor_pilot` trong `/api/v1/system` chỉ phạm vi thực hành này, không phải phạm vi QA.
+
+API vẫn kiểm token/hạn phiên và quyền `run_id`; không nhận facts, preview hoặc đường dẫn skill do client gán. QA cho phép chữ số trong công thức, phương trình và hằng số có đơn vị/điều kiện; lời giải thích là AI chưa kiểm duyệt, không phải số đo hay chứng nhận đúng khoa học. Số đo vẫn do engine/API tính và hiển thị riêng. Bộ kiểm output giữ schema chặt, ID citation hợp lệ và chặn tự nhận `VERIFIED`/đã duyệt; không tự chứng minh được tính đúng của mọi câu văn. Các mode hướng dẫn thực hành vẫn chặn số do model phát sinh. Output hợp lệ là `DRAFT_GUIDANCE`. Prompt version `lumi-seven-blocks-v7-all-labs-qa` tách cache khỏi câu trả lời cũ.
 
 Điều khoản [Gemini API](https://ai.google.dev/gemini-api/terms) cấm dùng API trong ứng dụng hướng tới hoặc có khả năng được người dưới 18 tuổi truy cập. [Groq Services Agreement](https://console.groq.com/docs/legal/services-agreement) yêu cầu người dùng dịch vụ từ 18 tuổi và nêu rõ trách nhiệm của khách hàng nếu ứng dụng có người dùng chưa đủ tuổi thành niên. Vì vậy registry hiện chưa đánh dấu Groq được phép cho audience `under18`; nhóm cần chốt điều kiện sử dụng, dữ liệu và biện pháp bảo vệ trước khi đổi cờ `minors_approved`. Không đổi audience thành `adults` cho một triển khai dành cho học sinh.
 
@@ -74,7 +77,7 @@ Pytest dùng provider giả/HTTP transport giả; guard evaluation dùng luật 
 | `Groq server key required` / `Fresh Groq metadata check required` | Kiểm secret server, manifest, thời gian UTC và model; chạy metadata tường minh nếu cần. |
 | HTTP `401` / `404` / `503` ở Tutor | Kiểm token/hạn phiên; lab/run thuộc phiên; DB tương ứng. Dùng `request_id`, không ghi token hoặc raw câu hỏi vào log. |
 | `NEEDS_SOURCE` / `NO_RELEVANT_SOURCE` | Kiểm artifact, lab/level và câu hỏi; bàn giao cho owner RAG, không hạ ngưỡng để vượt preflight. |
-| `MVP_SCOPE_ONLY`, `LIVE_DISABLED`, `NO_APPROVED_PROVIDER` | Kiểm pilot ID, cấu hình đang được process/container dùng và route được phép. |
+| `MVP_SCOPE_ONLY`, `LIVE_DISABLED`, `NO_APPROVED_PROVIDER` | Kiểm mode thực hành/pilot ID, cấu hình đang được process/container dùng và route được phép. QA không bị giới hạn ba pilot. |
 | `REVIEWED_SOURCES_REQUIRED`, `SOURCE_PROVIDER_USE_NOT_APPROVED` | Chờ review/provenance/quyền nguồn đúng revision; không tự điền người duyệt. |
 | `LIVE_BUDGET_DISABLED`, `ATTEMPT_CAP_EXCEEDED`, `DAILY_COST_CAP_EXCEEDED` | Kiểm event/session/day budget, phần demo và usage A/B; dừng khi hết lượt. |
 | `MODEL_RATE_LIMIT_EXCEEDED`, `MODEL_TOKEN_LIMIT_EXCEEDED`, `PROVIDER_TOKEN_LIMIT_EXCEEDED`, `PROVIDER_HEADER_LIMIT_EXCEEDED` | Kiểm quota model/chung/header và cửa sổ UTC. Chỉ route khác đã được cấp quyền mới có thể được thử. |
